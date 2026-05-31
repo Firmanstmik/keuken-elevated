@@ -1,69 +1,71 @@
-import heroImg from "@/assets/hero-kitchen.jpg";
+import { kc } from "@/lib/kc-data";
 
 export function Hero() {
   return (
-    <section id="top" className="relative h-screen min-h-[760px] w-full overflow-hidden bg-ink text-ivory">
+    <section id="top" className="relative h-screen min-h-[760px] w-full overflow-hidden bg-ink text-ivory grain">
       <div className="absolute inset-0">
         <img
-          src={heroImg}
-          alt="Architectural premium kitchen in deep navy and marble"
+          src={kc.hero.main}
+          alt="Leicht Japandi designkeuken in showroom Keuken-Centrum Utrecht"
           className="h-full w-full object-cover animate-ken-burns"
           width={1920}
           height={1280}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/30 to-ink/85" />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink/60 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-ink/85 via-ink/35 to-ink/95" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/75 via-transparent to-transparent" />
       </div>
 
       {/* Side meta */}
-      <div className="pointer-events-none absolute left-6 top-1/2 hidden -translate-y-1/2 -rotate-90 origin-left text-[10px] uppercase tracking-[0.4em] text-ivory/60 lg:block">
-        Keuken-Centrum · Utrecht · Sinds 1978
+      <div className="pointer-events-none absolute left-6 top-1/2 hidden -translate-y-1/2 -rotate-90 origin-left text-[10px] uppercase tracking-[0.4em] text-ivory/55 lg:block">
+        Utrecht · Sinds {kc.founded} · CBW Erkend
       </div>
-      <div className="pointer-events-none absolute right-8 top-1/2 hidden -translate-y-1/2 rotate-90 origin-right text-[10px] uppercase tracking-[0.4em] text-ivory/60 lg:block">
-        Premium European Kitchen Atelier
+      <div className="pointer-events-none absolute right-8 top-1/2 hidden -translate-y-1/2 rotate-90 origin-right text-[10px] uppercase tracking-[0.4em] text-ivory/55 lg:block">
+        Leicht · Nobilia · Zampieri · Cucinesse · AI Küchen
       </div>
 
       <div className="relative z-10 mx-auto flex h-full max-w-[1600px] flex-col justify-end px-6 pb-20 pt-32 md:px-12 md:pb-28">
         <div className="max-w-4xl">
           <div className="mb-8 flex items-center gap-4 opacity-0 animate-[fade-in_1s_ease-out_0.3s_forwards]">
             <span className="luxe-rule bg-gold" />
-            <span className="eyebrow text-ivory/80">Architectural Kitchen Atelier</span>
+            <span className="eyebrow text-ivory/85">Premium Keukenatelier · Utrecht</span>
           </div>
 
-          <h1 className="editorial-h text-ivory text-[clamp(3rem,8.5vw,8.5rem)] opacity-0 animate-[fade-in_1.2s_ease-out_0.5s_forwards]">
-            Designed Around
+          <h1 className="editorial-h text-ivory text-[clamp(3rem,8.8vw,9rem)] opacity-0 animate-[fade-in_1.2s_ease-out_0.5s_forwards]">
+            De weg naar uw
             <br />
-            <span className="italic text-gold">Modern Living.</span>
+            <span className="italic text-gold">Droomkeuken.</span>
           </h1>
 
-          <p className="mt-10 max-w-xl text-base font-light leading-relaxed text-ivory/80 md:text-lg opacity-0 animate-[fade-in_1.2s_ease-out_0.9s_forwards]">
-            Premium Dutch kitchens, crafted with European precision and a timeless
-            sense of architectural design. Conceived in Utrecht, made for a lifetime.
+          <p className="mt-10 max-w-xl text-base font-light leading-relaxed text-ivory/85 md:text-lg opacity-0 animate-[fade-in_1.2s_ease-out_0.9s_forwards]">
+            Sinds {kc.founded} brengen wij in Utrecht de fijnste Europese keuken­merken
+            samen onder één dak. Persoonlijk advies, 3D-ontwerp en vakkundige installatie —
+            voor elk budget een keuken die blijft.
           </p>
 
           <div className="mt-12 flex flex-wrap items-center gap-4 opacity-0 animate-[fade-in_1.2s_ease-out_1.1s_forwards]">
-            <a href="#configurator" className="btn-primary-light">
-              Start Your Kitchen Journey
+            <a href="#showroom" className="btn-gold">
+              Plan Showroom Bezoek
               <span aria-hidden>→</span>
             </a>
-            <a href="#showroom" className="btn-ghost text-ivory">
-              Visit Our Showroom
+            <a href="#collections" className="btn-ghost text-ivory">
+              Bekijk Collectie
             </a>
           </div>
         </div>
 
         {/* Trust strip */}
-        <div className="mt-20 grid grid-cols-1 gap-6 border-t border-ivory/15 pt-8 sm:grid-cols-3 opacity-0 animate-[fade-in_1.4s_ease-out_1.4s_forwards]">
+        <div className="mt-20 grid grid-cols-2 gap-6 border-t border-ivory/15 pt-8 sm:grid-cols-4 opacity-0 animate-[fade-in_1.4s_ease-out_1.4s_forwards]">
           {[
-            { k: "01", t: "Premium Brands", d: "Leicht · Nobilia · Gaggenau" },
-            { k: "02", t: "German Precision", d: "Engineered to the millimeter" },
-            { k: "03", t: "Custom Design", d: "Tailor-made for your home" },
+            { k: "01", t: "5 Topmerken", d: "Leicht · Nobilia · Zampieri" },
+            { k: "02", t: "A-Apparatuur", d: "Gaggenau · BORA · Quooker" },
+            { k: "03", t: "Op Maat", d: "Volledig 3D-ontwerp" },
+            { k: "04", t: "CBW Erkend", d: `Sinds ${kc.founded}` },
           ].map((i) => (
-            <div key={i.k} className="flex items-start gap-4">
-              <span className="font-serif text-2xl text-gold">{i.k}</span>
+            <div key={i.k} className="flex items-start gap-3">
+              <span className="font-serif text-2xl italic text-gold">{i.k}</span>
               <div>
-                <p className="text-sm uppercase tracking-[0.18em] text-ivory">{i.t}</p>
-                <p className="mt-1 text-xs text-ivory/60">{i.d}</p>
+                <p className="text-xs uppercase tracking-[0.18em] text-ivory">{i.t}</p>
+                <p className="mt-1 text-[11px] text-ivory/55">{i.d}</p>
               </div>
             </div>
           ))}
