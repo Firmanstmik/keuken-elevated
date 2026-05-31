@@ -1,42 +1,83 @@
 import { useMemo, useState } from "react";
-import modern from "@/assets/collection-modern.jpg";
-import scandi from "@/assets/collection-scandi.jpg";
-import warm from "@/assets/collection-warm.jpg";
-import minimal from "@/assets/collection-minimal.jpg";
-import marble from "@/assets/mat-marble.jpg";
-import oak from "@/assets/mat-oak.jpg";
-import quartz from "@/assets/mat-quartz.jpg";
-import concrete from "@/assets/mat-concrete.jpg";
+import { kc } from "@/lib/kc-data";
 
-const styles = [
-  { id: "modern", label: "Modern Dark", img: modern, hint: "Matte black · veined stone" },
-  { id: "scandi", label: "Scandinavian", img: scandi, hint: "White oak · soft daylight" },
-  { id: "warm", label: "Warm Oak", img: warm, hint: "Natural oak · brass" },
-  { id: "luxury", label: "Luxury Stone", img: minimal, hint: "Sculptural · monolithic" },
-];
+type State = {
+  brand: string;
+  style: string;
+  layout: string;
+  finish: string;
+  worktop: string;
+  appliance: string;
+  sink: string;
+  quooker: string;
+  bora: string;
+  accessories: string[];
+  budget: string;
+};
 
-const layouts = [
-  { id: "island", label: "Island", svg: <rect x="20" y="38" width="60" height="24" /> },
-  { id: "l", label: "L-Shape", svg: <><rect x="14" y="20" width="14" height="60"/><rect x="14" y="66" width="72" height="14"/></> },
-  { id: "u", label: "U-Shape", svg: <><rect x="14" y="20" width="14" height="60"/><rect x="72" y="20" width="14" height="60"/><rect x="14" y="66" width="72" height="14"/></> },
-];
+const initial: State = {
+  brand: kc.config.brands[0],
+  style: kc.config.styles[0].id,
+  layout: kc.config.layouts[0].id,
+  finish: kc.config.finishes[0].id,
+  worktop: kc.config.worktops[0],
+  appliance: kc.config.appliances[0],
+  sink: kc.config.sinks[0],
+  quooker: kc.config.quooker[1],
+  bora: kc.config.bora[1],
+  accessories: ["LED-verlichting", "Soft-close lades"],
+  budget: kc.config.budgets[1].id,
+};
 
-const materials = [
-  { id: "marble", label: "Marble", img: marble },
-  { id: "oak", label: "Oak", img: oak },
-  { id: "quartz", label: "Quartz", img: quartz },
-  { id: "concrete", label: "Concrete", img: concrete },
-];
+const previewByStyle: Record<string, string> = {
+  design: kc.styles[0].img,
+  modern: kc.styles[1].img,
+  landelijk: kc.styles[2].img,
+  industrieel: kc.styles[3].img,
+};
+
+const steps = [
+  { id: "brand", title: "Merk" },
+  { id: "style", title: "Stijl" },
+  { id: "layout", title: "Opstelling" },
+  { id: "finish", title: "Front" },
+  { id: "worktop", title: "Werkblad" },
+  { id: "appliance", title: "Apparatuur" },
+  { id: "sink", title: "Spoelbak" },
+  { id: "quooker", title: "Quooker" },
+  { id: "bora", title: "BORA" },
+  { id: "accessories", title: "Accessoires" },
+  { id: "budget", title: "Budget" },
+  { id: "summary", title: "Resultaat" },
+] as const;
+
+type StepId = (typeof steps)[number]["id"];
 
 export function Configurator() {
-  const [style, setStyle] = useState(styles[0]);
-  const [layout, setLayout] = useState(layouts[0]);
-  const [material, setMaterial] = useState(materials[0]);
+  const [state, setState] = useState<State>(initial);
+  const [active, setActive] = useState<StepId>("brand");
+
+  const update = <K extends keyof State>(k: K, v: State[K]) => setState((s) => ({ ...s, [k]: v }));
+  const toggleAcc = (a: string) =>
+    setState((s) => ({
+      ...s,
+      accessories: s.accessories.includes(a) ? s.accessories.filter((x) => x !== a) : [...s.accessories, a],
+    }));
+
+  const finish = kc.config.finishes.find((f) => f.id === state.finish)!;
+  const styleObj = kc.config.styles.find((s) => s.id === state.style)!;
+  const layoutObj = kc.config.layouts.find((l) => l.id === state.layout)!;
+  const budgetObj = kc.config.budgets.find((b) => b.id === state.budget)!;
 
   const summary = useMemo(
-    () => `${style.label} · ${layout.label} · ${material.label}`,
-    [style, layout, material],
+    () =>
+      `${state.brand} · ${styleObj.label} · ${layoutObj.label} · ${finish.label} · ${state.worktop}`,
+    [state, styleObj, layoutObj, finish],
   );
+
+  const idx = steps.findIndex((s) => s.id === active);
+  const next = () => setActive(steps[Math.min(idx + 1, steps.length - 1)].id);
+  const prev = () => setActive(steps[Math.max(idx - 1, 0)].id);
 
   return (
     <section id="configurator" className="relative bg-ink py-24 text-ivory md:py-36">
@@ -45,122 +86,240 @@ export function Configurator() {
           <div className="max-w-2xl">
             <div className="mb-4 flex items-center gap-4">
               <span className="luxe-rule bg-gold" />
-              <span className="eyebrow text-ivory/70">Signature Atelier</span>
+              <span className="eyebrow text-muted-light">Configurator</span>
             </div>
             <h2 className="editorial-h text-5xl text-ivory md:text-7xl">
-              Compose your <span className="italic text-gold">kitchen</span>.
+              Stel uw <span className="italic text-gold">droomkeuken</span> samen.
             </h2>
           </div>
-          <p className="max-w-sm text-sm leading-relaxed text-ivory/70">
-            A guided ritual, not a configurator. Three decisions — style, architecture, material —
-            and a moodboard for your first appointment.
+          <p className="max-w-sm text-sm leading-relaxed text-muted-light">
+            Een begeleid ritueel in elf stappen. Wij stellen op basis hiervan een
+            persoonlijke moodboard en richtprijs samen voor uw eerste afspraak.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-px overflow-hidden border border-ivory/10 bg-ivory/10 lg:grid-cols-5">
+        {/* Step ribbon */}
+        <div className="mb-px flex gap-px overflow-x-auto border-b border-white/10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {steps.map((s, i) => {
+            const isActive = s.id === active;
+            const done = i < idx;
+            return (
+              <button
+                key={s.id}
+                onClick={() => setActive(s.id)}
+                className={`group shrink-0 px-5 py-4 text-left transition-colors duration-300 ${
+                  isActive ? "bg-surface" : "bg-ink hover:bg-surface/50"
+                }`}
+              >
+                <span className={`block text-[10px] uppercase tracking-[0.22em] ${isActive || done ? "text-gold" : "text-muted-light/60"}`}>
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className={`mt-1 block text-sm ${isActive ? "text-ivory" : "text-ivory/65"}`}>
+                  {s.title}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="grid grid-cols-1 gap-px overflow-hidden border border-white/10 bg-white/10 lg:grid-cols-5">
           {/* Visual preview */}
           <div className="relative aspect-[4/5] overflow-hidden bg-ink lg:col-span-3 lg:aspect-auto">
             <img
-              key={style.id}
-              src={style.img}
-              alt={style.label}
+              key={state.style}
+              src={previewByStyle[state.style]}
+              alt={styleObj.label}
               className="h-full w-full object-cover transition-all duration-1000 ease-out animate-[fade-in_0.9s_ease-out]"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/10 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent" />
 
-            {/* Material swatch overlay */}
-            <div className="absolute bottom-8 left-8 right-8 flex items-end justify-between gap-6">
-              <div>
-                <p className="eyebrow text-gold">Your composition</p>
-                <p className="mt-2 font-serif text-2xl text-ivory md:text-3xl">{summary}</p>
-              </div>
-              <div className="relative h-24 w-24 overflow-hidden border border-ivory/30 shadow-luxe md:h-32 md:w-32">
-                <img key={material.id} src={material.img} alt={material.label} className="h-full w-full object-cover animate-[fade-in_0.7s_ease-out]" />
+            <div className="absolute bottom-8 left-8 right-8">
+              <p className="eyebrow text-gold">Uw compositie</p>
+              <p className="mt-2 font-serif text-2xl italic text-ivory md:text-3xl">{summary}</p>
+              <div className="mt-6 flex flex-wrap items-center gap-4">
+                <div className="flex items-center gap-3 border border-white/20 px-3 py-2">
+                  <span
+                    className="h-6 w-6 border border-white/30"
+                    style={{ backgroundColor: finish.color }}
+                  />
+                  <span className="text-[10px] uppercase tracking-[0.18em]">{finish.label}</span>
+                </div>
+                <div className="border border-white/20 px-3 py-2 text-[10px] uppercase tracking-[0.18em]">{state.worktop}</div>
+                <div className="border border-white/20 px-3 py-2 text-[10px] uppercase tracking-[0.18em]">{layoutObj.label}</div>
+                <div className="ml-auto text-right">
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-muted-light">Indicatie</p>
+                  <p className="font-serif text-xl italic text-gold">{budgetObj.label}</p>
+                </div>
               </div>
             </div>
           </div>
 
           {/* Controls */}
           <div className="flex flex-col bg-ink lg:col-span-2">
-            <Step
-              n="01"
-              title="Choose Style"
-              content={
-                <div className="grid grid-cols-2 gap-3">
-                  {styles.map((s) => (
-                    <button
-                      key={s.id}
-                      onClick={() => setStyle(s)}
-                      className={`group relative aspect-[4/3] overflow-hidden border text-left transition-all duration-500 ${
-                        style.id === s.id ? "border-gold" : "border-ivory/15 hover:border-ivory/40"
-                      }`}
-                    >
-                      <img src={s.img} alt={s.label} className="absolute inset-0 h-full w-full object-cover opacity-60 transition-opacity duration-500 group-hover:opacity-80" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-ink/95 to-ink/10" />
-                      <div className="relative flex h-full flex-col justify-end p-3">
-                        <p className="text-xs uppercase tracking-[0.18em] text-ivory">{s.label}</p>
-                        <p className="mt-0.5 text-[10px] text-ivory/55">{s.hint}</p>
-                      </div>
-                    </button>
-                  ))}
+            <div className="flex-1 p-6 md:p-10">
+              <div className="mb-8 flex items-baseline justify-between">
+                <div className="flex items-baseline gap-4">
+                  <span className="font-serif text-3xl italic text-gold">{String(idx + 1).padStart(2, "0")}</span>
+                  <span className="text-xs uppercase tracking-[0.22em] text-ivory/80">{steps[idx].title}</span>
                 </div>
-              }
-            />
-            <Step
-              n="02"
-              title="Choose Layout"
-              content={
+                <span className="text-[10px] uppercase tracking-[0.22em] text-muted-light">{idx + 1} / {steps.length}</span>
+              </div>
+
+              {active === "brand" && (
+                <Grid cols={2}>
+                  {kc.config.brands.map((b) => (
+                    <Choice key={b} active={state.brand === b} onClick={() => update("brand", b)}>{b}</Choice>
+                  ))}
+                </Grid>
+              )}
+
+              {active === "style" && (
+                <Grid cols={2}>
+                  {kc.config.styles.map((s) => (
+                    <Choice key={s.id} active={state.style === s.id} onClick={() => update("style", s.id)} sub={s.hint}>
+                      {s.label}
+                    </Choice>
+                  ))}
+                </Grid>
+              )}
+
+              {active === "layout" && (
+                <Grid cols={2}>
+                  {kc.config.layouts.map((l) => (
+                    <Choice key={l.id} active={state.layout === l.id} onClick={() => update("layout", l.id)}>{l.label}</Choice>
+                  ))}
+                </Grid>
+              )}
+
+              {active === "finish" && (
                 <div className="grid grid-cols-3 gap-3">
-                  {layouts.map((l) => (
+                  {kc.config.finishes.map((f) => (
                     <button
-                      key={l.id}
-                      onClick={() => setLayout(l)}
-                      className={`group flex aspect-square flex-col items-center justify-center gap-2 border transition-all duration-500 ${
-                        layout.id === l.id ? "border-gold bg-ivory/[0.04]" : "border-ivory/15 hover:border-ivory/40"
-                      }`}
-                    >
-                      <svg viewBox="0 0 100 100" className="h-14 w-14 fill-ivory/80">
-                        {l.svg}
-                      </svg>
-                      <span className="text-[10px] uppercase tracking-[0.2em] text-ivory/80">{l.label}</span>
-                    </button>
-                  ))}
-                </div>
-              }
-            />
-            <Step
-              n="03"
-              title="Choose Material"
-              content={
-                <div className="grid grid-cols-4 gap-3">
-                  {materials.map((m) => (
-                    <button
-                      key={m.id}
-                      onClick={() => setMaterial(m)}
-                      className={`group flex flex-col items-center gap-2 transition-all duration-500 ${
-                        material.id === m.id ? "opacity-100" : "opacity-60 hover:opacity-100"
-                      }`}
+                      key={f.id}
+                      onClick={() => update("finish", f.id)}
+                      className={`group flex flex-col items-center gap-2 ${state.finish === f.id ? "" : "opacity-60 hover:opacity-100"}`}
                     >
                       <div
-                        className={`relative aspect-square w-full overflow-hidden border-2 transition-colors duration-500 ${
-                          material.id === m.id ? "border-gold" : "border-transparent"
+                        className={`aspect-square w-full border-2 transition-colors duration-300 ${
+                          state.finish === f.id ? "border-gold" : "border-transparent"
                         }`}
-                      >
-                        <img src={m.img} alt={m.label} className="h-full w-full object-cover" />
-                      </div>
-                      <span className="text-[10px] uppercase tracking-[0.2em] text-ivory/80">{m.label}</span>
+                        style={{ backgroundColor: f.color }}
+                      />
+                      <span className="text-[10px] uppercase tracking-[0.18em] text-ivory/80 text-center">{f.label}</span>
                     </button>
                   ))}
                 </div>
-              }
-              last
-            />
+              )}
 
-            <div className="mt-auto flex flex-col gap-3 border-t border-ivory/10 p-6 md:flex-row md:items-center md:justify-between md:p-8">
-              <p className="text-xs text-ivory/60">Save your composition · receive a personal moodboard.</p>
-              <a href="#contact" className="btn-primary-light">
-                Reserve Consultation →
-              </a>
+              {active === "worktop" && (
+                <Grid cols={2}>
+                  {kc.config.worktops.map((w) => {
+                    const meta = kc.worktops.find((x) => x.name === w);
+                    return (
+                      <Choice key={w} active={state.worktop === w} onClick={() => update("worktop", w)} sub={meta?.description}>
+                        {w}
+                      </Choice>
+                    );
+                  })}
+                </Grid>
+              )}
+
+              {active === "appliance" && (
+                <Grid cols={1}>
+                  {kc.config.appliances.map((a) => (
+                    <Choice key={a} active={state.appliance === a} onClick={() => update("appliance", a)}>{a}</Choice>
+                  ))}
+                </Grid>
+              )}
+
+              {active === "sink" && (
+                <Grid cols={1}>
+                  {kc.config.sinks.map((s) => (
+                    <Choice key={s} active={state.sink === s} onClick={() => update("sink", s)}>{s}</Choice>
+                  ))}
+                </Grid>
+              )}
+
+              {active === "quooker" && (
+                <Grid cols={2}>
+                  {kc.config.quooker.map((q) => (
+                    <Choice key={q} active={state.quooker === q} onClick={() => update("quooker", q)}>{q}</Choice>
+                  ))}
+                </Grid>
+              )}
+
+              {active === "bora" && (
+                <Grid cols={1}>
+                  {kc.config.bora.map((b) => (
+                    <Choice key={b} active={state.bora === b} onClick={() => update("bora", b)}>{b}</Choice>
+                  ))}
+                </Grid>
+              )}
+
+              {active === "accessories" && (
+                <Grid cols={1}>
+                  {kc.config.accessories.map((a) => (
+                    <Choice key={a} active={state.accessories.includes(a)} onClick={() => toggleAcc(a)}>
+                      <span className="flex items-center justify-between">
+                        <span>{a}</span>
+                        <span className="text-xs text-gold">{state.accessories.includes(a) ? "✓" : "+"}</span>
+                      </span>
+                    </Choice>
+                  ))}
+                </Grid>
+              )}
+
+              {active === "budget" && (
+                <Grid cols={1}>
+                  {kc.config.budgets.map((b) => (
+                    <Choice key={b.id} active={state.budget === b.id} onClick={() => update("budget", b.id)}>{b.label}</Choice>
+                  ))}
+                </Grid>
+              )}
+
+              {active === "summary" && (
+                <div className="space-y-3 text-sm">
+                  <SummaryRow k="Merk" v={state.brand} />
+                  <SummaryRow k="Stijl" v={styleObj.label} />
+                  <SummaryRow k="Opstelling" v={layoutObj.label} />
+                  <SummaryRow k="Front" v={finish.label} />
+                  <SummaryRow k="Werkblad" v={state.worktop} />
+                  <SummaryRow k="Apparatuur" v={state.appliance} />
+                  <SummaryRow k="Spoelbak" v={state.sink} />
+                  <SummaryRow k="Quooker" v={state.quooker} />
+                  <SummaryRow k="BORA" v={state.bora} />
+                  <SummaryRow k="Accessoires" v={state.accessories.join(", ") || "—"} />
+                  <SummaryRow k="Budget" v={budgetObj.label} />
+                </div>
+              )}
+            </div>
+
+            {/* Nav */}
+            <div className="flex flex-col gap-3 border-t border-white/10 p-6 md:flex-row md:items-center md:justify-between md:p-8">
+              <div className="flex gap-3">
+                <button
+                  onClick={prev}
+                  disabled={idx === 0}
+                  className="border border-white/20 px-5 py-2.5 text-[11px] uppercase tracking-[0.22em] text-ivory/80 transition-colors hover:border-gold hover:text-gold disabled:opacity-30 disabled:hover:border-white/20 disabled:hover:text-ivory/80"
+                >
+                  ← Vorige
+                </button>
+                {idx < steps.length - 1 ? (
+                  <button
+                    onClick={next}
+                    className="bg-gold px-5 py-2.5 text-[11px] uppercase tracking-[0.22em] text-ink transition-colors hover:bg-ivory"
+                  >
+                    Volgende →
+                  </button>
+                ) : (
+                  <a href="#contact" className="bg-gold px-5 py-2.5 text-[11px] uppercase tracking-[0.22em] text-ink transition-colors hover:bg-ivory">
+                    Reserveer Adviesgesprek →
+                  </a>
+                )}
+              </div>
+              <p className="text-[10px] uppercase tracking-[0.2em] text-muted-light">
+                Stap {idx + 1} van {steps.length}
+              </p>
             </div>
           </div>
         </div>
@@ -169,14 +328,40 @@ export function Configurator() {
   );
 }
 
-function Step({ n, title, content, last }: { n: string; title: string; content: React.ReactNode; last?: boolean }) {
+function Grid({ cols, children }: { cols: 1 | 2 | 3; children: React.ReactNode }) {
+  const c = cols === 1 ? "grid-cols-1" : cols === 2 ? "grid-cols-2" : "grid-cols-3";
+  return <div className={`grid ${c} gap-3`}>{children}</div>;
+}
+
+function Choice({
+  active,
+  onClick,
+  children,
+  sub,
+}: {
+  active: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+  sub?: string;
+}) {
   return (
-    <div className={`p-6 md:p-8 ${last ? "" : "border-b border-ivory/10"}`}>
-      <div className="mb-5 flex items-baseline gap-4">
-        <span className="font-serif text-2xl italic text-gold">{n}</span>
-        <span className="text-xs uppercase tracking-[0.22em] text-ivory/80">{title}</span>
-      </div>
-      {content}
+    <button
+      onClick={onClick}
+      className={`border px-4 py-4 text-left transition-all duration-300 ${
+        active ? "border-gold bg-gold/5 text-ivory" : "border-white/15 text-ivory/80 hover:border-white/40 hover:text-ivory"
+      }`}
+    >
+      <span className="block text-sm">{children}</span>
+      {sub && <span className="mt-1 block text-[10px] uppercase tracking-[0.18em] text-muted-light">{sub}</span>}
+    </button>
+  );
+}
+
+function SummaryRow({ k, v }: { k: string; v: string }) {
+  return (
+    <div className="flex items-baseline justify-between gap-4 border-b border-white/8 pb-2">
+      <span className="text-[10px] uppercase tracking-[0.22em] text-muted-light">{k}</span>
+      <span className="text-right font-serif text-base italic text-ivory">{v}</span>
     </div>
   );
 }
