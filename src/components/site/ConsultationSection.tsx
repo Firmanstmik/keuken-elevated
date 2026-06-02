@@ -101,35 +101,17 @@ export function ConsultationSection() {
   return (
     <section
       id="consultation"
-      className="relative overflow-hidden bg-[#06111D] py-24 text-white md:py-36"
+      className="relative overflow-hidden bg-[#FAF8F4] py-24 text-[#081321] md:py-36"
     >
       {/* ── Layered Architectural Atmosphere ──────────────────────── */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(circle at 50% 50%, transparent 35%, #071827 100%)",
-        }}
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -left-[20%] top-[-10%] h-[100%] w-[80%] rounded-full blur-[140px] opacity-35"
-        style={{
-          background: "radial-gradient(circle, #081C2F 0%, transparent 80%)",
-        }}
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-[15%] bottom-[-10%] h-[100%] w-[70%] rounded-full blur-[140px] opacity-30"
-        style={{
-          background: "radial-gradient(circle, #081C2F 0%, transparent 80%)",
-        }}
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(200,169,107,0.06),transparent_40%),radial-gradient(circle_at_bottom_left,rgba(8,19,33,0.03),transparent_40%)]"
       />
       {/* Grain texture */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-[0.03] mix-blend-overlay"
+        className="pointer-events-none absolute inset-0 opacity-[0.02] mix-blend-overlay"
         style={{
           backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='consult-grain'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/></filter><rect width='160' height='160' filter='url(%23consult-grain)'/></svg>")`,
         }}
@@ -158,7 +140,7 @@ export function ConsultationSection() {
             {/* Showroom image with overlay */}
             <motion.div
               variants={reduceMotion ? undefined : fadeUp}
-              className="relative overflow-hidden rounded-[24px] mb-10"
+              className="relative overflow-hidden rounded-[24px] mb-10 shadow-[0_20px_50px_-24px_rgba(8,19,33,0.15)]"
             >
               <img
                 src={kc.showroomImg}
@@ -166,10 +148,10 @@ export function ConsultationSection() {
                 className="h-[320px] w-full object-cover md:h-[380px]"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#06111D] via-[#06111D]/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#081321] via-[#081321]/45 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-7">
                 <span
-                  className="text-[0.6rem] font-light uppercase tracking-[0.3em] text-[#C8A96B]/80"
+                  className="text-[0.6rem] font-light uppercase tracking-[0.3em] text-[#C8A96B]"
                   style={{ fontFamily: "'Jost', sans-serif" }}
                 >
                   Step 05 of 05
@@ -184,7 +166,7 @@ export function ConsultationSection() {
             {/* Body text */}
             <motion.p
               variants={reduceMotion ? undefined : fadeUp}
-              className="mb-8 max-w-[440px] text-[0.95rem] font-light leading-[1.8] text-white/65"
+              className="mb-8 max-w-[440px] text-[0.95rem] font-light leading-[1.8] text-[#081321]/70"
               style={{ fontFamily: "'Jost', sans-serif" }}
             >
               Neem uw eerste keuzes mee naar de showroom in Utrecht en bespreek ze met een
@@ -201,7 +183,7 @@ export function ConsultationSection() {
             >
               <motion.p
                 variants={reduceMotion ? undefined : fadeUp}
-                className="text-[0.6rem] font-light uppercase tracking-[0.28em] text-white/45 mb-4"
+                className="text-[0.6rem] font-light uppercase tracking-[0.28em] text-[#081321]/50 mb-4"
                 style={{ fontFamily: "'Jost', sans-serif" }}
               >
                 What you will receive
@@ -212,11 +194,11 @@ export function ConsultationSection() {
                   variants={reduceMotion ? undefined : fadeUp}
                   className="flex items-center gap-3"
                 >
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#C8A96B]/25 bg-[#C8A96B]/5 text-[#C8A96B]">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#C8A96B]/30 bg-[#C8A96B]/8 text-[#C8A96B]">
                     <Check className="h-3.5 w-3.5" />
                   </span>
                   <span
-                    className="text-[0.88rem] font-light text-white/75"
+                    className="text-[0.88rem] font-light text-[#081321]/80"
                     style={{ fontFamily: "'Jost', sans-serif" }}
                   >
                     {item}
@@ -228,55 +210,55 @@ export function ConsultationSection() {
             {/* Contact links */}
             <motion.div
               variants={reduceMotion ? undefined : fadeUp}
-              className="space-y-3 border-t border-white/[0.06] pt-6"
+              className="space-y-3 border-t border-[#081321]/10 pt-6"
             >
               <a
                 href="#showroom"
-                className="flex items-center gap-3 rounded-[14px] border border-white/[0.05] bg-white/[0.02] px-5 py-4 transition-all duration-300 hover:border-[#C8A96B]/20 hover:bg-white/[0.04]"
+                className="flex items-center gap-3 rounded-[14px] border border-[#081321]/8 bg-white px-5 py-4 transition-all duration-300 hover:border-[#C8A96B]/40 hover:shadow-[0_12px_28px_-12px_rgba(8,19,33,0.12)]"
               >
                 <House className="h-4 w-4 text-[#C8A96B]" />
                 <div>
                   <p
-                    className="text-[0.6rem] uppercase tracking-[0.18em] text-white/40"
+                    className="text-[0.6rem] uppercase tracking-[0.18em] text-[#081321]/40"
                     style={{ fontFamily: "'Jost', sans-serif" }}
                   >
                     Showroom
                   </p>
-                  <p className="mt-0.5 text-[0.88rem] font-light text-white">
+                  <p className="mt-0.5 text-[0.88rem] font-light text-[#081321]">
                     {kc.contact.address}, Utrecht
                   </p>
                 </div>
               </a>
               <a
                 href={kc.contact.phoneHref}
-                className="flex items-center gap-3 rounded-[14px] border border-white/[0.05] bg-white/[0.02] px-5 py-4 transition-all duration-300 hover:border-[#C8A96B]/20 hover:bg-white/[0.04]"
+                className="flex items-center gap-3 rounded-[14px] border border-[#081321]/8 bg-white px-5 py-4 transition-all duration-300 hover:border-[#C8A96B]/40 hover:shadow-[0_12px_28px_-12px_rgba(8,19,33,0.12)]"
               >
                 <Phone className="h-4 w-4 text-[#C8A96B]" />
                 <div>
                   <p
-                    className="text-[0.6rem] uppercase tracking-[0.18em] text-white/40"
+                    className="text-[0.6rem] uppercase tracking-[0.18em] text-[#081321]/40"
                     style={{ fontFamily: "'Jost', sans-serif" }}
                   >
                     Telefoon
                   </p>
-                  <p className="mt-0.5 text-[0.88rem] font-light text-white">
+                  <p className="mt-0.5 text-[0.88rem] font-light text-[#081321]">
                     {kc.contact.phone}
                   </p>
                 </div>
               </a>
               <a
                 href={`mailto:${kc.contact.email}`}
-                className="flex items-center gap-3 rounded-[14px] border border-white/[0.05] bg-white/[0.02] px-5 py-4 transition-all duration-300 hover:border-[#C8A96B]/20 hover:bg-white/[0.04]"
+                className="flex items-center gap-3 rounded-[14px] border border-[#081321]/8 bg-white px-5 py-4 transition-all duration-300 hover:border-[#C8A96B]/40 hover:shadow-[0_12px_28px_-12px_rgba(8,19,33,0.12)]"
               >
                 <Mail className="h-4 w-4 text-[#C8A96B]" />
                 <div>
                   <p
-                    className="text-[0.6rem] uppercase tracking-[0.18em] text-white/40"
+                    className="text-[0.6rem] uppercase tracking-[0.18em] text-[#081321]/40"
                     style={{ fontFamily: "'Jost', sans-serif" }}
                   >
                     E-mail
                   </p>
-                  <p className="mt-0.5 text-[0.88rem] font-light text-white">
+                  <p className="mt-0.5 text-[0.88rem] font-light text-[#081321]">
                     {kc.contact.email}
                   </p>
                 </div>
@@ -293,7 +275,7 @@ export function ConsultationSection() {
           >
             <motion.div
               variants={reduceMotion ? undefined : fadeUp}
-              className="rounded-[32px] border border-[#C8A96B]/15 bg-[#F8F6F2] p-8 shadow-[0_20px_60px_-24px_rgba(0,0,0,0.5)] md:p-10"
+              className="rounded-[32px] border border-[rgba(200,169,107,0.22)] bg-white p-8 shadow-[0_24px_68px_-28px_rgba(8,21,36,0.08)] md:p-10 transition-shadow duration-500 hover:shadow-[0_32px_80px_-24px_rgba(200,169,107,0.14)]"
             >
               {!submitted ? (
                 <>
@@ -515,7 +497,7 @@ export function ConsultationSection() {
             >
               <motion.p
                 variants={reduceMotion ? undefined : fadeUp}
-                className="mb-6 text-[0.6rem] font-light uppercase tracking-[0.28em] text-white/45"
+                className="mb-6 text-[0.6rem] font-light uppercase tracking-[0.28em] text-[#081321]/50"
                 style={{ fontFamily: "'Jost', sans-serif" }}
               >
                 What Happens Next
@@ -525,16 +507,16 @@ export function ConsultationSection() {
                   <motion.div
                     key={step.n}
                     variants={reduceMotion ? undefined : fadeUp}
-                    className="rounded-[18px] border border-white/[0.06] bg-white/[0.02] px-5 py-5 transition-all duration-300 hover:border-[#C8A96B]/15 hover:bg-white/[0.04]"
+                    className="rounded-[18px] border border-[#081321]/8 bg-white px-5 py-5 transition-all duration-300 hover:border-[#C8A96B]/30 hover:shadow-[0_14px_32px_-16px_rgba(8,19,33,0.15)]"
                   >
-                    <span className="font-serif text-[1.3rem] font-light tracking-tight text-[#C8A96B]/60">
+                    <span className="font-serif text-[1.3rem] font-light tracking-tight text-[#C8A96B]">
                       {step.n}
                     </span>
-                    <p className="mt-2 font-serif text-[0.92rem] font-light leading-[1.3] text-white">
+                    <p className="mt-2 font-serif text-[0.92rem] font-light leading-[1.3] text-[#081321]">
                       {step.title}
                     </p>
                     <p
-                      className="mt-1.5 text-[0.72rem] font-light leading-[1.55] text-white/45"
+                      className="mt-1.5 text-[0.72rem] font-light leading-[1.55] text-[#081321]/60"
                       style={{ fontFamily: "'Jost', sans-serif" }}
                     >
                       {step.description}

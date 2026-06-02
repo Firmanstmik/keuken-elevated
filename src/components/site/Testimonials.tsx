@@ -122,7 +122,7 @@ function TestimonialCard({
   story: typeof testimonialsData[number];
 }) {
   return (
-    <article className="group relative flex w-[380px] sm:w-[440px] flex-shrink-0 flex-col justify-between rounded-[24px] border border-[rgba(200,169,107,0.14)] bg-[#0B1E33]/60 p-6 shadow-[0_24px_56px_-36px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-500 hover:-translate-y-2 hover:border-[#C8A96B]/40 hover:bg-[#0B1E33]/80 hover:shadow-[0_36px_72px_-40px_rgba(200,169,107,0.22)] sm:p-7">
+    <article className="group relative flex w-[380px] sm:w-[440px] flex-shrink-0 flex-col justify-between rounded-[24px] border border-[rgba(200,169,107,0.14)] bg-[#1D2023]/60 p-6 shadow-[0_24px_56px_-36px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-500 hover:-translate-y-2 hover:border-[#C8A96B]/40 hover:bg-[#1D2023]/80 hover:shadow-[0_36px_72px_-40px_rgba(200,169,107,0.22)] sm:p-7">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#C8A96B]/20 to-transparent transition-opacity duration-500 group-hover:via-[#C8A96B]/40" />
       
       <div>
@@ -133,7 +133,7 @@ function TestimonialCard({
             alt={story.project}
             className="h-full w-full object-cover transition-transform duration-[1000ms] ease-out group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#081524]/80 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#111315]/80 via-transparent to-transparent" />
           <span
             className="absolute right-4 top-4 rounded-full border border-white/[0.08] bg-black/40 px-2.5 py-0.5 text-[0.58rem] uppercase tracking-[0.2em] text-[#F5F2EC] backdrop-blur-sm"
             style={{ fontFamily: "'Jost', sans-serif" }}
@@ -206,7 +206,7 @@ export function Testimonials() {
   return (
     <section
       id="reviews"
-      className="relative overflow-hidden bg-[#081524] bg-[radial-gradient(circle_at_top_left,rgba(200,169,107,0.08),transparent_40%),linear-gradient(135deg,#081524_0%,#0B1E33_45%,#0A2742_100%)] py-24 text-[#F5F2EC] md:py-36 border-t border-[rgba(200,169,107,0.15)]"
+      className="relative overflow-hidden bg-[linear-gradient(180deg,#17191C_0%,#111315_100%)] py-24 text-[#F5F2EC] md:py-36 border-t border-white/[0.08]"
     >
       {/* CSS Styles for perfect hardware accelerated marquee */}
       <style>{`
@@ -232,11 +232,19 @@ export function Testimonials() {
       {/* Decorative lighting overlays */}
       <div
         aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(circle at top left, rgba(200,169,107,0.08), transparent 34%), radial-gradient(circle at 78% 18%, rgba(255,255,255,0.03), transparent 24%)",
+        }}
+      />
+      <div
+        aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[rgba(200,169,107,0.25)] to-transparent"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[rgba(200,169,107,0.12)] to-transparent"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[rgba(255,255,255,0.08)] to-transparent"
       />
 
       <div className="site-container relative z-10 mb-16">
@@ -313,8 +321,8 @@ export function Testimonials() {
       {/* CONTINUOUS MARQUEE WORKSPACE */}
       <div className="relative flex flex-col gap-6 sm:gap-8 overflow-hidden py-4">
         {/* Soft edge blur masks to fade cards out beautifully */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-12 sm:w-32 bg-gradient-to-r from-[#081524] to-transparent z-10" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-12 sm:w-32 bg-gradient-to-l from-[#081524] to-transparent z-10" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-12 sm:w-32 bg-gradient-to-r from-[#111315] to-transparent z-10" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-12 sm:w-32 bg-gradient-to-l from-[#111315] to-transparent z-10" />
 
         {/* Row 1: Left to Right scrolling */}
         <div className="relative w-full overflow-hidden">
@@ -345,4 +353,3 @@ export function Testimonials() {
     </section>
   );
 }
-
