@@ -85,10 +85,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "Keuken-Centrum Utrecht" },
       { property: "og:description", content: "Premium German and Italian kitchen showroom in Utrecht sinds 1978." },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "/favicon.png" },
+      { property: "og:image:width", content: "512" },
+      { property: "og:image:height", content: "512" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@keukencentrum" },
+      { name: "twitter:image", content: "/favicon.png" },
     ],
     links: [
+      { rel: "icon", type: "image/png", href: "/favicon.png" },
+      { rel: "apple-touch-icon", href: "/favicon.png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
