@@ -1,59 +1,102 @@
-import { useReveal } from "@/hooks/use-reveal";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowRight, House, Mail, Phone } from "@/components/ui/icons";
 import { kc } from "@/lib/kc-data";
-
-const gallery = [kc.hero.main, kc.hero.alt2, kc.hero.alt4, kc.hero.alt1, kc.hero.alt3, kc.aanbiedingenImg];
+import { fadeUp, motionViewport, revealImage, staggerHeader } from "@/lib/motion";
 
 export function Showroom() {
-  const ref = useReveal<HTMLDivElement>();
+  const reduceMotion = useReducedMotion();
+
   return (
-    <section id="showroom" ref={ref} className="reveal relative isolate overflow-hidden bg-ink">
-      <div className="relative h-[85vh] min-h-[640px] w-full">
-        <img src={kc.showroomImg} alt="Showroom Keuken-Centrum Utrecht — Zonnebaan 8" loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/55 to-ink/30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" />
+    <section id="showroom" className="section-shell">
+      <div className="site-container">
+        <motion.div
+          initial={reduceMotion ? false : "hidden"}
+          whileInView="visible"
+          viewport={motionViewport}
+          variants={reduceMotion ? undefined : staggerHeader}
+          className="mb-10 max-w-[26rem]"
+        >
+          <motion.div variants={reduceMotion ? undefined : fadeUp} className="section-label-row">
+            <span className="luxe-rule" />
+            <span className="eyebrow">Showroom Utrecht</span>
+          </motion.div>
+          <motion.h2 variants={reduceMotion ? undefined : fadeUp} className="heading-2">
+            Ervaar materialen,
+            <br />
+            kleuren en afwerkingen.
+          </motion.h2>
+          <motion.p
+            variants={reduceMotion ? undefined : fadeUp}
+            className="mt-6 text-[1.125rem] font-light leading-[1.6] tracking-[0.01em] text-[var(--text-soft)]"
+          >
+            Bezoek onze showroom aan de Zonnebaan en ervaar wat online nooit volledig zichtbaar is:
+            materiaalgevoel, frontafwerkingen, werkbladdiktes en de rust van een goed ontworpen keuken.
+          </motion.p>
+        </motion.div>
 
-        <div className="relative z-10 mx-auto flex h-full max-w-[1600px] flex-col justify-end px-6 pb-20 text-ivory md:px-12 md:pb-28">
-          <div className="max-w-2xl">
-            <div className="mb-4 flex items-center gap-4">
-              <span className="luxe-rule bg-gold" />
-              <span className="eyebrow text-ivory/80">De Showroom</span>
-            </div>
-            <h2 className="editorial-h text-5xl text-ivory md:text-7xl">
-              Talloze opstellingen.
-              <br />
-              <span className="italic text-gold">Eén locatie.</span>
-            </h2>
-            <p className="mt-8 max-w-lg text-base leading-relaxed text-ivory/80">
-              De talloze keuken­opstellingen in onze showroom geven u genoeg inspiratie.
-              Doordat we met meerdere keuken­fabrikanten werken, bieden wij een groot en breed
-              assortiment — voor elk budget een droomkeuken.
-            </p>
-            <div className="mt-10 flex flex-wrap items-center gap-4">
-              <a href="#contact" className="btn-gold">Plan Bezoek →</a>
-              <a href={kc.contact.phoneHref} className="link-underline text-xs uppercase tracking-[0.22em] text-ivory/90">
-                {kc.contact.address} · Utrecht
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+        <div className="grid gap-6 xl:grid-cols-[minmax(0,1.5fr)_360px]">
+          <motion.div
+            initial={reduceMotion ? false : "hidden"}
+            whileInView="visible"
+            viewport={motionViewport}
+            variants={reduceMotion ? undefined : revealImage}
+            className="surface-card overflow-hidden p-3"
+          >
+            <img
+              src={kc.showroomImg}
+              alt="Showroom van Keuken-Centrum Utrecht aan de Zonnebaan"
+              className="aspect-[1.5/1] h-full w-full rounded-[calc(var(--radius-lg)-10px)] object-cover transition-[filter,transform] duration-[400ms] [transition-timing-function:var(--ease-premium)] hover:contrast-[1.04] hover:saturate-[1.02]"
+              loading="lazy"
+            />
+          </motion.div>
 
-      {/* Horizontal scroll gallery */}
-      <div className="border-t border-white/5 bg-ink py-12">
-        <div className="mx-auto mb-8 flex max-w-[1600px] items-end justify-between px-6 md:px-12">
-          <div>
-            <p className="eyebrow text-muted-light">Virtual Showroom</p>
-            <h3 className="editorial-h mt-2 text-2xl text-ivory md:text-3xl italic">Een blik naar binnen</h3>
-          </div>
-          <p className="hidden text-xs uppercase tracking-[0.22em] text-muted-light md:block">← Sleep / scroll →</p>
-        </div>
-        <div className="flex gap-6 overflow-x-auto px-6 pb-6 md:px-12 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {gallery.map((src, i) => (
-            <div key={i} className="image-zoom relative h-[60vh] min-h-[420px] w-[75vw] shrink-0 overflow-hidden md:w-[42vw] lg:w-[34vw]">
-              <img src={src} alt={`Showroom impressie ${i + 1}`} loading="lazy" className="h-full w-full object-cover" />
-              <div className="absolute bottom-4 left-4 font-serif text-sm italic text-ivory/80">0{i + 1}</div>
+          <motion.aside
+            initial={reduceMotion ? false : "hidden"}
+            whileInView="visible"
+            viewport={motionViewport}
+            variants={reduceMotion ? undefined : staggerHeader}
+            className="surface-card px-6 py-6"
+          >
+            <div className="space-y-5">
+              <motion.div variants={reduceMotion ? undefined : fadeUp} className="flex items-start gap-3">
+                <House className="mt-1 h-5 w-5 shrink-0 text-[var(--green)]" />
+                <div>
+                  <p className="text-sm font-medium text-[var(--foreground)]">{kc.contact.address}</p>
+                  <p className="small-text mt-1">{kc.contact.postal} • Utrecht</p>
+                </div>
+              </motion.div>
+
+              <motion.div variants={reduceMotion ? undefined : fadeUp} className="border-t border-[rgb(7,17,27,0.08)] pt-5">
+                {kc.contact.hours.map((row) => (
+                  <div key={row.d} className="flex items-center justify-between gap-4 py-1.5">
+                    <span className="small-text">{row.d}</span>
+                    <span className="text-sm text-[var(--foreground)]/78">{row.h}</span>
+                  </div>
+                ))}
+              </motion.div>
+
+              <motion.div variants={reduceMotion ? undefined : fadeUp} className="border-t border-[rgb(7,17,27,0.08)] pt-5">
+                <a href={kc.contact.phoneHref} className="mb-3 flex items-center gap-3 text-sm text-[var(--foreground)]/78">
+                  <Phone className="h-4 w-4 text-[var(--green)]" />
+                  {kc.contact.phone}
+                </a>
+                <a href={`mailto:${kc.contact.email}`} className="flex items-center gap-3 text-sm text-[var(--foreground)]/78">
+                  <Mail className="h-4 w-4 text-[var(--green)]" />
+                  {kc.contact.email}
+                </a>
+              </motion.div>
+
+              <motion.div variants={reduceMotion ? undefined : fadeUp} className="flex flex-wrap gap-3 pt-2">
+                <a href="#contact" className="btn-primary">
+                  Plan Afspraak
+                </a>
+                <a href={kc.contact.maps} className="btn-outline">
+                  Route Beschrijving
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+              </motion.div>
             </div>
-          ))}
+          </motion.aside>
         </div>
       </div>
     </section>

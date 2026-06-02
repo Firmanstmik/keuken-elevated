@@ -1,0 +1,8 @@
+{
+  "hints": {
+    "compat-api": "off",
+    "compat-api/css": "off",
+    "detect-css-reflows": "off",
+    "no-inline-styles": "off"
+  }
+}

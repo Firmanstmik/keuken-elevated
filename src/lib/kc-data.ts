@@ -17,8 +17,8 @@ export const kc = {
     phoneHref: "tel:+31302415122",
     email: "info@keuken-centrum.nl",
     hours: [
-      { d: "Maandag – Vrijdag", h: "09:00 – 18:00" },
-      { d: "Zaterdag", h: "09:00 – 17:00" },
+      { d: "Maandag tot Vrijdag", h: "09:00 tot 18:00" },
+      { d: "Zaterdag", h: "09:00 tot 17:00" },
       { d: "Zondag", h: "Gesloten" },
     ],
     maps: "https://www.google.com/maps/place/Keuken-centrum.nl/",
@@ -43,7 +43,7 @@ export const kc = {
   kitchenBrands: [
     { id: "leicht", name: "Leicht", country: "Duitsland", logo: `${wp}/1200px-Leicht_K%C3%BCchen_logo.svg-1024x325.webp`, story: "Bauhaus-erfgoed sinds 1928. Architectonische precisie uit Waldstetten." },
     { id: "nobilia", name: "Nobilia", country: "Duitsland", logo: `${wp}/Logo-524-112-1.webp`, story: "Marktleider in Europa. Volledig op maat met Duitse betrouwbaarheid." },
-    { id: "aikuchen", name: "AI Küchen", country: "Duitsland", logo: `${wp}/Ai-kuchen-keukens-logo-blauw.webp`, story: "Häcker — moderne Duitse keukens met onmiskenbare karakter." },
+    { id: "aikuchen", name: "AI Küchen", country: "Duitsland", logo: `${wp}/Ai-kuchen-keukens-logo-blauw.webp`, story: "Häcker brengt moderne Duitse keukens met onmiskenbaar karakter." },
     { id: "zampieri", name: "Zampieri", country: "Italië", logo: `${wp}/download-1.webp`, story: "Italiaans design in zijn puurste vorm. Materialen die spreken." },
     { id: "cucinesse", name: "Cucinesse", country: "Italië", logo: `${wp}/cucinesse-logo.webp`, story: "Italiaanse maatwerkkeukens met sculpturale rust." },
   ],
@@ -67,7 +67,7 @@ export const kc = {
     { id: "silestone", name: "Silestone", description: "Composiet met hybride mineralen. Vlekbestendig." },
     { id: "dekton", name: "Dekton", description: "Ultracompact. UV-bestendig, voor binnen én buiten." },
     { id: "neolith", name: "Neolith", description: "Sintered stone met grootformaat platen tot 3,6m." },
-    { id: "sensa", name: "Sensa", description: "Behandeld natuursteen graniet — 15 jaar garantie." },
+    { id: "sensa", name: "Sensa", description: "Behandeld natuursteen graniet met 15 jaar garantie." },
   ],
 
   // Real kitchen styles
@@ -83,7 +83,7 @@ export const kc = {
       id: "modern",
       n: "II",
       t: "Moderne Keukens",
-      d: "Minimalistisch wit tot warme houttinten — volledig op maat met de nieuwste apparatuur.",
+      d: "Minimalistisch wit tot warme houttinten, volledig op maat met de nieuwste apparatuur.",
       img: `${wp}/IMG_0642-1024x768.webp`,
     },
     {
@@ -107,7 +107,7 @@ export const kc = {
     { name: "Hans", role: "Keukenadviseur", email: "hans@keuken-centrum.nl",
       bio: "Mijn kracht is om al luisterend en adviserend samen met de klant tot een keukenkeuze te komen die recht doet aan de woonwensen." },
     { name: "Danny", role: "Keukenadviseur", email: "danny@keuken-centrum.nl",
-      bio: "Samen maken we uw woonwensen zo concreet en helder mogelijk en passen we de keuken daarop aan — zodat ú nog jaren kunt genieten." },
+      bio: "Samen maken we uw woonwensen concreet en helder, zodat u nog jaren kunt genieten van een keuken die perfect past." },
     { name: "Frank", role: "Apparatuurspecialist", email: "frank@keuken-centrum.nl",
       bio: "Vakidioot en liefhebber van A-merken apparatuur. Kom langs en laat mij u inspireren met wat er allemaal mogelijk is." },
   ],
@@ -115,7 +115,7 @@ export const kc = {
   // Real services
   services: [
     { t: "Advies op maat", d: "Van A-merken inbouwapparatuur tot werkbladen, kranen, accessoires en verlichting. Alles voor uw keuken." },
-    { t: "3D-ontwerp", d: "Met onze 3D-keukenontwerp software visualiseren wij naar wens werkblad, fronten en apparatuur — exact zoals het wordt." },
+    { t: "3D ontwerp", d: "Met onze 3D keukenontwerp software visualiseren wij naar wens werkblad, fronten en apparatuur, exact zoals het wordt." },
     { t: "Levering", d: "Onze adviseur stemt de levering met u af. Persoonlijk contact via e-mail of telefoon." },
     { t: "Installatie", d: "Ervaren monteurs plaatsen uw keuken snel en vakkundig. Wij ontzorgen u van A tot Z." },
   ],
@@ -158,9 +158,9 @@ export const kc = {
     bora: ["Geen", "BORA Pure", "BORA X Pure", "BORA Classic 2.0", "BORA Professional"],
     accessories: ["LED-verlichting", "Soft-close lades", "Kruidenrek", "Cargo-systeem", "Hoekoplossing carrousel"],
     budgets: [
-      { id: "10-20", label: "€ 10.000 – € 20.000" },
-      { id: "20-35", label: "€ 20.000 – € 35.000" },
-      { id: "35-55", label: "€ 35.000 – € 55.000" },
+      { id: "10-20", label: "€ 10.000 tot € 20.000" },
+      { id: "20-35", label: "€ 20.000 tot € 35.000" },
+      { id: "35-55", label: "€ 35.000 tot € 55.000" },
       { id: "55+",  label: "€ 55.000+" },
     ],
   },

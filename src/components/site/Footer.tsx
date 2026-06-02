@@ -2,63 +2,72 @@ import { kc } from "@/lib/kc-data";
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/5 bg-ink text-ivory">
-      <div className="mx-auto max-w-[1600px] px-6 py-20 md:px-12">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
-          <div className="md:col-span-5">
-            <div className="flex items-baseline gap-2.5">
-              <span className="font-serif text-3xl">Keuken</span>
-              <span className="h-1 w-1 rounded-full bg-gold" />
-              <span className="font-serif text-3xl italic text-gold">Centrum</span>
-            </div>
-            <p className="mt-6 max-w-sm text-sm leading-relaxed text-muted-light">
-              Premium Europese keukens, samengebracht in Utrecht sinds {kc.founded}.
-              Persoonlijk advies, 3D-ontwerp en vakkundige installatie — voor elk budget
-              een droomkeuken.
+    <footer id="footer" className="border-t border-white/6 bg-[var(--ink)] text-white">
+      <div className="site-container py-18 md:py-22">
+        <div className="grid gap-12 border-b border-white/8 pb-12 md:grid-cols-[minmax(0,1.3fr)_0.8fr_0.8fr_0.9fr]">
+          <div className="max-w-[30rem]">
+            <p className="caption-text text-[rgba(255,255,255,0.54)]">De Premium Keukenbestemming van Utrecht</p>
+            <h2 className="mt-5 font-serif text-[clamp(2.8rem,5vw,4.4rem)] leading-[0.92] tracking-[-0.04em] text-white">
+              Keuken-Centrum
+              <br />
+              Utrecht.
+            </h2>
+            <p className="mt-6 max-w-[28rem] text-base leading-8 text-[rgba(255,255,255,0.72)]">
+              Duitse en Italiaanse designkeukens, verfijnde apparatuur en persoonlijk
+              showroomadvies sinds {kc.founded}. Een gevestigde naam in Utrecht voor wie meer zoekt
+              dan een standaard keukenwinkel.
             </p>
-            <img src={kc.cbwLogo} alt="CBW Erkend" className="mt-8 h-12 brightness-0 invert opacity-60" />
+            <div className="mt-8 flex items-center gap-4">
+              <img src={kc.cbwLogo} alt="CBW Erkend" className="h-10 w-auto brightness-0 invert opacity-75" />
+              <p className="small-text max-w-[14rem] text-[rgba(255,255,255,0.56)]">
+                Erkend vakmanschap en zorgvuldige begeleiding van ontwerp tot oplevering.
+              </p>
+            </div>
           </div>
 
-          <div className="md:col-span-3">
-            <p className="eyebrow text-muted-light">Showroom</p>
-            <p className="mt-4 font-serif text-lg text-ivory">{kc.contact.address}</p>
-            <p className="text-sm text-muted-light">{kc.contact.postal}</p>
-            <div className="mt-4 space-y-1 text-sm text-muted-light">
+          <div>
+            <p className="caption-text text-[rgba(255,255,255,0.5)]">Bezoek Onze Showroom</p>
+            <p className="mt-5 font-serif text-[1.85rem] leading-none tracking-[-0.03em] text-white">
+              {kc.contact.address}
+            </p>
+            <p className="mt-2 text-sm leading-7 text-[rgba(255,255,255,0.72)]">{kc.contact.postal} · Utrecht</p>
+            <div className="mt-5 space-y-2 text-sm text-[rgba(255,255,255,0.72)]">
               {kc.contact.hours.map((h) => (
-                <div key={h.d} className="flex justify-between gap-4">
+                <div key={h.d} className="flex justify-between gap-4 border-b border-white/6 pb-2">
                   <span>{h.d}</span>
-                  <span className="text-ivory/70">{h.h}</span>
+                  <span className="text-white/78">{h.h}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="md:col-span-2">
-            <p className="eyebrow text-muted-light">Navigatie</p>
-            <ul className="mt-4 space-y-2 text-sm">
-              <li><a href="#collections" className="link-underline">Keukenstijlen</a></li>
-              <li><a href="#brands" className="link-underline">Merken</a></li>
-              <li><a href="#configurator" className="link-underline">Configurator</a></li>
-              <li><a href="#showroom" className="link-underline">Showroom</a></li>
-              <li><a href="#team" className="link-underline">Team</a></li>
+          <div>
+            <p className="caption-text text-[rgba(255,255,255,0.5)]">Ontdek</p>
+            <ul className="mt-5 space-y-3 text-sm">
+              <li><a href="#brands" className="footer-link">Merken</a></li>
+              <li><a href="/brands" className="footer-link">Configurator</a></li>
+              <li><a href="#collections" className="footer-link">Collecties</a></li>
+              <li><a href="#showroom" className="footer-link">Showroom</a></li>
+              <li><a href="#contact" className="footer-link">Afspraak</a></li>
             </ul>
           </div>
 
-          <div className="md:col-span-2">
-            <p className="eyebrow text-muted-light">Contact</p>
-            <ul className="mt-4 space-y-2 text-sm">
-              <li><a href={kc.contact.phoneHref} className="link-underline">{kc.contact.phone}</a></li>
-              <li><a href={`mailto:${kc.contact.email}`} className="link-underline">{kc.contact.email}</a></li>
+          <div>
+            <p className="caption-text text-[rgba(255,255,255,0.5)]">Direct Contact</p>
+            <ul className="mt-5 space-y-3 text-sm text-[rgba(255,255,255,0.72)]">
+              <li><a href={kc.contact.phoneHref} className="footer-link">{kc.contact.phone}</a></li>
+              <li><a href={`mailto:${kc.contact.email}`} className="footer-link">{kc.contact.email}</a></li>
+              <li><a href={kc.contact.maps} className="footer-link">Route via Google Maps</a></li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-20 flex flex-col items-start justify-between gap-4 border-t border-white/5 pt-8 text-xs text-muted-light md:flex-row md:items-center">
+        <div className="flex flex-col gap-4 pt-7 text-xs text-[rgba(255,255,255,0.5)] md:flex-row md:items-center md:justify-between">
           <p>© {new Date().getFullYear()} {kc.brandName}. Alle rechten voorbehouden.</p>
-          <div className="flex gap-6">
-            <a href="#" className="link-underline">Privacy</a>
-            <a href="#" className="link-underline">Algemene voorwaarden</a>
-            <a href="#" className="link-underline">Cookies</a>
+          <div className="flex flex-wrap gap-6">
+            <a href="#" className="footer-link">Privacy</a>
+            <a href="#" className="footer-link">Algemene voorwaarden</a>
+            <a href="#" className="footer-link">Cookies</a>
           </div>
         </div>
       </div>

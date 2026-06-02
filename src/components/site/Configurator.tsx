@@ -1,367 +1,934 @@
 import { useMemo, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { ArrowLeft, ArrowRight, Check, House, Mail, Phone } from "@/components/ui/icons";
 import { kc } from "@/lib/kc-data";
+import { cn } from "@/lib/utils";
+import { fadeUp, motionViewport, revealImage, staggerHeader, staggerList } from "@/lib/motion";
 
-type State = {
-  brand: string;
-  style: string;
-  layout: string;
-  finish: string;
-  worktop: string;
-  appliance: string;
-  sink: string;
-  quooker: string;
-  bora: string;
-  accessories: string[];
-  budget: string;
+type WizardStep = "brand" | "style" | "configure" | "moodboard" | "consultation";
+
+type ConfigSelection = {
+  id: string;
+  label: string;
+  color?: string;
 };
 
-const initial: State = {
-  brand: kc.config.brands[0],
-  style: kc.config.styles[0].id,
-  layout: kc.config.layouts[0].id,
-  finish: kc.config.finishes[0].id,
-  worktop: kc.config.worktops[0],
-  appliance: kc.config.appliances[0],
-  sink: kc.config.sinks[0],
-  quooker: kc.config.quooker[1],
-  bora: kc.config.bora[1],
-  accessories: ["LED-verlichting", "Soft-close lades"],
-  budget: kc.config.budgets[1].id,
+type ConsultationForm = {
+  name: string;
+  email: string;
+  phone: string;
+  notes: string;
 };
 
-const previewByStyle: Record<string, string> = {
-  design: kc.styles[0].img,
-  modern: kc.styles[1].img,
-  landelijk: kc.styles[2].img,
-  industrieel: kc.styles[3].img,
+const wizardSteps: Array<{ id: WizardStep; number: string; label: string; title: string }> = [
+  { id: "brand", number: "01", label: "Brand", title: "Choose Your Brand" },
+  { id: "style", number: "02", label: "Style", title: "Choose Your Style" },
+  { id: "configure", number: "03", label: "Configure", title: "Configure Kitchen" },
+  { id: "moodboard", number: "04", label: "Moodboard", title: "Review Proposal" },
+  { id: "consultation", number: "05", label: "Consult", title: "Book Consultation" },
+];
+
+const brandVisuals: Record<string, string> = {
+  leicht: kc.hero.main,
+  nobilia: kc.hero.alt1,
+  aikuchen: kc.hero.alt2,
+  zampieri: kc.hero.alt3,
+  cucinesse: kc.hero.alt4,
 };
 
-const steps = [
-  { id: "brand", title: "Merk" },
-  { id: "style", title: "Stijl" },
-  { id: "layout", title: "Opstelling" },
-  { id: "finish", title: "Front" },
-  { id: "worktop", title: "Werkblad" },
-  { id: "appliance", title: "Apparatuur" },
-  { id: "sink", title: "Spoelbak" },
-  { id: "quooker", title: "Quooker" },
-  { id: "bora", title: "BORA" },
-  { id: "accessories", title: "Accessoires" },
-  { id: "budget", title: "Budget" },
-  { id: "summary", title: "Resultaat" },
+const styleKeywords: Record<string, string[]> = {
+  design: ["Monolithisch", "Architectonisch", "Premium"],
+  modern: ["Minimal", "Functioneel", "Licht"],
+  landelijk: ["Warm", "Tijdloos", "Natuurlijk"],
+  industrieel: ["Robuust", "Stoer", "Karakter"],
+};
+
+const swatchPalette = [
+  "#F1EEE8",
+  "#1A1A1A",
+  "#B08A5C",
+  "#33373B",
+  "#C9BFA8",
+  "#8E8B82",
+  "#D9D3C7",
+  "#4F7A4D",
 ] as const;
 
-type StepId = (typeof steps)[number]["id"];
+const hotspotPositions: Record<string, { x: string; y: string }> = {
+  layouts: { x: "22%", y: "34%" },
+  finishes: { x: "36%", y: "52%" },
+  worktops: { x: "56%", y: "56%" },
+  appliances: { x: "18%", y: "28%" },
+  quooker: { x: "69%", y: "48%" },
+  bora: { x: "50%", y: "52%" },
+  budgets: { x: "76%", y: "20%" },
+};
+
+function slugify(value: string) {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function mapOptions(items: Array<string | { id: string; label: string; color?: string }>, paletteOffset = 0) {
+  return items.map((item, index) => {
+    if (typeof item === "string") {
+      return {
+        id: slugify(item),
+        label: item,
+        color: swatchPalette[(paletteOffset + index) % swatchPalette.length],
+      };
+    }
+
+    return {
+      id: item.id,
+      label: item.label,
+      color: item.color ?? swatchPalette[(paletteOffset + index) % swatchPalette.length],
+    };
+  });
+}
 
 export function Configurator() {
-  const [state, setState] = useState<State>(initial);
-  const [active, setActive] = useState<StepId>("brand");
+  const reduceMotion = useReducedMotion();
+  const [step, setStep] = useState<WizardStep>("brand");
+  const [selectedBrand, setSelectedBrand] = useState<(typeof kc.kitchenBrands)[number] | null>(null);
+  const [selectedStyle, setSelectedStyle] = useState<(typeof kc.styles)[number] | null>(null);
+  const [activeCategory, setActiveCategory] = useState("layouts");
+  const [consultationSent, setConsultationSent] = useState(false);
+  const [consultation, setConsultation] = useState<ConsultationForm>({
+    name: "",
+    email: "",
+    phone: "",
+    notes: "",
+  });
+  const [selections, setSelections] = useState<Record<string, ConfigSelection>>({});
 
-  const update = <K extends keyof State>(k: K, v: State[K]) => setState((s) => ({ ...s, [k]: v }));
-  const toggleAcc = (a: string) =>
-    setState((s) => ({
-      ...s,
-      accessories: s.accessories.includes(a) ? s.accessories.filter((x) => x !== a) : [...s.accessories, a],
-    }));
-
-  const finish = kc.config.finishes.find((f) => f.id === state.finish)!;
-  const styleObj = kc.config.styles.find((s) => s.id === state.style)!;
-  const layoutObj = kc.config.layouts.find((l) => l.id === state.layout)!;
-  const budgetObj = kc.config.budgets.find((b) => b.id === state.budget)!;
-
-  const summary = useMemo(
-    () =>
-      `${state.brand} · ${styleObj.label} · ${layoutObj.label} · ${finish.label} · ${state.worktop}`,
-    [state, styleObj, layoutObj, finish],
+  const configureCategories = useMemo(
+    () => [
+      {
+        id: "layouts",
+        label: "Layout",
+        options: mapOptions(
+          kc.config.layouts.map((item) => ({ id: item.id, label: item.label })),
+          0,
+        ),
+      },
+      {
+        id: "finishes",
+        label: "Front Finish",
+        options: kc.config.finishes.map((item) => ({
+          id: item.id,
+          label: item.label,
+          color: item.color,
+        })),
+      },
+      {
+        id: "worktops",
+        label: "Worktop",
+        options: mapOptions(kc.config.worktops, 2),
+      },
+      {
+        id: "appliances",
+        label: "Appliances",
+        options: mapOptions(kc.config.appliances, 4),
+      },
+      {
+        id: "quooker",
+        label: "Quooker",
+        options: mapOptions(kc.config.quooker, 1),
+      },
+      {
+        id: "bora",
+        label: "BORA",
+        options: mapOptions(kc.config.bora, 5),
+      },
+      {
+        id: "budgets",
+        label: "Budget",
+        options: kc.config.budgets.map((item, index) => ({
+          id: item.id,
+          label: item.label,
+          color: swatchPalette[index % swatchPalette.length],
+        })),
+      },
+    ],
+    [],
   );
 
-  const idx = steps.findIndex((s) => s.id === active);
-  const next = () => setActive(steps[Math.min(idx + 1, steps.length - 1)].id);
-  const prev = () => setActive(steps[Math.max(idx - 1, 0)].id);
+  const activeCategoryData =
+    configureCategories.find((category) => category.id === activeCategory) ?? configureCategories[0];
+
+  const configuredItems = configureCategories.filter((category) => selections[category.id]);
+  const selectedBudget = selections.budgets?.label ?? kc.config.budgets[1].label;
+  const currentStepIndex = wizardSteps.findIndex((item) => item.id === step);
+  const progressWidth = `${((currentStepIndex + 1) / wizardSteps.length) * 100}%`;
+  const previewImage =
+    (selectedStyle && selectedStyle.img) ||
+    (selectedBrand && brandVisuals[selectedBrand.id]) ||
+    kc.hero.main;
+  const consultationValid = consultation.name.trim() && consultation.email.trim();
+
+  const canOpenStep = (target: WizardStep) => {
+    if (target === "brand") return true;
+    if (target === "style") return Boolean(selectedBrand);
+    if (target === "configure") return Boolean(selectedBrand && selectedStyle);
+    if (target === "moodboard") return Boolean(selectedBrand && selectedStyle);
+    if (target === "consultation") return Boolean(selectedBrand && selectedStyle);
+    return false;
+  };
+
+  const nextStep = () => {
+    if (step === "brand" && selectedBrand) setStep("style");
+    if (step === "style" && selectedStyle) setStep("configure");
+    if (step === "configure") setStep("moodboard");
+    if (step === "moodboard") setStep("consultation");
+  };
+
+  const prevStep = () => {
+    if (step === "style") setStep("brand");
+    if (step === "configure") setStep("style");
+    if (step === "moodboard") setStep("configure");
+    if (step === "consultation") setStep("moodboard");
+  };
 
   return (
-    <section id="configurator" className="relative bg-ink py-24 text-ivory md:py-36">
-      <div className="mx-auto max-w-[1600px] px-6 md:px-12">
-        <div className="mb-16 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-          <div className="max-w-2xl">
-            <div className="mb-4 flex items-center gap-4">
-              <span className="luxe-rule bg-gold" />
-              <span className="eyebrow text-muted-light">Configurator</span>
+    <section id="configurator" className="section-shell">
+      <div className="site-container">
+        <div className="grid gap-10">
+          <motion.div
+            initial={reduceMotion ? false : "hidden"}
+            whileInView="visible"
+            viewport={motionViewport}
+            variants={reduceMotion ? undefined : staggerHeader}
+            className="section-header-split"
+          >
+            <div className="max-w-[38rem]">
+              <motion.div variants={reduceMotion ? undefined : fadeUp} className="section-label-row">
+                <span className="luxe-rule" />
+                <span className="eyebrow">Configurator Journey</span>
+              </motion.div>
+              <motion.h2 variants={reduceMotion ? undefined : fadeUp} className="heading-2">
+                Configurator sekarang
+                <br />
+                mengikuti alur repo GitHub.
+              </motion.h2>
             </div>
-            <h2 className="editorial-h text-5xl text-ivory md:text-7xl">
-              Stel uw <span className="italic text-gold">droomkeuken</span> samen.
-            </h2>
-          </div>
-          <p className="max-w-sm text-sm leading-relaxed text-muted-light">
-            Een begeleid ritueel in elf stappen. Wij stellen op basis hiervan een
-            persoonlijke moodboard en richtprijs samen voor uw eerste afspraak.
-          </p>
-        </div>
+            <motion.p variants={reduceMotion ? undefined : fadeUp} className="body-md max-w-[30rem]">
+              Pilih brand, tentukan stijl, konfigurasi detail utama, review moodboard, lalu kirim
+              permintaan consultation. Flow ini dibuat agar terasa seperti experience di repo
+              master, tetapi tetap memakai konten dan data Keuken-Centrum Utrecht.
+            </motion.p>
+          </motion.div>
 
-        {/* Step ribbon */}
-        <div className="mb-px flex gap-px overflow-x-auto border-b border-white/10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {steps.map((s, i) => {
-            const isActive = s.id === active;
-            const done = i < idx;
-            return (
-              <button
-                key={s.id}
-                onClick={() => setActive(s.id)}
-                className={`group shrink-0 px-5 py-4 text-left transition-colors duration-300 ${
-                  isActive ? "bg-surface" : "bg-ink hover:bg-surface/50"
-                }`}
-              >
-                <span className={`block text-[10px] uppercase tracking-[0.22em] ${isActive || done ? "text-gold" : "text-muted-light/60"}`}>
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span className={`mt-1 block text-sm ${isActive ? "text-ivory" : "text-ivory/65"}`}>
-                  {s.title}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-
-        <div className="grid grid-cols-1 gap-px overflow-hidden border border-white/10 bg-white/10 lg:grid-cols-5">
-          {/* Visual preview */}
-          <div className="relative aspect-[4/5] overflow-hidden bg-ink lg:col-span-3 lg:aspect-auto">
-            <img
-              key={state.style}
-              src={previewByStyle[state.style]}
-              alt={styleObj.label}
-              className="h-full w-full object-cover transition-all duration-1000 ease-out animate-[fade-in_0.9s_ease-out]"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent" />
-
-            <div className="absolute bottom-8 left-8 right-8">
-              <p className="eyebrow text-gold">Uw compositie</p>
-              <p className="mt-2 font-serif text-2xl italic text-ivory md:text-3xl">{summary}</p>
-              <div className="mt-6 flex flex-wrap items-center gap-4">
-                <div className="flex items-center gap-3 border border-white/20 px-3 py-2">
-                  <span
-                    className="h-6 w-6 border border-white/30"
-                    style={{ backgroundColor: finish.color }}
-                  />
-                  <span className="text-[10px] uppercase tracking-[0.18em]">{finish.label}</span>
-                </div>
-                <div className="border border-white/20 px-3 py-2 text-[10px] uppercase tracking-[0.18em]">{state.worktop}</div>
-                <div className="border border-white/20 px-3 py-2 text-[10px] uppercase tracking-[0.18em]">{layoutObj.label}</div>
-                <div className="ml-auto text-right">
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-muted-light">Indicatie</p>
-                  <p className="font-serif text-xl italic text-gold">{budgetObj.label}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Controls */}
-          <div className="flex flex-col bg-ink lg:col-span-2">
-            <div className="flex-1 p-6 md:p-10">
-              <div className="mb-8 flex items-baseline justify-between">
-                <div className="flex items-baseline gap-4">
-                  <span className="font-serif text-3xl italic text-gold">{String(idx + 1).padStart(2, "0")}</span>
-                  <span className="text-xs uppercase tracking-[0.22em] text-ivory/80">{steps[idx].title}</span>
-                </div>
-                <span className="text-[10px] uppercase tracking-[0.22em] text-muted-light">{idx + 1} / {steps.length}</span>
-              </div>
-
-              {active === "brand" && (
-                <Grid cols={2}>
-                  {kc.config.brands.map((b) => (
-                    <Choice key={b} active={state.brand === b} onClick={() => update("brand", b)}>{b}</Choice>
-                  ))}
-                </Grid>
-              )}
-
-              {active === "style" && (
-                <Grid cols={2}>
-                  {kc.config.styles.map((s) => (
-                    <Choice key={s.id} active={state.style === s.id} onClick={() => update("style", s.id)} sub={s.hint}>
-                      {s.label}
-                    </Choice>
-                  ))}
-                </Grid>
-              )}
-
-              {active === "layout" && (
-                <Grid cols={2}>
-                  {kc.config.layouts.map((l) => (
-                    <Choice key={l.id} active={state.layout === l.id} onClick={() => update("layout", l.id)}>{l.label}</Choice>
-                  ))}
-                </Grid>
-              )}
-
-              {active === "finish" && (
-                <div className="grid grid-cols-3 gap-3">
-                  {kc.config.finishes.map((f) => (
-                    <button
-                      key={f.id}
-                      onClick={() => update("finish", f.id)}
-                      className={`group flex flex-col items-center gap-2 ${state.finish === f.id ? "" : "opacity-60 hover:opacity-100"}`}
-                    >
+          <motion.div
+            initial={reduceMotion ? false : "hidden"}
+            whileInView="visible"
+            viewport={motionViewport}
+            variants={reduceMotion ? undefined : fadeUp}
+            className="surface-card overflow-hidden"
+          >
+            <div className="border-b border-[var(--border)] px-5 py-5 md:px-8">
+              <div className="flex flex-col gap-5">
+                <div className="flex items-center justify-between gap-4">
+                  <div>
+                    <p className="caption-text text-[var(--accent)]">
+                      Step {wizardSteps[currentStepIndex].number} of 05
+                    </p>
+                    <h3 className="mt-2 font-serif text-[clamp(1.8rem,3vw,2.4rem)] leading-none tracking-[-0.035em] text-[var(--foreground)]">
+                      {wizardSteps[currentStepIndex].title}
+                    </h3>
+                  </div>
+                  <div className="hidden min-w-[220px] lg:block">
+                    <div className="h-1.5 w-full bg-[rgba(17,17,17,0.08)]">
                       <div
-                        className={`aspect-square w-full border-2 transition-colors duration-300 ${
-                          state.finish === f.id ? "border-gold" : "border-transparent"
-                        }`}
-                        style={{ backgroundColor: f.color }}
+                        className="h-full bg-[var(--accent)] transition-[width] duration-500 ease-[var(--ease-premium)]"
+                        style={{ width: progressWidth }}
                       />
-                      <span className="text-[10px] uppercase tracking-[0.18em] text-ivory/80 text-center">{f.label}</span>
-                    </button>
-                  ))}
+                    </div>
+                  </div>
                 </div>
-              )}
 
-              {active === "worktop" && (
-                <Grid cols={2}>
-                  {kc.config.worktops.map((w) => {
-                    const meta = kc.worktops.find((x) => x.name === w);
+                <div className="grid gap-2 md:grid-cols-5">
+                  {wizardSteps.map((item, index) => {
+                    const active = item.id === step;
+                    const completed = index < currentStepIndex;
+                    const clickable = canOpenStep(item.id);
+
                     return (
-                      <Choice key={w} active={state.worktop === w} onClick={() => update("worktop", w)} sub={meta?.description}>
-                        {w}
-                      </Choice>
+                      <button
+                        key={item.id}
+                        type="button"
+                        disabled={!clickable}
+                        onClick={() => {
+                          if (clickable) setStep(item.id);
+                        }}
+                        className={cn(
+                          "flex items-center gap-3 border px-3 py-3 text-left transition-all duration-300",
+                          active
+                            ? "border-[var(--accent)] bg-[rgba(176,141,87,0.08)]"
+                            : "border-[var(--border)] bg-white/50",
+                          clickable ? "cursor-pointer hover:border-[var(--accent)]" : "cursor-not-allowed opacity-55",
+                        )}
+                      >
+                        <span
+                          className={cn(
+                            "inline-flex h-8 w-8 items-center justify-center border text-[0.68rem] uppercase tracking-[0.18em]",
+                            active || completed
+                              ? "border-[var(--accent)] text-[var(--accent)]"
+                              : "border-[var(--border)] text-[var(--text-muted)]",
+                          )}
+                        >
+                          {completed ? <Check className="h-4 w-4" /> : item.number}
+                        </span>
+                        <div className="min-w-0">
+                          <p className="caption-text text-[var(--text-muted)]">{item.label}</p>
+                          <p className="mt-1 text-sm tracking-[-0.02em] text-[var(--foreground)]">
+                            {item.title}
+                          </p>
+                        </div>
+                      </button>
                     );
                   })}
-                </Grid>
-              )}
-
-              {active === "appliance" && (
-                <Grid cols={1}>
-                  {kc.config.appliances.map((a) => (
-                    <Choice key={a} active={state.appliance === a} onClick={() => update("appliance", a)}>{a}</Choice>
-                  ))}
-                </Grid>
-              )}
-
-              {active === "sink" && (
-                <Grid cols={1}>
-                  {kc.config.sinks.map((s) => (
-                    <Choice key={s} active={state.sink === s} onClick={() => update("sink", s)}>{s}</Choice>
-                  ))}
-                </Grid>
-              )}
-
-              {active === "quooker" && (
-                <Grid cols={2}>
-                  {kc.config.quooker.map((q) => (
-                    <Choice key={q} active={state.quooker === q} onClick={() => update("quooker", q)}>{q}</Choice>
-                  ))}
-                </Grid>
-              )}
-
-              {active === "bora" && (
-                <Grid cols={1}>
-                  {kc.config.bora.map((b) => (
-                    <Choice key={b} active={state.bora === b} onClick={() => update("bora", b)}>{b}</Choice>
-                  ))}
-                </Grid>
-              )}
-
-              {active === "accessories" && (
-                <Grid cols={1}>
-                  {kc.config.accessories.map((a) => (
-                    <Choice key={a} active={state.accessories.includes(a)} onClick={() => toggleAcc(a)}>
-                      <span className="flex items-center justify-between">
-                        <span>{a}</span>
-                        <span className="text-xs text-gold">{state.accessories.includes(a) ? "✓" : "+"}</span>
-                      </span>
-                    </Choice>
-                  ))}
-                </Grid>
-              )}
-
-              {active === "budget" && (
-                <Grid cols={1}>
-                  {kc.config.budgets.map((b) => (
-                    <Choice key={b.id} active={state.budget === b.id} onClick={() => update("budget", b.id)}>{b.label}</Choice>
-                  ))}
-                </Grid>
-              )}
-
-              {active === "summary" && (
-                <div className="space-y-3 text-sm">
-                  <SummaryRow k="Merk" v={state.brand} />
-                  <SummaryRow k="Stijl" v={styleObj.label} />
-                  <SummaryRow k="Opstelling" v={layoutObj.label} />
-                  <SummaryRow k="Front" v={finish.label} />
-                  <SummaryRow k="Werkblad" v={state.worktop} />
-                  <SummaryRow k="Apparatuur" v={state.appliance} />
-                  <SummaryRow k="Spoelbak" v={state.sink} />
-                  <SummaryRow k="Quooker" v={state.quooker} />
-                  <SummaryRow k="BORA" v={state.bora} />
-                  <SummaryRow k="Accessoires" v={state.accessories.join(", ") || "—"} />
-                  <SummaryRow k="Budget" v={budgetObj.label} />
                 </div>
-              )}
+              </div>
             </div>
 
-            {/* Nav */}
-            <div className="flex flex-col gap-3 border-t border-white/10 p-6 md:flex-row md:items-center md:justify-between md:p-8">
-              <div className="flex gap-3">
-                <button
-                  onClick={prev}
-                  disabled={idx === 0}
-                  className="border border-white/20 px-5 py-2.5 text-[11px] uppercase tracking-[0.22em] text-ivory/80 transition-colors hover:border-gold hover:text-gold disabled:opacity-30 disabled:hover:border-white/20 disabled:hover:text-ivory/80"
-                >
-                  ← Vorige
-                </button>
-                {idx < steps.length - 1 ? (
-                  <button
-                    onClick={next}
-                    className="bg-gold px-5 py-2.5 text-[11px] uppercase tracking-[0.22em] text-ink transition-colors hover:bg-ivory"
+            <div className="px-5 py-6 md:px-8 md:py-8">
+              <AnimatePresence mode="wait">
+                {step === "brand" ? (
+                  <motion.div
+                    key="brand"
+                    initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 14 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -10 }}
+                    transition={{ duration: 0.35 }}
+                    className="grid gap-6"
                   >
-                    Volgende →
-                  </button>
-                ) : (
-                  <a href="#contact" className="bg-gold px-5 py-2.5 text-[11px] uppercase tracking-[0.22em] text-ink transition-colors hover:bg-ivory">
-                    Reserveer Adviesgesprek →
-                  </a>
-                )}
+                    <div className="max-w-[34rem]">
+                      <p className="body-md">
+                        Selecteer eerst het keukenmerk dat het best past bij uw woonwensen. Net als
+                        in de GitHub configurator vormt dit de basis van alle volgende keuzes.
+                      </p>
+                    </div>
+
+                    <motion.div
+                      initial={reduceMotion ? false : "hidden"}
+                      animate="visible"
+                      variants={reduceMotion ? undefined : staggerList}
+                      className="grid gap-4 md:grid-cols-2 xl:grid-cols-3"
+                    >
+                      {kc.kitchenBrands.map((brand) => {
+                        const active = selectedBrand?.id === brand.id;
+                        const image = brandVisuals[brand.id] ?? kc.hero.main;
+
+                        return (
+                          <motion.button
+                            key={brand.id}
+                            type="button"
+                            variants={reduceMotion ? undefined : fadeUp}
+                            onClick={() => setSelectedBrand(brand)}
+                            className={cn(
+                              "group relative overflow-hidden border text-left transition-all duration-300",
+                              active
+                                ? "border-[var(--accent)] shadow-[0_20px_56px_-36px_rgba(176,141,87,0.28)]"
+                                : "border-[var(--border)] hover:border-[var(--accent)]/60",
+                            )}
+                          >
+                            <img
+                              src={image}
+                              alt={brand.name}
+                              className="aspect-[0.95/1] h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                              loading="lazy"
+                            />
+                            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(17,17,17,0.12)_0%,rgba(17,17,17,0.72)_100%)]" />
+                            <div className="absolute inset-x-0 bottom-0 p-5">
+                              <p className="caption-text text-[var(--accent)]">{brand.country}</p>
+                              <h4 className="mt-3 font-serif text-[1.7rem] leading-none tracking-[-0.03em] text-white">
+                                {brand.name}
+                              </h4>
+                              <p className="mt-3 text-sm leading-7 text-white/78">{brand.story}</p>
+                            </div>
+                            {active ? (
+                              <span className="absolute right-4 top-4 inline-flex h-9 w-9 items-center justify-center bg-[var(--accent)] text-white">
+                                <Check className="h-4 w-4" />
+                              </span>
+                            ) : null}
+                          </motion.button>
+                        );
+                      })}
+                    </motion.div>
+                  </motion.div>
+                ) : null}
+
+                {step === "style" ? (
+                  <motion.div
+                    key="style"
+                    initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 14 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -10 }}
+                    transition={{ duration: 0.35 }}
+                    className="grid gap-6"
+                  >
+                    <div className="max-w-[34rem]">
+                      <p className="body-md">
+                        Stap twee volgt de repository-flow: kies de stijlrichting die uw keuken
+                        architectonisch definieert, voordat u de materialen en apparatuur instelt.
+                      </p>
+                    </div>
+
+                    <motion.div
+                      initial={reduceMotion ? false : "hidden"}
+                      animate="visible"
+                      variants={reduceMotion ? undefined : staggerList}
+                      className="grid gap-4 lg:grid-cols-2"
+                    >
+                      {kc.styles.map((style) => {
+                        const active = selectedStyle?.id === style.id;
+                        const keywords = styleKeywords[style.id] ?? ["Premium", "Warm", "Refined"];
+
+                        return (
+                          <motion.button
+                            key={style.id}
+                            type="button"
+                            variants={reduceMotion ? undefined : fadeUp}
+                            onClick={() => setSelectedStyle(style)}
+                            className={cn(
+                              "group relative overflow-hidden border text-left transition-all duration-300",
+                              active
+                                ? "border-[var(--accent)] shadow-[0_20px_56px_-36px_rgba(176,141,87,0.28)]"
+                                : "border-[var(--border)] hover:border-[var(--accent)]/60",
+                            )}
+                          >
+                            <img
+                              src={style.img}
+                              alt={style.t}
+                              className="aspect-[1.3/1] h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                              loading="lazy"
+                            />
+                            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(17,17,17,0.08)_0%,rgba(17,17,17,0.76)_100%)]" />
+                            <div className="absolute inset-x-0 bottom-0 p-5">
+                              <p className="caption-text text-[var(--accent)]">Style Direction</p>
+                              <h4 className="mt-3 font-serif text-[1.9rem] leading-none tracking-[-0.03em] text-white">
+                                {style.t}
+                              </h4>
+                              <p className="mt-3 max-w-[30rem] text-sm leading-7 text-white/78">
+                                {style.d}
+                              </p>
+                              <div className="mt-4 flex flex-wrap gap-2">
+                                {keywords.map((keyword) => (
+                                  <span
+                                    key={keyword}
+                                    className="border border-white/16 bg-white/8 px-2.5 py-1 text-[0.64rem] uppercase tracking-[0.16em] text-white/72"
+                                  >
+                                    {keyword}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+                            {active ? (
+                              <span className="absolute right-4 top-4 inline-flex h-9 w-9 items-center justify-center bg-[var(--accent)] text-white">
+                                <Check className="h-4 w-4" />
+                              </span>
+                            ) : null}
+                          </motion.button>
+                        );
+                      })}
+                    </motion.div>
+                  </motion.div>
+                ) : null}
+
+                {step === "configure" ? (
+                  <motion.div
+                    key="configure"
+                    initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 14 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -10 }}
+                    transition={{ duration: 0.35 }}
+                    className="grid gap-5 xl:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)]"
+                  >
+                    <motion.div
+                      variants={reduceMotion ? undefined : revealImage}
+                      className="overflow-hidden border border-[rgba(255,255,255,0.08)] bg-[var(--ink)] p-4 text-white shadow-[var(--shadow-dark)] md:p-5"
+                    >
+                      <div className="flex items-center justify-between border-b border-[rgba(255,255,255,0.08)] pb-4">
+                        <div>
+                          <p className="caption-text text-[rgba(247,245,242,0.44)]">Interactive Preview</p>
+                          <p className="mt-2 font-serif text-[1.8rem] leading-none tracking-[-0.03em] text-white">
+                            Configure & preview
+                          </p>
+                        </div>
+                        <p className="text-[0.72rem] uppercase tracking-[0.18em] text-[var(--accent)]">
+                          {configuredItems.length}/{configureCategories.length} selected
+                        </p>
+                      </div>
+
+                      <div className="mt-4 grid gap-4 lg:grid-cols-[minmax(0,1fr)_240px]">
+                        <div className="relative overflow-hidden border border-white/8">
+                          <img
+                            src={previewImage}
+                            alt="Configurator preview"
+                            className="aspect-[1.18/1] h-full w-full object-cover"
+                            loading="lazy"
+                          />
+                          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(17,17,17,0.04)_0%,rgba(17,17,17,0.52)_100%)]" />
+                          {configureCategories.map((category) => {
+                            const hotspot = hotspotPositions[category.id];
+                            const selected = selections[category.id];
+                            const active = activeCategory === category.id;
+
+                            return (
+                              <button
+                                key={category.id}
+                                type="button"
+                                onClick={() => setActiveCategory(category.id)}
+                                className="absolute -translate-x-1/2 -translate-y-1/2"
+                                style={{ left: hotspot.x, top: hotspot.y }}
+                              >
+                                <span
+                                  className={cn(
+                                    "flex h-8 w-8 items-center justify-center rounded-full border-2 backdrop-blur-md transition-all duration-300",
+                                    active
+                                      ? "border-[var(--accent)] bg-[var(--accent)] text-white"
+                                      : "border-white/65 bg-white/18 text-white",
+                                  )}
+                                >
+                                  {selected?.color ? (
+                                    <span
+                                      className="h-2.5 w-2.5 rounded-full border border-white/70"
+                                      style={{ backgroundColor: selected.color }}
+                                    />
+                                  ) : (
+                                    <span className="h-2 w-2 rounded-full bg-white/80" />
+                                  )}
+                                </span>
+                              </button>
+                            );
+                          })}
+                          <div className="absolute inset-x-0 bottom-0 p-5">
+                            <p className="caption-text text-white/58">
+                              {selectedBrand?.name ?? "Brand"} · {selectedStyle?.t ?? "Style"}
+                            </p>
+                            <p className="mt-2 max-w-[18rem] font-serif text-[1.8rem] leading-none tracking-[-0.03em] text-white">
+                              Een eerste keukenvoorstel
+                              <br />
+                              dat voorbereid aanvoelt.
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.03)] px-4 py-4">
+                          <p className="caption-text text-[rgba(247,245,242,0.44)]">Configuration</p>
+                          <div className="mt-3 space-y-2">
+                            {configureCategories.map((category) => {
+                              const active = activeCategory === category.id;
+                              const selected = selections[category.id];
+
+                              return (
+                                <button
+                                  key={category.id}
+                                  type="button"
+                                  onClick={() => setActiveCategory(category.id)}
+                                  className={cn(
+                                    "flex w-full items-center justify-between border px-3 py-3 text-left transition-all duration-300",
+                                    active
+                                      ? "border-[rgba(176,141,87,0.42)] bg-[rgba(176,141,87,0.1)]"
+                                      : "border-[rgba(255,255,255,0.08)] bg-transparent",
+                                  )}
+                                >
+                                  <div>
+                                    <p className="text-[0.7rem] uppercase tracking-[0.18em] text-[rgba(247,245,242,0.44)]">
+                                      {category.label}
+                                    </p>
+                                    <p className="mt-1 text-sm tracking-[-0.02em] text-white">
+                                      {selected?.label ?? "Not selected"}
+                                    </p>
+                                  </div>
+                                  {selected?.color ? (
+                                    <span
+                                      className="h-3 w-3 rounded-full border border-white/60"
+                                      style={{ backgroundColor: selected.color }}
+                                    />
+                                  ) : null}
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+
+                    <motion.div variants={reduceMotion ? undefined : fadeUp} className="surface-card p-5 md:p-6">
+                      <div className="border-b border-[var(--border)] pb-4">
+                        <p className="caption-text text-[var(--accent)]">{activeCategoryData.label}</p>
+                        <h4 className="mt-2 font-serif text-[1.9rem] leading-none tracking-[-0.03em] text-[var(--foreground)]">
+                          Selecteer uw voorkeur
+                        </h4>
+                        <p className="mt-3 text-sm leading-7 text-[var(--text-soft)]">
+                          Deze stap volgt het hart van de GitHub configurator: u activeert een
+                          categorie en kiest direct een concrete optie voor uw voorstel.
+                        </p>
+                      </div>
+
+                      <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                        {activeCategoryData.options.map((option) => {
+                          const active = selections[activeCategoryData.id]?.id === option.id;
+
+                          return (
+                            <button
+                              key={option.id}
+                              type="button"
+                              onClick={() =>
+                                setSelections((current) => ({
+                                  ...current,
+                                  [activeCategoryData.id]: option,
+                                }))
+                              }
+                              className={cn(
+                                "border p-4 text-left transition-all duration-300",
+                                active
+                                  ? "border-[var(--accent)] bg-[rgba(176,141,87,0.08)]"
+                                  : "border-[var(--border)] bg-white/60 hover:border-[var(--accent)]/60",
+                              )}
+                            >
+                              <div
+                                className="mb-3 h-12 w-full border border-[var(--border)]"
+                                style={{ backgroundColor: option.color ?? "#E9E2D5" }}
+                              />
+                              <p className="text-sm tracking-[-0.02em] text-[var(--foreground)]">
+                                {option.label}
+                              </p>
+                              {active ? (
+                                <p className="mt-2 text-[0.68rem] uppercase tracking-[0.18em] text-[var(--accent)]">
+                                  Selected
+                                </p>
+                              ) : null}
+                            </button>
+                          );
+                        })}
+                      </div>
+
+                      <div className="mt-6 border-t border-[var(--border)] pt-5">
+                        <p className="caption-text text-[var(--accent)]">Current summary</p>
+                        <div className="mt-4 grid gap-3">
+                          <SummaryRow label="Brand" value={selectedBrand?.name} />
+                          <SummaryRow label="Style" value={selectedStyle?.t} />
+                          {configuredItems.map((item) => (
+                            <SummaryRow
+                              key={item.id}
+                              label={item.label}
+                              value={selections[item.id]?.label}
+                              color={selections[item.id]?.color}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    </motion.div>
+                  </motion.div>
+                ) : null}
+
+                {step === "moodboard" ? (
+                  <motion.div
+                    key="moodboard"
+                    initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 14 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -10 }}
+                    transition={{ duration: 0.35 }}
+                    className="grid gap-5 xl:grid-cols-[minmax(0,1.02fr)_minmax(0,0.98fr)]"
+                  >
+                    <div className="overflow-hidden border border-[var(--border)] bg-[var(--ink)] text-white shadow-[var(--shadow-dark)]">
+                      <div className="relative">
+                        <img
+                          src={previewImage}
+                          alt="Moodboard preview"
+                          className="aspect-[1.3/1] h-full w-full object-cover"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(17,17,17,0.08)_0%,rgba(17,17,17,0.68)_100%)]" />
+                        <div className="absolute inset-x-0 bottom-0 p-6">
+                          <p className="caption-text text-[var(--accent)]">Your design proposal</p>
+                          <h4 className="mt-3 font-serif text-[2.2rem] leading-none tracking-[-0.04em] text-white">
+                            {selectedBrand?.name ?? "Premium"} Kitchen
+                          </h4>
+                          <p className="mt-3 text-sm leading-7 text-white/76">
+                            {selectedStyle?.t ?? "Style"} · {selectedBudget}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="surface-card p-5 md:p-6">
+                      <p className="caption-text text-[var(--accent)]">Moodboard Summary</p>
+                      <h4 className="mt-3 font-serif text-[2rem] leading-none tracking-[-0.035em] text-[var(--foreground)]">
+                        Review uw keuzes.
+                      </h4>
+                      <p className="mt-4 text-sm leading-7 text-[var(--text-soft)]">
+                        In de repository master volgt na configuratie een moodboard-overzicht. Hier
+                        ziet u dezelfde stap vertaald naar uw huidige website: een compacte review
+                        van merk, stijl, materialen en budget voordat u consultation aanvraagt.
+                      </p>
+
+                      <div className="mt-6 grid gap-3 border-t border-[var(--border)] pt-5">
+                        <SummaryRow label="Brand" value={selectedBrand?.name} />
+                        <SummaryRow label="Style" value={selectedStyle?.t} />
+                        {configuredItems.map((item) => (
+                          <SummaryRow
+                            key={item.id}
+                            label={item.label}
+                            value={selections[item.id]?.label}
+                            color={selections[item.id]?.color}
+                          />
+                        ))}
+                      </div>
+
+                      <div className="mt-6 border border-[rgba(176,141,87,0.24)] bg-[rgba(17,17,17,0.96)] px-5 py-5 text-white">
+                        <p className="caption-text text-white/42">Estimated investment</p>
+                        <p className="mt-3 font-serif text-[2rem] leading-none tracking-[-0.03em] text-[var(--accent)]">
+                          {selectedBudget}
+                        </p>
+                        <p className="mt-3 text-sm leading-7 text-white/62">
+                          Indicatieve range op basis van gekozen richting, afwerking en premium
+                          apparatuur. Definitieve prijs volgt in de showroom.
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ) : null}
+
+                {step === "consultation" ? (
+                  <motion.div
+                    key="consultation"
+                    initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 14 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -10 }}
+                    transition={{ duration: 0.35 }}
+                    className="grid gap-5 xl:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)]"
+                  >
+                    <div className="overflow-hidden border border-[rgba(255,255,255,0.08)] bg-[var(--ink)] px-5 py-6 text-white shadow-[var(--shadow-dark)] md:px-6">
+                      <p className="caption-text text-[var(--accent)]">Consultation</p>
+                      <h4 className="mt-3 font-serif text-[2rem] leading-none tracking-[-0.035em] text-white">
+                        Persoonlijk vervolg in Utrecht.
+                      </h4>
+                      <p className="mt-4 text-sm leading-7 text-white/72">
+                        De laatste stap volgt direct op de moodboard review, net als in repo
+                        master. Uw keuzes worden meegenomen naar een showroomgesprek met een
+                        adviseur van Keuken-Centrum Utrecht.
+                      </p>
+
+                      <div className="mt-6 grid gap-px border border-white/8 bg-white/8">
+                        <ContactRow icon={<House className="h-4 w-4" />} label="Showroom" value={`${kc.contact.address}, Utrecht`} />
+                        <ContactRow icon={<Phone className="h-4 w-4" />} label="Telefoon" value={kc.contact.phone} />
+                        <ContactRow icon={<Mail className="h-4 w-4" />} label="E-mail" value={kc.contact.email} />
+                      </div>
+
+                      <div className="mt-6 border-t border-white/8 pt-5">
+                        <p className="caption-text text-white/42">Uw proposal</p>
+                        <div className="mt-4 grid gap-3">
+                          <SummaryRow dark label="Brand" value={selectedBrand?.name} />
+                          <SummaryRow dark label="Style" value={selectedStyle?.t} />
+                          <SummaryRow dark label="Budget" value={selectedBudget} />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="surface-card p-5 md:p-6">
+                      {!consultationSent ? (
+                        <>
+                          <p className="caption-text text-[var(--accent)]">Step 05 of 05</p>
+                          <h4 className="mt-3 font-serif text-[2rem] leading-none tracking-[-0.035em] text-[var(--foreground)]">
+                            Vraag uw consultation aan.
+                          </h4>
+                          <p className="mt-4 text-sm leading-7 text-[var(--text-soft)]">
+                            Laat uw gegevens achter. Wij nemen contact op om uw configuratie en
+                            showroombezoek verder af te stemmen.
+                          </p>
+
+                          <form
+                            className="mt-6 grid gap-4"
+                            onSubmit={(event) => {
+                              event.preventDefault();
+                              if (!consultationValid) return;
+                              setConsultationSent(true);
+                            }}
+                          >
+                            <Input
+                              value={consultation.name}
+                              onChange={(event) =>
+                                setConsultation((current) => ({ ...current, name: event.target.value }))
+                              }
+                              placeholder="Volledige naam"
+                            />
+                            <Input
+                              type="email"
+                              value={consultation.email}
+                              onChange={(event) =>
+                                setConsultation((current) => ({ ...current, email: event.target.value }))
+                              }
+                              placeholder="E-mailadres"
+                            />
+                            <Input
+                              type="tel"
+                              value={consultation.phone}
+                              onChange={(event) =>
+                                setConsultation((current) => ({ ...current, phone: event.target.value }))
+                              }
+                              placeholder="Telefoonnummer"
+                            />
+                            <Textarea
+                              value={consultation.notes}
+                              onChange={(event) =>
+                                setConsultation((current) => ({ ...current, notes: event.target.value }))
+                              }
+                              placeholder="Vertel iets over uw woning, planning of gewenste stijlrichting."
+                            />
+                            <div className="flex flex-wrap items-center justify-between gap-4 border-t border-[var(--border)] pt-5">
+                              <p className="max-w-[26rem] text-sm leading-7 text-[var(--text-soft)]">
+                                Uw gegevens worden uitsluitend gebruikt om uw showroomafspraak en
+                                eerste keukenvoorstel voor te bereiden.
+                              </p>
+                              <Button type="submit" disabled={!consultationValid}>
+                                Verstuur aanvraag
+                                <ArrowRight className="h-4 w-4" />
+                              </Button>
+                            </div>
+                          </form>
+                        </>
+                      ) : (
+                        <div className="flex min-h-[420px] flex-col items-start justify-center">
+                          <span className="inline-flex h-16 w-16 items-center justify-center border border-[var(--accent)] bg-[rgba(176,141,87,0.08)] text-[var(--accent)]">
+                            <Check className="h-7 w-7" />
+                          </span>
+                          <p className="caption-text mt-6 text-[var(--accent)]">Consultation requested</p>
+                          <h4 className="mt-3 font-serif text-[2rem] leading-none tracking-[-0.035em] text-[var(--foreground)]">
+                            Bedankt, {consultation.name.split(" ")[0] || "u"}.
+                          </h4>
+                          <p className="mt-4 max-w-[34rem] text-sm leading-7 text-[var(--text-soft)]">
+                            Uw aanvraag is ontvangen. Een adviseur van Keuken-Centrum Utrecht neemt
+                            contact op via {consultation.email} om uw configuratie en showroombezoek
+                            verder te bespreken.
+                          </p>
+                          <div className="mt-6 flex flex-wrap items-center gap-3">
+                            <Button asChild>
+                              <a href="#showroom">
+                                Bekijk showroom
+                                <ArrowRight className="h-4 w-4" />
+                              </a>
+                            </Button>
+                            <Button asChild variant="outline">
+                              <a href={kc.contact.phoneHref}>Bel direct</a>
+                            </Button>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </motion.div>
+                ) : null}
+              </AnimatePresence>
+
+              <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-[var(--border)] pt-5">
+                <div className="flex flex-wrap items-center gap-3">
+                  {step !== "brand" ? (
+                    <Button type="button" variant="outline" onClick={prevStep}>
+                      <ArrowLeft className="h-4 w-4" />
+                      Vorige stap
+                    </Button>
+                  ) : null}
+                </div>
+
+                <div className="flex flex-wrap items-center gap-3">
+                  {step === "brand" ? (
+                    <Button type="button" onClick={nextStep} disabled={!selectedBrand}>
+                      Continue to Style
+                      <ArrowRight className="h-4 w-4" />
+                    </Button>
+                  ) : null}
+
+                  {step === "style" ? (
+                    <Button type="button" onClick={nextStep} disabled={!selectedStyle}>
+                      Continue to Configure
+                      <ArrowRight className="h-4 w-4" />
+                    </Button>
+                  ) : null}
+
+                  {step === "configure" ? (
+                    <Button type="button" onClick={nextStep}>
+                      Generate Moodboard
+                      <ArrowRight className="h-4 w-4" />
+                    </Button>
+                  ) : null}
+
+                  {step === "moodboard" ? (
+                    <Button type="button" onClick={nextStep}>
+                      Book Consultation
+                      <ArrowRight className="h-4 w-4" />
+                    </Button>
+                  ) : null}
+                </div>
               </div>
-              <p className="text-[10px] uppercase tracking-[0.2em] text-muted-light">
-                Stap {idx + 1} van {steps.length}
-              </p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
   );
 }
 
-function Grid({ cols, children }: { cols: 1 | 2 | 3; children: React.ReactNode }) {
-  const c = cols === 1 ? "grid-cols-1" : cols === 2 ? "grid-cols-2" : "grid-cols-3";
-  return <div className={`grid ${c} gap-3`}>{children}</div>;
-}
-
-function Choice({
-  active,
-  onClick,
-  children,
-  sub,
+function SummaryRow({
+  label,
+  value,
+  color,
+  dark = false,
 }: {
-  active: boolean;
-  onClick: () => void;
-  children: React.ReactNode;
-  sub?: string;
+  label: string;
+  value?: string;
+  color?: string;
+  dark?: boolean;
 }) {
   return (
-    <button
-      onClick={onClick}
-      className={`border px-4 py-4 text-left transition-all duration-300 ${
-        active ? "border-gold bg-gold/5 text-ivory" : "border-white/15 text-ivory/80 hover:border-white/40 hover:text-ivory"
-      }`}
-    >
-      <span className="block text-sm">{children}</span>
-      {sub && <span className="mt-1 block text-[10px] uppercase tracking-[0.18em] text-muted-light">{sub}</span>}
-    </button>
+    <div className="flex items-center justify-between gap-4 text-sm">
+      <span className={cn("caption-text", dark ? "text-white/42" : "text-[var(--text-muted)]")}>
+        {label}
+      </span>
+      <span
+        className={cn(
+          "flex items-center gap-2 text-right",
+          dark ? "text-white/78" : "text-[var(--foreground)]/84",
+        )}
+      >
+        {color ? (
+          <span
+            className={cn(
+              "h-3 w-3 border",
+              dark ? "border-white/28" : "border-[var(--border)]",
+            )}
+            style={{ backgroundColor: color }}
+          />
+        ) : null}
+        <span>{value ?? "-"}</span>
+      </span>
+    </div>
   );
 }
 
-function SummaryRow({ k, v }: { k: string; v: string }) {
+function ContactRow({
+  icon,
+  label,
+  value,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  value: string;
+}) {
   return (
-    <div className="flex items-baseline justify-between gap-4 border-b border-white/8 pb-2">
-      <span className="text-[10px] uppercase tracking-[0.22em] text-muted-light">{k}</span>
-      <span className="text-right font-serif text-base italic text-ivory">{v}</span>
+    <div className="flex items-center gap-3 bg-[rgba(255,255,255,0.02)] px-4 py-4">
+      <span className="text-[var(--accent)]">{icon}</span>
+      <div>
+        <p className="text-[0.68rem] uppercase tracking-[0.18em] text-white/44">{label}</p>
+        <p className="mt-1 text-sm text-white">{value}</p>
+      </div>
     </div>
   );
 }

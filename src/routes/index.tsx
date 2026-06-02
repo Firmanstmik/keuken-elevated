@@ -2,29 +2,29 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/site/Nav";
 import { Hero } from "@/components/site/Hero";
 import { Brands } from "@/components/site/Brands";
-import { Collections } from "@/components/site/Collections";
-import { Configurator } from "@/components/site/Configurator";
-import { Craft } from "@/components/site/Craft";
+import { Experience } from "@/components/site/Experience";
+import { ShowroomJourneySection, WhyWithUsSection } from "@/components/site/MasterJourneySections";
 import { Process } from "@/components/site/Process";
-import { Showroom } from "@/components/site/Showroom";
-import { Offers } from "@/components/site/Offers";
+import { PremiumShowcase } from "@/components/site/PremiumShowcase";
+import { Collections } from "@/components/site/Collections";
 import { Testimonials } from "@/components/site/Testimonials";
-import { Team } from "@/components/site/Team";
+import { ConsultationSection } from "@/components/site/ConsultationSection";
 import { FinalCta } from "@/components/site/FinalCta";
 import { Footer } from "@/components/site/Footer";
+import { StickyConversionBar } from "@/components/site/StickyConversionBar";
 import { kc } from "@/lib/kc-data";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Keuken-Centrum Utrecht · Premium Keukens · Leicht, Nobilia, Zampieri" },
+      { title: "Keuken-Centrum Utrecht · De Premium Keukenbestemming van Utrecht" },
       {
         name: "description",
         content:
-          "Premium keukenshowroom in Utrecht sinds 1978. Leicht, Nobilia, Zampieri, Cucinesse, AI Küchen. A-merken apparatuur: Gaggenau, BORA, Quooker, Siemens, Miele.",
+          "Premium German and Italian kitchen showroom in Utrecht sinds 1978. Persoonlijk showroomadvies, geselecteerde topmerken en een verfijnde keukenervaring.",
       },
       { property: "og:title", content: "Keuken-Centrum Utrecht · Premium Keukenshowroom" },
-      { property: "og:description", content: "Europese topmerken keukens in Utrecht. Persoonlijk advies, 3D-ontwerp en vakkundige installatie." },
+      { property: "og:description", content: "De premium keukenbestemming van Utrecht voor German precision, Italian elegance en persoonlijk showroomadvies." },
       { property: "og:type", content: "website" },
       { property: "og:image", content: kc.hero.main },
       { property: "og:url", content: "/" },
@@ -62,20 +62,44 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <main className="bg-ink text-ivory">
+    <main className="bg-[var(--background)] text-[var(--foreground)]">
       <Nav />
+
+      {/* 1. HERO — Emotional impact */}
       <Hero />
+
+      {/* 2. BRANDS — Instant credibility: "We work with Europe's top brands" */}
       <Brands />
+
+      {/* 3. WHY CHOOSE US — Build trust & authority */}
+      <WhyWithUsSection />
+
+      {/* 4. PREMIUM SHOWROOM — Luxury centerpiece, dark prestige */}
+      <PremiumShowcase />
+
+      {/* 5. DIGITAL JOURNEY — "Een showroom die naar u toe komt" */}
+      <ShowroomJourneySection />
+
+      {/* 6. KITCHEN INSPIRATION — "What kitchens can I create?" */}
+      <Experience />
+
+      {/* 7. STYLE WORLDS — Modern, Klassiek, Landelijk, Industrieel */}
       <Collections />
-      <Configurator />
-      <Craft />
-      <Offers />
+
+      {/* 8. CONFIGURATOR PROCESS — How the journey works */}
       <Process />
-      <Showroom />
-      <Testimonials />
-      <Team />
+
+      {/* 9. CONFIGURATOR CTA — Start your dream kitchen */}
       <FinalCta />
+
+      {/* 10. TESTIMONIALS — Social proof after configurator introduction */}
+      <Testimonials />
+
+      {/* 11. CONSULTATION — Final lead generation */}
+      <ConsultationSection />
+
       <Footer />
+      <StickyConversionBar />
     </main>
   );
 }

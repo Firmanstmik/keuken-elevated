@@ -18,7 +18,7 @@ export function Offers() {
           </h2>
           <p className="mt-8 max-w-md text-base leading-relaxed text-muted-light">
             Het hele jaar door spectaculaire aanbiedingen op complete keukens, showroom­modellen
-            en inbouw­apparatuur van topmerken — Leicht, Nobilia, AI Küchen, Zampieri.
+            en inbouw­apparatuur van topmerken zoals Leicht, Nobilia, AI Küchen en Zampieri.
             Volledig uitgerust met Miele, Siemens, AEG, ATAG, Smeg of Bosch en vaak direct uit voorraad.
           </p>
           <div className="mt-10">

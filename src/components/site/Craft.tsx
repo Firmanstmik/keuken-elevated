@@ -5,12 +5,12 @@ export function Craft() {
   const ref = useReveal<HTMLDivElement>();
   return (
     <section id="craft" className="bg-ink py-24 md:py-36">
-      <div ref={ref} className="reveal mx-auto grid max-w-[1600px] grid-cols-1 gap-12 px-6 md:px-12 lg:grid-cols-12 lg:gap-16">
+      <div ref={ref} className="reveal mx-auto grid max-w-[1440px] grid-cols-1 gap-12 px-6 md:px-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-7">
           <div className="image-zoom relative aspect-[5/6] overflow-hidden bg-surface">
             <img
               src={kc.boraImg}
-              alt="BORA kookplaatafzuiging — afzuiging naar beneden"
+              alt="BORA kookplaatafzuiging met afzuiging naar beneden"
               loading="lazy"
               className="h-full w-full object-cover"
             />
@@ -38,7 +38,7 @@ export function Craft() {
             <span className="italic text-gold">complete</span> keuken.
           </h2>
           <p className="mt-8 max-w-md text-base leading-relaxed text-muted-light">
-            Van A-merken inbouwapparatuur tot werkbladen, kranen, accessoires en verlichting —
+            Van A merken inbouwapparatuur tot werkbladen, kranen, accessoires en verlichting,
             bij Keuken-Centrum Utrecht is alles wat met keukens te maken heeft verkrijgbaar.
             BORA laat kookdampen niet eerst opstijgen, maar zuigt ze meteen weg waar ze ontstaan.
           </p>

@@ -9,8 +9,38 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as StyleRouteImport } from './routes/style'
+import { Route as MoodboardRouteImport } from './routes/moodboard'
+import { Route as ConsultationRouteImport } from './routes/consultation'
+import { Route as ConfigureRouteImport } from './routes/configure'
+import { Route as BrandsRouteImport } from './routes/brands'
 import { Route as IndexRouteImport } from './routes/index'
 
+const StyleRoute = StyleRouteImport.update({
+  id: '/style',
+  path: '/style',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MoodboardRoute = MoodboardRouteImport.update({
+  id: '/moodboard',
+  path: '/moodboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConsultationRoute = ConsultationRouteImport.update({
+  id: '/consultation',
+  path: '/consultation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConfigureRoute = ConfigureRouteImport.update({
+  id: '/configure',
+  path: '/configure',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrandsRoute = BrandsRouteImport.update({
+  id: '/brands',
+  path: '/brands',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +49,96 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/brands': typeof BrandsRoute
+  '/configure': typeof ConfigureRoute
+  '/consultation': typeof ConsultationRoute
+  '/moodboard': typeof MoodboardRoute
+  '/style': typeof StyleRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/brands': typeof BrandsRoute
+  '/configure': typeof ConfigureRoute
+  '/consultation': typeof ConsultationRoute
+  '/moodboard': typeof MoodboardRoute
+  '/style': typeof StyleRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/brands': typeof BrandsRoute
+  '/configure': typeof ConfigureRoute
+  '/consultation': typeof ConsultationRoute
+  '/moodboard': typeof MoodboardRoute
+  '/style': typeof StyleRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/brands'
+    | '/configure'
+    | '/consultation'
+    | '/moodboard'
+    | '/style'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/brands' | '/configure' | '/consultation' | '/moodboard' | '/style'
+  id:
+    | '__root__'
+    | '/'
+    | '/brands'
+    | '/configure'
+    | '/consultation'
+    | '/moodboard'
+    | '/style'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BrandsRoute: typeof BrandsRoute
+  ConfigureRoute: typeof ConfigureRoute
+  ConsultationRoute: typeof ConsultationRoute
+  MoodboardRoute: typeof MoodboardRoute
+  StyleRoute: typeof StyleRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/style': {
+      id: '/style'
+      path: '/style'
+      fullPath: '/style'
+      preLoaderRoute: typeof StyleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/moodboard': {
+      id: '/moodboard'
+      path: '/moodboard'
+      fullPath: '/moodboard'
+      preLoaderRoute: typeof MoodboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/consultation': {
+      id: '/consultation'
+      path: '/consultation'
+      fullPath: '/consultation'
+      preLoaderRoute: typeof ConsultationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/configure': {
+      id: '/configure'
+      path: '/configure'
+      fullPath: '/configure'
+      preLoaderRoute: typeof ConfigureRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/brands': {
+      id: '/brands'
+      path: '/brands'
+      fullPath: '/brands'
+      preLoaderRoute: typeof BrandsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,7 +151,22 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BrandsRoute: BrandsRoute,
+  ConfigureRoute: ConfigureRoute,
+  ConsultationRoute: ConsultationRoute,
+  MoodboardRoute: MoodboardRoute,
+  StyleRoute: StyleRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
