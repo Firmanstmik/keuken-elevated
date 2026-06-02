@@ -1,3 +1,9 @@
+import leichtImg from "@/assets/brands/leicht-hero.webp";
+import aiKuchenImg from "@/assets/brands/aikuchen-hero.webp";
+import nobiliaImg from "@/assets/brands/nobilia-hero.webp";
+import zampieriImg from "@/assets/brands/zampieri-hero.webp";
+import cucinesseImg from "@/assets/brands/cucinesse-hero.webp";
+
 export type MasterBrand = {
   id: string;
   name: string;
@@ -37,7 +43,7 @@ export const masterBrands: MasterBrand[] = [
     description:
       "Sinds 1928 staat LEICHT voor Duits keukenambacht met compromisloze precisie en een tijdloos ontwerp.",
     origin: "Duitsland",
-    image: "/brand-leicht.webp",
+    image: leichtImg,
     accentColor: "#8A7560",
   },
   {
@@ -47,7 +53,7 @@ export const masterBrands: MasterBrand[] = [
     description:
       "Waar intelligent ontwerp en modern wonen samenkomen. AI Küchen verkent de toekomst van keukenarchitectuur met vooruitstrevende innovatie.",
     origin: "Duitsland",
-    image: "/brand-ai-kuchen.webp",
+    image: aiKuchenImg,
     accentColor: "#6A7A6A",
   },
   {
@@ -57,7 +63,7 @@ export const masterBrands: MasterBrand[] = [
     description:
       "Een van Europa's sterkste namen in functioneel keukendesign. Nobilia verbindt Duitse precisie met eigentijds wonen voor ruimtes met blijvende kwaliteit.",
     origin: "Duitsland",
-    image: "/brand-nobilia.webp",
+    image: nobiliaImg,
     accentColor: "#7A8090",
   },
   {
@@ -67,7 +73,7 @@ export const masterBrands: MasterBrand[] = [
     description:
       "Ontstaan in de Venetoregio in Italie, transformeert Zampieri keukens tot ware designobjecten met uitzonderlijk Italiaans vakmanschap.",
     origin: "Italie",
-    image: "/brand-zampieri.webp",
+    image: zampieriImg,
     accentColor: "#8A6050",
   },
   {
@@ -77,7 +83,7 @@ export const masterBrands: MasterBrand[] = [
     description:
       "Cucinesse ontwerpt zeer persoonlijke keukenomgevingen. Elk project is een verfijnd luxeconcept dat volledig op het leven van de klant is afgestemd.",
     origin: "Belgie",
-    image: "/brand-cucinesse.webp",
+    image: cucinesseImg,
     accentColor: "#B08D57",
   },
 ];

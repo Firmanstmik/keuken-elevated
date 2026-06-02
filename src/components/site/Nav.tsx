@@ -7,7 +7,7 @@ import {
   House as IconsaxHouse,
   Sms as IconsaxSms,
 } from "@zethictech/iconsax-react";
-import { ChevronDown } from "@/components/ui/icons";
+import { ChevronDown, ArrowRight } from "@/components/ui/icons";
 import { kc } from "@/lib/kc-data";
 import logoKeuken from "@/assets/logo-keuken-1-1.webp";
 import { motionDuration, motionEase } from "@/lib/motion";
@@ -281,25 +281,32 @@ export function Nav() {
                       <AnimatePresence initial={false}>
                         {hasDropdown && isOpen ? (
                           <motion.div
-                            initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 10, filter: "blur(10px)" }}
-                            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                            exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 10, filter: "blur(10px)" }}
-                            transition={{ duration: 0.35, ease: motionEase.premium }}
-                            className="absolute left-1/2 top-full z-50 mt-4 w-[300px] -translate-x-1/2 overflow-hidden rounded-[14px] border border-[rgba(7,17,27,0.08)] bg-[rgba(247,245,242,0.96)] shadow-[0_40px_100px_-70px_rgba(7,17,27,0.55)] backdrop-blur-xl"
+                            initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 15, scale: 0.98, filter: "blur(10px)" }}
+                            animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+                            exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 10, scale: 0.98, filter: "blur(10px)" }}
+                            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                            className="absolute left-1/2 top-full z-50 mt-4 w-[280px] -translate-x-1/2 overflow-hidden rounded-[20px] border border-[#E5DCD3]/50 bg-[rgba(250,249,246,0.92)] shadow-[0_32px_64px_-12px_rgba(0,0,0,0.14),0_0_0_1px_rgba(255,255,255,0.7)_inset] backdrop-blur-2xl"
                             role="menu"
                             aria-label={item.label}
                           >
-                            <div className="p-2">
-                              {item.items?.map((sub) => (
-                                <span
+                            <div className="p-2.5 flex flex-col gap-0.5">
+                              {item.items?.map((sub, index) => (
+                                <motion.span
                                   key={sub.label}
-                                  className="group flex cursor-default items-center justify-between gap-4 rounded-[12px] px-4 py-3 text-[0.98rem] font-normal tracking-[-0.01em] text-[rgba(7,17,27,0.84)] transition-colors duration-300 hover:bg-[rgba(7,17,27,0.05)] hover:text-[rgba(7,17,27,0.98)]"
+                                  initial={reduceMotion ? false : { opacity: 0, x: -8 }}
+                                  animate={reduceMotion ? undefined : { opacity: 1, x: 0 }}
+                                  transition={{ delay: 0.05 + index * 0.04, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                                  className="group relative flex cursor-pointer items-center justify-between rounded-[14px] px-4 py-3 text-[0.92rem] font-medium tracking-[0.01em] text-[#555555] transition-all duration-300 hover:bg-white hover:text-[#111111] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
                                   role="menuitem"
                                   aria-disabled
                                 >
-                                  <span>{sub.label}</span>
-                                  <span className="h-px w-10 bg-[linear-gradient(90deg,rgba(201,164,106,0),rgba(201,164,106,0.75),rgba(201,164,106,0))] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                                </span>
+                                  <span className="relative z-10 transition-transform duration-300 group-hover:translate-x-1">
+                                    {sub.label}
+                                  </span>
+                                  <span className="relative z-10 flex h-7 w-7 items-center justify-center rounded-full bg-[#F5F2EC] opacity-0 transition-all duration-300 group-hover:opacity-100">
+                                    <ArrowRight className="h-3 w-3 text-[#C8A96B] -translate-x-1 transition-transform duration-300 group-hover:translate-x-0" />
+                                  </span>
+                                </motion.span>
                               ))}
                             </div>
                           </motion.div>

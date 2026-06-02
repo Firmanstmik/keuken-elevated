@@ -34,12 +34,12 @@ type IconProps = SVGAttributes<SVGSVGElement> & {
 
 function makeIcon(Icon: SvgIconComponent) {
   return function WrappedIcon(props: IconProps) {
-    const { size = 24, style, ...rest } = props;
+    const { size = 24, style, color, fontSize, ...rest } = props;
 
     return (
       <Icon
-        {...rest}
-        style={{ fontSize: typeof size === "number" ? `${size}px` : size, ...style }}
+        {...(rest as any)}
+        style={{ fontSize: typeof size === "number" ? `${size}px` : size, color, ...style }}
       />
     );
   };

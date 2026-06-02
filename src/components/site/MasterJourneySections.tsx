@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 
 import { motion, useReducedMotion } from "framer-motion";
 import DiamondIcon from "@mui/icons-material/Diamond";
@@ -11,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "@/components/ui/icons";
 import { fadeUp, motionViewport, staggerHeader, staggerList } from "@/lib/motion";
 import matConcrete from "@/assets/mat-concrete.jpg";
+import { masterHotspotPositions, masterCategories } from "@/lib/master-config-data";
 
 const pillarMotion =
   "duration-[500ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]";
@@ -181,6 +183,18 @@ export function WhyWithUsSection() {
 
 export function ShowroomJourneySection() {
   const reduceMotion = useReducedMotion();
+  const [activeHotspot, setActiveHotspot] = useState<number | null>(0);
+
+  const hotspotsData = masterHotspotPositions.map((h, index) => {
+    const category = masterCategories.find((c) => c.id === h.id);
+    const colors = category ? category.options.slice(0, 4).map((o) => o.color) : ["#ffffff", "#cccccc", "#999999", "#666666"];
+    while (colors.length < 4) colors.push("#000000");
+    return {
+      ...h,
+      delay: 0.6 + (index * 0.1),
+      colors,
+    };
+  });
 
   return (
     <section className="relative overflow-hidden py-20 md:py-28">
@@ -205,37 +219,131 @@ export function ShowroomJourneySection() {
       />
       <div className="site-container relative">
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.92fr)] lg:items-center">
-          <motion.div
-            initial={reduceMotion ? false : "hidden"}
-            whileInView="visible"
-            viewport={motionViewport}
-            variants={reduceMotion ? undefined : fadeUp}
-            className="relative"
-          >
-            <div className="group relative aspect-[4/3] overflow-hidden rounded-2xl shadow-[0_16px_36px_-12px_rgba(0,0,0,0.08)] border border-[rgba(200,169,107,0.1)]">
-              <img
-                src="/showroom-preview.webp"
-                alt="Showroom impressie"
-                className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:scale-[1.04]"
-                loading="lazy"
-              />
-              <div className="absolute bottom-6 left-6 rounded-xl border border-[rgba(200,169,107,0.25)] bg-[#F8F6F2]/90 px-6 py-4.5 backdrop-blur-[8px] shadow-[0_12px_32px_-8px_rgba(0,0,0,0.12)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1">
-                <p className="text-[0.68rem] uppercase tracking-[0.24em] text-[#C8A96B] font-medium">
-                  Showroom
-                </p>
-                <p className="mt-1.5 text-sm font-normal text-[#111111] tracking-[0.01em]">
-                  Persoonlijke ontwerpervaring
-                </p>
+          <div className="relative">
+            {/* The Badge */}
+            <motion.div
+              initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+              whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={motionViewport}
+              className="absolute -top-3 left-6 md:left-8 z-20"
+            >
+              <span className="rounded-full border border-[#C8A96B]/30 bg-[#111111] px-4 py-1.5 text-[0.6rem] font-medium uppercase tracking-[0.2em] text-[#C8A96B] shadow-[0_4px_12px_rgba(0,0,0,0.1)]">
+                Premium Configurator
+              </span>
+            </motion.div>
+
+            {/* The Configurator Mockup Frame */}
+            <motion.div
+              initial={reduceMotion ? false : { opacity: 0, y: 40, scale: 0.96 }}
+              whileInView={reduceMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+              viewport={motionViewport}
+              className="relative aspect-[4/3] w-full overflow-hidden rounded-[28px] md:rounded-[36px] border border-[#C8A96B]/30 bg-[#111111] shadow-[0_32px_64px_-12px_rgba(0,0,0,0.14)] flex flex-col"
+            >
+              {/* Fake Header */}
+              <div className="flex h-8 md:h-10 shrink-0 items-center justify-between border-b border-white/10 px-4">
+                <div className="flex gap-1.5">
+                  <div className="h-2 w-2 rounded-full bg-white/20" />
+                  <div className="h-2 w-2 rounded-full bg-white/20" />
+                  <div className="h-2 w-2 rounded-full bg-white/20" />
+                </div>
+                <div className="text-[0.55rem] md:text-[0.6rem] tracking-[0.2em] text-white/40 uppercase">
+                  Keuken Centrum
+                </div>
+                <div className="w-8" />
               </div>
-            </div>
-          </motion.div>
+
+              {/* Fake Body */}
+              <div className="flex flex-1 overflow-hidden">
+                {/* Image Area */}
+                <div className="relative flex-1 bg-[#0A0A0A] overflow-hidden">
+                  <img
+                    src="/configurator-kitchen.webp"
+                    alt="Configurator preview"
+                    className="absolute inset-0 h-full w-full object-cover opacity-90 mix-blend-lighten"
+                    loading="lazy"
+                  />
+                  {/* Hotspots */}
+                  <div className="absolute inset-0">
+                    {hotspotsData.map((h, i) => {
+                      const isActive = activeHotspot === i;
+                      return (
+                      <motion.button
+                        key={i}
+                        type="button"
+                        onClick={() => setActiveHotspot(i)}
+                        initial={reduceMotion ? false : { opacity: 0, scale: 0 }}
+                        whileInView={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
+                        transition={{ delay: h.delay, duration: 0.5, ease: "easeOut" }}
+                        viewport={motionViewport}
+                        className="absolute flex items-center gap-2 group cursor-pointer"
+                        style={{ left: h.x, top: h.y }}
+                      >
+                        <div className={`flex h-5 w-5 items-center justify-center rounded-full backdrop-blur-md border shadow-sm transition-colors duration-300 ${isActive ? 'bg-[#C8A96B]/80 border-[#C8A96B]' : 'bg-white/20 border-white/50 group-hover:bg-white/30'}`}>
+                          <div className="h-1.5 w-1.5 rounded-full bg-white transition-colors duration-300" />
+                        </div>
+                        <span className={`hidden sm:block rounded px-2 py-1 text-[0.55rem] uppercase tracking-[0.15em] backdrop-blur-md border transition-all duration-300 ${isActive ? 'opacity-100 bg-[#C8A96B]/90 text-white border-[#C8A96B]' : 'opacity-0 group-hover:opacity-100 bg-black/60 text-white border-white/10 group-hover:border-white/30'}`}>
+                          {h.label}
+                        </span>
+                      </motion.button>
+                    )})}
+                  </div>
+                </div>
+
+                {/* Fake Sidebar */}
+                <div className="w-[32%] md:w-[28%] shrink-0 border-l border-white/10 bg-[#0F0F0F] p-3 flex flex-col gap-3">
+                  <div className="space-y-2">
+                    <div className="h-1.5 w-10 bg-white/20 rounded-full" />
+                    <div className="h-3 w-16 bg-[#C8A96B] rounded-full" />
+                  </div>
+                  
+                  <div className="grid grid-cols-2 gap-1.5 md:gap-2 mt-2">
+                    {(activeHotspot !== null ? hotspotsData[activeHotspot].colors : hotspotsData[0].colors).map((color, idx) => (
+                      <div 
+                        key={`${activeHotspot}-${idx}`}
+                        className={`aspect-square rounded-md transition-colors duration-500 ${idx === 0 ? 'border border-[#C8A96B] shadow-[0_0_8px_rgba(200,169,107,0.3)]' : ''}`}
+                        style={{ backgroundColor: color }}
+                      />
+                    ))}
+                  </div>
+                  
+                  <div className="mt-auto pt-3 border-t border-white/10 space-y-2 hidden md:block">
+                     <div className="flex justify-between items-center">
+                       <div className="h-1.5 w-8 bg-white/20 rounded-full" />
+                       <div className="h-2 w-12 bg-white/40 rounded-full" />
+                     </div>
+                     <div className="h-8 w-full rounded-md bg-[#C8A96B] flex items-center justify-center">
+                       <div className="h-1.5 w-16 bg-white/80 rounded-full" />
+                     </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Floating Glass Card */}
+            <motion.div
+              initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+              whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              viewport={motionViewport}
+              className="absolute -bottom-6 -left-2 sm:-left-6 z-30 w-[260px] sm:w-[300px] rounded-2xl border border-white/60 bg-[#F8F6F2]/85 p-5 sm:p-6 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.12)] backdrop-blur-xl"
+            >
+              <p className="text-[0.65rem] sm:text-[0.68rem] font-medium uppercase tracking-[0.24em] text-[#C8A96B]">
+                Digitale Showroom
+              </p>
+              <p className="mt-2 text-[0.8rem] sm:text-[0.875rem] font-light leading-[1.65] text-[#111111]">
+                Configureer materialen, apparatuur en afwerkingen voordat u de showroom bezoekt.
+              </p>
+            </motion.div>
+          </div>
 
           <motion.div
             initial={reduceMotion ? false : "hidden"}
             whileInView="visible"
             viewport={motionViewport}
             variants={reduceMotion ? undefined : staggerHeader}
-            className="lg:pl-10"
+            className="lg:pl-10 mt-12 lg:mt-0"
           >
             <motion.p
               variants={reduceMotion ? undefined : fadeUp}

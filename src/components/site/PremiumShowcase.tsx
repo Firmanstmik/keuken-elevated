@@ -221,11 +221,11 @@ export function PremiumShowcase() {
             whileInView="visible"
             viewport={motionViewport}
             variants={reduceMotion ? undefined : imageReveal}
-            className="relative w-full max-w-[280px] lg:max-w-[340px] xl:max-w-[380px] mx-auto lg:ml-12 mt-6 lg:mt-0"
+            className="relative w-full max-w-[540px] lg:max-w-[620px] xl:max-w-[720px] mx-auto lg:ml-6 mt-6 lg:mt-0"
           >
-            <div className="group relative">
-              {/* Main video card with corner frames */}
-              <div className="relative overflow-hidden rounded-[20px] border border-[rgba(255,255,255,0.08)] shadow-[0_28px_64px_-44px_rgba(17,19,21,0.72)]">
+            <div className="group relative flex flex-col sm:flex-row gap-3 rounded-[24px] border border-[rgba(255,255,255,0.08)] bg-[rgba(23,25,28,0.22)] p-2 shadow-[0_28px_64px_-44px_rgba(17,19,21,0.72)] backdrop-blur-xl">
+              {/* Main video card (Left Side) */}
+              <div className="relative overflow-hidden rounded-[18px] w-full sm:w-[65%] flex items-center justify-center bg-black/40">
                 <CornerFrames />
                 <video
                   src={keukenVid1}
@@ -233,82 +233,50 @@ export function PremiumShowcase() {
                   muted
                   loop
                   playsInline
-                  className="w-full h-auto object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.03]"
+                  className="w-full h-auto max-h-[85vh] object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.03]"
                 />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(23,25,28,0.02)_0%,rgba(23,25,28,0.22)_100%)]" />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(23,25,28,0.02)_0%,rgba(23,25,28,0.22)_100%)] pointer-events-none" />
                 <WaterEffect />
               </div>
 
-              {/* Accent video 4 (Bottom Left) */}
-              <motion.div
-                initial={reduceMotion ? false : { opacity: 0, scale: 1.04, x: -15 }}
-                whileInView={reduceMotion ? undefined : { opacity: 0.85, scale: 1, x: 0 }}
-                viewport={motionViewport}
-                transition={
-                  reduceMotion
-                    ? undefined
-                    : { delay: 0.45, duration: 1.1, ease: luxuryEase }
-                }
-                className="absolute -bottom-8 -left-12 z-20 hidden w-[38%] overflow-hidden rounded-[16px] border border-[rgba(255,255,255,0.04)] shadow-[0_16px_40px_-20px_rgba(17,19,21,0.6)] md:block group-hover:-translate-x-2 group-hover:-translate-y-2 transition-transform duration-700"
-              >
-                <video
-                  src={keukenVid4}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="w-full h-auto object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.03]"
-                />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(23,25,28,0.05)_0%,rgba(23,25,28,0.4)_100%)]" />
-              </motion.div>
+              {/* Accent videos (Right Side Column) */}
+              <div className="flex w-full sm:w-[35%] flex-row sm:flex-col gap-3 min-h-[140px] sm:min-h-[480px]">
+                <div className="relative flex-1 overflow-hidden rounded-[14px] border border-[rgba(255,255,255,0.04)] shadow-sm transition-transform duration-700 ease-out sm:group-hover:-translate-x-1">
+                  <video
+                    src={keukenVid3}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.05]"
+                  />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(23,25,28,0.02)_0%,rgba(23,25,28,0.36)_100%)]" />
+                </div>
 
-              {/* Accent video 3 (Top Right) */}
-              <motion.div
-                initial={reduceMotion ? false : { opacity: 0, scale: 1.04, y: -15 }}
-                whileInView={reduceMotion ? undefined : { opacity: 0.95, scale: 1, y: 0 }}
-                viewport={motionViewport}
-                transition={
-                  reduceMotion
-                    ? undefined
-                    : { delay: 0.55, duration: 1.1, ease: luxuryEase }
-                }
-                className="absolute -top-10 -right-14 z-10 hidden w-[40%] overflow-hidden rounded-[18px] border border-[rgba(255,255,255,0.06)] shadow-[0_20px_48px_-24px_rgba(17,19,21,0.6)] md:block group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform duration-700"
-              >
-                <video
-                  src={keukenVid3}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="w-full h-auto object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.03]"
-                />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(23,25,28,0.02)_0%,rgba(23,25,28,0.36)_100%)]" />
-              </motion.div>
+                <div className="relative flex-1 overflow-hidden rounded-[14px] border border-[rgba(255,255,255,0.06)] shadow-sm transition-transform duration-700 ease-out delay-75 sm:group-hover:-translate-x-1">
+                  <video
+                    src={keukenVid4}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.05]"
+                  />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(23,25,28,0.05)_0%,rgba(23,25,28,0.4)_100%)]" />
+                </div>
 
-              {/* Accent video 2 (Bottom Right) */}
-              <motion.div
-                initial={reduceMotion ? false : { opacity: 0, scale: 1.04, x: 15 }}
-                whileInView={reduceMotion ? undefined : { opacity: 1, scale: 1, x: 0 }}
-                viewport={motionViewport}
-                transition={
-                  reduceMotion
-                    ? undefined
-                    : { delay: 0.65, duration: 1.1, ease: luxuryEase }
-                }
-                className="absolute -bottom-10 -right-12 z-30 hidden w-[48%] overflow-hidden rounded-[20px] border border-[rgba(255,255,255,0.12)] shadow-[0_24px_64px_-30px_rgba(17,19,21,0.8)] md:block group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-700"
-              >
-                <CornerFrames />
-                <video
-                  src={keukenVid2}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="w-full h-auto object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.03]"
-                />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(23,25,28,0.0)_0%,rgba(23,25,28,0.3)_100%)]" />
-                <WaterEffect />
-              </motion.div>
+                <div className="relative flex-1 overflow-hidden rounded-[14px] border border-[rgba(255,255,255,0.12)] shadow-sm transition-transform duration-700 ease-out delay-150 sm:group-hover:-translate-x-1">
+                  <video
+                    src={keukenVid2}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.05]"
+                  />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(23,25,28,0.0)_0%,rgba(23,25,28,0.3)_100%)]" />
+                </div>
+              </div>
             </div>
           </motion.div>
 
