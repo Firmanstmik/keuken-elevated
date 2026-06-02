@@ -183,48 +183,68 @@ function ConfigurePage() {
               const selected = config.selections[hotspot.id];
               const active = activeCategory === hotspot.id;
 
+              const fullCategory = masterCategories.find((c) => c.id === hotspot.id);
+              const fullOption = selected ? fullCategory?.options.find((o) => o.id === selected.id) : null;
+
               return (
                 <button
                   key={hotspot.id}
                   type="button"
-                  title={hotspot.label}
                   data-hotspot="true"
                   onClick={() => setActiveCategory(active ? null : hotspot.id)}
-                  className="absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+                  className="group absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer z-10"
                   style={{ left: hotspot.x, top: hotspot.y }}
                 >
                   <motion.span
-                    whileHover={{ scale: 1.2 }}
+                    whileHover={{ scale: 1.15 }}
                     whileTap={{ scale: 0.9 }}
                     animate={active ? { scale: [1, 1.1, 1] } : { scale: 1 }}
                     transition={{ repeat: active ? Infinity : 0, duration: 2 }}
-                    className="flex h-8 w-8 items-center justify-center rounded-full border-2 backdrop-blur-[8px] transition-all duration-300"
+                    className="relative flex h-9 w-9 items-center justify-center rounded-full border-2 backdrop-blur-[8px] transition-all duration-300 shadow-[0_4px_16px_rgba(0,0,0,0.3)]"
                     style={{
                       backgroundColor: active
                         ? "#B08D57"
                         : selected
-                          ? "rgba(176,141,87,0.85)"
-                          : "rgba(247,245,242,0.2)",
+                          ? "rgba(176,141,87,0.9)"
+                          : "rgba(247,245,242,0.25)",
                       borderColor: active || selected ? "#B08D57" : "rgba(247,245,242,0.6)",
-                      boxShadow: active ? "0 0 20px rgba(176,141,87,0.5)" : "none",
+                      boxShadow: active ? "0 0 24px rgba(176,141,87,0.6), 0 0 0 1px rgba(255,255,255,0.2) inset" : "0 4px 16px rgba(0,0,0,0.3)",
                     }}
                   >
                     {selected ? (
                       <span
-                        className="h-2.5 w-2.5 rounded-full border border-[rgba(255,255,255,0.6)]"
+                        className="h-3 w-3 rounded-full border border-[rgba(255,255,255,0.8)] shadow-sm"
                         style={{ backgroundColor: selected.color }}
                       />
                     ) : (
-                      <Circle className="h-2 w-2 text-[rgba(247,245,242,0.8)]" />
+                      <Circle className="h-2.5 w-2.5 text-[rgba(247,245,242,0.9)]" />
                     )}
                   </motion.span>
 
-                  <span
-                    className="absolute left-1/2 top-full mt-0.5 -translate-x-1/2 whitespace-nowrap rounded-[10px] bg-[rgba(17,17,17,0.85)] px-1.5 py-1 text-[0.6rem] uppercase tracking-[0.12em] text-[#F7F5F2] backdrop-blur-[8px] transition-opacity duration-200"
-                    style={{ opacity: active ? 1 : 0 }}
+                  <div
+                    className={`pointer-events-none absolute left-1/2 top-full mt-3 -translate-x-1/2 flex w-[180px] flex-col items-center rounded-[16px] border border-white/10 bg-[rgba(15,15,15,0.85)] p-3.5 backdrop-blur-xl shadow-[0_24px_48px_-12px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.05)_inset] transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                      active
+                        ? "opacity-100 translate-y-0 scale-100"
+                        : "opacity-0 translate-y-2 scale-95 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
+                    }`}
                   >
-                    {selected ? selected.name : hotspot.label}
-                  </span>
+                    <span className="mb-1.5 text-[0.55rem] font-medium uppercase tracking-[0.25em] text-[#C8A96B]">
+                      {hotspot.label}
+                    </span>
+                    <span className="text-[0.9rem] text-[#F7F5F2] font-medium tracking-[0.01em] mb-1.5 text-center leading-tight">
+                      {selected ? selected.name : "Selecteer optie"}
+                    </span>
+                    
+                    {fullOption?.description ? (
+                       <span className="text-[0.65rem] text-[rgba(247,245,242,0.6)] leading-[1.5] text-center whitespace-normal">
+                         {fullOption.description}
+                       </span>
+                    ) : (
+                       <span className="text-[0.65rem] text-[rgba(247,245,242,0.5)] leading-[1.5] text-center whitespace-normal">
+                         Klik om de mogelijkheden voor uw {hotspot.label.toLowerCase()} te ontdekken.
+                       </span>
+                    )}
+                  </div>
                 </button>
               );
             })}
