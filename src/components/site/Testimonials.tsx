@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { motionViewport } from "@/lib/motion";
 import collectionMinimal from "@/assets/collection-minimal.jpg";
@@ -13,7 +14,8 @@ const luxuryEase = [0.22, 1, 0.36, 1] as const;
 const testimonialsData = [
   {
     image: collectionMinimal,
-    quote: "We wilden geen standaard keuken, maar een ruimte die rust, precisie en luxe uitstraalt. Het ontwerp voelde vanaf de eerste presentatie architectonisch doordacht, en de uitvoering was even zorgvuldig.",
+    quote:
+      "We wilden geen standaard keuken, maar een ruimte die rust, precisie en luxe uitstraalt. Het ontwerp voelde vanaf de eerste presentatie architectonisch doordacht, en de uitvoering was even zorgvuldig.",
     client: "Familie Van Deurzen",
     project: "LEICHT Residence Project",
     location: "Utrecht",
@@ -23,7 +25,8 @@ const testimonialsData = [
   },
   {
     image: collectionWarm,
-    quote: "Vanaf het eerste moodboard tot de plaatsing was alles coherent. Materialen, belijning en apparatuur sloten precies aan op de architectuur van onze woning.",
+    quote:
+      "Vanaf het eerste moodboard tot de plaatsing was alles coherent. Materialen, belijning en apparatuur sloten precies aan op de architectuur van onze woning.",
     client: "Mevr. de Jong",
     project: "Nobilia Family Loft",
     location: "Bilthoven",
@@ -33,7 +36,8 @@ const testimonialsData = [
   },
   {
     image: collectionModern,
-    quote: "De begeleiding voelde internationaal en volwassen. Geen verkoopdruk, maar een ontwerpgesprek op niveau met veel aandacht voor verhoudingen en afwerking.",
+    quote:
+      "De begeleiding voelde internationaal en volwassen. Geen verkoopdruk, maar een ontwerpgesprek op niveau met veel aandacht voor verhoudingen en afwerking.",
     client: "Bouwbedrijf Vreeburg",
     project: "Zampieri Loft Line",
     location: "Nieuwegein",
@@ -43,7 +47,8 @@ const testimonialsData = [
   },
   {
     image: heroKitchen,
-    quote: "De keuken voelt alsof hij altijd onderdeel van het huis is geweest. Juist die vanzelfsprekende luxe en het dagelijkse gebruiksgemak maken dit project bijzonder.",
+    quote:
+      "De keuken voelt alsof hij altijd onderdeel van het huis is geweest. Juist die vanzelfsprekende luxe en het dagelijkse gebruiksgemak maken dit project bijzonder.",
     client: "Dhr. & Mevr. Jaspers",
     project: "Cucinesse Courtyard Kitchen",
     location: "Houten",
@@ -53,7 +58,8 @@ const testimonialsData = [
   },
   {
     image: collectionMinimal,
-    quote: "Er is slim meegedacht over licht, routing en werkruimte. Het eindresultaat oogt stil en luxe, maar werkt dagelijks ook gewoon perfect.",
+    quote:
+      "Er is slim meegedacht over licht, routing en werkruimte. Het eindresultaat oogt stil en luxe, maar werkt dagelijks ook gewoon perfect.",
     client: "Familie Keizer",
     project: "Leicht Garden Villa",
     location: "Zeist",
@@ -63,7 +69,8 @@ const testimonialsData = [
   },
   {
     image: showroomImage,
-    quote: "De verfijning zit in de details: voeglijnen, materiaalovergangen en de rust van het totaalbeeld. Dat zie je niet vaak zo consequent uitgevoerd.",
+    quote:
+      "De verfijning zit in de details: voeglijnen, materiaalovergangen en de rust van het totaalbeeld. Dat zie je niet vaak zo consequent uitgevoerd.",
     client: "Familie Hesselink",
     project: "Premium Atelier Kitchen",
     location: "Amersfoort",
@@ -119,19 +126,20 @@ function QuoteIcon() {
 function TestimonialCard({
   story,
 }: {
-  story: typeof testimonialsData[number];
+  story: (typeof testimonialsData)[number];
 }) {
   return (
-    <article className="group relative flex w-[380px] sm:w-[440px] flex-shrink-0 flex-col justify-between rounded-[24px] border border-[rgba(200,169,107,0.14)] bg-[#1D2023]/60 p-6 shadow-[0_24px_56px_-36px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-500 hover:-translate-y-2 hover:border-[#C8A96B]/40 hover:bg-[#1D2023]/80 hover:shadow-[0_36px_72px_-40px_rgba(200,169,107,0.22)] sm:p-7">
+    <article className="group relative flex w-[360px] sm:w-[420px] flex-shrink-0 flex-col justify-between rounded-[24px] border border-[rgba(200,169,107,0.14)] bg-[#1D2023]/60 p-6 shadow-[0_24px_56px_-36px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-500 hover:-translate-y-2 hover:border-[#C8A96B]/40 hover:bg-[#1D2023]/80 hover:shadow-[0_36px_72px_-40px_rgba(200,169,107,0.22)] sm:p-7 select-none">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#C8A96B]/20 to-transparent transition-opacity duration-500 group-hover:via-[#C8A96B]/40" />
-      
+
       <div>
         {/* Card Image */}
         <div className="relative mb-5 h-[140px] w-full overflow-hidden rounded-[16px] border border-white/[0.06]">
           <img
             src={story.image}
             alt={story.project}
-            className="h-full w-full object-cover transition-transform duration-[1000ms] ease-out group-hover:scale-105"
+            className="h-full w-full object-cover transition-transform duration-[1000ms] ease-out group-hover:scale-105 pointer-events-none"
+            draggable={false}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#111315]/80 via-transparent to-transparent" />
           <span
@@ -149,8 +157,8 @@ function TestimonialCard({
         </div>
 
         {/* Quote */}
-        <blockquote className="mt-4 font-serif text-[1rem] font-light leading-[1.65] text-[#F5F2EC]/90 transition-colors duration-300 group-hover:text-white sm:text-[1.08rem]">
-          “{story.quote}”
+        <blockquote className="mt-4 font-serif text-[1rem] font-light leading-[1.65] text-[#F5F2EC]/90 transition-colors duration-300 group-hover:text-white sm:text-[1.05rem]">
+          "{story.quote}"
         </blockquote>
       </div>
 
@@ -183,11 +191,77 @@ function TestimonialCard({
   );
 }
 
+/** A single draggable row that also auto-scrolls via CSS animation */
+function DraggableMarqueeRow({
+  items,
+  animClass,
+  reduceMotion,
+}: {
+  items: readonly (typeof testimonialsData)[number][];
+  animClass: string;
+  reduceMotion: boolean | null;
+}) {
+  const rowRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const dragStartX = useRef(0);
+  const scrollStartLeft = useRef(0);
+
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!rowRef.current) return;
+    setIsDragging(true);
+    dragStartX.current = e.clientX;
+    scrollStartLeft.current = rowRef.current.scrollLeft;
+    rowRef.current.setPointerCapture(e.pointerId);
+    // Pause CSS animation while dragging
+    if (trackRef.current) {
+      trackRef.current.style.animationPlayState = "paused";
+    }
+  };
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDragging || !rowRef.current) return;
+    const dx = e.clientX - dragStartX.current;
+    rowRef.current.scrollLeft = scrollStartLeft.current - dx;
+  };
+
+  const handlePointerUp = () => {
+    setIsDragging(false);
+    // Resume CSS animation
+    if (trackRef.current) {
+      trackRef.current.style.animationPlayState = "running";
+    }
+  };
+
+  return (
+    <div
+      ref={rowRef}
+      className="relative w-full overflow-x-auto scrollbar-hide"
+      style={{ cursor: isDragging ? "grabbing" : "grab" }}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
+      onPointerCancel={handlePointerUp}
+    >
+      <div
+        ref={trackRef}
+        className={`flex gap-6 sm:gap-8 w-max px-3 ${
+          reduceMotion ? "" : animClass
+        }`}
+      >
+        {/* Duplicate for seamless loop */}
+        {[...items, ...items].map((story, idx) => (
+          <TestimonialCard key={`${story.client}-${idx}`} story={story} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function Testimonials() {
   const reduceMotion = useReducedMotion();
 
-  // Create two rotated lists to staggered layouts
-  const row1Data = [...testimonialsData, ...testimonialsData];
+  const row1Data = testimonialsData;
   const row2Data = [
     testimonialsData[3],
     testimonialsData[4],
@@ -195,27 +269,21 @@ export function Testimonials() {
     testimonialsData[0],
     testimonialsData[1],
     testimonialsData[2],
-    testimonialsData[3],
-    testimonialsData[4],
-    testimonialsData[5],
-    testimonialsData[0],
-    testimonialsData[1],
-    testimonialsData[2],
-  ];
+  ] as const;
 
   return (
     <section
       id="reviews"
       className="relative overflow-hidden bg-[linear-gradient(180deg,#17191C_0%,#111315_100%)] py-24 text-[#F5F2EC] md:py-36 border-t border-white/[0.08]"
     >
-      {/* CSS Styles for perfect hardware accelerated marquee */}
+      {/* CSS marquee keyframes */}
       <style>{`
         @keyframes marquee-ltr {
-          0% { transform: translate3d(-50%, 0, 0); }
+          0%   { transform: translate3d(-50%, 0, 0); }
           100% { transform: translate3d(0, 0, 0); }
         }
         @keyframes marquee-rtl {
-          0% { transform: translate3d(0, 0, 0); }
+          0%   { transform: translate3d(0, 0, 0); }
           100% { transform: translate3d(-50%, 0, 0); }
         }
         .animate-marquee-ltr {
@@ -224,12 +292,11 @@ export function Testimonials() {
         .animate-marquee-rtl {
           animation: marquee-rtl 50s linear infinite;
         }
-        .marquee-track:hover {
-          animation-play-state: paused;
-        }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
       `}</style>
 
-      {/* Decorative lighting overlays */}
+      {/* Decorative overlays */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
@@ -247,6 +314,7 @@ export function Testimonials() {
         className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[rgba(255,255,255,0.08)] to-transparent"
       />
 
+      {/* Section header */}
       <div className="site-container relative z-10 mb-16">
         <motion.div
           initial={reduceMotion ? false : "hidden"}
@@ -292,7 +360,7 @@ export function Testimonials() {
                 aan echte keukenrealisaties en ontworpen met dezelfde verfijnde showroomlogica als
                 de premium configurator experience.
               </p>
-              
+
               <div className="flex w-fit items-start gap-5 rounded-[24px] border border-white/[0.08] bg-white/[0.02] px-5 py-4 backdrop-blur-sm">
                 <div>
                   <div className="flex gap-1 text-[0.9rem] text-[#C8A96B] leading-none">★★★★★</div>
@@ -318,37 +386,35 @@ export function Testimonials() {
         </motion.div>
       </div>
 
-      {/* CONTINUOUS MARQUEE WORKSPACE */}
+      {/* Drag hint */}
+      <div className="site-container relative z-10 mb-6 flex items-center gap-2">
+        <svg className="h-4 w-4 text-[rgba(245,242,236,0.3)]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 17.25L12 21m0 0l-3.75-3.75M12 21V3" />
+        </svg>
+        <span
+          className="text-[0.62rem] uppercase tracking-[0.22em] text-[rgba(245,242,236,0.3)]"
+          style={{ fontFamily: "'Jost', sans-serif" }}
+        >
+          Sleep om te bladeren
+        </span>
+      </div>
+
+      {/* MARQUEE ROWS — draggable */}
       <div className="relative flex flex-col gap-6 sm:gap-8 overflow-hidden py-4">
-        {/* Soft edge blur masks to fade cards out beautifully */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-12 sm:w-32 bg-gradient-to-r from-[#111315] to-transparent z-10" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-12 sm:w-32 bg-gradient-to-l from-[#111315] to-transparent z-10" />
+        {/* Fade edge masks */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-12 sm:w-28 bg-gradient-to-r from-[#111315] to-transparent z-10" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-12 sm:w-28 bg-gradient-to-l from-[#111315] to-transparent z-10" />
 
-        {/* Row 1: Left to Right scrolling */}
-        <div className="relative w-full overflow-hidden">
-          <div
-            className={`marquee-track flex gap-6 sm:gap-8 w-max px-3 ${
-              reduceMotion ? "overflow-x-auto" : "animate-marquee-ltr"
-            }`}
-          >
-            {row1Data.map((story, idx) => (
-              <TestimonialCard key={`row1-${story.client}-${idx}`} story={story} />
-            ))}
-          </div>
-        </div>
-
-        {/* Row 2: Right to Left scrolling */}
-        <div className="relative w-full overflow-hidden">
-          <div
-            className={`marquee-track flex gap-6 sm:gap-8 w-max px-3 ${
-              reduceMotion ? "overflow-x-auto" : "animate-marquee-rtl"
-            }`}
-          >
-            {row2Data.map((story, idx) => (
-              <TestimonialCard key={`row2-${story.client}-${idx}`} story={story} />
-            ))}
-          </div>
-        </div>
+        <DraggableMarqueeRow
+          items={row1Data}
+          animClass="animate-marquee-ltr"
+          reduceMotion={reduceMotion}
+        />
+        <DraggableMarqueeRow
+          items={row2Data}
+          animClass="animate-marquee-rtl"
+          reduceMotion={reduceMotion}
+        />
       </div>
     </section>
   );
