@@ -239,9 +239,9 @@ export function PremiumShowcase() {
                 <WaterEffect />
               </div>
 
-              {/* Accent video 4 (Back) */}
+              {/* Accent video 4 (Bottom Left) */}
               <motion.div
-                initial={reduceMotion ? false : { opacity: 0, scale: 1.04, x: -10 }}
+                initial={reduceMotion ? false : { opacity: 0, scale: 1.04, x: -15 }}
                 whileInView={reduceMotion ? undefined : { opacity: 0.85, scale: 1, x: 0 }}
                 viewport={motionViewport}
                 transition={
@@ -249,7 +249,7 @@ export function PremiumShowcase() {
                     ? undefined
                     : { delay: 0.45, duration: 1.1, ease: luxuryEase }
                 }
-                className="absolute bottom-16 right-[4.5rem] z-10 hidden w-[26%] overflow-hidden rounded-[16px] border border-[rgba(255,255,255,0.04)] shadow-[0_16px_40px_-20px_rgba(17,19,21,0.5)] md:block"
+                className="absolute -bottom-6 -left-8 z-20 hidden w-[28%] overflow-hidden rounded-[16px] border border-[rgba(255,255,255,0.04)] shadow-[0_16px_40px_-20px_rgba(17,19,21,0.6)] md:block"
               >
                 <video
                   src={keukenVid4}
@@ -262,17 +262,17 @@ export function PremiumShowcase() {
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(23,25,28,0.05)_0%,rgba(23,25,28,0.4)_100%)]" />
               </motion.div>
 
-              {/* Accent video 3 (Middle) */}
+              {/* Accent video 3 (Top Right) */}
               <motion.div
-                initial={reduceMotion ? false : { opacity: 0, scale: 1.04, x: -10 }}
-                whileInView={reduceMotion ? undefined : { opacity: 0.95, scale: 1, x: 0 }}
+                initial={reduceMotion ? false : { opacity: 0, scale: 1.04, y: -15 }}
+                whileInView={reduceMotion ? undefined : { opacity: 0.95, scale: 1, y: 0 }}
                 viewport={motionViewport}
                 transition={
                   reduceMotion
                     ? undefined
                     : { delay: 0.55, duration: 1.1, ease: luxuryEase }
                 }
-                className="absolute bottom-5 right-7 z-20 hidden w-[32%] overflow-hidden rounded-[18px] border border-[rgba(255,255,255,0.06)] shadow-[0_20px_48px_-24px_rgba(17,19,21,0.6)] md:block"
+                className="absolute -top-8 -right-6 z-10 hidden w-[32%] overflow-hidden rounded-[18px] border border-[rgba(255,255,255,0.06)] shadow-[0_20px_48px_-24px_rgba(17,19,21,0.6)] md:block"
               >
                 <video
                   src={keukenVid3}
@@ -285,17 +285,17 @@ export function PremiumShowcase() {
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(23,25,28,0.02)_0%,rgba(23,25,28,0.36)_100%)]" />
               </motion.div>
 
-              {/* Accent video 2 (Front) */}
+              {/* Accent video 2 (Bottom Right) */}
               <motion.div
-                initial={reduceMotion ? false : { opacity: 0, scale: 1.04 }}
-                whileInView={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
+                initial={reduceMotion ? false : { opacity: 0, scale: 1.04, x: 15 }}
+                whileInView={reduceMotion ? undefined : { opacity: 1, scale: 1, x: 0 }}
                 viewport={motionViewport}
                 transition={
                   reduceMotion
                     ? undefined
                     : { delay: 0.65, duration: 1.1, ease: luxuryEase }
                 }
-                className="absolute -bottom-8 -right-6 z-30 hidden w-[42%] overflow-hidden rounded-[20px] border border-[rgba(255,255,255,0.12)] shadow-[0_24px_64px_-30px_rgba(17,19,21,0.8)] md:block"
+                className="absolute -bottom-8 -right-5 z-30 hidden w-[42%] overflow-hidden rounded-[20px] border border-[rgba(255,255,255,0.12)] shadow-[0_24px_64px_-30px_rgba(17,19,21,0.8)] md:block"
               >
                 <CornerFrames />
                 <video
