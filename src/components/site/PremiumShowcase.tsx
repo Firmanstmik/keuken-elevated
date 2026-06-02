@@ -219,7 +219,7 @@ export function PremiumShowcase() {
             whileInView="visible"
             viewport={motionViewport}
             variants={reduceMotion ? undefined : imageReveal}
-            className="relative"
+            className="relative w-full max-w-[420px] lg:max-w-[480px] mx-auto lg:ml-0"
           >
             <div className="group relative">
               {/* Main video card with corner frames */}
