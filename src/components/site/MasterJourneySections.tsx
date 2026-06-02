@@ -171,20 +171,20 @@ export function ShowroomJourneySection() {
             whileInView="visible"
             viewport={motionViewport}
             variants={reduceMotion ? undefined : fadeUp}
-            className="relative overflow-hidden"
+            className="relative"
           >
-            <div className="group relative aspect-[4/3] overflow-hidden">
+            <div className="group relative aspect-[4/3] overflow-hidden rounded-2xl shadow-[0_16px_36px_-12px_rgba(0,0,0,0.08)] border border-[rgba(200,169,107,0.1)]">
               <img
                 src="/showroom-preview.webp"
                 alt="Showroom impressie"
                 className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:scale-[1.04]"
                 loading="lazy"
               />
-              <div className="absolute bottom-6 left-6 border border-[rgba(200,169,107,0.15)] bg-[#F8F6F2]/92 px-5 py-4 backdrop-blur-[10px]">
-                <p className="text-[0.68rem] uppercase tracking-[0.24em] text-[#C8A96B]">
+              <div className="absolute bottom-6 left-6 rounded-xl border border-[rgba(200,169,107,0.25)] bg-[#F8F6F2]/90 px-6 py-4.5 backdrop-blur-[8px] shadow-[0_12px_32px_-8px_rgba(0,0,0,0.12)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1">
+                <p className="text-[0.68rem] uppercase tracking-[0.24em] text-[#C8A96B] font-medium">
                   Showroom
                 </p>
-                <p className="mt-1 text-sm font-normal text-[#111111]">
+                <p className="mt-1.5 text-sm font-normal text-[#111111] tracking-[0.01em]">
                   Persoonlijke ontwerpervaring
                 </p>
               </div>
@@ -252,11 +252,14 @@ export function ShowroomJourneySection() {
             <motion.div variants={reduceMotion ? undefined : fadeUp} className="mt-10">
               <Button
                 asChild
-                className="min-h-[3.5rem] border-[#6D8F69] bg-[#6D8F69] px-[2.5rem] text-[0.8125rem] font-normal uppercase tracking-[0.15em] text-[#F5F2EC] shadow-none hover:bg-[#5D7C59] hover:text-[#F5F2EC] hover:border-[#5D7C59]"
+                className="group relative overflow-hidden min-h-[3.5rem] rounded-xl border border-transparent bg-gradient-to-r from-[#6D8F69] to-[#5A7C57] px-[2.5rem] text-[0.8125rem] font-normal uppercase tracking-[0.15em] text-[#F5F2EC] shadow-[0_10px_20px_-10px_rgba(109,143,105,0.4)] hover:shadow-[0_16px_28px_-6px_rgba(109,143,105,0.5)] transition-all duration-300 ease-out hover:scale-[1.02] active:scale-[0.98]"
               >
-                <a href="/brands">
-                  Start uw ontwerp
-                  <ArrowRight className="h-4 w-4" />
+                <a href="/brands" className="flex items-center gap-2">
+                  <span>Start uw ontwerp</span>
+                  <ArrowRight className="h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-1" />
+                  
+                  {/* Premium Shine Swipe Effect */}
+                  <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
                 </a>
               </Button>
             </motion.div>
