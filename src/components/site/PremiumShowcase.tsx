@@ -231,7 +231,7 @@ export function PremiumShowcase() {
                   muted
                   loop
                   playsInline
-                  className="aspect-[3/4] max-h-[min(75vh,720px)] w-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.03]"
+                  className="w-full h-auto object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.03]"
                 />
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(23,25,28,0.02)_0%,rgba(23,25,28,0.22)_100%)]" />
                 <WaterEffect />
@@ -256,7 +256,7 @@ export function PremiumShowcase() {
                   muted
                   loop
                   playsInline
-                  className="aspect-[3/4] h-full w-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.03]"
+                  className="w-full h-auto object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.03]"
                 />
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(23,25,28,0.02)_0%,rgba(23,25,28,0.34)_100%)]" />
                 <WaterEffect />
