@@ -12,6 +12,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "@/components/ui/icons";
 import keukenVid1 from "@/assets/keuken_vid1.webm";
 import keukenVid2 from "@/assets/keuken_vid2.webm";
+import keukenVid3 from "@/assets/keuken_vid3.webm";
+import keukenVid4 from "@/assets/keuken_vid4.webm";
 import { motionViewport } from "@/lib/motion";
 
 const highlights = [
@@ -237,7 +239,53 @@ export function PremiumShowcase() {
                 <WaterEffect />
               </div>
 
-              {/* Accent video — floating bottom-right with corner frames */}
+              {/* Accent video 4 (Back) */}
+              <motion.div
+                initial={reduceMotion ? false : { opacity: 0, scale: 1.04, x: -10 }}
+                whileInView={reduceMotion ? undefined : { opacity: 0.85, scale: 1, x: 0 }}
+                viewport={motionViewport}
+                transition={
+                  reduceMotion
+                    ? undefined
+                    : { delay: 0.45, duration: 1.1, ease: luxuryEase }
+                }
+                className="absolute bottom-16 right-[4.5rem] z-10 hidden w-[26%] overflow-hidden rounded-[16px] border border-[rgba(255,255,255,0.04)] shadow-[0_16px_40px_-20px_rgba(17,19,21,0.5)] md:block"
+              >
+                <video
+                  src={keukenVid4}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-full h-auto object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.03]"
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(23,25,28,0.05)_0%,rgba(23,25,28,0.4)_100%)]" />
+              </motion.div>
+
+              {/* Accent video 3 (Middle) */}
+              <motion.div
+                initial={reduceMotion ? false : { opacity: 0, scale: 1.04, x: -10 }}
+                whileInView={reduceMotion ? undefined : { opacity: 0.95, scale: 1, x: 0 }}
+                viewport={motionViewport}
+                transition={
+                  reduceMotion
+                    ? undefined
+                    : { delay: 0.55, duration: 1.1, ease: luxuryEase }
+                }
+                className="absolute bottom-5 right-7 z-20 hidden w-[32%] overflow-hidden rounded-[18px] border border-[rgba(255,255,255,0.06)] shadow-[0_20px_48px_-24px_rgba(17,19,21,0.6)] md:block"
+              >
+                <video
+                  src={keukenVid3}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-full h-auto object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.03]"
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(23,25,28,0.02)_0%,rgba(23,25,28,0.36)_100%)]" />
+              </motion.div>
+
+              {/* Accent video 2 (Front) */}
               <motion.div
                 initial={reduceMotion ? false : { opacity: 0, scale: 1.04 }}
                 whileInView={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
@@ -245,9 +293,9 @@ export function PremiumShowcase() {
                 transition={
                   reduceMotion
                     ? undefined
-                    : { delay: 0.35, duration: 1.1, ease: luxuryEase }
+                    : { delay: 0.65, duration: 1.1, ease: luxuryEase }
                 }
-                className="absolute -bottom-6 -right-2 hidden w-[38%] overflow-hidden rounded-[20px] border border-[rgba(255,255,255,0.08)] shadow-[0_20px_56px_-40px_rgba(17,19,21,0.68)] md:block"
+                className="absolute -bottom-8 -right-6 z-30 hidden w-[42%] overflow-hidden rounded-[20px] border border-[rgba(255,255,255,0.12)] shadow-[0_24px_64px_-30px_rgba(17,19,21,0.8)] md:block"
               >
                 <CornerFrames />
                 <video
@@ -258,7 +306,7 @@ export function PremiumShowcase() {
                   playsInline
                   className="w-full h-auto object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.03]"
                 />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(23,25,28,0.02)_0%,rgba(23,25,28,0.34)_100%)]" />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(23,25,28,0.0)_0%,rgba(23,25,28,0.3)_100%)]" />
                 <WaterEffect />
               </motion.div>
             </div>
