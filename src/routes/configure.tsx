@@ -231,16 +231,16 @@ function ConfigurePage() {
                     <span className="mb-1.5 text-[0.55rem] font-medium uppercase tracking-[0.25em] text-[#C8A96B]">
                       {hotspot.label}
                     </span>
-                    <span className="text-[0.9rem] text-[#F7F5F2] font-medium tracking-[0.01em] mb-1.5 text-center leading-tight">
+                    <span className="text-[0.9rem] text-[#F7F5F2] font-medium tracking-[0.01em] mb-1.5 text-center leading-tight normal-case">
                       {selected ? selected.name : "Selecteer optie"}
                     </span>
                     
                     {fullOption?.description ? (
-                       <span className="text-[0.65rem] text-[rgba(247,245,242,0.6)] leading-[1.5] text-center whitespace-normal">
+                       <span className="text-[0.65rem] text-[rgba(247,245,242,0.6)] leading-[1.5] text-center whitespace-normal normal-case">
                          {fullOption.description}
                        </span>
                     ) : (
-                       <span className="text-[0.65rem] text-[rgba(247,245,242,0.5)] leading-[1.5] text-center whitespace-normal">
+                       <span className="text-[0.65rem] text-[rgba(247,245,242,0.5)] leading-[1.5] text-center whitespace-normal normal-case">
                          Klik om de mogelijkheden voor uw {hotspot.label.toLowerCase()} te ontdekken.
                        </span>
                     )}

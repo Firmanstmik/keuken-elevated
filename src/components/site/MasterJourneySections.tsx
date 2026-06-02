@@ -277,15 +277,30 @@ export function ShowroomJourneySection() {
                         whileInView={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
                         transition={{ delay: h.delay, duration: 0.5, ease: "easeOut" }}
                         viewport={motionViewport}
-                        className="absolute flex items-center gap-2 group cursor-pointer"
+                        className="absolute -translate-x-1/2 -translate-y-1/2 flex items-center justify-center gap-2 group cursor-pointer z-10"
                         style={{ left: h.x, top: h.y }}
                       >
-                        <div className={`flex h-5 w-5 items-center justify-center rounded-full backdrop-blur-md border shadow-sm transition-colors duration-300 ${isActive ? 'bg-[#C8A96B]/80 border-[#C8A96B]' : 'bg-white/20 border-white/50 group-hover:bg-white/30'}`}>
-                          <div className="h-1.5 w-1.5 rounded-full bg-white transition-colors duration-300" />
+                        <div className={`flex h-5 w-5 items-center justify-center rounded-full backdrop-blur-[8px] border shadow-[0_4px_16px_rgba(0,0,0,0.3)] transition-all duration-300 ${isActive ? 'bg-[#C8A96B]/80 border-[#C8A96B] shadow-[0_0_24px_rgba(200,169,107,0.6),0_0_0_1px_rgba(255,255,255,0.2)_inset]' : 'bg-[rgba(247,245,242,0.25)] border-[rgba(247,245,242,0.6)] group-hover:bg-[rgba(247,245,242,0.35)]'}`}>
+                          <div className={`h-1.5 w-1.5 rounded-full transition-colors duration-300 ${isActive ? 'bg-white' : 'bg-[rgba(247,245,242,0.9)]'}`} />
                         </div>
-                        <span className={`hidden sm:block rounded px-2 py-1 text-[0.55rem] uppercase tracking-[0.15em] backdrop-blur-md border transition-all duration-300 ${isActive ? 'opacity-100 bg-[#C8A96B]/90 text-white border-[#C8A96B]' : 'opacity-0 group-hover:opacity-100 bg-black/60 text-white border-white/10 group-hover:border-white/30'}`}>
-                          {h.label}
-                        </span>
+
+                        <div
+                          className={`pointer-events-none absolute left-1/2 top-full mt-3 -translate-x-1/2 flex w-[180px] flex-col items-center rounded-[16px] border border-white/10 bg-[rgba(15,15,15,0.85)] p-3.5 backdrop-blur-xl shadow-[0_24px_48px_-12px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.05)_inset] transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                            isActive
+                              ? "opacity-100 translate-y-0 scale-100"
+                              : "opacity-0 translate-y-2 scale-95 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
+                          }`}
+                        >
+                          <span className="mb-1.5 text-[0.55rem] font-medium uppercase tracking-[0.25em] text-[#C8A96B]">
+                            {h.label}
+                          </span>
+                          <span className="text-[0.9rem] text-[#F7F5F2] font-medium tracking-[0.01em] mb-1.5 text-center leading-tight normal-case">
+                            Selecteer optie
+                          </span>
+                          <span className="text-[0.65rem] text-[rgba(247,245,242,0.5)] leading-[1.5] text-center whitespace-normal normal-case">
+                            Klik om de mogelijkheden voor uw {h.label.toLowerCase()} te ontdekken.
+                          </span>
+                        </div>
                       </motion.button>
                     )})}
                   </div>
