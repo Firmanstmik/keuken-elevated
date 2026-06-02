@@ -259,12 +259,10 @@ export function PremiumShowcase() {
               <Button
                 asChild
                 className={[
-                  "group/btn h-11 min-h-11 rounded-[18px] border border-transparent bg-[#6D8F69] px-6",
+                  "brand-green-button group/btn h-11 min-h-11 rounded-[16px] px-6",
                   "text-[0.8125rem] font-normal uppercase tracking-[0.14em] text-[#F5F2EC]",
-                  "shadow-[0_14px_36px_-22px_rgba(109,143,105,0.35)]",
                   "transition-[transform,background-color,box-shadow] duration-[350ms] ease-out",
-                  "hover:-translate-y-0.5 hover:bg-[#5D7C59]",
-                  "hover:shadow-[0_18px_44px_-20px_rgba(109,143,105,0.45)]",
+                  "hover:-translate-y-0.5",
                 ].join(" ")}
               >
                 <a href="#showroom">

@@ -132,10 +132,10 @@ export function FinalCta() {
             <a
               href="/brands"
               className={[
-                "group relative inline-flex h-[54px] items-center justify-center gap-3.5 overflow-hidden rounded-full bg-[#6D8F69] px-10",
+                "brand-green-button group relative inline-flex h-[54px] items-center justify-center gap-3.5 rounded-[16px] px-10",
                 "text-[11px] font-normal tracking-[0.22em] text-[#F8F6F2] uppercase",
                 "transition-[transform,box-shadow,background-color] duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
-                "hover:-translate-y-[3px] hover:bg-[#5D7C59] hover:shadow-[0_12px_32px_-12px_rgba(109,143,105,0.5)] active:scale-[0.98]",
+                "hover:-translate-y-[3px] active:scale-[0.98]",
               ].join(" ")}
               style={{ fontFamily: "'Jost', sans-serif" }}
             >

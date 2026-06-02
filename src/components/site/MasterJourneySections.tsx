@@ -252,7 +252,7 @@ export function ShowroomJourneySection() {
             <motion.div variants={reduceMotion ? undefined : fadeUp} className="mt-10">
               <Button
                 asChild
-                className="group relative overflow-hidden min-h-[3.5rem] rounded-xl border border-transparent bg-gradient-to-r from-[#6D8F69] to-[#5A7C57] px-[2.5rem] text-[0.8125rem] font-normal uppercase tracking-[0.15em] text-[#F5F2EC] shadow-[0_10px_20px_-10px_rgba(109,143,105,0.4)] hover:shadow-[0_16px_28px_-6px_rgba(109,143,105,0.5)] transition-all duration-300 ease-out hover:scale-[1.02] active:scale-[0.98]"
+                className="brand-green-button group relative min-h-[3.5rem] rounded-[16px] px-[2.5rem] text-[0.8125rem] font-normal uppercase tracking-[0.15em] text-[#F5F2EC] transition-all duration-300 ease-out hover:scale-[1.02] active:scale-[0.98]"
               >
                 <a href="/brands" className="flex items-center gap-2">
                   <span>Start uw ontwerp</span>

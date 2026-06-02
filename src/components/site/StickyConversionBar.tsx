@@ -103,7 +103,7 @@ export function StickyConversionBar() {
                 <div className="lux-border rounded-[22px] p-[1px] shadow-[0_34px_90px_-42px_rgba(5,11,20,0.78)]">
                   <div className="relative overflow-hidden rounded-[21px] bg-[linear-gradient(145deg,rgba(6,14,25,0.96),rgba(8,18,31,0.9))] p-2 backdrop-blur-2xl">
                   <div className="absolute inset-x-10 top-0 h-px bg-[linear-gradient(90deg,rgba(201,164,106,0),rgba(201,164,106,0.72),rgba(201,164,106,0))]" />
-                  <div className="absolute left-[18%] top-[-80%] h-[180px] w-[180px] rounded-full bg-[radial-gradient(circle,rgba(79,122,77,0.1),transparent_60%)]" />
+                  <div className="absolute left-[18%] top-[-80%] h-[180px] w-[180px] rounded-full bg-[radial-gradient(circle,rgba(61,154,66,0.1),transparent_60%)]" />
                   <div className="absolute right-[18%] top-[-86%] h-[190px] w-[190px] rounded-full bg-[radial-gradient(circle,rgba(201,164,106,0.1),transparent_58%)]" />
 
                   <div className="grid grid-cols-3 gap-1.5 rounded-[16px] border border-[rgba(7,17,27,0.08)] bg-[linear-gradient(180deg,rgba(252,250,246,0.985),rgba(246,242,235,0.985))] p-1.5 text-[var(--foreground)] shadow-[inset_0_1px_0_rgba(255,255,255,0.86),0_20px_44px_-38px_rgba(7,17,27,0.24)]">
@@ -130,7 +130,7 @@ export function StickyConversionBar() {
                           className="group relative flex items-center gap-3 rounded-[14px] bg-[linear-gradient(180deg,rgba(255,255,255,0.9),rgba(244,240,232,0.92))] px-4 py-3 shadow-[0_18px_32px_-28px_rgba(7,17,27,0.22)] transition-transform duration-400 ease-[var(--ease-premium)] hover:-translate-y-[1px]"
                         >
                           {accent === "green" ? (
-                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[12px] bg-[linear-gradient(180deg,#587f54,#4f7a4d)] text-white shadow-[0_18px_32px_-26px_rgba(79,122,77,0.42)]">
+                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[12px] bg-[linear-gradient(180deg,var(--green-highlight),var(--green))] text-white shadow-[0_18px_32px_-26px_rgba(61,154,66,0.42)]">
                               <WhatsAppMark className="h-4.5 w-4.5" />
                             </span>
                           ) : (
@@ -187,7 +187,7 @@ export function StickyConversionBar() {
                           }`}
                         >
                           {accent === "green" ? (
-                            <span className="flex h-8 w-8 items-center justify-center rounded-[11px] bg-[linear-gradient(180deg,#587f54,#4f7a4d)] text-white shadow-[0_14px_24px_-20px_rgba(79,122,77,0.42)]">
+                            <span className="flex h-8 w-8 items-center justify-center rounded-[11px] bg-[linear-gradient(180deg,var(--green-highlight),var(--green))] text-white shadow-[0_14px_24px_-20px_rgba(61,154,66,0.42)]">
                               <WhatsAppMark className="h-4.5 w-4.5" />
                             </span>
                           ) : (

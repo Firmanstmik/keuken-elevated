@@ -165,20 +165,20 @@ export function Nav() {
       >
         <div className={`nav-band nav-topbar-band ${forceSolidNav ? "nav-band-forced" : elevated ? "nav-band-elevated" : ""}`}>
           <div className="site-container nav-topbar">
-            <div className="hidden min-h-11 items-center justify-end gap-4 text-[0.72rem] tracking-[0.18em] text-[rgba(247,245,242,0.72)] md:flex">
+            <div className="hidden min-h-11 items-center justify-end gap-4 text-[0.72rem] tracking-[0.18em] text-[rgba(245,242,236,0.78)] md:flex">
               <div className="flex items-center justify-end gap-4 whitespace-nowrap">
                 <span className="nav-topbar-item">
-                  <NavHouse className="nav-topbar-icon text-[#9FC0A3]" />
+                  <NavHouse className="nav-topbar-icon text-[#C8A96B]/70" />
                   Zonnebaan 8, 3542 EC Utrecht
                 </span>
-                <span className="nav-topbar-sep bg-[rgba(247,245,242,0.16)]" />
-                <a href={kc.contact.phoneHref} className="nav-topbar-item hover:text-current">
-                  <NavCall className="nav-topbar-icon text-[#9FC0A3]" />
+                <span className="nav-topbar-sep" />
+                <a href={kc.contact.phoneHref} className="nav-topbar-item hover:text-[#F5F2EC]">
+                  <NavCall className="nav-topbar-icon text-[#C8A96B]/70" />
                   {kc.contact.phone}
                 </a>
-                <span className="nav-topbar-sep bg-[rgba(247,245,242,0.16)]" />
-                <a href={`mailto:${kc.contact.email}`} className="nav-topbar-item hover:text-current">
-                  <NavSms className="nav-topbar-icon text-[#9FC0A3]" />
+                <span className="nav-topbar-sep" />
+                <a href={`mailto:${kc.contact.email}`} className="nav-topbar-item hover:text-[#F5F2EC]">
+                  <NavSms className="nav-topbar-icon text-[#C8A96B]/70" />
                   {kc.contact.email}
                 </a>
               </div>
