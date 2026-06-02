@@ -221,7 +221,7 @@ export function PremiumShowcase() {
             whileInView="visible"
             viewport={motionViewport}
             variants={reduceMotion ? undefined : imageReveal}
-            className="relative w-full max-w-[420px] lg:max-w-[480px] mx-auto lg:ml-0"
+            className="relative w-full max-w-[280px] lg:max-w-[340px] xl:max-w-[380px] mx-auto lg:ml-12 mt-6 lg:mt-0"
           >
             <div className="group relative">
               {/* Main video card with corner frames */}
@@ -249,7 +249,7 @@ export function PremiumShowcase() {
                     ? undefined
                     : { delay: 0.45, duration: 1.1, ease: luxuryEase }
                 }
-                className="absolute -bottom-6 -left-8 z-20 hidden w-[28%] overflow-hidden rounded-[16px] border border-[rgba(255,255,255,0.04)] shadow-[0_16px_40px_-20px_rgba(17,19,21,0.6)] md:block"
+                className="absolute -bottom-8 -left-12 z-20 hidden w-[38%] overflow-hidden rounded-[16px] border border-[rgba(255,255,255,0.04)] shadow-[0_16px_40px_-20px_rgba(17,19,21,0.6)] md:block group-hover:-translate-x-2 group-hover:-translate-y-2 transition-transform duration-700"
               >
                 <video
                   src={keukenVid4}
@@ -272,7 +272,7 @@ export function PremiumShowcase() {
                     ? undefined
                     : { delay: 0.55, duration: 1.1, ease: luxuryEase }
                 }
-                className="absolute -top-8 -right-6 z-10 hidden w-[32%] overflow-hidden rounded-[18px] border border-[rgba(255,255,255,0.06)] shadow-[0_20px_48px_-24px_rgba(17,19,21,0.6)] md:block"
+                className="absolute -top-10 -right-14 z-10 hidden w-[40%] overflow-hidden rounded-[18px] border border-[rgba(255,255,255,0.06)] shadow-[0_20px_48px_-24px_rgba(17,19,21,0.6)] md:block group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform duration-700"
               >
                 <video
                   src={keukenVid3}
@@ -295,7 +295,7 @@ export function PremiumShowcase() {
                     ? undefined
                     : { delay: 0.65, duration: 1.1, ease: luxuryEase }
                 }
-                className="absolute -bottom-8 -right-5 z-30 hidden w-[42%] overflow-hidden rounded-[20px] border border-[rgba(255,255,255,0.12)] shadow-[0_24px_64px_-30px_rgba(17,19,21,0.8)] md:block"
+                className="absolute -bottom-10 -right-12 z-30 hidden w-[48%] overflow-hidden rounded-[20px] border border-[rgba(255,255,255,0.12)] shadow-[0_24px_64px_-30px_rgba(17,19,21,0.8)] md:block group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-700"
               >
                 <CornerFrames />
                 <video
