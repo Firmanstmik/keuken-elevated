@@ -1,3 +1,5 @@
+"use client";
+
 import { motion, useReducedMotion } from "framer-motion";
 import DiamondIcon from "@mui/icons-material/Diamond";
 import HandymanIcon from "@mui/icons-material/Handyman";
@@ -8,6 +10,7 @@ import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "@/components/ui/icons";
 import { fadeUp, motionViewport, staggerHeader, staggerList } from "@/lib/motion";
+import matConcrete from "@/assets/mat-concrete.jpg";
 
 const pillarMotion =
   "duration-[500ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]";
@@ -56,11 +59,28 @@ export function WhyWithUsSection() {
   return (
     <section
       id="why-with-us"
-      className="relative overflow-hidden bg-[#F8F6F2] py-20 md:py-28"
+      className="relative overflow-hidden py-20 md:py-28"
     >
+      {/* Concrete texture background */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-[0.018] [background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2264%22 viewBox=%220 0 64 64%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%222%22 stitchTiles=%22stitch%22/></filter><rect width=%2264%22 height=%2264%22 filter=%22url(%23n)%22 opacity=%220.35%22/></svg>')]"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage: `url(${matConcrete})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      />
+      {/* Luxury white overlay for readability */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[rgba(248,246,242,0.88)]"
+      />
+      {/* Gold ambient glow */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(200,169,107,0.06),transparent_50%),radial-gradient(circle_at_70%_80%,rgba(200,169,107,0.04),transparent_40%)]"
       />
 
       <div className="site-container relative">
@@ -163,8 +183,27 @@ export function ShowroomJourneySection() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section className="py-20 md:py-28">
-      <div className="site-container">
+    <section className="relative overflow-hidden py-20 md:py-28">
+      {/* Concrete texture background */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage: `url(${matConcrete})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[rgba(255,255,255,0.90)]"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(200,169,107,0.05),transparent_45%)]"
+      />
+      <div className="site-container relative">
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.92fr)] lg:items-center">
           <motion.div
             initial={reduceMotion ? false : "hidden"}

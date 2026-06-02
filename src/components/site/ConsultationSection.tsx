@@ -15,6 +15,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { ArrowRight, Check, House, Mail, Phone } from "@/components/ui/icons";
 import { kc } from "@/lib/kc-data";
 import { motionViewport } from "@/lib/motion";
+import matConcrete from "@/assets/mat-concrete.jpg";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -101,21 +102,20 @@ export function ConsultationSection() {
   return (
     <section
       id="consultation"
-      className="relative overflow-hidden bg-[#FAF8F4] py-24 text-[#081321] md:py-36"
+      className="relative overflow-hidden py-24 text-[#081321] md:py-36"
     >
-      {/* ── Layered Architectural Atmosphere ──────────────────────── */}
+      {/* Concrete texture background */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(200,169,107,0.06),transparent_40%),radial-gradient(circle_at_bottom_left,rgba(8,19,33,0.03),transparent_40%)]"
-      />
-      {/* Grain texture */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-[0.02] mix-blend-overlay"
+        className="pointer-events-none absolute inset-0"
         style={{
-          backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='consult-grain'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/></filter><rect width='160' height='160' filter='url(%23consult-grain)'/></svg>")`,
+          backgroundImage: `url(${matConcrete})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
         }}
       />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[rgba(250,248,244,0.88)]" />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(200,169,107,0.06),transparent_40%),radial-gradient(circle_at_bottom_left,rgba(8,19,33,0.03),transparent_40%)]" />
       {/* Top hairline */}
       <div
         aria-hidden="true"

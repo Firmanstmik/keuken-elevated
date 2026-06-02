@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, House, Mail, Phone } from "@/components/ui/icons";
 import { kc } from "@/lib/kc-data";
 import { motionViewport } from "@/lib/motion";
+import matConcrete from "@/assets/mat-concrete.jpg";
 
 const actions = [
   {
@@ -62,25 +63,20 @@ export function FinalCta() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden bg-[#F8F6F2] py-24 text-[#111111] md:py-36"
+      className="relative overflow-hidden py-24 text-[#111111] md:py-36"
     >
-      {/* ── Soft Gold Showroom Ambient Glow (Warm, Editorial) ──────────────────────── */}
+      {/* Concrete texture background */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-[50%] top-0 h-[450px] w-[80%] -translate-x-1/2 rounded-full blur-[140px] opacity-[0.03]"
+        className="pointer-events-none absolute inset-0"
         style={{
-          background: "radial-gradient(circle, rgba(197, 160, 89, 0.8) 0%, transparent 80%)",
+          backgroundImage: `url(${matConcrete})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
         }}
       />
-
-      {/* ── Material Depth: Architectural Fine Plaster / Paper Texture (Opacity: 2%) ── */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-[0.022] mix-blend-multiply"
-        style={{
-          backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='paper-grain'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='120' height='120' filter='url(%23paper-grain)'/></svg>")`,
-        }}
-      />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[rgba(248,246,242,0.87)]" />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_40%_20%,rgba(200,169,107,0.06),transparent_45%)]" />
 
       <div className="mx-auto max-w-[1400px] px-6 lg:px-12 relative">
         {/* Header */}

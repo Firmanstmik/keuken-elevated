@@ -13,6 +13,7 @@ import {
 import { ArrowRight } from "@/components/ui/icons";
 import { kc } from "@/lib/kc-data";
 import { fadeUp, motionViewport, staggerHeader, staggerList } from "@/lib/motion";
+import matConcrete from "@/assets/mat-concrete.jpg";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -271,7 +272,18 @@ export function Collections() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section id="collections" className="overflow-hidden bg-[#F8F6F2] py-20 md:py-28">
+    <section id="collections" className="relative overflow-hidden py-20 md:py-28">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage: `url(${matConcrete})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[rgba(248,246,242,0.87)]" />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_60%_30%,rgba(200,169,107,0.05),transparent_50%)]" />
       <div className="site-container">
 
         {/* Header */}

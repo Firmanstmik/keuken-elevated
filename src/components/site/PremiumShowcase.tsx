@@ -10,8 +10,8 @@ import {
 } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "@/components/ui/icons";
-import heroImage from "@/assets/Eén plaats voor al uw wensen/Keukens_voor_elke_prijs.webp";
-import accentImage from "@/assets/Eén plaats voor al uw wensen/Modern_keukens.webp";
+import keukenVid1 from "@/assets/keuken_vid1.webm";
+import keukenVid2 from "@/assets/keuken_vid2.webm";
 import { motionViewport } from "@/lib/motion";
 
 const highlights = [
@@ -87,6 +87,89 @@ const headingContainer: Variants = {
   },
 };
 
+/** Architectural corner frame SVG — top-right and bottom-left */
+function CornerFrames() {
+  return (
+    <>
+      {/* Top-right corner */}
+      <div className="absolute -top-[1px] -right-[1px] z-20 pointer-events-none">
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+          <path
+            d="M64 0 L64 48 Q64 64 48 64 L0 64"
+            stroke="rgba(200,169,107,0.55)"
+            strokeWidth="1.5"
+            fill="none"
+          />
+          {/* Corner dot */}
+          <circle cx="60" cy="4" r="2" fill="rgba(200,169,107,0.7)" />
+        </svg>
+      </div>
+      {/* Bottom-left corner */}
+      <div className="absolute -bottom-[1px] -left-[1px] z-20 pointer-events-none">
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+          <path
+            d="M0 64 L0 16 Q0 0 16 0 L64 0"
+            stroke="rgba(200,169,107,0.55)"
+            strokeWidth="1.5"
+            fill="none"
+          />
+          <circle cx="4" cy="60" r="2" fill="rgba(200,169,107,0.7)" />
+        </svg>
+      </div>
+    </>
+  );
+}
+
+/** Animated water/ripple SVG overlay */
+function WaterEffect() {
+  return (
+    <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[40%] overflow-hidden opacity-[0.25]">
+      <svg
+        viewBox="0 0 1200 120"
+        preserveAspectRatio="none"
+        className="absolute bottom-0 w-full h-full"
+      >
+        <defs>
+          <linearGradient id="water-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="rgba(200,169,107,0)" />
+            <stop offset="100%" stopColor="rgba(200,169,107,0.25)" />
+          </linearGradient>
+        </defs>
+        <path
+          fill="url(#water-grad)"
+          d="M0,32L40,37.3C80,43,160,53,240,58.7C320,64,400,64,480,56C560,48,640,32,720,32C800,32,880,48,960,53.3C1040,59,1120,53,1160,50.7L1200,48L1200,120L0,120Z"
+        >
+          <animate
+            attributeName="d"
+            dur="6s"
+            repeatCount="indefinite"
+            values="
+              M0,32L40,37.3C80,43,160,53,240,58.7C320,64,400,64,480,56C560,48,640,32,720,32C800,32,880,48,960,53.3C1040,59,1120,53,1160,50.7L1200,48L1200,120L0,120Z;
+              M0,48L40,42.7C80,37,160,27,240,32C320,37,400,59,480,64C560,69,640,59,720,48C800,37,880,27,960,32C1040,37,1120,53,1160,61.3L1200,69L1200,120L0,120Z;
+              M0,32L40,37.3C80,43,160,53,240,58.7C320,64,400,64,480,56C560,48,640,32,720,32C800,32,880,48,960,53.3C1040,59,1120,53,1160,50.7L1200,48L1200,120L0,120Z
+            "
+          />
+        </path>
+        <path
+          fill="rgba(200,169,107,0.08)"
+          d="M0,64L40,58.7C80,53,160,43,240,42.7C320,43,400,53,480,58.7C560,64,640,64,720,58.7C800,53,880,43,960,42.7C1040,43,1120,53,1160,58.7L1200,64L1200,120L0,120Z"
+        >
+          <animate
+            attributeName="d"
+            dur="8s"
+            repeatCount="indefinite"
+            values="
+              M0,64L40,58.7C80,53,160,43,240,42.7C320,43,400,53,480,58.7C560,64,640,64,720,58.7C800,53,880,43,960,42.7C1040,43,1120,53,1160,58.7L1200,64L1200,120L0,120Z;
+              M0,56L40,50.7C80,45,160,35,240,37.3C320,40,400,56,480,64C560,72,640,72,720,64C800,56,880,40,960,37.3C1040,35,1120,45,1160,50.7L1200,56L1200,120L0,120Z;
+              M0,64L40,58.7C80,53,160,43,240,42.7C320,43,400,53,480,58.7C560,64,640,64,720,58.7C800,53,880,43,960,42.7C1040,43,1120,53,1160,58.7L1200,64L1200,120L0,120Z
+            "
+          />
+        </path>
+      </svg>
+    </div>
+  );
+}
+
 export function PremiumShowcase() {
   const reduceMotion = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
@@ -139,16 +222,22 @@ export function PremiumShowcase() {
             className="relative"
           >
             <div className="group relative">
+              {/* Main video card with corner frames */}
               <div className="relative overflow-hidden rounded-[20px] border border-[rgba(255,255,255,0.08)] shadow-[0_28px_64px_-44px_rgba(17,19,21,0.72)]">
-                <img
-                  src={heroImage}
-                  alt="Premium showroomkeuken van Keuken-Centrum Utrecht"
-                  loading="lazy"
+                <CornerFrames />
+                <video
+                  src={keukenVid1}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
                   className="aspect-[1.12/1] max-h-[min(52vh,480px)] w-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.03]"
                 />
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(23,25,28,0.02)_0%,rgba(23,25,28,0.22)_100%)]" />
+                <WaterEffect />
               </div>
 
+              {/* Accent video — floating bottom-right with corner frames */}
               <motion.div
                 initial={reduceMotion ? false : { opacity: 0, scale: 1.04 }}
                 whileInView={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
@@ -160,13 +249,17 @@ export function PremiumShowcase() {
                 }
                 className="absolute -bottom-3 right-4 hidden w-[30%] overflow-hidden rounded-[20px] border border-[rgba(255,255,255,0.08)] shadow-[0_20px_56px_-40px_rgba(17,19,21,0.68)] md:block"
               >
-                <img
-                  src={accentImage}
-                  alt="Moderne showroomkeuken detail"
-                  loading="lazy"
+                <CornerFrames />
+                <video
+                  src={keukenVid2}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
                   className="aspect-[1/1] h-full w-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.03]"
                 />
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(23,25,28,0.02)_0%,rgba(23,25,28,0.34)_100%)]" />
+                <WaterEffect />
               </motion.div>
             </div>
           </motion.div>
