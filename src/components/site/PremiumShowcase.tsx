@@ -186,7 +186,7 @@ export function PremiumShowcase() {
     <section
       ref={sectionRef}
       id="premium-showcase"
-      className="relative w-full overflow-hidden bg-[#17191C] py-14 text-white md:py-20"
+      className="relative w-full overflow-hidden bg-[#17191C] py-20 text-white md:py-32"
     >
       <div
         aria-hidden="true"
@@ -231,7 +231,7 @@ export function PremiumShowcase() {
                   muted
                   loop
                   playsInline
-                  className="aspect-[1.12/1] max-h-[min(52vh,480px)] w-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.03]"
+                  className="aspect-[3/4] max-h-[min(75vh,720px)] w-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.03]"
                 />
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(23,25,28,0.02)_0%,rgba(23,25,28,0.22)_100%)]" />
                 <WaterEffect />
@@ -247,7 +247,7 @@ export function PremiumShowcase() {
                     ? undefined
                     : { delay: 0.35, duration: 1.1, ease: luxuryEase }
                 }
-                className="absolute -bottom-3 right-4 hidden w-[30%] overflow-hidden rounded-[20px] border border-[rgba(255,255,255,0.08)] shadow-[0_20px_56px_-40px_rgba(17,19,21,0.68)] md:block"
+                className="absolute -bottom-6 -right-2 hidden w-[38%] overflow-hidden rounded-[20px] border border-[rgba(255,255,255,0.08)] shadow-[0_20px_56px_-40px_rgba(17,19,21,0.68)] md:block"
               >
                 <CornerFrames />
                 <video
@@ -256,7 +256,7 @@ export function PremiumShowcase() {
                   muted
                   loop
                   playsInline
-                  className="aspect-[1/1] h-full w-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.03]"
+                  className="aspect-[3/4] h-full w-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.03]"
                 />
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(23,25,28,0.02)_0%,rgba(23,25,28,0.34)_100%)]" />
                 <WaterEffect />
