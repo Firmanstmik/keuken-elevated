@@ -268,41 +268,104 @@ export function ShowroomJourneySection() {
                   <div className="absolute inset-0">
                     {hotspotsData.map((h, i) => {
                       const isActive = activeHotspot === i;
-                      return (
-                      <motion.button
-                        key={i}
-                        type="button"
-                        onClick={() => setActiveHotspot(i)}
-                        initial={reduceMotion ? false : { opacity: 0, scale: 0 }}
-                        whileInView={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
-                        transition={{ delay: h.delay, duration: 0.5, ease: "easeOut" }}
-                        viewport={motionViewport}
-                        className="absolute -translate-x-1/2 -translate-y-1/2 flex items-center justify-center gap-2 group cursor-pointer z-10"
-                        style={{ left: h.x, top: h.y }}
-                      >
-                        <div className={`flex h-5 w-5 items-center justify-center rounded-full backdrop-blur-[8px] border shadow-[0_4px_16px_rgba(0,0,0,0.3)] transition-all duration-300 ${isActive ? 'bg-[#C8A96B]/80 border-[#C8A96B] shadow-[0_0_24px_rgba(200,169,107,0.6),0_0_0_1px_rgba(255,255,255,0.2)_inset]' : 'bg-[rgba(247,245,242,0.25)] border-[rgba(247,245,242,0.6)] group-hover:bg-[rgba(247,245,242,0.35)]'}`}>
-                          <div className={`h-1.5 w-1.5 rounded-full transition-colors duration-300 ${isActive ? 'bg-white' : 'bg-[rgba(247,245,242,0.9)]'}`} />
-                        </div>
+                      const isUp = parseFloat(h.y) > 40;
 
-                        <div
-                          className={`pointer-events-none absolute left-1/2 top-full mt-3 -translate-x-1/2 flex w-[180px] flex-col items-center rounded-[16px] border border-white/10 bg-[rgba(15,15,15,0.85)] p-3.5 backdrop-blur-xl shadow-[0_24px_48px_-12px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.05)_inset] transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                            isActive
-                              ? "opacity-100 translate-y-0 scale-100"
-                              : "opacity-0 translate-y-2 scale-95 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
+                      return (
+                        <motion.button
+                          key={i}
+                          type="button"
+                          onClick={() => setActiveHotspot(i)}
+                          initial={reduceMotion ? false : { opacity: 0, scale: 0 }}
+                          whileInView={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
+                          transition={{ delay: h.delay, duration: 0.5, ease: "easeOut" }}
+                          viewport={motionViewport}
+                          className={`absolute -translate-x-1/2 -translate-y-1/2 flex items-center justify-center gap-2 group cursor-pointer ${
+                            isActive ? "z-20" : "z-10"
                           }`}
+                          style={{ left: h.x, top: h.y }}
                         >
-                          <span className="mb-1.5 text-[0.55rem] font-medium uppercase tracking-[0.25em] text-[#C8A96B]">
-                            {h.label}
-                          </span>
-                          <span className="text-[0.9rem] text-[#F7F5F2] font-medium tracking-[0.01em] mb-1.5 text-center leading-tight normal-case">
-                            Selecteer optie
-                          </span>
-                          <span className="text-[0.65rem] text-[rgba(247,245,242,0.5)] leading-[1.5] text-center whitespace-normal normal-case">
-                            Klik om de mogelijkheden voor uw {h.label.toLowerCase()} te ontdekken.
-                          </span>
-                        </div>
-                      </motion.button>
-                    )})}
+                          {/* Multi-layer premium hotspot */}
+                          <div
+                            className="relative flex items-center justify-center"
+                            style={{
+                              width: 32,
+                              height: 32,
+                              transition: "transform 0.2s cubic-bezier(.22,1,.36,1)",
+                            }}
+                          >
+                            {/* Layer 4: Outer halo + white glow */}
+                            <span
+                              className="absolute inset-0 rounded-full pointer-events-none"
+                              style={{
+                                background: "rgba(212,175,55,0.10)",
+                                filter: "blur(8px)",
+                                boxShadow: isActive
+                                  ? "0 0 20px rgba(212,175,55,0.35), 0 0 36px rgba(255,255,255,0.12)"
+                                  : "0 0 12px rgba(255,255,255,0.18), 0 0 24px rgba(212,175,55,0.20)",
+                                animation: !isActive
+                                  ? "hotspotBreathe 3s ease-in-out infinite"
+                                  : "none",
+                                transition: "box-shadow 0.2s ease",
+                              }}
+                            />
+
+                            {/* Layer 3: Gold ring (18px) */}
+                            <span
+                              className="absolute rounded-full pointer-events-none"
+                              style={{
+                                width: 18,
+                                height: 18,
+                                top: "50%",
+                                left: "50%",
+                                transform: "translate(-50%, -50%)",
+                                border: `2px solid ${isActive ? "#D4AF37" : "rgba(212,175,55,0.85)"}`,
+                                backgroundColor: isActive
+                                  ? "rgba(212,175,55,0.12)"
+                                  : "rgba(0,0,0,0.45)",
+                                backdropFilter: "blur(4px)",
+                                transition: "all 0.2s ease",
+                              }}
+                            />
+
+                            {/* Layer 2 + 1: Center dot (6px) */}
+                            <span
+                              className="relative z-10 rounded-full"
+                              style={{
+                                width: 6,
+                                height: 6,
+                                backgroundColor: isActive ? "#D4AF37" : "#FFFFFF",
+                                border: isActive ? "1px solid rgba(255,255,255,0.6)" : "none",
+                                boxShadow: "0 0 4px rgba(255,255,255,0.5)",
+                                transition: "all 0.2s ease",
+                              }}
+                            />
+                          </div>
+
+                          {/* Tooltip */}
+                          <div
+                            className={`pointer-events-none absolute left-1/2 -translate-x-1/2 flex w-[180px] flex-col items-center rounded-[12px] border border-[rgba(212,175,55,0.18)] bg-[rgba(9,9,9,0.96)] p-3.5 backdrop-blur-[20px] shadow-[0_12px_36px_rgba(0,0,0,0.6)] transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                              isUp ? "bottom-full mb-3" : "top-full mt-3"
+                            } ${
+                              isActive
+                                ? "opacity-100 translate-y-0 scale-100"
+                                : isUp
+                                  ? "opacity-0 translate-y-2 scale-95 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
+                                  : "opacity-0 -translate-y-2 scale-95 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
+                            }`}
+                          >
+                            <span className="mb-1.5 text-[0.55rem] font-semibold uppercase tracking-[0.25em] text-[#C8A96B]">
+                              {h.label}
+                            </span>
+                            <span className="text-[0.9rem] text-[#F7F5F2] font-semibold tracking-[0.01em] mb-1.5 text-center leading-tight normal-case">
+                              Selecteer optie
+                            </span>
+                            <span className="text-[0.65rem] text-[rgba(247,245,242,0.5)] leading-[1.5] text-center whitespace-normal normal-case">
+                              Klik om de mogelijkheden voor uw {h.label.toLowerCase()} te ontdekken.
+                            </span>
+                          </div>
+                        </motion.button>
+                      );
+                    })}
                   </div>
                 </div>
 
@@ -342,12 +405,12 @@ export function ShowroomJourneySection() {
               whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               viewport={motionViewport}
-              className="absolute -bottom-6 -left-2 sm:-left-6 z-30 w-[260px] sm:w-[300px] rounded-2xl border border-white/60 bg-[#F8F6F2]/85 p-5 sm:p-6 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.12)] backdrop-blur-xl"
+              className="absolute -bottom-6 -left-2 sm:-left-6 z-30 w-[260px] sm:w-[300px] rounded-[18px] border border-[rgba(212,175,55,0.18)] bg-[rgba(9,9,9,0.95)] p-5 sm:p-6 shadow-[0_20px_50px_rgba(0,0,0,0.7)] backdrop-blur-[24px]"
             >
-              <p className="text-[0.65rem] sm:text-[0.68rem] font-medium uppercase tracking-[0.24em] text-[#C8A96B]">
+              <p className="text-[0.65rem] sm:text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[#C8A96B]">
                 Digitale Showroom
               </p>
-              <p className="mt-2 text-[0.8rem] sm:text-[0.875rem] font-light leading-[1.65] text-[#111111]">
+              <p className="mt-2.5 text-[0.8rem] sm:text-[0.875rem] font-light leading-[1.65] text-zinc-300">
                 Configureer materialen, apparatuur en afwerkingen voordat u de showroom bezoekt.
               </p>
             </motion.div>

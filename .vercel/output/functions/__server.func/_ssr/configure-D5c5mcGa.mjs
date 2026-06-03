@@ -2,7 +2,7 @@ import { r as reactExports, j as jsxRuntimeExports } from "../_libs/react.mjs";
 import { d as useNavigate } from "../_libs/tanstack__react-router.mjs";
 import { F as FlowActionBar } from "./FlowActionBar-B7zqwiBn.mjs";
 import { d as masterBudgetRanges, e as masterCategories, m as masterBrands, i as masterStyles, A as ArrowLeft, l as logoKeuken, S as Search, a as ArrowRight } from "./master-config-data-BZ9UlS_D.mjs";
-import { u as useConfigurator } from "./router-Mwnwsn9N.mjs";
+import { u as useConfigurator } from "./router-CAGiY7Hc.mjs";
 import { i as industrieelBase, l as landelijkBase, k as klassiekBase, m as modernBase } from "./industrieel-base-Bbzxl6e3.mjs";
 import "../_libs/sonner.mjs";
 import { m as motion, A as AnimatePresence } from "../_libs/framer-motion.mjs";
@@ -516,43 +516,48 @@ function ConfigurePage() {
             const isHovered = hoveredCategory === hotspot.id;
             const anyHovered = hoveredCategory !== null;
             const visible = isHovered || active && isTouch;
-            const dotSize = active ? 24 : isHovered ? 22 : 18;
             const fullCategory = masterCategories.find((c) => c.id === hotspot.id);
             const fullOption = selected ? fullCategory?.options.find((o) => o.id === selected.id) : null;
             return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: `absolute ${active || isHovered ? "z-30" : "z-20"}`, style: {
               left: hotspot.x,
               top: hotspot.y
             }, "data-hotspot": "true", onMouseEnter: () => setHoveredCategory(hotspot.id), onMouseLeave: () => setHoveredCategory(null), children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("button", { type: "button", onClick: () => setActiveCategory(active ? null : hotspot.id), className: "absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer", style: {
+              /* @__PURE__ */ jsxRuntimeExports.jsx("button", { type: "button", onClick: () => setActiveCategory(active ? null : hotspot.id), className: "absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer", style: {
                 transition: "opacity 0.3s ease",
                 opacity: anyHovered && !isHovered ? 0.3 : 1
-              }, "aria-label": `Configureer ${hotspot.label}`, children: [
-                active && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "absolute rounded-full animate-ping pointer-events-none", style: {
-                  inset: -5,
-                  background: "rgba(212,175,55,0.18)"
+              }, "aria-label": `Configureer ${hotspot.label}`, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative flex items-center justify-center", style: {
+                width: 32,
+                height: 32,
+                transition: "transform 0.2s cubic-bezier(.22,1,.36,1)",
+                transform: isHovered ? "scale(1.25)" : "scale(1)"
+              }, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "absolute inset-0 rounded-full pointer-events-none", style: {
+                  background: "rgba(212,175,55,0.10)",
+                  filter: "blur(8px)",
+                  boxShadow: isHovered || active ? "0 0 20px rgba(212,175,55,0.35), 0 0 36px rgba(255,255,255,0.12)" : "0 0 12px rgba(255,255,255,0.18), 0 0 24px rgba(212,175,55,0.20)",
+                  animation: !isHovered && !active ? "hotspotBreathe 3s ease-in-out infinite" : "none",
+                  transition: "box-shadow 0.2s ease"
                 } }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: {
-                  width: dotSize,
-                  height: dotSize,
-                  borderRadius: "50%",
-                  border: `1px solid rgba(212,175,55,${isHovered || active ? 0.75 : 0.45})`,
-                  backgroundColor: isHovered || active ? "rgba(212,175,55,0.18)" : "rgba(0,0,0,0.58)",
-                  backdropFilter: "blur(6px)",
-                  boxShadow: isHovered || active ? "0 0 12px rgba(212,175,55,0.3)" : "0 2px 8px rgba(0,0,0,0.35)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  transition: "all 0.22s cubic-bezier(.22,1,.36,1)"
-                }, children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: {
-                  width: isHovered ? 7 : 6,
-                  height: isHovered ? 7 : 6,
-                  borderRadius: "50%",
-                  backgroundColor: selected?.color ?? (active ? "#D4AF37" : "rgba(255,255,255,0.9)"),
-                  border: selected?.color ? "1px solid rgba(255,255,255,0.55)" : "none",
-                  boxShadow: selected?.color ? "0 1px 4px rgba(0,0,0,0.3)" : "none",
-                  transition: "all 0.22s ease"
-                } }) })
-              ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "absolute rounded-full pointer-events-none", style: {
+                  width: 18,
+                  height: 18,
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  border: `2px solid ${isHovered || active ? "#D4AF37" : "rgba(212,175,55,0.85)"}`,
+                  backgroundColor: isHovered || active ? "rgba(212,175,55,0.12)" : "rgba(0,0,0,0.45)",
+                  backdropFilter: "blur(4px)",
+                  transition: "all 0.2s ease"
+                } }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "relative z-10 rounded-full", style: {
+                  width: 6,
+                  height: 6,
+                  backgroundColor: selected?.color ?? "#FFFFFF",
+                  border: selected?.color ? "1px solid rgba(255,255,255,0.6)" : "none",
+                  boxShadow: "0 0 4px rgba(255,255,255,0.5)",
+                  transition: "all 0.2s ease"
+                } })
+              ] }) }),
               /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { children: visible && /* @__PURE__ */ jsxRuntimeExports.jsx(HotspotTooltip, { active: true, x: hotspot.x, y: hotspot.y, title: hotspot.label, description: selected ? fullOption?.description || selected.name : `Klik om de mogelijkheden voor uw ${hotspot.label.toLowerCase()} te ontdekken.`, viewportSize }) })
             ] }, hotspot.id);
           })

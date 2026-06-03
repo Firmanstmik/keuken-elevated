@@ -516,47 +516,60 @@ function ConfigurePage() {
                     }}
                     aria-label={`Configureer ${hotspot.label}`}
                   >
-                    {/* Glowing halo */}
-                    {active && (
-                      <span
-                        className="absolute rounded-full animate-ping pointer-events-none"
-                        style={{
-                          inset: -5,
-                          background: "rgba(212,175,55,0.18)",
-                        }}
-                      />
-                    )}
-
-                    {/* Dot */}
+                    {/* Multi-layer premium hotspot */}
                     <div
+                      className="relative flex items-center justify-center"
                       style={{
-                        width: dotSize,
-                        height: dotSize,
-                        borderRadius: "50%",
-                        border: `1px solid rgba(212,175,55,${isHovered || active ? 0.75 : 0.45})`,
-                        backgroundColor: isHovered || active
-                          ? "rgba(212,175,55,0.18)"
-                          : "rgba(0,0,0,0.58)",
-                        backdropFilter: "blur(6px)",
-                        boxShadow: isHovered || active
-                          ? "0 0 12px rgba(212,175,55,0.3)"
-                          : "0 2px 8px rgba(0,0,0,0.35)",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        transition: "all 0.22s cubic-bezier(.22,1,.36,1)",
+                        width: 32,
+                        height: 32,
+                        transition: "transform 0.2s cubic-bezier(.22,1,.36,1)",
+                        transform: isHovered ? "scale(1.25)" : "scale(1)",
                       }}
                     >
-                      {/* Inner dot — selected option color or white/gold */}
+                      {/* Layer 4: Outer halo + white glow */}
                       <span
+                        className="absolute inset-0 rounded-full pointer-events-none"
                         style={{
-                          width: isHovered ? 7 : 6,
-                          height: isHovered ? 7 : 6,
-                          borderRadius: "50%",
-                          backgroundColor: selected?.color ?? (active ? "#D4AF37" : "rgba(255,255,255,0.9)"),
-                          border: selected?.color ? "1px solid rgba(255,255,255,0.55)" : "none",
-                          boxShadow: selected?.color ? "0 1px 4px rgba(0,0,0,0.3)" : "none",
-                          transition: "all 0.22s ease",
+                          background: "rgba(212,175,55,0.10)",
+                          filter: "blur(8px)",
+                          boxShadow: isHovered || active
+                            ? "0 0 20px rgba(212,175,55,0.35), 0 0 36px rgba(255,255,255,0.12)"
+                            : "0 0 12px rgba(255,255,255,0.18), 0 0 24px rgba(212,175,55,0.20)",
+                          animation: !isHovered && !active
+                            ? "hotspotBreathe 3s ease-in-out infinite"
+                            : "none",
+                          transition: "box-shadow 0.2s ease",
+                        }}
+                      />
+
+                      {/* Layer 3: Gold ring (18px) */}
+                      <span
+                        className="absolute rounded-full pointer-events-none"
+                        style={{
+                          width: 18,
+                          height: 18,
+                          top: "50%",
+                          left: "50%",
+                          transform: "translate(-50%, -50%)",
+                          border: `2px solid ${isHovered || active ? "#D4AF37" : "rgba(212,175,55,0.85)"}`,
+                          backgroundColor: isHovered || active
+                            ? "rgba(212,175,55,0.12)"
+                            : "rgba(0,0,0,0.45)",
+                          backdropFilter: "blur(4px)",
+                          transition: "all 0.2s ease",
+                        }}
+                      />
+
+                      {/* Layer 2 + 1: Center dot (6px) */}
+                      <span
+                        className="relative z-10 rounded-full"
+                        style={{
+                          width: 6,
+                          height: 6,
+                          backgroundColor: selected?.color ?? "#FFFFFF",
+                          border: selected?.color ? "1px solid rgba(255,255,255,0.6)" : "none",
+                          boxShadow: "0 0 4px rgba(255,255,255,0.5)",
+                          transition: "all 0.2s ease",
                         }}
                       />
                     </div>
