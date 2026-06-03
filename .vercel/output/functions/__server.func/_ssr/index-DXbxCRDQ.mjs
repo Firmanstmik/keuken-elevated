@@ -1,13 +1,13 @@
 import { j as jsxRuntimeExports, r as reactExports } from "../_libs/react.mjs";
-import { N as Nav, a as motionEase, m as motionDuration, s as staggerHeader$3, b as motionViewport, f as fadeUp$6, c as staggerList } from "./Nav-BSSfAIHV.mjs";
+import { N as Nav, d as motionEase, a as motionDuration, b as boraImg, m as marmerImg, g as staggerHeader$3, e as motionViewport, f as fadeUp$6, h as staggerList, s as showroomImage, c as cn } from "./Nav-ux99a2cG.mjs";
 import { a as ArrowRight, h as masterHotspotPositions, f as masterCategories, H as House, P as Phone, M as Mail, C as Check, l as logoKeuken, T as Tag, X, b as ChevronDown, c as ChevronUp } from "./master-config-data-Dym2j9sf.mjs";
 import { r as reactDomExports } from "../_libs/react-dom.mjs";
 import { l as leichtLogo, a as aiKuchenLogo, z as zampieriLogo, c as cucinesseLogo } from "./Cucinesse_Logo-DZinUg9I.mjs";
-import { k as kc } from "./router-DMLCtDoQ.mjs";
+import { k as kc } from "./router-eUMbNvNS.mjs";
 import { g as WorkspacePremiumIcon, H as HandymanIcon, f as SupportAgentIcon, D as DiamondIcon, T as TuneIcon, P as PaletteOutlinedIcon } from "../_libs/mui__icons-material.mjs";
 import { S as Slot } from "../_libs/radix-ui__react-slot.mjs";
 import { c as cva } from "../_libs/class-variance-authority.mjs";
-import { I as Input, T as Textarea, c as cn } from "./textarea-COVM3hME.mjs";
+import { I as Input, T as Textarea } from "./textarea-BOyBdQz-.mjs";
 import { R as Root2, V as Value, T as Trigger, I as Icon, P as Portal, C as Content2, f as Viewport, a as Item, b as ItemIndicator, c as ItemText, d as ScrollUpButton, S as ScrollDownButton, L as Label, e as Separator } from "../_libs/radix-ui__react-select.mjs";
 import "../_libs/sonner.mjs";
 import { b as useReducedMotion, a as useMotionValue, d as useSpring, e as useTransform, c as useScroll, m as motion, A as AnimatePresence, u as useInView } from "../_libs/framer-motion.mjs";
@@ -22,6 +22,21 @@ import "../_libs/seroval-plugins.mjs";
 import "node:stream/web";
 import "node:stream";
 import "../_libs/isbot.mjs";
+import "../_libs/radix-ui__react-accordion.mjs";
+import "../_libs/radix-ui__react-context.mjs";
+import "../_libs/radix-ui__react-collection.mjs";
+import "../_libs/radix-ui__react-compose-refs.mjs";
+import "../_libs/radix-ui__primitive.mjs";
+import "../_libs/@radix-ui/react-use-controllable-state+[...].mjs";
+import "../_libs/@radix-ui/react-use-layout-effect+[...].mjs";
+import "../_libs/radix-ui__react-primitive.mjs";
+import "../_libs/radix-ui__react-collapsible.mjs";
+import "../_libs/radix-ui__react-presence.mjs";
+import "../_libs/radix-ui__react-id.mjs";
+import "../_libs/radix-ui__react-direction.mjs";
+import "../_libs/clsx.mjs";
+import "../_libs/tailwind-merge.mjs";
+import "../_libs/lucide-react.mjs";
 import "util";
 import "crypto";
 import "async_hooks";
@@ -31,7 +46,6 @@ import "../_libs/tanstack__react-query.mjs";
 import "../_libs/mui__material.mjs";
 import "../_libs/mui__utils.mjs";
 import "../_libs/react-is.mjs";
-import "../_libs/clsx.mjs";
 import "../_libs/mui__system.mjs";
 import "../_libs/mui__styled-engine.mjs";
 import "../_libs/emotion__styled.mjs";
@@ -49,21 +63,12 @@ import "../_libs/emotion__hash.mjs";
 import "../_libs/emotion__unitless.mjs";
 import "../_libs/@emotion/use-insertion-effect-with-fallbacks+[...].mjs";
 import "../_libs/emotion__is-prop-valid.mjs";
-import "../_libs/radix-ui__react-compose-refs.mjs";
-import "../_libs/tailwind-merge.mjs";
 import "../_libs/radix-ui__number.mjs";
-import "../_libs/radix-ui__primitive.mjs";
-import "../_libs/radix-ui__react-collection.mjs";
-import "../_libs/radix-ui__react-context.mjs";
-import "../_libs/radix-ui__react-direction.mjs";
 import "../_libs/@radix-ui/react-dismissable-layer+[...].mjs";
-import "../_libs/radix-ui__react-primitive.mjs";
 import "../_libs/@radix-ui/react-use-callback-ref+[...].mjs";
 import "../_libs/@radix-ui/react-use-escape-keydown+[...].mjs";
 import "../_libs/radix-ui__react-focus-guards.mjs";
 import "../_libs/radix-ui__react-focus-scope.mjs";
-import "../_libs/radix-ui__react-id.mjs";
-import "../_libs/@radix-ui/react-use-layout-effect+[...].mjs";
 import "../_libs/radix-ui__react-popper.mjs";
 import "../_libs/floating-ui__react-dom.mjs";
 import "../_libs/floating-ui__dom.mjs";
@@ -72,7 +77,6 @@ import "../_libs/floating-ui__utils.mjs";
 import "../_libs/radix-ui__react-arrow.mjs";
 import "../_libs/radix-ui__react-use-size.mjs";
 import "../_libs/radix-ui__react-portal.mjs";
-import "../_libs/@radix-ui/react-use-controllable-state+[...].mjs";
 import "../_libs/radix-ui__react-use-previous.mjs";
 import "../_libs/@radix-ui/react-visually-hidden+[...].mjs";
 import "../_libs/aria-hidden.mjs";
@@ -93,8 +97,6 @@ const heroImg4 = "/assets/hero_img4-wh6Iabze.webp";
 const heroImg5 = "/assets/hero_img5-CBabuW-2.webp";
 const heroVideo = "/assets/video_hero_section-DBJ3tab4.webm";
 const betonImg = "/assets/beton-img-ClXu7kAp.webp";
-const boraImg = "/assets/Bora-img-sX3CWUxs.webp";
-const marmerImg = "/assets/marmer-img-BdUOzDgc.webp";
 const headlineLines = [
   "De Premium",
   "Keukenbestemming",
@@ -706,7 +708,7 @@ function Brands() {
     update();
     return () => window.cancelAnimationFrame(raf);
   }, [hoveredIndex, reduceMotion, tooltipLeft, tooltipTop]);
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { id: "brands", className: "section-shell pt-2 md:pt-4", children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { id: "brands", className: "section-shell pt-2 md:pt-4 !pb-8 md:!pb-10 border-b border-[rgba(200,169,107,0.15)]", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "site-container", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
       motion.div,
       {
@@ -752,7 +754,7 @@ function Brands() {
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative mt-7 w-screen max-w-none left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-hidden", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-y-0 left-0 z-10 w-24 bg-[linear-gradient(90deg,#FAF8F4,rgba(250,248,244,0))]" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-y-0 right-0 z-10 w-24 bg-[linear-gradient(270deg,#FAF8F4,rgba(250,248,244,0))]" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "border-y border-[rgba(200,169,107,0.15)] bg-[#FAF8F4] overflow-hidden", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "overflow-hidden", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
         motion.div,
         {
           className: "flex w-max items-center gap-12 px-10 py-6 will-change-transform",
@@ -2870,7 +2872,6 @@ function Collections() {
 const collectionMinimal = "/assets/collection-minimal-C7OuztSW.jpg";
 const collectionModern = "/assets/collection-modern-BcjFREp3.jpg";
 const collectionWarm = "/assets/collection-warm-28eh2KtC.jpg";
-const showroomImage = "/assets/showroom-BIgnA1P8.jpg";
 const heroKitchen = "/assets/hero-kitchen-DhFbJ72e.jpg";
 const luxuryEase$2 = [0.22, 1, 0.36, 1];
 const testimonialsData = [

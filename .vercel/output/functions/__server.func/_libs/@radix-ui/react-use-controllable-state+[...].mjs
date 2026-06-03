@@ -1,4 +1,4 @@
-import { r as reactExports, R as React } from "../react.mjs";
+import { r as reactExports, a as React } from "../react.mjs";
 import { u as useLayoutEffect2 } from "./react-use-layout-effect+[...].mjs";
 var useInsertionEffect = React[" useInsertionEffect ".trim().toString()] || useLayoutEffect2;
 function useControllableState({

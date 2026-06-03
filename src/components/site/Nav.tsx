@@ -6,16 +6,64 @@ import {
   Call as IconsaxCall,
   House as IconsaxHouse,
   Sms as IconsaxSms,
+  ArrowRight2 as IconsaxArrowRight2,
 } from "@zethictech/iconsax-react";
 import { ChevronDown, ArrowRight } from "@/components/ui/icons";
 import { kc } from "@/lib/kc-data";
 import logoKeuken from "@/assets/logo-keuken-1-1.webp";
 import { motionDuration, motionEase } from "@/lib/motion";
 
+// Import Lucide icons for mega menu sub-items
+import {
+  Award,
+  Gem,
+  Sparkles,
+  Layers,
+  Heart,
+  Compass,
+  Wrench,
+  Shield,
+  Mountain,
+  Flame,
+  Grid,
+  Snowflake,
+  Droplet,
+  Wind,
+  MapPin,
+  FileText,
+  ArrowUpRight,
+  ArrowRight as LucideArrowRight,
+} from "lucide-react";
+
+// Import featured cover images
+import showroomImg from "@/assets/showroom.jpg";
+import marmerImg from "@/assets/marmer-img.webp";
+import boraImg from "@/assets/Bora-img.webp";
+
+// Import mobile menu accordion components
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
 type NavMenuItem = {
   label: string;
   href?: string;
-  items?: Array<{ label: string; href: string }>;
+  items?: Array<{
+    label: string;
+    href: string;
+    description?: string;
+    icon?: ComponentType<{ className?: string }>;
+  }>;
+  featured?: {
+    title: string;
+    description: string;
+    buttonText: string;
+    buttonHref: string;
+    imageSrc: string;
+  };
 };
 
 const desktopMenu: NavMenuItem[] = [
@@ -23,55 +71,172 @@ const desktopMenu: NavMenuItem[] = [
   {
     label: "Keukens",
     items: [
-      { label: "AI Küchen", href: "/#brands" },
-      { label: "Leicht", href: "/#brands" },
-      { label: "Nobilia", href: "/#brands" },
-      { label: "Zampieri", href: "/#brands" },
-      { label: "Cucinesse", href: "/#brands" },
-      { label: "Keukenstijlen", href: "/#collections" },
-      { label: "Keuken op maat", href: "/#showroom" },
+      {
+        label: "AI Küchen",
+        href: "/#brands",
+        description: "Innovatieve en moderne keukens, ontworpen met AI en Duitse precisie.",
+        icon: Sparkles,
+      },
+      {
+        label: "Leicht",
+        href: "/#brands",
+        description: "Duitse topkwaliteit en architectonisch design voor uw droomkeuken.",
+        icon: Layers,
+      },
+      {
+        label: "Nobilia",
+        href: "/#brands",
+        description: "De absolute marktleider in Europa. Veelzijdig, betrouwbaar en modern.",
+        icon: Award,
+      },
+      {
+        label: "Zampieri",
+        href: "/#brands",
+        description: "Exclusief Italiaans design. Minimalistisch, verfijnd en elegant.",
+        icon: Gem,
+      },
+      {
+        label: "Cucinesse",
+        href: "/#brands",
+        description: "Warme Italiaanse sfeer gecombineerd met functionaliteit en passie.",
+        icon: Heart,
+      },
+      {
+        label: "Keukenstijlen",
+        href: "/#collections",
+        description: "Ontdek welke stijl bij u past: van modern tot landelijk of industrieel.",
+        icon: Compass,
+      },
+      {
+        label: "Keuken op maat",
+        href: "/#showroom",
+        description: "Volledig gepersonaliseerd ontwerp, afgestemd op uw ruimte en wensen.",
+        icon: Wrench,
+      },
     ],
+    featured: {
+      title: "Duitse & Italiaanse Kwaliteit",
+      description: "Ervaar vakmanschap in onze showroom te Utrecht. Al meer dan 45 jaar uw keukenspecialist.",
+      buttonText: "Plan showroombezoek",
+      buttonHref: "/consultation",
+      imageSrc: showroomImg,
+    },
   },
   {
     label: "Keukenbladen",
     items: [
-      { label: "Silestone", href: "/#collections" },
-      { label: "Dekton", href: "/#collections" },
-      { label: "Neolith", href: "/#collections" },
-      { label: "Sensa", href: "/#collections" },
+      {
+        label: "Silestone",
+        href: "/#collections",
+        description: "Kwartscomposiet bladen met extreme hardheid en prachtige kleuren.",
+        icon: Gem,
+      },
+      {
+        label: "Dekton",
+        href: "/#collections",
+        description: "Ultra-compact oppervlak, bestand tegen hitte, krassen en vlekken.",
+        icon: Shield,
+      },
+      {
+        label: "Neolith",
+        href: "/#collections",
+        description: "Gesinterde steenbladen voor een luxueuze, natuurlijke uitstraling.",
+        icon: Mountain,
+      },
+      {
+        label: "Sensa",
+        href: "/#collections",
+        description: "Exclusief natuursteen met een unieke, vlekbestendige bescherming.",
+        icon: Sparkles,
+      },
     ],
+    featured: {
+      title: "Natuursteen & Composiet",
+      description: "Kies uit honderden kleuren en afwerkingen. Van hittebestendig Dekton tot luxe marmerlook.",
+      buttonText: "Ontdek Materialen",
+      buttonHref: "/#collections",
+      imageSrc: marmerImg,
+    },
   },
   {
     label: "Apparatuur",
     items: [
-      { label: "Afzuigkappen", href: "/#showroom" },
-      { label: "Werkblad afzuiging", href: "/#showroom" },
-      { label: "Fornuizen", href: "/#showroom" },
-      { label: "Kookplaten", href: "/#showroom" },
-      { label: "Koelkasten & Vriezers", href: "/#showroom" },
-      { label: "Vaatwassers", href: "/#showroom" },
-      { label: "Quooker", href: "/#showroom" },
-      { label: "Wave afzuigkappen", href: "/#showroom" },
+      {
+        label: "Quooker",
+        href: "/#showroom",
+        description: "De kraan die alles kan: 100°C kokend, gekoeld en bruisend water.",
+        icon: Droplet,
+      },
+      {
+        label: "Kookplaten",
+        href: "/#showroom",
+        description: "Inductiekookplaten van topmerken voor optimaal kookcomfort.",
+        icon: Grid,
+      },
+      {
+        label: "Fornuizen",
+        href: "/#showroom",
+        description: "Professionele fornuizen voor de ultieme culinaire ervaring.",
+        icon: Flame,
+      },
+      {
+        label: "Afzuigkappen",
+        href: "/#showroom",
+        description: "Stijlvolle afzuigkappen die design en prestaties perfect combineren.",
+        icon: Wind,
+      },
+      {
+        label: "Werkblad afzuiging",
+        href: "/#showroom",
+        description: "Geavanceerde kookveldafzuiging die geuren direct bij de bron weghaalt.",
+        icon: Wind,
+      },
+      {
+        label: "Koelkasten & Vriezers",
+        href: "/#showroom",
+        description: "Geavanceerde koelapparatuur met slimme vershoudzones.",
+        icon: Snowflake,
+      },
+      {
+        label: "Vaatwassers",
+        href: "/#showroom",
+        description: "Stille, inbouwvaatwassers voor een perfect schone vaat.",
+        icon: Droplet,
+      },
+      {
+        label: "Wave afzuigkappen",
+        href: "/#showroom",
+        description: "Exclusieve design afzuigkappen als statement in uw keuken.",
+        icon: Wind,
+      },
     ],
+    featured: {
+      title: "Premium Inbouwapparatuur",
+      description: "Ontdek de nieuwste systemen van Miele, Bora en Quooker geïntegreerd in onze showroom.",
+      buttonText: "Bekijk Apparatuur",
+      buttonHref: "/#showroom",
+      imageSrc: boraImg,
+    },
   },
   { label: "Aanbiedingen", href: "/#collections" },
   {
     label: "Contact",
     items: [
-      { label: "Showroom keukens", href: "/#showroom" },
-      { label: "Offerte op maat", href: "/consultation" },
+      {
+        label: "Showroom keukens",
+        href: "/#showroom",
+        description: "Kom langs in onze showroom in Utrecht en laat u inspireren.",
+        icon: MapPin,
+      },
+      {
+        label: "Offerte op maat",
+        href: "/consultation",
+        description: "Vraag online een vrijblijvende offerte aan voor uw droomkeuken.",
+        icon: FileText,
+      },
     ],
   },
 ];
-
-const mobileLinks = [
-  { label: "Home", href: "/" },
-  { label: "Keukens", href: "/#collections" },
-  { label: "Keukenbladen", href: "/#collections" },
-  { label: "Apparatuur", href: "/#showroom" },
-  { label: "Aanbiedingen", href: "/#collections" },
-  { label: "Contact", href: "/#contact" },
-] as const;
 
 function isActiveLink(pathname: string, hash: string, href: string) {
   if (href === "/brands") {
@@ -226,6 +391,7 @@ export function Nav() {
                   const hasDropdown = Boolean(item.items?.length);
                   const isOpen = openDropdown === item.label;
                   const isHome = item.label === "Home";
+                  const isMegamenu = item.label === "Keukens" || item.label === "Keukenbladen" || item.label === "Apparatuur";
 
                   return (
                     <motion.div
@@ -285,30 +451,122 @@ export function Nav() {
                             animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
                             exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 10, scale: 0.98, filter: "blur(10px)" }}
                             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                            className="absolute left-1/2 top-full z-50 mt-4 w-[280px] -translate-x-1/2 overflow-hidden rounded-[20px] border border-[#E5DCD3]/50 bg-[rgba(250,249,246,0.92)] shadow-[0_32px_64px_-12px_rgba(0,0,0,0.14),0_0_0_1px_rgba(255,255,255,0.7)_inset] backdrop-blur-2xl"
+                            className={`absolute z-50 mt-4 overflow-hidden rounded-[24px] border border-[#E5DCD3]/50 bg-[#FAF8F4]/95 shadow-[0_32px_64px_-12px_rgba(23,25,28,0.12),0_0_0_1px_rgba(255,255,255,0.7)_inset] backdrop-blur-2xl ${
+                              isMegamenu
+                                ? "left-1/2 w-[860px] -translate-x-1/2"
+                                : "left-1/2 w-[280px] -translate-x-1/2 p-2.5"
+                            }`}
                             role="menu"
                             aria-label={item.label}
                           >
-                            <div className="p-2.5 flex flex-col gap-0.5">
-                              {item.items?.map((sub, index) => (
-                                <motion.span
-                                  key={sub.label}
-                                  initial={reduceMotion ? false : { opacity: 0, x: -8 }}
-                                  animate={reduceMotion ? undefined : { opacity: 1, x: 0 }}
-                                  transition={{ delay: 0.05 + index * 0.04, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                                  className="group relative flex cursor-pointer items-center justify-between rounded-[14px] px-4 py-3 text-[0.92rem] font-medium tracking-[0.01em] text-[#555555] transition-all duration-300 hover:bg-white hover:text-[#111111] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
-                                  role="menuitem"
-                                  aria-disabled
-                                >
-                                  <span className="relative z-10 transition-transform duration-300 group-hover:translate-x-1">
-                                    {sub.label}
-                                  </span>
-                                  <span className="relative z-10 flex h-7 w-7 items-center justify-center rounded-full bg-[#F5F2EC] opacity-0 transition-all duration-300 group-hover:opacity-100">
-                                    <ArrowRight className="h-3 w-3 text-[#C8A96B] -translate-x-1 transition-transform duration-300 group-hover:translate-x-0" />
-                                  </span>
-                                </motion.span>
-                              ))}
-                            </div>
+                            {isMegamenu ? (
+                              <div className="grid grid-cols-[1.22fr_0.78fr]">
+                                {/* Left Column: Sub-items list */}
+                                <div className="p-6 text-left">
+                                  <div>
+                                    <div className="text-[10px] font-medium tracking-[0.15em] text-[#C8A96B] uppercase">
+                                      {item.label}
+                                    </div>
+                                    <div className="mt-1.5 font-display text-xl leading-normal text-[#111111] tracking-tight">
+                                      {item.label === "Keukens" && "Duitse en Italiaanse keukenmerken."}
+                                      {item.label === "Keukenbladen" && "Stijlvolle en duurzame keukenbladen."}
+                                      {item.label === "Apparatuur" && "Hoogwaardige inbouwapparatuur."}
+                                    </div>
+                                  </div>
+                                  <div className="my-4 h-px bg-[#E5DCD3]/30" />
+
+                                  <div className={`grid gap-1.5 ${item.label === "Keukens" || item.label === "Apparatuur" ? "grid-cols-2" : "grid-cols-1"}`}>
+                                    {item.items?.map((sub, index) => {
+                                      const IconComponent = sub.icon;
+                                      return (
+                                        <motion.div
+                                          key={sub.label}
+                                          initial={reduceMotion ? false : { opacity: 0, x: -8 }}
+                                          animate={reduceMotion ? undefined : { opacity: 1, x: 0 }}
+                                          transition={{ delay: 0.04 + index * 0.03, duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                                          className="group flex items-start gap-3 rounded-xl border border-transparent bg-transparent p-2.5 cursor-default"
+                                        >
+                                          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-[#E5DCD3]/30 bg-white shadow-[0_4px_12px_-4px_rgba(23,25,28,0.06)] group-hover:bg-[#FAF8F4] transition-colors duration-300">
+                                            {IconComponent && <IconComponent className="h-4 w-4 text-[#C8A96B] group-hover:text-[#3D9A42] transition-colors duration-300" />}
+                                          </span>
+                                          <span className="min-w-0 flex-1">
+                                            <span className="flex items-center justify-between gap-2">
+                                              <span className="text-[12px] font-semibold tracking-[0.02em] text-[#111111] transition-colors duration-300 group-hover:text-[#3D9A42]">
+                                                {sub.label}
+                                              </span>
+                                            </span>
+                                            <span className="mt-0.5 block text-[11px] leading-relaxed text-[#5A5A5A]/80 font-light">
+                                              {sub.description}
+                                            </span>
+                                          </span>
+                                        </motion.div>
+                                      );
+                                    })}
+                                  </div>
+                                </div>
+
+                                {/* Right Column: Featured image card */}
+                                <div className="relative border-l border-[#E5DCD3]/40 bg-[#FAF8F4]/30 p-6 flex flex-col justify-between">
+                                  <div>
+                                    <div className="text-left text-[10px] font-medium tracking-[0.15em] text-[#C8A96B] uppercase">
+                                      Uitgelicht
+                                    </div>
+                                    <div className="mt-3 overflow-hidden rounded-xl border border-[#E5DCD3]/40 bg-white shadow-[0_12px_32px_-12px_rgba(23,25,28,0.12)]">
+                                      <div className="relative aspect-[16/10] overflow-hidden group/featured">
+                                        <img
+                                          src={item.featured?.imageSrc}
+                                          alt=""
+                                          aria-hidden
+                                          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                                          loading="lazy"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+                                        <div className="absolute inset-x-0 bottom-0 p-4 text-left">
+                                          <div className="text-[12px] font-semibold text-white tracking-[0.02em]">
+                                            {item.featured?.title}
+                                          </div>
+                                          <div className="mt-1 text-[11px] leading-relaxed text-white/80 font-light">
+                                            {item.featured?.description}
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div className="mt-5 text-left">
+                                    <div
+                                      className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#3D9A42]/50 px-4 py-2.5 text-[11px] font-medium tracking-[0.12em] text-white/80 uppercase cursor-default shadow-sm"
+                                    >
+                                      <span>{item.featured?.buttonText}</span>
+                                      <ArrowUpRight size={13} />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            ) : (
+                              <div className="flex flex-col gap-0.5 text-left">
+                                {item.items?.map((sub, index) => {
+                                  const IconComponent = sub.icon;
+                                  return (
+                                    <motion.div
+                                      key={sub.label}
+                                      initial={reduceMotion ? false : { opacity: 0, x: -8 }}
+                                      animate={reduceMotion ? undefined : { opacity: 1, x: 0 }}
+                                      transition={{ delay: 0.05 + index * 0.04, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                                      className="group relative flex cursor-default items-center justify-between rounded-[14px] px-4 py-3 text-[0.92rem] font-medium tracking-[0.01em] text-[#555555]"
+                                      role="menuitem"
+                                    >
+                                      <span className="flex items-center gap-3">
+                                        {IconComponent && <IconComponent className="h-4 w-4 text-[#C8A96B]" />}
+                                        <span className="text-[13px] font-medium text-[#111111]">
+                                          {sub.label}
+                                        </span>
+                                      </span>
+                                    </motion.div>
+                                  );
+                                })}
+                              </div>
+                            )}
                           </motion.div>
                         ) : null}
                       </AnimatePresence>
@@ -325,7 +583,8 @@ export function Nav() {
               className="hidden items-center gap-5 lg:flex"
             >
               <span className="nav-cta cursor-default opacity-85" aria-disabled>
-                Plan showroombezoek
+                <span className="relative z-10">Plan showroombezoek</span>
+                <IconsaxArrowRight2 size={15} variant="Linear" className="relative z-10" />
               </span>
             </motion.div>
 
@@ -386,12 +645,12 @@ export function Nav() {
                       hidden: {},
                       visible: {
                         transition: {
-                          staggerChildren: 0.08,
-                          delayChildren: 0.08,
+                          staggerChildren: 0.05,
+                          delayChildren: 0.05,
                         },
                       },
                     }}
-                    className="w-full max-w-[18rem]"
+                    className="w-full max-w-[20rem]"
                   >
                     <motion.p
                       variants={{
@@ -402,50 +661,110 @@ export function Nav() {
                           transition: { duration: motionDuration.normal, ease: motionEase.premium },
                         },
                       }}
-                      className="nav-mobile-meta text-center"
+                      className="nav-mobile-meta text-center mb-6"
                     >
                       Navigatie
                     </motion.p>
-                    <div className="mt-10 flex flex-col items-center gap-6">
-                      {mobileLinks.map((l) => (
-                        l.href === "/" ? (
-                          <motion.a
-                            key={l.href}
-                            href={l.href}
-                            onClick={() => {
-                              setOpen(false);
-                            }}
-                            className="nav-mobile-link"
-                            data-active={isActiveLink(location.pathname, currentHash, l.href)}
-                            variants={{
-                              hidden: reduceMotion ? { opacity: 1 } : { opacity: 0, y: 18 },
-                              visible: {
-                                opacity: 1,
-                                y: 0,
-                                transition: { duration: motionDuration.premium, ease: motionEase.premium },
-                              },
-                            }}
-                          >
-                            {l.label}
-                          </motion.a>
-                        ) : (
-                          <motion.div
-                            key={l.href}
-                            className="nav-mobile-link cursor-default opacity-75"
-                            aria-disabled
-                            variants={{
-                              hidden: reduceMotion ? { opacity: 1 } : { opacity: 0, y: 18 },
-                              visible: {
-                                opacity: 1,
-                                y: 0,
-                                transition: { duration: motionDuration.premium, ease: motionEase.premium },
-                              },
-                            }}
-                          >
-                            {l.label}
-                          </motion.div>
-                        )
-                      ))}
+                    <div className="flex flex-col gap-1 w-full">
+                      <Accordion type="single" collapsible className="w-full text-left">
+                        {desktopMenu.map((item, index) => {
+                          const hasDropdown = Boolean(item.items?.length);
+                          if (!hasDropdown) {
+                            if (item.label === "Home") {
+                              return (
+                                <motion.div
+                                  key={item.label}
+                                  variants={{
+                                    hidden: reduceMotion ? { opacity: 1 } : { opacity: 0, y: 12 },
+                                    visible: {
+                                      opacity: 1,
+                                      y: 0,
+                                      transition: { duration: motionDuration.premium, ease: motionEase.premium },
+                                    },
+                                  }}
+                                >
+                                  <a
+                                    href={item.href}
+                                    onClick={() => setOpen(false)}
+                                    className="flex items-center justify-between py-3.5 text-[15px] font-medium tracking-[0.06em] text-[#111111] border-b border-[#E5DCD3]/30 hover:text-[#3D9A42]"
+                                  >
+                                    <span>{item.label}</span>
+                                    <LucideArrowRight className="h-4 w-4 text-[#C8A96B]" />
+                                  </a>
+                                </motion.div>
+                              );
+                            }
+
+                            return (
+                              <motion.div
+                                key={item.label}
+                                variants={{
+                                  hidden: reduceMotion ? { opacity: 1 } : { opacity: 0, y: 12 },
+                                  visible: {
+                                    opacity: 1,
+                                    y: 0,
+                                    transition: { duration: motionDuration.premium, ease: motionEase.premium },
+                                  },
+                                }}
+                              >
+                                <div
+                                  className="flex items-center justify-between py-3.5 text-[15px] font-medium tracking-[0.06em] text-[#5A5A5A]/60 border-b border-[#E5DCD3]/30 cursor-default"
+                                >
+                                  <span>{item.label}</span>
+                                </div>
+                              </motion.div>
+                            );
+                          }
+
+                          return (
+                            <motion.div
+                              key={item.label}
+                              variants={{
+                                hidden: reduceMotion ? { opacity: 1 } : { opacity: 0, y: 12 },
+                                visible: {
+                                  opacity: 1,
+                                  y: 0,
+                                  transition: { duration: motionDuration.premium, ease: motionEase.premium },
+                                },
+                              }}
+                            >
+                              <AccordionItem
+                                value={item.label.toLowerCase()}
+                                className="border-b border-[#E5DCD3]/30"
+                              >
+                                <AccordionTrigger className="py-3.5 text-[15px] font-medium tracking-[0.06em] text-[#111111] hover:no-underline hover:text-[#3D9A42] [&[data-state=open]]:text-[#3D9A42] [&[data-state=open]>svg]:rotate-180">
+                                  {item.label}
+                                </AccordionTrigger>
+                                <AccordionContent className="pb-4 pt-1">
+                                  <div className="flex flex-col gap-2 pl-3">
+                                    {item.items?.map((sub) => {
+                                      const SubIcon = sub.icon;
+                                      return (
+                                        <div
+                                          key={sub.label}
+                                          className="flex items-start gap-3 rounded-lg py-2.5 px-3 transition-colors duration-200"
+                                        >
+                                          <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-[#E5DCD3]/30 bg-white">
+                                            {SubIcon && <SubIcon className="h-4.5 w-4.5 text-[#C8A96B]" />}
+                                          </span>
+                                          <div className="flex flex-col text-left">
+                                            <span className="text-[13px] font-semibold text-[#111111]">
+                                              {sub.label}
+                                            </span>
+                                            <span className="text-[11px] text-[#5A5A5A]/80 leading-normal font-light">
+                                              {sub.description}
+                                            </span>
+                                          </div>
+                                        </div>
+                                      );
+                                    })}
+                                  </div>
+                                </AccordionContent>
+                              </AccordionItem>
+                            </motion.div>
+                          );
+                        })}
+                      </Accordion>
                     </div>
 
                     <motion.div
@@ -457,9 +776,9 @@ export function Nav() {
                           transition: { duration: motionDuration.premium, ease: motionEase.premium, delay: 0.06 },
                         },
                       }}
-                      className="mt-14"
+                      className="mt-10"
                     >
-                      <div className="nav-mobile-cta cursor-default opacity-75" aria-disabled>
+                      <div className="nav-mobile-cta cursor-default opacity-75 text-center" aria-disabled>
                         Start uw ontwerp
                       </div>
                     </motion.div>

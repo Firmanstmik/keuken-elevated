@@ -2,7 +2,7 @@ import { r as reactExports, j as jsxRuntimeExports } from "../_libs/react.mjs";
 import { d as useNavigate } from "../_libs/tanstack__react-router.mjs";
 import { F as FlowActionBar } from "./FlowActionBar-B7zqwiBn.mjs";
 import { e as masterBudgetRanges, f as masterCategories, m as masterBrands, j as masterStyles, A as ArrowLeft, l as logoKeuken, h as masterHotspotPositions, d as Circle, S as Search, a as ArrowRight } from "./master-config-data-Dym2j9sf.mjs";
-import { u as useConfigurator } from "./router-DMLCtDoQ.mjs";
+import { u as useConfigurator } from "./router-eUMbNvNS.mjs";
 import "../_libs/sonner.mjs";
 import { m as motion, A as AnimatePresence } from "../_libs/framer-motion.mjs";
 import "../_libs/tanstack__router-core.mjs";

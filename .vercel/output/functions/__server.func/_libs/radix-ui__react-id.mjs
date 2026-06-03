@@ -1,4 +1,4 @@
-import { r as reactExports, R as React } from "./react.mjs";
+import { r as reactExports, a as React } from "./react.mjs";
 import { u as useLayoutEffect2 } from "./@radix-ui/react-use-layout-effect+[...].mjs";
 var useReactId = React[" useId ".trim().toString()] || (() => void 0);
 var count = 0;

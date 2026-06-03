@@ -16,7 +16,7 @@ import "crypto";
 import "async_hooks";
 import "stream";
 import "../_libs/isbot.mjs";
-const appCss = "/assets/styles-n862kz9c.css";
+const appCss = "/assets/styles-LwgxR9Lt.css";
 function reportLovableError(error, context = {}) {
   if (typeof window === "undefined") return;
   window.__lovableEvents?.captureException?.(
@@ -239,23 +239,23 @@ function RootComponent() {
     /* @__PURE__ */ jsxRuntimeExports.jsx(Toaster, { richColors: true, position: "top-right" })
   ] }) });
 }
-const $$splitComponentImporter$5 = () => import("./style-OKfrNLtW.mjs");
+const $$splitComponentImporter$5 = () => import("./style-Do_ksLqe.mjs");
 const Route$5 = createFileRoute("/style")({
   component: lazyRouteComponent($$splitComponentImporter$5, "component")
 });
-const $$splitComponentImporter$4 = () => import("./moodboard-B2ROog8A.mjs");
+const $$splitComponentImporter$4 = () => import("./moodboard-CcoHuCh3.mjs");
 const Route$4 = createFileRoute("/moodboard")({
   component: lazyRouteComponent($$splitComponentImporter$4, "component")
 });
-const $$splitComponentImporter$3 = () => import("./consultation-B_db7d8n.mjs");
+const $$splitComponentImporter$3 = () => import("./consultation-CpS6SCDZ.mjs");
 const Route$3 = createFileRoute("/consultation")({
   component: lazyRouteComponent($$splitComponentImporter$3, "component")
 });
-const $$splitComponentImporter$2 = () => import("./configure-D9kjrMOw.mjs");
+const $$splitComponentImporter$2 = () => import("./configure-D6Hbs1dx.mjs");
 const Route$2 = createFileRoute("/configure")({
   component: lazyRouteComponent($$splitComponentImporter$2, "component")
 });
-const $$splitComponentImporter$1 = () => import("./brands-Dx2rncjw.mjs");
+const $$splitComponentImporter$1 = () => import("./brands-CZpLaDWr.mjs");
 const Route$1 = createFileRoute("/brands")({
   component: lazyRouteComponent($$splitComponentImporter$1, "component")
 });
@@ -329,7 +329,7 @@ const kc = {
     ]
   }
 };
-const $$splitComponentImporter = () => import("./index-Cp368FB2.mjs");
+const $$splitComponentImporter = () => import("./index-DXbxCRDQ.mjs");
 const Route = createFileRoute("/")({
   head: () => ({
     meta: [{

@@ -50,7 +50,7 @@ export function Brands() {
   }, [hoveredIndex, reduceMotion, tooltipLeft, tooltipTop]);
 
   return (
-    <section id="brands" className="section-shell pt-2 md:pt-4">
+    <section id="brands" className="section-shell pt-2 md:pt-4 !pb-8 md:!pb-10 border-b border-[rgba(200,169,107,0.15)]">
       <div className="site-container">
         <motion.div
           initial={reduceMotion ? false : "hidden"}
@@ -91,7 +91,7 @@ export function Brands() {
       <div className="relative mt-7 w-screen max-w-none left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-hidden">
         <div className="absolute inset-y-0 left-0 z-10 w-24 bg-[linear-gradient(90deg,#FAF8F4,rgba(250,248,244,0))]" />
         <div className="absolute inset-y-0 right-0 z-10 w-24 bg-[linear-gradient(270deg,#FAF8F4,rgba(250,248,244,0))]" />
-        <div className="border-y border-[rgba(200,169,107,0.15)] bg-[#FAF8F4] overflow-hidden">
+        <div className="overflow-hidden">
           <motion.div
             className="flex w-max items-center gap-12 px-10 py-6 will-change-transform"
             animate={reduceMotion ? undefined : { x: ["0%", "-50%"] }}

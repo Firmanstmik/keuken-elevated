@@ -1,9 +1,5 @@
 import { r as reactExports, j as jsxRuntimeExports } from "../_libs/react.mjs";
-import { c as clsx } from "../_libs/clsx.mjs";
-import { t as twMerge } from "../_libs/tailwind-merge.mjs";
-function cn(...inputs) {
-  return twMerge(clsx(inputs));
-}
+import { c as cn } from "./Nav-ux99a2cG.mjs";
 const Input = reactExports.forwardRef(
   ({ className, type, ...props }, ref) => {
     return /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -39,6 +35,5 @@ const Textarea = reactExports.forwardRef(
 Textarea.displayName = "Textarea";
 export {
   Input as I,
-  Textarea as T,
-  cn as c
+  Textarea as T
 };
