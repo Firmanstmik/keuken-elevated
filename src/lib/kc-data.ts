@@ -73,43 +73,49 @@ export const kc = {
   // Real kitchen styles
   styles: [
     {
-      id: "design",
+      id: "modern",
       n: "I",
-      t: "Design Keukens",
-      d: "Strakke lijnen, hoogwaardige materialen en oog voor detail. Leicht · Zampieri · Cucinesse · AI Küchen.",
+      t: "Modern",
+      d: "Rustige lijnen, greeploze fronten en een eigentijdse uitstraling.",
       img: `${wp}/IMG_0654-LEICHT-JAPANDI-scaled.webp`,
     },
     {
-      id: "modern",
+      id: "klassiek",
       n: "II",
-      t: "Moderne Keukens",
-      d: "Minimalistisch wit tot warme houttinten, volledig op maat met de nieuwste apparatuur.",
+      t: "Klassiek",
+      d: "Traditionele details en symmetrie gecombineerd met moderne luxe en comfort.",
       img: `${wp}/IMG_0642-1024x768.webp`,
     },
     {
       id: "landelijk",
       n: "III",
-      t: "Landelijk Klassiek",
-      d: "Tijdloze intimiteit. Natuurlijke materialen voor wie wonen serieus neemt.",
+      t: "Landelijk",
+      d: "Natuurlijke materialen en ambachtelijke afwerking voor een uitnodigende sfeer.",
       img: `${wp}/WhatsApp-Image-2023-09-20-at-13.53.27.webp`,
     },
     {
       id: "industrieel",
       n: "IV",
-      t: "Industriële Look",
-      d: "Robuust karakter. Staal, beton en hout in architectonische harmonie.",
+      t: "Industrieel",
+      d: "Donkere elementen, ruwe materialen en krachtige contrasten in harmonie.",
       img: `${wp}/WhatsApp-Image-2023-09-20-at-13.53.25.webp`,
     },
   ],
 
   // Real team
   team: [
-    { name: "Hans", role: "Keukenadviseur", email: "hans@keuken-centrum.nl",
-      bio: "Mijn kracht is om al luisterend en adviserend samen met de klant tot een keukenkeuze te komen die recht doet aan de woonwensen." },
-    { name: "Danny", role: "Keukenadviseur", email: "danny@keuken-centrum.nl",
-      bio: "Samen maken we uw woonwensen concreet en helder, zodat u nog jaren kunt genieten van een keuken die perfect past." },
-    { name: "Frank", role: "Apparatuurspecialist", email: "frank@keuken-centrum.nl",
-      bio: "Vakidioot en liefhebber van A-merken apparatuur. Kom langs en laat mij u inspireren met wat er allemaal mogelijk is." },
+    {
+      name: "Hans", role: "Keukenadviseur", email: "hans@keuken-centrum.nl",
+      bio: "Mijn kracht is om al luisterend en adviserend samen met de klant tot een keukenkeuze te komen die recht doet aan de woonwensen."
+    },
+    {
+      name: "Danny", role: "Keukenadviseur", email: "danny@keuken-centrum.nl",
+      bio: "Samen maken we uw woonwensen concreet en helder, zodat u nog jaren kunt genieten van een keuken die perfect past."
+    },
+    {
+      name: "Frank", role: "Apparatuurspecialist", email: "frank@keuken-centrum.nl",
+      bio: "Vakidioot en liefhebber van A-merken apparatuur. Kom langs en laat mij u inspireren met wat er allemaal mogelijk is."
+    },
   ],
 
   // Real services
@@ -131,10 +137,10 @@ export const kc = {
   config: {
     brands: ["Leicht", "Nobilia", "AI Küchen", "Zampieri", "Cucinesse"],
     styles: [
-      { id: "design", label: "Design", hint: "Strak · monolithisch" },
-      { id: "modern", label: "Modern", hint: "Licht · functioneel" },
-      { id: "landelijk", label: "Landelijk", hint: "Warm · tijdloos" },
-      { id: "industrieel", label: "Industrieel", hint: "Robuust · stoer" },
+      { id: "modern", label: "Modern", hint: "Minimalistisch · strak" },
+      { id: "klassiek", label: "Klassiek", hint: "Elegant · tijdloos" },
+      { id: "landelijk", label: "Landelijk", hint: "Warm · natuurlijk" },
+      { id: "industrieel", label: "Industrieel", hint: "Stoer · urban" },
     ],
     layouts: [
       { id: "rechte", label: "Rechte wand" },
@@ -151,17 +157,19 @@ export const kc = {
       { id: "kashmir", label: "Kashmir Beige", color: "#C9BFA8" },
       { id: "klei", label: "Klei Grijs", color: "#8E8B82" },
     ],
-    worktops: ["Silestone", "Dekton", "Neolith", "Sensa"],
+    worktops: ["Silestone", "Dekton", "Neolith", "Sensa", "Massief Eiken", "Corian"],
     appliances: ["Siemens studioLine", "Gaggenau 200 Serie", "Miele Generation 7000", "AEG Mastery", "Bosch Serie 8"],
-    sinks: ["Onderbouw RVS", "Composiet Antraciet", "Naadloos in werkblad"],
+    sinks: ["Onderbouw RVS", "Composiet Antraciet", "Keramisch Wit", "Naadloos in werkblad"],
     quooker: ["Geen", "Quooker Fusion", "Quooker Flex", "Quooker CUBE"],
     bora: ["Geen", "BORA Pure", "BORA X Pure", "BORA Classic 2.0", "BORA Professional"],
-    accessories: ["LED-verlichting", "Soft-close lades", "Kruidenrek", "Cargo-systeem", "Hoekoplossing carrousel"],
+    grepen: ["Greeploos", "Ingefreesde greep", "RVS beugelgreep", "Messing knop", "Leren lus"],
+    verlichting: ["LED onder kastverlichting", "Inbouw spots", "Hanglampen", "Sfeerverlichting pakket"],
+    accessories: ["Soft-close lades", "Kruidenrek", "Cargo-systeem", "Hoekoplossing carrousel"],
     budgets: [
       { id: "10-20", label: "€ 10.000 tot € 20.000" },
       { id: "20-35", label: "€ 20.000 tot € 35.000" },
       { id: "35-55", label: "€ 35.000 tot € 55.000" },
-      { id: "55+",  label: "€ 55.000+" },
+      { id: "55+", label: "€ 55.000+" },
     ],
   },
 };

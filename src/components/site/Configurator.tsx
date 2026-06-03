@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,6 +7,18 @@ import { ArrowLeft, ArrowRight, Check, House, Mail, Phone } from "@/components/u
 import { kc } from "@/lib/kc-data";
 import { cn } from "@/lib/utils";
 import { fadeUp, motionViewport, revealImage, staggerHeader, staggerList } from "@/lib/motion";
+
+// Import base configurator webp images
+import modernBase from "@/assets/configurator/modern-base.webp";
+import klassiekBase from "@/assets/configurator/klassiek-base.webp";
+import landelijkBase from "@/assets/configurator/landelijk-base.webp";
+import industrieelBase from "@/assets/configurator/industrieel-base.webp";
+
+// Import style-specific hotspot JSON configurations
+import modernHotspots from "@/data/hotspots/modern-hotspots.json";
+import klassiekHotspots from "@/data/hotspots/klassiek-hotspots.json";
+import landelijkHotspots from "@/data/hotspots/landelijk-hotspots.json";
+import industrieelHotspots from "@/data/hotspots/industrieel-hotspots.json";
 
 type WizardStep = "brand" | "style" | "configure" | "moodboard" | "consultation";
 
@@ -24,11 +36,11 @@ type ConsultationForm = {
 };
 
 const wizardSteps: Array<{ id: WizardStep; number: string; label: string; title: string }> = [
-  { id: "brand", number: "01", label: "Brand", title: "Choose Your Brand" },
-  { id: "style", number: "02", label: "Style", title: "Choose Your Style" },
-  { id: "configure", number: "03", label: "Configure", title: "Configure Kitchen" },
-  { id: "moodboard", number: "04", label: "Moodboard", title: "Review Proposal" },
-  { id: "consultation", number: "05", label: "Consult", title: "Book Consultation" },
+  { id: "brand", number: "01", label: "Merk", title: "Kies uw merk" },
+  { id: "style", number: "02", label: "Stijl", title: "Kies uw stijl" },
+  { id: "configure", number: "03", label: "Configuratie", title: "Configureer uw keuken" },
+  { id: "moodboard", number: "04", label: "Voorstel", title: "Uw ontwerpvoorstel" },
+  { id: "consultation", number: "05", label: "Advies", title: "Plan uw adviesgesprek" },
 ];
 
 const brandVisuals: Record<string, string> = {
@@ -39,11 +51,43 @@ const brandVisuals: Record<string, string> = {
   cucinesse: kc.hero.alt4,
 };
 
+const styleBases: Record<string, string> = {
+  modern: modernBase,
+  klassiek: klassiekBase,
+  landelijk: landelijkBase,
+  industrieel: industrieelBase,
+};
+
+const categoryIdToHotspotKey: Record<string, string> = {
+  finishes: "front",
+  worktops: "werkblad",
+  sinks: "spoelbak",
+  appliances: "apparatuur",
+  quooker: "quooker",
+  bora: "bora",
+  grepen: "grepen",
+  verlichting: "verlichting",
+};
+
+const hotspotsMap: Record<string, Record<string, { x: string; y: string }>> = {
+  modern: modernHotspots,
+  klassiek: klassiekHotspots,
+  landelijk: landelijkHotspots,
+  industrieel: industrieelHotspots,
+};
+
 const styleKeywords: Record<string, string[]> = {
-  design: ["Monolithisch", "Architectonisch", "Premium"],
-  modern: ["Minimal", "Functioneel", "Licht"],
-  landelijk: ["Warm", "Tijdloos", "Natuurlijk"],
-  industrieel: ["Robuust", "Stoer", "Karakter"],
+  modern: ["Minimalistisch", "Strak", "Architectonisch"],
+  klassiek: ["Elegant", "Sfeervol", "Tijdloos"],
+  landelijk: ["Warm", "Karaktervol", "Natuurlijk"],
+  industrieel: ["Stoer", "Robuust", "Urban"],
+};
+
+const styleProposalTitles: Record<string, string> = {
+  modern: "Uw Modern Droomkeuken",
+  klassiek: "Uw Klassieke Droomkeuken",
+  landelijk: "Uw Landelijke Droomkeuken",
+  industrieel: "Uw Industriële Droomkeuken",
 };
 
 const swatchPalette = [
@@ -56,16 +100,6 @@ const swatchPalette = [
   "#D9D3C7",
   "#4F7A4D",
 ] as const;
-
-const hotspotPositions: Record<string, { x: string; y: string }> = {
-  layouts: { x: "22%", y: "34%" },
-  finishes: { x: "36%", y: "52%" },
-  worktops: { x: "56%", y: "56%" },
-  appliances: { x: "18%", y: "28%" },
-  quooker: { x: "69%", y: "48%" },
-  bora: { x: "50%", y: "52%" },
-  budgets: { x: "76%", y: "20%" },
-};
 
 function slugify(value: string) {
   return value
@@ -92,12 +126,168 @@ function mapOptions(items: Array<string | { id: string; label: string; color?: s
   });
 }
 
+// Smart placement: pick the direction with most viewport room
+function getPlacement(px: number, py: number): "top" | "bottom" | "left" | "right" {
+  if (px > 65) return "left";
+  if (px < 35) return "right";
+  if (py < 40) return "bottom";
+  return "top";
+}
+
+function HotspotTooltip({
+  x,
+  y,
+  title,
+  description,
+  visible,
+  dotSize,
+}: {
+  x: string;
+  y: string;
+  title: string;
+  description: string;
+  visible: boolean;
+  dotSize: number;
+}) {
+  const px = parseFloat(x);
+  const py = parseFloat(y);
+  const placement = useMemo(() => getPlacement(px, py), [px, py]);
+
+  // Geometry constants (px)
+  const DOT_R = dotSize / 2;      // dynamic visual radius of dot
+  const STEM = 22;                 // straight stem from dot edge
+  const CARD_W = 210;
+  const cardOffset = DOT_R + STEM + 4;
+
+  // Build curved "gagang pintu" SVG path
+  // Origin (0,0) = hotspot center
+  let pathD = "";
+  let attachX = 0;
+  let attachY = 0;
+
+  if (placement === "right") {
+    const x1 = DOT_R; const x2 = DOT_R + STEM;
+    pathD = `M ${x1} 0 L ${x2} 0`;
+    attachX = x2; attachY = 0;
+  } else if (placement === "left") {
+    const x1 = -DOT_R; const x2 = -(DOT_R + STEM);
+    pathD = `M ${x1} 0 L ${x2} 0`;
+    attachX = x2; attachY = 0;
+  } else if (placement === "bottom") {
+    const y1 = DOT_R; const y2 = DOT_R + STEM;
+    pathD = `M 0 ${y1} L 0 ${y2}`;
+    attachX = 0; attachY = y2;
+  } else {
+    // top
+    const y1 = -DOT_R; const y2 = -(DOT_R + STEM);
+    pathD = `M 0 ${y1} L 0 ${y2}`;
+    attachX = 0; attachY = y2;
+  }
+
+  // Card position relative to wrapper (0,0) = hotspot center
+  const cardStyles: Record<string, { style: React.CSSProperties; tr: string }> = {
+    right:  { style: { left: cardOffset, top: 0 },    tr: "-translate-y-1/2" },
+    left:   { style: { right: cardOffset, top: 0 },   tr: "-translate-y-1/2" },
+    top:    { style: { bottom: cardOffset, left: 0 },  tr: "-translate-x-1/2" },
+    bottom: { style: { top: cardOffset, left: 0 },     tr: "-translate-x-1/2" },
+  };
+  const { style: cardStyle, tr: cardTr } = cardStyles[placement];
+
+  return (
+    <AnimatePresence>
+      {visible && (
+        <motion.div
+          className="absolute pointer-events-none z-50"
+          style={{ left: 0, top: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.12 }}
+        >
+          {/* SVG connector — zero-size at hotspot center, overflow:visible */}
+          <svg
+            aria-hidden="true"
+            className="absolute pointer-events-none"
+            style={{ left: 0, top: 0, width: 0, height: 0, overflow: "visible" }}
+          >
+            <motion.path
+              d={pathD}
+              fill="none"
+              stroke="#D4AF37"
+              strokeWidth="1.2"
+              strokeOpacity="0.55"
+              strokeLinecap="round"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              exit={{ pathLength: 0 }}
+              transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            />
+            {/* Anchor dot at card attachment point */}
+            <motion.circle
+              cx={attachX}
+              cy={attachY}
+              r="1.5"
+              fill="#D4AF37"
+              fillOpacity="0.6"
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0 }}
+              transition={{ delay: 0.14, duration: 0.18 }}
+            />
+          </svg>
+
+          {/* Compact tooltip card */}
+          <motion.div
+            className={`absolute pointer-events-none ${cardTr}`}
+            style={{ ...cardStyle, width: CARD_W }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.94 }}
+            transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div className="bg-[rgba(9,9,9,0.96)] border border-[rgba(212,175,55,0.18)] rounded-[12px] shadow-[0_12px_36px_rgba(0,0,0,0.6)] backdrop-blur-[20px] px-4 py-3">
+              <span className="block text-[9px] font-semibold uppercase tracking-[0.24em] text-[#D4AF37] mb-1.5">
+                CONFIGURATIE
+              </span>
+              <h4 className="font-serif text-[13px] font-semibold leading-snug text-white tracking-[-0.01em] uppercase">
+                {title}
+              </h4>
+              <div className="h-px w-full bg-[rgba(212,175,55,0.1)] my-2" />
+              <p className="text-[11px] leading-[1.6] text-zinc-400">
+                {description}
+              </p>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
 export function Configurator() {
   const reduceMotion = useReducedMotion();
   const [step, setStep] = useState<WizardStep>("brand");
   const [selectedBrand, setSelectedBrand] = useState<(typeof kc.kitchenBrands)[number] | null>(null);
   const [selectedStyle, setSelectedStyle] = useState<(typeof kc.styles)[number] | null>(null);
-  const [activeCategory, setActiveCategory] = useState("layouts");
+  const [activeCategory, setActiveCategory] = useState("finishes");
+  const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
+  const [isTouch, setIsTouch] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (window.matchMedia("(pointer: coarse)").matches) {
+        setIsTouch(true);
+        return;
+      }
+      const handleTouch = () => {
+        setIsTouch(true);
+        window.removeEventListener("touchstart", handleTouch);
+      };
+      window.addEventListener("touchstart", handleTouch, { passive: true });
+      return () => window.removeEventListener("touchstart", handleTouch);
+    }
+  }, []);
+
   const [consultationSent, setConsultationSent] = useState(false);
   const [consultation, setConsultation] = useState<ConsultationForm>({
     name: "",
@@ -110,16 +300,8 @@ export function Configurator() {
   const configureCategories = useMemo(
     () => [
       {
-        id: "layouts",
-        label: "Layout",
-        options: mapOptions(
-          kc.config.layouts.map((item) => ({ id: item.id, label: item.label })),
-          0,
-        ),
-      },
-      {
         id: "finishes",
-        label: "Front Finish",
+        label: "Front",
         options: kc.config.finishes.map((item) => ({
           id: item.id,
           label: item.label,
@@ -128,12 +310,17 @@ export function Configurator() {
       },
       {
         id: "worktops",
-        label: "Worktop",
+        label: "Werkblad",
         options: mapOptions(kc.config.worktops, 2),
       },
       {
+        id: "sinks",
+        label: "Spoelbak",
+        options: mapOptions(kc.config.sinks, 3),
+      },
+      {
         id: "appliances",
-        label: "Appliances",
+        label: "Apparatuur",
         options: mapOptions(kc.config.appliances, 4),
       },
       {
@@ -143,8 +330,18 @@ export function Configurator() {
       },
       {
         id: "bora",
-        label: "BORA",
+        label: "Bora",
         options: mapOptions(kc.config.bora, 5),
+      },
+      {
+        id: "grepen",
+        label: "Grepen",
+        options: mapOptions(kc.config.grepen, 6),
+      },
+      {
+        id: "verlichting",
+        label: "Verlichting",
+        options: mapOptions(kc.config.verlichting, 7),
       },
       {
         id: "budgets",
@@ -166,10 +363,17 @@ export function Configurator() {
   const selectedBudget = selections.budgets?.label ?? kc.config.budgets[1].label;
   const currentStepIndex = wizardSteps.findIndex((item) => item.id === step);
   const progressWidth = `${((currentStepIndex + 1) / wizardSteps.length) * 100}%`;
+
   const previewImage =
-    (selectedStyle && selectedStyle.img) ||
+    (selectedStyle && styleBases[selectedStyle.id]) ||
     (selectedBrand && brandVisuals[selectedBrand.id]) ||
     kc.hero.main;
+
+  const hotspotData = useMemo(() => {
+    if (!selectedStyle) return {};
+    return hotspotsMap[selectedStyle.id] || {};
+  }, [selectedStyle]);
+
   const consultationValid = consultation.name.trim() && consultation.email.trim();
 
   const canOpenStep = (target: WizardStep) => {
@@ -209,18 +413,16 @@ export function Configurator() {
             <div className="max-w-[38rem]">
               <motion.div variants={reduceMotion ? undefined : fadeUp} className="section-label-row">
                 <span className="luxe-rule" />
-                <span className="eyebrow">Configurator Journey</span>
+                <span className="eyebrow">Ontwerp Journey</span>
               </motion.div>
               <motion.h2 variants={reduceMotion ? undefined : fadeUp} className="heading-2">
-                Configurator sekarang
+                Configureer uw
                 <br />
-                mengikuti alur repo GitHub.
+                droomkeuken.
               </motion.h2>
             </div>
             <motion.p variants={reduceMotion ? undefined : fadeUp} className="body-md max-w-[30rem]">
-              Pilih brand, tentukan stijl, konfigurasi detail utama, review moodboard, lalu kirim
-              permintaan consultation. Flow ini dibuat agar terasa seperti experience di repo
-              master, tetapi tetap memakai konten dan data Keuken-Centrum Utrecht.
+              Kies uw favoriete premium keukenmerk, selecteer de architectonische stijlrichting die bij uw woning past en configureer de materialen, apparatuur en verlichting tot in detail.
             </motion.p>
           </motion.div>
 
@@ -229,14 +431,14 @@ export function Configurator() {
             whileInView="visible"
             viewport={motionViewport}
             variants={reduceMotion ? undefined : fadeUp}
-            className="surface-card overflow-hidden"
+            className="surface-card rounded-xl"
           >
             <div className="border-b border-[var(--border)] px-5 py-5 md:px-8">
               <div className="flex flex-col gap-5">
                 <div className="flex items-center justify-between gap-4">
                   <div>
                     <p className="caption-text text-[var(--accent)]">
-                      Step {wizardSteps[currentStepIndex].number} of 05
+                      Stap {wizardSteps[currentStepIndex].number} van 05
                     </p>
                     <h3 className="mt-2 font-serif text-[clamp(1.8rem,3vw,2.4rem)] leading-none tracking-[-0.035em] text-[var(--foreground)]">
                       {wizardSteps[currentStepIndex].title}
@@ -310,8 +512,7 @@ export function Configurator() {
                   >
                     <div className="max-w-[34rem]">
                       <p className="body-md">
-                        Selecteer eerst het keukenmerk dat het best past bij uw woonwensen. Net als
-                        in de GitHub configurator vormt dit de basis van alle volgende keuzes.
+                        Selecteer eerst het keukenmerk dat het best past bij uw woonwensen. Dit vormt het fundament voor de verdere samenstelling van uw droomkeuken.
                       </p>
                     </div>
 
@@ -375,8 +576,7 @@ export function Configurator() {
                   >
                     <div className="max-w-[34rem]">
                       <p className="body-md">
-                        Stap twee volgt de repository-flow: kies de stijlrichting die uw keuken
-                        architectonisch definieert, voordat u de materialen en apparatuur instelt.
+                        Hieronder vindt u de vier ontwerpstijlen die wij aanbieden. Van strak minimalistisch tot warm en karaktervol: iedere stijl vormt de basis voor uw persoonlijke keukenontwerp.
                       </p>
                     </div>
 
@@ -388,7 +588,7 @@ export function Configurator() {
                     >
                       {kc.styles.map((style) => {
                         const active = selectedStyle?.id === style.id;
-                        const keywords = styleKeywords[style.id] ?? ["Premium", "Warm", "Refined"];
+                        const keywords = styleKeywords[style.id] ?? ["Premium", "Warm", "Verfijnd"];
 
                         return (
                           <motion.button
@@ -411,7 +611,7 @@ export function Configurator() {
                             />
                             <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(17,17,17,0.08)_0%,rgba(17,17,17,0.76)_100%)]" />
                             <div className="absolute inset-x-0 bottom-0 p-5">
-                              <p className="caption-text text-[var(--accent)]">Style Direction</p>
+                              <p className="caption-text text-[var(--accent)]">Stijlrichting</p>
                               <h4 className="mt-3 font-serif text-[1.9rem] leading-none tracking-[-0.03em] text-white">
                                 {style.t}
                               </h4>
@@ -448,81 +648,142 @@ export function Configurator() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -10 }}
                     transition={{ duration: 0.35 }}
-                    className="grid gap-5 xl:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)]"
+                    className="grid gap-5 xl:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] items-start"
                   >
+                    {/* Left Column: Interactive Base Configurator */}
                     <motion.div
                       variants={reduceMotion ? undefined : revealImage}
                       className="overflow-hidden border border-[rgba(255,255,255,0.08)] bg-[var(--ink)] p-4 text-white shadow-[var(--shadow-dark)] md:p-5"
                     >
                       <div className="flex items-center justify-between border-b border-[rgba(255,255,255,0.08)] pb-4">
                         <div>
-                          <p className="caption-text text-[rgba(247,245,242,0.44)]">Interactive Preview</p>
+                          <p className="caption-text text-[rgba(247,245,242,0.44)]">Interactieve Preview</p>
                           <p className="mt-2 font-serif text-[1.8rem] leading-none tracking-[-0.03em] text-white">
-                            Configure & preview
+                            Configureer & preview
                           </p>
                         </div>
                         <p className="text-[0.72rem] uppercase tracking-[0.18em] text-[var(--accent)]">
-                          {configuredItems.length}/{configureCategories.length} selected
+                          {configuredItems.length}/{configureCategories.length} geselecteerd
                         </p>
                       </div>
 
-                      <div className="mt-4 grid gap-4 lg:grid-cols-[minmax(0,1fr)_240px]">
+                      <div className="mt-4 grid gap-4">
                         <div className="relative overflow-hidden border border-white/8">
                           <img
                             src={previewImage}
                             alt="Configurator preview"
-                            className="aspect-[1.18/1] h-full w-full object-cover"
+                            className="aspect-[1.38/1] h-full w-full object-cover transition-all duration-500"
                             loading="lazy"
                           />
-                          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(17,17,17,0.04)_0%,rgba(17,17,17,0.52)_100%)]" />
+                          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(17,17,17,0.02)_0%,rgba(17,17,17,0.45)_100%)]" />
+
+                          {/* Premium minimal hotspots — hover shows tooltip, click activates category panel */}
                           {configureCategories.map((category) => {
-                            const hotspot = hotspotPositions[category.id];
+                            const hotspotKey = categoryIdToHotspotKey[category.id];
+                            const hotspot = hotspotKey ? hotspotData[hotspotKey] : null;
+                            if (!hotspot) return null;
+
                             const selected = selections[category.id];
-                            const active = activeCategory === category.id;
+                            const isActive = activeCategory === category.id;
+                            const isHovered = hoveredCategory === category.id;
+                            const anyHovered = hoveredCategory !== null;
+
+                            // Dot size: 18 default → 22 hover → 24 active
+                            const dotSize = isActive ? 24 : isHovered ? 22 : 18;
 
                             return (
-                              <button
+                              <div
                                 key={category.id}
-                                type="button"
-                                onClick={() => setActiveCategory(category.id)}
-                                className="absolute -translate-x-1/2 -translate-y-1/2"
+                                className="absolute z-20"
                                 style={{ left: hotspot.x, top: hotspot.y }}
+                                onMouseEnter={() => setHoveredCategory(category.id)}
+                                onMouseLeave={() => setHoveredCategory(null)}
                               >
-                                <span
-                                  className={cn(
-                                    "flex h-8 w-8 items-center justify-center rounded-full border-2 backdrop-blur-md transition-all duration-300",
-                                    active
-                                      ? "border-[var(--accent)] bg-[var(--accent)] text-white"
-                                      : "border-white/65 bg-white/18 text-white",
-                                  )}
+                                {/* Hotspot button — centered on coordinate */}
+                                <button
+                                  type="button"
+                                  onClick={() => setActiveCategory(category.id)}
+                                  className="absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+                                  style={{
+                                    transition: "opacity 0.3s ease",
+                                    opacity: anyHovered && !isHovered ? 0.3 : 1,
+                                  }}
+                                  aria-label={`Configureer ${category.label}`}
                                 >
-                                  {selected?.color ? (
+                                  {/* Active ping ring */}
+                                  {isActive && (
                                     <span
-                                      className="h-2.5 w-2.5 rounded-full border border-white/70"
-                                      style={{ backgroundColor: selected.color }}
+                                      className="absolute rounded-full animate-ping pointer-events-none"
+                                      style={{
+                                        inset: -5,
+                                        background: "rgba(212,175,55,0.18)",
+                                      }}
                                     />
-                                  ) : (
-                                    <span className="h-2 w-2 rounded-full bg-white/80" />
                                   )}
-                                </span>
-                              </button>
+
+                                  {/* Dot */}
+                                  <div
+                                    style={{
+                                      width: dotSize,
+                                      height: dotSize,
+                                      borderRadius: "50%",
+                                      border: `1px solid rgba(212,175,55,${isHovered || isActive ? 0.75 : 0.45})`,
+                                      backgroundColor: isHovered || isActive
+                                        ? "rgba(212,175,55,0.18)"
+                                        : "rgba(0,0,0,0.58)",
+                                      backdropFilter: "blur(6px)",
+                                      boxShadow: isHovered || isActive
+                                        ? "0 0 12px rgba(212,175,55,0.3)"
+                                        : "0 2px 8px rgba(0,0,0,0.35)",
+                                      display: "flex",
+                                      alignItems: "center",
+                                      justifyContent: "center",
+                                      transition: "all 0.22s cubic-bezier(.22,1,.36,1)",
+                                    }}
+                                  >
+                                    {/* Inner dot — selection color or white/gold */}
+                                    <span
+                                      style={{
+                                        width: isHovered ? 7 : 6,
+                                        height: isHovered ? 7 : 6,
+                                        borderRadius: "50%",
+                                        backgroundColor: selected?.color ?? (isActive ? "#D4AF37" : "rgba(255,255,255,0.9)"),
+                                        border: selected?.color ? "1px solid rgba(255,255,255,0.55)" : "none",
+                                        boxShadow: selected?.color ? "0 1px 4px rgba(0,0,0,0.3)" : "none",
+                                        transition: "all 0.22s ease",
+                                      }}
+                                    />
+                                  </div>
+                                </button>
+
+                                {/* Smart-positioned hover tooltip */}
+                                <HotspotTooltip
+                                  x={hotspot.x}
+                                  y={hotspot.y}
+                                  title={category.label}
+                                  description={selected?.label ?? "Klik om uw voorkeur te bepalen."}
+                                  visible={isHovered || (isActive && isTouch)}
+                                  dotSize={dotSize}
+                                />
+                              </div>
                             );
                           })}
-                          <div className="absolute inset-x-0 bottom-0 p-5">
-                            <p className="caption-text text-white/58">
-                              {selectedBrand?.name ?? "Brand"} · {selectedStyle?.t ?? "Style"}
+
+                          <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-black/75 to-transparent">
+                            <p className="caption-text text-white/60">
+                              {selectedBrand?.name ?? "Merk"} · {selectedStyle?.t ?? "Stijl"}
                             </p>
-                            <p className="mt-2 max-w-[18rem] font-serif text-[1.8rem] leading-none tracking-[-0.03em] text-white">
-                              Een eerste keukenvoorstel
+                            <p className="mt-2 max-w-[20rem] font-serif text-[1.8rem] leading-none tracking-[-0.03em] text-white">
+                              Uw persoonlijke stijl,
                               <br />
-                              dat voorbereid aanvoelt.
+                              tot in detail verfijnd.
                             </p>
                           </div>
                         </div>
 
-                        <div className="border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.03)] px-4 py-4">
-                          <p className="caption-text text-[rgba(247,245,242,0.44)]">Configuration</p>
-                          <div className="mt-3 space-y-2">
+                        {/* Category selector strip */}
+                        <div className="border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.02)] p-2">
+                          <div className="flex flex-wrap gap-1.5">
                             {configureCategories.map((category) => {
                               const active = activeCategory === category.id;
                               const selected = selections[category.id];
@@ -533,25 +794,20 @@ export function Configurator() {
                                   type="button"
                                   onClick={() => setActiveCategory(category.id)}
                                   className={cn(
-                                    "flex w-full items-center justify-between border px-3 py-3 text-left transition-all duration-300",
+                                    "flex items-center gap-2 px-3.5 py-2 text-xs transition-all duration-300 border",
                                     active
-                                      ? "border-[rgba(176,141,87,0.42)] bg-[rgba(176,141,87,0.1)]"
-                                      : "border-[rgba(255,255,255,0.08)] bg-transparent",
+                                      ? "border-[rgba(176,141,87,0.4)] bg-[rgba(176,141,87,0.15)] text-white"
+                                      : "border-transparent text-white/65 hover:text-white hover:bg-white/5"
                                   )}
                                 >
-                                  <div>
-                                    <p className="text-[0.7rem] uppercase tracking-[0.18em] text-[rgba(247,245,242,0.44)]">
-                                      {category.label}
-                                    </p>
-                                    <p className="mt-1 text-sm tracking-[-0.02em] text-white">
-                                      {selected?.label ?? "Not selected"}
-                                    </p>
-                                  </div>
+                                  <span>{category.label}</span>
                                   {selected?.color ? (
                                     <span
-                                      className="h-3 w-3 rounded-full border border-white/60"
+                                      className="h-2 w-2 rounded-full border border-white/40"
                                       style={{ backgroundColor: selected.color }}
                                     />
+                                  ) : selected ? (
+                                    <Check className="h-3 w-3 text-[var(--accent)]" />
                                   ) : null}
                                 </button>
                               );
@@ -561,19 +817,22 @@ export function Configurator() {
                       </div>
                     </motion.div>
 
-                    <motion.div variants={reduceMotion ? undefined : fadeUp} className="surface-card p-5 md:p-6">
+                    {/* Right Column: Option selection & Sticky Summary */}
+                    <motion.div
+                      variants={reduceMotion ? undefined : fadeUp}
+                      className="surface-card p-5 md:p-6 xl:sticky xl:top-8 xl:self-start transition-all"
+                    >
                       <div className="border-b border-[var(--border)] pb-4">
                         <p className="caption-text text-[var(--accent)]">{activeCategoryData.label}</p>
                         <h4 className="mt-2 font-serif text-[1.9rem] leading-none tracking-[-0.03em] text-[var(--foreground)]">
                           Selecteer uw voorkeur
                         </h4>
                         <p className="mt-3 text-sm leading-7 text-[var(--text-soft)]">
-                          Deze stap volgt het hart van de GitHub configurator: u activeert een
-                          categorie en kiest direct een concrete optie voor uw voorstel.
+                          Kies uit onze speciaal geselecteerde premium opties om de uitstraling van uw keuken te bepalen.
                         </p>
                       </div>
 
-                      <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                      <div className="mt-5 grid gap-3 sm:grid-cols-2 max-h-[300px] overflow-y-auto pr-1">
                         {activeCategoryData.options.map((option) => {
                           const active = selections[activeCategoryData.id]?.id === option.id;
 
@@ -588,22 +847,22 @@ export function Configurator() {
                                 }))
                               }
                               className={cn(
-                                "border p-4 text-left transition-all duration-300",
+                                "border p-4 text-left transition-all duration-300 rounded-sm relative overflow-hidden",
                                 active
                                   ? "border-[var(--accent)] bg-[rgba(176,141,87,0.08)]"
                                   : "border-[var(--border)] bg-white/60 hover:border-[var(--accent)]/60",
                               )}
                             >
                               <div
-                                className="mb-3 h-12 w-full border border-[var(--border)]"
+                                className="mb-3 h-10 w-full border border-[var(--border)] rounded-sm"
                                 style={{ backgroundColor: option.color ?? "#E9E2D5" }}
                               />
-                              <p className="text-sm tracking-[-0.02em] text-[var(--foreground)]">
+                              <p className="text-sm font-medium tracking-[-0.02em] text-[var(--foreground)]">
                                 {option.label}
                               </p>
                               {active ? (
-                                <p className="mt-2 text-[0.68rem] uppercase tracking-[0.18em] text-[var(--accent)]">
-                                  Selected
+                                <p className="mt-2 text-[0.65rem] uppercase tracking-[0.18em] text-[var(--accent)] font-semibold flex items-center gap-1">
+                                  <Check className="h-3.5 w-3.5" /> Geselecteerd
                                 </p>
                               ) : null}
                             </button>
@@ -611,19 +870,25 @@ export function Configurator() {
                         })}
                       </div>
 
+                      {/* Summary Section */}
                       <div className="mt-6 border-t border-[var(--border)] pt-5">
-                        <p className="caption-text text-[var(--accent)]">Current summary</p>
-                        <div className="mt-4 grid gap-3">
-                          <SummaryRow label="Brand" value={selectedBrand?.name} />
-                          <SummaryRow label="Style" value={selectedStyle?.t} />
-                          {configuredItems.map((item) => (
-                            <SummaryRow
-                              key={item.id}
-                              label={item.label}
-                              value={selections[item.id]?.label}
-                              color={selections[item.id]?.color}
-                            />
-                          ))}
+                        <p className="caption-text text-[var(--accent)]">Actueel overzicht</p>
+                        <div className="mt-4 grid gap-3 max-h-[220px] overflow-y-auto pr-1">
+                          <SummaryRow label="Merk" value={selectedBrand?.name} />
+                          <SummaryRow label="Stijl" value={selectedStyle?.t} />
+                          {configureCategories.map((category) => {
+                            if (category.id === "budgets") return null; // We display budget separately or at the bottom
+                            const sel = selections[category.id];
+                            return (
+                              <SummaryRow
+                                key={category.id}
+                                label={category.label}
+                                value={sel?.label}
+                                color={sel?.color}
+                              />
+                            );
+                          })}
+                          <SummaryRow label="Budget" value={selections.budgets?.label} />
                         </div>
                       </div>
                     </motion.div>
@@ -648,13 +913,13 @@ export function Configurator() {
                           loading="lazy"
                         />
                         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(17,17,17,0.08)_0%,rgba(17,17,17,0.68)_100%)]" />
-                        <div className="absolute inset-x-0 bottom-0 p-6">
-                          <p className="caption-text text-[var(--accent)]">Your design proposal</p>
+                        <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+                          <p className="caption-text text-[var(--accent)]">Uw persoonlijk keukenontwerp</p>
                           <h4 className="mt-3 font-serif text-[2.2rem] leading-none tracking-[-0.04em] text-white">
-                            {selectedBrand?.name ?? "Premium"} Kitchen
+                            {selectedStyle ? styleProposalTitles[selectedStyle.id] : "Uw Droomkeuken"}
                           </h4>
                           <p className="mt-3 text-sm leading-7 text-white/76">
-                            {selectedStyle?.t ?? "Style"} · {selectedBudget}
+                            {selectedBrand?.name ?? "Premium"} · {selectedStyle?.t ?? "Stijl"} · {selectedBudget}
                           </p>
                         </div>
                       </div>
@@ -666,32 +931,33 @@ export function Configurator() {
                         Review uw keuzes.
                       </h4>
                       <p className="mt-4 text-sm leading-7 text-[var(--text-soft)]">
-                        In de repository master volgt na configuratie een moodboard-overzicht. Hier
-                        ziet u dezelfde stap vertaald naar uw huidige website: een compacte review
-                        van merk, stijl, materialen en budget voordat u consultation aanvraagt.
+                        Hieronder vindt u een overzicht van de geselecteerde materialen, merken en apparatuur. Dit overzicht vormt het startpunt voor uw showroombezoek.
                       </p>
 
-                      <div className="mt-6 grid gap-3 border-t border-[var(--border)] pt-5">
-                        <SummaryRow label="Brand" value={selectedBrand?.name} />
-                        <SummaryRow label="Style" value={selectedStyle?.t} />
-                        {configuredItems.map((item) => (
-                          <SummaryRow
-                            key={item.id}
-                            label={item.label}
-                            value={selections[item.id]?.label}
-                            color={selections[item.id]?.color}
-                          />
-                        ))}
+                      <div className="mt-6 grid gap-3 border-t border-[var(--border)] pt-5 max-h-[300px] overflow-y-auto pr-1">
+                        <SummaryRow label="Merk" value={selectedBrand?.name} />
+                        <SummaryRow label="Stijl" value={selectedStyle?.t} />
+                        {configureCategories.map((category) => {
+                          if (category.id === "budgets") return null;
+                          const sel = selections[category.id];
+                          return (
+                            <SummaryRow
+                              key={category.id}
+                              label={category.label}
+                              value={sel?.label}
+                              color={sel?.color}
+                            />
+                          );
+                        })}
                       </div>
 
                       <div className="mt-6 border border-[rgba(176,141,87,0.24)] bg-[rgba(17,17,17,0.96)] px-5 py-5 text-white">
-                        <p className="caption-text text-white/42">Estimated investment</p>
+                        <p className="caption-text text-white/42">Geschatte investering</p>
                         <p className="mt-3 font-serif text-[2rem] leading-none tracking-[-0.03em] text-[var(--accent)]">
                           {selectedBudget}
                         </p>
                         <p className="mt-3 text-sm leading-7 text-white/62">
-                          Indicatieve range op basis van gekozen richting, afwerking en premium
-                          apparatuur. Definitieve prijs volgt in de showroom.
+                          Indicatieve range op basis van gekozen richting, afwerking en premium apparatuur. De definitieve offerte stellen we samen op in de showroom.
                         </p>
                       </div>
                     </div>
@@ -708,14 +974,12 @@ export function Configurator() {
                     className="grid gap-5 xl:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)]"
                   >
                     <div className="overflow-hidden border border-[rgba(255,255,255,0.08)] bg-[var(--ink)] px-5 py-6 text-white shadow-[var(--shadow-dark)] md:px-6">
-                      <p className="caption-text text-[var(--accent)]">Consultation</p>
+                      <p className="caption-text text-[var(--accent)]">Showroomafspraak</p>
                       <h4 className="mt-3 font-serif text-[2rem] leading-none tracking-[-0.035em] text-white">
                         Persoonlijk vervolg in Utrecht.
                       </h4>
                       <p className="mt-4 text-sm leading-7 text-white/72">
-                        De laatste stap volgt direct op de moodboard review, net als in repo
-                        master. Uw keuzes worden meegenomen naar een showroomgesprek met een
-                        adviseur van Keuken-Centrum Utrecht.
+                        Uw keuzes worden meegenomen naar een adviesgesprek in onze showroom. Samen met een adviseur van Keuken-Centrum Utrecht verfijnen we het ontwerp.
                       </p>
 
                       <div className="mt-6 grid gap-px border border-white/8 bg-white/8">
@@ -725,10 +989,10 @@ export function Configurator() {
                       </div>
 
                       <div className="mt-6 border-t border-white/8 pt-5">
-                        <p className="caption-text text-white/42">Uw proposal</p>
+                        <p className="caption-text text-white/42">Uw voorstel</p>
                         <div className="mt-4 grid gap-3">
-                          <SummaryRow dark label="Brand" value={selectedBrand?.name} />
-                          <SummaryRow dark label="Style" value={selectedStyle?.t} />
+                          <SummaryRow dark label="Merk" value={selectedBrand?.name} />
+                          <SummaryRow dark label="Stijl" value={selectedStyle?.t} />
                           <SummaryRow dark label="Budget" value={selectedBudget} />
                         </div>
                       </div>
@@ -737,13 +1001,12 @@ export function Configurator() {
                     <div className="surface-card p-5 md:p-6">
                       {!consultationSent ? (
                         <>
-                          <p className="caption-text text-[var(--accent)]">Step 05 of 05</p>
+                          <p className="caption-text text-[var(--accent)]">Stap 05 van 05</p>
                           <h4 className="mt-3 font-serif text-[2rem] leading-none tracking-[-0.035em] text-[var(--foreground)]">
-                            Vraag uw consultation aan.
+                            Vraag uw showroomadvies aan.
                           </h4>
                           <p className="mt-4 text-sm leading-7 text-[var(--text-soft)]">
-                            Laat uw gegevens achter. Wij nemen contact op om uw configuratie en
-                            showroombezoek verder af te stemmen.
+                            Laat uw gegevens achter. Wij nemen direct contact op om uw configuratie en showroombezoek af te stemmen.
                           </p>
 
                           <form
@@ -760,6 +1023,7 @@ export function Configurator() {
                                 setConsultation((current) => ({ ...current, name: event.target.value }))
                               }
                               placeholder="Volledige naam"
+                              required
                             />
                             <Input
                               type="email"
@@ -768,6 +1032,7 @@ export function Configurator() {
                                 setConsultation((current) => ({ ...current, email: event.target.value }))
                               }
                               placeholder="E-mailadres"
+                              required
                             />
                             <Input
                               type="tel"
@@ -786,11 +1051,10 @@ export function Configurator() {
                             />
                             <div className="flex flex-wrap items-center justify-between gap-4 border-t border-[var(--border)] pt-5">
                               <p className="max-w-[26rem] text-sm leading-7 text-[var(--text-soft)]">
-                                Uw gegevens worden uitsluitend gebruikt om uw showroomafspraak en
-                                eerste keukenvoorstel voor te bereiden.
+                                Uw gegevens worden uitsluitend gebruikt om uw showroomafspraak en eerste keukenvoorstel voor te bereiden.
                               </p>
                               <Button type="submit" disabled={!consultationValid}>
-                                Verstuur aanvraag
+                                Plan adviesgesprek
                                 <ArrowRight className="h-4 w-4" />
                               </Button>
                             </div>
@@ -801,14 +1065,12 @@ export function Configurator() {
                           <span className="inline-flex h-16 w-16 items-center justify-center border border-[var(--accent)] bg-[rgba(176,141,87,0.08)] text-[var(--accent)]">
                             <Check className="h-7 w-7" />
                           </span>
-                          <p className="caption-text mt-6 text-[var(--accent)]">Consultation requested</p>
+                          <p className="caption-text mt-6 text-[var(--accent)]">Adviesgesprek aangevraagd</p>
                           <h4 className="mt-3 font-serif text-[2rem] leading-none tracking-[-0.035em] text-[var(--foreground)]">
                             Bedankt, {consultation.name.split(" ")[0] || "u"}.
                           </h4>
                           <p className="mt-4 max-w-[34rem] text-sm leading-7 text-[var(--text-soft)]">
-                            Uw aanvraag is ontvangen. Een adviseur van Keuken-Centrum Utrecht neemt
-                            contact op via {consultation.email} om uw configuratie en showroombezoek
-                            verder te bespreken.
+                            Uw aanvraag is ontvangen. Een adviseur van Keuken-Centrum Utrecht neemt contact op via {consultation.email} of uw telefoonnummer om uw configuratie en showroombezoek in te plannen.
                           </p>
                           <div className="mt-6 flex flex-wrap items-center gap-3">
                             <Button asChild>
@@ -841,28 +1103,28 @@ export function Configurator() {
                 <div className="flex flex-wrap items-center gap-3">
                   {step === "brand" ? (
                     <Button type="button" onClick={nextStep} disabled={!selectedBrand}>
-                      Continue to Style
+                      Kies uw stijl
                       <ArrowRight className="h-4 w-4" />
                     </Button>
                   ) : null}
 
                   {step === "style" ? (
                     <Button type="button" onClick={nextStep} disabled={!selectedStyle}>
-                      Continue to Configure
+                      Configureer keuken
                       <ArrowRight className="h-4 w-4" />
                     </Button>
                   ) : null}
 
                   {step === "configure" ? (
                     <Button type="button" onClick={nextStep}>
-                      Generate Moodboard
+                      Bekijk voorstel
                       <ArrowRight className="h-4 w-4" />
                     </Button>
                   ) : null}
 
                   {step === "moodboard" ? (
                     <Button type="button" onClick={nextStep}>
-                      Book Consultation
+                      Plan adviesgesprek
                       <ArrowRight className="h-4 w-4" />
                     </Button>
                   ) : null}

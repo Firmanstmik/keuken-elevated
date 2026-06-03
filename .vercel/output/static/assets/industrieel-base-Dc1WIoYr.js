@@ -1,0 +1,1 @@
+const s="/assets/modern-base-k6dFcNXH.webp",e="/assets/klassiek-base-CN6Wxl3Q.webp",a="/assets/landelijk-base-bzBwMkP-.webp",t="/assets/industrieel-base-Bb8yHM0z.webp";export{t as i,e as k,a as l,s as m};

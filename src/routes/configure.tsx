@@ -13,6 +13,260 @@ import {
   masterStyles,
 } from "@/lib/master-config-data";
 
+// Import base configurator images for each style
+import modernBase from "@/assets/configurator/modern-base.webp";
+import klassiekBase from "@/assets/configurator/klassiek-base.webp";
+import landelijkBase from "@/assets/configurator/landelijk-base.webp";
+import industrieelBase from "@/assets/configurator/industrieel-base.webp";
+
+// Import style-specific hotspot JSON configurations
+import modernHotspots from "@/data/hotspots/modern-hotspots.json";
+import klassiekHotspots from "@/data/hotspots/klassiek-hotspots.json";
+import landelijkHotspots from "@/data/hotspots/landelijk-hotspots.json";
+import industrieelHotspots from "@/data/hotspots/industrieel-hotspots.json";
+
+const configuratorImages = {
+  modern: modernBase,
+  klassiek: klassiekBase,
+  landelijk: landelijkBase,
+  industrieel: industrieelBase,
+};
+
+const hotspotKeyToCategoryId: Record<string, string> = {
+  front: "front",
+  werkblad: "worktop",
+  spoelbak: "sink",
+  apparatuur: "appliances",
+  quooker: "quooker",
+  bora: "bora",
+  grepen: "handles",
+  verlichting: "lighting",
+};
+
+const hotspotLabels: Record<string, string> = {
+  front: "Front",
+  werkblad: "Werkblad",
+  spoelbak: "Spoelbak",
+  apparatuur: "Apparatuur",
+  quooker: "Quooker",
+  bora: "BORA",
+  grepen: "Grepen",
+  verlichting: "Verlichting",
+};
+
+function transformHotspots(json: Record<string, { x: string; y: string }>) {
+  return Object.entries(json).map(([key, coords]) => ({
+    id: hotspotKeyToCategoryId[key] || key,
+    label: hotspotLabels[key] || key,
+    x: coords.x,
+    y: coords.y,
+  }));
+}
+
+const hotspotMap = {
+  modern: transformHotspots(modernHotspots),
+  klassiek: transformHotspots(klassiekHotspots),
+  landelijk: transformHotspots(landelijkHotspots),
+  industrieel: transformHotspots(industrieelHotspots),
+};
+
+function HotspotTooltip({
+  active,
+  x,
+  y,
+  title,
+  description,
+  viewportSize,
+}: {
+  active: boolean;
+  x: string;
+  y: string;
+  title: string;
+  description: string;
+  viewportSize: { width: number; height: number };
+}) {
+  const px = parseFloat(x);
+  const py = parseFloat(y);
+
+  // Hotspot pixel coordinates relative to the image viewport
+  const hx = (px / 100) * viewportSize.width;
+  const hy = (py / 100) * viewportSize.height;
+
+  const placement = useMemo(() => {
+    // Distances to edges
+    const top = py;
+    const bottom = 100 - py;
+    const left = px;
+    const right = 100 - px;
+
+    let dir: "top" | "bottom" | "left" | "right" = "top";
+    let max = top;
+
+    if (bottom > max) {
+      max = bottom;
+      dir = "bottom";
+    }
+    if (left > max) {
+      max = left;
+      dir = "left";
+    }
+    if (right > max) {
+      max = right;
+      dir = "right";
+    }
+
+    return dir;
+  }, [px, py]);
+
+  // Small compact card layout (210px width)
+  const cardWidth = 210;
+  const margin = 12;
+  const cardOffset = 40;
+  const mid = 24;
+
+  let cardStyle: React.CSSProperties = {};
+  let pathD = "";
+  let offsetX = 0;
+  let offsetY = 0;
+
+  if (placement === "top" || placement === "bottom") {
+    const halfW = cardWidth / 2;
+    if (hx - halfW < margin) {
+      offsetX = margin - (hx - halfW);
+    } else if (hx + halfW > viewportSize.width - margin) {
+      offsetX = (viewportSize.width - margin) - (hx + halfW);
+    }
+  } else if (placement === "left" || placement === "right") {
+    const halfH = 50; // estimated half height of 100px card
+    if (hy - halfH < margin) {
+      offsetY = margin - (hy - halfH);
+    } else if (hy + halfH > viewportSize.height - margin) {
+      offsetY = (viewportSize.height - margin) - (hy + halfH);
+    }
+  }
+
+  if (placement === "top") {
+    cardStyle = {
+      bottom: `${cardOffset}px`,
+      left: "0px",
+      transform: `translate(calc(-50% + ${offsetX}px), 0px)`,
+    };
+    const R = Math.min(6, Math.abs(offsetX) / 2);
+    if (R < 1) {
+      pathD = `M 0 0 V -${cardOffset}`;
+    } else {
+      const dir = offsetX > 0 ? 1 : -1;
+      pathD = `M 0 0 V -${mid - R} Q 0 -${mid} ${dir * R} -${mid} H ${offsetX - dir * R} Q ${offsetX} -${mid} ${offsetX} ${-mid - R} V -${cardOffset}`;
+    }
+  } else if (placement === "bottom") {
+    cardStyle = {
+      top: `${cardOffset}px`,
+      left: "0px",
+      transform: `translate(calc(-50% + ${offsetX}px), 0px)`,
+    };
+    const R = Math.min(6, Math.abs(offsetX) / 2);
+    if (R < 1) {
+      pathD = `M 0 0 V ${cardOffset}`;
+    } else {
+      const dir = offsetX > 0 ? 1 : -1;
+      pathD = `M 0 0 V ${mid - R} Q 0 ${mid} ${dir * R} ${mid} H ${offsetX - dir * R} Q ${offsetX} ${mid} ${offsetX} ${mid + R} V ${cardOffset}`;
+    }
+  } else if (placement === "left") {
+    cardStyle = {
+      right: `${cardOffset}px`,
+      top: "0px",
+      transform: `translate(0px, calc(-50% + ${offsetY}px))`,
+    };
+    const R = Math.min(6, Math.abs(offsetY) / 2);
+    if (R < 1) {
+      pathD = `M 0 0 H -${cardOffset}`;
+    } else {
+      const dir = offsetY > 0 ? 1 : -1;
+      pathD = `M 0 0 H -${mid - R} Q -${mid} 0 -${mid} ${dir * R} V ${offsetY - dir * R} Q -${mid} ${offsetY} ${-mid - R} ${offsetY} H -${cardOffset}`;
+    }
+  } else if (placement === "right") {
+    cardStyle = {
+      left: `${cardOffset}px`,
+      top: "0px",
+      transform: `translate(0px, calc(-50% + ${offsetY}px))`,
+    };
+    const R = Math.min(6, Math.abs(offsetY) / 2);
+    if (R < 1) {
+      pathD = `M 0 0 H ${cardOffset}`;
+    } else {
+      const dir = offsetY > 0 ? 1 : -1;
+      pathD = `M 0 0 H ${mid - R} Q ${mid} 0 ${mid} ${dir * R} V ${offsetY - dir * R} Q ${mid} ${offsetY} ${mid + R} ${offsetY} H ${cardOffset}`;
+    }
+  }
+
+  // Draw end-dot coordinates
+  const dotCX = placement === "top" || placement === "bottom" ? offsetX : (placement === "left" ? -cardOffset : cardOffset);
+  const dotCY = placement === "left" || placement === "right" ? offsetY : (placement === "top" ? -cardOffset : cardOffset);
+
+  return (
+    <div className="absolute pointer-events-none z-50" style={{ left: 0, top: 0 }}>
+      {/* SVG Connector Line */}
+      <svg
+        className="absolute pointer-events-none overflow-visible"
+        style={{ left: 0, top: 0, width: 0, height: 0, overflow: "visible" }}
+      >
+        <motion.path
+          d={pathD}
+          fill="none"
+          stroke="#D4AF37"
+          strokeWidth="1.2"
+          strokeOpacity="0.55"
+          strokeLinecap="round"
+          initial={{ pathLength: 0 }}
+          animate={{ pathLength: 1 }}
+          exit={{ pathLength: 0 }}
+          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        />
+        {/* Dynamic anchor dot at card attachment point */}
+        <motion.circle
+          cx={dotCX}
+          cy={dotCY}
+          r="1.5"
+          fill="#D4AF37"
+          fillOpacity="0.6"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          exit={{ scale: 0 }}
+          transition={{ delay: 0.15, duration: 0.2 }}
+        />
+      </svg>
+
+      {/* Floating Card Wrapper */}
+      <div
+        className="absolute pointer-events-none"
+        style={cardStyle}
+      >
+        <motion.div
+          className="pointer-events-auto bg-[rgba(9,9,9,0.96)] border border-[rgba(212,175,55,0.18)] rounded-[12px] shadow-[0_12px_36px_rgba(0,0,0,0.6)] backdrop-blur-[20px] px-4 py-3 text-left"
+          style={{ width: cardWidth }}
+          initial={{ opacity: 0, y: placement === "top" ? 8 : (placement === "bottom" ? -8 : 0), x: placement === "left" ? 8 : (placement === "right" ? -8 : 0) }}
+          animate={{ opacity: 1, y: 0, x: 0 }}
+          exit={{ opacity: 0, y: placement === "top" ? 8 : (placement === "bottom" ? -8 : 0), x: placement === "left" ? 8 : (placement === "right" ? -8 : 0) }}
+          transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <div className="flex flex-col">
+            <span className="block text-[9px] font-semibold uppercase tracking-[0.24em] text-[#D4AF37] mb-1.5">
+              CONFIGURATIE
+            </span>
+            <h4 className="font-serif text-[13px] font-semibold leading-snug text-white tracking-[-0.01em] uppercase">
+              {title}
+            </h4>
+            <div className="h-px w-full bg-[rgba(212,175,55,0.1)] my-2" />
+            <p className="text-[11px] leading-[1.6] text-zinc-400 normal-case">
+              {description}
+            </p>
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  );
+}
+
 export const Route = createFileRoute("/configure")({
   component: ConfigurePage,
 });
@@ -21,6 +275,9 @@ function ConfigurePage() {
   const navigate = useNavigate();
   const { config, setBudget, setSelection } = useConfigurator();
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
+  const [isTouch, setIsTouch] = useState(false);
+  const [viewportSize, setViewportSize] = useState({ width: 1000, height: 600 });
   const [zoomLevel, setZoomLevel] = useState(1);
   const [panOffset, setPanOffset] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
@@ -28,6 +285,35 @@ function ConfigurePage() {
   const panStartRef = useRef({ x: 0, y: 0 });
   const imageViewportRef = useRef<HTMLDivElement | null>(null);
   const hasDraggedRef = useRef(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (window.matchMedia("(pointer: coarse)").matches) {
+        setIsTouch(true);
+      }
+      const handleTouch = () => {
+        setIsTouch(true);
+        window.removeEventListener("touchstart", handleTouch);
+      };
+      window.addEventListener("touchstart", handleTouch, { passive: true });
+      return () => window.removeEventListener("touchstart", handleTouch);
+    }
+  }, []);
+
+  useEffect(() => {
+    const viewport = imageViewportRef.current;
+    if (!viewport) return;
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (let entry of entries) {
+        setViewportSize({
+          width: entry.contentRect.width,
+          height: entry.contentRect.height,
+        });
+      }
+    });
+    resizeObserver.observe(viewport);
+    return () => resizeObserver.disconnect();
+  }, []);
 
   useEffect(() => {
     if (!config.brand) navigate({ to: "/brands" });
@@ -46,6 +332,25 @@ function ConfigurePage() {
     () => masterStyles.find((item) => item.id === config.style) ?? null,
     [config.style],
   );
+
+  const selectedStyleKey = selectedStyle
+    ? typeof selectedStyle === "string"
+      ? selectedStyle
+      : (selectedStyle.id || (selectedStyle as any).slug || (selectedStyle as any).name || "")
+    : "";
+
+  const activeImage =
+    (selectedStyleKey ? configuratorImages[selectedStyleKey.toLowerCase() as keyof typeof configuratorImages] : null) ??
+    modernBase;
+
+  const activeHotspots =
+    (selectedStyleKey ? hotspotMap[selectedStyleKey.toLowerCase() as keyof typeof hotspotMap] : null) ??
+    hotspotMap.modern;
+
+  // Temporary console logs for debugging as per rules
+  console.log("Selected Style:", selectedStyle);
+  console.log("Active Image:", activeImage);
+
   const zoomedIn = zoomLevel > 1.001;
 
   function clampPan(nextX: number, nextY: number, scale = zoomLevel) {
@@ -176,76 +481,104 @@ function ConfigurePage() {
           >
             <div
               className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: "url(/configurator-kitchen.webp)" }}
+              style={{ backgroundImage: `url(${activeImage})` }}
             />
 
-            {masterHotspotPositions.map((hotspot) => {
+            {activeHotspots.map((hotspot) => {
               const selected = config.selections[hotspot.id];
               const active = activeCategory === hotspot.id;
+              const isHovered = hoveredCategory === hotspot.id;
+              const anyHovered = hoveredCategory !== null;
+              const visible = isHovered || (active && isTouch);
+
+              // Dot size: 18 default → 22 hover → 24 active
+              const dotSize = active ? 24 : isHovered ? 22 : 18;
 
               const fullCategory = masterCategories.find((c) => c.id === hotspot.id);
               const fullOption = selected ? fullCategory?.options.find((o) => o.id === selected.id) : null;
 
               return (
-                <button
+                <div
                   key={hotspot.id}
-                  type="button"
-                  data-hotspot="true"
-                  onClick={() => setActiveCategory(active ? null : hotspot.id)}
-                  className="group absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer z-10"
+                  className={`absolute ${active || isHovered ? "z-30" : "z-20"}`}
                   style={{ left: hotspot.x, top: hotspot.y }}
+                  data-hotspot="true"
+                  onMouseEnter={() => setHoveredCategory(hotspot.id)}
+                  onMouseLeave={() => setHoveredCategory(null)}
                 >
-                  <motion.span
-                    whileHover={{ scale: 1.15 }}
-                    whileTap={{ scale: 0.9 }}
-                    animate={active ? { scale: [1, 1.1, 1] } : { scale: 1 }}
-                    transition={{ repeat: active ? Infinity : 0, duration: 2 }}
-                    className="relative flex h-9 w-9 items-center justify-center rounded-full border-2 backdrop-blur-[8px] transition-all duration-300 shadow-[0_4px_16px_rgba(0,0,0,0.3)]"
+                  <button
+                    type="button"
+                    onClick={() => setActiveCategory(active ? null : hotspot.id)}
+                    className="absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer"
                     style={{
-                      backgroundColor: active
-                        ? "#B08D57"
-                        : selected
-                          ? "rgba(176,141,87,0.9)"
-                          : "rgba(247,245,242,0.25)",
-                      borderColor: active || selected ? "#B08D57" : "rgba(247,245,242,0.6)",
-                      boxShadow: active ? "0 0 24px rgba(176,141,87,0.6), 0 0 0 1px rgba(255,255,255,0.2) inset" : "0 4px 16px rgba(0,0,0,0.3)",
+                      transition: "opacity 0.3s ease",
+                      opacity: anyHovered && !isHovered ? 0.3 : 1,
                     }}
+                    aria-label={`Configureer ${hotspot.label}`}
                   >
-                    {selected ? (
+                    {/* Glowing halo */}
+                    {active && (
                       <span
-                        className="h-3 w-3 rounded-full border border-[rgba(255,255,255,0.8)] shadow-sm"
-                        style={{ backgroundColor: selected.color }}
+                        className="absolute rounded-full animate-ping pointer-events-none"
+                        style={{
+                          inset: -5,
+                          background: "rgba(212,175,55,0.18)",
+                        }}
                       />
-                    ) : (
-                      <Circle className="h-2.5 w-2.5 text-[rgba(247,245,242,0.9)]" />
                     )}
-                  </motion.span>
 
-                  <div
-                    className={`pointer-events-none absolute left-1/2 top-full mt-3 -translate-x-1/2 flex w-[180px] flex-col items-center rounded-[16px] border border-white/10 bg-[rgba(15,15,15,0.85)] p-3.5 backdrop-blur-xl shadow-[0_24px_48px_-12px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.05)_inset] transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                      active
-                        ? "opacity-100 translate-y-0 scale-100"
-                        : "opacity-0 translate-y-2 scale-95 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
-                    }`}
-                  >
-                    <span className="mb-1.5 text-[0.55rem] font-medium uppercase tracking-[0.25em] text-[#C8A96B]">
-                      {hotspot.label}
-                    </span>
-                    <span className="text-[0.9rem] text-[#F7F5F2] font-medium tracking-[0.01em] mb-1.5 text-center leading-tight normal-case">
-                      {selected ? selected.name : "Selecteer optie"}
-                    </span>
-                    
-                    {fullOption?.description ? (
-                       <span className="text-[0.65rem] text-[rgba(247,245,242,0.6)] leading-[1.5] text-center whitespace-normal normal-case">
-                         {fullOption.description}
-                       </span>
-                    ) : (
-                       <span className="text-[0.65rem] text-[rgba(247,245,242,0.5)] leading-[1.5] text-center whitespace-normal normal-case">
-                         Klik om de mogelijkheden voor uw {hotspot.label.toLowerCase()} te ontdekken.
-                       </span>
+                    {/* Dot */}
+                    <div
+                      style={{
+                        width: dotSize,
+                        height: dotSize,
+                        borderRadius: "50%",
+                        border: `1px solid rgba(212,175,55,${isHovered || active ? 0.75 : 0.45})`,
+                        backgroundColor: isHovered || active
+                          ? "rgba(212,175,55,0.18)"
+                          : "rgba(0,0,0,0.58)",
+                        backdropFilter: "blur(6px)",
+                        boxShadow: isHovered || active
+                          ? "0 0 12px rgba(212,175,55,0.3)"
+                          : "0 2px 8px rgba(0,0,0,0.35)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        transition: "all 0.22s cubic-bezier(.22,1,.36,1)",
+                      }}
+                    >
+                      {/* Inner dot — selected option color or white/gold */}
+                      <span
+                        style={{
+                          width: isHovered ? 7 : 6,
+                          height: isHovered ? 7 : 6,
+                          borderRadius: "50%",
+                          backgroundColor: selected?.color ?? (active ? "#D4AF37" : "rgba(255,255,255,0.9)"),
+                          border: selected?.color ? "1px solid rgba(255,255,255,0.55)" : "none",
+                          boxShadow: selected?.color ? "0 1px 4px rgba(0,0,0,0.3)" : "none",
+                          transition: "all 0.22s ease",
+                        }}
+                      />
+                    </div>
+                  </button>
+
+                  <AnimatePresence>
+                    {visible && (
+                      <HotspotTooltip
+                        active={true}
+                        x={hotspot.x}
+                        y={hotspot.y}
+                        title={hotspot.label}
+                        description={
+                          selected
+                            ? (fullOption?.description || selected.name)
+                            : `Klik om de mogelijkheden voor uw ${hotspot.label.toLowerCase()} te ontdekken.`
+                        }
+                        viewportSize={viewportSize}
+                      />
                     )}
-                  </div>
-                </button>
+                  </AnimatePresence>
+                </div>
               );
             })}
           </motion.div>

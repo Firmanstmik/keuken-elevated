@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { ConfiguratorProvider } from "../context/configurator-context";
 import { Toaster } from "../components/ui/sonner";
+import shareLogo from "@/assets/Logo_Keuken_Centrum.png";
 
 function NotFoundComponent() {
   return (
@@ -85,12 +86,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "Keuken-Centrum Utrecht" },
       { property: "og:description", content: "Premium German and Italian kitchen showroom in Utrecht sinds 1978." },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: "/favicon.png" },
-      { property: "og:image:width", content: "512" },
-      { property: "og:image:height", content: "512" },
-      { name: "twitter:card", content: "summary" },
+      { property: "og:image", content: shareLogo },
+      { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@keukencentrum" },
-      { name: "twitter:image", content: "/favicon.png" },
+      { name: "twitter:image", content: shareLogo },
     ],
     links: [
       { rel: "icon", type: "image/png", href: "/favicon.png" },

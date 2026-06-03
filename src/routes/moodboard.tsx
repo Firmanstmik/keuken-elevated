@@ -10,6 +10,19 @@ import { ArrowRight } from "@/components/ui/icons";
 import { useConfigurator } from "@/context/configurator-context";
 import { masterBrands, masterBudgetRanges, masterCategories, masterStyles } from "@/lib/master-config-data";
 
+// Import base configurator images for each style
+import modernBase from "@/assets/configurator/modern-base.webp";
+import klassiekBase from "@/assets/configurator/klassiek-base.webp";
+import landelijkBase from "@/assets/configurator/landelijk-base.webp";
+import industrieelBase from "@/assets/configurator/industrieel-base.webp";
+
+const configuratorImages = {
+  modern: modernBase,
+  klassiek: klassiekBase,
+  landelijk: landelijkBase,
+  industrieel: industrieelBase,
+};
+
 export const Route = createFileRoute("/moodboard")({
   component: MoodboardPage,
 });
@@ -43,6 +56,16 @@ function MoodboardPage() {
     () => masterStyles.find((style) => style.id === config.style) ?? null,
     [config.style],
   );
+
+  const selectedStyleKey = selectedStyle
+    ? typeof selectedStyle === "string"
+      ? selectedStyle
+      : (selectedStyle.id || (selectedStyle as any).slug || (selectedStyle as any).name || "")
+    : "";
+
+  const activeImage =
+    (selectedStyleKey ? configuratorImages[selectedStyleKey.toLowerCase() as keyof typeof configuratorImages] : null) ??
+    modernBase;
 
   async function getImageDataUrl(src: string) {
     return new Promise<{ dataUrl: string; width: number; height: number }>((resolve, reject) => {
@@ -279,7 +302,7 @@ function MoodboardPage() {
         <div className="relative h-[60vh] overflow-hidden md:h-[80vh]">
           <div
             className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url(/moodboard-render.webp)" }}
+            style={{ backgroundImage: `url(${activeImage})` }}
           />
           <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.1)_0%,rgba(0,0,0,0.5)_70%,rgba(247,245,242,1)_100%)]" />
 

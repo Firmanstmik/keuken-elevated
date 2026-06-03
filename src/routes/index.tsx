@@ -13,6 +13,7 @@ import { FinalCta } from "@/components/site/FinalCta";
 import { Footer } from "@/components/site/Footer";
 import { StickyConversionBar } from "@/components/site/StickyConversionBar";
 import { kc } from "@/lib/kc-data";
+import shareLogo from "@/assets/Logo_Keuken_Centrum.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -26,10 +27,10 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "Keuken-Centrum Utrecht · Premium Keukenshowroom" },
       { property: "og:description", content: "De premium keukenbestemming van Utrecht voor German precision, Italian elegance en persoonlijk showroomadvies." },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: kc.hero.main },
+      { property: "og:image", content: shareLogo },
       { property: "og:url", content: "/" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: kc.hero.main },
+      { name: "twitter:image", content: shareLogo },
     ],
     links: [{ rel: "canonical", href: "/" }],
     scripts: [
