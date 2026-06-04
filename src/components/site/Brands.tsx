@@ -88,12 +88,18 @@ export function Brands() {
         </motion.div>
       </div>
 
-      <div className="relative mt-7 w-screen max-w-none left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-hidden">
+      <motion.div
+        initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={motionViewport}
+        transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
+        className="relative mt-7 w-screen max-w-none left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-hidden"
+      >
         <div className="absolute inset-y-0 left-0 z-10 w-24 bg-[linear-gradient(90deg,#FAF8F4,rgba(250,248,244,0))]" />
         <div className="absolute inset-y-0 right-0 z-10 w-24 bg-[linear-gradient(270deg,#FAF8F4,rgba(250,248,244,0))]" />
         <div className="overflow-hidden">
           <motion.div
-            className="flex w-max items-center gap-12 px-10 py-6 will-change-transform"
+            className="flex w-max items-center py-6 will-change-transform"
             animate={reduceMotion ? undefined : { x: ["0%", "-50%"] }}
             transition={
               reduceMotion
@@ -105,30 +111,65 @@ export function Brands() {
                   }
             }
           >
-            {marqueeItems.map((brand, index) => (
-              <motion.div
-                key={`${brand.name}-${index}`}
-                initial="rest"
-                animate="rest"
-                className="group relative flex items-center"
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex((current) => (current === index ? null : current))}
-                ref={(el) => {
-                  brandRefs.current[index] = el;
-                }}
-              >
-                <img
-                  src={brand.logo}
-                  alt={brand.name}
-                  className="h-7 w-auto opacity-70 grayscale transition-[opacity,filter,transform] duration-300 group-hover:opacity-100 group-hover:grayscale-0 group-hover:translate-y-[-1px]"
-                  loading="lazy"
-                />
-                <span className="sr-only">{brand.name}</span>
-              </motion.div>
-            ))}
+            {/* First Set */}
+            <div className="flex items-center gap-12 pr-12">
+              {brandLogos.map((brand, index) => {
+                const globalIndex = index;
+                return (
+                  <motion.div
+                    key={`${brand.name}-${globalIndex}`}
+                    initial="rest"
+                    animate="rest"
+                    className="group relative flex items-center"
+                    onMouseEnter={() => setHoveredIndex(globalIndex)}
+                    onMouseLeave={() => setHoveredIndex((current) => (current === globalIndex ? null : current))}
+                    ref={(el) => {
+                      brandRefs.current[globalIndex] = el;
+                    }}
+                  >
+                    <img
+                      src={brand.logo}
+                      alt={brand.name}
+                      className="h-7 w-auto opacity-70 grayscale transition-[opacity,filter,transform] duration-300 group-hover:opacity-100 group-hover:grayscale-0 group-hover:translate-y-[-1px]"
+                      loading="lazy"
+                    />
+                    <span className="sr-only">{brand.name}</span>
+                  </motion.div>
+                );
+              })}
+            </div>
+            {/* Second Set */}
+            <div className="flex items-center gap-12 pr-12">
+              {brandLogos.map((brand, index) => {
+                const globalIndex = index + brandLogos.length;
+                return (
+                  <motion.div
+                    key={`${brand.name}-${globalIndex}`}
+                    initial="rest"
+                    animate="rest"
+                    className="group relative flex items-center"
+                    onMouseEnter={() => setHoveredIndex(globalIndex)}
+                    onMouseLeave={() => setHoveredIndex((current) => (current === globalIndex ? null : current))}
+                    ref={(el) => {
+                      brandRefs.current[globalIndex] = el;
+                    }}
+                  >
+                    <img
+                      src={brand.logo}
+                      alt={brand.name}
+                      className="h-7 w-auto opacity-70 grayscale transition-[opacity,filter,transform] duration-300 group-hover:opacity-100 group-hover:grayscale-0 group-hover:translate-y-[-1px]"
+                      loading="lazy"
+                    />
+                    <span className="sr-only">{brand.name}</span>
+                  </motion.div>
+                );
+              })}
+            </div>
           </motion.div>
         </div>
-      </div>
+      </motion.div>
+
+
 
       {hoveredIndex !== null
         ? createPortal(

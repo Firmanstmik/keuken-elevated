@@ -81,9 +81,19 @@ function ConsultationPage() {
   return (
     <main className="min-h-screen bg-[#F7F5F2]">
       <FlowNav />
-      <section className="relative min-h-screen md:h-screen md:overflow-hidden">
+      <motion.section
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.55, ease: "easeOut" }}
+        className="relative min-h-screen md:h-screen md:overflow-hidden"
+      >
         <div className="grid min-h-screen md:h-screen md:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
-          <div className={`relative min-h-[340px] ${submitted ? "hidden md:block" : "block"}`}>
+          <motion.div
+            initial={{ opacity: 0, x: -24 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.65, ease: "easeOut" }}
+            className={`relative min-h-[340px] ${submitted ? "hidden md:block" : "block"}`}
+          >
             <div className="relative h-[340px] overflow-hidden md:sticky md:top-0 md:h-screen">
               <div
                 className="h-full w-full bg-cover bg-center"
@@ -130,9 +140,14 @@ function ConsultationPage() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="bg-[#F7F5F2] md:h-screen md:overflow-y-auto">
+          <motion.div
+            initial={{ opacity: 0, x: 24 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.65, ease: "easeOut", delay: 0.15 }}
+            className="bg-[#F7F5F2] md:h-screen md:overflow-y-auto"
+          >
             <div className="mx-auto w-full max-w-[760px] px-4 pb-10 pt-28 md:px-8 md:pb-16 md:pt-32 lg:px-10">
             <AnimatePresence mode="wait">
               {!submitted ? (
@@ -321,9 +336,9 @@ function ConsultationPage() {
               )}
             </AnimatePresence>
           </div>
+          </motion.div>
         </div>
-        </div>
-      </section>
+      </motion.section>
     </main>
   );
 }

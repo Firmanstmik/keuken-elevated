@@ -100,13 +100,13 @@ export function StickyConversionBar() {
                   <X className="h-3.5 w-3.5" />
                 </button>
 
-                <div className="lux-border rounded-[22px] p-[1px] shadow-[0_34px_90px_-42px_rgba(5,11,20,0.78)]">
-                  <div className="relative overflow-hidden rounded-[21px] bg-[linear-gradient(145deg,rgba(6,14,25,0.96),rgba(8,18,31,0.9))] p-2 backdrop-blur-2xl">
-                  <div className="absolute inset-x-10 top-0 h-px bg-[linear-gradient(90deg,rgba(201,164,106,0),rgba(201,164,106,0.72),rgba(201,164,106,0))]" />
+                <div className="lux-border rounded-[22px] p-[1px] shadow-[0_30px_70px_-30px_rgba(23,25,28,0.22)]">
+                  <div className="relative overflow-hidden rounded-[21px] bg-[linear-gradient(145deg,rgba(252,250,246,0.95),rgba(244,240,232,0.92))] p-1.5 backdrop-blur-2xl">
+                  <div className="absolute inset-x-10 top-0 h-px bg-[linear-gradient(90deg,rgba(201,164,106,0),rgba(201,164,106,0.4),rgba(201,164,106,0))]" />
                   <div className="absolute left-[18%] top-[-80%] h-[180px] w-[180px] rounded-full bg-[radial-gradient(circle,rgba(61,154,66,0.1),transparent_60%)]" />
                   <div className="absolute right-[18%] top-[-86%] h-[190px] w-[190px] rounded-full bg-[radial-gradient(circle,rgba(201,164,106,0.1),transparent_58%)]" />
 
-                  <div className="grid grid-cols-3 gap-1.5 rounded-[16px] border border-[rgba(7,17,27,0.08)] bg-[linear-gradient(180deg,rgba(252,250,246,0.985),rgba(246,242,235,0.985))] p-1.5 text-[var(--foreground)] shadow-[inset_0_1px_0_rgba(255,255,255,0.86),0_20px_44px_-38px_rgba(7,17,27,0.24)]">
+                  <div className="grid grid-cols-3 gap-1.5 rounded-[16px] border border-[rgba(200,169,107,0.18)] bg-[linear-gradient(180deg,rgba(255,255,255,0.99),rgba(252,250,246,0.99))] p-1.5 text-[var(--foreground)] shadow-[inset_0_1px_0_rgba(255,255,255,0.86),0_20px_44px_-38px_rgba(7,17,27,0.12)]">
                     {actions.map(({ label, meta, href, Icon, primary, accent }) =>
                       primary ? (
                         <a
@@ -131,7 +131,7 @@ export function StickyConversionBar() {
                         >
                           {accent === "green" ? (
                             <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[12px] bg-[linear-gradient(180deg,var(--green-highlight),var(--green))] text-white shadow-[0_18px_32px_-26px_rgba(61,154,66,0.42)]">
-                              <WhatsAppMark className="h-4.5 w-4.5" />
+                               <WhatsAppMark className="h-4.5 w-4.5" />
                             </span>
                           ) : (
                             <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[12px] border border-[rgba(7,17,27,0.06)] bg-white text-[var(--green)] shadow-[0_16px_28px_-26px_rgba(7,17,27,0.18)]">
@@ -160,10 +160,10 @@ export function StickyConversionBar() {
             className="pointer-events-none fixed inset-x-0 bottom-0 z-[80] px-2 pb-[calc(env(safe-area-inset-bottom)+0.5rem)] lg:hidden"
           >
             <div className="pointer-events-auto mx-auto max-w-[620px]">
-              <div className="lux-border rounded-[18px] p-[1px] shadow-[0_30px_70px_-38px_rgba(5,11,20,0.76)]">
-                <div className="relative overflow-hidden rounded-[17px] bg-[linear-gradient(145deg,rgba(6,14,25,0.96),rgba(8,18,31,0.9))] p-2 backdrop-blur-2xl">
-                  <div className="absolute inset-x-7 top-0 h-px bg-[linear-gradient(90deg,rgba(201,164,106,0),rgba(201,164,106,0.7),rgba(201,164,106,0))]" />
-                  <div className="relative rounded-[14px] bg-[linear-gradient(180deg,rgba(252,250,246,0.99),rgba(246,242,235,0.99))] p-1">
+              <div className="lux-border rounded-[18px] p-[1px] shadow-[0_26px_58px_-32px_rgba(23,25,28,0.2)]">
+                <div className="relative overflow-hidden rounded-[17px] bg-[linear-gradient(145deg,rgba(252,250,246,0.95),rgba(244,240,232,0.92))] p-1.5 backdrop-blur-2xl">
+                  <div className="absolute inset-x-7 top-0 h-px bg-[linear-gradient(90deg,rgba(201,164,106,0),rgba(201,164,106,0.4),rgba(201,164,106,0))]" />
+                  <div className="relative rounded-[14px] bg-[linear-gradient(180deg,rgba(255,255,255,0.99),rgba(252,250,246,0.99))] p-1">
                     <button
                       type="button"
                       onClick={() => setDismissed(true)}

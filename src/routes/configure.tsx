@@ -424,7 +424,10 @@ function ConfigurePage() {
         </p>
       </header>
 
-      <section
+      <motion.section
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.55, ease: "easeOut" }}
         className={`flex min-h-screen flex-col pt-[62px] md:h-[calc(100vh-62px)] md:flex-row ${
           completedCount > 0 ? "pb-28 md:pb-32" : ""
         }`}
@@ -484,7 +487,7 @@ function ConfigurePage() {
               style={{ backgroundImage: `url(${activeImage})` }}
             />
 
-            {activeHotspots.map((hotspot) => {
+            {activeHotspots.map((hotspot, index) => {
               const selected = config.selections[hotspot.id];
               const active = activeCategory === hotspot.id;
               const isHovered = hoveredCategory === hotspot.id;
@@ -498,8 +501,16 @@ function ConfigurePage() {
               const fullOption = selected ? fullCategory?.options.find((o) => o.id === selected.id) : null;
 
               return (
-                <div
+                <motion.div
                   key={hotspot.id}
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{
+                    delay: 0.22 + index * 0.08,
+                    type: "spring",
+                    stiffness: 220,
+                    damping: 18,
+                  }}
                   className={`absolute ${active || isHovered ? "z-30" : "z-20"}`}
                   style={{ left: hotspot.x, top: hotspot.y }}
                   data-hotspot="true"
@@ -591,7 +602,7 @@ function ConfigurePage() {
                       />
                     )}
                   </AnimatePresence>
-                </div>
+                </motion.div>
               );
             })}
           </motion.div>
@@ -826,7 +837,7 @@ function ConfigurePage() {
             </button>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       <AnimatePresence>
         {completedCount > 0 ? (

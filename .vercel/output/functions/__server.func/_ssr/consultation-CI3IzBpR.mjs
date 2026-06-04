@@ -1,10 +1,10 @@
 import { r as reactExports, j as jsxRuntimeExports } from "../_libs/react.mjs";
 import { m as masterBrands, i as masterStyles, e as masterCategories, h as masterShowrooms, f as masterConsultationBudgets, a as ArrowRight } from "./master-config-data-BZ9UlS_D.mjs";
-import { I as Input, T as Textarea } from "./textarea-DjAkbyhT.mjs";
-import { F as FlowNav } from "./FlowNav-CusTt4jv.mjs";
-import { u as useConfigurator } from "./router-CAGiY7Hc.mjs";
+import { I as Input, T as Textarea } from "./textarea-D7-ZYNFV.mjs";
+import { F as FlowNav } from "./FlowNav-D726xZkj.mjs";
+import { u as useConfigurator } from "./router-ClnlMJnD.mjs";
 import "../_libs/sonner.mjs";
-import { A as AnimatePresence, m as motion } from "../_libs/framer-motion.mjs";
+import { m as motion, A as AnimatePresence } from "../_libs/framer-motion.mjs";
 import "../_libs/mui__icons-material.mjs";
 import "../_libs/mui__material.mjs";
 import "../_libs/mui__utils.mjs";
@@ -27,7 +27,7 @@ import "../_libs/emotion__hash.mjs";
 import "../_libs/emotion__unitless.mjs";
 import "../_libs/@emotion/use-insertion-effect-with-fallbacks+[...].mjs";
 import "../_libs/emotion__is-prop-valid.mjs";
-import "./Nav-Bi5axo-O.mjs";
+import "./Nav-CK8htA75.mjs";
 import "../_libs/tanstack__react-router.mjs";
 import "../_libs/tanstack__router-core.mjs";
 import "../_libs/tanstack__history.mjs";
@@ -237,8 +237,24 @@ function ConsultationPage() {
   const isValid = Boolean(form.name && form.email && form.showroom);
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("main", { className: "min-h-screen bg-[#F7F5F2]", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(FlowNav, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("section", { className: "relative min-h-screen md:h-screen md:overflow-hidden", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid min-h-screen md:h-screen md:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `relative min-h-[340px] ${submitted ? "hidden md:block" : "block"}`, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative h-[340px] overflow-hidden md:sticky md:top-0 md:h-screen", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(motion.section, { initial: {
+      opacity: 0
+    }, animate: {
+      opacity: 1
+    }, transition: {
+      duration: 0.55,
+      ease: "easeOut"
+    }, className: "relative min-h-screen md:h-screen md:overflow-hidden", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid min-h-screen md:h-screen md:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(motion.div, { initial: {
+        opacity: 0,
+        x: -24
+      }, animate: {
+        opacity: 1,
+        x: 0
+      }, transition: {
+        duration: 0.65,
+        ease: "easeOut"
+      }, className: `relative min-h-[340px] ${submitted ? "hidden md:block" : "block"}`, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative h-[340px] overflow-hidden md:sticky md:top-0 md:h-screen", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "h-full w-full bg-cover bg-center", style: {
           backgroundImage: `url(${heroImage})`
         } }),
@@ -275,7 +291,17 @@ function ConsultationPage() {
           ] }, item.text)) })
         ] }) })
       ] }) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "bg-[#F7F5F2] md:h-screen md:overflow-y-auto", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mx-auto w-full max-w-[760px] px-4 pb-10 pt-28 md:px-8 md:pb-16 md:pt-32 lg:px-10", children: /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { mode: "wait", children: !submitted ? /* @__PURE__ */ jsxRuntimeExports.jsxs(motion.div, { initial: {
+      /* @__PURE__ */ jsxRuntimeExports.jsx(motion.div, { initial: {
+        opacity: 0,
+        x: 24
+      }, animate: {
+        opacity: 1,
+        x: 0
+      }, transition: {
+        duration: 0.65,
+        ease: "easeOut",
+        delay: 0.15
+      }, className: "bg-[#F7F5F2] md:h-screen md:overflow-y-auto", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mx-auto w-full max-w-[760px] px-4 pb-10 pt-28 md:px-8 md:pb-16 md:pt-32 lg:px-10", children: /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { mode: "wait", children: !submitted ? /* @__PURE__ */ jsxRuntimeExports.jsxs(motion.div, { initial: {
         opacity: 0,
         y: 24
       }, animate: {

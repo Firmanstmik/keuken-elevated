@@ -2,7 +2,7 @@ import { r as reactExports, j as jsxRuntimeExports } from "../_libs/react.mjs";
 import { d as useNavigate } from "../_libs/tanstack__react-router.mjs";
 import { F as FlowActionBar } from "./FlowActionBar-B7zqwiBn.mjs";
 import { d as masterBudgetRanges, e as masterCategories, m as masterBrands, i as masterStyles, A as ArrowLeft, l as logoKeuken, S as Search, a as ArrowRight } from "./master-config-data-BZ9UlS_D.mjs";
-import { u as useConfigurator } from "./router-CAGiY7Hc.mjs";
+import { u as useConfigurator } from "./router-ClnlMJnD.mjs";
 import { i as industrieelBase, l as landelijkBase, k as klassiekBase, m as modernBase } from "./industrieel-base-Bbzxl6e3.mjs";
 import "../_libs/sonner.mjs";
 import { m as motion, A as AnimatePresence } from "../_libs/framer-motion.mjs";
@@ -461,7 +461,14 @@ function ConfigurePage() {
       /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center", children: /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: logoKeuken, alt: "Keuken Centrum logo", className: "h-4 w-auto opacity-90 md:h-[18px]" }) }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-[0.6rem] uppercase tracking-[0.15em] text-[rgba(247,245,242,0.3)]", children: "Samenstellen" })
     ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { className: `flex min-h-screen flex-col pt-[62px] md:h-[calc(100vh-62px)] md:flex-row ${completedCount > 0 ? "pb-28 md:pb-32" : ""}`, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(motion.section, { initial: {
+      opacity: 0
+    }, animate: {
+      opacity: 1
+    }, transition: {
+      duration: 0.55,
+      ease: "easeOut"
+    }, className: `flex min-h-screen flex-col pt-[62px] md:h-[calc(100vh-62px)] md:flex-row ${completedCount > 0 ? "pb-28 md:pb-32" : ""}`, children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { ref: imageViewportRef, className: "relative min-h-[280px] flex-none overflow-hidden bg-[#0A0A0A] md:h-[calc(100vh-62px)] md:basis-[68%]", onWheel: (event) => {
         event.preventDefault();
         const nextZoom = zoomLevel + (event.deltaY < 0 ? 0.14 : -0.14);
@@ -510,7 +517,7 @@ function ConfigurePage() {
           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-cover bg-center", style: {
             backgroundImage: `url(${activeImage})`
           } }),
-          activeHotspots.map((hotspot) => {
+          activeHotspots.map((hotspot, index) => {
             const selected = config.selections[hotspot.id];
             const active = activeCategory === hotspot.id;
             const isHovered = hoveredCategory === hotspot.id;
@@ -518,7 +525,18 @@ function ConfigurePage() {
             const visible = isHovered || active && isTouch;
             const fullCategory = masterCategories.find((c) => c.id === hotspot.id);
             const fullOption = selected ? fullCategory?.options.find((o) => o.id === selected.id) : null;
-            return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: `absolute ${active || isHovered ? "z-30" : "z-20"}`, style: {
+            return /* @__PURE__ */ jsxRuntimeExports.jsxs(motion.div, { initial: {
+              opacity: 0,
+              scale: 0
+            }, animate: {
+              opacity: 1,
+              scale: 1
+            }, transition: {
+              delay: 0.22 + index * 0.08,
+              type: "spring",
+              stiffness: 220,
+              damping: 18
+            }, className: `absolute ${active || isHovered ? "z-30" : "z-20"}`, style: {
               left: hotspot.x,
               top: hotspot.y
             }, "data-hotspot": "true", onMouseEnter: () => setHoveredCategory(hotspot.id), onMouseLeave: () => setHoveredCategory(null), children: [

@@ -1,13 +1,13 @@
 import { j as jsxRuntimeExports, r as reactExports } from "../_libs/react.mjs";
-import { N as Nav, d as motionEase, a as motionDuration, b as boraImg, m as marmerImg, g as staggerHeader$3, e as motionViewport, f as fadeUp$6, h as staggerList, s as showroomImage, c as cn } from "./Nav-Bi5axo-O.mjs";
+import { N as Nav, d as motionEase, a as motionDuration, b as boraImg, m as marmerImg, g as staggerHeader$3, e as motionViewport, f as fadeUp$6, h as staggerList, s as showroomImage, c as cn } from "./Nav-CK8htA75.mjs";
 import { a as ArrowRight, g as masterHotspotPositions, e as masterCategories, H as House, P as Phone, M as Mail, C as Check, l as logoKeuken, T as Tag, X, b as ChevronDown, c as ChevronUp } from "./master-config-data-BZ9UlS_D.mjs";
 import { r as reactDomExports } from "../_libs/react-dom.mjs";
 import { l as leichtLogo, a as aiKuchenLogo, z as zampieriLogo, c as cucinesseLogo } from "./Cucinesse_Logo-DZinUg9I.mjs";
-import { k as kc } from "./router-CAGiY7Hc.mjs";
+import { k as kc } from "./router-ClnlMJnD.mjs";
 import { g as WorkspacePremiumIcon, H as HandymanIcon, f as SupportAgentIcon, D as DiamondIcon, T as TuneIcon, P as PaletteOutlinedIcon } from "../_libs/mui__icons-material.mjs";
 import { S as Slot } from "../_libs/radix-ui__react-slot.mjs";
 import { c as cva } from "../_libs/class-variance-authority.mjs";
-import { I as Input, T as Textarea } from "./textarea-DjAkbyhT.mjs";
+import { I as Input, T as Textarea } from "./textarea-D7-ZYNFV.mjs";
 import { R as Root2, V as Value, T as Trigger, I as Icon, P as Portal, C as Content2, f as Viewport, a as Item, b as ItemIndicator, c as ItemText, d as ScrollUpButton, S as ScrollDownButton, L as Label, e as Separator } from "../_libs/radix-ui__react-select.mjs";
 import "../_libs/sonner.mjs";
 import { b as useReducedMotion, a as useMotionValue, d as useSpring, e as useTransform, c as useScroll, m as motion, A as AnimatePresence, u as useInView } from "../_libs/framer-motion.mjs";
@@ -751,48 +751,92 @@ function Brands() {
         ] })
       }
     ) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative mt-7 w-screen max-w-none left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-hidden", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-y-0 left-0 z-10 w-24 bg-[linear-gradient(90deg,#FAF8F4,rgba(250,248,244,0))]" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-y-0 right-0 z-10 w-24 bg-[linear-gradient(270deg,#FAF8F4,rgba(250,248,244,0))]" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "overflow-hidden", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-        motion.div,
-        {
-          className: "flex w-max items-center gap-12 px-10 py-6 will-change-transform",
-          animate: reduceMotion ? void 0 : { x: ["0%", "-50%"] },
-          transition: reduceMotion ? void 0 : {
-            duration: 52,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "linear"
-          },
-          children: marqueeItems.map((brand, index) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      motion.div,
+      {
+        initial: reduceMotion ? false : { opacity: 0, y: 20 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: motionViewport,
+        transition: { duration: 0.7, ease: "easeOut", delay: 0.1 },
+        className: "relative mt-7 w-screen max-w-none left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-hidden",
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-y-0 left-0 z-10 w-24 bg-[linear-gradient(90deg,#FAF8F4,rgba(250,248,244,0))]" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-y-0 right-0 z-10 w-24 bg-[linear-gradient(270deg,#FAF8F4,rgba(250,248,244,0))]" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "overflow-hidden", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
             motion.div,
             {
-              initial: "rest",
-              animate: "rest",
-              className: "group relative flex items-center",
-              onMouseEnter: () => setHoveredIndex(index),
-              onMouseLeave: () => setHoveredIndex((current) => current === index ? null : current),
-              ref: (el) => {
-                brandRefs.current[index] = el;
+              className: "flex w-max items-center py-6 will-change-transform",
+              animate: reduceMotion ? void 0 : { x: ["0%", "-50%"] },
+              transition: reduceMotion ? void 0 : {
+                duration: 52,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "linear"
               },
               children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "img",
-                  {
-                    src: brand.logo,
-                    alt: brand.name,
-                    className: "h-7 w-auto opacity-70 grayscale transition-[opacity,filter,transform] duration-300 group-hover:opacity-100 group-hover:grayscale-0 group-hover:translate-y-[-1px]",
-                    loading: "lazy"
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "sr-only", children: brand.name })
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center gap-12 pr-12", children: brandLogos.map((brand, index) => {
+                  const globalIndex = index;
+                  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    motion.div,
+                    {
+                      initial: "rest",
+                      animate: "rest",
+                      className: "group relative flex items-center",
+                      onMouseEnter: () => setHoveredIndex(globalIndex),
+                      onMouseLeave: () => setHoveredIndex((current) => current === globalIndex ? null : current),
+                      ref: (el) => {
+                        brandRefs.current[globalIndex] = el;
+                      },
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "img",
+                          {
+                            src: brand.logo,
+                            alt: brand.name,
+                            className: "h-7 w-auto opacity-70 grayscale transition-[opacity,filter,transform] duration-300 group-hover:opacity-100 group-hover:grayscale-0 group-hover:translate-y-[-1px]",
+                            loading: "lazy"
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "sr-only", children: brand.name })
+                      ]
+                    },
+                    `${brand.name}-${globalIndex}`
+                  );
+                }) }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center gap-12 pr-12", children: brandLogos.map((brand, index) => {
+                  const globalIndex = index + brandLogos.length;
+                  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    motion.div,
+                    {
+                      initial: "rest",
+                      animate: "rest",
+                      className: "group relative flex items-center",
+                      onMouseEnter: () => setHoveredIndex(globalIndex),
+                      onMouseLeave: () => setHoveredIndex((current) => current === globalIndex ? null : current),
+                      ref: (el) => {
+                        brandRefs.current[globalIndex] = el;
+                      },
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "img",
+                          {
+                            src: brand.logo,
+                            alt: brand.name,
+                            className: "h-7 w-auto opacity-70 grayscale transition-[opacity,filter,transform] duration-300 group-hover:opacity-100 group-hover:grayscale-0 group-hover:translate-y-[-1px]",
+                            loading: "lazy"
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "sr-only", children: brand.name })
+                      ]
+                    },
+                    `${brand.name}-${globalIndex}`
+                  );
+                }) })
               ]
-            },
-            `${brand.name}-${index}`
-          ))
-        }
-      ) })
-    ] }),
+            }
+          ) })
+        ]
+      }
+    ),
     hoveredIndex !== null ? reactDomExports.createPortal(
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         motion.div,
@@ -4729,11 +4773,11 @@ function StickyConversionBar() {
               children: /* @__PURE__ */ jsxRuntimeExports.jsx(X, { className: "h-3.5 w-3.5" })
             }
           ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "lux-border rounded-[22px] p-[1px] shadow-[0_34px_90px_-42px_rgba(5,11,20,0.78)]", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative overflow-hidden rounded-[21px] bg-[linear-gradient(145deg,rgba(6,14,25,0.96),rgba(8,18,31,0.9))] p-2 backdrop-blur-2xl", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-x-10 top-0 h-px bg-[linear-gradient(90deg,rgba(201,164,106,0),rgba(201,164,106,0.72),rgba(201,164,106,0))]" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "lux-border rounded-[22px] p-[1px] shadow-[0_30px_70px_-30px_rgba(23,25,28,0.22)]", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative overflow-hidden rounded-[21px] bg-[linear-gradient(145deg,rgba(252,250,246,0.95),rgba(244,240,232,0.92))] p-1.5 backdrop-blur-2xl", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-x-10 top-0 h-px bg-[linear-gradient(90deg,rgba(201,164,106,0),rgba(201,164,106,0.4),rgba(201,164,106,0))]" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute left-[18%] top-[-80%] h-[180px] w-[180px] rounded-full bg-[radial-gradient(circle,rgba(61,154,66,0.1),transparent_60%)]" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute right-[18%] top-[-86%] h-[190px] w-[190px] rounded-full bg-[radial-gradient(circle,rgba(201,164,106,0.1),transparent_58%)]" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-3 gap-1.5 rounded-[16px] border border-[rgba(7,17,27,0.08)] bg-[linear-gradient(180deg,rgba(252,250,246,0.985),rgba(246,242,235,0.985))] p-1.5 text-[var(--foreground)] shadow-[inset_0_1px_0_rgba(255,255,255,0.86),0_20px_44px_-38px_rgba(7,17,27,0.24)]", children: actions2.map(
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-3 gap-1.5 rounded-[16px] border border-[rgba(200,169,107,0.18)] bg-[linear-gradient(180deg,rgba(255,255,255,0.99),rgba(252,250,246,0.99))] p-1.5 text-[var(--foreground)] shadow-[inset_0_1px_0_rgba(255,255,255,0.86),0_20px_44px_-38px_rgba(7,17,27,0.12)]", children: actions2.map(
               ({ label, meta, href, Icon: Icon2, primary, accent }) => primary ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
                 "a",
                 {
@@ -4777,9 +4821,9 @@ function StickyConversionBar() {
         exit: reduceMotion ? { opacity: 0 } : { opacity: 0, y: 18 },
         transition: { duration: reduceMotion ? 0.01 : 0.35, ease: [0.22, 1, 0.36, 1] },
         className: "pointer-events-none fixed inset-x-0 bottom-0 z-[80] px-2 pb-[calc(env(safe-area-inset-bottom)+0.5rem)] lg:hidden",
-        children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "pointer-events-auto mx-auto max-w-[620px]", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "lux-border rounded-[18px] p-[1px] shadow-[0_30px_70px_-38px_rgba(5,11,20,0.76)]", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative overflow-hidden rounded-[17px] bg-[linear-gradient(145deg,rgba(6,14,25,0.96),rgba(8,18,31,0.9))] p-2 backdrop-blur-2xl", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-x-7 top-0 h-px bg-[linear-gradient(90deg,rgba(201,164,106,0),rgba(201,164,106,0.7),rgba(201,164,106,0))]" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative rounded-[14px] bg-[linear-gradient(180deg,rgba(252,250,246,0.99),rgba(246,242,235,0.99))] p-1", children: [
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "pointer-events-auto mx-auto max-w-[620px]", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "lux-border rounded-[18px] p-[1px] shadow-[0_26px_58px_-32px_rgba(23,25,28,0.2)]", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative overflow-hidden rounded-[17px] bg-[linear-gradient(145deg,rgba(252,250,246,0.95),rgba(244,240,232,0.92))] p-1.5 backdrop-blur-2xl", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-x-7 top-0 h-px bg-[linear-gradient(90deg,rgba(201,164,106,0),rgba(201,164,106,0.4),rgba(201,164,106,0))]" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative rounded-[14px] bg-[linear-gradient(180deg,rgba(255,255,255,0.99),rgba(252,250,246,0.99))] p-1", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               "button",
               {

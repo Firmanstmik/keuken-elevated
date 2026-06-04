@@ -1,7 +1,7 @@
 import { r as reactExports, j as jsxRuntimeExports } from "../_libs/react.mjs";
 import { u as useLocation } from "../_libs/tanstack__react-router.mjs";
 import { l as logoKeuken, b as ChevronDown } from "./master-config-data-BZ9UlS_D.mjs";
-import { k as kc } from "./router-CAGiY7Hc.mjs";
+import { k as kc } from "./router-ClnlMJnD.mjs";
 import { R as Root2, I as Item, H as Header, T as Trigger2, C as Content2 } from "../_libs/radix-ui__react-accordion.mjs";
 import { c as clsx } from "../_libs/clsx.mjs";
 import { t as twMerge } from "../_libs/tailwind-merge.mjs";
