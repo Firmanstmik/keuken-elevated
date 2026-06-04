@@ -1,0 +1,1 @@
+const o={x:"63%",y:"75%"},s={x:"38%",y:"60%"},t={x:"53%",y:"59%"},n={x:"88%",y:"51%"},c={x:"52%",y:"50%"},r={x:"46%",y:"54%"},x={x:"11%",y:"60%"},a={x:"49%",y:"22%"},e={front:o,werkblad:s,spoelbak:t,apparatuur:n,quooker:c,bora:r,grepen:x,verlichting:a};export{e as k};
