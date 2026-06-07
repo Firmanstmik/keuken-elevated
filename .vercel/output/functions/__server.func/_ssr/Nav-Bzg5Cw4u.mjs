@@ -1,12 +1,12 @@
 import { r as reactExports, j as jsxRuntimeExports } from "../_libs/react.mjs";
 import { u as useLocation } from "../_libs/tanstack__react-router.mjs";
 import { l as logoKeuken, b as ChevronDown } from "./master-config-data-9VcrPlEf.mjs";
-import { k as kc } from "./router-BQ3ecgy_.mjs";
+import { k as kc } from "./router-DPc2lHpZ.mjs";
 import { R as Root2, I as Item, H as Header, T as Trigger2, C as Content2 } from "../_libs/radix-ui__react-accordion.mjs";
 import { c as clsx } from "../_libs/clsx.mjs";
 import { t as twMerge } from "../_libs/tailwind-merge.mjs";
 import { b as useReducedMotion, m as motion, A as AnimatePresence } from "../_libs/framer-motion.mjs";
-import { g as Sparkles, L as Layers, b as Award, G as Gem, H as Heart, C as Compass, h as Wrench, S as Shield, e as Mountain, D as Droplet, d as Grid3x3, c as Flame, W as Wind, f as Snowflake, M as MapPin, F as FileText, a as ArrowUpRight, A as ArrowRight } from "../_libs/lucide-react.mjs";
+import { g as Sparkles, L as Layers, b as Award, G as Gem, H as Heart, C as Compass, i as Wrench, S as Shield, e as Mountain, D as Droplet, d as Grid3x3, c as Flame, W as Wind, f as Snowflake, M as MapPin, F as FileText, a as ArrowUpRight, A as ArrowRight } from "../_libs/lucide-react.mjs";
 import { A as ArrowRight2, C as Call, H as House, S as Sms } from "../_libs/zethictech__iconsax-react.mjs";
 const motionDuration = {
   normal: 0.25,
@@ -52,7 +52,7 @@ const staggerList = {
     }
   }
 };
-const showroomImage = "/assets/showroom-BIgnA1P8.jpg";
+const showroomAsset = "/assets/showroom-BIgnA1P8.jpg";
 const marmerImg = "/assets/marmer-img-BdUOzDgc.webp";
 const boraImg = "/assets/Bora-img-sX3CWUxs.webp";
 function cn(...inputs) {
@@ -140,7 +140,7 @@ const desktopMenu = [
       description: "Ervaar vakmanschap in onze showroom te Utrecht. Al meer dan 45 jaar uw keukenspecialist.",
       buttonText: "Plan showroombezoek",
       buttonHref: "/consultation",
-      imageSrc: showroomImage
+      imageSrc: showroomAsset
     }
   },
   {
@@ -757,5 +757,5 @@ export {
   staggerHeader as g,
   staggerList as h,
   marmerImg as m,
-  showroomImage as s
+  showroomAsset as s
 };

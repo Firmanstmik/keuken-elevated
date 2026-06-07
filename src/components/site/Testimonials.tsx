@@ -2,6 +2,8 @@
 
 import { useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { Quote, Star } from "lucide-react";
+import { Location, TickCircle } from "iconsax-react";
 import { motionViewport } from "@/lib/motion";
 import collectionMinimal from "@/assets/collection-minimal.jpg";
 import collectionModern from "@/assets/collection-modern.jpg";
@@ -9,7 +11,7 @@ import collectionWarm from "@/assets/collection-warm.jpg";
 import showroomImage from "@/assets/showroom.jpg";
 import heroKitchen from "@/assets/hero-kitchen.jpg";
 
-const luxuryEase = [0.22, 1, 0.36, 1] as const;
+// ─── Preserved data (unchanged) ────────────────────────────────────────────
 
 const testimonialsData = [
   {
@@ -80,13 +82,26 @@ const testimonialsData = [
   },
 ] as const;
 
+// ─── Helpers ────────────────────────────────────────────────────────────────
+
+/** Derive 2-letter initials from a client name */
+function toInitials(name: string): string {
+  const words = name.trim().split(/\s+/);
+  if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
+  return (words[0][0] + words[words.length - 1][0]).toUpperCase();
+}
+
+// ─── Framer-motion entrance variants ────────────────────────────────────────
+
+const luxuryEase = [0.22, 1, 0.36, 1] as const;
+
 const sectionReveal = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { duration: 0.8, ease: luxuryEase } },
 };
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 32 },
+  hidden: { opacity: 0, y: 28 },
   visible: {
     opacity: 1,
     y: 0,
@@ -94,110 +109,377 @@ const fadeUp = {
   },
 };
 
-function StarRating() {
+const stagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.06 } },
+};
+
+// ─── Stars ───────────────────────────────────────────────────────────────────
+
+function Stars({ size = 14 }: { size?: number }) {
   return (
-    <div className="flex gap-1.5">
-      {[...Array(5)].map((_, i) => (
-        <svg
+    <div className="flex gap-[3px]">
+      {Array.from({ length: 5 }).map((_, i) => (
+        <Star
           key={i}
-          className="h-3.5 w-3.5 text-[#C8A96B]"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-        >
-          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-        </svg>
+          style={{ width: size, height: size }}
+          className="fill-[#C8A96B] text-[#C8A96B]"
+        />
       ))}
     </div>
   );
 }
 
-function QuoteIcon() {
+// ─── Testimonial Card ────────────────────────────────────────────────────────
+
+type CardData = (typeof testimonialsData)[number];
+
+function TestimonialCard({ story }: { story: CardData }) {
+  const initials = toInitials(story.client);
+  const badge = story.brand + "  ·  " + story.project;
+
   return (
-    <svg
-      className="h-9 w-9 text-[#C8A96B]/15"
-      fill="currentColor"
-      viewBox="0 0 24 24"
+    <article
+      className="group relative mb-5 overflow-hidden rounded-[28px] border border-white/[0.06] bg-gradient-to-b from-white/[0.05] to-white/[0.02] p-6 backdrop-blur-sm transition-all duration-300 ease-out hover:-translate-y-1.5 hover:border-[#C8A96B]/30 select-none"
+      style={{
+        boxShadow:
+          "0 1px 0 rgba(255,255,255,0.04) inset, 0 18px 50px -22px rgba(0,0,0,0.6)",
+      }}
     >
-      <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-    </svg>
-  );
-}
+      {/* Hover glow overlay — absolute inset */}
+      <div
+        className="pointer-events-none absolute inset-0 rounded-[28px] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        style={{
+          boxShadow:
+            "0 28px 80px -30px rgba(200,165,106,0.35), 0 0 0 1px rgba(200,165,106,0.25) inset",
+        }}
+      />
 
-function TestimonialCard({
-  story,
-}: {
-  story: (typeof testimonialsData)[number];
-}) {
-  return (
-    <article className="group relative flex w-[360px] sm:w-[420px] flex-shrink-0 flex-col justify-between rounded-[24px] border border-[rgba(200,169,107,0.14)] bg-[#1D2023]/60 p-6 shadow-[0_24px_56px_-36px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-500 hover:-translate-y-2 hover:border-[#C8A96B]/40 hover:bg-[#1D2023]/80 hover:shadow-[0_36px_72px_-40px_rgba(200,169,107,0.22)] sm:p-7 select-none">
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#C8A96B]/20 to-transparent transition-opacity duration-500 group-hover:via-[#C8A96B]/40" />
-
-      <div>
-        {/* Card Image */}
-        <div className="relative mb-5 h-[140px] w-full overflow-hidden rounded-[16px] border border-white/[0.06]">
+      {/* Row 1: Stars (left) + Image thumbnail (right) */}
+      <div className="flex items-start justify-between gap-4">
+        <Stars />
+        <div className="relative h-12 w-16 shrink-0 overflow-hidden rounded-xl border border-white/10">
           <img
-            src={story.image}
+            src={story.image as unknown as string}
             alt={story.project}
-            className="h-full w-full object-cover transition-transform duration-[1000ms] ease-out group-hover:scale-105 pointer-events-none"
+            loading="lazy"
             draggable={false}
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110 pointer-events-none"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#111315]/80 via-transparent to-transparent" />
-          <span
-            className="absolute right-4 top-4 rounded-full border border-white/[0.08] bg-black/40 px-2.5 py-0.5 text-[0.58rem] uppercase tracking-[0.2em] text-[#F5F2EC] backdrop-blur-sm"
-            style={{ fontFamily: "'Jost', sans-serif" }}
-          >
-            {story.brand}
-          </span>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
         </div>
-
-        {/* Rating and Icon */}
-        <div className="flex items-center justify-between">
-          <StarRating />
-          <QuoteIcon />
-        </div>
-
-        {/* Quote */}
-        <blockquote className="mt-4 font-serif text-[1rem] font-light leading-[1.65] text-[#F5F2EC]/90 transition-colors duration-300 group-hover:text-white sm:text-[1.05rem]">
-          "{story.quote}"
-        </blockquote>
       </div>
 
-      {/* Footer Info */}
-      <div className="mt-6 border-t border-white/10 pt-4">
-        <div className="flex items-end justify-between gap-4">
-          <div>
-            <cite className="block font-serif text-[1.05rem] font-light not-italic text-[#F5F2EC]">
-              {story.client}
-            </cite>
-            <p
-              className="mt-0.5 text-[0.68rem] uppercase tracking-[0.16em] text-[rgba(245,242,236,0.5)]"
-              style={{ fontFamily: "'Jost', sans-serif" }}
-            >
-              {story.project}
-            </p>
+      {/* Row 2: Gold badge */}
+      <div className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-[#C8A96B]/30 bg-[#C8A96B]/[0.08] px-2.5 py-1">
+        <span className="h-1 w-1 rounded-full bg-[#C8A96B]" />
+        <span
+          className="text-[10px] font-medium uppercase tracking-[0.16em]"
+          style={{ color: "#D4B07A", fontFamily: "var(--font-body)" }}
+        >
+          {badge}
+        </span>
+      </div>
+
+      {/* Row 3: Quote — min-h keeps scroll columns visually rhythmic */}
+      <p className="mt-4 min-h-[108px] font-serif text-[17px] font-light leading-relaxed text-white/85">
+        <Quote className="-mt-1 mr-1 inline h-3.5 w-3.5 text-[#C8A96B]/70" />
+        {story.quote}
+      </p>
+
+      {/* Row 4: Footer — avatar + name + location + verified */}
+      <div className="mt-5 flex items-center justify-between border-t border-white/[0.06] pt-4">
+        <div className="flex items-center gap-3">
+          <div
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.05] text-[11px] font-semibold tracking-wider text-white"
+            style={{ fontFamily: "var(--font-body)" }}
+          >
+            {initials}
           </div>
-          <div className="text-right">
-            <span className="text-[0.78rem] font-medium text-[#C8A96B]">{story.location}</span>
-            <p
-              className="mt-0.5 text-[0.62rem] uppercase tracking-[0.12em] text-[rgba(245,242,236,0.38)]"
-              style={{ fontFamily: "'Jost', sans-serif" }}
+          <div>
+            <div
+              className="text-[13px] font-medium text-white"
+              style={{ fontFamily: "var(--font-body)" }}
             >
-              {story.year}
-            </p>
+              {story.client}
+            </div>
+            <div
+              className="mt-0.5 flex items-center gap-1 text-[11px] text-white/50"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
+              <Location size={12} variant="Linear" />
+              {story.location} · {story.year}
+            </div>
           </div>
         </div>
+        <TickCircle size={20} variant="Bold" className="text-[#3D9A42] shrink-0" />
       </div>
     </article>
   );
 }
 
-/** A single draggable row that also auto-scrolls via CSS animation */
+// ─── Scrolling Column ────────────────────────────────────────────────────────
+
+function Column({
+  stories,
+  direction,
+}: {
+  stories: readonly CardData[];
+  direction: "up" | "down";
+}) {
+  const doubled = [...stories, ...stories];
+  const COL_BG = "#0F0F0F";
+  return (
+    <div className="relative h-[760px] overflow-hidden">
+      {/* Fade top */}
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 z-10 h-64"
+        style={{
+          background: `linear-gradient(to bottom, ${COL_BG} 0%, ${COL_BG} 18%, rgba(15,15,15,0) 100%)`,
+        }}
+      />
+      {/* Fade bottom */}
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-64"
+        style={{
+          background: `linear-gradient(to top, ${COL_BG} 0%, ${COL_BG} 18%, rgba(15,15,15,0) 100%)`,
+        }}
+      />
+      <div
+        className={
+          direction === "up" ? "animate-kc-scroll-up" : "animate-kc-scroll-down"
+        }
+      >
+        {doubled.map((story, i) => (
+          <TestimonialCard key={`${story.client}-${i}`} story={story} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ─── Rating Ring (SVG arc) ───────────────────────────────────────────────────
+
+function RatingRing() {
+  const r = 88;
+  const circumference = 2 * Math.PI * r;
+  const filledRatio = 0.98;
+  return (
+    <div className="relative mx-auto mt-7 h-56 w-56">
+      {/* Track circle */}
+      <svg
+        viewBox="0 0 200 200"
+        className="absolute inset-0 h-full w-full -rotate-90"
+      >
+        <circle
+          cx="100"
+          cy="100"
+          r={r}
+          fill="none"
+          stroke="rgba(255,255,255,0.12)"
+          strokeWidth="2"
+        />
+      </svg>
+      {/* Filled arc */}
+      <svg
+        viewBox="0 0 200 200"
+        className="absolute inset-0 h-full w-full -rotate-90"
+      >
+        <defs>
+          <linearGradient id="kc-arc-gradient" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="#F1DDA6" />
+            <stop offset="100%" stopColor="#B8924A" />
+          </linearGradient>
+        </defs>
+        <circle
+          cx="100"
+          cy="100"
+          r={r}
+          fill="none"
+          stroke="url(#kc-arc-gradient)"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeDasharray={circumference}
+          strokeDashoffset={circumference * (1 - filledRatio)}
+          className="animate-kc-dash"
+        />
+      </svg>
+      {/* Center content */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center">
+        <div className="font-serif text-7xl font-light tracking-tight text-white">
+          4.9
+        </div>
+        <div
+          className="mt-1 text-[10px] uppercase tracking-[0.3em]"
+          style={{ color: "#DCBE82", fontFamily: "var(--font-body)" }}
+        >
+          van 5.0
+        </div>
+        <div className="mt-3">
+          <Stars size={12} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Center Showcase ─────────────────────────────────────────────────────────
+
+function CenterShowcase() {
+  return (
+    <div className="relative mx-auto w-full max-w-[400px]">
+      {/* Dual halo behind card */}
+      <div
+        className="pointer-events-none absolute -inset-24 -z-10 rounded-[60px] opacity-70 blur-3xl"
+        style={{
+          background:
+            "radial-gradient(50% 45% at 50% 30%, rgba(40,70,140,0.45), transparent 70%), radial-gradient(45% 45% at 50% 75%, rgba(200,165,106,0.30), transparent 70%)",
+        }}
+      />
+
+      <div className="animate-kc-float">
+        {/* Gold gradient border wrapper */}
+        <div
+          className="relative rounded-[34px] p-[1.5px]"
+          style={{
+            background:
+              "linear-gradient(160deg, rgba(220,190,130,0.9) 0%, rgba(180,140,70,0.3) 35%, rgba(255,255,255,0.6) 65%, rgba(180,140,70,0.7) 100%)",
+            boxShadow:
+              "0 60px 140px -30px rgba(8,18,40,0.75), 0 30px 60px -20px rgba(0,0,0,0.4)",
+          }}
+        >
+          {/* Dual-tone inner card: navy (top) → cream (bottom) */}
+          <div
+            className="relative overflow-hidden rounded-[33px]"
+            style={{
+              background:
+                "linear-gradient(180deg, #0B1B3A 0%, #0D2148 48%, #FFFFFF 48.2%, #F7F2E8 100%)",
+            }}
+          >
+            {/* ── TOP: dark navy half ── */}
+            <div className="relative px-8 pt-8 pb-10">
+              {/* Subtle starlight radial */}
+              <div
+                className="pointer-events-none absolute inset-0"
+                style={{
+                  background:
+                    "radial-gradient(70% 60% at 50% 0%, rgba(255,255,255,0.10), transparent 70%)",
+                }}
+              />
+              {/* Google Verified badge */}
+              <div className="relative flex justify-center">
+                <div
+                  className="flex items-center gap-2 rounded-full px-3 py-1.5"
+                  style={{
+                    background: "rgba(255,255,255,0.08)",
+                    border: "1px solid rgba(220,190,130,0.35)",
+                    backdropFilter: "blur(8px)",
+                  }}
+                >
+                  <span
+                    className="h-1.5 w-1.5 rounded-full"
+                    style={{ background: "#DCBE82" }}
+                  />
+                  <span
+                    className="text-[10px] font-medium uppercase tracking-[0.22em]"
+                    style={{ color: "#E8D6A8", fontFamily: "var(--font-body)" }}
+                  >
+                    Google Reviews · Verified
+                  </span>
+                </div>
+              </div>
+              {/* Animated rating ring */}
+              <RatingRing />
+            </div>
+
+            {/* Gold seam separator */}
+            <div
+              className="pointer-events-none relative h-px"
+              style={{
+                background:
+                  "linear-gradient(90deg, transparent, rgba(184,146,74,0.7), transparent)",
+              }}
+            />
+
+            {/* ── BOTTOM: cream half ── */}
+            <div className="relative px-8 pt-7 pb-8">
+              <div className="space-y-2.5">
+                {(
+                  [
+                    { value: "127+", label: "Beoordelingen" },
+                    { value: "45+", label: "Jaar Vakmanschap" },
+                    { value: "98%", label: "Aanbevolen" },
+                  ] as const
+                ).map((stat) => (
+                  <div
+                    key={stat.label}
+                    className="flex items-center justify-between rounded-2xl px-5 py-4"
+                    style={{
+                      background: "rgba(247,242,232,0.7)",
+                      border: "1px solid rgba(184,146,74,0.18)",
+                    }}
+                  >
+                    <span
+                      className="text-[11px] uppercase tracking-[0.22em]"
+                      style={{
+                        color: "#6a5224",
+                        fontFamily: "var(--font-body)",
+                      }}
+                    >
+                      {stat.label}
+                    </span>
+                    <span
+                      className="font-serif text-3xl font-light"
+                      style={{ color: "#0B1B3A" }}
+                    >
+                      {stat.value}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Google Reviews badge */}
+              <div
+                className="mt-5 flex items-center justify-between rounded-2xl px-4 py-3"
+                style={{
+                  background: "#FFFFFF",
+                  border: "1px solid rgba(184,146,74,0.20)",
+                  boxShadow: "0 8px 20px -10px rgba(11,27,58,0.15)",
+                }}
+              >
+                <div className="flex items-center gap-2">
+                  {/* Google "G" SVG */}
+                  <svg className="h-4 w-4" viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      fill="#EA4335"
+                      d="M12 10.2v3.9h5.5c-.2 1.4-1.7 4.1-5.5 4.1-3.3 0-6-2.7-6-6.1s2.7-6.1 6-6.1c1.9 0 3.2.8 3.9 1.5l2.7-2.6C16.9 3.3 14.7 2.3 12 2.3 6.6 2.3 2.3 6.6 2.3 12S6.6 21.7 12 21.7c6.9 0 9.5-4.9 9.5-9.4 0-.6-.1-1.1-.1-1.5H12z"
+                    />
+                  </svg>
+                  <span
+                    className="text-xs font-medium"
+                    style={{ color: "#0B1B3A", fontFamily: "var(--font-body)" }}
+                  >
+                    Google Reviews
+                  </span>
+                </div>
+                <Stars size={13} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Mobile Draggable Marquee ─────────────────────────────────────────────────
+
 function DraggableMarqueeRow({
   items,
   animClass,
   reduceMotion,
 }: {
-  items: readonly (typeof testimonialsData)[number][];
+  items: readonly CardData[];
   animClass: string;
   reduceMotion: boolean | null;
 }) {
@@ -207,30 +489,21 @@ function DraggableMarqueeRow({
   const dragStartX = useRef(0);
   const scrollStartLeft = useRef(0);
 
-  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+  const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     if (!rowRef.current) return;
     setIsDragging(true);
     dragStartX.current = e.clientX;
     scrollStartLeft.current = rowRef.current.scrollLeft;
     rowRef.current.setPointerCapture(e.pointerId);
-    // Pause CSS animation while dragging
-    if (trackRef.current) {
-      trackRef.current.style.animationPlayState = "paused";
-    }
+    if (trackRef.current) trackRef.current.style.animationPlayState = "paused";
   };
-
-  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+  const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
     if (!isDragging || !rowRef.current) return;
-    const dx = e.clientX - dragStartX.current;
-    rowRef.current.scrollLeft = scrollStartLeft.current - dx;
+    rowRef.current.scrollLeft = scrollStartLeft.current - (e.clientX - dragStartX.current);
   };
-
-  const handlePointerUp = () => {
+  const onPointerUp = () => {
     setIsDragging(false);
-    // Resume CSS animation
-    if (trackRef.current) {
-      trackRef.current.style.animationPlayState = "running";
-    }
+    if (trackRef.current) trackRef.current.style.animationPlayState = "running";
   };
 
   return (
@@ -238,30 +511,42 @@ function DraggableMarqueeRow({
       ref={rowRef}
       className="relative w-full overflow-x-auto scrollbar-hide"
       style={{ cursor: isDragging ? "grabbing" : "grab" }}
-      onPointerDown={handlePointerDown}
-      onPointerMove={handlePointerMove}
-      onPointerUp={handlePointerUp}
-      onPointerCancel={handlePointerUp}
+      onPointerDown={onPointerDown}
+      onPointerMove={onPointerMove}
+      onPointerUp={onPointerUp}
+      onPointerCancel={onPointerUp}
     >
       <div
         ref={trackRef}
-        className={`flex gap-6 sm:gap-8 w-max px-3 ${
-          reduceMotion ? "" : animClass
-        }`}
+        className={`flex gap-5 w-max px-3 ${reduceMotion ? "" : animClass}`}
       >
-        {/* Duplicate for seamless loop */}
         {[...items, ...items].map((story, idx) => (
-          <TestimonialCard key={`${story.client}-${idx}`} story={story} />
+          <div key={`${story.client}-${idx}`} className="w-[320px] sm:w-[380px] shrink-0">
+            <TestimonialCard story={story} />
+          </div>
         ))}
       </div>
     </div>
   );
 }
 
+// ─── Main Export ─────────────────────────────────────────────────────────────
+
 export function Testimonials() {
   const reduceMotion = useReducedMotion();
 
-  const row1Data = testimonialsData;
+  const leftStories = [
+    testimonialsData[0],
+    testimonialsData[1],
+    testimonialsData[2],
+  ] as const;
+
+  const rightStories = [
+    testimonialsData[3],
+    testimonialsData[4],
+    testimonialsData[5],
+  ] as const;
+
   const row2Data = [
     testimonialsData[3],
     testimonialsData[4],
@@ -274,9 +559,10 @@ export function Testimonials() {
   return (
     <section
       id="reviews"
-      className="relative overflow-hidden bg-[linear-gradient(180deg,#17191C_0%,#111315_100%)] py-24 text-[#F5F2EC] md:py-36 border-t border-white/[0.08]"
+      className="relative overflow-hidden border-t border-white/[0.08]"
+      style={{ backgroundColor: "#0F0F0F" }}
     >
-      {/* CSS marquee keyframes */}
+      {/* CSS keyframes for marquee rows (mobile) */}
       <style>{`
         @keyframes marquee-ltr {
           0%   { transform: translate3d(-50%, 0, 0); }
@@ -286,136 +572,203 @@ export function Testimonials() {
           0%   { transform: translate3d(0, 0, 0); }
           100% { transform: translate3d(-50%, 0, 0); }
         }
-        .animate-marquee-ltr {
-          animation: marquee-ltr 45s linear infinite;
-        }
-        .animate-marquee-rtl {
-          animation: marquee-rtl 50s linear infinite;
-        }
+        .animate-marquee-ltr { animation: marquee-ltr 45s linear infinite; }
+        .animate-marquee-rtl { animation: marquee-rtl 50s linear infinite; }
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
       `}</style>
 
-      {/* Decorative overlays */}
+      {/* Central gold ambient glow */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-25 blur-3xl"
         style={{
           background:
-            "radial-gradient(circle at top left, rgba(200,169,107,0.08), transparent 34%), radial-gradient(circle at 78% 18%, rgba(255,255,255,0.03), transparent 24%)",
+            "radial-gradient(circle, rgba(200,165,106,0.28), transparent 60%)",
         }}
       />
+
+      {/* Top edge line */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[rgba(200,169,107,0.25)] to-transparent"
       />
+      {/* Bottom edge line */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[rgba(255,255,255,0.08)] to-transparent"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[rgba(255,255,255,0.06)] to-transparent"
       />
 
-      {/* Section header */}
-      <div className="site-container relative z-10 mb-16">
+      {/* ── Section header ─────────────────────────────────────────── */}
+      <div className="relative z-10 mx-auto max-w-7xl px-6 pt-28 pb-0">
         <motion.div
           initial={reduceMotion ? false : "hidden"}
           whileInView="visible"
           viewport={motionViewport}
           variants={reduceMotion ? undefined : sectionReveal}
-          className="border-b border-white/[0.08] pb-12"
         >
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,1.4fr)_minmax(22rem,0.8fr)] lg:items-end">
-            <div className="max-w-[45rem]">
-              <motion.div
-                variants={reduceMotion ? undefined : fadeUp}
-                className="mb-5 flex items-center gap-4"
-              >
-                <span className="h-px w-10 bg-gradient-to-r from-transparent to-[#C8A96B]/70" />
-                <span
-                  className="text-[0.64rem] uppercase tracking-[0.34em] text-[#C8A96B]"
-                  style={{ fontFamily: "'Jost', sans-serif" }}
-                >
-                  Luxury Client Stories
-                </span>
-              </motion.div>
-
-              <motion.h2
-                variants={reduceMotion ? undefined : fadeUp}
-                className="font-serif text-[clamp(2.2rem,4vw,3.6rem)] font-light leading-[1.02] tracking-[-0.035em] text-[#F5F2EC]"
-              >
-                Vertrouwen dat u
-                <br />
-                <em className="font-serif italic text-[#C8A96B]">direct voelt.</em>
-              </motion.h2>
-            </div>
-
+          <motion.div
+            variants={reduceMotion ? undefined : stagger}
+            className="mx-auto max-w-3xl text-center"
+          >
+            {/* Eyebrow row: gold line — badge — gold line */}
             <motion.div
               variants={reduceMotion ? undefined : fadeUp}
-              className="grid gap-6 lg:justify-self-end"
+              className="mb-2 flex items-center justify-center gap-4"
             >
-              <p
-                className="max-w-[28rem] text-[0.97rem] leading-[1.85] text-[rgba(245,242,236,0.65)]"
-                style={{ fontFamily: "'Jost', sans-serif" }}
-              >
-                Google reviews gepresenteerd als premium projectverhalen: rustig opgebouwd, gekoppeld
-                aan echte keukenrealisaties en ontworpen met dezelfde verfijnde showroomlogica als
-                de premium configurator experience.
-              </p>
-
-              <div className="flex w-fit items-start gap-5 rounded-[24px] border border-white/[0.08] bg-white/[0.02] px-5 py-4 backdrop-blur-sm">
-                <div>
-                  <div className="flex gap-1 text-[0.9rem] text-[#C8A96B] leading-none">★★★★★</div>
-                  <p className="mt-1 font-serif text-[1.6rem] leading-none text-[#F5F2EC]">4.9 / 5.0</p>
-                </div>
-                <div className="border-l border-white/[0.08] pl-5">
-                  <p
-                    className="text-[0.62rem] uppercase tracking-[0.22em] text-[rgba(245,242,236,0.5)]"
-                    style={{ fontFamily: "'Jost', sans-serif" }}
-                  >
-                    Google Rating Summary
-                  </p>
-                  <p
-                    className="mt-2 text-[0.88rem] leading-[1.7] text-[rgba(245,242,236,0.68)]"
-                    style={{ fontFamily: "'Jost', sans-serif" }}
-                  >
-                    127+ geverifieerde reviews van premium keukenprojecten in Utrecht en omstreken.
-                  </p>
-                </div>
+              <span
+                aria-hidden="true"
+                className="h-px w-10 bg-gradient-to-r from-transparent to-[#C8A96B]/70"
+              />
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-1.5 backdrop-blur">
+                <svg className="h-3.5 w-3.5 shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    fill="#EA4335"
+                    d="M12 10.2v3.9h5.5c-.2 1.4-1.7 4.1-5.5 4.1-3.3 0-6-2.7-6-6.1s2.7-6.1 6-6.1c1.9 0 3.2.8 3.9 1.5l2.7-2.6C16.9 3.3 14.7 2.3 12 2.3 6.6 2.3 2.3 6.6 2.3 12S6.6 21.7 12 21.7c6.9 0 9.5-4.9 9.5-9.4 0-.6-.1-1.1-.1-1.5H12z"
+                  />
+                </svg>
+                <span
+                  className="text-[10px] font-medium uppercase tracking-[0.24em] text-white/70"
+                  style={{ fontFamily: "var(--font-body)" }}
+                >
+                  Google Beoordelingen
+                </span>
               </div>
+              <span
+                aria-hidden="true"
+                className="h-px w-10 bg-gradient-to-l from-transparent to-[#C8A96B]/70"
+              />
             </motion.div>
-          </div>
+
+            {/* Heading */}
+            <motion.h2
+              variants={reduceMotion ? undefined : fadeUp}
+              className="mt-6 font-serif text-5xl font-light leading-[1.05] tracking-tight text-white md:text-6xl"
+            >
+              Ervaringen van klanten
+              <br />
+              <em className="italic text-[#C8A96B]">
+                uit Utrecht en omgeving
+              </em>
+            </motion.h2>
+
+            {/* Subtitle */}
+            <motion.p
+              variants={reduceMotion ? undefined : fadeUp}
+              className="mx-auto mt-6 max-w-xl text-[15px] leading-relaxed text-white/55"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
+              Persoonlijk ontwerpadvies, Duitse precisie en Italiaanse elegantie
+              — samengebracht in een installatie die generaties meegaat.
+            </motion.p>
+          </motion.div>
         </motion.div>
       </div>
 
-      {/* Drag hint */}
-      <div className="site-container relative z-10 mb-6 flex items-center gap-2">
-        <svg className="h-4 w-4 text-[rgba(245,242,236,0.3)]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 17.25L12 21m0 0l-3.75-3.75M12 21V3" />
-        </svg>
-        <span
-          className="text-[0.62rem] uppercase tracking-[0.22em] text-[rgba(245,242,236,0.3)]"
-          style={{ fontFamily: "'Jost', sans-serif" }}
-        >
-          Sleep om te bladeren
-        </span>
+      {/* ── 3-column triptych (desktop) + mobile marquee ───────────── */}
+      <div className="relative z-10 mx-auto max-w-7xl px-6 pb-6 pt-20">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[3fr_4fr_3fr]">
+
+          {/* Left column — scroll up */}
+          <div className="hidden lg:block">
+            <Column stories={leftStories} direction="up" />
+          </div>
+
+          {/* Center showcase */}
+          <div className="flex items-center justify-center">
+            <CenterShowcase />
+          </div>
+
+          {/* Right column — scroll down */}
+          <div className="hidden lg:block">
+            <Column stories={rightStories} direction="down" />
+          </div>
+
+          {/* Mobile: draggable marquee rows */}
+          <div className="flex flex-col gap-6 lg:hidden">
+            <div className="relative overflow-hidden">
+              <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 sm:w-28 bg-gradient-to-r from-[#0F0F0F] to-transparent" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 sm:w-28 bg-gradient-to-l from-[#0F0F0F] to-transparent" />
+              <DraggableMarqueeRow
+                items={testimonialsData}
+                animClass="animate-marquee-rtl"
+                reduceMotion={reduceMotion}
+              />
+            </div>
+            <div className="relative overflow-hidden">
+              <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 sm:w-28 bg-gradient-to-r from-[#0F0F0F] to-transparent" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 sm:w-28 bg-gradient-to-l from-[#0F0F0F] to-transparent" />
+              <DraggableMarqueeRow
+                items={row2Data}
+                animClass="animate-marquee-ltr"
+                reduceMotion={reduceMotion}
+              />
+            </div>
+          </div>
+
+        </div>
       </div>
 
-      {/* MARQUEE ROWS — draggable */}
-      <div className="relative flex flex-col gap-6 sm:gap-8 overflow-hidden py-4">
-        {/* Fade edge masks */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-12 sm:w-28 bg-gradient-to-r from-[#111315] to-transparent z-10" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-12 sm:w-28 bg-gradient-to-l from-[#111315] to-transparent z-10" />
+      {/* ── CTA: The Invitation ──────────────────────────────────── */}
+      <motion.div
+        initial={reduceMotion ? false : "hidden"}
+        whileInView="visible"
+        viewport={motionViewport}
+        variants={reduceMotion ? undefined : fadeUp}
+        className="relative z-10 mx-auto max-w-7xl px-6 pb-28 pt-6"
+      >
+        <div className="flex flex-col items-center gap-7 text-center">
 
-        <DraggableMarqueeRow
-          items={row1Data}
-          animClass="animate-marquee-ltr"
-          reduceMotion={reduceMotion}
-        />
-        <DraggableMarqueeRow
-          items={row2Data}
-          animClass="animate-marquee-rtl"
-          reduceMotion={reduceMotion}
-        />
-      </div>
+          {/* Ornamental rule */}
+          <div className="flex items-center gap-5" aria-hidden="true">
+            <span className="h-px w-20 bg-gradient-to-r from-transparent to-[#C8A96B]/35" />
+            <svg width="9" height="9" viewBox="0 0 10 10" fill="none">
+              <path
+                d="M5 0L6.18 3.82L10 5L6.18 6.18L5 10L3.82 6.18L0 5L3.82 3.82Z"
+                fill="#C8A96B"
+                opacity="0.45"
+              />
+            </svg>
+            <span className="h-px w-20 bg-gradient-to-l from-transparent to-[#C8A96B]/35" />
+          </div>
+
+          {/* Serif invitation sentence */}
+          <p
+            className="max-w-xs font-serif text-[1.2rem] font-light leading-relaxed text-white/50"
+          >
+            Ontdek wat dit voor uw woning betekent.
+          </p>
+
+          {/* CTA link — quiet, directional */}
+          <a
+            href="/consultation"
+            className="group inline-flex items-center gap-3 transition-all duration-500"
+          >
+            <span
+              className="text-[0.7rem] font-medium uppercase tracking-[0.24em] text-[#C8A96B] transition-opacity duration-300 group-hover:opacity-60"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
+              Maak kennis met ons team
+            </span>
+            <svg
+              className="h-3 w-3 text-[#C8A96B] transition-transform duration-500 group-hover:translate-x-2 opacity-70"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
+              />
+            </svg>
+          </a>
+
+        </div>
+      </motion.div>
+
     </section>
   );
 }

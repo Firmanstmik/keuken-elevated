@@ -2,7 +2,7 @@ import { r as reactExports, j as jsxRuntimeExports } from "../_libs/react.mjs";
 import { d as useNavigate } from "../_libs/tanstack__react-router.mjs";
 import { F as FlowActionBar } from "./FlowActionBar-B7zqwiBn.mjs";
 import { d as masterBudgetRanges, e as masterCategories, m as masterBrands, h as masterStyles, A as ArrowLeft, l as logoKeuken, S as Search, a as ArrowRight } from "./master-config-data-9VcrPlEf.mjs";
-import { u as useConfigurator } from "./router-BQ3ecgy_.mjs";
+import { u as useConfigurator } from "./router-DPc2lHpZ.mjs";
 import { i as industrieelBase, l as landelijkBase, m as modernBase } from "./industrieel-base-C_gCI_to.mjs";
 import { k as klassiekBase } from "./klassiek-base-ByI9UL1v.mjs";
 import { k as klassiekHotspots } from "./klassiek-hotspots-DmS3IOWJ.mjs";

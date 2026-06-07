@@ -75,17 +75,17 @@ const createLucideIcon = (iconName, iconNode) => {
   Component.displayName = toPascalCase(iconName);
   return Component;
 };
-const __iconNode$h = [
+const __iconNode$j = [
   ["path", { d: "M5 12h14", key: "1ays0h" }],
   ["path", { d: "m12 5 7 7-7 7", key: "xquz4c" }]
 ];
-const ArrowRight = createLucideIcon("arrow-right", __iconNode$h);
-const __iconNode$g = [
+const ArrowRight = createLucideIcon("arrow-right", __iconNode$j);
+const __iconNode$i = [
   ["path", { d: "M7 7h10v10", key: "1tivn9" }],
   ["path", { d: "M7 17 17 7", key: "1vkiza" }]
 ];
-const ArrowUpRight = createLucideIcon("arrow-up-right", __iconNode$g);
-const __iconNode$f = [
+const ArrowUpRight = createLucideIcon("arrow-up-right", __iconNode$i);
+const __iconNode$h = [
   [
     "path",
     {
@@ -95,8 +95,8 @@ const __iconNode$f = [
   ],
   ["circle", { cx: "12", cy: "8", r: "6", key: "1vp47v" }]
 ];
-const Award = createLucideIcon("award", __iconNode$f);
-const __iconNode$e = [
+const Award = createLucideIcon("award", __iconNode$h);
+const __iconNode$g = [
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
   [
     "path",
@@ -106,8 +106,8 @@ const __iconNode$e = [
     }
   ]
 ];
-const Compass = createLucideIcon("compass", __iconNode$e);
-const __iconNode$d = [
+const Compass = createLucideIcon("compass", __iconNode$g);
+const __iconNode$f = [
   [
     "path",
     {
@@ -116,8 +116,8 @@ const __iconNode$d = [
     }
   ]
 ];
-const Droplet = createLucideIcon("droplet", __iconNode$d);
-const __iconNode$c = [
+const Droplet = createLucideIcon("droplet", __iconNode$f);
+const __iconNode$e = [
   [
     "path",
     {
@@ -130,8 +130,8 @@ const __iconNode$c = [
   ["path", { d: "M16 13H8", key: "t4e002" }],
   ["path", { d: "M16 17H8", key: "z1uh3a" }]
 ];
-const FileText = createLucideIcon("file-text", __iconNode$c);
-const __iconNode$b = [
+const FileText = createLucideIcon("file-text", __iconNode$e);
+const __iconNode$d = [
   [
     "path",
     {
@@ -140,8 +140,8 @@ const __iconNode$b = [
     }
   ]
 ];
-const Flame = createLucideIcon("flame", __iconNode$b);
-const __iconNode$a = [
+const Flame = createLucideIcon("flame", __iconNode$d);
+const __iconNode$c = [
   ["path", { d: "M10.5 3 8 9l4 13 4-13-2.5-6", key: "b3dvk1" }],
   [
     "path",
@@ -152,16 +152,16 @@ const __iconNode$a = [
   ],
   ["path", { d: "M2 9h20", key: "16fsjt" }]
 ];
-const Gem = createLucideIcon("gem", __iconNode$a);
-const __iconNode$9 = [
+const Gem = createLucideIcon("gem", __iconNode$c);
+const __iconNode$b = [
   ["rect", { width: "18", height: "18", x: "3", y: "3", rx: "2", key: "afitv7" }],
   ["path", { d: "M3 9h18", key: "1pudct" }],
   ["path", { d: "M3 15h18", key: "5xshup" }],
   ["path", { d: "M9 3v18", key: "fh3hqa" }],
   ["path", { d: "M15 3v18", key: "14nvp0" }]
 ];
-const Grid3x3 = createLucideIcon("grid-3x3", __iconNode$9);
-const __iconNode$8 = [
+const Grid3x3 = createLucideIcon("grid-3x3", __iconNode$b);
+const __iconNode$a = [
   [
     "path",
     {
@@ -170,8 +170,8 @@ const __iconNode$8 = [
     }
   ]
 ];
-const Heart = createLucideIcon("heart", __iconNode$8);
-const __iconNode$7 = [
+const Heart = createLucideIcon("heart", __iconNode$a);
+const __iconNode$9 = [
   [
     "path",
     {
@@ -194,8 +194,8 @@ const __iconNode$7 = [
     }
   ]
 ];
-const Layers = createLucideIcon("layers", __iconNode$7);
-const __iconNode$6 = [
+const Layers = createLucideIcon("layers", __iconNode$9);
+const __iconNode$8 = [
   [
     "path",
     {
@@ -205,10 +205,27 @@ const __iconNode$6 = [
   ],
   ["circle", { cx: "12", cy: "10", r: "3", key: "ilqhr7" }]
 ];
-const MapPin = createLucideIcon("map-pin", __iconNode$6);
-const __iconNode$5 = [["path", { d: "m8 3 4 8 5-5 5 15H2L8 3z", key: "otkl63" }]];
-const Mountain = createLucideIcon("mountain", __iconNode$5);
-const __iconNode$4 = [
+const MapPin = createLucideIcon("map-pin", __iconNode$8);
+const __iconNode$7 = [["path", { d: "m8 3 4 8 5-5 5 15H2L8 3z", key: "otkl63" }]];
+const Mountain = createLucideIcon("mountain", __iconNode$7);
+const __iconNode$6 = [
+  [
+    "path",
+    {
+      d: "M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z",
+      key: "rib7q0"
+    }
+  ],
+  [
+    "path",
+    {
+      d: "M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z",
+      key: "1ymkrd"
+    }
+  ]
+];
+const Quote = createLucideIcon("quote", __iconNode$6);
+const __iconNode$5 = [
   [
     "path",
     {
@@ -217,8 +234,8 @@ const __iconNode$4 = [
     }
   ]
 ];
-const Shield = createLucideIcon("shield", __iconNode$4);
-const __iconNode$3 = [
+const Shield = createLucideIcon("shield", __iconNode$5);
+const __iconNode$4 = [
   ["path", { d: "m10 20-1.25-2.5L6 18", key: "18frcb" }],
   ["path", { d: "M10 4 8.75 6.5 6 6", key: "7mghy3" }],
   ["path", { d: "m14 20 1.25-2.5L18 18", key: "1chtki" }],
@@ -232,8 +249,8 @@ const __iconNode$3 = [
   ["path", { d: "m7 21 3-6-1.5-3", key: "j8hb9u" }],
   ["path", { d: "m7 3 3 6h4", key: "1otusx" }]
 ];
-const Snowflake = createLucideIcon("snowflake", __iconNode$3);
-const __iconNode$2 = [
+const Snowflake = createLucideIcon("snowflake", __iconNode$4);
+const __iconNode$3 = [
   [
     "path",
     {
@@ -245,7 +262,17 @@ const __iconNode$2 = [
   ["path", { d: "M22 4h-4", key: "gwowj6" }],
   ["circle", { cx: "4", cy: "20", r: "2", key: "6kqj1y" }]
 ];
-const Sparkles = createLucideIcon("sparkles", __iconNode$2);
+const Sparkles = createLucideIcon("sparkles", __iconNode$3);
+const __iconNode$2 = [
+  [
+    "path",
+    {
+      d: "M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z",
+      key: "r04s7s"
+    }
+  ]
+];
+const Star = createLucideIcon("star", __iconNode$2);
 const __iconNode$1 = [
   ["path", { d: "M12.8 19.6A2 2 0 1 0 14 16H2", key: "148xed" }],
   ["path", { d: "M17.5 8a2.5 2.5 0 1 1 2 4H2", key: "1u4tom" }],
@@ -271,6 +298,7 @@ export {
   Heart as H,
   Layers as L,
   MapPin as M,
+  Quote as Q,
   Shield as S,
   Wind as W,
   ArrowUpRight as a,
@@ -280,5 +308,6 @@ export {
   Mountain as e,
   Snowflake as f,
   Sparkles as g,
-  Wrench as h
+  Star as h,
+  Wrench as i
 };

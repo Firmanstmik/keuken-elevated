@@ -1,19 +1,20 @@
 import { j as jsxRuntimeExports, r as reactExports } from "../_libs/react.mjs";
-import { N as Nav, d as motionEase, a as motionDuration, b as boraImg, m as marmerImg, g as staggerHeader$3, e as motionViewport, f as fadeUp$6, h as staggerList, s as showroomImage, c as cn } from "./Nav-D_g1HLmd.mjs";
+import { N as Nav, d as motionEase, a as motionDuration, b as boraImg, m as marmerImg, g as staggerHeader$3, e as motionViewport, f as fadeUp$6, h as staggerList, s as showroomAsset, c as cn } from "./Nav-Bzg5Cw4u.mjs";
 import { a as ArrowRight, e as masterCategories, H as House, P as Phone, M as Mail, C as Check, l as logoKeuken, T as Tag, X, b as ChevronDown, c as ChevronUp } from "./master-config-data-9VcrPlEf.mjs";
 import { r as reactDomExports } from "../_libs/react-dom.mjs";
 import { l as leichtLogo, a as aiKuchenLogo, z as zampieriLogo, c as cucinesseLogo } from "./Cucinesse_Logo-DZinUg9I.mjs";
-import { k as kc } from "./router-BQ3ecgy_.mjs";
+import { k as kc } from "./router-DPc2lHpZ.mjs";
 import { g as WorkspacePremiumIcon, H as HandymanIcon, f as SupportAgentIcon, D as DiamondIcon, T as TuneIcon, P as PaletteOutlinedIcon } from "../_libs/mui__icons-material.mjs";
 import { S as Slot } from "../_libs/radix-ui__react-slot.mjs";
 import { c as cva } from "../_libs/class-variance-authority.mjs";
 import { k as klassiekBase } from "./klassiek-base-ByI9UL1v.mjs";
 import { k as klassiekHotspots } from "./klassiek-hotspots-DmS3IOWJ.mjs";
-import { I as Input, T as Textarea } from "./textarea-7vmxozug.mjs";
+import { I as Input, T as Textarea } from "./textarea-DvifRkm-.mjs";
 import { R as Root2, V as Value, T as Trigger, I as Icon, P as Portal, C as Content2, f as Viewport, a as Item, b as ItemIndicator, c as ItemText, d as ScrollUpButton, S as ScrollDownButton, L as Label, e as Separator } from "../_libs/radix-ui__react-select.mjs";
 import "../_libs/sonner.mjs";
 import { b as useReducedMotion, a as useMotionValue, d as useSpring, e as useTransform, c as useScroll, m as motion, A as AnimatePresence, u as useInView } from "../_libs/framer-motion.mjs";
-import { S as Shop, B as Brush2, L as Layer, G as Gallery, P as People, A as ArrowRight2 } from "../_libs/iconsax-react.mjs";
+import { c as Shop, B as Brush2, L as Layer, G as Gallery, P as People, A as ArrowRight2, a as Clock, S as Shield, C as Calendar, M as MagicStar, b as Location, T as TickCircle } from "../_libs/iconsax-react.mjs";
+import { Q as Quote, h as Star } from "../_libs/lucide-react.mjs";
 import { H as House$1, a as Play, P as Pause, M as Maximize } from "../_libs/zethictech__iconsax-react.mjs";
 import "../_libs/tanstack__react-router.mjs";
 import "../_libs/tanstack__router-core.mjs";
@@ -38,7 +39,6 @@ import "../_libs/radix-ui__react-id.mjs";
 import "../_libs/radix-ui__react-direction.mjs";
 import "../_libs/clsx.mjs";
 import "../_libs/tailwind-merge.mjs";
-import "../_libs/lucide-react.mjs";
 import "util";
 import "crypto";
 import "async_hooks";
@@ -3309,7 +3309,6 @@ const collectionMinimal = "/assets/collection-minimal-C7OuztSW.jpg";
 const collectionModern = "/assets/collection-modern-BcjFREp3.jpg";
 const collectionWarm = "/assets/collection-warm-28eh2KtC.jpg";
 const heroKitchen = "/assets/hero-kitchen-DhFbJ72e.jpg";
-const luxuryEase$2 = [0.22, 1, 0.36, 1];
 const testimonialsData = [
   {
     image: collectionMinimal,
@@ -3362,7 +3361,7 @@ const testimonialsData = [
     tags: ["LEICHT", "Villa", "Natural Stone"]
   },
   {
-    image: showroomImage,
+    image: showroomAsset,
     quote: "De verfijning zit in de details: voeglijnen, materiaalovergangen en de rust van het totaalbeeld. Dat zie je niet vaak zo consequent uitgevoerd.",
     client: "Familie Hesselink",
     project: "Premium Atelier Kitchen",
@@ -3372,101 +3371,378 @@ const testimonialsData = [
     tags: ["NOBILIA", "Atelier", "Monolith"]
   }
 ];
+function toInitials(name) {
+  const words = name.trim().split(/\s+/);
+  if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
+  return (words[0][0] + words[words.length - 1][0]).toUpperCase();
+}
+const luxuryEase$2 = [0.22, 1, 0.36, 1];
 const sectionReveal = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { duration: 0.8, ease: luxuryEase$2 } }
 };
 const fadeUp$3 = {
-  hidden: { opacity: 0, y: 32 },
+  hidden: { opacity: 0, y: 28 },
   visible: {
     opacity: 1,
     y: 0,
     transition: { duration: 0.82, ease: luxuryEase$2 }
   }
 };
-function StarRating() {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex gap-1.5", children: [...Array(5)].map((_, i) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-    "svg",
+const stagger$1 = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.06 } }
+};
+function Stars({ size = 14 }) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex gap-[3px]", children: Array.from({ length: 5 }).map((_, i) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Star,
     {
-      className: "h-3.5 w-3.5 text-[#C8A96B]",
-      fill: "currentColor",
-      viewBox: "0 0 20 20",
-      children: /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" })
+      style: { width: size, height: size },
+      className: "fill-[#C8A96B] text-[#C8A96B]"
     },
     i
   )) });
 }
-function QuoteIcon() {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    "svg",
+function TestimonialCard({ story }) {
+  const initials = toInitials(story.client);
+  const badge = story.brand + "  ·  " + story.project;
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "article",
     {
-      className: "h-9 w-9 text-[#C8A96B]/15",
-      fill: "currentColor",
-      viewBox: "0 0 24 24",
-      children: /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" })
+      className: "group relative mb-5 overflow-hidden rounded-[28px] border border-white/[0.06] bg-gradient-to-b from-white/[0.05] to-white/[0.02] p-6 backdrop-blur-sm transition-all duration-300 ease-out hover:-translate-y-1.5 hover:border-[#C8A96B]/30 select-none",
+      style: {
+        boxShadow: "0 1px 0 rgba(255,255,255,0.04) inset, 0 18px 50px -22px rgba(0,0,0,0.6)"
+      },
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            className: "pointer-events-none absolute inset-0 rounded-[28px] opacity-0 transition-opacity duration-300 group-hover:opacity-100",
+            style: {
+              boxShadow: "0 28px 80px -30px rgba(200,165,106,0.35), 0 0 0 1px rgba(200,165,106,0.25) inset"
+            }
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-start justify-between gap-4", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Stars, {}),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative h-12 w-16 shrink-0 overflow-hidden rounded-xl border border-white/10", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "img",
+              {
+                src: story.image,
+                alt: story.project,
+                loading: "lazy",
+                draggable: false,
+                className: "h-full w-full object-cover transition-transform duration-500 group-hover:scale-110 pointer-events-none"
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" })
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mt-4 inline-flex items-center gap-1.5 rounded-full border border-[#C8A96B]/30 bg-[#C8A96B]/[0.08] px-2.5 py-1", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "h-1 w-1 rounded-full bg-[#C8A96B]" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "span",
+            {
+              className: "text-[10px] font-medium uppercase tracking-[0.16em]",
+              style: { color: "#D4B07A", fontFamily: "var(--font-body)" },
+              children: badge
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "mt-4 min-h-[108px] font-serif text-[17px] font-light leading-relaxed text-white/85", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Quote, { className: "-mt-1 mr-1 inline h-3.5 w-3.5 text-[#C8A96B]/70" }),
+          story.quote
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mt-5 flex items-center justify-between border-t border-white/[0.06] pt-4", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "div",
+              {
+                className: "flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.05] text-[11px] font-semibold tracking-wider text-white",
+                style: { fontFamily: "var(--font-body)" },
+                children: initials
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "div",
+                {
+                  className: "text-[13px] font-medium text-white",
+                  style: { fontFamily: "var(--font-body)" },
+                  children: story.client
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "div",
+                {
+                  className: "mt-0.5 flex items-center gap-1 text-[11px] text-white/50",
+                  style: { fontFamily: "var(--font-body)" },
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Location, { size: 12, variant: "Linear" }),
+                    story.location,
+                    " · ",
+                    story.year
+                  ]
+                }
+              )
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(TickCircle, { size: 20, variant: "Bold", className: "text-[#3D9A42] shrink-0" })
+        ] })
+      ]
     }
   );
 }
-function TestimonialCard({
-  story
+function Column({
+  stories,
+  direction
 }) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "group relative flex w-[360px] sm:w-[420px] flex-shrink-0 flex-col justify-between rounded-[24px] border border-[rgba(200,169,107,0.14)] bg-[#1D2023]/60 p-6 shadow-[0_24px_56px_-36px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-500 hover:-translate-y-2 hover:border-[#C8A96B]/40 hover:bg-[#1D2023]/80 hover:shadow-[0_36px_72px_-40px_rgba(200,169,107,0.22)] sm:p-7 select-none", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#C8A96B]/20 to-transparent transition-opacity duration-500 group-hover:via-[#C8A96B]/40" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative mb-5 h-[140px] w-full overflow-hidden rounded-[16px] border border-white/[0.06]", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "img",
+  const doubled = [...stories, ...stories];
+  const COL_BG = "#0F0F0F";
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative h-[760px] overflow-hidden", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        className: "pointer-events-none absolute inset-x-0 top-0 z-10 h-64",
+        style: {
+          background: `linear-gradient(to bottom, ${COL_BG} 0%, ${COL_BG} 18%, rgba(15,15,15,0) 100%)`
+        }
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        className: "pointer-events-none absolute inset-x-0 bottom-0 z-10 h-64",
+        style: {
+          background: `linear-gradient(to top, ${COL_BG} 0%, ${COL_BG} 18%, rgba(15,15,15,0) 100%)`
+        }
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        className: direction === "up" ? "animate-kc-scroll-up" : "animate-kc-scroll-down",
+        children: doubled.map((story, i) => /* @__PURE__ */ jsxRuntimeExports.jsx(TestimonialCard, { story }, `${story.client}-${i}`))
+      }
+    )
+  ] });
+}
+function RatingRing() {
+  const r = 88;
+  const circumference = 2 * Math.PI * r;
+  const filledRatio = 0.98;
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative mx-auto mt-7 h-56 w-56", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "svg",
+      {
+        viewBox: "0 0 200 200",
+        className: "absolute inset-0 h-full w-full -rotate-90",
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "circle",
           {
-            src: story.image,
-            alt: story.project,
-            className: "h-full w-full object-cover transition-transform duration-[1000ms] ease-out group-hover:scale-105 pointer-events-none",
-            draggable: false
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-gradient-to-t from-[#111315]/80 via-transparent to-transparent" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "span",
-          {
-            className: "absolute right-4 top-4 rounded-full border border-white/[0.08] bg-black/40 px-2.5 py-0.5 text-[0.58rem] uppercase tracking-[0.2em] text-[#F5F2EC] backdrop-blur-sm",
-            style: { fontFamily: "'Jost', sans-serif" },
-            children: story.brand
-          }
-        )
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(StarRating, {}),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(QuoteIcon, {})
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("blockquote", { className: "mt-4 font-serif text-[1rem] font-light leading-[1.65] text-[#F5F2EC]/90 transition-colors duration-300 group-hover:text-white sm:text-[1.05rem]", children: [
-        '"',
-        story.quote,
-        '"'
-      ] })
-    ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mt-6 border-t border-white/10 pt-4", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-end justify-between gap-4", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("cite", { className: "block font-serif text-[1.05rem] font-light not-italic text-[#F5F2EC]", children: story.client }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "p",
-          {
-            className: "mt-0.5 text-[0.68rem] uppercase tracking-[0.16em] text-[rgba(245,242,236,0.5)]",
-            style: { fontFamily: "'Jost', sans-serif" },
-            children: story.project
-          }
-        )
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-right", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-[0.78rem] font-medium text-[#C8A96B]", children: story.location }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "p",
-          {
-            className: "mt-0.5 text-[0.62rem] uppercase tracking-[0.12em] text-[rgba(245,242,236,0.38)]",
-            style: { fontFamily: "'Jost', sans-serif" },
-            children: story.year
+            cx: "100",
+            cy: "100",
+            r,
+            fill: "none",
+            stroke: "rgba(255,255,255,0.12)",
+            strokeWidth: "2"
           }
         )
-      ] })
-    ] }) })
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "svg",
+      {
+        viewBox: "0 0 200 200",
+        className: "absolute inset-0 h-full w-full -rotate-90",
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("defs", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("linearGradient", { id: "kc-arc-gradient", x1: "0", y1: "0", x2: "1", y2: "1", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("stop", { offset: "0%", stopColor: "#F1DDA6" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("stop", { offset: "100%", stopColor: "#B8924A" })
+          ] }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "circle",
+            {
+              cx: "100",
+              cy: "100",
+              r,
+              fill: "none",
+              stroke: "url(#kc-arc-gradient)",
+              strokeWidth: "3",
+              strokeLinecap: "round",
+              strokeDasharray: circumference,
+              strokeDashoffset: circumference * (1 - filledRatio),
+              className: "animate-kc-dash"
+            }
+          )
+        ]
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "absolute inset-0 flex flex-col items-center justify-center", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "font-serif text-7xl font-light tracking-tight text-white", children: "4.9" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "div",
+        {
+          className: "mt-1 text-[10px] uppercase tracking-[0.3em]",
+          style: { color: "#DCBE82", fontFamily: "var(--font-body)" },
+          children: "van 5.0"
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mt-3", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Stars, { size: 12 }) })
+    ] })
+  ] });
+}
+function CenterShowcase() {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative mx-auto w-full max-w-[400px]", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        className: "pointer-events-none absolute -inset-24 -z-10 rounded-[60px] opacity-70 blur-3xl",
+        style: {
+          background: "radial-gradient(50% 45% at 50% 30%, rgba(40,70,140,0.45), transparent 70%), radial-gradient(45% 45% at 50% 75%, rgba(200,165,106,0.30), transparent 70%)"
+        }
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "animate-kc-float", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        className: "relative rounded-[34px] p-[1.5px]",
+        style: {
+          background: "linear-gradient(160deg, rgba(220,190,130,0.9) 0%, rgba(180,140,70,0.3) 35%, rgba(255,255,255,0.6) 65%, rgba(180,140,70,0.7) 100%)",
+          boxShadow: "0 60px 140px -30px rgba(8,18,40,0.75), 0 30px 60px -20px rgba(0,0,0,0.4)"
+        },
+        children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            className: "relative overflow-hidden rounded-[33px]",
+            style: {
+              background: "linear-gradient(180deg, #0B1B3A 0%, #0D2148 48%, #FFFFFF 48.2%, #F7F2E8 100%)"
+            },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative px-8 pt-8 pb-10", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "div",
+                  {
+                    className: "pointer-events-none absolute inset-0",
+                    style: {
+                      background: "radial-gradient(70% 60% at 50% 0%, rgba(255,255,255,0.10), transparent 70%)"
+                    }
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "relative flex justify-center", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  "div",
+                  {
+                    className: "flex items-center gap-2 rounded-full px-3 py-1.5",
+                    style: {
+                      background: "rgba(255,255,255,0.08)",
+                      border: "1px solid rgba(220,190,130,0.35)",
+                      backdropFilter: "blur(8px)"
+                    },
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "span",
+                        {
+                          className: "h-1.5 w-1.5 rounded-full",
+                          style: { background: "#DCBE82" }
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "span",
+                        {
+                          className: "text-[10px] font-medium uppercase tracking-[0.22em]",
+                          style: { color: "#E8D6A8", fontFamily: "var(--font-body)" },
+                          children: "Google Reviews · Verified"
+                        }
+                      )
+                    ]
+                  }
+                ) }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(RatingRing, {})
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "div",
+                {
+                  className: "pointer-events-none relative h-px",
+                  style: {
+                    background: "linear-gradient(90deg, transparent, rgba(184,146,74,0.7), transparent)"
+                  }
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative px-8 pt-7 pb-8", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-2.5", children: [
+                  { value: "127+", label: "Beoordelingen" },
+                  { value: "45+", label: "Jaar Vakmanschap" },
+                  { value: "98%", label: "Aanbevolen" }
+                ].map((stat) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  "div",
+                  {
+                    className: "flex items-center justify-between rounded-2xl px-5 py-4",
+                    style: {
+                      background: "rgba(247,242,232,0.7)",
+                      border: "1px solid rgba(184,146,74,0.18)"
+                    },
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "span",
+                        {
+                          className: "text-[11px] uppercase tracking-[0.22em]",
+                          style: {
+                            color: "#6a5224",
+                            fontFamily: "var(--font-body)"
+                          },
+                          children: stat.label
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "span",
+                        {
+                          className: "font-serif text-3xl font-light",
+                          style: { color: "#0B1B3A" },
+                          children: stat.value
+                        }
+                      )
+                    ]
+                  },
+                  stat.label
+                )) }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  "div",
+                  {
+                    className: "mt-5 flex items-center justify-between rounded-2xl px-4 py-3",
+                    style: {
+                      background: "#FFFFFF",
+                      border: "1px solid rgba(184,146,74,0.20)",
+                      boxShadow: "0 8px 20px -10px rgba(11,27,58,0.15)"
+                    },
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("svg", { className: "h-4 w-4", viewBox: "0 0 24 24", "aria-hidden": "true", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "path",
+                          {
+                            fill: "#EA4335",
+                            d: "M12 10.2v3.9h5.5c-.2 1.4-1.7 4.1-5.5 4.1-3.3 0-6-2.7-6-6.1s2.7-6.1 6-6.1c1.9 0 3.2.8 3.9 1.5l2.7-2.6C16.9 3.3 14.7 2.3 12 2.3 6.6 2.3 2.3 6.6 2.3 12S6.6 21.7 12 21.7c6.9 0 9.5-4.9 9.5-9.4 0-.6-.1-1.1-.1-1.5H12z"
+                          }
+                        ) }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "span",
+                          {
+                            className: "text-xs font-medium",
+                            style: { color: "#0B1B3A", fontFamily: "var(--font-body)" },
+                            children: "Google Reviews"
+                          }
+                        )
+                      ] }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(Stars, { size: 13 })
+                    ]
+                  }
+                )
+              ] })
+            ]
+          }
+        )
+      }
+    ) })
   ] });
 }
 function DraggableMarqueeRow({
@@ -3479,26 +3755,21 @@ function DraggableMarqueeRow({
   const [isDragging, setIsDragging] = reactExports.useState(false);
   const dragStartX = reactExports.useRef(0);
   const scrollStartLeft = reactExports.useRef(0);
-  const handlePointerDown = (e) => {
+  const onPointerDown = (e) => {
     if (!rowRef.current) return;
     setIsDragging(true);
     dragStartX.current = e.clientX;
     scrollStartLeft.current = rowRef.current.scrollLeft;
     rowRef.current.setPointerCapture(e.pointerId);
-    if (trackRef.current) {
-      trackRef.current.style.animationPlayState = "paused";
-    }
+    if (trackRef.current) trackRef.current.style.animationPlayState = "paused";
   };
-  const handlePointerMove = (e) => {
+  const onPointerMove = (e) => {
     if (!isDragging || !rowRef.current) return;
-    const dx = e.clientX - dragStartX.current;
-    rowRef.current.scrollLeft = scrollStartLeft.current - dx;
+    rowRef.current.scrollLeft = scrollStartLeft.current - (e.clientX - dragStartX.current);
   };
-  const handlePointerUp = () => {
+  const onPointerUp = () => {
     setIsDragging(false);
-    if (trackRef.current) {
-      trackRef.current.style.animationPlayState = "running";
-    }
+    if (trackRef.current) trackRef.current.style.animationPlayState = "running";
   };
   return /* @__PURE__ */ jsxRuntimeExports.jsx(
     "div",
@@ -3506,16 +3777,16 @@ function DraggableMarqueeRow({
       ref: rowRef,
       className: "relative w-full overflow-x-auto scrollbar-hide",
       style: { cursor: isDragging ? "grabbing" : "grab" },
-      onPointerDown: handlePointerDown,
-      onPointerMove: handlePointerMove,
-      onPointerUp: handlePointerUp,
-      onPointerCancel: handlePointerUp,
+      onPointerDown,
+      onPointerMove,
+      onPointerUp,
+      onPointerCancel: onPointerUp,
       children: /* @__PURE__ */ jsxRuntimeExports.jsx(
         "div",
         {
           ref: trackRef,
-          className: `flex gap-6 sm:gap-8 w-max px-3 ${reduceMotion ? "" : animClass}`,
-          children: [...items, ...items].map((story, idx) => /* @__PURE__ */ jsxRuntimeExports.jsx(TestimonialCard, { story }, `${story.client}-${idx}`))
+          className: `flex gap-5 w-max px-3 ${reduceMotion ? "" : animClass}`,
+          children: [...items, ...items].map((story, idx) => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-[320px] sm:w-[380px] shrink-0", children: /* @__PURE__ */ jsxRuntimeExports.jsx(TestimonialCard, { story }) }, `${story.client}-${idx}`))
         }
       )
     }
@@ -3523,7 +3794,16 @@ function DraggableMarqueeRow({
 }
 function Testimonials() {
   const reduceMotion = useReducedMotion();
-  const row1Data = testimonialsData;
+  const leftStories = [
+    testimonialsData[0],
+    testimonialsData[1],
+    testimonialsData[2]
+  ];
+  const rightStories = [
+    testimonialsData[3],
+    testimonialsData[4],
+    testimonialsData[5]
+  ];
   const row2Data = [
     testimonialsData[3],
     testimonialsData[4],
@@ -3536,7 +3816,8 @@ function Testimonials() {
     "section",
     {
       id: "reviews",
-      className: "relative overflow-hidden bg-[linear-gradient(180deg,#17191C_0%,#111315_100%)] py-24 text-[#F5F2EC] md:py-36 border-t border-white/[0.08]",
+      className: "relative overflow-hidden border-t border-white/[0.08]",
+      style: { backgroundColor: "#0F0F0F" },
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("style", { children: `
         @keyframes marquee-ltr {
@@ -3547,12 +3828,8 @@ function Testimonials() {
           0%   { transform: translate3d(0, 0, 0); }
           100% { transform: translate3d(-50%, 0, 0); }
         }
-        .animate-marquee-ltr {
-          animation: marquee-ltr 45s linear infinite;
-        }
-        .animate-marquee-rtl {
-          animation: marquee-rtl 50s linear infinite;
-        }
+        .animate-marquee-ltr { animation: marquee-ltr 45s linear infinite; }
+        .animate-marquee-rtl { animation: marquee-rtl 50s linear infinite; }
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
       ` }),
@@ -3560,9 +3837,9 @@ function Testimonials() {
           "div",
           {
             "aria-hidden": "true",
-            className: "pointer-events-none absolute inset-0",
+            className: "pointer-events-none absolute left-1/2 top-1/2 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-25 blur-3xl",
             style: {
-              background: "radial-gradient(circle at top left, rgba(200,169,107,0.08), transparent 34%), radial-gradient(circle at 78% 18%, rgba(255,255,255,0.03), transparent 24%)"
+              background: "radial-gradient(circle, rgba(200,165,106,0.28), transparent 60%)"
             }
           }
         ),
@@ -3577,125 +3854,186 @@ function Testimonials() {
           "div",
           {
             "aria-hidden": "true",
-            className: "pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[rgba(255,255,255,0.08)] to-transparent"
+            className: "pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[rgba(255,255,255,0.06)] to-transparent"
           }
         ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "site-container relative z-10 mb-16", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "relative z-10 mx-auto max-w-7xl px-6 pt-28 pb-0", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
           motion.div,
           {
             initial: reduceMotion ? false : "hidden",
             whileInView: "visible",
             viewport: motionViewport,
             variants: reduceMotion ? void 0 : sectionReveal,
-            className: "border-b border-white/[0.08] pb-12",
-            children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid gap-10 lg:grid-cols-[minmax(0,1.4fr)_minmax(22rem,0.8fr)] lg:items-end", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-[45rem]", children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                  motion.div,
-                  {
-                    variants: reduceMotion ? void 0 : fadeUp$3,
-                    className: "mb-5 flex items-center gap-4",
-                    children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "h-px w-10 bg-gradient-to-r from-transparent to-[#C8A96B]/70" }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        "span",
-                        {
-                          className: "text-[0.64rem] uppercase tracking-[0.34em] text-[#C8A96B]",
-                          style: { fontFamily: "'Jost', sans-serif" },
-                          children: "Luxury Client Stories"
-                        }
-                      )
-                    ]
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                  motion.h2,
-                  {
-                    variants: reduceMotion ? void 0 : fadeUp$3,
-                    className: "font-serif text-[clamp(2.2rem,4vw,3.6rem)] font-light leading-[1.02] tracking-[-0.035em] text-[#F5F2EC]",
-                    children: [
-                      "Vertrouwen dat u",
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("br", {}),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("em", { className: "font-serif italic text-[#C8A96B]", children: "direct voelt." })
-                    ]
-                  }
-                )
-              ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                motion.div,
-                {
-                  variants: reduceMotion ? void 0 : fadeUp$3,
-                  className: "grid gap-6 lg:justify-self-end",
-                  children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      "p",
-                      {
-                        className: "max-w-[28rem] text-[0.97rem] leading-[1.85] text-[rgba(245,242,236,0.65)]",
-                        style: { fontFamily: "'Jost', sans-serif" },
-                        children: "Google reviews gepresenteerd als premium projectverhalen: rustig opgebouwd, gekoppeld aan echte keukenrealisaties en ontworpen met dezelfde verfijnde showroomlogica als de premium configurator experience."
-                      }
-                    ),
-                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex w-fit items-start gap-5 rounded-[24px] border border-white/[0.08] bg-white/[0.02] px-5 py-4 backdrop-blur-sm", children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex gap-1 text-[0.9rem] text-[#C8A96B] leading-none", children: "★★★★★" }),
-                        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-1 font-serif text-[1.6rem] leading-none text-[#F5F2EC]", children: "4.9 / 5.0" })
-                      ] }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "border-l border-white/[0.08] pl-5", children: [
+            children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              motion.div,
+              {
+                variants: reduceMotion ? void 0 : stagger$1,
+                className: "mx-auto max-w-3xl text-center",
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    motion.div,
+                    {
+                      variants: reduceMotion ? void 0 : fadeUp$3,
+                      className: "mb-2 flex items-center justify-center gap-4",
+                      children: [
                         /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          "p",
+                          "span",
                           {
-                            className: "text-[0.62rem] uppercase tracking-[0.22em] text-[rgba(245,242,236,0.5)]",
-                            style: { fontFamily: "'Jost', sans-serif" },
-                            children: "Google Rating Summary"
+                            "aria-hidden": "true",
+                            className: "h-px w-10 bg-gradient-to-r from-transparent to-[#C8A96B]/70"
                           }
                         ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-1.5 backdrop-blur", children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("svg", { className: "h-3.5 w-3.5 shrink-0", viewBox: "0 0 24 24", "aria-hidden": "true", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "path",
+                            {
+                              fill: "#EA4335",
+                              d: "M12 10.2v3.9h5.5c-.2 1.4-1.7 4.1-5.5 4.1-3.3 0-6-2.7-6-6.1s2.7-6.1 6-6.1c1.9 0 3.2.8 3.9 1.5l2.7-2.6C16.9 3.3 14.7 2.3 12 2.3 6.6 2.3 2.3 6.6 2.3 12S6.6 21.7 12 21.7c6.9 0 9.5-4.9 9.5-9.4 0-.6-.1-1.1-.1-1.5H12z"
+                            }
+                          ) }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "span",
+                            {
+                              className: "text-[10px] font-medium uppercase tracking-[0.24em] text-white/70",
+                              style: { fontFamily: "var(--font-body)" },
+                              children: "Google Beoordelingen"
+                            }
+                          )
+                        ] }),
                         /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          "p",
+                          "span",
                           {
-                            className: "mt-2 text-[0.88rem] leading-[1.7] text-[rgba(245,242,236,0.68)]",
-                            style: { fontFamily: "'Jost', sans-serif" },
-                            children: "127+ geverifieerde reviews van premium keukenprojecten in Utrecht en omstreken."
+                            "aria-hidden": "true",
+                            className: "h-px w-10 bg-gradient-to-l from-transparent to-[#C8A96B]/70"
                           }
                         )
-                      ] })
-                    ] })
+                      ]
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    motion.h2,
+                    {
+                      variants: reduceMotion ? void 0 : fadeUp$3,
+                      className: "mt-6 font-serif text-5xl font-light leading-[1.05] tracking-tight text-white md:text-6xl",
+                      children: [
+                        "Ervaringen van klanten",
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("br", {}),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("em", { className: "italic text-[#C8A96B]", children: "uit Utrecht en omgeving" })
+                      ]
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    motion.p,
+                    {
+                      variants: reduceMotion ? void 0 : fadeUp$3,
+                      className: "mx-auto mt-6 max-w-xl text-[15px] leading-relaxed text-white/55",
+                      style: { fontFamily: "var(--font-body)" },
+                      children: "Persoonlijk ontwerpadvies, Duitse precisie en Italiaanse elegantie — samengebracht in een installatie die generaties meegaat."
+                    }
+                  )
+                ]
+              }
+            )
+          }
+        ) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "relative z-10 mx-auto max-w-7xl px-6 pb-6 pt-20", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 gap-8 lg:grid-cols-[3fr_4fr_3fr]", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "hidden lg:block", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Column, { stories: leftStories, direction: "up" }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center justify-center", children: /* @__PURE__ */ jsxRuntimeExports.jsx(CenterShowcase, {}) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "hidden lg:block", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Column, { stories: rightStories, direction: "down" }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-6 lg:hidden", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative overflow-hidden", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "pointer-events-none absolute inset-y-0 left-0 z-10 w-12 sm:w-28 bg-gradient-to-r from-[#0F0F0F] to-transparent" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "pointer-events-none absolute inset-y-0 right-0 z-10 w-12 sm:w-28 bg-gradient-to-l from-[#0F0F0F] to-transparent" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                DraggableMarqueeRow,
+                {
+                  items: testimonialsData,
+                  animClass: "animate-marquee-rtl",
+                  reduceMotion
+                }
+              )
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative overflow-hidden", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "pointer-events-none absolute inset-y-0 left-0 z-10 w-12 sm:w-28 bg-gradient-to-r from-[#0F0F0F] to-transparent" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "pointer-events-none absolute inset-y-0 right-0 z-10 w-12 sm:w-28 bg-gradient-to-l from-[#0F0F0F] to-transparent" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                DraggableMarqueeRow,
+                {
+                  items: row2Data,
+                  animClass: "animate-marquee-ltr",
+                  reduceMotion
+                }
+              )
+            ] })
+          ] })
+        ] }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          motion.div,
+          {
+            initial: reduceMotion ? false : "hidden",
+            whileInView: "visible",
+            viewport: motionViewport,
+            variants: reduceMotion ? void 0 : fadeUp$3,
+            className: "relative z-10 mx-auto max-w-7xl px-6 pb-28 pt-6",
+            children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col items-center gap-7 text-center", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-5", "aria-hidden": "true", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "h-px w-20 bg-gradient-to-r from-transparent to-[#C8A96B]/35" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("svg", { width: "9", height: "9", viewBox: "0 0 10 10", fill: "none", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "path",
+                  {
+                    d: "M5 0L6.18 3.82L10 5L6.18 6.18L5 10L3.82 6.18L0 5L3.82 3.82Z",
+                    fill: "#C8A96B",
+                    opacity: "0.45"
+                  }
+                ) }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "h-px w-20 bg-gradient-to-l from-transparent to-[#C8A96B]/35" })
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "p",
+                {
+                  className: "max-w-xs font-serif text-[1.2rem] font-light leading-relaxed text-white/50",
+                  children: "Ontdek wat dit voor uw woning betekent."
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "a",
+                {
+                  href: "/consultation",
+                  className: "group inline-flex items-center gap-3 transition-all duration-500",
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "span",
+                      {
+                        className: "text-[0.7rem] font-medium uppercase tracking-[0.24em] text-[#C8A96B] transition-opacity duration-300 group-hover:opacity-60",
+                        style: { fontFamily: "var(--font-body)" },
+                        children: "Maak kennis met ons team"
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "svg",
+                      {
+                        className: "h-3 w-3 text-[#C8A96B] transition-transform duration-500 group-hover:translate-x-2 opacity-70",
+                        fill: "none",
+                        stroke: "currentColor",
+                        strokeWidth: "1.5",
+                        viewBox: "0 0 24 24",
+                        "aria-hidden": "true",
+                        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "path",
+                          {
+                            strokeLinecap: "round",
+                            strokeLinejoin: "round",
+                            d: "M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
+                          }
+                        )
+                      }
+                    )
                   ]
                 }
               )
             ] })
           }
-        ) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "site-container relative z-10 mb-6 flex items-center gap-2", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("svg", { className: "h-4 w-4 text-[rgba(245,242,236,0.3)]", fill: "none", stroke: "currentColor", strokeWidth: "1.5", viewBox: "0 0 24 24", children: /* @__PURE__ */ jsxRuntimeExports.jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", d: "M15.75 17.25L12 21m0 0l-3.75-3.75M12 21V3" }) }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "span",
-            {
-              className: "text-[0.62rem] uppercase tracking-[0.22em] text-[rgba(245,242,236,0.3)]",
-              style: { fontFamily: "'Jost', sans-serif" },
-              children: "Sleep om te bladeren"
-            }
-          )
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative flex flex-col gap-6 sm:gap-8 overflow-hidden py-4", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "pointer-events-none absolute inset-y-0 left-0 w-12 sm:w-28 bg-gradient-to-r from-[#111315] to-transparent z-10" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "pointer-events-none absolute inset-y-0 right-0 w-12 sm:w-28 bg-gradient-to-l from-[#111315] to-transparent z-10" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            DraggableMarqueeRow,
-            {
-              items: row1Data,
-              animClass: "animate-marquee-ltr",
-              reduceMotion
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            DraggableMarqueeRow,
-            {
-              items: row2Data,
-              animClass: "animate-marquee-rtl",
-              reduceMotion
-            }
-          )
-        ] })
+        )
       ]
     }
   );
@@ -3800,6 +4138,9 @@ const SelectSeparator = reactExports.forwardRef(({ className, ...props }, ref) =
   }
 ));
 SelectSeparator.displayName = Separator.displayName;
+const collectionScandi = "/assets/collection-scandi-CNDY2ehd.jpg";
+const craftsmanship = "/assets/craftsmanship-DQrKWUcu.jpg";
+const matMarble = "/assets/mat-marble-DxbEhTll.jpg";
 const benefits = [
   "Personal Design Session",
   "Material Selection Review",
@@ -3819,14 +4160,20 @@ const whatHappensNext = [
   { n: "03", title: "Showroom Appointment", description: "Bezoek op een moment dat u uitkomt" },
   { n: "04", title: "Design Proposal", description: "Ontvang uw persoonlijk ontwerpvoorstel" }
 ];
+const gallerySlides = [
+  { src: collectionModern, label: "Modern Lijn", tag: "Greeploos" },
+  { src: collectionMinimal, label: "Minimaal Design", tag: "Mat Wit" },
+  { src: collectionScandi, label: "Scandinavisch", tag: "Eiken" },
+  { src: collectionWarm, label: "Warm Atelier", tag: "Hout" },
+  { src: heroKitchen, label: "Signature Keuken", tag: "Premium" },
+  { src: craftsmanship, label: "Vakmanschap", tag: "Handwerk" },
+  { src: showroomAsset, label: "Showroom Floor", tag: "Utrecht" },
+  { src: matMarble, label: "Italiaans Marmer", tag: "Calacatta" }
+];
 const luxuryEase$1 = [0.22, 1, 0.36, 1];
 const fadeUp$2 = {
   hidden: { opacity: 0, y: 28 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.9, ease: luxuryEase$1 }
-  }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: luxuryEase$1 } }
 };
 const staggerContainer = {
   hidden: {},
@@ -3836,6 +4183,141 @@ const staggerSlow = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.14, delayChildren: 0.1 } }
 };
+function HorizontalSlider() {
+  const doubled = [...gallerySlides, ...gallerySlides];
+  const scrollRef = reactExports.useRef(null);
+  const trackRef = reactExports.useRef(null);
+  const [dragging, setDragging] = reactExports.useState(false);
+  const drag = reactExports.useRef({ startX: 0, startScroll: 0, moved: false });
+  const pausedUntil = reactExports.useRef(0);
+  reactExports.useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    let raf = 0;
+    let last = performance.now();
+    const speed = 30;
+    const tick = (now) => {
+      const dt = (now - last) / 1e3;
+      last = now;
+      const half = (trackRef.current?.scrollWidth ?? 0) / 2;
+      if (!dragging && now > pausedUntil.current && half > 0) {
+        let next = el.scrollLeft + speed * dt;
+        if (next >= half) next -= half;
+        el.scrollLeft = next;
+      } else if (half > 0) {
+        if (el.scrollLeft >= half) el.scrollLeft -= half;
+        else if (el.scrollLeft < 0) el.scrollLeft += half;
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [dragging]);
+  const onPointerDown = (e) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setDragging(true);
+    drag.current = { startX: e.clientX, startScroll: el.scrollLeft, moved: false };
+    el.setPointerCapture(e.pointerId);
+  };
+  const onPointerMove = (e) => {
+    if (!dragging) return;
+    const el = scrollRef.current;
+    if (!el) return;
+    const dx = e.clientX - drag.current.startX;
+    if (Math.abs(dx) > 3) drag.current.moved = true;
+    el.scrollLeft = drag.current.startScroll - dx;
+  };
+  const onPointerUp = (e) => {
+    setDragging(false);
+    pausedUntil.current = performance.now() + 1500;
+    scrollRef.current?.releasePointerCapture(e.pointerId);
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        className: "pointer-events-none absolute inset-y-0 left-0 z-10 w-32 md:w-40",
+        style: {
+          background: "linear-gradient(to right, #FAF7F1 0%, rgba(250,247,241,0.85) 35%, rgba(250,247,241,0) 100%)"
+        }
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        className: "pointer-events-none absolute inset-y-0 right-0 z-10 w-32 md:w-40",
+        style: {
+          background: "linear-gradient(to left, #FAF7F1 0%, rgba(250,247,241,0.85) 35%, rgba(250,247,241,0) 100%)"
+        }
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "absolute left-4 top-[3.75rem] z-20 inline-flex items-center gap-2 rounded-full border border-[#E2D9C7] bg-white/90 px-3 py-1.5 backdrop-blur-sm", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(MagicStar, { size: 12, variant: "Bold", color: "#8a6a2a" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "span",
+        {
+          className: "text-[10px] font-semibold uppercase tracking-[0.22em]",
+          style: { color: "#5a4418", fontFamily: "var(--font-body)" },
+          children: "Showroom Selectie"
+        }
+      )
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        ref: scrollRef,
+        onPointerDown,
+        onPointerMove,
+        onPointerUp,
+        onPointerCancel: onPointerUp,
+        className: `select-none overflow-x-auto pb-4 pt-14 ${dragging ? "cursor-grabbing" : "cursor-grab"}`,
+        style: { scrollbarWidth: "none", msOverflowStyle: "none", touchAction: "pan-y" },
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { ref: trackRef, className: "flex w-max gap-5 px-6", children: doubled.map((slide, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "figure",
+          {
+            className: "group relative h-64 w-[280px] shrink-0 overflow-hidden rounded-[24px] md:h-72 md:w-[310px]",
+            style: { boxShadow: "0 30px 60px -30px rgba(60,45,20,0.30)" },
+            onClickCapture: (e) => {
+              if (drag.current.moved) {
+                e.preventDefault();
+                e.stopPropagation();
+              }
+            },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "img",
+                {
+                  src: slide.src,
+                  alt: slide.label,
+                  draggable: false,
+                  loading: "lazy",
+                  className: "pointer-events-none h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "pointer-events-none absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("figcaption", { className: "pointer-events-none absolute inset-x-0 bottom-0 p-5", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-black/35 px-2 py-0.5 backdrop-blur-sm", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "h-1 w-1 rounded-full", style: { background: "#D9BE7C" } }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "span",
+                    {
+                      className: "text-[9px] font-medium uppercase tracking-[0.18em] text-white/90",
+                      style: { fontFamily: "var(--font-body)" },
+                      children: slide.tag
+                    }
+                  )
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mt-1.5 font-serif text-[17px] font-light text-white", children: slide.label })
+              ] })
+            ]
+          },
+          i
+        )) })
+      }
+    )
+  ] });
+}
 function ConsultationSection() {
   const reduceMotion = useReducedMotion();
   const [submitted, setSubmitted] = reactExports.useState(false);
@@ -3852,499 +4334,547 @@ function ConsultationSection() {
   const updateField = (field) => (event) => {
     setForm((current) => ({ ...current, [field]: event.target.value }));
   };
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-    "section",
-    {
-      id: "consultation",
-      className: "relative overflow-hidden py-24 text-[#081321] md:py-36",
-      children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "div",
-          {
-            "aria-hidden": "true",
-            className: "pointer-events-none absolute inset-0",
-            style: {
-              backgroundImage: `url(${matConcrete})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center"
-            }
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "aria-hidden": "true", className: "pointer-events-none absolute inset-0 bg-[rgba(250,248,244,0.88)]" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "aria-hidden": "true", className: "pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(200,169,107,0.06),transparent_40%),radial-gradient(circle_at_bottom_left,rgba(8,19,33,0.03),transparent_40%)]" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "div",
-          {
-            "aria-hidden": "true",
-            className: "pointer-events-none absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-[rgba(200,169,107,0.15)] to-transparent"
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "div",
-          {
-            "aria-hidden": "true",
-            className: "pointer-events-none absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[rgba(200,169,107,0.1)] to-transparent"
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "site-container relative", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-16", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            motion.div,
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { id: "consultation", className: "relative overflow-hidden", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        "aria-hidden": "true",
+        className: "pointer-events-none absolute inset-0",
+        style: { background: "linear-gradient(180deg, #FFFFFF 0%, #FAF7F1 50%, #F4EEE2 100%)" }
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        "aria-hidden": "true",
+        className: "pointer-events-none absolute left-1/2 top-0 h-[500px] w-[900px] -translate-x-1/2 rounded-full opacity-40 blur-3xl",
+        style: { background: "radial-gradient(circle, rgba(200,165,106,0.22), transparent 60%)" }
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative mx-auto max-w-7xl px-6 py-28", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        motion.div,
+        {
+          initial: reduceMotion ? false : "hidden",
+          whileInView: "visible",
+          viewport: motionViewport,
+          variants: reduceMotion ? void 0 : staggerContainer,
+          className: "mx-auto max-w-2xl text-center",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(motion.div, { variants: reduceMotion ? void 0 : fadeUp$2, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "inline-flex items-center gap-2 rounded-full border border-[#E6DFD2] bg-white px-4 py-1.5", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "h-1.5 w-1.5 rounded-full", style: { background: "#6BC56C" } }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "span",
+                {
+                  className: "text-[10px] font-semibold uppercase tracking-[0.24em]",
+                  style: { color: "#5a4418", fontFamily: "var(--font-body)" },
+                  children: "Persoonlijk Ontwerpgesprek"
+                }
+              )
+            ] }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              motion.h2,
+              {
+                variants: reduceMotion ? void 0 : fadeUp$2,
+                className: "mt-6 font-serif text-4xl font-light leading-[1.1] tracking-tight md:text-5xl",
+                style: { color: "#1a1410" },
+                children: [
+                  "Boek uw persoonlijk",
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("br", {}),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("em", { className: "italic", style: { color: "#8a6a2a" }, children: "ontwerpconsult." })
+                ]
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              motion.p,
+              {
+                variants: reduceMotion ? void 0 : fadeUp$2,
+                className: "mx-auto mt-5 max-w-xl text-[15px] leading-relaxed",
+                style: { color: "#6a5e48", fontFamily: "var(--font-body)" },
+                children: "Neem uw eerste keuzes mee naar de showroom in Utrecht en bespreek ze met een adviseur die materiaal, routing, apparatuur en budget zorgvuldig met u doorneemt."
+              }
+            )
+          ]
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        motion.div,
+        {
+          initial: reduceMotion ? false : { opacity: 0, y: 20 },
+          whileInView: reduceMotion ? false : { opacity: 1, y: 0 },
+          viewport: motionViewport,
+          transition: { duration: 0.8, ease: luxuryEase$1, delay: 0.2 },
+          className: "mt-14",
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx(HorizontalSlider, {})
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        motion.div,
+        {
+          initial: reduceMotion ? false : "hidden",
+          whileInView: "visible",
+          viewport: motionViewport,
+          variants: reduceMotion ? void 0 : fadeUp$2,
+          className: "mt-10",
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
             {
-              initial: reduceMotion ? false : "hidden",
-              whileInView: "visible",
-              viewport: motionViewport,
-              variants: reduceMotion ? void 0 : staggerContainer,
-              className: "flex flex-col justify-between",
-              children: [
+              className: "relative overflow-hidden rounded-[20px] border border-[#E4DCCB]",
+              style: {
+                boxShadow: "0 40px 90px -50px rgba(26,20,16,0.25), 0 1px 0 rgba(255,255,255,0.6) inset"
+              },
+              children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 md:grid-cols-[300px_1fr]", children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                  motion.div,
+                  "aside",
                   {
-                    variants: reduceMotion ? void 0 : fadeUp$2,
-                    className: "relative overflow-hidden rounded-[24px] mb-10 shadow-[0_20px_50px_-24px_rgba(8,19,33,0.15)]",
+                    className: "relative hidden flex-col justify-between p-8 md:flex",
+                    style: { background: "linear-gradient(180deg, #1a1410 0%, #221b14 100%)" },
                     children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        "img",
-                        {
-                          src: kc.showroomImg,
-                          alt: "Keuken-Centrum Utrecht showroom",
-                          className: "h-[320px] w-full object-cover md:h-[380px]",
-                          loading: "lazy"
-                        }
-                      ),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-gradient-to-t from-[#081321] via-[#081321]/45 to-transparent" }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "absolute bottom-0 left-0 right-0 p-7", children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-3 py-1", children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "h-1 w-1 rounded-full", style: { background: "#C9A961" } }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "span",
+                            {
+                              className: "text-[9px] font-semibold uppercase tracking-[0.24em] text-white/75",
+                              style: { fontFamily: "var(--font-body)" },
+                              children: "Atelier"
+                            }
+                          )
+                        ] }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { className: "mt-5 font-serif text-2xl font-light leading-tight text-white", children: [
+                          "Persoonlijk",
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("br", {}),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("em", { className: "italic", style: { color: "#C9A961" }, children: "ontwerpgesprek" })
+                        ] }),
                         /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          "span",
+                          "p",
                           {
-                            className: "text-[0.6rem] font-light uppercase tracking-[0.3em] text-[#C8A96B]",
-                            style: { fontFamily: "'Jost', sans-serif" },
-                            children: "Step 05 of 05"
+                            className: "mt-3 text-[12px] leading-relaxed text-white/55",
+                            style: { fontFamily: "var(--font-body)" },
+                            children: "Een vertrouwelijk gesprek met een senior ontwerper. Zonder verkoopdruk."
                           }
-                        ),
-                        /* @__PURE__ */ jsxRuntimeExports.jsxs("h2", { className: "mt-2 font-serif text-[clamp(1.8rem,3vw,2.4rem)] font-light leading-[1.1] tracking-[-0.025em] text-white", children: [
-                          "Boek uw",
-                          " ",
-                          /* @__PURE__ */ jsxRuntimeExports.jsx("em", { className: "italic text-[#C8A96B] font-light", children: "ontwerpconsult" })
-                        ] })
-                      ] })
-                    ]
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  motion.p,
-                  {
-                    variants: reduceMotion ? void 0 : fadeUp$2,
-                    className: "mb-8 max-w-[440px] text-[0.95rem] font-light leading-[1.8] text-[#081321]/70",
-                    style: { fontFamily: "'Jost', sans-serif" },
-                    children: "Neem uw eerste keuzes mee naar de showroom in Utrecht en bespreek ze met een adviseur die materiaal, routing, apparatuur en budget zorgvuldig met u doorneemt."
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                  motion.div,
-                  {
-                    initial: reduceMotion ? false : "hidden",
-                    whileInView: "visible",
-                    viewport: motionViewport,
-                    variants: reduceMotion ? void 0 : staggerSlow,
-                    className: "mb-10 space-y-3",
-                    children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        motion.p,
-                        {
-                          variants: reduceMotion ? void 0 : fadeUp$2,
-                          className: "text-[0.6rem] font-light uppercase tracking-[0.28em] text-[#081321]/50 mb-4",
-                          style: { fontFamily: "'Jost', sans-serif" },
-                          children: "What you will receive"
-                        }
-                      ),
-                      benefits.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                        motion.div,
-                        {
-                          variants: reduceMotion ? void 0 : fadeUp$2,
-                          className: "flex items-center gap-3",
-                          children: [
-                            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#C8A96B]/30 bg-[#C8A96B]/8 text-[#C8A96B]", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Check, { className: "h-3.5 w-3.5" }) }),
-                            /* @__PURE__ */ jsxRuntimeExports.jsx(
-                              "span",
-                              {
-                                className: "text-[0.88rem] font-light text-[#081321]/80",
-                                style: { fontFamily: "'Jost', sans-serif" },
-                                children: item
-                              }
-                            )
-                          ]
-                        },
-                        item
-                      ))
-                    ]
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                  motion.div,
-                  {
-                    variants: reduceMotion ? void 0 : fadeUp$2,
-                    className: "space-y-3 border-t border-[#081321]/10 pt-6",
-                    children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                        "a",
-                        {
-                          href: "#showroom",
-                          className: "flex items-center gap-3 rounded-[14px] border border-[#081321]/8 bg-white px-5 py-4 transition-all duration-300 hover:border-[#C8A96B]/40 hover:shadow-[0_12px_28px_-12px_rgba(8,19,33,0.12)]",
-                          children: [
-                            /* @__PURE__ */ jsxRuntimeExports.jsx(House, { className: "h-4 w-4 text-[#C8A96B]" }),
-                            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-                              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                                "p",
-                                {
-                                  className: "text-[0.6rem] uppercase tracking-[0.18em] text-[#081321]/40",
-                                  style: { fontFamily: "'Jost', sans-serif" },
-                                  children: "Showroom"
-                                }
-                              ),
-                              /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "mt-0.5 text-[0.88rem] font-light text-[#081321]", children: [
+                        )
+                      ] }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mt-8", children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "space-y-3 text-[12px] text-white/70", children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { className: "flex items-center gap-2.5", children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(Clock, { size: 14, variant: "Linear", color: "#C9A961" }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontFamily: "var(--font-body)" }, children: "Reactie binnen 24 uur" })
+                          ] }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { className: "flex items-center gap-2.5", children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(Shield, { size: 14, variant: "Linear", color: "#C9A961" }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontFamily: "var(--font-body)" }, children: "Vrijblijvend & vertrouwelijk" })
+                          ] }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { className: "flex items-center gap-2.5", children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(Calendar, { size: 14, variant: "Linear", color: "#C9A961" }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontFamily: "var(--font-body)" }, children: "Op locatie of in showroom" })
+                          ] })
+                        ] }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "my-5 h-px bg-white/[0.08]" }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "space-y-2.5 text-[12px] text-white/55", children: benefits.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { className: "flex items-center gap-2.5", children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(Check, { className: "h-3 w-3 shrink-0 text-[#C9A961]" }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontFamily: "var(--font-body)" }, children: item })
+                        ] }, item)) })
+                      ] }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mt-8 space-y-2.5 border-t border-white/[0.08] pt-5", children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                          "a",
+                          {
+                            href: "#showroom",
+                            className: "flex items-center gap-2.5 text-[12px] text-white/50 transition-colors duration-200 hover:text-white/80",
+                            style: { fontFamily: "var(--font-body)" },
+                            children: [
+                              /* @__PURE__ */ jsxRuntimeExports.jsx(House, { className: "h-3.5 w-3.5 shrink-0 text-[#C9A961]" }),
+                              /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
                                 kc.contact.address,
                                 ", Utrecht"
                               ] })
-                            ] })
-                          ]
-                        }
-                      ),
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                        "a",
-                        {
-                          href: kc.contact.phoneHref,
-                          className: "flex items-center gap-3 rounded-[14px] border border-[#081321]/8 bg-white px-5 py-4 transition-all duration-300 hover:border-[#C8A96B]/40 hover:shadow-[0_12px_28px_-12px_rgba(8,19,33,0.12)]",
-                          children: [
-                            /* @__PURE__ */ jsxRuntimeExports.jsx(Phone, { className: "h-4 w-4 text-[#C8A96B]" }),
-                            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-                              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                                "p",
-                                {
-                                  className: "text-[0.6rem] uppercase tracking-[0.18em] text-[#081321]/40",
-                                  style: { fontFamily: "'Jost', sans-serif" },
-                                  children: "Telefoon"
-                                }
-                              ),
-                              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-0.5 text-[0.88rem] font-light text-[#081321]", children: kc.contact.phone })
-                            ] })
-                          ]
-                        }
-                      ),
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                        "a",
-                        {
-                          href: `mailto:${kc.contact.email}`,
-                          className: "flex items-center gap-3 rounded-[14px] border border-[#081321]/8 bg-white px-5 py-4 transition-all duration-300 hover:border-[#C8A96B]/40 hover:shadow-[0_12px_28px_-12px_rgba(8,19,33,0.12)]",
-                          children: [
-                            /* @__PURE__ */ jsxRuntimeExports.jsx(Mail, { className: "h-4 w-4 text-[#C8A96B]" }),
-                            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-                              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                                "p",
-                                {
-                                  className: "text-[0.6rem] uppercase tracking-[0.18em] text-[#081321]/40",
-                                  style: { fontFamily: "'Jost', sans-serif" },
-                                  children: "E-mail"
-                                }
-                              ),
-                              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-0.5 text-[0.88rem] font-light text-[#081321]", children: kc.contact.email })
-                            ] })
-                          ]
-                        }
-                      )
-                    ]
-                  }
-                )
-              ]
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            motion.div,
-            {
-              initial: reduceMotion ? false : "hidden",
-              whileInView: "visible",
-              viewport: motionViewport,
-              variants: reduceMotion ? void 0 : staggerContainer,
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  motion.div,
-                  {
-                    variants: reduceMotion ? void 0 : fadeUp$2,
-                    className: "rounded-[32px] border border-[rgba(200,169,107,0.22)] bg-white p-8 shadow-[0_24px_68px_-28px_rgba(8,21,36,0.08)] md:p-10 transition-shadow duration-500 hover:shadow-[0_32px_80px_-24px_rgba(200,169,107,0.14)]",
-                    children: !submitted ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-8", children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          "span",
-                          {
-                            className: "text-[0.6rem] font-light uppercase tracking-[0.28em] text-[#C8A96B]",
-                            style: { fontFamily: "'Jost', sans-serif" },
-                            children: "Consultation Request"
+                            ]
                           }
                         ),
-                        /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "mt-3 font-serif text-[clamp(1.6rem,2.6vw,2.2rem)] font-light leading-[1.1] tracking-[-0.03em] text-[#081321]", children: "Vertel ons kort wat u wilt bespreken." })
-                      ] }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                        "form",
-                        {
-                          className: "space-y-5",
-                          onSubmit: (event) => {
-                            event.preventDefault();
-                            if (!isValid) return;
-                            setSubmitted(true);
-                          },
-                          children: [
-                            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid gap-5 md:grid-cols-2", children: [
-                              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                                Input,
-                                {
-                                  value: form.name,
-                                  onChange: updateField("name"),
-                                  placeholder: "Volledige naam",
-                                  className: "h-[56px] rounded-[18px] border-[#081321]/10 bg-white px-5 text-[0.92rem] text-[#081321] placeholder:text-[#081321]/35 focus-visible:border-[#C8A96B] focus-visible:ring-[#C8A96B]/15"
-                                }
-                              ),
-                              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                                Input,
-                                {
-                                  type: "email",
-                                  value: form.email,
-                                  onChange: updateField("email"),
-                                  placeholder: "E-mailadres",
-                                  className: "h-[56px] rounded-[18px] border-[#081321]/10 bg-white px-5 text-[0.92rem] text-[#081321] placeholder:text-[#081321]/35 focus-visible:border-[#C8A96B] focus-visible:ring-[#C8A96B]/15"
-                                }
-                              )
-                            ] }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                          "a",
+                          {
+                            href: kc.contact.phoneHref,
+                            className: "flex items-center gap-2.5 text-[12px] text-white/50 transition-colors duration-200 hover:text-white/80",
+                            style: { fontFamily: "var(--font-body)" },
+                            children: [
+                              /* @__PURE__ */ jsxRuntimeExports.jsx(Phone, { className: "h-3.5 w-3.5 shrink-0 text-[#C9A961]" }),
+                              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: kc.contact.phone })
+                            ]
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                          "a",
+                          {
+                            href: `mailto:${kc.contact.email}`,
+                            className: "flex items-center gap-2.5 text-[12px] text-white/50 transition-colors duration-200 hover:text-white/80",
+                            style: { fontFamily: "var(--font-body)" },
+                            children: [
+                              /* @__PURE__ */ jsxRuntimeExports.jsx(Mail, { className: "h-3.5 w-3.5 shrink-0 text-[#C9A961]" }),
+                              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: kc.contact.email })
+                            ]
+                          }
+                        )
+                      ] })
+                    ]
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "bg-white p-7 md:p-9", children: !submitted ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-7", children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "span",
+                      {
+                        className: "text-[0.6rem] font-semibold uppercase tracking-[0.28em]",
+                        style: { color: "#7a5e28", fontFamily: "var(--font-body)" },
+                        children: "Consultation Request"
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "h3",
+                      {
+                        className: "mt-3 font-serif text-[clamp(1.5rem,2.4vw,2rem)] font-light leading-[1.1] tracking-[-0.025em]",
+                        style: { color: "#1a1410" },
+                        children: "Vertel ons kort wat u wilt bespreken."
+                      }
+                    )
+                  ] }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    "form",
+                    {
+                      className: "space-y-4",
+                      onSubmit: (event) => {
+                        event.preventDefault();
+                        if (!isValid) return;
+                        setSubmitted(true);
+                      },
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid gap-4 md:grid-cols-2", children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(
+                              "label",
+                              {
+                                className: "mb-1.5 block text-[10px] font-semibold uppercase tracking-[0.2em]",
+                                style: { color: "#7a5e28", fontFamily: "var(--font-body)" },
+                                children: "Volledige naam"
+                              }
+                            ),
                             /* @__PURE__ */ jsxRuntimeExports.jsx(
                               Input,
                               {
-                                type: "tel",
-                                value: form.phone,
-                                onChange: updateField("phone"),
-                                placeholder: "Telefoonnummer",
-                                className: "h-[56px] rounded-[18px] border-[#081321]/10 bg-white px-5 text-[0.92rem] text-[#081321] placeholder:text-[#081321]/35 focus-visible:border-[#C8A96B] focus-visible:ring-[#C8A96B]/15"
-                              }
-                            ),
-                            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid gap-5 md:grid-cols-2", children: [
-                              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid gap-2", children: [
-                                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                                  "label",
-                                  {
-                                    className: "text-[0.62rem] font-light uppercase tracking-[0.2em] text-[#081321]/55",
-                                    style: { fontFamily: "'Jost', sans-serif" },
-                                    children: "Voorkeur showroom"
-                                  }
-                                ),
-                                /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                                  Select,
-                                  {
-                                    value: form.showroom,
-                                    onValueChange: (value) => setForm((current) => ({ ...current, showroom: value })),
-                                    children: [
-                                      /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { className: "h-[56px] rounded-[18px] border-[#081321]/10 bg-white px-5 text-[0.92rem] text-[#081321]", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { placeholder: "Selecteer showroom" }) }),
-                                      /* @__PURE__ */ jsxRuntimeExports.jsxs(SelectContent, { className: "rounded-[14px] border-[#081321]/10 bg-white", children: [
-                                        /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "Utrecht, Zonnebaan 8", children: "Utrecht, Zonnebaan 8" }),
-                                        /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "Video consultation", children: "Video consultation" }),
-                                        /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "Telefonisch intakegesprek", children: "Telefonisch intakegesprek" })
-                                      ] })
-                                    ]
-                                  }
-                                )
-                              ] }),
-                              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid gap-2", children: [
-                                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                                  "label",
-                                  {
-                                    className: "text-[0.62rem] font-light uppercase tracking-[0.2em] text-[#081321]/55",
-                                    style: { fontFamily: "'Jost', sans-serif" },
-                                    children: "Projectbudget"
-                                  }
-                                ),
-                                /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                                  Select,
-                                  {
-                                    value: form.budget,
-                                    onValueChange: (value) => setForm((current) => ({ ...current, budget: value })),
-                                    children: [
-                                      /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { className: "h-[56px] rounded-[18px] border-[#081321]/10 bg-white px-5 text-[0.92rem] text-[#081321]", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { placeholder: "Selecteer budget" }) }),
-                                      /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { className: "rounded-[14px] border-[#081321]/10 bg-white", children: kc.config.budgets.map((budget) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: budget.label, children: budget.label }, budget.id)) })
-                                    ]
-                                  }
-                                )
-                              ] })
-                            ] }),
-                            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid gap-2", children: [
-                              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                                "label",
-                                {
-                                  className: "text-[0.62rem] font-light uppercase tracking-[0.2em] text-[#081321]/55",
-                                  style: { fontFamily: "'Jost', sans-serif" },
-                                  children: "Gewenste datum"
-                                }
-                              ),
-                              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                                Input,
-                                {
-                                  type: "date",
-                                  value: form.date,
-                                  onChange: updateField("date"),
-                                  className: "h-[56px] rounded-[18px] border-[#081321]/10 bg-white px-5 text-[0.92rem] text-[#081321] focus-visible:border-[#C8A96B] focus-visible:ring-[#C8A96B]/15"
-                                }
-                              )
-                            ] }),
-                            /* @__PURE__ */ jsxRuntimeExports.jsx(
-                              Textarea,
-                              {
-                                value: form.notes,
-                                onChange: updateField("notes"),
-                                placeholder: "Vertel iets over uw woning, stijlvoorkeur, planning of budgetrichting.",
-                                className: "min-h-[110px] rounded-[18px] border-[#081321]/10 bg-white px-5 py-4 text-[0.92rem] text-[#081321] placeholder:text-[#081321]/35 focus-visible:border-[#C8A96B] focus-visible:ring-[#C8A96B]/15"
-                              }
-                            ),
-                            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-2 gap-4 border-t border-[#081321]/8 pt-6 md:grid-cols-4", children: trustMetrics.map((metric) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center", children: [
-                              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "block font-serif text-[1.1rem] font-light tracking-tight text-[#081321]", children: metric.value }),
-                              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                                "span",
-                                {
-                                  className: "mt-0.5 block text-[0.56rem] font-light uppercase tracking-[0.18em] text-[#081321]/45",
-                                  style: { fontFamily: "'Jost', sans-serif" },
-                                  children: metric.label
-                                }
-                              )
-                            ] }, metric.label)) }),
-                            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-4 pt-2 sm:flex-row sm:items-center sm:justify-between", children: [
-                              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                                "p",
-                                {
-                                  className: "max-w-[240px] text-[0.78rem] font-light leading-[1.65] text-[#081321]/50",
-                                  style: { fontFamily: "'Jost', sans-serif" },
-                                  children: "We reageren doorgaans binnen 24 uur met een passend voorstel."
-                                }
-                              ),
-                              /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                                Button,
-                                {
-                                  type: "submit",
-                                  className: "h-[54px] min-w-[200px] rounded-full px-10",
-                                  disabled: !isValid,
-                                  children: [
-                                    "Plan Consultation",
-                                    /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowRight, { className: "h-4 w-4" })
-                                  ]
-                                }
-                              )
-                            ] })
-                          ]
-                        }
-                      )
-                    ] }) : (
-                      /* ── Success state ──────────────────────── */
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex min-h-[500px] flex-col items-start justify-center", children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex h-14 w-14 items-center justify-center rounded-full border border-[#C8A96B]/30 bg-[#C8A96B]/8 text-[#C8A96B]", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Check, { className: "h-6 w-6" }) }),
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          "span",
-                          {
-                            className: "mt-6 text-[0.6rem] font-light uppercase tracking-[0.28em] text-[#C8A96B]",
-                            style: { fontFamily: "'Jost', sans-serif" },
-                            children: "Aanvraag ontvangen"
-                          }
-                        ),
-                        /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { className: "mt-3 font-serif text-[clamp(1.8rem,2.8vw,2.4rem)] font-light leading-[1.1] tracking-[-0.03em] text-[#081321]", children: [
-                          "Dank u, ",
-                          form.name.split(" ")[0] || "u",
-                          "."
-                        ] }),
-                        /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                          "p",
-                          {
-                            className: "mt-5 max-w-[400px] text-[0.95rem] font-light leading-[1.8] text-[#081321]/65",
-                            style: { fontFamily: "'Jost', sans-serif" },
-                            children: [
-                              "Uw aanvraag is opgeslagen. Een adviseur van Keuken-Centrum Utrecht neemt contact op via ",
-                              form.email,
-                              " om een geschikt moment in de showroom af te stemmen."
-                            ]
-                          }
-                        ),
-                        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mt-6 w-full space-y-3 border-t border-[#081321]/8 pt-5", children: [
-                          { label: "Showroom", value: form.showroom },
-                          { label: "Budget", value: form.budget || "-" },
-                          { label: "Gewenste datum", value: form.date || "-" }
-                        ].map((row) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                          "div",
-                          {
-                            className: "flex items-center justify-between gap-4 text-[0.88rem]",
-                            children: [
-                              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                                "span",
-                                {
-                                  className: "text-[0.62rem] uppercase tracking-[0.18em] text-[#081321]/45",
-                                  style: { fontFamily: "'Jost', sans-serif" },
-                                  children: row.label
-                                }
-                              ),
-                              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-light text-[#081321]/80", children: row.value })
-                            ]
-                          },
-                          row.label
-                        )) }),
-                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mt-8 flex flex-wrap items-center gap-4", children: [
-                          /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { asChild: true, className: "h-[54px] rounded-full px-10", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("a", { href: "#showroom", children: [
-                            "Bekijk Showroom",
-                            /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowRight, { className: "h-4 w-4" })
-                          ] }) }),
-                          /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { asChild: true, variant: "outline", className: "h-[54px] rounded-full px-10 border-[#081321]/15 text-[#081321] hover:border-[#C8A96B] hover:text-[#C8A96B]", children: /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: kc.contact.phoneHref, children: "Bel Direct" }) })
-                        ] })
-                      ] })
-                    )
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                  motion.div,
-                  {
-                    initial: reduceMotion ? false : "hidden",
-                    whileInView: "visible",
-                    viewport: motionViewport,
-                    variants: reduceMotion ? void 0 : staggerSlow,
-                    className: "mt-10",
-                    children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        motion.p,
-                        {
-                          variants: reduceMotion ? void 0 : fadeUp$2,
-                          className: "mb-6 text-[0.6rem] font-light uppercase tracking-[0.28em] text-[#081321]/50",
-                          style: { fontFamily: "'Jost', sans-serif" },
-                          children: "What Happens Next"
-                        }
-                      ),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-2 gap-4 md:grid-cols-4", children: whatHappensNext.map((step) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                        motion.div,
-                        {
-                          variants: reduceMotion ? void 0 : fadeUp$2,
-                          className: "rounded-[18px] border border-[#081321]/8 bg-white px-5 py-5 transition-all duration-300 hover:border-[#C8A96B]/30 hover:shadow-[0_14px_32px_-16px_rgba(8,19,33,0.15)]",
-                          children: [
-                            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-serif text-[1.3rem] font-light tracking-tight text-[#C8A96B]", children: step.n }),
-                            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-2 font-serif text-[0.92rem] font-light leading-[1.3] text-[#081321]", children: step.title }),
-                            /* @__PURE__ */ jsxRuntimeExports.jsx(
-                              "p",
-                              {
-                                className: "mt-1.5 text-[0.72rem] font-light leading-[1.55] text-[#081321]/60",
-                                style: { fontFamily: "'Jost', sans-serif" },
-                                children: step.description
+                                value: form.name,
+                                onChange: updateField("name"),
+                                placeholder: "Uw volledige naam",
+                                className: "h-[50px] rounded-lg border-[#D9D2C3] bg-white px-4 text-[0.9rem] text-[#1f1a12] placeholder:text-[#9c9180] focus-visible:border-[#1a1410] focus-visible:ring-[rgba(26,20,16,0.06)]"
                               }
                             )
-                          ]
-                        },
-                        step.n
-                      )) })
-                    ]
-                  }
-                )
-              ]
+                          ] }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(
+                              "label",
+                              {
+                                className: "mb-1.5 block text-[10px] font-semibold uppercase tracking-[0.2em]",
+                                style: { color: "#7a5e28", fontFamily: "var(--font-body)" },
+                                children: "E-mailadres"
+                              }
+                            ),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(
+                              Input,
+                              {
+                                type: "email",
+                                value: form.email,
+                                onChange: updateField("email"),
+                                placeholder: "naam@voorbeeld.nl",
+                                className: "h-[50px] rounded-lg border-[#D9D2C3] bg-white px-4 text-[0.9rem] text-[#1f1a12] placeholder:text-[#9c9180] focus-visible:border-[#1a1410] focus-visible:ring-[rgba(26,20,16,0.06)]"
+                              }
+                            )
+                          ] })
+                        ] }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "label",
+                            {
+                              className: "mb-1.5 block text-[10px] font-semibold uppercase tracking-[0.2em]",
+                              style: { color: "#7a5e28", fontFamily: "var(--font-body)" },
+                              children: "Telefoonnummer"
+                            }
+                          ),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            Input,
+                            {
+                              type: "tel",
+                              value: form.phone,
+                              onChange: updateField("phone"),
+                              placeholder: "+31 …",
+                              className: "h-[50px] rounded-lg border-[#D9D2C3] bg-white px-4 text-[0.9rem] text-[#1f1a12] placeholder:text-[#9c9180] focus-visible:border-[#1a1410] focus-visible:ring-[rgba(26,20,16,0.06)]"
+                            }
+                          )
+                        ] }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid gap-4 md:grid-cols-2", children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid gap-2", children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(
+                              "label",
+                              {
+                                className: "text-[10px] font-semibold uppercase tracking-[0.2em]",
+                                style: { color: "#7a5e28", fontFamily: "var(--font-body)" },
+                                children: "Voorkeur showroom"
+                              }
+                            ),
+                            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                              Select,
+                              {
+                                value: form.showroom,
+                                onValueChange: (value) => setForm((current) => ({ ...current, showroom: value })),
+                                children: [
+                                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { className: "h-[50px] rounded-lg border-[#D9D2C3] bg-white px-4 text-[0.9rem] text-[#1f1a12]", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { placeholder: "Selecteer showroom" }) }),
+                                  /* @__PURE__ */ jsxRuntimeExports.jsxs(SelectContent, { className: "rounded-lg border-[#D9D2C3] bg-white", children: [
+                                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "Utrecht, Zonnebaan 8", children: "Utrecht, Zonnebaan 8" }),
+                                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "Video consultation", children: "Video consultation" }),
+                                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "Telefonisch intakegesprek", children: "Telefonisch intakegesprek" })
+                                  ] })
+                                ]
+                              }
+                            )
+                          ] }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid gap-2", children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(
+                              "label",
+                              {
+                                className: "text-[10px] font-semibold uppercase tracking-[0.2em]",
+                                style: { color: "#7a5e28", fontFamily: "var(--font-body)" },
+                                children: "Projectbudget"
+                              }
+                            ),
+                            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                              Select,
+                              {
+                                value: form.budget,
+                                onValueChange: (value) => setForm((current) => ({ ...current, budget: value })),
+                                children: [
+                                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { className: "h-[50px] rounded-lg border-[#D9D2C3] bg-white px-4 text-[0.9rem] text-[#1f1a12]", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { placeholder: "Selecteer budget" }) }),
+                                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { className: "rounded-lg border-[#D9D2C3] bg-white", children: kc.config.budgets.map((budget) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: budget.label, children: budget.label }, budget.id)) })
+                                ]
+                              }
+                            )
+                          ] })
+                        ] }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "label",
+                            {
+                              className: "mb-1.5 block text-[10px] font-semibold uppercase tracking-[0.2em]",
+                              style: { color: "#7a5e28", fontFamily: "var(--font-body)" },
+                              children: "Gewenste datum"
+                            }
+                          ),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            Input,
+                            {
+                              type: "date",
+                              value: form.date,
+                              onChange: updateField("date"),
+                              className: "h-[50px] rounded-lg border-[#D9D2C3] bg-white px-4 text-[0.9rem] text-[#1f1a12] focus-visible:border-[#1a1410] focus-visible:ring-[rgba(26,20,16,0.06)]"
+                            }
+                          )
+                        ] }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "label",
+                            {
+                              className: "mb-1.5 block text-[10px] font-semibold uppercase tracking-[0.2em]",
+                              style: { color: "#7a5e28", fontFamily: "var(--font-body)" },
+                              children: "Uw bericht"
+                            }
+                          ),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            Textarea,
+                            {
+                              value: form.notes,
+                              onChange: updateField("notes"),
+                              placeholder: "Vertel iets over uw woning, stijlvoorkeur, planning of budgetrichting.",
+                              className: "min-h-[100px] resize-none rounded-lg border-[#D9D2C3] bg-white px-4 py-3 text-[0.9rem] text-[#1f1a12] placeholder:text-[#9c9180] focus-visible:border-[#1a1410] focus-visible:ring-[rgba(26,20,16,0.06)]"
+                            }
+                          )
+                        ] }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-2 gap-3 border-t border-[#EFE8D9] pt-5 md:grid-cols-4", children: trustMetrics.map((metric) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center", children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "span",
+                            {
+                              className: "block font-serif text-[1.05rem] font-light tracking-tight",
+                              style: { color: "#1a1410" },
+                              children: metric.value
+                            }
+                          ),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "span",
+                            {
+                              className: "mt-0.5 block text-[0.55rem] font-semibold uppercase tracking-[0.18em]",
+                              style: { color: "#7a6a4a", fontFamily: "var(--font-body)" },
+                              children: metric.label
+                            }
+                          )
+                        ] }, metric.label)) }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col items-stretch gap-3 border-t border-[#EFE8D9] pt-5 sm:flex-row sm:items-center sm:justify-between", children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "p",
+                            {
+                              className: "text-[11px] leading-relaxed",
+                              style: { color: "#7a6a4a", fontFamily: "var(--font-body)" },
+                              children: "Door te verzenden gaat u akkoord met ons vertrouwelijkheidsbeleid."
+                            }
+                          ),
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                            "button",
+                            {
+                              type: "submit",
+                              disabled: !isValid,
+                              className: "group inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-sm font-medium tracking-wide text-white transition-all duration-[250ms] hover:bg-[#0f0a06] disabled:cursor-not-allowed disabled:opacity-50",
+                              style: {
+                                background: "#1a1410",
+                                boxShadow: "0 12px 28px -14px rgba(26,20,16,0.55)",
+                                fontFamily: "var(--font-body)"
+                              },
+                              children: [
+                                "Plan Consultation",
+                                /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowRight, { className: "h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" })
+                              ]
+                            }
+                          )
+                        ] })
+                      ]
+                    }
+                  )
+                ] }) : (
+                  /* ── Success state ────────────────────────────────── */
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex min-h-[500px] flex-col items-start justify-center", children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex h-14 w-14 items-center justify-center rounded-full border border-[#C8A96B]/30 bg-[#C8A96B]/8 text-[#C8A96B]", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Check, { className: "h-6 w-6" }) }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "span",
+                      {
+                        className: "mt-6 text-[0.6rem] font-light uppercase tracking-[0.28em] text-[#C8A96B]",
+                        style: { fontFamily: "var(--font-body)" },
+                        children: "Aanvraag ontvangen"
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { className: "mt-3 font-serif text-[clamp(1.8rem,2.8vw,2.4rem)] font-light leading-[1.1] tracking-[-0.03em] text-[#081321]", children: [
+                      "Dank u, ",
+                      form.name.split(" ")[0] || "u",
+                      "."
+                    ] }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                      "p",
+                      {
+                        className: "mt-5 max-w-[400px] text-[0.95rem] font-light leading-[1.8] text-[#081321]/65",
+                        style: { fontFamily: "var(--font-body)" },
+                        children: [
+                          "Uw aanvraag is opgeslagen. Een adviseur van Keuken-Centrum Utrecht neemt contact op via ",
+                          form.email,
+                          " om een geschikt moment in de showroom af te stemmen."
+                        ]
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mt-6 w-full space-y-3 border-t border-[#EFE8D9] pt-5", children: [
+                      { label: "Showroom", value: form.showroom },
+                      { label: "Budget", value: form.budget || "-" },
+                      { label: "Gewenste datum", value: form.date || "-" }
+                    ].map((row) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                      "div",
+                      {
+                        className: "flex items-center justify-between gap-4 text-[0.88rem]",
+                        children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "span",
+                            {
+                              className: "text-[0.62rem] uppercase tracking-[0.18em] text-[#081321]/45",
+                              style: { fontFamily: "var(--font-body)" },
+                              children: row.label
+                            }
+                          ),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-light text-[#081321]/80", children: row.value })
+                        ]
+                      },
+                      row.label
+                    )) }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mt-8 flex flex-wrap items-center gap-4", children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { asChild: true, className: "h-[54px] rounded-full px-10", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("a", { href: "#showroom", children: [
+                        "Bekijk Showroom",
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowRight, { className: "h-4 w-4" })
+                      ] }) }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        Button,
+                        {
+                          asChild: true,
+                          variant: "outline",
+                          className: "h-[54px] rounded-full border-[#081321]/15 px-10 text-[#081321] hover:border-[#C8A96B] hover:text-[#C8A96B]",
+                          children: /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: kc.contact.phoneHref, children: "Bel Direct" })
+                        }
+                      )
+                    ] })
+                  ] })
+                ) })
+              ] })
             }
           )
-        ] }) })
-      ]
-    }
-  );
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        motion.div,
+        {
+          initial: reduceMotion ? false : "hidden",
+          whileInView: "visible",
+          viewport: motionViewport,
+          variants: reduceMotion ? void 0 : staggerSlow,
+          className: "mt-10",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              motion.p,
+              {
+                variants: reduceMotion ? void 0 : fadeUp$2,
+                className: "mb-6 text-[0.6rem] font-semibold uppercase tracking-[0.28em]",
+                style: { color: "rgba(26,20,16,0.40)", fontFamily: "var(--font-body)" },
+                children: "What Happens Next"
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-2 gap-4 md:grid-cols-4", children: whatHappensNext.map((step) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              motion.div,
+              {
+                variants: reduceMotion ? void 0 : fadeUp$2,
+                className: "rounded-[18px] border border-[#E4DCCB] bg-white px-5 py-5 transition-all duration-300 hover:border-[rgba(200,169,107,0.5)] hover:shadow-[0_14px_32px_-16px_rgba(26,20,16,0.12)]",
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "span",
+                    {
+                      className: "font-serif text-[1.3rem] font-light tracking-tight",
+                      style: { color: "#8a6a2a" },
+                      children: step.n
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "p",
+                    {
+                      className: "mt-2 font-serif text-[0.92rem] font-light leading-[1.3]",
+                      style: { color: "#1a1410" },
+                      children: step.title
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "p",
+                    {
+                      className: "mt-1.5 text-[0.72rem] font-light leading-[1.55]",
+                      style: { color: "rgba(26,20,16,0.55)", fontFamily: "var(--font-body)" },
+                      children: step.description
+                    }
+                  )
+                ]
+              },
+              step.n
+            )) })
+          ]
+        }
+      )
+    ] })
+  ] });
 }
 const actions = [
   {

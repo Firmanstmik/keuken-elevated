@@ -16,7 +16,7 @@ import "crypto";
 import "async_hooks";
 import "stream";
 import "../_libs/isbot.mjs";
-const appCss = "/assets/styles-CgnbdmN6.css";
+const appCss = "/assets/styles-DmB4qDn4.css";
 function reportLovableError(error, context = {}) {
   if (typeof window === "undefined") return;
   window.__lovableEvents?.captureException?.(
@@ -238,23 +238,23 @@ function RootComponent() {
     /* @__PURE__ */ jsxRuntimeExports.jsx(Toaster, { richColors: true, position: "top-right" })
   ] }) });
 }
-const $$splitComponentImporter$5 = () => import("./style-BCeogFT5.mjs");
+const $$splitComponentImporter$5 = () => import("./style-B3hPCaKv.mjs");
 const Route$5 = createFileRoute("/style")({
   component: lazyRouteComponent($$splitComponentImporter$5, "component")
 });
-const $$splitComponentImporter$4 = () => import("./moodboard-D7mFpnlc.mjs");
+const $$splitComponentImporter$4 = () => import("./moodboard-EbY0V_om.mjs");
 const Route$4 = createFileRoute("/moodboard")({
   component: lazyRouteComponent($$splitComponentImporter$4, "component")
 });
-const $$splitComponentImporter$3 = () => import("./consultation-Bl_h6Hag.mjs");
+const $$splitComponentImporter$3 = () => import("./consultation-DMM-vzzb.mjs");
 const Route$3 = createFileRoute("/consultation")({
   component: lazyRouteComponent($$splitComponentImporter$3, "component")
 });
-const $$splitComponentImporter$2 = () => import("./configure-IeGNM17r.mjs");
+const $$splitComponentImporter$2 = () => import("./configure-DVEZ2-gU.mjs");
 const Route$2 = createFileRoute("/configure")({
   component: lazyRouteComponent($$splitComponentImporter$2, "component")
 });
-const $$splitComponentImporter$1 = () => import("./brands-BVYNmrfF.mjs");
+const $$splitComponentImporter$1 = () => import("./brands-A2_Ds0lS.mjs");
 const Route$1 = createFileRoute("/brands")({
   component: lazyRouteComponent($$splitComponentImporter$1, "component")
 });
@@ -278,7 +278,6 @@ const kc = {
   hero: {
     main: `${wp}/IMG_0654-LEICHT-JAPANDI-scaled.webp`
   },
-  showroomImg: `${wp}/WhatsApp-Image-2023-09-20-at-13.53.26-1024x768.webp`,
   // Real kitchen brands
   kitchenBrands: [
     { id: "leicht", name: "Leicht", country: "Duitsland", logo: `${wp}/1200px-Leicht_K%C3%BCchen_logo.svg-1024x325.webp`, story: "Bauhaus-erfgoed sinds 1928. Architectonische precisie uit Waldstetten." },
@@ -328,7 +327,7 @@ const kc = {
     ]
   }
 };
-const $$splitComponentImporter = () => import("./index-D1B_ejPf.mjs");
+const $$splitComponentImporter = () => import("./index-c5LGQIqK.mjs");
 const Route = createFileRoute("/")({
   head: () => ({
     meta: [{
