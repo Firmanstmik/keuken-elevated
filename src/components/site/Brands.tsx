@@ -73,7 +73,7 @@ export function Brands() {
               >
                 Duitse precisie en
                 <br />
-                Italiaanse elegantie.
+                <em className="italic" style={{ color: "#23B9C4" }}>Italiaanse elegantie.</em>
               </motion.h2>
             </div>
             <motion.p
@@ -216,7 +216,7 @@ export function Brands() {
                   transition={{ duration: 0.56, ease: motionEase.premium, delay: 0.08 }}
                   className="flex items-center gap-2 rounded-full border border-[rgba(200,169,107,0.15)] bg-[rgba(250,248,244,0.98)] px-4 py-2.5 text-[0.78rem] font-medium tracking-[-0.01em] text-[var(--secondary)] shadow-[0_18px_40px_-28px_rgba(23,25,28,0.12)]"
                 >
-                  <span className="h-1.5 w-1.5 rounded-full bg-[var(--green)] shadow-[0_0_0_3px_rgba(61,154,66,0.12)]" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-[var(--green)] shadow-[0_0_0_3px_rgba(35,185,196,0.15)]" />
                   <span>{marqueeItems[hoveredIndex].hint}</span>
                 </motion.div>
               </div>

@@ -11,7 +11,7 @@ import collectionWarm from "@/assets/collection-warm.jpg";
 import showroomImage from "@/assets/showroom.jpg";
 import heroKitchen from "@/assets/hero-kitchen.jpg";
 
-// ─── Preserved data (unchanged) ────────────────────────────────────────────
+// ─── Data ────────────────────────────────────────────────────────────────────
 
 const testimonialsData = [
   {
@@ -82,16 +82,15 @@ const testimonialsData = [
   },
 ] as const;
 
-// ─── Helpers ────────────────────────────────────────────────────────────────
+// ─── Helpers ─────────────────────────────────────────────────────────────────
 
-/** Derive 2-letter initials from a client name */
 function toInitials(name: string): string {
   const words = name.trim().split(/\s+/);
   if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
   return (words[0][0] + words[words.length - 1][0]).toUpperCase();
 }
 
-// ─── Framer-motion entrance variants ────────────────────────────────────────
+// ─── Motion ──────────────────────────────────────────────────────────────────
 
 const luxuryEase = [0.22, 1, 0.36, 1] as const;
 
@@ -102,11 +101,7 @@ const sectionReveal = {
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.82, ease: luxuryEase },
-  },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.82, ease: luxuryEase } },
 };
 
 const stagger = {
@@ -140,22 +135,20 @@ function TestimonialCard({ story }: { story: CardData }) {
 
   return (
     <article
-      className="group relative mb-5 overflow-hidden rounded-[28px] border border-white/[0.06] bg-gradient-to-b from-white/[0.05] to-white/[0.02] p-6 backdrop-blur-sm transition-all duration-300 ease-out hover:-translate-y-1.5 hover:border-[#C8A96B]/30 select-none"
+      className="group relative mb-5 overflow-hidden rounded-[28px] border border-white/[0.06] bg-gradient-to-b from-white/[0.05] to-white/[0.02] p-6 backdrop-blur-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:border-[rgba(35,185,196,0.20)] select-none"
       style={{
-        boxShadow:
-          "0 1px 0 rgba(255,255,255,0.04) inset, 0 18px 50px -22px rgba(0,0,0,0.6)",
+        boxShadow: "0 1px 0 rgba(255,255,255,0.04) inset, 0 18px 50px -22px rgba(0,0,0,0.6)",
       }}
     >
-      {/* Hover glow overlay — absolute inset */}
+      {/* Hover glow — subtle teal, not gaming */}
       <div
-        className="pointer-events-none absolute inset-0 rounded-[28px] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        className="pointer-events-none absolute inset-0 rounded-[28px] opacity-0 transition-opacity duration-400 group-hover:opacity-100"
         style={{
-          boxShadow:
-            "0 28px 80px -30px rgba(200,165,106,0.35), 0 0 0 1px rgba(200,165,106,0.25) inset",
+          boxShadow: "0 0 0 1px rgba(35,185,196,0.14) inset, 0 28px 60px -30px rgba(35,185,196,0.18)",
         }}
       />
 
-      {/* Row 1: Stars (left) + Image thumbnail (right) */}
+      {/* Row 1: Stars + Image */}
       <div className="flex items-start justify-between gap-4">
         <Stars />
         <div className="relative h-12 w-16 shrink-0 overflow-hidden rounded-xl border border-white/10">
@@ -170,8 +163,8 @@ function TestimonialCard({ story }: { story: CardData }) {
         </div>
       </div>
 
-      {/* Row 2: Gold badge */}
-      <div className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-[#C8A96B]/30 bg-[#C8A96B]/[0.08] px-2.5 py-1">
+      {/* Brand badge */}
+      <div className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-[#C8A96B]/25 bg-[#C8A96B]/[0.07] px-2.5 py-1">
         <span className="h-1 w-1 rounded-full bg-[#C8A96B]" />
         <span
           className="text-[10px] font-medium uppercase tracking-[0.16em]"
@@ -181,13 +174,13 @@ function TestimonialCard({ story }: { story: CardData }) {
         </span>
       </div>
 
-      {/* Row 3: Quote — min-h keeps scroll columns visually rhythmic */}
-      <p className="mt-4 min-h-[108px] font-serif text-[17px] font-light leading-relaxed text-white/85">
-        <Quote className="-mt-1 mr-1 inline h-3.5 w-3.5 text-[#C8A96B]/70" />
+      {/* Quote */}
+      <p className="mt-4 min-h-[108px] font-serif text-[17px] font-light leading-relaxed text-white/82">
+        <Quote className="-mt-1 mr-1 inline h-3.5 w-3.5 text-[#C8A96B]/60" />
         {story.quote}
       </p>
 
-      {/* Row 4: Footer — avatar + name + location + verified */}
+      {/* Footer */}
       <div className="mt-5 flex items-center justify-between border-t border-white/[0.06] pt-4">
         <div className="flex items-center gap-3">
           <div
@@ -197,59 +190,34 @@ function TestimonialCard({ story }: { story: CardData }) {
             {initials}
           </div>
           <div>
-            <div
-              className="text-[13px] font-medium text-white"
-              style={{ fontFamily: "var(--font-body)" }}
-            >
+            <div className="text-[13px] font-medium text-white" style={{ fontFamily: "var(--font-body)" }}>
               {story.client}
             </div>
-            <div
-              className="mt-0.5 flex items-center gap-1 text-[11px] text-white/50"
-              style={{ fontFamily: "var(--font-body)" }}
-            >
+            <div className="mt-0.5 flex items-center gap-1 text-[11px] text-white/45" style={{ fontFamily: "var(--font-body)" }}>
               <Location size={12} variant="Linear" />
               {story.location} · {story.year}
             </div>
           </div>
         </div>
-        <TickCircle size={20} variant="Bold" className="text-[#3D9A42] shrink-0" />
+        <TickCircle size={20} variant="Bold" className="shrink-0 text-[#23B9C4]" />
       </div>
     </article>
   );
 }
 
-// ─── Scrolling Column ────────────────────────────────────────────────────────
+// ─── Scrolling Column ─────────────────────────────────────────────────────────
 
-function Column({
-  stories,
-  direction,
-}: {
-  stories: readonly CardData[];
-  direction: "up" | "down";
-}) {
+function Column({ stories, direction }: { stories: readonly CardData[]; direction: "up" | "down" }) {
   const doubled = [...stories, ...stories];
-  const COL_BG = "#0F0F0F";
   return (
-    <div className="relative h-[760px] overflow-hidden">
-      {/* Fade top */}
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 z-10 h-64"
-        style={{
-          background: `linear-gradient(to bottom, ${COL_BG} 0%, ${COL_BG} 18%, rgba(15,15,15,0) 100%)`,
-        }}
-      />
-      {/* Fade bottom */}
-      <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-64"
-        style={{
-          background: `linear-gradient(to top, ${COL_BG} 0%, ${COL_BG} 18%, rgba(15,15,15,0) 100%)`,
-        }}
-      />
-      <div
-        className={
-          direction === "up" ? "animate-kc-scroll-up" : "animate-kc-scroll-down"
-        }
-      >
+    <div
+      className="relative h-[760px] overflow-hidden"
+      style={{
+        maskImage: "linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%)",
+        WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%)",
+      }}
+    >
+      <div className={direction === "up" ? "animate-kc-scroll-up" : "animate-kc-scroll-down"}>
         {doubled.map((story, i) => (
           <TestimonialCard key={`${story.client}-${i}`} story={story} />
         ))}
@@ -258,7 +226,7 @@ function Column({
   );
 }
 
-// ─── Rating Ring (SVG arc) ───────────────────────────────────────────────────
+// ─── Rating Ring ─────────────────────────────────────────────────────────────
 
 function RatingRing() {
   const r = 88;
@@ -266,25 +234,10 @@ function RatingRing() {
   const filledRatio = 0.98;
   return (
     <div className="relative mx-auto mt-7 h-56 w-56">
-      {/* Track circle */}
-      <svg
-        viewBox="0 0 200 200"
-        className="absolute inset-0 h-full w-full -rotate-90"
-      >
-        <circle
-          cx="100"
-          cy="100"
-          r={r}
-          fill="none"
-          stroke="rgba(255,255,255,0.12)"
-          strokeWidth="2"
-        />
+      <svg viewBox="0 0 200 200" className="absolute inset-0 h-full w-full -rotate-90">
+        <circle cx="100" cy="100" r={r} fill="none" stroke="rgba(255,255,255,0.10)" strokeWidth="2" />
       </svg>
-      {/* Filled arc */}
-      <svg
-        viewBox="0 0 200 200"
-        className="absolute inset-0 h-full w-full -rotate-90"
-      >
+      <svg viewBox="0 0 200 200" className="absolute inset-0 h-full w-full -rotate-90">
         <defs>
           <linearGradient id="kc-arc-gradient" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0%" stopColor="#F1DDA6" />
@@ -304,15 +257,9 @@ function RatingRing() {
           className="animate-kc-dash"
         />
       </svg>
-      {/* Center content */}
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <div className="font-serif text-7xl font-light tracking-tight text-white">
-          4.9
-        </div>
-        <div
-          className="mt-1 text-[10px] uppercase tracking-[0.3em]"
-          style={{ color: "#DCBE82", fontFamily: "var(--font-body)" }}
-        >
+        <div className="font-serif text-7xl font-light tracking-tight text-white">4.9</div>
+        <div className="mt-1 text-[10px] uppercase tracking-[0.3em]" style={{ color: "#DCBE82", fontFamily: "var(--font-body)" }}>
           van 5.0
         </div>
         <div className="mt-3">
@@ -323,47 +270,52 @@ function RatingRing() {
   );
 }
 
-// ─── Center Showcase ─────────────────────────────────────────────────────────
+// ─── Center Showcase ──────────────────────────────────────────────────────────
 
 function CenterShowcase() {
   return (
     <div className="relative mx-auto w-full max-w-[400px]">
-      {/* Dual halo behind card */}
+      {/* Soft showroom radial light — luxury, not gaming */}
       <div
-        className="pointer-events-none absolute -inset-24 -z-10 rounded-[60px] opacity-70 blur-3xl"
+        className="pointer-events-none absolute -inset-20 -z-10 rounded-full opacity-60 blur-3xl"
         style={{
           background:
-            "radial-gradient(50% 45% at 50% 30%, rgba(40,70,140,0.45), transparent 70%), radial-gradient(45% 45% at 50% 75%, rgba(200,165,106,0.30), transparent 70%)",
+            "radial-gradient(55% 50% at 50% 28%, rgba(35,185,196,0.22), transparent 65%), radial-gradient(45% 40% at 50% 78%, rgba(8,36,48,0.65), transparent 70%)",
+        }}
+      />
+      {/* Secondary soft teal bloom */}
+      <div
+        className="pointer-events-none absolute -inset-8 -z-10 opacity-40 blur-2xl"
+        style={{
+          background: "radial-gradient(60% 55% at 50% 35%, rgba(35,185,196,0.14), transparent 70%)",
         }}
       />
 
       <div className="animate-kc-float">
-        {/* Gold gradient border wrapper */}
+        {/* Premium border wrapper */}
         <div
           className="relative rounded-[34px] p-[1.5px]"
           style={{
             background:
-              "linear-gradient(160deg, rgba(220,190,130,0.9) 0%, rgba(180,140,70,0.3) 35%, rgba(255,255,255,0.6) 65%, rgba(180,140,70,0.7) 100%)",
+              "linear-gradient(160deg, rgba(220,190,130,0.85) 0%, rgba(180,140,70,0.25) 35%, rgba(255,255,255,0.55) 60%, rgba(180,140,70,0.65) 100%)",
             boxShadow:
-              "0 60px 140px -30px rgba(8,18,40,0.75), 0 30px 60px -20px rgba(0,0,0,0.4)",
+              "0 60px 120px -30px rgba(4,14,28,0.80), 0 24px 48px -16px rgba(0,0,0,0.45), 0 0 0 1px rgba(35,185,196,0.08)",
           }}
         >
-          {/* Dual-tone inner card: navy (top) → cream (bottom) */}
+          {/* Dual-tone card: dark teal top → cream bottom */}
           <div
             className="relative overflow-hidden rounded-[33px]"
             style={{
               background:
-                "linear-gradient(180deg, #0B1B3A 0%, #0D2148 48%, #FFFFFF 48.2%, #F7F2E8 100%)",
+                "linear-gradient(180deg, #082430 0%, #0E3443 48%, #FFFFFF 48.2%, #F4F9FA 100%)",
             }}
           >
-            {/* ── TOP: dark navy half ── */}
+            {/* ── TOP: dark half ── */}
             <div className="relative px-8 pt-8 pb-10">
-              {/* Subtle starlight radial */}
               <div
                 className="pointer-events-none absolute inset-0"
                 style={{
-                  background:
-                    "radial-gradient(70% 60% at 50% 0%, rgba(255,255,255,0.10), transparent 70%)",
+                  background: "radial-gradient(70% 60% at 50% 0%, rgba(255,255,255,0.09), transparent 70%)",
                 }}
               />
               {/* Google Verified badge */}
@@ -371,15 +323,12 @@ function CenterShowcase() {
                 <div
                   className="flex items-center gap-2 rounded-full px-3 py-1.5"
                   style={{
-                    background: "rgba(255,255,255,0.08)",
-                    border: "1px solid rgba(220,190,130,0.35)",
+                    background: "rgba(255,255,255,0.07)",
+                    border: "1px solid rgba(220,190,130,0.30)",
                     backdropFilter: "blur(8px)",
                   }}
                 >
-                  <span
-                    className="h-1.5 w-1.5 rounded-full"
-                    style={{ background: "#DCBE82" }}
-                  />
+                  <span className="h-1.5 w-1.5 rounded-full" style={{ background: "#DCBE82" }} />
                   <span
                     className="text-[10px] font-medium uppercase tracking-[0.22em]"
                     style={{ color: "#E8D6A8", fontFamily: "var(--font-body)" }}
@@ -388,17 +337,13 @@ function CenterShowcase() {
                   </span>
                 </div>
               </div>
-              {/* Animated rating ring */}
               <RatingRing />
             </div>
 
-            {/* Gold seam separator */}
+            {/* Gold seam */}
             <div
               className="pointer-events-none relative h-px"
-              style={{
-                background:
-                  "linear-gradient(90deg, transparent, rgba(184,146,74,0.7), transparent)",
-              }}
+              style={{ background: "linear-gradient(90deg, transparent, rgba(184,146,74,0.6), transparent)" }}
             />
 
             {/* ── BOTTOM: cream half ── */}
@@ -415,23 +360,17 @@ function CenterShowcase() {
                     key={stat.label}
                     className="flex items-center justify-between rounded-2xl px-5 py-4"
                     style={{
-                      background: "rgba(247,242,232,0.7)",
-                      border: "1px solid rgba(184,146,74,0.18)",
+                      background: "rgba(247,242,232,0.72)",
+                      border: "1px solid rgba(184,146,74,0.16)",
                     }}
                   >
                     <span
                       className="text-[11px] uppercase tracking-[0.22em]"
-                      style={{
-                        color: "#6a5224",
-                        fontFamily: "var(--font-body)",
-                      }}
+                      style={{ color: "#6a5224", fontFamily: "var(--font-body)" }}
                     >
                       {stat.label}
                     </span>
-                    <span
-                      className="font-serif text-3xl font-light"
-                      style={{ color: "#0B1B3A" }}
-                    >
+                    <span className="font-serif text-3xl font-light" style={{ color: "#0B1B3A" }}>
                       {stat.value}
                     </span>
                   </div>
@@ -443,22 +382,18 @@ function CenterShowcase() {
                 className="mt-5 flex items-center justify-between rounded-2xl px-4 py-3"
                 style={{
                   background: "#FFFFFF",
-                  border: "1px solid rgba(184,146,74,0.20)",
-                  boxShadow: "0 8px 20px -10px rgba(11,27,58,0.15)",
+                  border: "1px solid rgba(184,146,74,0.18)",
+                  boxShadow: "0 8px 20px -10px rgba(11,27,58,0.14)",
                 }}
               >
                 <div className="flex items-center gap-2">
-                  {/* Google "G" SVG */}
                   <svg className="h-4 w-4" viewBox="0 0 24 24" aria-hidden="true">
                     <path
                       fill="#EA4335"
                       d="M12 10.2v3.9h5.5c-.2 1.4-1.7 4.1-5.5 4.1-3.3 0-6-2.7-6-6.1s2.7-6.1 6-6.1c1.9 0 3.2.8 3.9 1.5l2.7-2.6C16.9 3.3 14.7 2.3 12 2.3 6.6 2.3 2.3 6.6 2.3 12S6.6 21.7 12 21.7c6.9 0 9.5-4.9 9.5-9.4 0-.6-.1-1.1-.1-1.5H12z"
                     />
                   </svg>
-                  <span
-                    className="text-xs font-medium"
-                    style={{ color: "#0B1B3A", fontFamily: "var(--font-body)" }}
-                  >
+                  <span className="text-xs font-medium" style={{ color: "#0B1B3A", fontFamily: "var(--font-body)" }}>
                     Google Reviews
                   </span>
                 </div>
@@ -472,7 +407,7 @@ function CenterShowcase() {
   );
 }
 
-// ─── Mobile Draggable Marquee ─────────────────────────────────────────────────
+// ─── Mobile Marquee ───────────────────────────────────────────────────────────
 
 function DraggableMarqueeRow({
   items,
@@ -521,7 +456,7 @@ function DraggableMarqueeRow({
         className={`flex gap-5 w-max px-3 ${reduceMotion ? "" : animClass}`}
       >
         {[...items, ...items].map((story, idx) => (
-          <div key={`${story.client}-${idx}`} className="w-[320px] sm:w-[380px] shrink-0">
+          <div key={`${story.client}-${idx}`} className="w-[320px] sm:w-[370px] shrink-0">
             <TestimonialCard story={story} />
           </div>
         ))}
@@ -559,10 +494,10 @@ export function Testimonials() {
   return (
     <section
       id="reviews"
-      className="relative overflow-hidden border-t border-white/[0.08]"
-      style={{ backgroundColor: "#0F0F0F" }}
+      className="relative overflow-hidden border-t border-white/[0.06]"
+      style={{ background: "linear-gradient(180deg, #082430 0%, #0E3443 50%, #082430 100%)" }}
     >
-      {/* CSS keyframes for marquee rows (mobile) */}
+      {/* CSS for mobile marquee + scrollbar hide */}
       <style>{`
         @keyframes marquee-ltr {
           0%   { transform: translate3d(-50%, 0, 0); }
@@ -572,34 +507,30 @@ export function Testimonials() {
           0%   { transform: translate3d(0, 0, 0); }
           100% { transform: translate3d(-50%, 0, 0); }
         }
-        .animate-marquee-ltr { animation: marquee-ltr 45s linear infinite; }
-        .animate-marquee-rtl { animation: marquee-rtl 50s linear infinite; }
+        .animate-marquee-ltr { animation: marquee-ltr 48s linear infinite; }
+        .animate-marquee-rtl { animation: marquee-rtl 54s linear infinite; }
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
       `}</style>
 
-      {/* Central gold ambient glow */}
+      {/* Central ambient teal glow — luxury showroom quality */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-1/2 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-25 blur-3xl"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(200,165,106,0.28), transparent 60%)",
-        }}
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-20 blur-3xl"
+        style={{ background: "radial-gradient(circle, rgba(35,185,196,0.22), transparent 62%)" }}
+      />
+      {/* Subtle top edge light */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[rgba(35,185,196,0.20)] to-transparent"
+      />
+      {/* Bottom edge */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[rgba(255,255,255,0.05)] to-transparent"
       />
 
-      {/* Top edge line */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[rgba(200,169,107,0.25)] to-transparent"
-      />
-      {/* Bottom edge line */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[rgba(255,255,255,0.06)] to-transparent"
-      />
-
-      {/* ── Section header ─────────────────────────────────────────── */}
+      {/* ── Section header ─────────────────────────────────────── */}
       <div className="relative z-10 mx-auto max-w-7xl px-6 pt-28 pb-0">
         <motion.div
           initial={reduceMotion ? false : "hidden"}
@@ -611,15 +542,12 @@ export function Testimonials() {
             variants={reduceMotion ? undefined : stagger}
             className="mx-auto max-w-3xl text-center"
           >
-            {/* Eyebrow row: gold line — badge — gold line */}
+            {/* Eyebrow */}
             <motion.div
               variants={reduceMotion ? undefined : fadeUp}
               className="mb-2 flex items-center justify-center gap-4"
             >
-              <span
-                aria-hidden="true"
-                className="h-px w-10 bg-gradient-to-r from-transparent to-[#C8A96B]/70"
-              />
+              <span aria-hidden="true" className="h-px w-10 bg-gradient-to-r from-transparent to-[#C8A96B]/60" />
               <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-1.5 backdrop-blur">
                 <svg className="h-3.5 w-3.5 shrink-0" viewBox="0 0 24 24" aria-hidden="true">
                   <path
@@ -628,16 +556,13 @@ export function Testimonials() {
                   />
                 </svg>
                 <span
-                  className="text-[10px] font-medium uppercase tracking-[0.24em] text-white/70"
+                  className="text-[10px] font-medium uppercase tracking-[0.24em] text-white/65"
                   style={{ fontFamily: "var(--font-body)" }}
                 >
                   Google Beoordelingen
                 </span>
               </div>
-              <span
-                aria-hidden="true"
-                className="h-px w-10 bg-gradient-to-l from-transparent to-[#C8A96B]/70"
-              />
+              <span aria-hidden="true" className="h-px w-10 bg-gradient-to-l from-transparent to-[#C8A96B]/60" />
             </motion.div>
 
             {/* Heading */}
@@ -647,15 +572,13 @@ export function Testimonials() {
             >
               Ervaringen van klanten
               <br />
-              <em className="italic text-[#C8A96B]">
-                uit Utrecht en omgeving
-              </em>
+              <em className="italic text-[#C8A96B]">uit Utrecht en omgeving</em>
             </motion.h2>
 
             {/* Subtitle */}
             <motion.p
               variants={reduceMotion ? undefined : fadeUp}
-              className="mx-auto mt-6 max-w-xl text-[15px] leading-relaxed text-white/55"
+              className="mx-auto mt-6 max-w-xl text-[15px] leading-relaxed text-white/50"
               style={{ fontFamily: "var(--font-body)" }}
             >
               Persoonlijk ontwerpadvies, Duitse precisie en Italiaanse elegantie
@@ -665,7 +588,7 @@ export function Testimonials() {
         </motion.div>
       </div>
 
-      {/* ── 3-column triptych (desktop) + mobile marquee ───────────── */}
+      {/* ── Triptych columns ─────────────────────────────────────── */}
       <div className="relative z-10 mx-auto max-w-7xl px-6 pb-6 pt-20">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-[3fr_4fr_3fr]">
 
@@ -684,32 +607,24 @@ export function Testimonials() {
             <Column stories={rightStories} direction="down" />
           </div>
 
-          {/* Mobile: draggable marquee rows */}
+          {/* Mobile marquee rows */}
           <div className="flex flex-col gap-6 lg:hidden">
             <div className="relative overflow-hidden">
-              <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 sm:w-28 bg-gradient-to-r from-[#0F0F0F] to-transparent" />
-              <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 sm:w-28 bg-gradient-to-l from-[#0F0F0F] to-transparent" />
-              <DraggableMarqueeRow
-                items={testimonialsData}
-                animClass="animate-marquee-rtl"
-                reduceMotion={reduceMotion}
-              />
+              <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 sm:w-24 bg-gradient-to-r from-[#082430] to-transparent" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 sm:w-24 bg-gradient-to-l from-[#082430] to-transparent" />
+              <DraggableMarqueeRow items={testimonialsData} animClass="animate-marquee-rtl" reduceMotion={reduceMotion} />
             </div>
             <div className="relative overflow-hidden">
-              <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 sm:w-28 bg-gradient-to-r from-[#0F0F0F] to-transparent" />
-              <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 sm:w-28 bg-gradient-to-l from-[#0F0F0F] to-transparent" />
-              <DraggableMarqueeRow
-                items={row2Data}
-                animClass="animate-marquee-ltr"
-                reduceMotion={reduceMotion}
-              />
+              <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 sm:w-24 bg-gradient-to-r from-[#082430] to-transparent" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 sm:w-24 bg-gradient-to-l from-[#082430] to-transparent" />
+              <DraggableMarqueeRow items={row2Data} animClass="animate-marquee-ltr" reduceMotion={reduceMotion} />
             </div>
           </div>
 
         </div>
       </div>
 
-      {/* ── CTA: The Invitation ──────────────────────────────────── */}
+      {/* ── CTA ──────────────────────────────────────────────────── */}
       <motion.div
         initial={reduceMotion ? false : "hidden"}
         whileInView="visible"
@@ -718,57 +633,39 @@ export function Testimonials() {
         className="relative z-10 mx-auto max-w-7xl px-6 pb-28 pt-6"
       >
         <div className="flex flex-col items-center gap-7 text-center">
-
           {/* Ornamental rule */}
           <div className="flex items-center gap-5" aria-hidden="true">
-            <span className="h-px w-20 bg-gradient-to-r from-transparent to-[#C8A96B]/35" />
+            <span className="h-px w-20 bg-gradient-to-r from-transparent to-[#C8A96B]/30" />
             <svg width="9" height="9" viewBox="0 0 10 10" fill="none">
-              <path
-                d="M5 0L6.18 3.82L10 5L6.18 6.18L5 10L3.82 6.18L0 5L3.82 3.82Z"
-                fill="#C8A96B"
-                opacity="0.45"
-              />
+              <path d="M5 0L6.18 3.82L10 5L6.18 6.18L5 10L3.82 6.18L0 5L3.82 3.82Z" fill="#C8A96B" opacity="0.40" />
             </svg>
-            <span className="h-px w-20 bg-gradient-to-l from-transparent to-[#C8A96B]/35" />
+            <span className="h-px w-20 bg-gradient-to-l from-transparent to-[#C8A96B]/30" />
           </div>
 
-          {/* Serif invitation sentence */}
-          <p
-            className="max-w-xs font-serif text-[1.2rem] font-light leading-relaxed text-white/50"
-          >
+          <p className="max-w-xs font-serif text-[1.2rem] font-light leading-relaxed text-white/45">
             Ontdek wat dit voor uw woning betekent.
           </p>
 
-          {/* CTA link — quiet, directional */}
-          <a
-            href="/consultation"
-            className="group inline-flex items-center gap-3 transition-all duration-500"
-          >
+          <a href="/consultation" className="group inline-flex items-center gap-3 transition-all duration-500">
             <span
-              className="text-[0.7rem] font-medium uppercase tracking-[0.24em] text-[#C8A96B] transition-opacity duration-300 group-hover:opacity-60"
+              className="text-[0.7rem] font-medium uppercase tracking-[0.24em] text-[#C8A96B] transition-opacity duration-300 group-hover:opacity-55"
               style={{ fontFamily: "var(--font-body)" }}
             >
               Maak kennis met ons team
             </span>
             <svg
-              className="h-3 w-3 text-[#C8A96B] transition-transform duration-500 group-hover:translate-x-2 opacity-70"
+              className="h-3 w-3 text-[#C8A96B] opacity-65 transition-transform duration-500 group-hover:translate-x-2"
               fill="none"
               stroke="currentColor"
               strokeWidth="1.5"
               viewBox="0 0 24 24"
               aria-hidden="true"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
             </svg>
           </a>
-
         </div>
       </motion.div>
-
     </section>
   );
 }

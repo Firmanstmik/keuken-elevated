@@ -37,14 +37,6 @@ const LocalOfferOutlinedIcon = createSvgIcon([/* @__PURE__ */ jsxRuntimeExports.
   cy: "6.5",
   r: "1.5"
 }, "1")]);
-const DiamondIcon = createSvgIcon(/* @__PURE__ */ jsxRuntimeExports.jsx("path", {
-  d: "M12.16 3h-.32L9.21 8.25h5.58zm4.3 5.25h5.16L19 3h-5.16zm4.92 1.5h-8.63V20.1zM11.25 20.1V9.75H2.62zM7.54 8.25 10.16 3H5L2.38 8.25z"
-}));
-const HandymanIcon = createSvgIcon([/* @__PURE__ */ jsxRuntimeExports.jsx("path", {
-  d: "m21.67 18.17-5.3-5.3h-.99l-2.54 2.54v.99l5.3 5.3c.39.39 1.02.39 1.41 0l2.12-2.12c.39-.38.39-1.02 0-1.41"
-}, "0"), /* @__PURE__ */ jsxRuntimeExports.jsx("path", {
-  d: "m17.34 10.19 1.41-1.41 2.12 2.12c1.17-1.17 1.17-3.07 0-4.24l-3.54-3.54-1.41 1.41V1.71l-.7-.71-3.54 3.54.71.71h2.83l-1.41 1.41 1.06 1.06-2.89 2.89-4.13-4.13V5.06L4.83 2.04 2 4.87 5.03 7.9h1.41l4.13 4.13-.85.85H7.6l-5.3 5.3c-.39.39-.39 1.02 0 1.41l2.12 2.12c.39.39 1.02.39 1.41 0l5.3-5.3v-2.12l5.15-5.15z"
-}, "1")]);
 const PaletteOutlinedIcon = createSvgIcon([/* @__PURE__ */ jsxRuntimeExports.jsx("path", {
   d: "M12 22C6.49 22 2 17.51 2 12S6.49 2 12 2s10 4.04 10 9c0 3.31-2.69 6-6 6h-1.77c-.28 0-.5.22-.5.5 0 .12.05.23.13.33.41.47.64 1.06.64 1.67 0 1.38-1.12 2.5-2.5 2.5m0-18c-4.41 0-8 3.59-8 8s3.59 8 8 8c.28 0 .5-.22.5-.5 0-.16-.08-.28-.14-.35-.41-.46-.63-1.05-.63-1.65 0-1.38 1.12-2.5 2.5-2.5H16c2.21 0 4-1.79 4-4 0-3.86-3.59-7-8-7"
 }, "0"), /* @__PURE__ */ jsxRuntimeExports.jsx("circle", {
@@ -80,14 +72,10 @@ const SupportAgentIcon = createSvgIcon([/* @__PURE__ */ jsxRuntimeExports.jsx("p
 }, "2"), /* @__PURE__ */ jsxRuntimeExports.jsx("path", {
   d: "M18 11.03C17.52 8.18 15.04 6 12.05 6c-3.03 0-6.29 2.51-6.03 6.45 2.47-1.01 4.33-3.21 4.86-5.89 1.31 2.63 4 4.44 7.12 4.47"
 }, "3")]);
-const WorkspacePremiumIcon = createSvgIcon(/* @__PURE__ */ jsxRuntimeExports.jsx("path", {
-  d: "M9.68 13.69 12 11.93l2.31 1.76-.88-2.85L15.75 9h-2.84L12 6.19 11.09 9H8.25l2.31 1.84zM20 10c0-4.42-3.58-8-8-8s-8 3.58-8 8c0 2.03.76 3.87 2 5.28V23l6-2 6 2v-7.72c1.24-1.41 2-3.25 2-5.28m-8-6c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6 2.69-6 6-6"
-}));
 export {
   CallOutlinedIcon as C,
-  DiamondIcon as D,
   EastIcon as E,
-  HandymanIcon as H,
+  HomeOutlinedIcon as H,
   KeyboardArrowDownIcon as K,
   LocalOfferOutlinedIcon as L,
   PaletteOutlinedIcon as P,
@@ -97,8 +85,6 @@ export {
   CheckIcon as a,
   CloseIcon as b,
   EmailOutlinedIcon as c,
-  HomeOutlinedIcon as d,
-  KeyboardArrowUpIcon as e,
-  SupportAgentIcon as f,
-  WorkspacePremiumIcon as g
+  KeyboardArrowUpIcon as d,
+  SupportAgentIcon as e
 };

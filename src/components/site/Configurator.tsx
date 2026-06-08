@@ -98,7 +98,7 @@ const swatchPalette = [
   "#C9BFA8",
   "#8E8B82",
   "#D9D3C7",
-  "#4F7A4D",
+  "#23B9C4",
 ] as const;
 
 function slugify(value: string) {
@@ -418,7 +418,7 @@ export function Configurator() {
               <motion.h2 variants={reduceMotion ? undefined : fadeUp} className="heading-2">
                 Configureer uw
                 <br />
-                droomkeuken.
+                <em className="italic" style={{ color: "#23B9C4" }}>droomkeuken.</em>
               </motion.h2>
             </div>
             <motion.p variants={reduceMotion ? undefined : fadeUp} className="body-md max-w-[30rem]">
@@ -447,7 +447,7 @@ export function Configurator() {
                   <div className="hidden min-w-[220px] lg:block">
                     <div className="h-1.5 w-full bg-[rgba(17,17,17,0.08)]">
                       <div
-                        className="h-full bg-[var(--accent)] transition-[width] duration-500 ease-[var(--ease-premium)]"
+                        className="h-full bg-[#23B9C4] transition-[width] duration-500 ease-[var(--ease-premium)]"
                         style={{ width: progressWidth }}
                       />
                     </div>
@@ -471,16 +471,16 @@ export function Configurator() {
                         className={cn(
                           "flex items-center gap-3 border px-3 py-3 text-left transition-all duration-300",
                           active
-                            ? "border-[var(--accent)] bg-[rgba(176,141,87,0.08)]"
+                            ? "border-[#23B9C4] bg-[rgba(35,185,196,0.07)]"
                             : "border-[var(--border)] bg-white/50",
-                          clickable ? "cursor-pointer hover:border-[var(--accent)]" : "cursor-not-allowed opacity-55",
+                          clickable ? "cursor-pointer hover:border-[#23B9C4]" : "cursor-not-allowed opacity-55",
                         )}
                       >
                         <span
                           className={cn(
                             "inline-flex h-8 w-8 items-center justify-center border text-[0.68rem] uppercase tracking-[0.18em]",
                             active || completed
-                              ? "border-[var(--accent)] text-[var(--accent)]"
+                              ? "border-[#23B9C4] text-[#23B9C4]"
                               : "border-[var(--border)] text-[var(--text-muted)]",
                           )}
                         >
@@ -809,7 +809,7 @@ export function Configurator() {
                                   className={cn(
                                     "flex items-center gap-2 px-3.5 py-2 text-xs transition-all duration-300 border",
                                     active
-                                      ? "border-[rgba(176,141,87,0.4)] bg-[rgba(176,141,87,0.15)] text-white"
+                                      ? "border-[rgba(35,185,196,0.45)] bg-[rgba(35,185,196,0.12)] text-white"
                                       : "border-transparent text-white/65 hover:text-white hover:bg-white/5"
                                   )}
                                 >
@@ -862,7 +862,7 @@ export function Configurator() {
                               className={cn(
                                 "border p-4 text-left transition-all duration-300 rounded-sm relative overflow-hidden",
                                 active
-                                  ? "border-[var(--accent)] bg-[rgba(176,141,87,0.08)]"
+                                  ? "border-[var(--accent)] bg-[rgba(35,185,196,0.07)]"
                                   : "border-[var(--border)] bg-white/60 hover:border-[var(--accent)]/60",
                               )}
                             >
@@ -964,7 +964,7 @@ export function Configurator() {
                         })}
                       </div>
 
-                      <div className="mt-6 border border-[rgba(176,141,87,0.24)] bg-[rgba(17,17,17,0.96)] px-5 py-5 text-white">
+                      <div className="mt-6 border border-[rgba(35,185,196,0.22)] bg-[rgba(15,39,48,0.96)] px-5 py-5 text-white">
                         <p className="caption-text text-white/42">Geschatte investering</p>
                         <p className="mt-3 font-serif text-[2rem] leading-none tracking-[-0.03em] text-[var(--accent)]">
                           {selectedBudget}
@@ -1075,7 +1075,7 @@ export function Configurator() {
                         </>
                       ) : (
                         <div className="flex min-h-[420px] flex-col items-start justify-center">
-                          <span className="inline-flex h-16 w-16 items-center justify-center border border-[var(--accent)] bg-[rgba(176,141,87,0.08)] text-[var(--accent)]">
+                          <span className="inline-flex h-16 w-16 items-center justify-center border border-[var(--accent)] bg-[rgba(35,185,196,0.07)] text-[var(--accent)]">
                             <Check className="h-7 w-7" />
                           </span>
                           <p className="caption-text mt-6 text-[var(--accent)]">Adviesgesprek aangevraagd</p>

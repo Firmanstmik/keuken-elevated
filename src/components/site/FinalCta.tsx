@@ -76,7 +76,7 @@ export function FinalCta() {
         }}
       />
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[rgba(248,246,242,0.87)]" />
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_40%_20%,rgba(200,169,107,0.06),transparent_45%)]" />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_40%_20%,rgba(35,185,196,0.05),transparent_45%)]" />
 
       <div className="mx-auto max-w-[1400px] px-6 lg:px-12 relative">
         {/* Header */}
@@ -92,22 +92,23 @@ export function FinalCta() {
             variants={reduceMotion ? undefined : fadeUp}
             className="mb-7 flex items-center justify-center gap-5"
           >
-            <span className="h-px w-10 bg-gradient-to-r from-transparent to-[#C8A96B]/40" />
+            <span className="h-px w-10 bg-gradient-to-r from-transparent to-[#23B9C4]/35" />
             <span
-              className="text-[10px] font-normal tracking-[0.32em] text-[#C8A96B] uppercase"
+              className="text-[10px] font-normal tracking-[0.32em] text-[#23B9C4] uppercase"
               style={{ fontFamily: "'Jost', sans-serif" }}
             >
               Begin uw reis
             </span>
-            <span className="h-px w-10 bg-gradient-to-l from-transparent to-[#C8A96B]/40" />
+            <span className="h-px w-10 bg-gradient-to-l from-transparent to-[#23B9C4]/35" />
           </motion.div>
 
           {/* Display heading */}
           <motion.h2
             variants={reduceMotion ? undefined : fadeUp}
-            className="mx-auto max-w-[52rem] font-serif text-[clamp(2.4rem,4.2vw,3.6rem)] font-light leading-[1.08] tracking-[-0.03em] text-[#111111]"
+            className="mx-auto max-w-[52rem] font-serif text-[clamp(2.4rem,4.2vw,3.6rem)] font-light leading-[1.08] tracking-[-0.03em]"
+            style={{ color: "#163847" }}
           >
-            Klaar voor uw <em className="italic text-[#C8A96B] font-light font-serif">droomkeuken?</em>
+            Klaar voor uw <em className="italic font-light font-serif" style={{ color: "#23B9C4" }}>droomkeuken?</em>
           </motion.h2>
 
           {/* Subheading */}
@@ -141,10 +142,10 @@ export function FinalCta() {
             <a
               href="#consultation"
               className={[
-                "group relative inline-flex h-[54px] items-center justify-center gap-3.5 overflow-hidden rounded-full border border-[rgba(200,169,107,0.15)] bg-transparent px-10",
+                "group relative inline-flex h-[54px] items-center justify-center gap-3.5 overflow-hidden rounded-full border border-[rgba(35,185,196,0.22)] bg-transparent px-10",
                 "text-[11px] font-normal tracking-[0.22em] text-[#5A5A5A] uppercase",
                 "transition-[border-color,background-color,color,transform] duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
-                "hover:-translate-y-[3px] hover:border-[rgba(200,169,107,0.4)] hover:bg-[#17191C]/5 hover:text-[#111111] active:scale-[0.98]",
+                "hover:-translate-y-[3px] hover:border-[rgba(35,185,196,0.45)] hover:bg-[rgba(35,185,196,0.05)] hover:text-[#163847] active:scale-[0.98]",
               ].join(" ")}
               style={{ fontFamily: "'Jost', sans-serif" }}
             >
@@ -167,20 +168,20 @@ export function FinalCta() {
               variants={reduceMotion ? undefined : fadeUp}
               href={href}
               className={[
-                "group relative overflow-hidden rounded-[24px] border border-[rgba(200,169,107,0.15)] bg-[#FAF8F4]/95 p-8",
+                "group relative overflow-hidden rounded-[24px] border border-[rgba(35,185,196,0.15)] bg-[#FAF8F4]/95 p-8",
                 "flex flex-col justify-between min-h-[290px] shadow-[0_8px_30px_rgba(23,25,28,0.015)]",
                 "transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
-                "hover:-translate-y-2 hover:bg-[#FAF8F4] hover:shadow-[0_24px_56px_-20px_rgba(23,25,28,0.08)]",
+                "hover:-translate-y-2 hover:bg-[#FAF8F4] hover:shadow-[0_24px_56px_-20px_rgba(35,185,196,0.12)]",
               ].join(" ")}
             >
-              {/* Luxury gold top hairline animates on hover */}
+              {/* Brand teal top hairline animates on hover */}
               <div
                 aria-hidden="true"
-                className="absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-[#C8A96B] transition-transform duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100"
+                className="absolute inset-x-0 top-0 h-[2px] origin-left scale-x-0 bg-gradient-to-r from-[#23B9C4] to-[#4FD6D9] transition-transform duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100"
               />
 
               <div className="relative">
-                <div className="mb-6 flex h-11 w-11 items-center justify-center rounded-full border border-[#C8A96B]/15 bg-[#C8A96B]/5 text-[#C8A96B] transition-all duration-500 group-hover:border-[#C8A96B]/40 group-hover:bg-[#C8A96B]/10 group-hover:scale-105">
+                <div className="mb-6 flex h-11 w-11 items-center justify-center rounded-full border border-[#23B9C4]/15 bg-[rgba(35,185,196,0.05)] text-[#23B9C4] transition-all duration-500 group-hover:border-[#23B9C4]/35 group-hover:bg-[rgba(35,185,196,0.10)] group-hover:scale-105">
                   <Icon className="h-5 w-5 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:rotate-[8deg]" />
                 </div>
 
@@ -200,7 +201,7 @@ export function FinalCta() {
 
               <div className="relative pt-6">
                 <span
-                  className="inline-flex items-center gap-2 text-[0.72rem] font-normal tracking-[0.16em] text-[#C8A96B] transition-[gap] duration-300 group-hover:gap-3"
+                  className="inline-flex items-center gap-2 text-[0.72rem] font-normal tracking-[0.16em] text-[#23B9C4] transition-[gap] duration-300 group-hover:gap-3"
                   style={{ fontFamily: "'Jost', sans-serif" }}
                 >
                   <span className="uppercase">{cta}</span>
@@ -217,7 +218,7 @@ export function FinalCta() {
           whileInView={reduceMotion ? undefined : { opacity: 1 }}
           viewport={motionViewport}
           transition={reduceMotion ? undefined : { delay: 0.4, duration: 0.8, ease: luxuryEase }}
-          className="mt-20 flex flex-wrap items-center justify-between gap-4 border-t border-[rgba(200,169,107,0.15)] pt-8"
+          className="mt-20 flex flex-wrap items-center justify-between gap-4 border-t border-[rgba(35,185,196,0.18)] pt-8"
         >
           <p
             className="text-[0.72rem] font-light tracking-[0.12em] text-[#5A5A5A]"
@@ -227,7 +228,7 @@ export function FinalCta() {
           </p>
           <a
             href="#brands"
-            className="group/footer-link flex items-center gap-2 text-[0.75rem] font-normal tracking-[0.16em] text-[#5A5A5A] transition-colors duration-300 hover:text-[#C8A96B]"
+            className="group/footer-link flex items-center gap-2 text-[0.75rem] font-normal tracking-[0.16em] text-[#5A5A5A] transition-colors duration-300 hover:text-[#23B9C4]"
             style={{ fontFamily: "'Jost', sans-serif" }}
           >
             <span className="uppercase">Bekijk onze merken</span>

@@ -10,7 +10,7 @@ import {
 } from "@zethictech/iconsax-react";
 import { ChevronDown, ArrowRight } from "@/components/ui/icons";
 import { kc } from "@/lib/kc-data";
-import logoKeuken from "@/assets/logo-keuken-1-1.webp";
+import logoKeuken from "@/assets/keukencentrum_logo_transparent_medium_centered_stripe.png";
 import { motionDuration, motionEase } from "@/lib/motion";
 
 // Import Lucide icons for mega menu sub-items
@@ -364,7 +364,7 @@ export function Nav() {
               transition={{ duration: motionDuration.premium, ease: motionEase.premium, delay: 0.06 }}
               className="flex shrink-0 items-center"
             >
-              <img src={logoKeuken} alt="Keuken Centrum logo" className="h-8 w-auto md:h-9" width={343} height={56} />
+              <img src={logoKeuken} alt="Keuken Centrum logo" className={`w-auto transition-all duration-300 ${elevated ? "h-11 md:h-12" : "h-12 md:h-14"}`} width={343} height={56} />
             </motion.a>
 
             <motion.nav
@@ -487,11 +487,11 @@ export function Nav() {
                                           className="group flex items-start gap-3 rounded-xl border border-transparent bg-transparent p-2.5 cursor-default"
                                         >
                                           <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-[#E5DCD3]/30 bg-white shadow-[0_4px_12px_-4px_rgba(23,25,28,0.06)] group-hover:bg-[#FAF8F4] transition-colors duration-300">
-                                            {IconComponent && <IconComponent className="h-4 w-4 text-[#C8A96B] group-hover:text-[#3D9A42] transition-colors duration-300" />}
+                                            {IconComponent && <IconComponent className="h-4 w-4 text-[#23B9C4] group-hover:text-[#163847] transition-colors duration-300" />}
                                           </span>
                                           <span className="min-w-0 flex-1">
                                             <span className="flex items-center justify-between gap-2">
-                                              <span className="text-[12px] font-semibold tracking-[0.02em] text-[#111111] transition-colors duration-300 group-hover:text-[#3D9A42]">
+                                              <span className="text-[12px] font-semibold tracking-[0.02em] text-[#111111] transition-colors duration-300 group-hover:text-[#23B9C4]">
                                                 {sub.label}
                                               </span>
                                             </span>
@@ -535,7 +535,7 @@ export function Nav() {
 
                                   <div className="mt-5 text-left">
                                     <div
-                                      className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#3D9A42]/50 px-4 py-2.5 text-[11px] font-medium tracking-[0.12em] text-white/80 uppercase cursor-default shadow-sm"
+                                      className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#23B9C4]/50 px-4 py-2.5 text-[11px] font-medium tracking-[0.12em] text-white/80 uppercase cursor-default shadow-sm"
                                     >
                                       <span>{item.featured?.buttonText}</span>
                                       <ArrowUpRight size={13} />
@@ -621,7 +621,7 @@ export function Nav() {
               <nav className="nav-mobile-panel flex min-h-[100dvh] flex-col">
                 <div className="flex items-center justify-between px-6 py-7">
                   <a href="/" className="flex items-center" onClick={() => setOpen(false)}>
-                    <img src={logoKeuken} alt="Keuken Centrum logo" className="h-7 w-auto" width={343} height={56} />
+                    <img src={logoKeuken} alt="Keuken Centrum logo" className="h-10 w-auto" width={343} height={56} />
                   </a>
 
                   <button
@@ -686,7 +686,7 @@ export function Nav() {
                                   <a
                                     href={item.href}
                                     onClick={() => setOpen(false)}
-                                    className="flex items-center justify-between py-3.5 text-[15px] font-medium tracking-[0.06em] text-[#111111] border-b border-[#E5DCD3]/30 hover:text-[#3D9A42]"
+                                    className="flex items-center justify-between py-3.5 text-[15px] font-medium tracking-[0.06em] text-[#111111] border-b border-[#E5DCD3]/30 hover:text-[#23B9C4]"
                                   >
                                     <span>{item.label}</span>
                                     <LucideArrowRight className="h-4 w-4 text-[#C8A96B]" />
@@ -732,7 +732,7 @@ export function Nav() {
                                 value={item.label.toLowerCase()}
                                 className="border-b border-[#E5DCD3]/30"
                               >
-                                <AccordionTrigger className="py-3.5 text-[15px] font-medium tracking-[0.06em] text-[#111111] hover:no-underline hover:text-[#3D9A42] [&[data-state=open]]:text-[#3D9A42] [&[data-state=open]>svg]:rotate-180">
+                                <AccordionTrigger className="py-3.5 text-[15px] font-medium tracking-[0.06em] text-[#111111] hover:no-underline hover:text-[#23B9C4] [&[data-state=open]]:text-[#23B9C4] [&[data-state=open]>svg]:rotate-180">
                                   {item.label}
                                 </AccordionTrigger>
                                 <AccordionContent className="pb-4 pt-1">

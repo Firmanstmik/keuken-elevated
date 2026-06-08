@@ -3,7 +3,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
 import jsPDF from "jspdf";
 import { toast } from "sonner";
-import companyLogo from "@/assets/Logo_Keuken_Centrum.png";
+import companyLogo from "@/assets/keukencentrum_logo_transparent_medium_centered_stripe.png";
 import { FlowActionBar } from "@/components/configurator/FlowActionBar";
 import { FlowNav } from "@/components/configurator/FlowNav";
 import { ArrowRight } from "@/components/ui/icons";

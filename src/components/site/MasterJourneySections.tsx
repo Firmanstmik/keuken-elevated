@@ -1,13 +1,12 @@
 "use client";
 import { useState, useMemo, useRef, useEffect } from "react";
 
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import DiamondIcon from "@mui/icons-material/Diamond";
-import HandymanIcon from "@mui/icons-material/Handyman";
+import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
 import PaletteOutlinedIcon from "@mui/icons-material/PaletteOutlined";
 import TuneIcon from "@mui/icons-material/Tune";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
-import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
+import heroKitchen from "@/assets/hero-kitchen.jpg";
+import craftsmanship from "@/assets/craftsmanship.jpg";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "@/components/ui/icons";
 import { fadeUp, motionViewport, staggerHeader, staggerList } from "@/lib/motion";
@@ -50,29 +49,25 @@ function transformHotspots(json: Record<string, { x: string; y: string }>) {
 
 const klassiekHotspotPositions = transformHotspots(klassiekHotspots);
 
-const pillarMotion =
-  "duration-[500ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]";
+// Update to match live Google My Business review count
+const GOOGLE_REVIEWS_COUNT = 150;
 
 const valuePillars = [
   {
     title: "Premium Merken",
     description: "Alleen de meest toonaangevende keukenmerken van Europa",
-    icon: WorkspacePremiumIcon,
   },
   {
     title: "Europees Vakmanschap",
     description: "Decennialange traditie van precisie en productie",
-    icon: HandymanIcon,
   },
   {
     title: "Persoonlijk Advies",
     description: "Voor elk project een eigen ontwerpadviseur",
-    icon: SupportAgentIcon,
   },
   {
     title: "Luxe Materialen",
     description: "Een zorgvuldig gekozen selectie van de mooiste oppervlakken",
-    icon: DiamondIcon,
   },
 ] as const;
 
@@ -91,15 +86,82 @@ const experienceItems = [
   },
 ] as const;
 
+function useCountUp(target: number, duration: number, started: boolean, decimals = 0): number {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    if (!started) return;
+    let raf: number;
+    const startTime = performance.now();
+    const tick = (now: number) => {
+      const t = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      setCount(parseFloat((eased * target).toFixed(decimals)));
+      if (t < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [started, target, duration, decimals]);
+  return count;
+}
+
 export function WhyWithUsSection() {
   const reduceMotion = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
+
+  const easing: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
+  const valuePillarsWithIcons = [
+    {
+      title: "Europees Vakmanschap",
+      description: "Elk detail van uw keuken wordt met uiterste precisie en vakmanschap vervaardigd door onze producenten.",
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#23B9C4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+        </svg>
+      )
+    },
+    {
+      title: "Persoonlijke Aanpak",
+      description: "Onze adviseurs luisteren naar uw wensen en vertalen deze naar een uniek keukenontwerp dat perfect aansluit.",
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#23B9C4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+        </svg>
+      )
+    },
+    {
+      title: "Luxe & Duurzame Materialen",
+      description: "Alleen geselecteerde premium materialen — van marmer tot eiken — worden gebruikt voor uw keuken.",
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#23B9C4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <polygon points="6 3 18 3 22 9 12 22 2 9 6 3" />
+          <path d="M11 3 8 9l4 13 4-13-3-6" />
+          <path d="M2 9h20" />
+        </svg>
+      )
+    },
+    {
+      title: "Premium Service & Montage",
+      description: "Van 3D-ontwerp tot vakkundige montage bij u thuis: wij begeleiden en ontzorgen u volledig.",
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#23B9C4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+          <circle cx="9" cy="7" r="4" />
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+          <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+        </svg>
+      )
+    }
+  ] as const;
 
   return (
     <section
+      ref={sectionRef}
       id="why-with-us"
-      className="relative overflow-hidden py-20 md:py-28"
+      className="relative overflow-hidden py-20 sm:py-24 lg:py-28"
     >
-      {/* Concrete texture background */}
+      {/* ── Background texture layer (Light concrete background matching configurator) ── */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
@@ -110,108 +172,175 @@ export function WhyWithUsSection() {
           backgroundRepeat: 'no-repeat',
         }}
       />
-      {/* Luxury white overlay for readability */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[rgba(248,246,242,0.88)]"
+        className="pointer-events-none absolute inset-0 bg-[rgba(253,252,249,0.94)]"
       />
-      {/* Gold ambient glow */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(200,169,107,0.06),transparent_50%),radial-gradient(circle_at_70%_80%,rgba(200,169,107,0.04),transparent_40%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(35,185,196,0.04),transparent_55%)]"
       />
 
-      <div className="site-container relative">
-        <motion.div
-          initial={reduceMotion ? false : "hidden"}
-          whileInView="visible"
-          viewport={motionViewport}
-          variants={reduceMotion ? undefined : staggerHeader}
-          className="mx-auto mb-20 max-w-[54rem] text-center md:mb-28"
-        >
+      <div className="relative mx-auto max-w-[1440px] px-5 sm:px-8 md:px-12 lg:px-16">
+
+        {/* ── TOP: Eyebrow + Headline ── */}
+        <div className="mb-14">
           <motion.div
-            variants={reduceMotion ? undefined : fadeUp}
-            className="mx-auto mb-6 flex flex-col items-center gap-5"
+            initial={reduceMotion ? false : { opacity: 0, y: -10 }}
+            whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: easing }}
+            viewport={motionViewport}
+            className="mb-4 inline-flex items-center gap-2"
           >
-            <span
-              aria-hidden="true"
-              className="block h-px w-14 bg-[linear-gradient(90deg,transparent,rgba(200,169,107,0.55),transparent)]"
-            />
-            <span className="eyebrow">Onze belofte</span>
+            <span className="text-[0.62rem] font-bold uppercase tracking-[0.28em] text-[#C8A96B]">
+              Onze belofte
+            </span>
           </motion.div>
 
-          <motion.h2 variants={reduceMotion ? undefined : fadeUp} className="heading-2">
-            Waarom samenstellen met ons
-          </motion.h2>
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <motion.h2
+              initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+              whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, ease: easing, delay: 0.1 }}
+              viewport={motionViewport}
+              className="max-w-[650px] font-serif text-[clamp(2.4rem,5.5vw,3.6rem)] font-medium leading-[1.1] tracking-[-0.02em]"
+              style={{ color: "#163847" }}
+            >
+              Waarom Kies Je{" "}
+              <em className="italic" style={{ color: "#23B9C4" }}>
+                Voor Ons?
+              </em>
+            </motion.h2>
 
-          <motion.p
-            variants={reduceMotion ? undefined : fadeUp}
-            className="body-lg mx-auto mt-7 max-w-[32rem] font-light text-[var(--text-soft)]"
-          >
-            Wij geloven dat keukenontwerp net zo verfijnd moet aanvoelen als het eindresultaat.
-          </motion.p>
-        </motion.div>
+            <motion.p
+              initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+              whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, ease: easing, delay: 0.22 }}
+              viewport={motionViewport}
+              className="max-w-[420px] text-[0.925rem] font-light leading-[1.7] text-[#555555]"
+            >
+              Bij Keuken Centrum Utrecht combineren we Europees vakmanschap met modern design op maat. 
+              Wij geloven dat het ontwerpproces net zo verfijnd moet aanvoelen als het uiteindelijke resultaat.
+            </motion.p>
+          </div>
+        </div>
 
-        <motion.div
-          initial={reduceMotion ? false : "hidden"}
-          whileInView="visible"
-          viewport={motionViewport}
-          variants={reduceMotion ? undefined : staggerList}
-          className="mx-auto grid max-w-[1180px] gap-y-14 sm:grid-cols-2 sm:gap-x-10 md:gap-x-12 lg:grid-cols-4 lg:gap-x-14 xl:gap-x-16"
-        >
-          {valuePillars.map((pillar, index) => {
-            const Icon = pillar.icon;
+        {/* ── MAIN GRID: Feature Cards Left + Hero Image Right ── */}
+        <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:items-center">
 
-            return (
-              <motion.article
-                key={pillar.title}
-                variants={reduceMotion ? undefined : fadeUp}
-                className={[
-                  "group relative px-4 text-center sm:px-6 lg:px-8",
-                  pillarMotion,
-                  "transition-transform hover:-translate-y-1 focus-within:-translate-y-1",
-                  index % 2 === 1 ? "sm:border-l sm:border-[rgba(200,169,107,0.15)]" : "",
-                  index > 0 ? "lg:border-l lg:border-[rgba(200,169,107,0.15)]" : "",
-                ].join(" ")}
+          {/* LEFT — Feature Cards Stack */}
+          <div>
+            {/* Wat Wij Bieden heading */}
+            <div className="flex items-center gap-3 mb-6">
+              <span className="text-[0.78rem] font-bold uppercase tracking-[0.2em] text-[#111111]">
+                Wat Wij Bieden
+              </span>
+              <span className="h-[2px] w-12 bg-[#23B9C4]/30" />
+            </div>
+
+            <div className="flex flex-col gap-4">
+              {valuePillarsWithIcons.map((pillar, i) => (
+                <motion.div
+                  key={pillar.title}
+                  initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+                  whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+                  transition={{ duration: 0.45, ease: easing, delay: i * 0.08 }}
+                  viewport={motionViewport}
+                  className="group relative flex items-start gap-5 rounded-[22px] border border-black/[0.04] bg-white p-5 shadow-[0_12px_36px_-12px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#23B9C4]/25 hover:shadow-[0_20px_48px_-10px_rgba(35,185,196,0.12)]"
+                >
+                  {/* Icon Block */}
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[14px] bg-[rgba(35,185,196,0.07)] text-[#23B9C4] transition-colors duration-300 group-hover:bg-[#23B9C4] group-hover:text-white">
+                    {pillar.icon}
+                  </div>
+
+                  {/* Text */}
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[0.95rem] font-bold tracking-[0.005em] text-[#111111] transition-colors duration-300 group-hover:text-[#23B9C4]">
+                      {pillar.title}
+                    </p>
+                    <p className="mt-1 text-[0.82rem] font-light leading-[1.55] text-[#666666]">
+                      {pillar.description}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* CTA Button */}
+            <motion.div
+              initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+              whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, ease: easing, delay: 0.45 }}
+              viewport={motionViewport}
+              className="mt-8"
+            >
+              <a
+                href="/consultation"
+                className="group relative inline-flex h-[56px] min-w-[240px] items-center justify-center gap-2.5 overflow-hidden rounded-[14px] bg-[#23B9C4] px-8 text-[0.8125rem] font-semibold uppercase tracking-[0.14em] text-white shadow-[0_12px_28px_-8px_rgba(35,185,196,0.35)] transition-all duration-300 ease-out hover:bg-[#163847] hover:shadow-[0_16px_36px_-6px_rgba(22,56,71,0.40)] active:scale-[0.98]"
               >
+                <span>Plan uw showroombezoek</span>
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-1" />
                 <div
                   aria-hidden="true"
-                  className={[
-                    "pointer-events-none absolute inset-x-4 top-1/2 -z-10 h-28 -translate-y-1/2 rounded-full",
-                    "bg-[radial-gradient(circle,rgba(200,169,107,0.14)_0%,transparent_72%)] opacity-0",
-                    pillarMotion,
-                    "transition-opacity group-hover:opacity-100 group-focus-within:opacity-100",
-                  ].join(" ")}
+                  className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:translate-x-full"
                 />
+              </a>
+            </motion.div>
+          </div>
 
-                <div className="mx-auto mb-7 flex justify-center">
-                  <span
-                    className={[
-                      "inline-flex h-14 w-14 items-center justify-center text-[#C8A96B]",
-                      pillarMotion,
-                      "transition-transform group-hover:-translate-y-0.5 group-focus-within:-translate-y-0.5",
-                    ].join(" ")}
-                  >
-                    <Icon sx={{ fontSize: 28, color: "#C8A96B" }} />
-                  </span>
-                </div>
-
-                <span
-                  aria-hidden="true"
-                  className="mx-auto mb-5 block h-px w-8 bg-[rgba(200,169,107,0.45)]"
+          <div className="relative flex items-center justify-center lg:justify-end">
+            <motion.div
+              initial={reduceMotion ? false : { opacity: 0, scale: 0.96 }}
+              whileInView={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
+              transition={{ duration: 0.65, ease: easing }}
+              viewport={motionViewport}
+              className="relative w-full max-w-[500px] aspect-[4/3] rounded-[28px]"
+            >
+              <div className="h-full w-full overflow-hidden rounded-[28px] shadow-[0_20px_50px_rgba(0,0,0,0.08)] border border-black/[0.03]">
+                <img
+                  src={heroKitchen}
+                  alt="Luxe designkeuken"
+                  className="h-full w-full object-cover"
+                  loading="eager"
                 />
+              </div>
 
-                <h3 className="font-serif text-[1.2rem] leading-[1.35] tracking-[-0.02em] text-[var(--foreground)] transition-colors duration-500 group-hover:text-[#0a0a0a] group-focus-within:text-[#0a0a0a]">
-                  {pillar.title}
-                </h3>
+              <motion.div
+                initial={reduceMotion ? false : { opacity: 0, scale: 0.8, rotate: 8 }}
+                whileInView={reduceMotion ? undefined : { opacity: 1, scale: 1, rotate: 0 }}
+                transition={{ duration: 0.5, ease: easing, delay: 0.3 }}
+                viewport={motionViewport}
+                className="absolute -right-6 -top-6 z-20 flex h-[100px] w-[100px] flex-col items-center justify-center rounded-full text-center"
+                style={{
+                  background: "linear-gradient(135deg, #d8b97a 0%, #C8A96B 50%, #b08040 100%)",
+                  boxShadow: "0 12px 30px rgba(200,169,107,0.4), 0 4px 10px rgba(0,0,0,0.06)",
+                }}
+              >
+                <span className="text-[1.8rem] font-extrabold leading-none text-white tracking-tight">
+                  15+
+                </span>
+                <span className="mt-1 text-[0.42rem] font-bold uppercase tracking-[0.16em] text-white/95 leading-none max-w-[80px]">
+                  JAAR ERVARING
+                </span>
+              </motion.div>
 
-                <p className="mx-auto mt-4 max-w-[15.5rem] text-[0.875rem] font-light leading-[1.75] tracking-[0.01em] text-[#666666] transition-colors duration-500 group-hover:text-[#4a4a4a] group-focus-within:text-[#4a4a4a]">
-                  {pillar.description}
-                </p>
-              </motion.article>
-            );
-          })}
-        </motion.div>
+              <motion.div
+                initial={reduceMotion ? false : { opacity: 0, y: 15, scale: 0.95 }}
+                whileInView={reduceMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.55, ease: easing, delay: 0.4 }}
+                viewport={motionViewport}
+                className="absolute -bottom-8 -left-8 z-20 h-[170px] w-[170px] overflow-hidden rounded-[24px] bg-white p-2 shadow-[0_20px_48px_rgba(0,0,0,0.12)] border border-zinc-100 hidden sm:block"
+              >
+                <img
+                  src={craftsmanship}
+                  alt="Vakmanschap detail"
+                  className="h-full w-full object-cover rounded-[16px]"
+                  loading="lazy"
+                />
+              </motion.div>
+            </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );

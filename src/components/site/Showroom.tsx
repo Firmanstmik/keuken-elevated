@@ -23,7 +23,7 @@ export function Showroom() {
           <motion.h2 variants={reduceMotion ? undefined : fadeUp} className="heading-2">
             Ervaar materialen,
             <br />
-            kleuren en afwerkingen.
+            kleuren en <em className="italic" style={{ color: "#23B9C4" }}>afwerkingen.</em>
           </motion.h2>
           <motion.p
             variants={reduceMotion ? undefined : fadeUp}

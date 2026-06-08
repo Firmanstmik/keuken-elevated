@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { FlowActionBar } from "@/components/configurator/FlowActionBar";
 import { ArrowLeft, ArrowRight, Circle, Search } from "@/components/ui/icons";
 import { useConfigurator } from "@/context/configurator-context";
-import logoKeuken from "@/assets/logo-keuken-1-1.webp";
+import logoKeuken from "@/assets/keukencentrum_logo_transparent_medium_centered_stripe.png";
 import {
   masterBrands,
   masterBudgetRanges,
@@ -398,7 +398,7 @@ function ConfigurePage() {
     <main className="min-h-screen bg-[#111111]">
       <div className="fixed inset-x-0 top-0 z-[1300] h-0.5">
         <motion.div
-          className="h-full bg-[#B08D57]"
+          className="h-full bg-[#23B9C4]"
           animate={{ scaleX: completedCount / totalCategories }}
           transition={{ duration: 0.4 }}
           style={{ transformOrigin: "left center" }}
@@ -613,21 +613,21 @@ function ConfigurePage() {
             <button
               type="button"
               onClick={() => updateZoom(zoomLevel - 0.2)}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-[12px] border border-[rgba(247,245,242,0.15)] bg-[rgba(17,17,17,0.72)] text-[#F7F5F2] backdrop-blur-[8px] transition-colors duration-300 hover:border-[#B08D57] hover:bg-[rgba(176,141,87,0.3)]"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-[12px] border border-[rgba(247,245,242,0.15)] bg-[rgba(17,17,17,0.72)] text-[#F7F5F2] backdrop-blur-[8px] transition-colors duration-300 hover:border-[#23B9C4] hover:bg-[rgba(35,185,196,0.3)]"
             >
               <span className="text-lg leading-none">-</span>
             </button>
             <button
               type="button"
               onClick={() => updateZoom(zoomLevel + 0.2)}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-[12px] border border-[rgba(247,245,242,0.15)] bg-[rgba(17,17,17,0.72)] text-[#F7F5F2] backdrop-blur-[8px] transition-colors duration-300 hover:border-[#B08D57] hover:bg-[rgba(176,141,87,0.3)]"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-[12px] border border-[rgba(247,245,242,0.15)] bg-[rgba(17,17,17,0.72)] text-[#F7F5F2] backdrop-blur-[8px] transition-colors duration-300 hover:border-[#23B9C4] hover:bg-[rgba(35,185,196,0.3)]"
             >
               <span className="text-lg leading-none">+</span>
             </button>
             <button
               type="button"
               onClick={resetZoomView}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-[12px] border border-[rgba(247,245,242,0.15)] bg-[rgba(17,17,17,0.72)] text-[#F7F5F2] backdrop-blur-[8px] transition-colors duration-300 hover:border-[#B08D57] hover:bg-[rgba(176,141,87,0.3)]"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-[12px] border border-[rgba(247,245,242,0.15)] bg-[rgba(17,17,17,0.72)] text-[#F7F5F2] backdrop-blur-[8px] transition-colors duration-300 hover:border-[#23B9C4] hover:bg-[rgba(35,185,196,0.3)]"
             >
               <Search className="h-4 w-4" />
             </button>
@@ -640,7 +640,7 @@ function ConfigurePage() {
           ) : null}
 
           <div className="absolute left-5 top-5 border border-[rgba(247,245,242,0.1)] bg-[rgba(17,17,17,0.75)] px-2.5 py-1.5 backdrop-blur-[8px]">
-            <p className="block text-[0.6rem] uppercase tracking-[0.2em] text-[#B08D57]">Stap 03 van 05</p>
+            <p className="block text-[0.6rem] uppercase tracking-[0.2em] text-[#23B9C4]">Stap 03 van 05</p>
             <p className="text-[0.625rem] text-[rgba(247,245,242,0.6)]">
               {completedCount}/{totalCategories} opties samengesteld
             </p>
@@ -660,11 +660,11 @@ function ConfigurePage() {
                   className="inline-flex items-center gap-2 border px-2 py-2 transition-all duration-300"
                   style={{
                     borderColor: active
-                      ? "#B08D57"
+                      ? "#23B9C4"
                       : selected
-                        ? "rgba(176,141,87,0.4)"
+                        ? "rgba(35,185,196,0.4)"
                         : "rgba(255,255,255,0.1)",
-                    backgroundColor: active ? "rgba(176,141,87,0.1)" : "transparent",
+                    backgroundColor: active ? "rgba(35,185,196,0.1)" : "transparent",
                   }}
                 >
                   {selected ? (
@@ -676,7 +676,7 @@ function ConfigurePage() {
                   <span
                     className="text-[0.6rem] uppercase tracking-[0.15em]"
                     style={{
-                      color: active ? "#B08D57" : selected ? "rgba(247,245,242,0.7)" : "rgba(247,245,242,0.35)",
+                      color: active ? "#23B9C4" : selected ? "rgba(247,245,242,0.7)" : "rgba(247,245,242,0.35)",
                     }}
                   >
                     {category.label}
@@ -698,7 +698,7 @@ function ConfigurePage() {
                 >
                   <div className="mb-3 flex items-center justify-between">
                     <div>
-                      <p className="mb-0.5 block text-[0.6rem] uppercase tracking-[0.2em] text-[#B08D57]">
+                      <p className="mb-0.5 block text-[0.6rem] uppercase tracking-[0.2em] text-[#23B9C4]">
                         Kies
                       </p>
                       <h2
@@ -733,8 +733,8 @@ function ConfigurePage() {
                           }}
                           className="cursor-pointer p-2 text-left transition-all duration-300"
                           style={{
-                            border: `1px solid ${selected ? "#B08D57" : "rgba(255,255,255,0.07)"}`,
-                            backgroundColor: selected ? "rgba(176,141,87,0.08)" : "rgba(255,255,255,0.02)",
+                            border: `1px solid ${selected ? "#23B9C4" : "rgba(255,255,255,0.07)"}`,
+                            backgroundColor: selected ? "rgba(35,185,196,0.08)" : "rgba(255,255,255,0.02)",
                           }}
                         >
                           <div
@@ -743,7 +743,7 @@ function ConfigurePage() {
                           />
                           <p
                             className="mb-0.5 text-[0.7rem] font-normal tracking-[0.05em]"
-                            style={{ color: selected ? "#B08D57" : "rgba(247,245,242,0.75)" }}
+                            style={{ color: selected ? "#23B9C4" : "rgba(247,245,242,0.75)" }}
                           >
                             {option.name}
                           </p>
@@ -780,7 +780,7 @@ function ConfigurePage() {
           </div>
 
           <div className="border-t border-[rgba(255,255,255,0.05)] bg-[#111111] p-3">
-            <p className="mb-2 block text-[0.6rem] uppercase tracking-[0.2em] text-[#B08D57]">
+            <p className="mb-2 block text-[0.6rem] uppercase tracking-[0.2em] text-[#23B9C4]">
               Uw configuratie
             </p>
 
@@ -819,7 +819,7 @@ function ConfigurePage() {
                   Budgetindicatie
                 </p>
                 <p
-                  className="text-[0.75rem] text-[#B08D57]"
+                  className="text-[0.75rem] text-[#23B9C4]"
                   style={{ fontFamily: '"Playfair Display", serif', fontWeight: 400 }}
                 >
                   {config.budget ?? budget}
@@ -830,7 +830,7 @@ function ConfigurePage() {
             <button
               type="button"
               onClick={() => navigate({ to: "/moodboard" })}
-              className="inline-flex min-h-[3.5rem] w-full items-center justify-center gap-3 rounded-[14px] border border-[#B08D57] bg-[#B08D57] px-4 text-[0.7rem] uppercase tracking-[0.15em] text-[#F7F5F2] transition-colors duration-300 hover:border-[#8A6D3A] hover:bg-[#8A6D3A]"
+              className="inline-flex min-h-[3.5rem] w-full items-center justify-center gap-3 rounded-[14px] border border-[#23B9C4] bg-[#23B9C4] px-4 text-[0.7rem] uppercase tracking-[0.15em] text-[#F7F5F2] transition-colors duration-300 hover:border-[#163847] hover:bg-[#163847]"
             >
               Moodboard genereren
               <ArrowRight className="h-4 w-4" />

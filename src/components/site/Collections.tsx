@@ -1,10 +1,7 @@
 "use client";
 
-import {
-  motion,
-  useReducedMotion,
-  type Variants,
-} from "framer-motion";
+import { useEffect, useRef } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "@/components/ui/icons";
 import { kc } from "@/lib/kc-data";
 import { fadeUp, motionViewport } from "@/lib/motion";
@@ -18,7 +15,7 @@ const collections = [
     title: "Modern Living",
     number: "01",
     collectionLabel: "MODERN COLLECTION",
-    descriptor: "Architectural • Minimal • Timeless",
+    descriptor: "Architectural · Minimal · Timeless",
     description: "Slanke lijnen en functionele elegantie voor het hedendaagse leven.",
     image: kc.styles[1].img,
   },
@@ -27,7 +24,7 @@ const collections = [
     title: "Klassiek Elegance",
     number: "02",
     collectionLabel: "KLASSIEK COLLECTION",
-    descriptor: "Warm • Elegant • Refined",
+    descriptor: "Warm · Elegant · Refined",
     description: "Tijdloze proporties en rijke materialen die generaties meegaan.",
     image: kc.styles[2].img,
   },
@@ -36,7 +33,7 @@ const collections = [
     title: "Landelijk Heritage",
     number: "03",
     collectionLabel: "LANDELIJK COLLECTION",
-    descriptor: "Natural • Authentic • Inviting",
+    descriptor: "Natural · Authentic · Inviting",
     description: "Warme texturen en ambachtelijke details voor een thuis gevoel.",
     image: kc.styles[2].img,
   },
@@ -45,142 +42,208 @@ const collections = [
     title: "Industrieel Studio",
     number: "04",
     collectionLabel: "INDUSTRIEEL COLLECTION",
-    descriptor: "Bold • Characterful • Contemporary",
+    descriptor: "Bold · Characterful · Contemporary",
     description: "Rauwe materialen en grafische vormen met een eigenzinnig karakter.",
     image: kc.styles[3].img,
   },
-];
+] as const;
 
-// ─── Motion ───────────────────────────────────────────────────────────────────
+// ─── Card ─────────────────────────────────────────────────────────────────────
 
-const luxuryEase = [0.22, 1, 0.36, 1] as const;
+type CollectionItem = (typeof collections)[number];
 
-const staggerCards: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.09, delayChildren: 0.04 } },
-};
-
-// ─── Luxury Card ──────────────────────────────────────────────────────────────
-
-type CardProps = {
-  collection: (typeof collections)[number];
-  index: number;
-  reduceMotion: boolean | null;
-};
-
-function LuxuryStyleCard({ collection, index, reduceMotion }: CardProps) {
+function GalleryCard({ item }: { item: CollectionItem }) {
   return (
-    <motion.div
-      variants={reduceMotion ? undefined : fadeUp}
-      className="h-full"
+    <article
+      className={[
+        "group relative h-full w-full cursor-default select-none overflow-hidden",
+        "rounded-[22px] bg-[#0A0C0F]",
+        "border border-[rgba(255,255,255,0.06)]",
+        "shadow-[0_12px_40px_-16px_rgba(0,0,0,0.55)]",
+        "transition-[border-color,box-shadow] duration-500 ease-out",
+        "hover:border-[rgba(35,185,196,0.22)]",
+        "hover:shadow-[0_24px_64px_-20px_rgba(0,0,0,0.65),0_0_0_1px_rgba(35,185,196,0.08)]",
+      ].join(" ")}
+      draggable={false}
     >
-      <article
-        className={[
-          "group relative h-full cursor-pointer overflow-hidden",
-          "bg-[#0A0C0F] p-[12px] text-left",
-          "border border-[rgba(200,169,107,0.15)]",
-          "rounded-[28px] shadow-[0_8px_30px_rgba(0,0,0,0.35)]",
-          "transition-all duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
-          "hover:-translate-y-[10px] hover:border-[rgba(200,169,107,0.45)]",
-          "hover:shadow-[0_24px_50px_rgba(0,0,0,0.6),0_0_30px_rgba(200,169,107,0.06)]"
-        ].join(" ")}
-        style={{
-          aspectRatio: "0.82 / 1",
-        }}
-      >
-        {/* Inner container to hold image and content */}
-        <div className="relative h-full w-full overflow-hidden rounded-[18px] bg-[#101216]">
-          
-          {/* Background Image */}
-          <img
-            src={collection.image}
-            alt={collection.title}
-            loading="lazy"
-            className={[
-              "absolute inset-0 h-full w-full object-cover",
-              "transition-transform duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
-              "group-hover:scale-[1.06]"
-            ].join(" ")}
-          />
+      {/* Image */}
+      <img
+        src={item.image}
+        alt={item.title}
+        loading="lazy"
+        draggable={false}
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover transition-transform duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
+      />
 
-          {/* Gradients for readability */}
-          {/* Top Scrim */}
-          <div
-            className="absolute inset-x-0 top-0 h-[40%] pointer-events-none bg-gradient-to-b from-black/80 via-black/30 to-transparent"
-          />
-          {/* Bottom Scrim */}
-          <div
-            className="absolute inset-x-0 bottom-0 h-[65%] pointer-events-none bg-gradient-to-t from-black/95 via-black/55 to-transparent"
-          />
+      {/* Top vignette */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[45%] bg-gradient-to-b from-black/70 via-black/20 to-transparent" />
 
-          {/* TOP CONTENT: Number & Curated Label */}
-          <div className="absolute inset-x-0 top-0 z-20 p-5 flex justify-between items-start">
-            {/* Number system */}
-            <div className="flex flex-col text-left">
-              <span className="font-serif text-[1.5rem] font-light leading-none text-white/95 tracking-tight">
-                {collection.number}
-              </span>
-              <span className="mt-1 text-[0.55rem] font-medium tracking-[0.15em] text-white/40 uppercase">
-                {collection.collectionLabel}
-              </span>
-            </div>
+      {/* Bottom vignette — lightens on hover for editorial reveal */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[68%] bg-gradient-to-t from-black/92 via-black/52 to-transparent transition-opacity duration-500 group-hover:opacity-80" />
 
-            {/* Collection Editorial Label */}
-            <span
-              className="text-[0.6rem] font-semibold tracking-[0.25em] text-[rgba(200,169,107,0.95)] uppercase"
-              style={{ fontFamily: "'Jost', sans-serif" }}
-            >
-              CURATED STYLE
-            </span>
-          </div>
-
-          {/* BOTTOM CONTENT */}
-          <div className="absolute inset-x-0 bottom-0 z-20 p-6 flex flex-col text-left">
-            {/* Title — slides up slightly */}
-            <p className="font-serif text-[clamp(1.5rem,2vw,1.85rem)] leading-tight tracking-[-0.01em] text-white transition-transform duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1">
-              {collection.title}
-            </p>
-
-            {/* Secondary luxury descriptor line */}
-            <p
-              className="mt-2 text-[0.63rem] font-light tracking-[0.2em] text-[rgba(200,169,107,0.95)] transition-colors duration-500 uppercase"
-              style={{ fontFamily: "'Jost', sans-serif" }}
-            >
-              {collection.descriptor}
-            </p>
-
-            {/* Description — reveals smoothly on hover */}
-            <p
-              className={[
-                "overflow-hidden font-light leading-[1.6] text-[rgba(255,255,255,0)]",
-                "[max-height:0px] opacity-0",
-                "transition-all duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
-                "group-hover:mt-3 group-hover:text-[rgba(255,255,255,0.65)] group-hover:[max-height:68px] group-hover:opacity-100",
-                "text-[0.8rem]",
-              ].join(" ")}
-              style={{ fontFamily: "'Jost', sans-serif" }}
-            >
-              {collection.description}
-            </p>
-
-            {/* CTA — slides in */}
-            <span
-              className={[
-                "mt-3 inline-flex translate-y-3 items-center gap-2 opacity-0",
-                "text-[0.68rem] font-light tracking-[0.2em] text-[rgba(200,169,107,0)]",
-                "transition-[transform,opacity,gap,color] duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
-                "group-hover:translate-y-0 group-hover:gap-[10px] group-hover:text-[rgba(200,169,107,0.9)] group-hover:opacity-100",
-              ].join(" ")}
-              style={{ fontFamily: "'Jost', sans-serif" }}
-            >
-              <span className="uppercase">Ontdek stijl</span>
-              <ArrowRight className="h-3 w-3 transition-transform duration-[500ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-2" />
-            </span>
-          </div>
-
+      {/* TOP LABEL */}
+      <div className="absolute inset-x-0 top-0 z-10 flex items-start justify-between p-5">
+        <div>
+          <span className="block font-serif text-[1.35rem] font-light leading-none tracking-tight text-white/90">
+            {item.number}
+          </span>
+          <span className="mt-1 block text-[0.48rem] font-medium uppercase tracking-[0.18em] text-white/30">
+            {item.collectionLabel}
+          </span>
         </div>
-      </article>
-    </motion.div>
+        <span
+          className="text-[0.52rem] font-semibold uppercase tracking-[0.24em] text-[rgba(200,169,107,0.70)]"
+          style={{ fontFamily: "var(--font-body)" }}
+        >
+          Curated
+        </span>
+      </div>
+
+      {/* BOTTOM CONTENT */}
+      <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col p-6 text-left">
+        {/* Title — lifts 2px on hover */}
+        <p className="font-serif text-[1.55rem] font-light leading-tight tracking-[-0.01em] text-white transition-transform duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5">
+          {item.title}
+        </p>
+
+        {/* Descriptor */}
+        <p
+          className="mt-2 text-[0.58rem] font-light uppercase tracking-[0.20em] text-[rgba(200,169,107,0.80)]"
+          style={{ fontFamily: "var(--font-body)" }}
+        >
+          {item.descriptor}
+        </p>
+
+        {/* Description — unfolds on hover */}
+        <p
+          className="overflow-hidden text-[rgba(255,255,255,0)] opacity-0 [max-height:0px] font-light leading-[1.65] transition-all duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:mt-3 group-hover:text-[rgba(255,255,255,0.58)] group-hover:opacity-100 group-hover:[max-height:52px] text-[0.77rem]"
+          style={{ fontFamily: "var(--font-body)" }}
+        >
+          {item.description}
+        </p>
+
+        {/* CTA arrow — slides in */}
+        <span
+          className="mt-3 inline-flex translate-y-2 items-center gap-2 text-[0.62rem] font-light uppercase tracking-[0.18em] text-[rgba(35,185,196,0)] opacity-0 transition-[transform,opacity,color] duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0 group-hover:text-[rgba(35,185,196,0.82)] group-hover:opacity-100"
+          style={{ fontFamily: "var(--font-body)" }}
+        >
+          <span>Ontdek stijl</span>
+          <ArrowRight className="h-3 w-3 transition-transform duration-500 group-hover:translate-x-1.5" />
+        </span>
+      </div>
+    </article>
+  );
+}
+
+// ─── Scroll Gallery ───────────────────────────────────────────────────────────
+
+const SPEED = 26; // px/s — slow, premium
+const CARD_W_PX = 300;
+const CARD_H_PX = 410;
+const CARD_GAP_PX = 20;
+
+function InfiniteGallery({ reduceMotion }: { reduceMotion: boolean | null }) {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const offsetRef = useRef(0);
+  const rafRef = useRef(0);
+  const pausedUntil = useRef(0);
+  const drag = useRef({ active: false, startX: 0, startOffset: 0, moved: false });
+
+  // Triple the set so the seam is always far from the viewport
+  const items = [...collections, ...collections, ...collections];
+
+  useEffect(() => {
+    if (reduceMotion) return;
+    let last = performance.now();
+
+    const tick = (now: number) => {
+      const dt = Math.min((now - last) / 1000, 0.05); // cap delta to avoid jump after tab switch
+      last = now;
+
+      const track = trackRef.current;
+      if (!track) { rafRef.current = requestAnimationFrame(tick); return; }
+
+      const totalW = track.scrollWidth;
+      const oneSetW = totalW / 3; // 3 repetitions
+
+      if (!drag.current.active && now > pausedUntil.current) {
+        offsetRef.current += SPEED * dt;
+      }
+
+      // Wrap to first set
+      if (oneSetW > 0) {
+        offsetRef.current = ((offsetRef.current % oneSetW) + oneSetW) % oneSetW;
+      }
+
+      track.style.transform = `translateX(${-offsetRef.current}px)`;
+      rafRef.current = requestAnimationFrame(tick);
+    };
+
+    rafRef.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [reduceMotion]);
+
+  const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    drag.current = { active: true, startX: e.clientX, startOffset: offsetRef.current, moved: false };
+    wrapRef.current?.setPointerCapture(e.pointerId);
+  };
+  const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!drag.current.active) return;
+    const dx = e.clientX - drag.current.startX;
+    if (Math.abs(dx) > 4) drag.current.moved = true;
+    offsetRef.current = drag.current.startOffset - dx;
+  };
+  const onPointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    drag.current.active = false;
+    pausedUntil.current = performance.now() + 1200;
+    wrapRef.current?.releasePointerCapture(e.pointerId);
+  };
+
+  return (
+    <div className="relative mt-16">
+      {/* Edge fades — mask-image approach so they adapt to any background */}
+      <div
+        className="pointer-events-none absolute inset-y-0 left-0 z-10 w-32 md:w-52"
+        style={{ background: "linear-gradient(to right, #F8F6F2 0%, rgba(248,246,242,0) 100%)" }}
+      />
+      <div
+        className="pointer-events-none absolute inset-y-0 right-0 z-10 w-32 md:w-52"
+        style={{ background: "linear-gradient(to left, #F8F6F2 0%, rgba(248,246,242,0) 100%)" }}
+      />
+
+      <div
+        ref={wrapRef}
+        className="overflow-hidden py-6"
+        style={{
+          cursor: drag.current.active ? "grabbing" : "grab",
+          touchAction: "pan-y",
+          userSelect: "none",
+        }}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerUp}
+        onPointerCancel={onPointerUp}
+        onMouseEnter={() => { pausedUntil.current = Infinity; }}
+        onMouseLeave={() => { pausedUntil.current = 0; }}
+      >
+        <div
+          ref={trackRef}
+          className="flex will-change-transform"
+          style={{ gap: `${CARD_GAP_PX}px`, paddingLeft: "32px", paddingRight: "32px" }}
+        >
+          {items.map((item, i) => (
+            <div
+              key={`${item.id}-${i}`}
+              className="shrink-0"
+              style={{ width: `${CARD_W_PX}px`, height: `${CARD_H_PX}px` }}
+            >
+              <GalleryCard item={item} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -191,67 +254,57 @@ export function Collections() {
 
   return (
     <section id="collections" className="relative overflow-hidden py-20 md:py-28">
+      {/* Concrete texture */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
-        style={{
-          backgroundImage: `url(${matConcrete})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
+        style={{ backgroundImage: `url(${matConcrete})`, backgroundSize: "cover", backgroundPosition: "center" }}
       />
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[rgba(248,246,242,0.87)]" />
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_60%_30%,rgba(200,169,107,0.05),transparent_50%)]" />
-      <div className="site-container relative z-10">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[rgba(248,246,242,0.88)]" />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_60%_30%,rgba(35,185,196,0.04),transparent_50%)]" />
 
+      <div className="relative z-10">
         {/* Header */}
-        <motion.div
-          initial={reduceMotion ? false : "hidden"}
-          whileInView="visible"
-          viewport={motionViewport}
-          variants={fadeUp}
-          className="section-header-split mb-12"
-        >
-          <div className="max-w-[38rem]">
-            <div className="section-label-row">
-              <span className="luxe-rule" />
-              <span className="eyebrow text-[#C8A96B]">Onze Collecties</span>
-            </div>
-            <h2 className="heading-2 mt-4 text-[#111111]">
-              Ontdek uw <em className="italic text-[#C8A96B]">Droomkeuken</em>
-            </h2>
-            <p className="mt-5 max-w-[480px] text-[1.1rem] font-light leading-[1.75] tracking-[0.01em] text-[#5A5A5A]">
-              Vier zorgvuldig samengestelde stijlwerelden — elk een unieke architectonische
-              taal van materiaal, compositie en sfeer.
-            </p>
-          </div>
-          <a
-            href="#showroom"
-            className="link-underline self-start text-sm text-[#111111]/72 lg:self-end"
+        <div className="site-container">
+          <motion.div
+            initial={reduceMotion ? false : "hidden"}
+            whileInView="visible"
+            viewport={motionViewport}
+            variants={reduceMotion ? undefined : fadeUp}
+            className="section-header-split"
           >
-            Alle keukens bekijken
-            <ArrowRight className="h-4 w-4 inline-block ml-1" />
-          </a>
-        </motion.div>
+            <div className="max-w-[38rem]">
+              <div className="section-label-row">
+                <span className="luxe-rule" />
+                <span className="eyebrow text-[#C8A96B]">Onze Collecties</span>
+              </div>
+              <h2 className="heading-2 mt-4">
+                Ontdek uw <em className="italic" style={{ color: "#23B9C4" }}>Droomkeuken</em>
+              </h2>
+              <p className="mt-5 max-w-[480px] text-[1.05rem] font-light leading-[1.75] tracking-[0.01em] text-[#5A5A5A]">
+                Vier zorgvuldig samengestelde stijlwerelden — elk een unieke architectonische
+                taal van materiaal, compositie en sfeer.
+              </p>
+            </div>
+            <a
+              href="#showroom"
+              className="link-underline self-start text-sm text-[#111111]/60 lg:self-end"
+            >
+              Alle keukens bekijken
+              <ArrowRight className="ml-1 inline-block h-4 w-4" />
+            </a>
+          </motion.div>
+        </div>
 
-        {/* Luxury card grid */}
+        {/* Infinite gallery — full viewport width */}
         <motion.div
-          initial={reduceMotion ? false : "hidden"}
-          whileInView="visible"
+          initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+          whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
           viewport={motionViewport}
-          variants={reduceMotion ? undefined : staggerCards}
-          className="grid gap-4 md:grid-cols-2 xl:grid-cols-4"
+          transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
         >
-          {collections.map((collection, index) => (
-            <LuxuryStyleCard
-              key={collection.id}
-              collection={collection}
-              index={index}
-              reduceMotion={reduceMotion}
-            />
-          ))}
+          <InfiniteGallery reduceMotion={reduceMotion} />
         </motion.div>
-
       </div>
     </section>
   );

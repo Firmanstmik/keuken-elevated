@@ -261,13 +261,13 @@ export function ConsultationSection() {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
-        style={{ background: "linear-gradient(180deg, #FFFFFF 0%, #FAF7F1 50%, #F4EEE2 100%)" }}
+        style={{ background: "linear-gradient(180deg, #FFFFFF 0%, #F6F3EE 50%, #EEF7F8 100%)" }}
       />
       {/* Top gold radial glow */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute left-1/2 top-0 h-[500px] w-[900px] -translate-x-1/2 rounded-full opacity-40 blur-3xl"
-        style={{ background: "radial-gradient(circle, rgba(200,165,106,0.22), transparent 60%)" }}
+        style={{ background: "radial-gradient(circle, rgba(35,185,196,0.12), transparent 60%)" }}
       />
 
       <div className="relative mx-auto max-w-7xl px-6 py-28">
@@ -282,7 +282,7 @@ export function ConsultationSection() {
         >
           <motion.div variants={reduceMotion ? undefined : fadeUp}>
             <div className="inline-flex items-center gap-2 rounded-full border border-[#E6DFD2] bg-white px-4 py-1.5">
-              <span className="h-1.5 w-1.5 rounded-full" style={{ background: "#6BC56C" }} />
+              <span className="h-1.5 w-1.5 rounded-full" style={{ background: "#23B9C4" }} />
               <span
                 className="text-[10px] font-semibold uppercase tracking-[0.24em]"
                 style={{ color: "#5a4418", fontFamily: "var(--font-body)" }}
@@ -295,11 +295,11 @@ export function ConsultationSection() {
           <motion.h2
             variants={reduceMotion ? undefined : fadeUp}
             className="mt-6 font-serif text-4xl font-light leading-[1.1] tracking-tight md:text-5xl"
-            style={{ color: "#1a1410" }}
+            style={{ color: "#163847" }}
           >
             Boek uw persoonlijk
             <br />
-            <em className="italic" style={{ color: "#8a6a2a" }}>ontwerpconsult.</em>
+            <em className="italic" style={{ color: "#23B9C4" }}>ontwerpconsult.</em>
           </motion.h2>
 
           <motion.p
@@ -315,7 +315,7 @@ export function ConsultationSection() {
         {/* ── Horizontal Gallery Strip ───────────────────────────── */}
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-          whileInView={reduceMotion ? false : { opacity: 1, y: 0 }}
+          whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
           viewport={motionViewport}
           transition={{ duration: 0.8, ease: luxuryEase, delay: 0.2 }}
           className="mt-14"
@@ -343,7 +343,7 @@ export function ConsultationSection() {
               {/* ── Atelier Panel (dark left) ──────────────────────── */}
               <aside
                 className="relative hidden flex-col justify-between p-8 md:flex"
-                style={{ background: "linear-gradient(180deg, #1a1410 0%, #221b14 100%)" }}
+                style={{ background: "linear-gradient(180deg, #0F2730 0%, #163847 100%)" }}
               >
                 {/* TOP: Badge + heading */}
                 <div>
@@ -373,15 +373,15 @@ export function ConsultationSection() {
                 <div className="mt-8">
                   <ul className="space-y-3 text-[12px] text-white/70">
                     <li className="flex items-center gap-2.5">
-                      <Clock size={14} variant="Linear" color="#C9A961" />
+                      <Clock size={14} variant="Linear" color="#23B9C4" />
                       <span style={{ fontFamily: "var(--font-body)" }}>Reactie binnen 24 uur</span>
                     </li>
                     <li className="flex items-center gap-2.5">
-                      <Shield size={14} variant="Linear" color="#C9A961" />
+                      <Shield size={14} variant="Linear" color="#23B9C4" />
                       <span style={{ fontFamily: "var(--font-body)" }}>Vrijblijvend &amp; vertrouwelijk</span>
                     </li>
                     <li className="flex items-center gap-2.5">
-                      <Calendar size={14} variant="Linear" color="#C9A961" />
+                      <Calendar size={14} variant="Linear" color="#23B9C4" />
                       <span style={{ fontFamily: "var(--font-body)" }}>Op locatie of in showroom</span>
                     </li>
                   </ul>
@@ -391,7 +391,7 @@ export function ConsultationSection() {
                   <ul className="space-y-2.5 text-[12px] text-white/55">
                     {benefits.map((item) => (
                       <li key={item} className="flex items-center gap-2.5">
-                        <Check className="h-3 w-3 shrink-0 text-[#C9A961]" />
+                        <Check className="h-3 w-3 shrink-0 text-[#23B9C4]" />
                         <span style={{ fontFamily: "var(--font-body)" }}>{item}</span>
                       </li>
                     ))}
@@ -405,7 +405,7 @@ export function ConsultationSection() {
                     className="flex items-center gap-2.5 text-[12px] text-white/50 transition-colors duration-200 hover:text-white/80"
                     style={{ fontFamily: "var(--font-body)" }}
                   >
-                    <House className="h-3.5 w-3.5 shrink-0 text-[#C9A961]" />
+                    <House className="h-3.5 w-3.5 shrink-0 text-[#23B9C4]" />
                     <span>{kc.contact.address}, Utrecht</span>
                   </a>
                   <a
@@ -413,7 +413,7 @@ export function ConsultationSection() {
                     className="flex items-center gap-2.5 text-[12px] text-white/50 transition-colors duration-200 hover:text-white/80"
                     style={{ fontFamily: "var(--font-body)" }}
                   >
-                    <Phone className="h-3.5 w-3.5 shrink-0 text-[#C9A961]" />
+                    <Phone className="h-3.5 w-3.5 shrink-0 text-[#23B9C4]" />
                     <span>{kc.contact.phone}</span>
                   </a>
                   <a
@@ -421,7 +421,7 @@ export function ConsultationSection() {
                     className="flex items-center gap-2.5 text-[12px] text-white/50 transition-colors duration-200 hover:text-white/80"
                     style={{ fontFamily: "var(--font-body)" }}
                   >
-                    <Mail className="h-3.5 w-3.5 shrink-0 text-[#C9A961]" />
+                    <Mail className="h-3.5 w-3.5 shrink-0 text-[#23B9C4]" />
                     <span>{kc.contact.email}</span>
                   </a>
                 </div>
@@ -435,7 +435,7 @@ export function ConsultationSection() {
                     <div className="mb-7">
                       <span
                         className="text-[0.6rem] font-semibold uppercase tracking-[0.28em]"
-                        style={{ color: "#7a5e28", fontFamily: "var(--font-body)" }}
+                        style={{ color: "#163847", fontFamily: "var(--font-body)" }}
                       >
                         Consultation Request
                       </span>
@@ -460,7 +460,7 @@ export function ConsultationSection() {
                         <div>
                           <label
                             className="mb-1.5 block text-[10px] font-semibold uppercase tracking-[0.2em]"
-                            style={{ color: "#7a5e28", fontFamily: "var(--font-body)" }}
+                            style={{ color: "#163847", fontFamily: "var(--font-body)" }}
                           >
                             Volledige naam
                           </label>
@@ -468,13 +468,13 @@ export function ConsultationSection() {
                             value={form.name}
                             onChange={updateField("name")}
                             placeholder="Uw volledige naam"
-                            className="h-[50px] rounded-lg border-[#D9D2C3] bg-white px-4 text-[0.9rem] text-[#1f1a12] placeholder:text-[#9c9180] focus-visible:border-[#1a1410] focus-visible:ring-[rgba(26,20,16,0.06)]"
+                            className="h-[50px] rounded-lg border-[#D9D2C3] bg-white px-4 text-[0.9rem] text-[#1f1a12] placeholder:text-[#9c9180] focus-visible:border-[#23B9C4] focus-visible:ring-[rgba(35,185,196,0.12)]"
                           />
                         </div>
                         <div>
                           <label
                             className="mb-1.5 block text-[10px] font-semibold uppercase tracking-[0.2em]"
-                            style={{ color: "#7a5e28", fontFamily: "var(--font-body)" }}
+                            style={{ color: "#163847", fontFamily: "var(--font-body)" }}
                           >
                             E-mailadres
                           </label>
@@ -483,7 +483,7 @@ export function ConsultationSection() {
                             value={form.email}
                             onChange={updateField("email")}
                             placeholder="naam@voorbeeld.nl"
-                            className="h-[50px] rounded-lg border-[#D9D2C3] bg-white px-4 text-[0.9rem] text-[#1f1a12] placeholder:text-[#9c9180] focus-visible:border-[#1a1410] focus-visible:ring-[rgba(26,20,16,0.06)]"
+                            className="h-[50px] rounded-lg border-[#D9D2C3] bg-white px-4 text-[0.9rem] text-[#1f1a12] placeholder:text-[#9c9180] focus-visible:border-[#23B9C4] focus-visible:ring-[rgba(35,185,196,0.12)]"
                           />
                         </div>
                       </div>
@@ -491,7 +491,7 @@ export function ConsultationSection() {
                       <div>
                         <label
                           className="mb-1.5 block text-[10px] font-semibold uppercase tracking-[0.2em]"
-                          style={{ color: "#7a5e28", fontFamily: "var(--font-body)" }}
+                          style={{ color: "#163847", fontFamily: "var(--font-body)" }}
                         >
                           Telefoonnummer
                         </label>
@@ -500,7 +500,7 @@ export function ConsultationSection() {
                           value={form.phone}
                           onChange={updateField("phone")}
                           placeholder="+31 …"
-                          className="h-[50px] rounded-lg border-[#D9D2C3] bg-white px-4 text-[0.9rem] text-[#1f1a12] placeholder:text-[#9c9180] focus-visible:border-[#1a1410] focus-visible:ring-[rgba(26,20,16,0.06)]"
+                          className="h-[50px] rounded-lg border-[#D9D2C3] bg-white px-4 text-[0.9rem] text-[#1f1a12] placeholder:text-[#9c9180] focus-visible:border-[#23B9C4] focus-visible:ring-[rgba(35,185,196,0.12)]"
                         />
                       </div>
 
@@ -508,7 +508,7 @@ export function ConsultationSection() {
                         <div className="grid gap-2">
                           <label
                             className="text-[10px] font-semibold uppercase tracking-[0.2em]"
-                            style={{ color: "#7a5e28", fontFamily: "var(--font-body)" }}
+                            style={{ color: "#163847", fontFamily: "var(--font-body)" }}
                           >
                             Voorkeur showroom
                           </label>
@@ -531,7 +531,7 @@ export function ConsultationSection() {
                         <div className="grid gap-2">
                           <label
                             className="text-[10px] font-semibold uppercase tracking-[0.2em]"
-                            style={{ color: "#7a5e28", fontFamily: "var(--font-body)" }}
+                            style={{ color: "#163847", fontFamily: "var(--font-body)" }}
                           >
                             Projectbudget
                           </label>
@@ -558,7 +558,7 @@ export function ConsultationSection() {
                       <div>
                         <label
                           className="mb-1.5 block text-[10px] font-semibold uppercase tracking-[0.2em]"
-                          style={{ color: "#7a5e28", fontFamily: "var(--font-body)" }}
+                          style={{ color: "#163847", fontFamily: "var(--font-body)" }}
                         >
                           Gewenste datum
                         </label>
@@ -566,14 +566,14 @@ export function ConsultationSection() {
                           type="date"
                           value={form.date}
                           onChange={updateField("date")}
-                          className="h-[50px] rounded-lg border-[#D9D2C3] bg-white px-4 text-[0.9rem] text-[#1f1a12] focus-visible:border-[#1a1410] focus-visible:ring-[rgba(26,20,16,0.06)]"
+                          className="h-[50px] rounded-lg border-[#D9D2C3] bg-white px-4 text-[0.9rem] text-[#1f1a12] focus-visible:border-[#23B9C4] focus-visible:ring-[rgba(35,185,196,0.12)]"
                         />
                       </div>
 
                       <div>
                         <label
                           className="mb-1.5 block text-[10px] font-semibold uppercase tracking-[0.2em]"
-                          style={{ color: "#7a5e28", fontFamily: "var(--font-body)" }}
+                          style={{ color: "#163847", fontFamily: "var(--font-body)" }}
                         >
                           Uw bericht
                         </label>
@@ -581,7 +581,7 @@ export function ConsultationSection() {
                           value={form.notes}
                           onChange={updateField("notes")}
                           placeholder="Vertel iets over uw woning, stijlvoorkeur, planning of budgetrichting."
-                          className="min-h-[100px] resize-none rounded-lg border-[#D9D2C3] bg-white px-4 py-3 text-[0.9rem] text-[#1f1a12] placeholder:text-[#9c9180] focus-visible:border-[#1a1410] focus-visible:ring-[rgba(26,20,16,0.06)]"
+                          className="min-h-[100px] resize-none rounded-lg border-[#D9D2C3] bg-white px-4 py-3 text-[0.9rem] text-[#1f1a12] placeholder:text-[#9c9180] focus-visible:border-[#23B9C4] focus-visible:ring-[rgba(35,185,196,0.12)]"
                         />
                       </div>
 
@@ -616,10 +616,10 @@ export function ConsultationSection() {
                         <button
                           type="submit"
                           disabled={!isValid}
-                          className="group inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-sm font-medium tracking-wide text-white transition-all duration-[250ms] hover:bg-[#0f0a06] disabled:cursor-not-allowed disabled:opacity-50"
+                          className="group inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-sm font-medium tracking-wide text-white transition-all duration-[250ms] hover:bg-[#1A9AA4] disabled:cursor-not-allowed disabled:opacity-50"
                           style={{
-                            background: "#1a1410",
-                            boxShadow: "0 12px 28px -14px rgba(26,20,16,0.55)",
+                            background: "#23B9C4",
+                            boxShadow: "0 12px 28px -14px rgba(35,185,196,0.45)",
                             fontFamily: "var(--font-body)",
                           }}
                         >
@@ -632,11 +632,11 @@ export function ConsultationSection() {
                 ) : (
                   /* ── Success state ────────────────────────────────── */
                   <div className="flex min-h-[500px] flex-col items-start justify-center">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-full border border-[#C8A96B]/30 bg-[#C8A96B]/8 text-[#C8A96B]">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-full border border-[#23B9C4]/30 bg-[rgba(35,185,196,0.06)] text-[#23B9C4]">
                       <Check className="h-6 w-6" />
                     </div>
                     <span
-                      className="mt-6 text-[0.6rem] font-light uppercase tracking-[0.28em] text-[#C8A96B]"
+                      className="mt-6 text-[0.6rem] font-light uppercase tracking-[0.28em] text-[#23B9C4]"
                       style={{ fontFamily: "var(--font-body)" }}
                     >
                       Aanvraag ontvangen
@@ -681,7 +681,7 @@ export function ConsultationSection() {
                       <Button
                         asChild
                         variant="outline"
-                        className="h-[54px] rounded-full border-[#081321]/15 px-10 text-[#081321] hover:border-[#C8A96B] hover:text-[#C8A96B]"
+                        className="h-[54px] rounded-full border-[#081321]/15 px-10 text-[#081321] hover:border-[#23B9C4] hover:text-[#23B9C4]"
                       >
                         <a href={kc.contact.phoneHref}>Bel Direct</a>
                       </Button>
@@ -704,7 +704,7 @@ export function ConsultationSection() {
           <motion.p
             variants={reduceMotion ? undefined : fadeUp}
             className="mb-6 text-[0.6rem] font-semibold uppercase tracking-[0.28em]"
-            style={{ color: "rgba(26,20,16,0.40)", fontFamily: "var(--font-body)" }}
+            style={{ color: "rgba(22,56,71,0.40)", fontFamily: "var(--font-body)" }}
           >
             What Happens Next
           </motion.p>
@@ -713,11 +713,11 @@ export function ConsultationSection() {
               <motion.div
                 key={step.n}
                 variants={reduceMotion ? undefined : fadeUp}
-                className="rounded-[18px] border border-[#E4DCCB] bg-white px-5 py-5 transition-all duration-300 hover:border-[rgba(200,169,107,0.5)] hover:shadow-[0_14px_32px_-16px_rgba(26,20,16,0.12)]"
+                className="rounded-[18px] border border-[#D4ECF0] bg-white px-5 py-5 transition-all duration-300 hover:border-[rgba(35,185,196,0.5)] hover:shadow-[0_14px_32px_-16px_rgba(35,185,196,0.15)]"
               >
                 <span
                   className="font-serif text-[1.3rem] font-light tracking-tight"
-                  style={{ color: "#8a6a2a" }}
+                  style={{ color: "#23B9C4" }}
                 >
                   {step.n}
                 </span>

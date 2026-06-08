@@ -53,7 +53,7 @@ const heroSlides = [
     brand: "NOBILIA",
     image: heroImg2,
     accent: "var(--green)",
-    accentSoft: "rgba(61,154,66,0.16)",
+    accentSoft: "rgba(35,185,196,0.14)",
   },
   {
     brand: "AI KÜCHEN",
@@ -65,7 +65,7 @@ const heroSlides = [
     brand: "ZAMPIERI",
     image: heroImg4,
     accent: "var(--green-soft)",
-    accentSoft: "rgba(110,154,105,0.14)",
+    accentSoft: "rgba(35,185,196,0.12)",
   },
   {
     brand: "CUCINESSE",
@@ -342,7 +342,7 @@ export function Hero() {
         />
         <motion.div
           aria-hidden="true"
-          className="absolute inset-0 bg-[radial-gradient(circle_at_76%_18%,rgba(200,169,107,0.12),transparent_24%),radial-gradient(circle_at_72%_68%,rgba(61,154,66,0.1),transparent_28%)]"
+          className="absolute inset-0 bg-[radial-gradient(circle_at_76%_18%,rgba(200,169,107,0.12),transparent_24%),radial-gradient(circle_at_72%_68%,rgba(35,185,196,0.08),transparent_28%)]"
           style={{ x: bgOffsetX, y: bgOffsetY }}
         />
         <div className="absolute inset-x-0 bottom-0 h-[18rem] bg-[linear-gradient(180deg,rgba(23,25,28,0)_0%,rgba(23,25,28,0.06)_24%,rgba(23,25,28,0.28)_72%,rgba(23,25,28,0.42)_100%)]" />
@@ -522,7 +522,7 @@ export function Hero() {
                   autoPlay={!reduceMotion}
                 />
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(23,25,28,0.12)_0%,rgba(23,25,28,0.42)_64%,rgba(23,25,28,0.78)_100%)]" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_18%,rgba(200,169,107,0.18),transparent_44%),radial-gradient(circle_at_78%_28%,rgba(61,154,66,0.14),transparent_42%)] opacity-0 transition-opacity duration-[2200ms] [transition-timing-function:cubic-bezier(0.19,1,0.22,1)] group-hover:opacity-100" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_18%,rgba(200,169,107,0.18),transparent_44%),radial-gradient(circle_at_78%_28%,rgba(35,185,196,0.10),transparent_42%)] opacity-0 transition-opacity duration-[2200ms] [transition-timing-function:cubic-bezier(0.19,1,0.22,1)] group-hover:opacity-100" />
                 <div aria-hidden="true" className="pointer-events-none absolute -inset-x-14 top-[-30%] h-[58%] rotate-[12deg] bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.22),transparent)] opacity-0 blur-[1px] transition-[opacity,transform] duration-[2200ms] [transition-timing-function:cubic-bezier(0.19,1,0.22,1)] group-hover:opacity-100 group-hover:translate-x-28" />
 
                 <div className="relative aspect-[16/9]">

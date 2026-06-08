@@ -39,7 +39,7 @@ export function FlowActionBar({
     >
       <div className="mx-auto flex w-[min(calc(100%-1rem),1536px)] flex-col gap-4 px-1 py-3 pb-[calc(env(safe-area-inset-bottom)+0.75rem)] md:w-[min(calc(100%-6rem),1536px)] md:flex-row md:items-center md:justify-between md:gap-6 md:px-0 md:py-5">
         <div className="min-w-0">
-          <p className="mb-1 block text-[0.62rem] uppercase tracking-[0.24em] text-[#B08D57] md:text-[0.6875rem]">{overline}</p>
+          <p className="mb-1 block text-[0.62rem] uppercase tracking-[0.24em] text-[#23B9C4] md:text-[0.6875rem]">{overline}</p>
           <p
             className={`text-[1.18rem] leading-[1.08] md:truncate md:text-[1.75rem] ${
               isLight ? "text-[#111111]" : "text-[#F7F5F2]"
@@ -78,8 +78,8 @@ export function FlowActionBar({
               disabled={continueDisabled}
               className={`inline-flex min-h-[50px] w-full items-center justify-center rounded-[14px] border px-4 text-[0.68rem] tracking-[0.16em] transition-all duration-300 sm:w-auto sm:min-h-[52px] sm:px-6 sm:text-[0.75rem] sm:tracking-[0.18em] ${
                 isLight
-                  ? "border-[#111111] bg-[#111111] text-[#F7F5F2] hover:bg-[#1B1B1B]"
-                  : "border-[#B08D57] bg-[#B08D57] text-[#F7F5F2] hover:border-[#8A6D3A] hover:bg-[#8A6D3A]"
+                  ? "border-[#23B9C4] bg-[#23B9C4] text-white hover:bg-[#163847] hover:border-[#163847]"
+                  : "border-[#23B9C4] bg-[#23B9C4] text-white hover:bg-[#163847] hover:border-[#163847]"
               } disabled:cursor-not-allowed disabled:opacity-45`}
               style={{ textTransform: "uppercase" }}
             >
