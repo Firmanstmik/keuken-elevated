@@ -1,10 +1,11 @@
 import { r as reactExports, j as jsxRuntimeExports } from "../_libs/react.mjs";
 import { d as useNavigate } from "../_libs/tanstack__react-router.mjs";
 import { F as FlowActionBar } from "./FlowActionBar-cZUVzyYV.mjs";
-import { F as FlowNav } from "./FlowNav-C0FjiPzB.mjs";
+import { F as FlowNav } from "./FlowNav-C-KTyV18.mjs";
 import { P as PageHeader } from "./PageHeader-D3DEiDsb.mjs";
-import { h as masterStyles, m as masterBrands, C as Check } from "./master-config-data-7d0zwdt6.mjs";
-import { u as useConfigurator } from "./router-CD5wCoak.mjs";
+import { m as masterBrands, C as Check } from "./master-config-data-CQ2gS3IZ.mjs";
+import { u as useConfigurator } from "./router-Bkz8D-FV.mjs";
+import { c as cucinesseLogo, z as zampieriLogo, a as aiKuchenLogo, l as leichtLogo } from "./Cucinesse_Logo-DZinUg9I.mjs";
 import "../_libs/sonner.mjs";
 import { m as motion, A as AnimatePresence } from "../_libs/framer-motion.mjs";
 import "../_libs/tanstack__router-core.mjs";
@@ -20,7 +21,7 @@ import "crypto";
 import "async_hooks";
 import "stream";
 import "../_libs/isbot.mjs";
-import "./Nav-DYSD4rQn.mjs";
+import "./Nav-BWSUqZgo.mjs";
 import "../_libs/radix-ui__react-accordion.mjs";
 import "../_libs/radix-ui__react-context.mjs";
 import "../_libs/radix-ui__react-collection.mjs";
@@ -63,22 +64,43 @@ import "../_libs/tanstack__query-core.mjs";
 import "../_libs/tanstack__react-query.mjs";
 import "../_libs/motion-dom.mjs";
 import "../_libs/motion-utils.mjs";
-function StylePage() {
+const nobiliaLogo = "/assets/Nobilia_Logo-DGTJK5tH.webp";
+const brandLogos = {
+  leicht: {
+    src: leichtLogo,
+    alt: "LEICHT logo",
+    widthClass: "w-[92px]"
+  },
+  "ai-kuchen": {
+    src: aiKuchenLogo,
+    alt: "AI Kuchen logo",
+    widthClass: "w-[84px]"
+  },
+  nobilia: {
+    src: nobiliaLogo,
+    alt: "Nobilia logo",
+    widthClass: "w-[92px]"
+  },
+  zampieri: {
+    src: zampieriLogo,
+    alt: "Zampieri logo",
+    widthClass: "w-[92px]"
+  },
+  cucinesse: {
+    src: cucinesseLogo,
+    alt: "Cucinesse logo",
+    widthClass: "w-[98px]"
+  }
+};
+function BrandsPage() {
   const navigate = useNavigate();
   const {
     config,
-    setStyle
+    setBrand,
+    resetConfig
   } = useConfigurator();
   const [hovered, setHovered] = reactExports.useState(null);
-  const selectedStyle = reactExports.useMemo(() => masterStyles.find((style) => style.id === config.style) ?? null, [config.style]);
   const selectedBrand = reactExports.useMemo(() => masterBrands.find((brand) => brand.id === config.brand) ?? null, [config.brand]);
-  reactExports.useEffect(() => {
-    if (!config.brand) {
-      navigate({
-        to: "/brands"
-      });
-    }
-  }, [config.brand, navigate]);
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("main", { className: "min-h-screen bg-[#F7F5F2]", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(FlowNav, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsx(motion.section, { initial: {
@@ -90,11 +112,13 @@ function StylePage() {
     }, transition: {
       duration: 0.45,
       ease: "easeInOut"
-    }, className: "pb-36 pt-24 md:pb-40 md:pt-36", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mx-auto w-[min(calc(100%-3rem),1536px)] md:w-[min(calc(100%-6rem),1536px)]", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(PageHeader, { overline: "Stap 02 van 05", title: "Kies uw stijl", subtitle: "Bepaal de architectonische taal van uw keuken. Elke stijl biedt een eigen sfeer en beleving." }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid gap-3 sm:gap-4 md:grid-cols-2", children: masterStyles.map((style, index) => {
-        const selected = config.style === style.id;
-        const isHovered = hovered === style.id;
+    }, className: `pt-24 md:pt-36 ${selectedBrand ? "pb-36 md:pb-40" : "pb-20 md:pb-32"}`, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mx-auto w-[min(calc(100%-3rem),1536px)] md:w-[min(calc(100%-6rem),1536px)]", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(PageHeader, { overline: "Stap 01 van 05", title: "Kies uw merk", subtitle: "Selecteer de Europese keukenfabrikant die past bij uw visie. Elk merk brengt een eigen ontwerpfilosofie en erfgoed mee." }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid gap-3 sm:gap-4 lg:grid-cols-3", children: masterBrands.map((brand, index) => {
+        const selected = config.brand === brand.id;
+        const isHovered = hovered === brand.id;
+        const logo = brandLogos[brand.id];
+        const preserveUppercase = brand.id === "leicht";
         return /* @__PURE__ */ jsxRuntimeExports.jsxs(motion.button, { type: "button", initial: {
           opacity: 0,
           y: 32
@@ -104,31 +128,36 @@ function StylePage() {
         }, transition: {
           delay: index * 0.1,
           duration: 0.6
-        }, onClick: () => setStyle(style.id, style.name), onMouseEnter: () => setHovered(style.id), onMouseLeave: () => setHovered(null), className: "relative h-[320px] cursor-pointer overflow-hidden rounded-[18px] border text-left sm:h-[360px] md:h-[460px]", style: {
+        }, onClick: () => setBrand(brand.id, brand.name), onMouseEnter: () => setHovered(brand.id), onMouseLeave: () => setHovered(null), className: "relative h-[320px] cursor-pointer overflow-hidden rounded-[18px] border text-left sm:h-[360px] md:h-[460px]", style: {
           borderColor: selected ? "#B08D57" : "rgba(0,0,0,0.08)",
           boxShadow: selected ? "0 0 0 1px #B08D57, 0 20px 60px rgba(176,141,87,0.15)" : isHovered ? "0 16px 48px rgba(0,0,0,0.12)" : "0 2px 12px rgba(0,0,0,0.04)"
         }, children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]", style: {
-            backgroundImage: `url(${style.image})`,
-            transform: isHovered ? "scale(1.06)" : "scale(1)",
-            filter: isHovered ? "brightness(0.82)" : "brightness(0.92)"
+            backgroundImage: `url(${brand.image})`,
+            transform: isHovered ? "scale(1.06)" : "scale(1)"
           } }),
           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 transition-opacity duration-400", style: {
             background: "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.05) 100%)",
             opacity: isHovered ? 0.85 : 0.7
           } }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "pointer-events-none absolute right-0 top-0 z-[1] h-28 w-40 md:h-32 md:w-44", style: {
+            background: "radial-gradient(circle at top right, rgba(247,245,242,0.68) 0%, rgba(247,245,242,0.34) 34%, rgba(247,245,242,0.12) 52%, rgba(247,245,242,0) 76%)",
+            opacity: isHovered ? 0.92 : 0.82
+          } }),
+          logo ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute right-4 top-4 z-10 px-1 py-1 md:right-5 md:top-5", children: /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: logo.src, alt: logo.alt, className: `h-auto ${logo.widthClass} drop-shadow-[0_8px_18px_rgba(0,0,0,0.18)]`, loading: "lazy" }) }) : null,
           /* @__PURE__ */ jsxRuntimeExports.jsxs(motion.div, { className: "absolute inset-x-0 bottom-0 p-4 sm:p-5 md:p-6", animate: {
             y: isHovered ? -6 : 0
           }, transition: {
             duration: 0.65,
             ease: [0.22, 1, 0.36, 1]
           }, children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mb-1 block text-[0.625rem] uppercase tracking-[0.2em] text-[#B08D57]", children: style.keywords[0] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mb-1 block text-[0.625rem] uppercase tracking-[0.2em] text-[#B08D57]", children: brand.origin }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "mb-0.5 text-[1.35rem] leading-[1.2] text-[#F7F5F2] sm:text-[1.5rem] md:text-[1.75rem]", style: {
               fontFamily: '"Playfair Display", serif',
-              fontWeight: 400
-            }, children: style.name }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mb-2 block text-[0.75rem] uppercase tracking-[0.15em] text-[rgba(247,245,242,0.65)]", children: style.keywords.join(", ") }),
+              fontWeight: 400,
+              textTransform: preserveUppercase ? "uppercase" : "none"
+            }, children: brand.name }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mb-2 block text-[0.75rem] uppercase tracking-[0.15em] text-[rgba(247,245,242,0.65)]", children: brand.tagline }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { mode: "wait", children: isHovered ? /* @__PURE__ */ jsxRuntimeExports.jsx(motion.p, { initial: {
               opacity: 0,
               y: 18,
@@ -147,7 +176,7 @@ function StylePage() {
             }, className: "max-w-[32rem] text-[0.82rem] leading-[1.6] text-[rgba(247,245,242,0.75)] normal-case sm:text-[0.875rem]", style: {
               textTransform: "none",
               letterSpacing: "0.01em"
-            }, children: style.description }) : null })
+            }, children: brand.description }) : null })
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { children: selected ? /* @__PURE__ */ jsxRuntimeExports.jsx(motion.div, { initial: {
             opacity: 0,
@@ -159,16 +188,14 @@ function StylePage() {
             opacity: 0,
             scale: 0.6
           }, className: "absolute left-5 top-5", children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "inline-flex h-9 w-9 items-center justify-center bg-[#B08D57] text-[#F7F5F2]", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Check, { className: "h-[18px] w-[18px]" }) }) }) : null })
-        ] }, style.id);
+        ] }, brand.id);
       }) })
     ] }) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(FlowActionBar, { overline: "Geselecteerd", title: selectedStyle?.name ?? "Kies uw stijl", subtitle: selectedStyle ? `${selectedBrand?.name ?? "Merk"} met ${selectedStyle.name} is klaar voor stap 3` : "Kies eerst een stijl om door te gaan naar stap 3", backLabel: "Terug", onBack: () => selectedStyle ? setStyle("", "") : navigate({
-      to: "/brands"
-    }), continueLabel: "Verder naar stap 3", onContinue: () => navigate({
-      to: "/configure"
-    }), continueDisabled: !selectedStyle }) })
+    /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { children: selectedBrand ? /* @__PURE__ */ jsxRuntimeExports.jsx(FlowActionBar, { overline: "Geselecteerd", title: selectedBrand.name, backLabel: "Terug", onBack: () => resetConfig(), continueLabel: "Verder naar stijl", onContinue: () => navigate({
+      to: "/style"
+    }) }) : null })
   ] });
 }
 export {
-  StylePage as component
+  BrandsPage as component
 };

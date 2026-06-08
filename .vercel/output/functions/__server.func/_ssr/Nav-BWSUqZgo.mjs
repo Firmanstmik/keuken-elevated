@@ -1,7 +1,7 @@
 import { r as reactExports, j as jsxRuntimeExports } from "../_libs/react.mjs";
 import { u as useLocation } from "../_libs/tanstack__react-router.mjs";
-import { l as logoKeuken, b as ChevronDown } from "./master-config-data-7d0zwdt6.mjs";
-import { k as kc } from "./router-CD5wCoak.mjs";
+import { l as logoKeuken, b as ChevronDown } from "./master-config-data-CQ2gS3IZ.mjs";
+import { k as kc } from "./router-Bkz8D-FV.mjs";
 import { R as Root2, I as Item, H as Header, T as Trigger2, C as Content2 } from "../_libs/radix-ui__react-accordion.mjs";
 import { c as clsx } from "../_libs/clsx.mjs";
 import { t as twMerge } from "../_libs/tailwind-merge.mjs";
@@ -360,7 +360,7 @@ function Nav() {
               animate: { opacity: 1, y: 0 },
               transition: { duration: motionDuration.premium, ease: motionEase.premium, delay: 0.06 },
               className: "flex shrink-0 items-center",
-              children: /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: logoKeuken, alt: "Keuken Centrum logo", className: `w-auto transition-all duration-300 ${elevated ? "h-11 md:h-12" : "h-12 md:h-14"}`, width: 343, height: 56 })
+              children: /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: logoKeuken, alt: "Keuken Centrum logo", className: `w-auto transition-all duration-300 ${elevated ? "h-7 md:h-8" : "h-8 md:h-10"}`, width: 343, height: 56 })
             }
           ),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
