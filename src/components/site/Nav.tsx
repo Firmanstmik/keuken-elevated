@@ -364,7 +364,7 @@ export function Nav() {
               transition={{ duration: motionDuration.premium, ease: motionEase.premium, delay: 0.06 }}
               className="flex shrink-0 items-center"
             >
-              <img src={logoKeuken} alt="Keuken Centrum logo" className={`w-auto transition-all duration-300 ${elevated ? "h-11 md:h-12" : "h-12 md:h-14"}`} width={343} height={56} />
+              <img src={logoKeuken} alt="Keuken Centrum logo" className={`w-auto transition-all duration-300 ${elevated ? "h-7 md:h-8" : "h-8 md:h-10"}`} width={343} height={56} />
             </motion.a>
 
             <motion.nav
@@ -451,11 +451,10 @@ export function Nav() {
                             animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
                             exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 10, scale: 0.98, filter: "blur(10px)" }}
                             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                            className={`absolute z-50 mt-4 overflow-hidden rounded-[24px] border border-[#E5DCD3]/50 bg-[#FAF8F4]/95 shadow-[0_32px_64px_-12px_rgba(23,25,28,0.12),0_0_0_1px_rgba(255,255,255,0.7)_inset] backdrop-blur-2xl ${
-                              isMegamenu
-                                ? "left-1/2 w-[860px] -translate-x-1/2"
-                                : "left-1/2 w-[280px] -translate-x-1/2 p-2.5"
-                            }`}
+                            className={`absolute z-50 mt-4 overflow-hidden rounded-[24px] border border-[#E5DCD3]/50 bg-[#FAF8F4]/95 shadow-[0_32px_64px_-12px_rgba(23,25,28,0.12),0_0_0_1px_rgba(255,255,255,0.7)_inset] backdrop-blur-2xl ${isMegamenu
+                              ? "left-1/2 w-[860px] -translate-x-1/2"
+                              : "left-1/2 w-[280px] -translate-x-1/2 p-2.5"
+                              }`}
                             role="menu"
                             aria-label={item.label}
                           >
@@ -592,11 +591,10 @@ export function Nav() {
               onClick={() => setOpen((value) => !value)}
               aria-label={open ? "Sluit menu" : "Open menu"}
               aria-expanded={open}
-              className={`nav-mobile-toggle flex h-12 w-12 items-center justify-center rounded-[2px] border lg:hidden ${
-                elevated
-                  ? "border-[rgb(7,17,27,0.12)] bg-[rgba(255,255,255,0.82)] text-[var(--foreground)]"
-                  : "border-[rgb(7,17,27,0.12)] bg-[rgba(246,244,238,0.78)] text-[var(--foreground)] backdrop-blur-xl"
-              }`}
+              className={`nav-mobile-toggle flex h-12 w-12 items-center justify-center rounded-[2px] border lg:hidden ${elevated
+                ? "border-[rgb(7,17,27,0.12)] bg-[rgba(255,255,255,0.82)] text-[var(--foreground)]"
+                : "border-[rgb(7,17,27,0.12)] bg-[rgba(246,244,238,0.78)] text-[var(--foreground)] backdrop-blur-xl"
+                }`}
             >
               <span className="nav-mobile-toggle-lines" aria-hidden="true">
                 <span />
