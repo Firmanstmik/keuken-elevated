@@ -1,15 +1,15 @@
 import { j as jsxRuntimeExports, r as reactExports } from "../_libs/react.mjs";
-import { N as Nav, d as motionEase, a as motionDuration, b as boraImg, m as marmerImg, g as staggerHeader$3, e as motionViewport, f as fadeUp$6, h as staggerList, s as showroomImg, c as cn } from "./Nav-DBGlzGaJ.mjs";
+import { N as Nav, d as motionEase, a as motionDuration, b as boraImg, m as marmerImg, g as staggerHeader$3, e as motionViewport, f as fadeUp$6, s as showroomImg, h as staggerList, c as cn } from "./Nav-DYSD4rQn.mjs";
 import { a as ArrowRight, e as masterCategories, H as House, P as Phone, M as Mail, C as Check, l as logoKeuken, T as Tag, X, b as ChevronDown, c as ChevronUp } from "./master-config-data-7d0zwdt6.mjs";
 import { r as reactDomExports } from "../_libs/react-dom.mjs";
 import { l as leichtLogo, a as aiKuchenLogo, z as zampieriLogo, c as cucinesseLogo } from "./Cucinesse_Logo-DZinUg9I.mjs";
-import { k as kc } from "./router-Ch58D1iw.mjs";
+import { k as kc } from "./router-CD5wCoak.mjs";
 import { T as TuneIcon, P as PaletteOutlinedIcon, e as SupportAgentIcon } from "../_libs/mui__icons-material.mjs";
 import { S as Slot } from "../_libs/radix-ui__react-slot.mjs";
 import { c as cva } from "../_libs/class-variance-authority.mjs";
 import { k as klassiekBase } from "./klassiek-base-ByI9UL1v.mjs";
 import { k as klassiekHotspots } from "./klassiek-hotspots-DmS3IOWJ.mjs";
-import { I as Input, T as Textarea } from "./textarea-DtOd0kMe.mjs";
+import { I as Input, T as Textarea } from "./textarea-BMR3KijZ.mjs";
 import { R as Root2, V as Value, T as Trigger, I as Icon, P as Portal, C as Content2, f as Viewport, a as Item, b as ItemIndicator, c as ItemText, d as ScrollUpButton, S as ScrollDownButton, L as Label, e as Separator } from "../_libs/radix-ui__react-select.mjs";
 import "../_libs/sonner.mjs";
 import { b as useReducedMotion, a as useMotionValue, d as useSpring, e as useTransform, c as useScroll, m as motion, A as AnimatePresence, u as useInView } from "../_libs/framer-motion.mjs";
@@ -962,14 +962,30 @@ const collections$1 = [
     href: "#consultation"
   }
 ];
+function LayersIcon() {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("svg", { width: "15", height: "15", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "1.6", strokeLinecap: "round", strokeLinejoin: "round", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M12 2L2 7l10 5 10-5-10-5z" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M2 17l10 5 10-5" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M2 12l10 5 10-5" })
+  ] });
+}
+function SwatchIcon() {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("svg", { width: "15", height: "15", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "1.6", strokeLinecap: "round", strokeLinejoin: "round", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M11 2a2 2 0 0 0-2 2v7H4a2 2 0 0 0-2 2v2c0 1.1.9 2 2 2h3l6 5v-5h4a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-1V4a2 2 0 0 0-2-2h-3z" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M15 8h.01M15 12h.01" })
+  ] });
+}
+function AwardIcon() {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("svg", { width: "15", height: "15", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "1.6", strokeLinecap: "round", strokeLinejoin: "round", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "12", cy: "8", r: "6" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" })
+  ] });
+}
+const statIcons = [/* @__PURE__ */ jsxRuntimeExports.jsx(LayersIcon, {}, "layers"), /* @__PURE__ */ jsxRuntimeExports.jsx(SwatchIcon, {}, "swatch"), /* @__PURE__ */ jsxRuntimeExports.jsx(AwardIcon, {}, "award")];
 const luxuryEase$4 = [0.22, 1, 0.36, 1];
 const revealVariants = {
   hidden: { opacity: 0, y: 28 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 1, ease: luxuryEase$4 }
-  }
+  visible: { opacity: 1, y: 0, transition: { duration: 1, ease: luxuryEase$4 } }
 };
 const staggerHeader$2 = {
   hidden: {},
@@ -998,9 +1014,7 @@ function LuxuryCard({ item, reduceMotion }) {
   const rotY = useSpring(rawRotY, springCfg);
   const rawY = useMotionValue(0);
   const liftY = useSpring(rawY, { stiffness: 160, damping: 24 });
-  const rawShadow = useMotionValue(
-    "0 8px 32px -16px rgba(0,0,0,0.6)"
-  );
+  const rawShadow = useMotionValue("0 8px 32px -16px rgba(0,0,0,0.65)");
   const handleMouseMove = reactExports.useCallback(
     (e) => {
       if (!wrapperRef.current || reduceMotion) return;
@@ -1019,7 +1033,7 @@ function LuxuryCard({ item, reduceMotion }) {
     if (reduceMotion) return;
     rawY.set(-12);
     rawShadow.set(
-      "0 28px 64px -24px rgba(0,0,0,0.8), 0 0 48px -12px rgba(197,160,89,0.15)"
+      "0 28px 64px -24px rgba(0,0,0,0.82), 0 0 48px -12px rgba(49,199,212,0.14)"
     );
   }, [reduceMotion, rawY, rawShadow]);
   const handleMouseLeave = reactExports.useCallback(() => {
@@ -1028,9 +1042,7 @@ function LuxuryCard({ item, reduceMotion }) {
     rawRotX.set(0);
     rawRotY.set(0);
     rawY.set(0);
-    rawShadow.set(
-      "0 8px 32px -16px rgba(0,0,0,0.6)"
-    );
+    rawShadow.set("0 8px 32px -16px rgba(0,0,0,0.65)");
   }, [reduceMotion, rawRotX, rawRotY, rawY, rawShadow]);
   const isFeatured = item.featured;
   return /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -1046,7 +1058,7 @@ function LuxuryCard({ item, reduceMotion }) {
       children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
         motion.article,
         {
-          className: "group relative h-full cursor-pointer overflow-hidden border border-white/[0.06] hover:border-[rgba(197,160,89,0.25)] transition-colors duration-700",
+          className: "group relative h-full cursor-pointer overflow-hidden border border-white/[0.06] transition-colors duration-700 hover:border-[rgba(49,199,212,0.26)]",
           style: {
             borderRadius: "36px",
             y: reduceMotion ? 0 : liftY,
@@ -1064,29 +1076,30 @@ function LuxuryCard({ item, reduceMotion }) {
                 src: item.image,
                 alt: item.title,
                 loading: "lazy",
+                draggable: false,
                 style: reduceMotion ? void 0 : { y: imageParallax },
                 className: [
                   "absolute inset-0 h-[120%] w-full -translate-y-[10%] object-cover will-change-transform",
-                  "transition-[transform,filter,brightness] duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
-                  "group-hover:scale-[1.05] group-hover:brightness-[1.06] group-hover:saturate-[1.04]"
+                  "transition-[transform,filter] duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
+                  "group-hover:scale-[1.042] group-hover:brightness-[1.04]"
                 ].join(" ")
               }
             ),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               "div",
               {
-                className: "absolute inset-0 transition-[background] duration-[800ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
+                className: "absolute inset-0 transition-[background] duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
                 style: {
-                  background: "linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.52) 60%, rgba(0,0,0,0.86) 100%)"
+                  background: "linear-gradient(180deg, rgba(0,0,0,0.06) 0%, rgba(0,0,0,0.50) 58%, rgba(0,0,0,0.90) 100%)"
                 }
               }
             ),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               "div",
               {
-                className: "absolute inset-0 opacity-0 transition-opacity duration-[800ms] group-hover:opacity-100",
+                className: "absolute inset-0 opacity-0 transition-opacity duration-[700ms] group-hover:opacity-100",
                 style: {
-                  background: "linear-gradient(180deg, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.44) 58%, rgba(0,0,0,0.78) 100%)"
+                  background: "linear-gradient(180deg, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0.42) 56%, rgba(0,0,0,0.80) 100%)"
                 }
               }
             ),
@@ -1098,7 +1111,7 @@ function LuxuryCard({ item, reduceMotion }) {
                 style: {
                   borderRadius: "inherit",
                   opacity: spot.visible ? 1 : 0,
-                  background: `radial-gradient(300px circle at ${spot.x}px ${spot.y}px, rgba(180,140,70,0.13), transparent 58%)`
+                  background: `radial-gradient(280px circle at ${spot.x}px ${spot.y}px, rgba(49,199,212,0.10), transparent 58%)`
                 }
               }
             ),
@@ -1106,7 +1119,10 @@ function LuxuryCard({ item, reduceMotion }) {
               "div",
               {
                 "aria-hidden": "true",
-                className: "absolute inset-x-0 top-0 z-20 h-px origin-left scale-x-0 bg-gradient-to-r from-[rgba(201,164,106,0)] via-[rgba(201,164,106,0.9)] to-[rgba(201,164,106,0)] transition-transform duration-[800ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100"
+                className: "absolute inset-x-0 top-0 z-20 h-px origin-left scale-x-0 transition-transform duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100",
+                style: {
+                  background: "linear-gradient(90deg, rgba(49,199,212,0), rgba(49,199,212,0.88), rgba(49,199,212,0))"
+                }
               }
             ),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -1115,7 +1131,7 @@ function LuxuryCard({ item, reduceMotion }) {
                 "aria-hidden": "true",
                 className: "pointer-events-none absolute inset-0 z-10 opacity-0 transition-opacity duration-700 group-hover:opacity-100",
                 style: {
-                  background: "radial-gradient(ellipse 65% 32% at 50% 100%, rgba(201,164,106,0.16), transparent 65%)"
+                  background: "radial-gradient(ellipse 60% 28% at 50% 100%, rgba(49,199,212,0.11), transparent 65%)"
                 }
               }
             ),
@@ -1124,14 +1140,14 @@ function LuxuryCard({ item, reduceMotion }) {
               {
                 href: item.href,
                 "aria-label": `${item.collectionTitle}: ${item.luxuryDescription}`,
-                className: "absolute inset-0 z-30 flex flex-col justify-end p-7 outline-none focus-visible:ring-2 focus-visible:ring-[rgba(201,164,106,0.8)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F1722]",
+                className: "absolute inset-0 z-30 flex flex-col justify-end p-7 outline-none focus-visible:ring-2 focus-visible:ring-[rgba(49,199,212,0.75)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B1E2C]",
                 style: { borderRadius: "inherit" },
                 children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
                     "p",
                     {
-                      className: "mb-2.5 text-[0.6rem] font-light tracking-[0.32em] text-[rgba(201,164,106,0.65)] transition-colors duration-500 group-hover:text-[rgba(201,164,106,0.9)]",
-                      style: { fontFamily: "'Jost', sans-serif" },
+                      className: "mb-2.5 text-[0.6rem] font-light tracking-[0.32em] text-[rgba(49,199,212,0.58)] transition-colors duration-500 group-hover:text-[rgba(49,199,212,0.92)]",
+                      style: { fontFamily: "var(--font-body)" },
                       children: item.collectionTitle
                     }
                   ),
@@ -1153,10 +1169,10 @@ function LuxuryCard({ item, reduceMotion }) {
                         "overflow-hidden font-light leading-[1.7] text-[rgba(255,255,255,0.0)]",
                         "transition-[max-height,opacity,margin,color] duration-[750ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
                         "[max-height:0px]",
-                        "group-hover:mt-3 group-hover:text-[rgba(255,255,255,0.62)] group-hover:[max-height:72px]",
+                        "group-hover:mt-3 group-hover:text-[rgba(255,255,255,0.60)] group-hover:[max-height:72px]",
                         isFeatured ? "text-[0.9rem]" : "text-[0.82rem]"
                       ].join(" "),
-                      style: { fontFamily: "'Jost', sans-serif" },
+                      style: { fontFamily: "var(--font-body)" },
                       children: item.luxuryDescription
                     }
                   ),
@@ -1165,11 +1181,11 @@ function LuxuryCard({ item, reduceMotion }) {
                     {
                       className: [
                         "mt-3 inline-flex translate-y-3 items-center gap-2 opacity-0",
-                        "text-[0.7rem] font-light tracking-[0.2em] text-[rgba(201,164,106,0.0)]",
+                        "text-[0.7rem] font-light tracking-[0.2em] text-[rgba(49,199,212,0)]",
                         "transition-[transform,opacity,gap,color] duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
-                        "group-hover:translate-y-0 group-hover:gap-[10px] group-hover:text-[rgba(201,164,106,0.88)] group-hover:opacity-100"
+                        "group-hover:translate-y-0 group-hover:gap-[10px] group-hover:text-[rgba(49,199,212,0.90)] group-hover:opacity-100"
                       ].join(" "),
-                      style: { fontFamily: "'Jost', sans-serif" },
+                      style: { fontFamily: "var(--font-body)" },
                       children: [
                         /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "uppercase", children: "Verken collectie" }),
                         /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowRight, { className: "h-3 w-3 transition-transform duration-[500ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-2" })
@@ -1193,15 +1209,47 @@ function Experience() {
     "section",
     {
       id: "experience",
-      className: "relative overflow-hidden bg-[#17191C] py-[80px] text-white md:py-[120px]",
+      className: "relative overflow-hidden bg-[#0B1E2C] py-[80px] text-white md:py-[120px]",
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           "div",
           {
             "aria-hidden": "true",
+            className: "pointer-events-none absolute left-[50%] top-[35%] h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[190px]",
+            style: { background: "radial-gradient(circle, rgba(49,199,212,0.10), transparent 65%)" }
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            "aria-hidden": "true",
+            className: "pointer-events-none absolute -left-[20%] -top-[20%] h-[80vh] w-[80vh] rounded-full blur-[160px] opacity-55",
+            style: { background: "radial-gradient(circle, rgba(49,199,212,0.12), transparent 60%)" }
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            "aria-hidden": "true",
+            className: "pointer-events-none absolute -bottom-[18%] -right-[15%] h-[55vh] w-[55vh] rounded-full blur-[140px] opacity-40",
+            style: { background: "radial-gradient(circle, rgba(49,199,212,0.08), transparent 65%)" }
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            "aria-hidden": "true",
             className: "pointer-events-none absolute inset-0 mix-blend-multiply",
+            style: { background: "radial-gradient(circle at 50% 50%, transparent 42%, #040A0F 100%)" }
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            "aria-hidden": "true",
+            className: "pointer-events-none absolute inset-0 opacity-[0.032] mix-blend-overlay",
             style: {
-              background: "radial-gradient(circle at 50% 50%, transparent 40%, #111315 100%)"
+              backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/></filter><rect width='160' height='160' filter='url(%23g)'/></svg>")`
             }
           }
         ),
@@ -1209,74 +1257,16 @@ function Experience() {
           "div",
           {
             "aria-hidden": "true",
-            className: "pointer-events-none absolute -left-[20%] -top-[20%] h-[120%] w-[90%] rounded-full blur-[140px] opacity-45",
-            style: {
-              background: "radial-gradient(circle at 30% 30%, #1E2023 0%, transparent 70%)"
-            }
+            className: "pointer-events-none absolute inset-x-0 top-0 h-px",
+            style: { background: "linear-gradient(90deg, transparent, rgba(49,199,212,0.22), transparent)" }
           }
         ),
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           "div",
           {
             "aria-hidden": "true",
-            className: "pointer-events-none absolute -right-[20%] -bottom-[20%] h-[120%] w-[90%] rounded-full blur-[140px] opacity-40",
-            style: {
-              background: "radial-gradient(circle at 70% 70%, #1E2023 0%, transparent 70%)"
-            }
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "div",
-          {
-            "aria-hidden": "true",
-            className: "pointer-events-none absolute left-[50%] top-[40%] h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[160px] opacity-25",
-            style: {
-              background: "radial-gradient(circle, #1E2023 0%, transparent 75%)"
-            }
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "div",
-          {
-            "aria-hidden": "true",
-            className: "pointer-events-none absolute left-[20%] top-[30%] h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[200px] opacity-[0.05]",
-            style: {
-              background: "radial-gradient(circle, rgba(200, 169, 107, 0.7) 0%, transparent 70%)"
-            }
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "div",
-          {
-            "aria-hidden": "true",
-            className: "pointer-events-none absolute right-[20%] bottom-[20%] h-[600px] w-[600px] translate-x-1/2 translate-y-1/2 rounded-full blur-[200px] opacity-[0.04]",
-            style: {
-              background: "radial-gradient(circle, rgba(200, 169, 107, 0.6) 0%, transparent 70%)"
-            }
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "div",
-          {
-            "aria-hidden": "true",
-            className: "pointer-events-none absolute inset-0 opacity-[0.035] mix-blend-overlay",
-            style: {
-              backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='fine-grain'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/></filter><rect width='160' height='160' filter='url(%23fine-grain)'/></svg>")`
-            }
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "div",
-          {
-            "aria-hidden": "true",
-            className: "pointer-events-none absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-[rgba(200,169,107,0.15)] to-transparent"
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "div",
-          {
-            "aria-hidden": "true",
-            className: "pointer-events-none absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[rgba(200,169,107,0.08)] to-transparent"
+            className: "pointer-events-none absolute inset-x-0 bottom-0 h-px",
+            style: { background: "linear-gradient(90deg, transparent, rgba(49,199,212,0.10), transparent)" }
           }
         ),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "site-container relative", children: [
@@ -1296,12 +1286,12 @@ function Experience() {
                       variants: reduceMotion ? void 0 : fadeUp$5,
                       className: "mb-5 flex items-center gap-4",
                       children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "h-px w-8 bg-gradient-to-r from-transparent to-[rgba(200,169,107,0.55)]" }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "h-px w-8 bg-gradient-to-r from-transparent to-[rgba(49,199,212,0.55)]" }),
                         /* @__PURE__ */ jsxRuntimeExports.jsx(
                           "span",
                           {
-                            className: "text-[0.6rem] font-light tracking-[0.32em] text-[#C8A96B]",
-                            style: { fontFamily: "'Jost', sans-serif" },
+                            className: "text-[0.6rem] font-semibold uppercase tracking-[0.32em] text-[#31C7D4]",
+                            style: { fontFamily: "var(--font-body)" },
                             children: "Keukeninspiratie"
                           }
                         )
@@ -1316,7 +1306,19 @@ function Experience() {
                       children: [
                         "Eén plaats voor",
                         " ",
-                        /* @__PURE__ */ jsxRuntimeExports.jsx("em", { className: "italic text-[#C8A96B]", children: "al uw wensen" })
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "em",
+                          {
+                            style: {
+                              fontStyle: "italic",
+                              background: "linear-gradient(128deg, #31C7D4 0%, #66DCE6 48%, #23B9C4 100%)",
+                              WebkitBackgroundClip: "text",
+                              WebkitTextFillColor: "transparent",
+                              backgroundClip: "text"
+                            },
+                            children: "al uw wensen"
+                          }
+                        )
                       ]
                     }
                   ),
@@ -1324,8 +1326,8 @@ function Experience() {
                     motion.p,
                     {
                       variants: reduceMotion ? void 0 : fadeUp$5,
-                      className: "mt-4 max-w-[32rem] text-[0.92rem] font-light leading-[1.82] text-[rgba(255,255,255,0.75)]",
-                      style: { fontFamily: "'Jost', sans-serif" },
+                      className: "mt-4 max-w-[32rem] text-[0.92rem] font-light leading-[1.82] text-[rgba(255,255,255,0.48)]",
+                      style: { fontFamily: "var(--font-body)" },
                       children: "Van verfijnd design tot modern en budgetvriendelijk: ontdek stijlen die passen bij uw ruimte en manier van leven."
                     }
                   )
@@ -1334,27 +1336,56 @@ function Experience() {
                   motion.div,
                   {
                     variants: reduceMotion ? void 0 : fadeUp$5,
-                    className: "flex shrink-0 items-center gap-3",
+                    className: "flex shrink-0 flex-col items-start gap-4 md:items-end",
                     children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        "img",
-                        {
-                          src: kc.cbwLogo,
-                          alt: "CBW erkend",
-                          className: "h-12 w-auto opacity-55 md:h-14",
-                          loading: "lazy"
-                        }
-                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "img",
+                          {
+                            src: kc.cbwLogo,
+                            alt: "CBW erkend",
+                            className: "h-12 w-auto opacity-40 md:h-14",
+                            loading: "lazy"
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                          "span",
+                          {
+                            className: "text-[0.68rem] font-light leading-snug text-[rgba(255,255,255,0.20)]",
+                            style: { fontFamily: "var(--font-body)" },
+                            children: [
+                              "Vertrouwen",
+                              /* @__PURE__ */ jsxRuntimeExports.jsx("br", {}),
+                              "sinds ",
+                              kc.founded
+                            ]
+                          }
+                        )
+                      ] }),
                       /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                        "span",
+                        "div",
                         {
-                          className: "text-[0.68rem] font-light text-[rgba(255,255,255,0.26)]",
-                          style: { fontFamily: "'Jost', sans-serif" },
+                          className: "flex items-center gap-2 rounded-full border px-4 py-1.5",
+                          style: {
+                            borderColor: "rgba(49,199,212,0.22)",
+                            background: "rgba(49,199,212,0.05)"
+                          },
                           children: [
-                            "Vertrouwen",
-                            /* @__PURE__ */ jsxRuntimeExports.jsx("br", {}),
-                            "sinds ",
-                            kc.founded
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(
+                              "span",
+                              {
+                                className: "h-[5px] w-[5px] rounded-full bg-[#31C7D4]",
+                                style: { boxShadow: "0 0 6px rgba(49,199,212,0.65)" }
+                              }
+                            ),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(
+                              "span",
+                              {
+                                className: "text-[0.55rem] font-semibold uppercase tracking-[0.26em] text-[rgba(49,199,212,0.70)]",
+                                style: { fontFamily: "var(--font-body)" },
+                                children: "Exclusieve Showroom · Utrecht"
+                              }
+                            )
                           ]
                         }
                       )
@@ -1371,20 +1402,31 @@ function Experience() {
               whileInView: "visible",
               viewport: motionViewport,
               variants: reduceMotion ? void 0 : fadeUp$5,
-              className: "mb-8 border border-white/[0.06] bg-[#1E2023]/30 backdrop-blur-md px-6 py-5 md:px-10",
-              style: { borderRadius: "16px" },
-              children: /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "grid grid-cols-3 divide-x divide-[rgba(255,255,255,0.07)]", children: stats.map((stat) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              className: "mb-8 rounded-[16px] border px-6 py-5 backdrop-blur-md md:px-10",
+              style: {
+                borderColor: "rgba(49,199,212,0.09)",
+                background: "rgba(11,30,44,0.55)"
+              },
+              children: /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "grid grid-cols-3 divide-x divide-[rgba(49,199,212,0.07)]", children: stats.map((stat, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
                 "li",
                 {
-                  className: "px-4 text-center first:pl-0 last:pr-0 sm:px-6 md:px-8",
+                  className: "group cursor-default px-4 text-center first:pl-0 last:pr-0 sm:px-6 md:px-8",
                   children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-serif text-[clamp(1.55rem,2.6vw,2.1rem)] font-light leading-none tracking-[-0.03em] text-white", children: /* @__PURE__ */ jsxRuntimeExports.jsx(CountUpValue, { value: stat.value, suffix: stat.suffix }) }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mb-2 flex justify-center text-[rgba(49,199,212,0.36)] transition-colors duration-400 group-hover:text-[#31C7D4]", children: statIcons[i] }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-serif text-[clamp(1.55rem,2.6vw,2.1rem)] font-light leading-none tracking-[-0.03em] text-white transition-colors duration-400 group-hover:text-[#31C7D4]", children: /* @__PURE__ */ jsxRuntimeExports.jsx(CountUpValue, { value: stat.value, suffix: stat.suffix }) }),
                     /* @__PURE__ */ jsxRuntimeExports.jsx(
                       "p",
                       {
-                        className: "mt-1.5 text-[0.6rem] font-light uppercase tracking-[0.18em] text-[rgba(255,255,255,0.34)]",
-                        style: { fontFamily: "'Jost', sans-serif" },
+                        className: "mt-1.5 text-[0.6rem] font-light uppercase tracking-[0.18em] text-[rgba(255,255,255,0.28)] transition-colors duration-400 group-hover:text-[rgba(247,244,238,0.52)]",
+                        style: { fontFamily: "var(--font-body)" },
                         children: stat.label
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "div",
+                      {
+                        className: "mx-auto mt-3 h-px w-8 origin-center scale-x-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100",
+                        style: { background: "linear-gradient(90deg, transparent, #31C7D4, transparent)" }
                       }
                     )
                   ]
@@ -1414,6 +1456,7 @@ function Experience() {
 }
 const heroKitchen = "/assets/hero-kitchen-DhFbJ72e.jpg";
 const craftsmanship = "/assets/craftsmanship-DQrKWUcu.jpg";
+const matMarble = "/assets/mat-marble-DxbEhTll.jpg";
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-2 whitespace-nowrap overflow-hidden rounded-[14px] border text-[0.8125rem] font-normal uppercase tracking-[0.15em] cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
@@ -1493,32 +1536,48 @@ const experienceItems = [
 function WhyWithUsSection() {
   const reduceMotion = useReducedMotion();
   const sectionRef = reactExports.useRef(null);
-  useInView(sectionRef, { once: true, amount: 0.1 });
+  const [hoveredCard, setHoveredCard] = reactExports.useState(null);
   const easing = [0.22, 1, 0.36, 1];
-  const valuePillarsWithIcons = [
+  const pillars = [
     {
+      id: "vakmanschap",
+      number: "01",
       title: "Europees Vakmanschap",
-      description: "Elk detail van uw keuken wordt met uiterste precisie en vakmanschap vervaardigd door onze producenten.",
-      icon: /* @__PURE__ */ jsxRuntimeExports.jsx("svg", { xmlns: "http://www.w3.org/2000/svg", width: "20", height: "20", viewBox: "0 0 24 24", fill: "none", stroke: "#23B9C4", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", children: /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" }) })
+      description: "Elk detail van uw keuken wordt met uiterste precisie en vakmanschap vervaardigd door onze Europese producenten.",
+      image: craftsmanship,
+      imageAlt: "Europees vakmanschap — precisie en kwaliteit",
+      icon: /* @__PURE__ */ jsxRuntimeExports.jsx("svg", { xmlns: "http://www.w3.org/2000/svg", width: "20", height: "20", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "1.8", strokeLinecap: "round", strokeLinejoin: "round", children: /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" }) })
     },
     {
+      id: "persoonlijk",
+      number: "02",
       title: "Persoonlijke Aanpak",
-      description: "Onze adviseurs luisteren naar uw wensen en vertalen deze naar een uniek keukenontwerp dat perfect aansluit.",
-      icon: /* @__PURE__ */ jsxRuntimeExports.jsx("svg", { xmlns: "http://www.w3.org/2000/svg", width: "20", height: "20", viewBox: "0 0 24 24", fill: "none", stroke: "#23B9C4", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", children: /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" }) })
+      description: "Onze adviseurs luisteren naar uw wensen en vertalen deze naar een uniek keukenontwerp dat perfect aansluit bij uw woning.",
+      image: showroomImg,
+      imageAlt: "Persoonlijke consultatie in de showroom",
+      icon: /* @__PURE__ */ jsxRuntimeExports.jsx("svg", { xmlns: "http://www.w3.org/2000/svg", width: "20", height: "20", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "1.8", strokeLinecap: "round", strokeLinejoin: "round", children: /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" }) })
     },
     {
+      id: "materialen",
+      number: "03",
       title: "Luxe & Duurzame Materialen",
-      description: "Alleen geselecteerde premium materialen — van marmer tot eiken — worden gebruikt voor uw keuken.",
-      icon: /* @__PURE__ */ jsxRuntimeExports.jsxs("svg", { xmlns: "http://www.w3.org/2000/svg", width: "20", height: "20", viewBox: "0 0 24 24", fill: "none", stroke: "#23B9C4", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", children: [
+      description: "Alleen geselecteerde premium materialen — van Carrara marmer tot gerookt eiken — worden gebruikt voor uw keuken.",
+      image: matMarble,
+      imageAlt: "Premium materialen — marmer en eiken afwerkingen",
+      icon: /* @__PURE__ */ jsxRuntimeExports.jsxs("svg", { xmlns: "http://www.w3.org/2000/svg", width: "20", height: "20", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "1.8", strokeLinecap: "round", strokeLinejoin: "round", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("polygon", { points: "6 3 18 3 22 9 12 22 2 9 6 3" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M11 3 8 9l4 13 4-13-3-6" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M2 9h20" })
       ] })
     },
     {
+      id: "service",
+      number: "04",
       title: "Premium Service & Montage",
-      description: "Van 3D-ontwerp tot vakkundige montage bij u thuis: wij begeleiden en ontzorgen u volledig.",
-      icon: /* @__PURE__ */ jsxRuntimeExports.jsxs("svg", { xmlns: "http://www.w3.org/2000/svg", width: "20", height: "20", viewBox: "0 0 24 24", fill: "none", stroke: "#23B9C4", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", children: [
+      description: "Van 3D-ontwerp tot vakkundige montage bij u thuis: wij begeleiden en ontzorgen u volledig door het gehele proces.",
+      image: heroKitchen,
+      imageAlt: "Premium installatie en service",
+      icon: /* @__PURE__ */ jsxRuntimeExports.jsxs("svg", { xmlns: "http://www.w3.org/2000/svg", width: "20", height: "20", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "1.8", strokeLinecap: "round", strokeLinejoin: "round", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "9", cy: "7", r: "4" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M23 21v-2a4 4 0 0 0-3-3.87" }),
@@ -1526,6 +1585,9 @@ function WhyWithUsSection() {
       ] })
     }
   ];
+  const activePillar = hoveredCard ? pillars.find((p) => p.id === hoveredCard) ?? null : null;
+  const displayImage = activePillar ? activePillar.image : heroKitchen;
+  const displayAlt = activePillar ? activePillar.imageAlt : "Luxe designkeuken op maat";
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
     "section",
     {
@@ -1538,39 +1600,32 @@ function WhyWithUsSection() {
           {
             "aria-hidden": "true",
             className: "pointer-events-none absolute inset-0",
-            style: {
-              backgroundImage: `url(${matConcrete})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat"
-            }
+            style: { backgroundImage: `url(${matConcrete})`, backgroundSize: "cover", backgroundPosition: "center" }
           }
         ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "div",
-          {
-            "aria-hidden": "true",
-            className: "pointer-events-none absolute inset-0 bg-[rgba(253,252,249,0.94)]"
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "div",
-          {
-            "aria-hidden": "true",
-            className: "pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(35,185,196,0.04),transparent_55%)]"
-          }
-        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "aria-hidden": "true", className: "pointer-events-none absolute inset-0 bg-[rgba(253,252,249,0.94)]" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "aria-hidden": "true", className: "pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(35,185,196,0.04),transparent_55%)]" }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative mx-auto max-w-[1440px] px-5 sm:px-8 md:px-12 lg:px-16", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-14", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
               motion.div,
               {
                 initial: reduceMotion ? false : { opacity: 0, y: -10 },
                 whileInView: reduceMotion ? void 0 : { opacity: 1, y: 0 },
                 transition: { duration: 0.4, ease: easing },
                 viewport: motionViewport,
-                className: "mb-4 inline-flex items-center gap-2",
-                children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-[0.62rem] font-bold uppercase tracking-[0.28em] text-[#C8A96B]", children: "Onze belofte" })
+                className: "mb-4 inline-flex items-center gap-3",
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "h-px w-8 bg-gradient-to-r from-transparent to-[#C8A96B]/60" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "span",
+                    {
+                      className: "text-[0.62rem] font-bold uppercase tracking-[0.28em] text-[#C8A96B]",
+                      style: { fontFamily: "var(--font-body)" },
+                      children: "Onze belofte"
+                    }
+                  )
+                ]
               }
             ),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between", children: [
@@ -1584,7 +1639,7 @@ function WhyWithUsSection() {
                   className: "max-w-[650px] font-serif text-[clamp(2.4rem,5.5vw,3.6rem)] font-medium leading-[1.1] tracking-[-0.02em]",
                   style: { color: "#163847" },
                   children: [
-                    "Waarom Kies Je",
+                    "Waarom Kiest U",
                     " ",
                     /* @__PURE__ */ jsxRuntimeExports.jsx("em", { className: "italic", style: { color: "#23B9C4" }, children: "Voor Ons?" })
                   ]
@@ -1597,36 +1652,111 @@ function WhyWithUsSection() {
                   whileInView: reduceMotion ? void 0 : { opacity: 1, y: 0 },
                   transition: { duration: 0.45, ease: easing, delay: 0.22 },
                   viewport: motionViewport,
-                  className: "max-w-[420px] text-[0.925rem] font-light leading-[1.7] text-[#555555]",
+                  className: "max-w-[420px] text-[0.925rem] font-light leading-[1.75] text-[#555555]",
+                  style: { fontFamily: "var(--font-body)" },
                   children: "Bij Keuken Centrum Utrecht combineren we Europees vakmanschap met modern design op maat. Wij geloven dat het ontwerpproces net zo verfijnd moet aanvoelen als het uiteindelijke resultaat."
                 }
               )
             ] })
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:items-center", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 lg:items-start", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3 mb-6", children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-[0.78rem] font-bold uppercase tracking-[0.2em] text-[#111111]", children: "Wat Wij Bieden" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "h-[2px] w-12 bg-[#23B9C4]/30" })
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-7 flex items-center gap-3", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "span",
+                  {
+                    className: "text-[0.65rem] font-semibold uppercase tracking-[0.26em] text-[#163847]",
+                    style: { fontFamily: "var(--font-body)" },
+                    children: "Wat Wij Bieden"
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "h-px flex-1 max-w-[56px] bg-[#23B9C4]/30" })
               ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-col gap-4", children: valuePillarsWithIcons.map((pillar, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                motion.div,
-                {
-                  initial: reduceMotion ? false : { opacity: 0, y: 16 },
-                  whileInView: reduceMotion ? void 0 : { opacity: 1, y: 0 },
-                  transition: { duration: 0.45, ease: easing, delay: i * 0.08 },
-                  viewport: motionViewport,
-                  className: "group relative flex items-start gap-5 rounded-[22px] border border-black/[0.04] bg-white p-5 shadow-[0_12px_36px_-12px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#23B9C4]/25 hover:shadow-[0_20px_48px_-10px_rgba(35,185,196,0.12)]",
-                  children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex h-12 w-12 shrink-0 items-center justify-center rounded-[14px] bg-[rgba(35,185,196,0.07)] text-[#23B9C4] transition-colors duration-300 group-hover:bg-[#23B9C4] group-hover:text-white", children: pillar.icon }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "min-w-0 flex-1", children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-[0.95rem] font-bold tracking-[0.005em] text-[#111111] transition-colors duration-300 group-hover:text-[#23B9C4]", children: pillar.title }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-1 text-[0.82rem] font-light leading-[1.55] text-[#666666]", children: pillar.description })
-                    ] })
-                  ]
-                },
-                pillar.title
-              )) }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-col gap-3.5", children: pillars.map((pillar, i) => {
+                const isActive = hoveredCard === pillar.id;
+                return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  motion.div,
+                  {
+                    initial: reduceMotion ? false : { opacity: 0, y: 18 },
+                    whileInView: reduceMotion ? void 0 : { opacity: 1, y: 0 },
+                    transition: { duration: 0.52, ease: easing, delay: i * 0.09 },
+                    viewport: motionViewport,
+                    onMouseEnter: () => setHoveredCard(pillar.id),
+                    onMouseLeave: () => setHoveredCard(null),
+                    className: "group relative flex cursor-default items-start gap-5 overflow-hidden rounded-[22px] border bg-white px-6 py-5",
+                    style: {
+                      borderColor: isActive ? "rgba(35,185,196,0.30)" : "rgba(0,0,0,0.05)",
+                      boxShadow: isActive ? "0 20px 56px -16px rgba(35,185,196,0.16), 0 4px 16px -4px rgba(0,0,0,0.06)" : "0 2px 16px -6px rgba(0,0,0,0.04)",
+                      transform: isActive ? "translateY(-3px)" : "translateY(0)",
+                      transition: "border-color 500ms, box-shadow 500ms, transform 500ms cubic-bezier(0.22,1,0.36,1)"
+                    },
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "span",
+                        {
+                          "aria-hidden": "true",
+                          className: "pointer-events-none absolute right-5 top-1/2 -translate-y-1/2 select-none font-serif font-bold leading-none tracking-tighter",
+                          style: {
+                            fontSize: "5.5rem",
+                            color: "rgba(22,56,71,0.042)",
+                            transition: "color 500ms"
+                          },
+                          children: pillar.number
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "div",
+                        {
+                          className: "absolute bottom-3 left-0 top-3 w-[3px] rounded-r-full bg-[#23B9C4]",
+                          style: {
+                            opacity: isActive ? 1 : 0,
+                            transform: isActive ? "scaleY(1)" : "scaleY(0.4)",
+                            transition: "opacity 500ms, transform 500ms cubic-bezier(0.22,1,0.36,1)",
+                            transformOrigin: "center"
+                          }
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "div",
+                        {
+                          className: "flex h-11 w-11 shrink-0 items-center justify-center rounded-[13px] border text-[#23B9C4]",
+                          style: {
+                            borderColor: isActive ? "rgba(35,185,196,0.50)" : "rgba(35,185,196,0.18)",
+                            backgroundColor: isActive ? "rgba(35,185,196,0.14)" : "rgba(35,185,196,0.07)",
+                            transform: isActive ? "scale(1.08)" : "scale(1)",
+                            boxShadow: isActive ? "0 4px 18px rgba(35,185,196,0.22)" : "none",
+                            transition: "border-color 500ms, background-color 500ms, transform 500ms cubic-bezier(0.22,1,0.36,1), box-shadow 500ms"
+                          },
+                          children: pillar.icon
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative z-10 min-w-0 flex-1", children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "p",
+                          {
+                            className: "text-[0.95rem] font-semibold tracking-[-0.005em]",
+                            style: {
+                              color: isActive ? "#23B9C4" : "#163847",
+                              transition: "color 500ms",
+                              fontFamily: "var(--font-heading)"
+                            },
+                            children: pillar.title
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "p",
+                          {
+                            className: "mt-1.5 text-[0.82rem] font-light leading-[1.65] text-[#666666]",
+                            style: { fontFamily: "var(--font-body)" },
+                            children: pillar.description
+                          }
+                        )
+                      ] })
+                    ]
+                  },
+                  pillar.id
+                );
+              }) }),
               /* @__PURE__ */ jsxRuntimeExports.jsx(
                 motion.div,
                 {
@@ -1639,10 +1769,11 @@ function WhyWithUsSection() {
                     "a",
                     {
                       href: "/consultation",
-                      className: "group relative inline-flex h-[56px] min-w-[240px] items-center justify-center gap-2.5 overflow-hidden rounded-[14px] bg-[#23B9C4] px-8 text-[0.8125rem] font-semibold uppercase tracking-[0.14em] text-white shadow-[0_12px_28px_-8px_rgba(35,185,196,0.35)] transition-all duration-300 ease-out hover:bg-[#163847] hover:shadow-[0_16px_36px_-6px_rgba(22,56,71,0.40)] active:scale-[0.98]",
+                      className: "group relative inline-flex h-[54px] min-w-[240px] items-center justify-center gap-2.5 overflow-hidden rounded-[14px] bg-[#23B9C4] px-8 text-[0.8rem] font-medium uppercase tracking-[0.14em] text-white shadow-[0_12px_28px_-8px_rgba(35,185,196,0.35)] transition-all duration-400 ease-out hover:bg-[#163847] hover:shadow-[0_16px_36px_-6px_rgba(22,56,71,0.40)] active:scale-[0.98]",
+                      style: { fontFamily: "var(--font-body)" },
                       children: [
                         /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Plan uw showroombezoek" }),
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowRight, { className: "h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-1" }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowRight, { className: "h-4 w-4 transition-transform duration-400 ease-out group-hover:translate-x-1" }),
                         /* @__PURE__ */ jsxRuntimeExports.jsx(
                           "div",
                           {
@@ -1656,64 +1787,217 @@ function WhyWithUsSection() {
                 }
               )
             ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "relative flex items-center justify-center lg:justify-end", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              motion.div,
-              {
-                initial: reduceMotion ? false : { opacity: 0, scale: 0.96 },
-                whileInView: reduceMotion ? void 0 : { opacity: 1, scale: 1 },
-                transition: { duration: 0.65, ease: easing },
-                viewport: motionViewport,
-                className: "relative w-full max-w-[500px] aspect-[4/3] rounded-[28px]",
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "h-full w-full overflow-hidden rounded-[28px] shadow-[0_20px_50px_rgba(0,0,0,0.08)] border border-black/[0.03]", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    "img",
-                    {
-                      src: heroKitchen,
-                      alt: "Luxe designkeuken",
-                      className: "h-full w-full object-cover",
-                      loading: "eager"
-                    }
-                  ) }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                    motion.div,
-                    {
-                      initial: reduceMotion ? false : { opacity: 0, scale: 0.8, rotate: 8 },
-                      whileInView: reduceMotion ? void 0 : { opacity: 1, scale: 1, rotate: 0 },
-                      transition: { duration: 0.5, ease: easing, delay: 0.3 },
-                      viewport: motionViewport,
-                      className: "absolute -right-6 -top-6 z-20 flex h-[100px] w-[100px] flex-col items-center justify-center rounded-full text-center",
-                      style: {
-                        background: "linear-gradient(135deg, #d8b97a 0%, #C8A96B 50%, #b08040 100%)",
-                        boxShadow: "0 12px 30px rgba(200,169,107,0.4), 0 4px 10px rgba(0,0,0,0.06)"
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "hidden lg:block", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "sticky top-28", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                motion.div,
+                {
+                  initial: reduceMotion ? false : { opacity: 0, scale: 0.96 },
+                  whileInView: reduceMotion ? void 0 : { opacity: 1, scale: 1 },
+                  transition: { duration: 0.7, ease: easing },
+                  viewport: motionViewport,
+                  className: "relative overflow-hidden rounded-[28px] border border-black/[0.06] shadow-[0_24px_64px_-20px_rgba(0,0,0,0.15)]",
+                  style: { aspectRatio: "4/5" },
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { mode: "sync", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      motion.img,
+                      {
+                        src: displayImage,
+                        alt: displayAlt,
+                        loading: "eager",
+                        draggable: false,
+                        className: "absolute inset-0 h-full w-full object-cover",
+                        initial: { opacity: 0, scale: 1.04 },
+                        animate: { opacity: 1, scale: 1 },
+                        exit: { opacity: 0, scale: 0.98 },
+                        transition: { duration: 0.65, ease: easing }
                       },
-                      children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-[1.8rem] font-extrabold leading-none text-white tracking-tight", children: "15+" }),
-                        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "mt-1 text-[0.42rem] font-bold uppercase tracking-[0.16em] text-white/95 leading-none max-w-[80px]", children: "JAAR ERVARING" })
-                      ]
-                    }
-                  ),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      displayImage
+                    ) }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "pointer-events-none absolute inset-0 bg-gradient-to-t from-[#061B24]/78 via-[#061B24]/12 to-transparent" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-x-0 bottom-0 p-7", children: /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { mode: "wait", children: activePillar ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                      motion.div,
+                      {
+                        initial: { opacity: 0, y: 10 },
+                        animate: { opacity: 1, y: 0 },
+                        exit: { opacity: 0, y: -6 },
+                        transition: { duration: 0.35, ease: easing },
+                        children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                            "p",
+                            {
+                              className: "text-[0.56rem] font-semibold uppercase tracking-[0.30em] text-[#C8A96B]",
+                              style: { fontFamily: "var(--font-body)" },
+                              children: [
+                                activePillar.number,
+                                " · Geselecteerd"
+                              ]
+                            }
+                          ),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-2 font-serif text-[1.5rem] font-light leading-tight text-white", children: activePillar.title })
+                        ]
+                      },
+                      activePillar.id
+                    ) : /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                      motion.div,
+                      {
+                        initial: { opacity: 0, y: 10 },
+                        animate: { opacity: 1, y: 0 },
+                        exit: { opacity: 0, y: -6 },
+                        transition: { duration: 0.35, ease: easing },
+                        children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "p",
+                            {
+                              className: "text-[0.56rem] font-semibold uppercase tracking-[0.30em] text-[#C8A96B]/60",
+                              style: { fontFamily: "var(--font-body)" },
+                              children: "Hover over een kenmerk"
+                            }
+                          ),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-2 font-serif text-[1.5rem] font-light leading-tight text-white/70", children: "Uw droomkeuken op maat" })
+                        ]
+                      },
+                      "default-label"
+                    ) }) })
+                  ]
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                motion.div,
+                {
+                  initial: reduceMotion ? false : { opacity: 0, scale: 0.72 },
+                  whileInView: reduceMotion ? void 0 : { opacity: 1, scale: 1 },
+                  transition: { duration: 0.7, ease: easing, delay: 0.35 },
+                  viewport: motionViewport,
+                  className: "absolute -right-9 -top-9 z-20",
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                     motion.div,
                     {
-                      initial: reduceMotion ? false : { opacity: 0, y: 15, scale: 0.95 },
-                      whileInView: reduceMotion ? void 0 : { opacity: 1, y: 0, scale: 1 },
-                      transition: { duration: 0.55, ease: easing, delay: 0.4 },
-                      viewport: motionViewport,
-                      className: "absolute -bottom-8 -left-8 z-20 h-[170px] w-[170px] overflow-hidden rounded-[24px] bg-white p-2 shadow-[0_20px_48px_rgba(0,0,0,0.12)] border border-zinc-100 hidden sm:block",
+                      animate: reduceMotion ? {} : { y: [0, -5, 0] },
+                      transition: { duration: 5.5, ease: "easeInOut", repeat: Infinity },
                       children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        "img",
+                        "div",
                         {
-                          src: craftsmanship,
-                          alt: "Vakmanschap detail",
-                          className: "h-full w-full object-cover rounded-[16px]",
-                          loading: "lazy"
+                          style: {
+                            width: 138,
+                            height: 138,
+                            borderRadius: "50%",
+                            border: "1px solid rgba(200,169,107,0.38)",
+                            padding: "6px",
+                            boxShadow: [
+                              "0 24px 64px rgba(0,0,0,0.13)",
+                              "0 8px 24px rgba(0,0,0,0.08)",
+                              "0 0 0 3px rgba(251,248,242,0.85)"
+                            ].join(", ")
+                          },
+                          children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                            "div",
+                            {
+                              className: "relative flex h-full w-full flex-col items-center justify-center rounded-full",
+                              style: {
+                                background: "linear-gradient(148deg, #FBF8F2 0%, #F4ECDA 55%, #EDE0C8 100%)",
+                                border: "1px solid rgba(200,169,107,0.30)",
+                                boxShadow: [
+                                  "inset 0 1px 0 rgba(255,255,255,0.92)",
+                                  "inset 0 -2px 8px rgba(180,130,60,0.06)"
+                                ].join(", "),
+                                overflow: "hidden"
+                              },
+                              children: [
+                                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                  "div",
+                                  {
+                                    "aria-hidden": "true",
+                                    className: "pointer-events-none absolute left-3 right-3 top-2.5 h-7 rounded-full",
+                                    style: {
+                                      background: "linear-gradient(180deg, rgba(255,255,255,0.75) 0%, transparent 100%)",
+                                      opacity: 0.6
+                                    }
+                                  }
+                                ),
+                                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                  "div",
+                                  {
+                                    "aria-hidden": "true",
+                                    className: "pointer-events-none absolute left-1/2 top-[26px] h-px w-[38%] -translate-x-1/2",
+                                    style: {
+                                      background: "linear-gradient(90deg, transparent, rgba(200,169,107,0.45), transparent)"
+                                    }
+                                  }
+                                ),
+                                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                  "span",
+                                  {
+                                    className: "relative font-serif text-[2.85rem] font-light leading-none tracking-tight",
+                                    style: { color: "#163847" },
+                                    children: "15+"
+                                  }
+                                ),
+                                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                  "span",
+                                  {
+                                    className: "relative mt-1.5 text-[0.44rem] font-semibold uppercase",
+                                    style: {
+                                      letterSpacing: "0.30em",
+                                      color: "#B08040",
+                                      fontFamily: "var(--font-body)"
+                                    },
+                                    children: "Jaar Ervaring"
+                                  }
+                                ),
+                                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                  "div",
+                                  {
+                                    "aria-hidden": "true",
+                                    className: "pointer-events-none absolute bottom-[22px] left-1/2 h-px w-[38%] -translate-x-1/2",
+                                    style: {
+                                      background: "linear-gradient(90deg, transparent, rgba(200,169,107,0.35), transparent)"
+                                    }
+                                  }
+                                )
+                              ]
+                            }
+                          )
                         }
                       )
                     }
                   )
-                ]
-              }
-            ) })
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                motion.div,
+                {
+                  initial: reduceMotion ? false : { opacity: 0, scale: 0.9 },
+                  whileInView: reduceMotion ? void 0 : { opacity: 1, scale: 1 },
+                  transition: { duration: 0.55, ease: easing, delay: 0.42 },
+                  viewport: motionViewport,
+                  className: "absolute -bottom-11 right-5 z-10 hidden sm:block",
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute -top-6 left-1/2 h-6 w-px -translate-x-1/2 bg-gradient-to-b from-[#23B9C4]/40 to-[#23B9C4]/15" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute -top-7 left-1/2 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-[#23B9C4]/40" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative h-[84px] w-[110px] overflow-hidden rounded-[14px] border border-white shadow-[0_8px_28px_rgba(0,0,0,0.16)]", children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "img",
+                        {
+                          src: craftsmanship,
+                          alt: "Vakmanschap detail",
+                          className: "h-full w-full object-cover",
+                          loading: "lazy"
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 to-transparent" }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute bottom-2 left-2.5", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "p",
+                        {
+                          className: "text-[0.46rem] font-semibold uppercase tracking-[0.18em] text-white/90",
+                          style: { fontFamily: "var(--font-body)" },
+                          children: "Vakmanschap"
+                        }
+                      ) })
+                    ] })
+                  ]
+                }
+              )
+            ] }) }) })
           ] })
         ] })
       ]
@@ -4125,7 +4409,6 @@ const SelectSeparator = reactExports.forwardRef(({ className, ...props }, ref) =
 ));
 SelectSeparator.displayName = Separator.displayName;
 const collectionScandi = "/assets/collection-scandi-CNDY2ehd.jpg";
-const matMarble = "/assets/mat-marble-DxbEhTll.jpg";
 const benefits = [
   "Personal Design Session",
   "Material Selection Review",
