@@ -328,22 +328,22 @@ export function Nav() {
         transition={{ duration: motionDuration.premium, ease: motionEase.premium, delay: 0.16 }}
         className={`nav-topbar-wrap ${elevated ? "nav-topbar-wrap-elevated" : ""}`}
       >
-        <div className={`nav-band nav-topbar-band ${forceSolidNav ? "nav-band-forced" : elevated ? "nav-band-elevated" : ""}`}>
+        <div className={`nav-band nav-topbar-band ${forceSolidNav ? "nav-band-forced" : elevated ? "nav-band-elevated" : "nav-topbar-hero"}`}>
           <div className="site-container nav-topbar">
             <div className="hidden min-h-11 items-center justify-end gap-4 text-[0.72rem] tracking-[0.18em] text-[rgba(245,242,236,0.78)] md:flex">
               <div className="flex items-center justify-end gap-4 whitespace-nowrap">
                 <span className="nav-topbar-item">
-                  <NavHouse className="nav-topbar-icon text-[#C8A96B]/70" />
+                  <NavHouse className="nav-topbar-icon text-[rgba(49,199,212,0.65)]" />
                   Zonnebaan 8, 3542 EC Utrecht
                 </span>
                 <span className="nav-topbar-sep" />
                 <a href={kc.contact.phoneHref} className="nav-topbar-item hover:text-[#F5F2EC]">
-                  <NavCall className="nav-topbar-icon text-[#C8A96B]/70" />
+                  <NavCall className="nav-topbar-icon text-[rgba(49,199,212,0.65)]" />
                   {kc.contact.phone}
                 </a>
                 <span className="nav-topbar-sep" />
                 <a href={`mailto:${kc.contact.email}`} className="nav-topbar-item hover:text-[#F5F2EC]">
-                  <NavSms className="nav-topbar-icon text-[#C8A96B]/70" />
+                  <NavSms className="nav-topbar-icon text-[rgba(49,199,212,0.65)]" />
                   {kc.contact.email}
                 </a>
               </div>
@@ -776,9 +776,13 @@ export function Nav() {
                       }}
                       className="mt-10"
                     >
-                      <div className="nav-mobile-cta cursor-default opacity-75 text-center" aria-disabled>
-                        Start uw ontwerp
-                      </div>
+                      <a
+                        href="/consultation"
+                        onClick={() => setOpen(false)}
+                        className="nav-mobile-cta text-center"
+                      >
+                        Plan Showroombezoek
+                      </a>
                     </motion.div>
                   </motion.div>
                 </div>

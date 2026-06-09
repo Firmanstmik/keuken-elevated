@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { ArrowRight, Check, House, Mail, Phone } from "@/components/ui/icons";
-import { Calendar, Clock, MagicStar, Shield } from "iconsax-react";
+import { Calendar, Clock, Shield } from "iconsax-react";
 import { kc } from "@/lib/kc-data";
 import { motionViewport } from "@/lib/motion";
 
@@ -95,124 +95,199 @@ const staggerSlow: Variants = {
 // ─── HorizontalSlider ─────────────────────────────────────────────────────────
 
 function HorizontalSlider() {
+  const reduceMotion = useReducedMotion();
   const doubled = [...gallerySlides, ...gallerySlides];
-  const scrollRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
-  const [dragging, setDragging] = useState(false);
-  const drag = useRef({ startX: 0, startScroll: 0, moved: false });
-  const pausedUntil = useRef(0);
+  const posRef = useRef(0);
+  const halfWidthRef = useRef(0);
+  const pausedRef = useRef(false);       // paused by hover
+  const draggingRef = useRef(false);
+  const dragRef = useRef({ startX: 0, startPos: 0, moved: false });
+  const resumeAfterRef = useRef(0);      // timestamp after which post-drag pause lifts
+  const [isDragging, setIsDragging] = useState(false);
 
+  const SPEED = 55; // px/s — gives ~26s per viewport-width (luxury pace)
+
+  // Measure half-width once after mount (fixed card sizes won't change)
   useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    let raf = 0;
-    let last = performance.now();
-    const speed = 30;
-
-    const tick = (now: number) => {
-      const dt = (now - last) / 1000;
-      last = now;
-      const half = (trackRef.current?.scrollWidth ?? 0) / 2;
-      if (!dragging && now > pausedUntil.current && half > 0) {
-        let next = el.scrollLeft + speed * dt;
-        if (next >= half) next -= half;
-        el.scrollLeft = next;
-      } else if (half > 0) {
-        if (el.scrollLeft >= half) el.scrollLeft -= half;
-        else if (el.scrollLeft < 0) el.scrollLeft += half;
+    const measure = () => {
+      if (trackRef.current) {
+        halfWidthRef.current = trackRef.current.scrollWidth / 2;
       }
-      raf = requestAnimationFrame(tick);
     };
-    raf = requestAnimationFrame(tick);
+    measure();
+    window.addEventListener("resize", measure, { passive: true });
+    return () => window.removeEventListener("resize", measure);
+  }, []);
+
+  // RAF loop — translate3d only, no layout reads in hot path
+  useEffect(() => {
+    if (reduceMotion) return;
+    const track = trackRef.current;
+    if (!track) return;
+    let raf: number;
+    let last = performance.now();
+
+    const step = (now: number) => {
+      const half = halfWidthRef.current;
+      if (half > 0 && !pausedRef.current && !draggingRef.current && now > resumeAfterRef.current) {
+        const dt = Math.min((now - last) / 1000, 0.05); // clamp prevents jumps after tab-switch
+        posRef.current -= SPEED * dt;
+        if (posRef.current <= -half) posRef.current += half;
+        track.style.transform = `translate3d(${posRef.current}px, 0, 0)`;
+      }
+      last = now;
+      raf = requestAnimationFrame(step);
+    };
+
+    raf = requestAnimationFrame(step);
     return () => cancelAnimationFrame(raf);
-  }, [dragging]);
+  }, [reduceMotion]);
+
+  // ── Pointer handlers (drag support) ──────────────────────────────────────────
 
   const onPointerDown = (e: React.PointerEvent) => {
-    const el = scrollRef.current;
-    if (!el) return;
-    setDragging(true);
-    drag.current = { startX: e.clientX, startScroll: el.scrollLeft, moved: false };
-    el.setPointerCapture(e.pointerId);
+    draggingRef.current = true;
+    setIsDragging(true);
+    dragRef.current = { startX: e.clientX, startPos: posRef.current, moved: false };
+    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
   };
 
   const onPointerMove = (e: React.PointerEvent) => {
-    if (!dragging) return;
-    const el = scrollRef.current;
-    if (!el) return;
-    const dx = e.clientX - drag.current.startX;
-    if (Math.abs(dx) > 3) drag.current.moved = true;
-    el.scrollLeft = drag.current.startScroll - dx;
+    if (!draggingRef.current) return;
+    const dx = e.clientX - dragRef.current.startX;
+    if (Math.abs(dx) > 3) dragRef.current.moved = true;
+    const half = halfWidthRef.current;
+    let next = dragRef.current.startPos + dx;
+    // Keep within wrapping range so seamless loop is maintained during drag
+    if (half > 0) {
+      while (next > 0) next -= half;
+      while (next <= -half) next += half;
+    }
+    posRef.current = next;
+    if (trackRef.current) {
+      trackRef.current.style.transform = `translate3d(${next}px, 0, 0)`;
+    }
   };
 
   const onPointerUp = (e: React.PointerEvent) => {
-    setDragging(false);
-    pausedUntil.current = performance.now() + 1500;
-    scrollRef.current?.releasePointerCapture(e.pointerId);
+    draggingRef.current = false;
+    setIsDragging(false);
+    resumeAfterRef.current = performance.now() + 1200; // 1.2s grace after release
+    (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
   };
 
   return (
     <div className="relative">
-      {/* Left fade mask */}
+      {/* ── Edge fades — blended to section background ───────────────────── */}
       <div
-        className="pointer-events-none absolute inset-y-0 left-0 z-10 w-32 md:w-40"
+        className="pointer-events-none absolute inset-y-0 left-0 z-10 w-28 md:w-48"
         style={{
           background:
-            "linear-gradient(to right, #FAF7F1 0%, rgba(250,247,241,0.85) 35%, rgba(250,247,241,0) 100%)",
+            "linear-gradient(to right, #F7F4EF 0%, rgba(247,244,239,0.92) 40%, rgba(247,244,239,0) 100%)",
         }}
       />
-      {/* Right fade mask */}
       <div
-        className="pointer-events-none absolute inset-y-0 right-0 z-10 w-32 md:w-40"
+        className="pointer-events-none absolute inset-y-0 right-0 z-10 w-28 md:w-48"
         style={{
           background:
-            "linear-gradient(to left, #FAF7F1 0%, rgba(250,247,241,0.85) 35%, rgba(250,247,241,0) 100%)",
+            "linear-gradient(to left, #F7F4EF 0%, rgba(247,244,239,0.92) 40%, rgba(247,244,239,0) 100%)",
         }}
       />
 
-      {/* Showroom Selectie floating badge */}
-      <div className="absolute left-4 top-[3.75rem] z-20 inline-flex items-center gap-2 rounded-full border border-[#E2D9C7] bg-white/90 px-3 py-1.5 backdrop-blur-sm">
-        <MagicStar size={12} variant="Bold" color="#8a6a2a" />
+      {/* ── Showroom Selectie badge — teal with subtle glow ──────────────── */}
+      <motion.div
+        className="absolute left-6 top-[3.75rem] z-20 inline-flex items-center gap-2 rounded-full px-3 py-1.5"
+        style={{
+          background: "rgba(255,255,255,0.94)",
+          border: "1px solid rgba(49,199,212,0.28)",
+          backdropFilter: "blur(12px)",
+          boxShadow:
+            "0 0 22px rgba(49,199,212,0.10), 0 4px 16px -8px rgba(0,0,0,0.08)",
+        }}
+        animate={reduceMotion ? undefined : { y: [0, -3, 0] }}
+        transition={{ duration: 4.5, ease: "easeInOut", repeat: Infinity }}
+      >
         <span
-          className="text-[10px] font-semibold uppercase tracking-[0.22em]"
-          style={{ color: "#5a4418", fontFamily: "var(--font-body)" }}
+          className="h-[5px] w-[5px] rounded-full bg-[#31C7D4]"
+          style={{ boxShadow: "0 0 6px rgba(49,199,212,0.75)" }}
+        />
+        <span
+          className="text-[9.5px] font-semibold uppercase tracking-[0.24em]"
+          style={{ color: "#0C8690", fontFamily: "var(--font-body)" }}
         >
           Showroom Selectie
         </span>
-      </div>
+      </motion.div>
 
+      {/* ── Track container — overflow:hidden so translate3d clips cleanly ─ */}
       <div
-        ref={scrollRef}
+        className={`overflow-hidden pb-4 pt-14 ${isDragging ? "cursor-grabbing" : "cursor-grab"}`}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
         onPointerCancel={onPointerUp}
-        className={`select-none overflow-x-auto pb-4 pt-14 ${dragging ? "cursor-grabbing" : "cursor-grab"}`}
-        style={{ scrollbarWidth: "none", msOverflowStyle: "none", touchAction: "pan-y" }}
+        onMouseEnter={() => { pausedRef.current = true; }}
+        onMouseLeave={() => { pausedRef.current = false; }}
+        style={{ touchAction: "pan-y", userSelect: "none" }}
       >
-        <div ref={trackRef} className="flex w-max gap-5 px-6">
+        {/* ── Infinite track ── */}
+        <div
+          ref={trackRef}
+          className="flex w-max gap-5 px-6"
+          style={{ transform: "translate3d(0, 0, 0)", willChange: "transform" }}
+        >
           {doubled.map((slide, i) => (
             <figure
               key={i}
-              className="group relative h-64 w-[280px] shrink-0 overflow-hidden rounded-[24px] md:h-72 md:w-[310px]"
+              className={[
+                "group relative h-64 w-[280px] shrink-0 overflow-hidden rounded-[24px]",
+                "opacity-[0.88] transition-[transform,opacity,box-shadow]",
+                "duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+                "hover:opacity-100 hover:scale-[1.03]",
+                "md:h-72 md:w-[310px]",
+              ].join(" ")}
               style={{ boxShadow: "0 30px 60px -30px rgba(60,45,20,0.30)" }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.boxShadow =
+                  "0 40px 80px -22px rgba(60,45,20,0.52)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.boxShadow =
+                  "0 30px 60px -30px rgba(60,45,20,0.30)";
+              }}
               onClickCapture={(e) => {
-                if (drag.current.moved) {
+                if (dragRef.current.moved) {
                   e.preventDefault();
                   e.stopPropagation();
                 }
               }}
             >
+              {/* Image — parallax zoom 1.08 over 800ms */}
               <img
                 src={slide.src as unknown as string}
                 alt={slide.label}
                 draggable={false}
                 loading="lazy"
-                className="pointer-events-none h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
+                className="pointer-events-none h-full w-full object-cover transition-transform duration-[800ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.08]"
               />
+
+              {/* Gradient overlay */}
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
+
+              {/* Glass reflection shimmer */}
+              <div
+                className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100"
+                style={{
+                  background:
+                    "linear-gradient(135deg, rgba(255,255,255,0.07) 0%, transparent 50%, rgba(255,255,255,0.04) 100%)",
+                }}
+              />
+
+              {/* Caption */}
               <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 p-5">
                 <div className="inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-black/35 px-2 py-0.5 backdrop-blur-sm">
-                  <span className="h-1 w-1 rounded-full" style={{ background: "#D9BE7C" }} />
+                  <span className="h-1 w-1 rounded-full bg-[#31C7D4]" />
                   <span
                     className="text-[9px] font-medium uppercase tracking-[0.18em] text-white/90"
                     style={{ fontFamily: "var(--font-body)" }}
@@ -220,7 +295,7 @@ function HorizontalSlider() {
                     {slide.tag}
                   </span>
                 </div>
-                <div className="mt-1.5 font-serif text-[17px] font-light text-white">
+                <div className="mt-1.5 font-serif text-[17px] font-light text-white/80 transition-colors duration-300 group-hover:text-white">
                   {slide.label}
                 </div>
               </figcaption>

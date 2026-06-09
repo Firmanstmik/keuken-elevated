@@ -1,7 +1,7 @@
 import { r as reactExports, j as jsxRuntimeExports } from "../_libs/react.mjs";
 import { u as useLocation } from "../_libs/tanstack__react-router.mjs";
 import { l as logoKeuken, b as ChevronDown } from "./master-config-data-CQ2gS3IZ.mjs";
-import { k as kc } from "./router-C8aqToTf.mjs";
+import { k as kc } from "./router-CLBAZ2Sh.mjs";
 import { R as Root2, I as Item, H as Header, T as Trigger2, C as Content2 } from "../_libs/radix-ui__react-accordion.mjs";
 import { c as clsx } from "../_libs/clsx.mjs";
 import { t as twMerge } from "../_libs/tailwind-merge.mjs";
@@ -332,19 +332,19 @@ function Nav() {
             animate: { opacity: 1, y: 0 },
             transition: { duration: motionDuration.premium, ease: motionEase.premium, delay: 0.16 },
             className: `nav-topbar-wrap ${elevated ? "nav-topbar-wrap-elevated" : ""}`,
-            children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `nav-band nav-topbar-band ${forceSolidNav ? "nav-band-forced" : elevated ? "nav-band-elevated" : ""}`, children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "site-container nav-topbar", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "hidden min-h-11 items-center justify-end gap-4 text-[0.72rem] tracking-[0.18em] text-[rgba(245,242,236,0.78)] md:flex", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-end gap-4 whitespace-nowrap", children: [
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `nav-band nav-topbar-band ${forceSolidNav ? "nav-band-forced" : elevated ? "nav-band-elevated" : "nav-topbar-hero"}`, children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "site-container nav-topbar", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "hidden min-h-11 items-center justify-end gap-4 text-[0.72rem] tracking-[0.18em] text-[rgba(245,242,236,0.78)] md:flex", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-end gap-4 whitespace-nowrap", children: [
               /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "nav-topbar-item", children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(NavHouse, { className: "nav-topbar-icon text-[#C8A96B]/70" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(NavHouse, { className: "nav-topbar-icon text-[rgba(49,199,212,0.65)]" }),
                 "Zonnebaan 8, 3542 EC Utrecht"
               ] }),
               /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "nav-topbar-sep" }),
               /* @__PURE__ */ jsxRuntimeExports.jsxs("a", { href: kc.contact.phoneHref, className: "nav-topbar-item hover:text-[#F5F2EC]", children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(NavCall, { className: "nav-topbar-icon text-[#C8A96B]/70" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(NavCall, { className: "nav-topbar-icon text-[rgba(49,199,212,0.65)]" }),
                 kc.contact.phone
               ] }),
               /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "nav-topbar-sep" }),
               /* @__PURE__ */ jsxRuntimeExports.jsxs("a", { href: `mailto:${kc.contact.email}`, className: "nav-topbar-item hover:text-[#F5F2EC]", children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(NavSms, { className: "nav-topbar-icon text-[#C8A96B]/70" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(NavSms, { className: "nav-topbar-icon text-[rgba(49,199,212,0.65)]" }),
                 kc.contact.email
               ] })
             ] }) }) }) })
@@ -733,7 +733,15 @@ function Nav() {
                           }
                         },
                         className: "mt-10",
-                        children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "nav-mobile-cta cursor-default opacity-75 text-center", "aria-disabled": true, children: "Start uw ontwerp" })
+                        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "a",
+                          {
+                            href: "/consultation",
+                            onClick: () => setOpen(false),
+                            className: "nav-mobile-cta text-center",
+                            children: "Plan Showroombezoek"
+                          }
+                        )
                       }
                     )
                   ]

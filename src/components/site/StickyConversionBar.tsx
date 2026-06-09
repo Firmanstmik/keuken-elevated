@@ -162,47 +162,54 @@ export function StickyConversionBar() {
             <div className="pointer-events-auto mx-auto max-w-[620px]">
               <div className="lux-border rounded-[18px] p-[1px] shadow-[0_26px_58px_-32px_rgba(23,25,28,0.2)]">
                 <div className="relative overflow-hidden rounded-[17px] bg-[linear-gradient(145deg,rgba(252,250,246,0.95),rgba(244,240,232,0.92))] p-1.5 backdrop-blur-2xl">
-                  <div className="absolute inset-x-7 top-0 h-px bg-[linear-gradient(90deg,rgba(201,164,106,0),rgba(201,164,106,0.4),rgba(201,164,106,0))]" />
+                  <div className="absolute inset-x-7 top-0 h-px bg-[linear-gradient(90deg,rgba(49,199,212,0),rgba(49,199,212,0.32),rgba(49,199,212,0))]" />
                   <div className="relative rounded-[14px] bg-[linear-gradient(180deg,rgba(255,255,255,0.99),rgba(252,250,246,0.99))] p-1">
                     <button
                       type="button"
                       onClick={() => setDismissed(true)}
                       aria-label="Sluit mobiele conversiebalk"
-                      className="lux-x absolute right-2 top-2 flex h-6 w-6 items-center justify-center text-white"
+                      className="lux-x absolute right-2 top-1.5 flex h-7 w-7 items-center justify-center text-white"
                     >
-                      <X className="h-3 w-3" />
+                      <X className="h-3.5 w-3.5" />
                     </button>
 
-                    <div className="grid grid-cols-3 gap-1.5 pt-3">
-                      {actions.map(({ label, meta, href, Icon, primary, accent }) => (
-                        <a
-                          key={label}
-                          href={href}
-                          aria-label={`${label} · ${meta}`}
-                          title={label}
-                          className={`group flex min-h-[46px] items-center justify-center rounded-[12px] px-2 py-2 text-center transition-transform duration-400 ease-[var(--ease-premium)] active:translate-y-[1px] ${
-                            primary
-                              ? "bg-[linear-gradient(135deg,#06101a,#0c1826)] text-white shadow-[0_22px_44px_-30px_rgba(7,17,27,0.64)]"
-                              : "bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(244,240,232,0.94))] text-[var(--foreground)] shadow-[0_14px_26px_-22px_rgba(7,17,27,0.18)]"
-                          }`}
-                        >
-                          {accent === "green" ? (
-                            <span className="flex h-8 w-8 items-center justify-center rounded-[11px] bg-[linear-gradient(180deg,var(--green-highlight),var(--green))] text-white shadow-[0_14px_24px_-20px_rgba(35,185,196,0.42)]">
-                              <WhatsAppMark className="h-4.5 w-4.5" />
+                    <div className="grid grid-cols-3 gap-1.5 pt-2">
+                      {actions.map(({ label, meta, href, Icon, primary, accent }) => {
+                        const shortLabel = primary ? "Bezoek" : accent === "green" ? "WhatsApp" : "Bellen";
+                        return (
+                          <a
+                            key={label}
+                            href={href}
+                            aria-label={`${label} · ${meta}`}
+                            className={`group flex min-h-[56px] flex-col items-center justify-center gap-[5px] rounded-[12px] px-2 py-2.5 text-center transition-transform duration-400 ease-[var(--ease-premium)] active:scale-[0.96] active:translate-y-[1px] ${
+                              primary
+                                ? "bg-[linear-gradient(135deg,#06101a,#0c1826)] text-white shadow-[0_22px_44px_-30px_rgba(7,17,27,0.64)]"
+                                : "bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(244,240,232,0.94))] text-[var(--foreground)] shadow-[0_14px_26px_-22px_rgba(7,17,27,0.18)]"
+                            }`}
+                          >
+                            {accent === "green" ? (
+                              <span className="flex h-7 w-7 items-center justify-center rounded-[10px] bg-[linear-gradient(180deg,var(--green-highlight),var(--green))] text-white shadow-[0_10px_20px_-14px_rgba(35,185,196,0.42)]">
+                                <WhatsAppMark className="h-4 w-4" />
+                              </span>
+                            ) : (
+                              <span
+                                className={`flex h-7 w-7 items-center justify-center rounded-[10px] ${
+                                  primary
+                                    ? "bg-[rgba(255,255,255,0.06)] text-[#31C7D4]"
+                                    : "bg-[rgba(12,24,36,0.06)] text-[var(--secondary)]"
+                                }`}
+                              >
+                                <Icon className="h-4 w-4" />
+                              </span>
+                            )}
+                            <span className={`text-[9px] font-semibold uppercase tracking-[0.1em] leading-none ${
+                              primary ? "text-white/70" : accent === "green" ? "text-[#0a8a90]" : "text-[var(--text-soft)]"
+                            }`}>
+                              {shortLabel}
                             </span>
-                          ) : (
-                            <span
-                              className={`flex h-8 w-8 items-center justify-center rounded-[11px] ${
-                                primary
-                                  ? "bg-[rgba(255,255,255,0.04)] text-[var(--gold)]"
-                                  : "bg-[rgba(12,24,36,0.06)] text-[var(--secondary)]"
-                              }`}
-                            >
-                              <Icon className="h-5 w-5" />
-                            </span>
-                          )}
-                        </a>
-                      ))}
+                          </a>
+                        );
+                      })}
                     </div>
                   </div>
                 </div>

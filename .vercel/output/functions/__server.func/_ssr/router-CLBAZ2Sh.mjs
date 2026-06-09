@@ -16,7 +16,7 @@ import "crypto";
 import "async_hooks";
 import "stream";
 import "../_libs/isbot.mjs";
-const appCss = "/assets/styles-BBhyubee.css";
+const appCss = "/assets/styles-DTase_hr.css";
 function reportLovableError(error, context = {}) {
   if (typeof window === "undefined") return;
   window.__lovableEvents?.captureException?.(
@@ -238,23 +238,23 @@ function RootComponent() {
     /* @__PURE__ */ jsxRuntimeExports.jsx(Toaster, { richColors: true, position: "top-right" })
   ] }) });
 }
-const $$splitComponentImporter$5 = () => import("./style-BI4F_Mhg.mjs");
+const $$splitComponentImporter$5 = () => import("./style-B5kzlzSi.mjs");
 const Route$5 = createFileRoute("/style")({
   component: lazyRouteComponent($$splitComponentImporter$5, "component")
 });
-const $$splitComponentImporter$4 = () => import("./moodboard-C5xWBlsv.mjs");
+const $$splitComponentImporter$4 = () => import("./moodboard-YHYTDku-.mjs");
 const Route$4 = createFileRoute("/moodboard")({
   component: lazyRouteComponent($$splitComponentImporter$4, "component")
 });
-const $$splitComponentImporter$3 = () => import("./consultation-CifdpWVj.mjs");
+const $$splitComponentImporter$3 = () => import("./consultation-Dft51ijx.mjs");
 const Route$3 = createFileRoute("/consultation")({
   component: lazyRouteComponent($$splitComponentImporter$3, "component")
 });
-const $$splitComponentImporter$2 = () => import("./configure-D7OpdRsi.mjs");
+const $$splitComponentImporter$2 = () => import("./configure-BeQspqrP.mjs");
 const Route$2 = createFileRoute("/configure")({
   component: lazyRouteComponent($$splitComponentImporter$2, "component")
 });
-const $$splitComponentImporter$1 = () => import("./brands-DWenE7Qs.mjs");
+const $$splitComponentImporter$1 = () => import("./brands-dLFG-US5.mjs");
 const Route$1 = createFileRoute("/brands")({
   component: lazyRouteComponent($$splitComponentImporter$1, "component")
 });
@@ -273,8 +273,7 @@ const kc = {
       { d: "Maandag tot Vrijdag", h: "09:00 tot 18:00" },
       { d: "Zaterdag", h: "09:00 tot 17:00" },
       { d: "Zondag", h: "Gesloten" }
-    ],
-    maps: "https://www.google.com/maps/place/Keuken-centrum.nl/"
+    ]
   },
   hero: {
     main: `${wp}/IMG_0654-LEICHT-JAPANDI-scaled.webp`
@@ -328,7 +327,7 @@ const kc = {
     ]
   }
 };
-const $$splitComponentImporter = () => import("./index-B0zmCnU2.mjs");
+const $$splitComponentImporter = () => import("./index-z48w9h2v.mjs");
 const Route = createFileRoute("/")({
   head: () => ({
     meta: [{

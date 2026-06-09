@@ -1,19 +1,19 @@
 import { j as jsxRuntimeExports, r as reactExports } from "../_libs/react.mjs";
-import { N as Nav, d as motionEase, a as motionDuration, b as boraImg, m as marmerImg, g as staggerHeader$3, e as motionViewport, f as fadeUp$6, s as showroomImg, h as staggerList, c as cn } from "./Nav-DpHL3hCc.mjs";
+import { N as Nav, d as motionEase, a as motionDuration, b as boraImg, m as marmerImg, g as staggerHeader$3, e as motionViewport, f as fadeUp$6, s as showroomImg, h as staggerList, c as cn } from "./Nav-BWd-9Dyc.mjs";
 import { a as ArrowRight, e as masterCategories, H as House, P as Phone, M as Mail, C as Check, l as logoKeuken, T as Tag, X, b as ChevronDown, c as ChevronUp } from "./master-config-data-CQ2gS3IZ.mjs";
 import { r as reactDomExports } from "../_libs/react-dom.mjs";
 import { l as leichtLogo, a as aiKuchenLogo, z as zampieriLogo, c as cucinesseLogo } from "./Cucinesse_Logo-DZinUg9I.mjs";
-import { k as kc } from "./router-C8aqToTf.mjs";
+import { k as kc } from "./router-CLBAZ2Sh.mjs";
 import { T as TuneIcon, P as PaletteOutlinedIcon, e as SupportAgentIcon } from "../_libs/mui__icons-material.mjs";
 import { S as Slot } from "../_libs/radix-ui__react-slot.mjs";
 import { c as cva } from "../_libs/class-variance-authority.mjs";
 import { k as klassiekBase } from "./klassiek-base-ByI9UL1v.mjs";
 import { k as klassiekHotspots } from "./klassiek-hotspots-DmS3IOWJ.mjs";
-import { I as Input, T as Textarea } from "./textarea-IH-atjhx.mjs";
+import { I as Input, T as Textarea } from "./textarea-BLmfsWRq.mjs";
 import { R as Root2, V as Value, T as Trigger, I as Icon, P as Portal, C as Content2, f as Viewport, a as Item, b as ItemIndicator, c as ItemText, d as ScrollUpButton, S as ScrollDownButton, L as Label, e as Separator } from "../_libs/radix-ui__react-select.mjs";
 import "../_libs/sonner.mjs";
 import { b as useReducedMotion, a as useMotionValue, d as useSpring, e as useTransform, c as useScroll, m as motion, A as AnimatePresence, u as useInView } from "../_libs/framer-motion.mjs";
-import { c as Shop, B as Brush2, L as Layer, G as Gallery, P as People, A as ArrowRight2, a as Clock, S as Shield, C as Calendar, M as MagicStar, b as Location, T as TickCircle } from "../_libs/iconsax-react.mjs";
+import { c as Shop, B as Brush2, L as Layer, G as Gallery, P as People, A as ArrowRight2, a as Clock, S as Shield, C as Calendar, b as Location, T as TickCircle } from "../_libs/iconsax-react.mjs";
 import { Q as Quote, h as Star } from "../_libs/lucide-react.mjs";
 import { H as House$1, a as Play, P as Pause, M as Maximize } from "../_libs/zethictech__iconsax-react.mjs";
 import "../_libs/tanstack__react-router.mjs";
@@ -436,7 +436,7 @@ function Hero() {
                   initial: reduceMotion ? false : { opacity: 0, y: 18 },
                   animate: { opacity: 1, y: 0 },
                   transition: { duration: motionDuration.premium, ease: motionEase.premium, delay: 0.68 },
-                  className: "mt-9 flex flex-wrap items-center gap-3",
+                  className: "mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center",
                   children: [
                     /* @__PURE__ */ jsxRuntimeExports.jsxs(
                       motion.a,
@@ -447,7 +447,7 @@ function Hero() {
                         animate: "rest",
                         whileHover: "hover",
                         whileFocus: "hover",
-                        className: "brand-green-button group relative inline-flex h-[58px] items-center justify-center gap-3 rounded-[14px] px-8 text-[0.96rem] font-medium tracking-[-0.02em] text-white",
+                        className: "brand-green-button group relative inline-flex h-[58px] w-full items-center justify-center gap-3 rounded-[14px] px-8 text-[0.96rem] font-medium tracking-[-0.02em] text-white sm:w-auto",
                         style: { backgroundSize: "180% 180%" },
                         children: [
                           /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -477,7 +477,7 @@ function Hero() {
                         whileHover: reduceMotion ? void 0 : { y: -1 },
                         whileFocus: reduceMotion ? void 0 : { y: -1 },
                         transition: { duration: motionDuration.premium, ease: motionEase.premium },
-                        className: "group inline-flex h-[58px] items-center justify-center gap-3 rounded-[12px] border border-[rgba(247,245,242,0.16)] bg-[rgba(23,25,28,0.36)] px-8 text-[0.96rem] font-medium tracking-[-0.02em] text-[#F7F5F2] shadow-[0_18px_46px_-36px_rgba(23,25,28,0.42)] backdrop-blur-xl hover:bg-[rgba(23,25,28,0.48)]",
+                        className: "group inline-flex h-[58px] w-full items-center justify-center gap-3 rounded-[12px] border border-[rgba(247,245,242,0.16)] bg-[rgba(23,25,28,0.36)] px-8 text-[0.96rem] font-medium tracking-[-0.02em] text-[#F7F5F2] shadow-[0_18px_46px_-36px_rgba(23,25,28,0.42)] backdrop-blur-xl hover:bg-[rgba(23,25,28,0.48)] sm:w-auto",
                         children: [
                           /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Start Configurator" }),
                           /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -3078,37 +3078,24 @@ const highlights = [
   "keukenkranen",
   "keukenaccessoires"
 ];
+const progressItems = ["01", "02", "03", "04"];
 const luxuryEase$3 = [0.22, 1, 0.36, 1];
 const imageReveal = {
-  hidden: {
-    opacity: 0,
-    scale: 1.05,
-    filter: "blur(6px)"
-  },
+  hidden: { opacity: 0, scale: 1.05, filter: "blur(6px)" },
   visible: {
     opacity: 1,
     scale: 1,
     filter: "blur(0px)",
-    transition: {
-      duration: 1.2,
-      ease: luxuryEase$3
-    }
+    transition: { duration: 1.2, ease: luxuryEase$3 }
   }
 };
 const labelReveal = {
   hidden: { opacity: 0, y: 18 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.85, delay: 0, ease: luxuryEase$3 }
-  }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.85, ease: luxuryEase$3 } }
 };
 const lineReveal = {
   hidden: { y: "110%" },
-  visible: {
-    y: 0,
-    transition: { duration: 0.9, ease: luxuryEase$3 }
-  }
+  visible: { y: 0, transition: { duration: 0.9, ease: luxuryEase$3 } }
 };
 const paragraphReveal = {
   hidden: { opacity: 0, y: 16 },
@@ -3120,101 +3107,191 @@ const paragraphReveal = {
 };
 const ctaReveal = {
   hidden: { opacity: 0, y: 14 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.85, delay: 0.7, ease: luxuryEase$3 }
-  }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.85, delay: 0.7, ease: luxuryEase$3 } }
 };
-const headingLines = ["Keuken-Centrum", "Utrecht"];
 const headingContainer = {
   hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.2
-    }
-  }
+  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.2 } }
 };
+const headingLines = ["Keuken-Centrum", "Utrecht"];
+function GlassBadge({ number, label, sub, delay = 0, reduceMotion, floatDir = 1 }) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    motion.div,
+    {
+      animate: reduceMotion ? void 0 : { y: [0, floatDir * 6, 0] },
+      transition: { duration: 6 + delay, ease: "easeInOut", repeat: Infinity, delay },
+      children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "div",
+        {
+          className: "flex items-center gap-3 rounded-[14px] px-4 py-3",
+          style: {
+            background: "rgba(11,30,44,0.82)",
+            border: "1px solid rgba(49,199,212,0.22)",
+            backdropFilter: "blur(18px)",
+            boxShadow: "0 8px 32px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.04) inset"
+          },
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "span",
+              {
+                className: "font-serif text-[1.55rem] font-light leading-none tracking-[-0.025em] text-[#31C7D4]",
+                style: { textShadow: "0 0 22px rgba(49,199,212,0.45)" },
+                children: number
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "p",
+                {
+                  className: "text-[0.60rem] font-semibold uppercase tracking-[0.20em] text-[rgba(247,244,238,0.82)]",
+                  style: { fontFamily: "var(--font-body)" },
+                  children: label
+                }
+              ),
+              sub && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "p",
+                {
+                  className: "mt-0.5 text-[0.50rem] font-light tracking-[0.14em] text-[rgba(49,199,212,0.52)]",
+                  style: { fontFamily: "var(--font-body)" },
+                  children: sub
+                }
+              )
+            ] })
+          ]
+        }
+      )
+    }
+  );
+}
 function CornerFrames() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute -top-[1px] -right-[1px] z-20 pointer-events-none", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("svg", { width: "64", height: "64", viewBox: "0 0 64 64", fill: "none", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "pointer-events-none absolute -right-[1px] -top-[1px] z-20", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("svg", { width: "64", height: "64", viewBox: "0 0 64 64", fill: "none", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         "path",
         {
           d: "M64 0 L64 48 Q64 64 48 64 L0 64",
-          stroke: "rgba(200,169,107,0.55)",
+          stroke: "rgba(49,199,212,0.52)",
           strokeWidth: "1.5",
           fill: "none"
         }
       ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "60", cy: "4", r: "2", fill: "rgba(200,169,107,0.7)" })
+      /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "60", cy: "4", r: "2", fill: "rgba(49,199,212,0.72)" })
     ] }) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute -bottom-[1px] -left-[1px] z-20 pointer-events-none", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("svg", { width: "64", height: "64", viewBox: "0 0 64 64", fill: "none", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "pointer-events-none absolute -bottom-[1px] -left-[1px] z-20", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("svg", { width: "64", height: "64", viewBox: "0 0 64 64", fill: "none", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         "path",
         {
           d: "M0 64 L0 16 Q0 0 16 0 L64 0",
-          stroke: "rgba(200,169,107,0.55)",
+          stroke: "rgba(49,199,212,0.52)",
           strokeWidth: "1.5",
           fill: "none"
         }
       ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "4", cy: "60", r: "2", fill: "rgba(200,169,107,0.7)" })
+      /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "4", cy: "60", r: "2", fill: "rgba(49,199,212,0.72)" })
     ] }) })
   ] });
 }
 function WaterEffect() {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[40%] overflow-hidden opacity-[0.25]", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-    "svg",
-    {
-      viewBox: "0 0 1200 120",
-      preserveAspectRatio: "none",
-      className: "absolute bottom-0 w-full h-full",
-      children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("defs", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("linearGradient", { id: "water-grad", x1: "0%", y1: "0%", x2: "0%", y2: "100%", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("stop", { offset: "0%", stopColor: "rgba(200,169,107,0)" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("stop", { offset: "100%", stopColor: "rgba(200,169,107,0.25)" })
-        ] }) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "path",
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[35%] overflow-hidden opacity-[0.18]", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("svg", { viewBox: "0 0 1200 120", preserveAspectRatio: "none", className: "absolute bottom-0 h-full w-full", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("defs", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("linearGradient", { id: "water-grad-teal", x1: "0%", y1: "0%", x2: "0%", y2: "100%", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("stop", { offset: "0%", stopColor: "rgba(49,199,212,0)" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("stop", { offset: "100%", stopColor: "rgba(49,199,212,0.28)" })
+    ] }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "path",
+      {
+        fill: "url(#water-grad-teal)",
+        d: "M0,32L40,37.3C80,43,160,53,240,58.7C320,64,400,64,480,56C560,48,640,32,720,32C800,32,880,48,960,53.3C1040,59,1120,53,1160,50.7L1200,48L1200,120L0,120Z",
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "animate",
           {
-            fill: "url(#water-grad)",
-            d: "M0,32L40,37.3C80,43,160,53,240,58.7C320,64,400,64,480,56C560,48,640,32,720,32C800,32,880,48,960,53.3C1040,59,1120,53,1160,50.7L1200,48L1200,120L0,120Z",
-            children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "animate",
-              {
-                attributeName: "d",
-                dur: "6s",
-                repeatCount: "indefinite",
-                values: "\n              M0,32L40,37.3C80,43,160,53,240,58.7C320,64,400,64,480,56C560,48,640,32,720,32C800,32,880,48,960,53.3C1040,59,1120,53,1160,50.7L1200,48L1200,120L0,120Z;\n              M0,48L40,42.7C80,37,160,27,240,32C320,37,400,59,480,64C560,69,640,59,720,48C800,37,880,27,960,32C1040,37,1120,53,1160,61.3L1200,69L1200,120L0,120Z;\n              M0,32L40,37.3C80,43,160,53,240,58.7C320,64,400,64,480,56C560,48,640,32,720,32C800,32,880,48,960,53.3C1040,59,1120,53,1160,50.7L1200,48L1200,120L0,120Z\n            "
-              }
-            )
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "path",
-          {
-            fill: "rgba(200,169,107,0.08)",
-            d: "M0,64L40,58.7C80,53,160,43,240,42.7C320,43,400,53,480,58.7C560,64,640,64,720,58.7C800,53,880,43,960,42.7C1040,43,1120,53,1160,58.7L1200,64L1200,120L0,120Z",
-            children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "animate",
-              {
-                attributeName: "d",
-                dur: "8s",
-                repeatCount: "indefinite",
-                values: "\n              M0,64L40,58.7C80,53,160,43,240,42.7C320,43,400,53,480,58.7C560,64,640,64,720,58.7C800,53,880,43,960,42.7C1040,43,1120,53,1160,58.7L1200,64L1200,120L0,120Z;\n              M0,56L40,50.7C80,45,160,35,240,37.3C320,40,400,56,480,64C560,72,640,72,720,64C800,56,880,40,960,37.3C1040,35,1120,45,1160,50.7L1200,56L1200,120L0,120Z;\n              M0,64L40,58.7C80,53,160,43,240,42.7C320,43,400,53,480,58.7C560,64,640,64,720,58.7C800,53,880,43,960,42.7C1040,43,1120,53,1160,58.7L1200,64L1200,120L0,120Z\n            "
-              }
-            )
+            attributeName: "d",
+            dur: "8s",
+            repeatCount: "indefinite",
+            values: "M0,32L40,37.3C80,43,160,53,240,58.7C320,64,400,64,480,56C560,48,640,32,720,32C800,32,880,48,960,53.3C1040,59,1120,53,1160,50.7L1200,48L1200,120L0,120Z;M0,48L40,42.7C80,37,160,27,240,32C320,37,400,59,480,64C560,69,640,59,720,48C800,37,880,27,960,32C1040,37,1120,53,1160,61.3L1200,69L1200,120L0,120Z;M0,32L40,37.3C80,43,160,53,240,58.7C320,64,400,64,480,56C560,48,640,32,720,32C800,32,880,48,960,53.3C1040,59,1120,53,1160,50.7L1200,48L1200,120L0,120Z"
           }
         )
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "path",
+      {
+        fill: "rgba(49,199,212,0.07)",
+        d: "M0,64L40,58.7C80,53,160,43,240,42.7C320,43,400,53,480,58.7C560,64,640,64,720,58.7C800,53,880,43,960,42.7C1040,43,1120,53,1160,58.7L1200,64L1200,120L0,120Z",
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "animate",
+          {
+            attributeName: "d",
+            dur: "11s",
+            repeatCount: "indefinite",
+            values: "M0,64L40,58.7C80,53,160,43,240,42.7C320,43,400,53,480,58.7C560,64,640,64,720,58.7C800,53,880,43,960,42.7C1040,43,1120,53,1160,58.7L1200,64L1200,120L0,120Z;M0,56L40,50.7C80,45,160,35,240,37.3C320,40,400,56,480,64C560,72,640,72,720,64C800,56,880,40,960,37.3C1040,35,1120,45,1160,50.7L1200,56L1200,120L0,120Z;M0,64L40,58.7C80,53,160,43,240,42.7C320,43,400,53,480,58.7C560,64,640,64,720,58.7C800,53,880,43,960,42.7C1040,43,1120,53,1160,58.7L1200,64L1200,120L0,120Z"
+          }
+        )
+      }
+    )
+  ] }) });
+}
+function SmallVideo({ src, reduceMotion }) {
+  const [hovered, setHovered] = reactExports.useState(false);
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "div",
+    {
+      className: "relative flex-1 cursor-pointer overflow-hidden rounded-[14px]",
+      style: {
+        border: hovered ? "1px solid rgba(49,199,212,0.38)" : "1px solid rgba(255,255,255,0.05)",
+        opacity: hovered ? 1 : 0.68,
+        boxShadow: hovered ? "0 0 24px rgba(49,199,212,0.18)" : "none",
+        transition: "opacity 550ms ease, border-color 500ms ease, box-shadow 500ms ease"
+      },
+      onMouseEnter: () => setHovered(true),
+      onMouseLeave: () => setHovered(false),
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "video",
+          {
+            src,
+            autoPlay: true,
+            muted: true,
+            loop: true,
+            playsInline: true,
+            className: "absolute inset-0 h-full w-full object-cover",
+            style: {
+              transform: hovered && !reduceMotion ? "scale(1.055)" : "scale(1)",
+              transition: "transform 700ms cubic-bezier(0.22,1,0.36,1)"
+            }
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-[linear-gradient(180deg,rgba(11,30,44,0.02)_0%,rgba(11,30,44,0.45)_100%)]" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "pointer-events-none absolute inset-0 flex items-end p-3", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            className: "flex items-center gap-[5px]",
+            style: {
+              opacity: hovered ? 1 : 0,
+              transform: hovered ? "translateY(0)" : "translateY(8px)",
+              transition: "opacity 500ms ease, transform 500ms cubic-bezier(0.22,1,0.36,1)"
+            },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "span",
+                {
+                  className: "text-[0.52rem] font-semibold uppercase tracking-[0.20em] text-white",
+                  style: { fontFamily: "var(--font-body)" },
+                  children: "Bekijk showroom"
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowRight, { className: "h-2.5 w-2.5 text-[#31C7D4]" })
+            ]
+          }
+        ) })
       ]
     }
-  ) });
+  );
 }
 function PremiumShowcase() {
   const reduceMotion = useReducedMotion();
   const sectionRef = reactExports.useRef(null);
+  const [mainHovered, setMainHovered] = reactExports.useState(false);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"]
@@ -3226,112 +3303,228 @@ function PremiumShowcase() {
     {
       ref: sectionRef,
       id: "premium-showcase",
-      className: "relative w-full overflow-hidden bg-[#17191C] py-20 text-white md:py-32",
+      className: "relative w-full overflow-hidden bg-[#0B1E2C] py-20 text-white md:py-32",
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           "div",
           {
             "aria-hidden": "true",
-            className: "pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.02)_0%,transparent_28%,rgba(17,19,21,0.35)_100%)]"
+            className: "pointer-events-none absolute inset-0",
+            style: { background: "linear-gradient(180deg, rgba(11,30,44,0) 0%, rgba(6,13,19,0.25) 100%)" }
           }
         ),
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           motion.div,
           {
             "aria-hidden": "true",
-            className: "pointer-events-none absolute left-[58%] top-[18%] h-[min(42vw,420px)] w-[min(42vw,420px)] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(200,169,107,0.14),transparent_68%)] opacity-[0.03]",
-            animate: reduceMotion ? void 0 : { x: [0, 24, -12, 0], y: [0, 16, -8, 0] },
-            transition: reduceMotion ? void 0 : { duration: 20, repeat: Infinity, ease: "linear" }
+            className: "pointer-events-none absolute left-[50%] top-[35%] h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[200px]",
+            style: { background: "radial-gradient(circle, rgba(49,199,212,0.14), transparent 62%)" },
+            animate: reduceMotion ? void 0 : { opacity: [0.55, 0.9, 0.55] },
+            transition: { duration: 25, ease: "easeInOut", repeat: Infinity }
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          motion.div,
+          {
+            "aria-hidden": "true",
+            className: "pointer-events-none absolute -left-[22%] -top-[20%] h-[80vh] w-[80vh] rounded-full blur-[180px]",
+            style: { background: "radial-gradient(circle, rgba(49,199,212,0.15), transparent 60%)" },
+            animate: reduceMotion ? void 0 : { opacity: [0.4, 0.65, 0.4] },
+            transition: { duration: 30, ease: "easeInOut", repeat: Infinity, delay: 5 }
           }
         ),
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           "div",
           {
             "aria-hidden": "true",
-            className: "pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_72%_22%,rgba(200,169,107,0.04),transparent_58%)]"
+            className: "pointer-events-none absolute -bottom-[20%] -right-[15%] h-[60vh] w-[60vh] rounded-full blur-[160px] opacity-35",
+            style: { background: "radial-gradient(circle, rgba(49,199,212,0.10), transparent 65%)" }
           }
         ),
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           "div",
           {
             "aria-hidden": "true",
-            className: "pointer-events-none absolute inset-0 opacity-[0.032] [background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2264%22 viewBox=%220 0 64 64%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%222%22 stitchTiles=%22stitch%22/></filter><rect width=%2264%22 height=%2264%22 filter=%22url(%23n)%22 opacity=%220.4%22/></svg>')]"
+            className: "pointer-events-none absolute inset-0",
+            style: { background: "radial-gradient(ellipse 80% 60% at 72% 22%, rgba(49,199,212,0.04), transparent 58%)" }
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            "aria-hidden": "true",
+            className: "pointer-events-none absolute inset-0 opacity-[0.032] mix-blend-overlay",
+            style: {
+              backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='64' height='64' filter='url(%23n)' opacity='0.4'/></svg>")`
+            }
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            "aria-hidden": "true",
+            className: "pointer-events-none absolute inset-x-0 top-0 h-px",
+            style: { background: "linear-gradient(90deg, transparent, rgba(49,199,212,0.28), transparent)" }
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            "aria-hidden": "true",
+            className: "pointer-events-none absolute inset-x-0 bottom-0 h-px",
+            style: { background: "linear-gradient(90deg, transparent, rgba(49,199,212,0.10), transparent)" }
           }
         ),
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "site-container relative", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid items-center gap-8 lg:grid-cols-[minmax(0,55%)_minmax(0,45%)] lg:gap-10 xl:gap-14", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            motion.div,
-            {
-              style: reduceMotion ? void 0 : { y: imageY },
-              initial: reduceMotion ? false : "hidden",
-              whileInView: "visible",
-              viewport: motionViewport,
-              variants: reduceMotion ? void 0 : imageReveal,
-              className: "relative w-full max-w-[540px] lg:max-w-[620px] xl:max-w-[720px] mx-auto lg:ml-6 mt-6 lg:mt-0",
-              children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "group relative flex flex-col sm:flex-row gap-3 rounded-[24px] border border-[rgba(255,255,255,0.08)] bg-[rgba(23,25,28,0.22)] p-2 shadow-[0_28px_64px_-44px_rgba(17,19,21,0.72)] backdrop-blur-xl", children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative overflow-hidden rounded-[18px] w-full sm:w-[65%] flex items-center justify-center bg-black/40", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(CornerFrames, {}),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    "video",
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative mx-auto mt-6 w-full max-w-[540px] lg:ml-6 lg:mt-0 lg:max-w-[620px] xl:max-w-[720px]", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute -left-12 top-0 z-30 hidden h-full xl:flex xl:flex-col xl:items-center xl:justify-center xl:gap-0", children: progressItems.map((num, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col items-center", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "div",
+                {
+                  className: "flex h-8 w-8 items-center justify-center",
+                  style: {
+                    color: i === 0 ? "#31C7D4" : "rgba(255,255,255,0.20)",
+                    textShadow: i === 0 ? "0 0 14px rgba(49,199,212,0.65)" : "none",
+                    transition: "color 500ms ease"
+                  },
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "span",
                     {
-                      src: keukenVid1,
-                      autoPlay: true,
-                      muted: true,
-                      loop: true,
-                      playsInline: true,
-                      className: "w-full h-auto max-h-[85vh] object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.03]"
+                      className: "text-[0.48rem] font-semibold tracking-[0.20em]",
+                      style: { fontFamily: "var(--font-body)" },
+                      children: num
                     }
-                  ),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-[linear-gradient(180deg,rgba(23,25,28,0.02)_0%,rgba(23,25,28,0.22)_100%)] pointer-events-none" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(WaterEffect, {})
-                ] }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex w-full sm:w-[35%] flex-row sm:flex-col gap-3 min-h-[140px] sm:min-h-[480px]", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative flex-1 overflow-hidden rounded-[14px] border border-[rgba(255,255,255,0.04)] shadow-sm transition-transform duration-700 ease-out sm:group-hover:-translate-x-1", children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      "video",
-                      {
-                        src: keukenVid3,
-                        autoPlay: true,
-                        muted: true,
-                        loop: true,
-                        playsInline: true,
-                        className: "absolute inset-0 h-full w-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.05]"
-                      }
-                    ),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-[linear-gradient(180deg,rgba(23,25,28,0.02)_0%,rgba(23,25,28,0.36)_100%)]" })
-                  ] }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative flex-1 overflow-hidden rounded-[14px] border border-[rgba(255,255,255,0.06)] shadow-sm transition-transform duration-700 ease-out delay-75 sm:group-hover:-translate-x-1", children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      "video",
-                      {
-                        src: keukenVid4,
-                        autoPlay: true,
-                        muted: true,
-                        loop: true,
-                        playsInline: true,
-                        className: "absolute inset-0 h-full w-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.05]"
-                      }
-                    ),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-[linear-gradient(180deg,rgba(23,25,28,0.05)_0%,rgba(23,25,28,0.4)_100%)]" })
-                  ] }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative flex-1 overflow-hidden rounded-[14px] border border-[rgba(255,255,255,0.12)] shadow-sm transition-transform duration-700 ease-out delay-150 sm:group-hover:-translate-x-1", children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      "video",
-                      {
-                        src: keukenVid2,
-                        autoPlay: true,
-                        muted: true,
-                        loop: true,
-                        playsInline: true,
-                        className: "absolute inset-0 h-full w-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.05]"
-                      }
-                    ),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-[linear-gradient(180deg,rgba(23,25,28,0.0)_0%,rgba(23,25,28,0.3)_100%)]" })
-                  ] })
-                ] })
-              ] })
-            }
-          ),
+                  )
+                }
+              ),
+              i < progressItems.length - 1 && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "div",
+                {
+                  className: "w-px",
+                  style: {
+                    height: "36px",
+                    background: i === 0 ? "linear-gradient(to bottom, rgba(49,199,212,0.55), rgba(49,199,212,0.10))" : "rgba(255,255,255,0.06)"
+                  }
+                }
+              )
+            ] }, num)) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              motion.div,
+              {
+                style: reduceMotion ? void 0 : { y: imageY },
+                initial: reduceMotion ? false : "hidden",
+                whileInView: "visible",
+                viewport: motionViewport,
+                variants: reduceMotion ? void 0 : imageReveal,
+                className: "relative",
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute -left-3 -top-5 z-20 hidden sm:block", children: /* @__PURE__ */ jsxRuntimeExports.jsx(GlassBadge, { number: "45+", label: "Jaar Ervaring", sub: "Premium vakmanschap", delay: 0, reduceMotion, floatDir: -1 }) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute -bottom-5 -right-3 z-20 hidden sm:block", children: /* @__PURE__ */ jsxRuntimeExports.jsx(GlassBadge, { number: "1000+", label: "Materiaalcombinaties", sub: "Curated collectie", delay: 1.8, reduceMotion, floatDir: 1 }) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute -bottom-5 left-[30%] z-20 hidden lg:block", children: /* @__PURE__ */ jsxRuntimeExports.jsx(GlassBadge, { number: "1978", label: "Opgericht", sub: "Seit 1978 · Utrecht", delay: 3.2, reduceMotion, floatDir: -1 }) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    "div",
+                    {
+                      className: "relative flex flex-col gap-3 rounded-[24px] p-2 backdrop-blur-xl sm:flex-row",
+                      style: {
+                        border: "1px solid rgba(49,199,212,0.12)",
+                        background: "rgba(11,30,44,0.30)",
+                        boxShadow: "0 32px 80px -24px rgba(0,0,0,0.72), 0 0 0 1px rgba(255,255,255,0.03) inset"
+                      },
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                          "div",
+                          {
+                            className: "group/main relative w-full cursor-pointer overflow-hidden rounded-[18px] bg-black/40 sm:w-[65%]",
+                            style: {
+                              border: "1px solid rgba(49,199,212,0.42)",
+                              boxShadow: "0 0 28px rgba(49,199,212,0.16), 0 0 0 1px rgba(49,199,212,0.07) inset"
+                            },
+                            onMouseEnter: () => setMainHovered(true),
+                            onMouseLeave: () => setMainHovered(false),
+                            children: [
+                              /* @__PURE__ */ jsxRuntimeExports.jsx(CornerFrames, {}),
+                              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                "video",
+                                {
+                                  src: keukenVid1,
+                                  autoPlay: true,
+                                  muted: true,
+                                  loop: true,
+                                  playsInline: true,
+                                  className: "h-auto w-full max-h-[85vh] object-cover",
+                                  style: {
+                                    transform: mainHovered && !reduceMotion ? "scale(1.030)" : "scale(1)",
+                                    transition: "transform 800ms cubic-bezier(0.22,1,0.36,1)"
+                                  }
+                                }
+                              ),
+                              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(11,30,44,0.02)_0%,rgba(11,30,44,0.26)_100%)]" }),
+                              /* @__PURE__ */ jsxRuntimeExports.jsx(WaterEffect, {}),
+                              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "pointer-events-none absolute left-4 top-4 z-20", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                                "div",
+                                {
+                                  className: "flex items-center gap-2 rounded-full px-3 py-1.5",
+                                  style: {
+                                    background: "rgba(11,30,44,0.75)",
+                                    border: "1px solid rgba(49,199,212,0.30)",
+                                    backdropFilter: "blur(12px)"
+                                  },
+                                  children: [
+                                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                      "span",
+                                      {
+                                        className: "h-[5px] w-[5px] rounded-full bg-[#31C7D4]",
+                                        style: { boxShadow: "0 0 6px rgba(49,199,212,0.80)" }
+                                      }
+                                    ),
+                                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                      "span",
+                                      {
+                                        className: "text-[0.44rem] font-semibold uppercase tracking-[0.24em] text-[rgba(49,199,212,0.85)]",
+                                        style: { fontFamily: "var(--font-body)" },
+                                        children: "Showroom Utrecht"
+                                      }
+                                    )
+                                  ]
+                                }
+                              ) }),
+                              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "pointer-events-none absolute inset-0 flex items-end p-5", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                                "div",
+                                {
+                                  className: "flex items-center gap-2",
+                                  style: {
+                                    opacity: mainHovered ? 1 : 0,
+                                    transform: mainHovered ? "translateY(0)" : "translateY(10px)",
+                                    transition: "opacity 500ms ease, transform 500ms cubic-bezier(0.22,1,0.36,1)"
+                                  },
+                                  children: [
+                                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                      "span",
+                                      {
+                                        className: "text-[0.64rem] font-semibold uppercase tracking-[0.22em] text-white",
+                                        style: { fontFamily: "var(--font-body)" },
+                                        children: "Bekijk showroom"
+                                      }
+                                    ),
+                                    /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowRight, { className: "h-3 w-3 text-[#31C7D4]" })
+                                  ]
+                                }
+                              ) })
+                            ]
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex w-full flex-row gap-3 sm:w-[35%] sm:flex-col sm:min-h-[480px]", children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(SmallVideo, { src: keukenVid3, reduceMotion }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(SmallVideo, { src: keukenVid4, reduceMotion }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(SmallVideo, { src: keukenVid2, reduceMotion })
+                        ] })
+                      ]
+                    }
+                  )
+                ]
+              }
+            )
+          ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs(
             motion.div,
             {
@@ -3351,10 +3544,18 @@ function PremiumShowcase() {
                         "span",
                         {
                           "aria-hidden": "true",
-                          className: "mb-4 block h-px w-[60px] bg-[rgba(200,169,107,0.6)]"
+                          className: "mb-4 block h-px w-[60px]",
+                          style: { background: "linear-gradient(90deg, rgba(49,199,212,0.65), transparent)" }
                         }
                       ),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-[0.68rem] font-normal uppercase tracking-[0.28em] text-[rgba(200,169,107,0.82)]", children: "Premium modern kitchen experience" })
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "p",
+                        {
+                          className: "text-[0.6rem] font-semibold uppercase tracking-[0.30em] text-[#31C7D4]",
+                          style: { fontFamily: "var(--font-body)" },
+                          children: "Sinds 1978 · Utrecht Showroom"
+                        }
+                      )
                     ]
                   }
                 ),
@@ -3371,14 +3572,21 @@ function PremiumShowcase() {
                         "div",
                         {
                           "aria-hidden": "true",
-                          className: "pointer-events-none absolute -left-4 top-0 h-20 w-40 bg-[radial-gradient(circle,rgba(200,169,107,0.07),transparent_70%)] blur-2xl"
+                          className: "pointer-events-none absolute -left-4 top-0 h-20 w-48 blur-2xl",
+                          style: { background: "radial-gradient(circle, rgba(49,199,212,0.10), transparent 70%)" }
                         }
                       ),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "relative font-serif text-[clamp(2.15rem,3.6vw,3rem)] leading-[1.06] tracking-[-0.02em] text-white", children: headingLines.map((line) => /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "block overflow-hidden py-[0.06em]", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "relative font-serif text-[clamp(2.15rem,3.6vw,3rem)] leading-[1.06] tracking-[-0.022em] text-white", children: headingLines.map((line, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "block overflow-hidden py-[0.06em]", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                         motion.span,
                         {
                           variants: reduceMotion ? void 0 : lineReveal,
                           className: "block",
+                          style: i === 1 ? {
+                            background: "linear-gradient(128deg, #31C7D4 0%, #66DCE6 50%, #23B9C4 100%)",
+                            WebkitBackgroundClip: "text",
+                            WebkitTextFillColor: "transparent",
+                            backgroundClip: "text"
+                          } : void 0,
                           children: line
                         }
                       ) }, line)) })
@@ -3393,8 +3601,9 @@ function PremiumShowcase() {
                     whileInView: "visible",
                     viewport: motionViewport,
                     variants: reduceMotion ? void 0 : paragraphReveal,
-                    className: "mt-5 max-w-[520px] text-[1rem] font-light leading-[1.75] tracking-[0.01em] text-[rgba(255,255,255,0.76)]",
-                    children: "De talloze keuken opstellingen in onze showroom geven u genoeg inspiratie. Doordat we met meerdere keukenfabrikanten werken, bieden we een groot en breed assortiment aan. Voor elk budget hebben we een droomkeuken."
+                    className: "mt-5 max-w-[520px] text-[1rem] font-light leading-[1.78] tracking-[0.01em] text-[rgba(255,255,255,0.60)]",
+                    style: { fontFamily: "var(--font-body)" },
+                    children: "De talloze keukenopstellingen in onze showroom geven u genoeg inspiratie. Doordat we met meerdere keukenfabrikanten werken, bieden we een groot en breed assortiment aan. Voor elk budget hebben we een droomkeuken."
                   }
                 ),
                 /* @__PURE__ */ jsxRuntimeExports.jsxs(
@@ -3405,12 +3614,20 @@ function PremiumShowcase() {
                     whileInView: "visible",
                     viewport: motionViewport,
                     variants: reduceMotion ? void 0 : paragraphReveal,
-                    className: "mt-5 max-w-[520px] text-[1rem] font-light leading-[1.75] tracking-[0.01em] text-[rgba(255,255,255,0.76)]",
+                    className: "mt-5 max-w-[520px] text-[1rem] font-light leading-[1.78] tracking-[0.01em] text-[rgba(255,255,255,0.60)]",
+                    style: { fontFamily: "var(--font-body)" },
                     children: [
-                      "Het is heeft onze voorkeur om geheel naar wens van de klant een complete keuken te leveren. Van",
+                      "Het heeft onze voorkeur om geheel naar wens van de klant een complete keuken te leveren. Van",
                       " ",
                       highlights.map((item, index) => /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-medium text-[rgba(200,169,107,0.88)]", children: item }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "span",
+                          {
+                            className: "font-medium",
+                            style: { color: "#31C7D4" },
+                            children: item
+                          }
+                        ),
                         index < highlights.length - 1 ? ", " : ""
                       ] }, item)),
                       " ",
@@ -3427,34 +3644,63 @@ function PremiumShowcase() {
                     variants: reduceMotion ? void 0 : ctaReveal,
                     className: "mt-8 flex flex-wrap items-center gap-3",
                     children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        Button,
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                        "a",
                         {
-                          asChild: true,
-                          className: [
-                            "brand-green-button group/btn h-11 min-h-11 rounded-[16px] px-6",
-                            "text-[0.8125rem] font-normal uppercase tracking-[0.14em] text-[#F5F2EC]",
-                            "transition-[transform,background-color,box-shadow] duration-[350ms] ease-out",
-                            "hover:-translate-y-0.5"
-                          ].join(" "),
-                          children: /* @__PURE__ */ jsxRuntimeExports.jsxs("a", { href: "#showroom", children: [
-                            "Plan showroombezoek",
-                            /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowRight, { className: "h-4 w-4 transition-transform duration-[350ms] ease-out group-hover/btn:translate-x-1.5" })
-                          ] })
+                          href: "#showroom",
+                          className: "group relative inline-flex h-11 items-center justify-center gap-2.5 overflow-hidden rounded-[16px] px-6 text-[0.8125rem] font-normal uppercase tracking-[0.14em] text-white",
+                          style: {
+                            background: "linear-gradient(135deg, #2FC5D0 0%, #23B9C4 55%, #1DAAB5 100%)",
+                            fontFamily: "var(--font-body)",
+                            transition: "transform 500ms cubic-bezier(0.22,1,0.36,1), box-shadow 500ms ease"
+                          },
+                          onMouseEnter: (e) => {
+                            const el = e.currentTarget;
+                            el.style.transform = "translateY(-2px)";
+                            el.style.boxShadow = "0 10px 28px rgba(49,199,212,0.32)";
+                          },
+                          onMouseLeave: (e) => {
+                            const el = e.currentTarget;
+                            el.style.transform = "translateY(0)";
+                            el.style.boxShadow = "none";
+                          },
+                          children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "relative z-10", children: "Plan showroombezoek" }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowRight, { className: "relative z-10 h-4 w-4 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1.5" }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(
+                              "div",
+                              {
+                                "aria-hidden": "true",
+                                className: "absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/24 to-transparent transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:translate-x-full"
+                              }
+                            )
+                          ]
                         }
                       ),
                       /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        Button,
+                        "a",
                         {
-                          asChild: true,
-                          variant: "outline",
-                          className: [
-                            "h-11 min-h-11 rounded-[18px] border border-[rgba(255,255,255,0.08)] bg-transparent px-6",
-                            "text-[0.8125rem] font-normal uppercase tracking-[0.14em] text-white",
-                            "transition-[transform,border-color,background-color,color] duration-[350ms] ease-out",
-                            "hover:-translate-y-0.5 hover:border-[rgba(200,169,107,0.55)] hover:bg-transparent hover:text-white"
-                          ].join(" "),
-                          children: /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: "#brands", children: "Bekijk merken" })
+                          href: "#brands",
+                          className: "group inline-flex h-11 items-center justify-center rounded-[18px] border px-6 text-[0.8125rem] font-normal uppercase tracking-[0.14em]",
+                          style: {
+                            borderColor: "rgba(49,199,212,0.28)",
+                            color: "rgba(247,244,238,0.62)",
+                            fontFamily: "var(--font-body)",
+                            transition: "transform 500ms ease, border-color 500ms ease, color 500ms ease"
+                          },
+                          onMouseEnter: (e) => {
+                            const el = e.currentTarget;
+                            el.style.transform = "translateY(-2px)";
+                            el.style.borderColor = "rgba(49,199,212,0.62)";
+                            el.style.color = "#66DCE6";
+                          },
+                          onMouseLeave: (e) => {
+                            const el = e.currentTarget;
+                            el.style.transform = "translateY(0)";
+                            el.style.borderColor = "rgba(49,199,212,0.28)";
+                            el.style.color = "rgba(247,244,238,0.62)";
+                          },
+                          children: "Bekijk merken"
                         }
                       )
                     ]
@@ -4486,136 +4732,209 @@ const staggerSlow = {
   visible: { transition: { staggerChildren: 0.14, delayChildren: 0.1 } }
 };
 function HorizontalSlider() {
+  const reduceMotion = useReducedMotion();
   const doubled = [...gallerySlides, ...gallerySlides];
-  const scrollRef = reactExports.useRef(null);
   const trackRef = reactExports.useRef(null);
-  const [dragging, setDragging] = reactExports.useState(false);
-  const drag = reactExports.useRef({ startX: 0, startScroll: 0, moved: false });
-  const pausedUntil = reactExports.useRef(0);
+  const posRef = reactExports.useRef(0);
+  const halfWidthRef = reactExports.useRef(0);
+  const pausedRef = reactExports.useRef(false);
+  const draggingRef = reactExports.useRef(false);
+  const dragRef = reactExports.useRef({ startX: 0, startPos: 0, moved: false });
+  const resumeAfterRef = reactExports.useRef(0);
+  const [isDragging, setIsDragging] = reactExports.useState(false);
+  const SPEED2 = 55;
   reactExports.useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    let raf = 0;
-    let last = performance.now();
-    const speed = 30;
-    const tick = (now) => {
-      const dt = (now - last) / 1e3;
-      last = now;
-      const half = (trackRef.current?.scrollWidth ?? 0) / 2;
-      if (!dragging && now > pausedUntil.current && half > 0) {
-        let next = el.scrollLeft + speed * dt;
-        if (next >= half) next -= half;
-        el.scrollLeft = next;
-      } else if (half > 0) {
-        if (el.scrollLeft >= half) el.scrollLeft -= half;
-        else if (el.scrollLeft < 0) el.scrollLeft += half;
+    const measure = () => {
+      if (trackRef.current) {
+        halfWidthRef.current = trackRef.current.scrollWidth / 2;
       }
-      raf = requestAnimationFrame(tick);
     };
-    raf = requestAnimationFrame(tick);
+    measure();
+    window.addEventListener("resize", measure, { passive: true });
+    return () => window.removeEventListener("resize", measure);
+  }, []);
+  reactExports.useEffect(() => {
+    if (reduceMotion) return;
+    const track = trackRef.current;
+    if (!track) return;
+    let raf;
+    let last = performance.now();
+    const step = (now) => {
+      const half = halfWidthRef.current;
+      if (half > 0 && !pausedRef.current && !draggingRef.current && now > resumeAfterRef.current) {
+        const dt = Math.min((now - last) / 1e3, 0.05);
+        posRef.current -= SPEED2 * dt;
+        if (posRef.current <= -half) posRef.current += half;
+        track.style.transform = `translate3d(${posRef.current}px, 0, 0)`;
+      }
+      last = now;
+      raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
     return () => cancelAnimationFrame(raf);
-  }, [dragging]);
+  }, [reduceMotion]);
   const onPointerDown = (e) => {
-    const el = scrollRef.current;
-    if (!el) return;
-    setDragging(true);
-    drag.current = { startX: e.clientX, startScroll: el.scrollLeft, moved: false };
-    el.setPointerCapture(e.pointerId);
+    draggingRef.current = true;
+    setIsDragging(true);
+    dragRef.current = { startX: e.clientX, startPos: posRef.current, moved: false };
+    e.currentTarget.setPointerCapture(e.pointerId);
   };
   const onPointerMove = (e) => {
-    if (!dragging) return;
-    const el = scrollRef.current;
-    if (!el) return;
-    const dx = e.clientX - drag.current.startX;
-    if (Math.abs(dx) > 3) drag.current.moved = true;
-    el.scrollLeft = drag.current.startScroll - dx;
+    if (!draggingRef.current) return;
+    const dx = e.clientX - dragRef.current.startX;
+    if (Math.abs(dx) > 3) dragRef.current.moved = true;
+    const half = halfWidthRef.current;
+    let next = dragRef.current.startPos + dx;
+    if (half > 0) {
+      while (next > 0) next -= half;
+      while (next <= -half) next += half;
+    }
+    posRef.current = next;
+    if (trackRef.current) {
+      trackRef.current.style.transform = `translate3d(${next}px, 0, 0)`;
+    }
   };
   const onPointerUp = (e) => {
-    setDragging(false);
-    pausedUntil.current = performance.now() + 1500;
-    scrollRef.current?.releasePointerCapture(e.pointerId);
+    draggingRef.current = false;
+    setIsDragging(false);
+    resumeAfterRef.current = performance.now() + 1200;
+    e.currentTarget.releasePointerCapture(e.pointerId);
   };
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(
       "div",
       {
-        className: "pointer-events-none absolute inset-y-0 left-0 z-10 w-32 md:w-40",
+        className: "pointer-events-none absolute inset-y-0 left-0 z-10 w-28 md:w-48",
         style: {
-          background: "linear-gradient(to right, #FAF7F1 0%, rgba(250,247,241,0.85) 35%, rgba(250,247,241,0) 100%)"
+          background: "linear-gradient(to right, #F7F4EF 0%, rgba(247,244,239,0.92) 40%, rgba(247,244,239,0) 100%)"
         }
       }
     ),
     /* @__PURE__ */ jsxRuntimeExports.jsx(
       "div",
       {
-        className: "pointer-events-none absolute inset-y-0 right-0 z-10 w-32 md:w-40",
+        className: "pointer-events-none absolute inset-y-0 right-0 z-10 w-28 md:w-48",
         style: {
-          background: "linear-gradient(to left, #FAF7F1 0%, rgba(250,247,241,0.85) 35%, rgba(250,247,241,0) 100%)"
+          background: "linear-gradient(to left, #F7F4EF 0%, rgba(247,244,239,0.92) 40%, rgba(247,244,239,0) 100%)"
         }
       }
     ),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "absolute left-4 top-[3.75rem] z-20 inline-flex items-center gap-2 rounded-full border border-[#E2D9C7] bg-white/90 px-3 py-1.5 backdrop-blur-sm", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(MagicStar, { size: 12, variant: "Bold", color: "#8a6a2a" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "span",
-        {
-          className: "text-[10px] font-semibold uppercase tracking-[0.22em]",
-          style: { color: "#5a4418", fontFamily: "var(--font-body)" },
-          children: "Showroom Selectie"
-        }
-      )
-    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      motion.div,
+      {
+        className: "absolute left-6 top-[3.75rem] z-20 inline-flex items-center gap-2 rounded-full px-3 py-1.5",
+        style: {
+          background: "rgba(255,255,255,0.94)",
+          border: "1px solid rgba(49,199,212,0.28)",
+          backdropFilter: "blur(12px)",
+          boxShadow: "0 0 22px rgba(49,199,212,0.10), 0 4px 16px -8px rgba(0,0,0,0.08)"
+        },
+        animate: reduceMotion ? void 0 : { y: [0, -3, 0] },
+        transition: { duration: 4.5, ease: "easeInOut", repeat: Infinity },
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "span",
+            {
+              className: "h-[5px] w-[5px] rounded-full bg-[#31C7D4]",
+              style: { boxShadow: "0 0 6px rgba(49,199,212,0.75)" }
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "span",
+            {
+              className: "text-[9.5px] font-semibold uppercase tracking-[0.24em]",
+              style: { color: "#0C8690", fontFamily: "var(--font-body)" },
+              children: "Showroom Selectie"
+            }
+          )
+        ]
+      }
+    ),
     /* @__PURE__ */ jsxRuntimeExports.jsx(
       "div",
       {
-        ref: scrollRef,
+        className: `overflow-hidden pb-4 pt-14 ${isDragging ? "cursor-grabbing" : "cursor-grab"}`,
         onPointerDown,
         onPointerMove,
         onPointerUp,
         onPointerCancel: onPointerUp,
-        className: `select-none overflow-x-auto pb-4 pt-14 ${dragging ? "cursor-grabbing" : "cursor-grab"}`,
-        style: { scrollbarWidth: "none", msOverflowStyle: "none", touchAction: "pan-y" },
-        children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { ref: trackRef, className: "flex w-max gap-5 px-6", children: doubled.map((slide, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          "figure",
+        onMouseEnter: () => {
+          pausedRef.current = true;
+        },
+        onMouseLeave: () => {
+          pausedRef.current = false;
+        },
+        style: { touchAction: "pan-y", userSelect: "none" },
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
           {
-            className: "group relative h-64 w-[280px] shrink-0 overflow-hidden rounded-[24px] md:h-72 md:w-[310px]",
-            style: { boxShadow: "0 30px 60px -30px rgba(60,45,20,0.30)" },
-            onClickCapture: (e) => {
-              if (drag.current.moved) {
-                e.preventDefault();
-                e.stopPropagation();
-              }
-            },
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "img",
-                {
-                  src: slide.src,
-                  alt: slide.label,
-                  draggable: false,
-                  loading: "lazy",
-                  className: "pointer-events-none h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
-                }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "pointer-events-none absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("figcaption", { className: "pointer-events-none absolute inset-x-0 bottom-0 p-5", children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-black/35 px-2 py-0.5 backdrop-blur-sm", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "h-1 w-1 rounded-full", style: { background: "#D9BE7C" } }),
+            ref: trackRef,
+            className: "flex w-max gap-5 px-6",
+            style: { transform: "translate3d(0, 0, 0)", willChange: "transform" },
+            children: doubled.map((slide, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "figure",
+              {
+                className: [
+                  "group relative h-64 w-[280px] shrink-0 overflow-hidden rounded-[24px]",
+                  "opacity-[0.88] transition-[transform,opacity,box-shadow]",
+                  "duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+                  "hover:opacity-100 hover:scale-[1.03]",
+                  "md:h-72 md:w-[310px]"
+                ].join(" "),
+                style: { boxShadow: "0 30px 60px -30px rgba(60,45,20,0.30)" },
+                onMouseEnter: (e) => {
+                  e.currentTarget.style.boxShadow = "0 40px 80px -22px rgba(60,45,20,0.52)";
+                },
+                onMouseLeave: (e) => {
+                  e.currentTarget.style.boxShadow = "0 30px 60px -30px rgba(60,45,20,0.30)";
+                },
+                onClickCapture: (e) => {
+                  if (dragRef.current.moved) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                  }
+                },
+                children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    "span",
+                    "img",
                     {
-                      className: "text-[9px] font-medium uppercase tracking-[0.18em] text-white/90",
-                      style: { fontFamily: "var(--font-body)" },
-                      children: slide.tag
+                      src: slide.src,
+                      alt: slide.label,
+                      draggable: false,
+                      loading: "lazy",
+                      className: "pointer-events-none h-full w-full object-cover transition-transform duration-[800ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.08]"
                     }
-                  )
-                ] }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mt-1.5 font-serif text-[17px] font-light text-white", children: slide.label })
-              ] })
-            ]
-          },
-          i
-        )) })
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "pointer-events-none absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "div",
+                    {
+                      className: "pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100",
+                      style: {
+                        background: "linear-gradient(135deg, rgba(255,255,255,0.07) 0%, transparent 50%, rgba(255,255,255,0.04) 100%)"
+                      }
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("figcaption", { className: "pointer-events-none absolute inset-x-0 bottom-0 p-5", children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-black/35 px-2 py-0.5 backdrop-blur-sm", children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "h-1 w-1 rounded-full bg-[#31C7D4]" }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "span",
+                        {
+                          className: "text-[9px] font-medium uppercase tracking-[0.18em] text-white/90",
+                          style: { fontFamily: "var(--font-body)" },
+                          children: slide.tag
+                        }
+                      )
+                    ] }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mt-1.5 font-serif text-[17px] font-light text-white/80 transition-colors duration-300 group-hover:text-white", children: slide.label })
+                  ] })
+                ]
+              },
+              i
+            ))
+          }
+        )
       }
     )
   ] });
@@ -5439,6 +5758,7 @@ function FinalCta() {
     }
   );
 }
+const SHOWROOM_MAPS_URL = "https://www.google.com/maps/place/Keuken-centrum.nl/@52.1187967,5.0434307,17z";
 const luxe = [0.22, 1, 0.36, 1];
 const fadeUp = {
   hidden: { opacity: 0, y: 32 },
@@ -5491,10 +5811,10 @@ function TrustBar({ reduceMotion }) {
           {
             "aria-hidden": "true",
             className: "pointer-events-none absolute inset-x-0 top-0 h-px",
-            style: { background: "linear-gradient(90deg, transparent, rgba(200,169,107,0.30), transparent)" }
+            style: { background: "linear-gradient(90deg, transparent, rgba(49,199,212,0.28), transparent)" }
           }
         ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mx-auto grid max-w-7xl grid-cols-2 gap-0 px-6 py-11 md:grid-cols-4 lg:px-12", children: trustStats.map((stat, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mx-auto grid max-w-[90rem] grid-cols-2 gap-0 px-6 py-11 md:grid-cols-4 lg:px-12", children: trustStats.map((stat, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
           motion.div,
           {
             variants: reduceMotion ? void 0 : fadeUp,
@@ -5504,13 +5824,7 @@ function TrustBar({ reduceMotion }) {
               i >= 2 ? "border-t border-white/[0.07] md:border-t-0" : ""
             ].join(" "),
             children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "span",
-                {
-                  className: "font-serif text-[2rem] font-light leading-none tracking-[-0.03em] text-[#F5F2EC]",
-                  children: stat.value
-                }
-              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-serif text-[2rem] font-light leading-none tracking-[-0.03em] text-[#F5F2EC]", children: stat.value }),
               /* @__PURE__ */ jsxRuntimeExports.jsx(
                 "span",
                 {
@@ -5540,12 +5854,10 @@ function SocialRow({ links }) {
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           "span",
           {
-            className: "relative flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] border border-[rgba(35,185,196,0.20)] bg-[rgba(35,185,196,0.06)] text-[rgba(35,185,196,0.75)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-[3px] group-hover:border-[rgba(35,185,196,0.48)] group-hover:bg-[rgba(35,185,196,0.12)] group-hover:text-[#4FD6D9]",
-            style: {
-              boxShadow: "0 0 0 0 rgba(35,185,196,0)"
-            },
+            className: "relative flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] border border-[rgba(35,185,196,0.20)] bg-[rgba(35,185,196,0.06)] text-[rgba(35,185,196,0.75)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-[3px] group-hover:scale-[1.06] group-hover:border-[rgba(35,185,196,0.52)] group-hover:bg-[rgba(35,185,196,0.14)] group-hover:text-[#4FD6D9]",
+            style: { boxShadow: "0 0 0 0 rgba(35,185,196,0)" },
             onMouseEnter: (e) => {
-              e.currentTarget.style.boxShadow = "0 8px 20px -8px rgba(35,185,196,0.28)";
+              e.currentTarget.style.boxShadow = "0 8px 20px -8px rgba(35,185,196,0.35)";
             },
             onMouseLeave: (e) => {
               e.currentTarget.style.boxShadow = "0 0 0 0 rgba(35,185,196,0)";
@@ -5570,10 +5882,10 @@ function ShowroomCard() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
     "a",
     {
-      href: kc.contact.maps,
+      href: SHOWROOM_MAPS_URL,
       target: "_blank",
       rel: "noopener noreferrer",
-      className: "group relative mt-7 block overflow-hidden rounded-[18px] border border-[rgba(35,185,196,0.14)] shadow-[0_12px_40px_-16px_rgba(0,0,0,0.6)] transition-shadow duration-500 hover:shadow-[0_20px_56px_-16px_rgba(0,0,0,0.75)]",
+      className: "group relative mt-7 block overflow-hidden rounded-[18px] border border-[rgba(35,185,196,0.16)] shadow-[0_12px_40px_-16px_rgba(0,0,0,0.6)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_24px_56px_-16px_rgba(0,0,0,0.75),0_0_0_1px_rgba(49,199,212,0.18)]",
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative h-[200px] overflow-hidden", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -5595,21 +5907,34 @@ function ShowroomCard() {
               }
             }
           ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              className: "pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100",
+              style: { boxShadow: "inset 0 0 40px rgba(49,199,212,0.10)" }
+            }
+          ),
           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute left-4 top-4", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
             "div",
             {
               className: "flex items-center gap-1.5 rounded-full px-3 py-1.5",
               style: {
-                background: "rgba(8,33,44,0.60)",
-                border: "1px solid rgba(200,169,107,0.30)",
+                background: "rgba(8,33,44,0.72)",
+                border: "1px solid rgba(49,199,212,0.32)",
                 backdropFilter: "blur(8px)"
               },
               children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "h-1.5 w-1.5 rounded-full bg-[#C8A96B]" }),
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   "span",
                   {
-                    className: "text-[9px] font-medium uppercase tracking-[0.22em] text-[#E8D6A8]",
+                    className: "h-1.5 w-1.5 rounded-full bg-[#31C7D4]",
+                    style: { boxShadow: "0 0 6px rgba(49,199,212,0.65)" }
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "span",
+                  {
+                    className: "text-[9px] font-medium uppercase tracking-[0.22em] text-[rgba(49,199,212,0.85)]",
                     style: { fontFamily: "var(--font-body)" },
                     children: "Premium Showroom"
                   }
@@ -5617,7 +5942,7 @@ function ShowroomCard() {
               ]
             }
           ) }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "absolute bottom-0 inset-x-0 px-4 pb-4", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "absolute inset-x-0 bottom-0 px-4 pb-4", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-serif text-[1.1rem] font-light leading-tight text-[#F5F2EC]", children: "Keuken Centrum Utrecht" }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mt-1 flex items-center gap-1.5 text-[rgba(245,242,236,0.55)]", children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx(MapPinIcon, { className: "h-3 w-3" }),
@@ -5669,7 +5994,7 @@ function FooterLink({ href, children }) {
     "a",
     {
       href,
-      className: "group inline-flex items-center gap-2.5 text-[0.88rem] font-light text-[rgba(245,242,236,0.46)] transition-all duration-500 hover:text-[#F5F2EC]",
+      className: "group inline-flex items-center gap-2.5 text-[0.88rem] font-light text-[rgba(245,242,236,0.46)] transition-all duration-500 hover:text-[#4FD6D9]",
       style: { fontFamily: "var(--font-body)" },
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "h-px w-2.5 bg-[rgba(35,185,196,0.35)] transition-all duration-500 group-hover:w-5 group-hover:bg-[#23B9C4]" }),
@@ -5679,14 +6004,17 @@ function FooterLink({ href, children }) {
   ) });
 }
 function ColTitle({ children }) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    "h4",
-    {
-      className: "mb-7 text-[0.58rem] font-semibold uppercase tracking-[0.34em] text-[#23B9C4]",
-      style: { fontFamily: "var(--font-body)" },
-      children
-    }
-  );
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-7", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "h4",
+      {
+        className: "text-[0.58rem] font-semibold uppercase tracking-[0.34em] text-[#31C7D4]",
+        style: { fontFamily: "var(--font-body)" },
+        children
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mt-2 h-px w-8 bg-gradient-to-r from-[rgba(49,199,212,0.55)] to-transparent" })
+  ] });
 }
 function Footer() {
   const reduceMotion = useReducedMotion();
@@ -5714,11 +6042,12 @@ function Footer() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
     "footer",
     {
-      className: "relative overflow-hidden text-[#F5F2EC] selection:bg-[#C8A96B]/25",
+      className: "relative overflow-hidden text-[#F5F2EC] selection:bg-[#23B9C4]/20",
       style: {
         background: [
-          "radial-gradient(circle at top center, rgba(35,185,196,.12) 0%, transparent 45%)",
-          "radial-gradient(circle at bottom center, rgba(35,185,196,.08) 0%, transparent 50%)",
+          "radial-gradient(ellipse at 25% top, rgba(49,199,212,0.14) 0%, transparent 42%)",
+          "radial-gradient(ellipse at 75% top, rgba(35,185,196,0.08) 0%, transparent 38%)",
+          "radial-gradient(circle at bottom center, rgba(35,185,196,0.09) 0%, transparent 50%)",
           "linear-gradient(180deg, #08212C 0%, #0B2C39 50%, #061B24 100%)"
         ].join(", ")
       },
@@ -5727,12 +6056,12 @@ function Footer() {
           "div",
           {
             "aria-hidden": "true",
-            className: "pointer-events-none absolute left-1/2 top-[40%] h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-[0.07] blur-3xl",
+            className: "pointer-events-none absolute left-1/2 top-[40%] h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-[0.08] blur-3xl",
             style: { background: "radial-gradient(circle, #23B9C4, transparent 65%)" }
           }
         ),
         /* @__PURE__ */ jsxRuntimeExports.jsx(TrustBar, { reduceMotion }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative z-10 mx-auto max-w-7xl px-6 lg:px-12", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative z-10 mx-auto max-w-[90rem] px-6 lg:px-12", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs(
             motion.div,
             {
@@ -5748,16 +6077,16 @@ function Footer() {
                     variants: reduceMotion ? void 0 : fadeUp,
                     className: "mb-7 flex items-center gap-4",
                     children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "h-px w-10 bg-gradient-to-r from-transparent to-[#C8A96B]/55" }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "h-px w-10 bg-gradient-to-r from-transparent to-[rgba(49,199,212,0.55)]" }),
                       /* @__PURE__ */ jsxRuntimeExports.jsx(
                         "span",
                         {
-                          className: "text-[0.6rem] font-medium uppercase tracking-[0.34em] text-[#C8A96B]",
+                          className: "text-[0.6rem] font-medium uppercase tracking-[0.34em] text-[#31C7D4]",
                           style: { fontFamily: "var(--font-body)" },
                           children: "Persoonlijk ontwerptraject"
                         }
                       ),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "h-px w-10 bg-gradient-to-l from-transparent to-[#C8A96B]/55" })
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "h-px w-10 bg-gradient-to-l from-transparent to-[rgba(49,199,212,0.55)]" })
                     ]
                   }
                 ),
@@ -5769,7 +6098,19 @@ function Footer() {
                     children: [
                       "Klaar voor een keuken die echt bij uw",
                       " ",
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("em", { className: "italic text-[#C8A96B]", children: "woning past?" })
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "em",
+                        {
+                          style: {
+                            fontStyle: "italic",
+                            background: "linear-gradient(128deg, #31C7D4 0%, #66DCE6 48%, #23B9C4 100%)",
+                            WebkitBackgroundClip: "text",
+                            WebkitTextFillColor: "transparent",
+                            backgroundClip: "text"
+                          },
+                          children: "woning past?"
+                        }
+                      )
                     ]
                   }
                 ),
@@ -5823,7 +6164,7 @@ function Footer() {
               ]
             }
           ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "h-px bg-gradient-to-r from-transparent via-[rgba(200,169,107,0.18)] to-transparent" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "h-px bg-gradient-to-r from-transparent via-[rgba(49,199,212,0.16)] to-transparent" }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs(
             motion.div,
             {
@@ -5847,7 +6188,7 @@ function Footer() {
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
                     "p",
                     {
-                      className: "mb-7 text-[0.65rem] font-medium uppercase tracking-[0.28em] text-[rgba(200,169,107,0.65)]",
+                      className: "mb-7 text-[0.65rem] font-medium uppercase tracking-[0.28em] text-[rgba(49,199,212,0.45)]",
                       style: { fontFamily: "var(--font-body)" },
                       children: "Duitse precisie · Italiaanse elegantie"
                     }
@@ -5867,7 +6208,7 @@ function Footer() {
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
                     "p",
                     {
-                      className: "mb-4 text-[0.56rem] font-semibold uppercase tracking-[0.32em] text-[rgba(200,169,107,0.55)]",
+                      className: "mb-4 text-[0.56rem] font-semibold uppercase tracking-[0.32em] text-[rgba(49,199,212,0.38)]",
                       style: { fontFamily: "var(--font-body)" },
                       children: "Volg ons"
                     }
@@ -5961,7 +6302,7 @@ function Footer() {
               ]
             }
           ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "h-px bg-gradient-to-r from-transparent via-[rgba(200,169,107,0.12)] to-transparent" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "h-px bg-gradient-to-r from-transparent via-[rgba(49,199,212,0.10)] to-transparent" }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs(
             motion.div,
             {
@@ -5980,15 +6321,23 @@ function Footer() {
                   ". Alle rechten voorbehouden."
                 ] }),
                 /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "order-first text-center text-[0.62rem] font-light uppercase tracking-[0.32em] text-[rgba(245,242,236,0.18)] md:order-none", children: "Ontworpen voor generaties" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-wrap justify-center gap-5 md:gap-7", children: ["Privacybeleid", "Cookiebeleid", "Algemene Voorwaarden"].map((lbl) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "a",
-                  {
-                    href: "#",
-                    className: "text-[0.68rem] tracking-[0.08em] text-[rgba(245,242,236,0.22)] transition-colors duration-400 hover:text-[rgba(245,242,236,0.55)]",
-                    children: lbl
-                  },
-                  lbl
-                )) })
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-wrap items-center justify-center gap-y-1", children: ["Privacybeleid", "Cookiebeleid", "Algemene Voorwaarden"].map((lbl, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "flex items-center", children: [
+                  i > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "span",
+                    {
+                      className: "mx-3.5 inline-block h-[10px] w-px bg-[rgba(255,255,255,0.12)]",
+                      "aria-hidden": "true"
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "a",
+                    {
+                      href: "#",
+                      className: "text-[0.68rem] tracking-[0.08em] text-[rgba(245,242,236,0.22)] transition-colors duration-400 hover:text-[#31C7D4]",
+                      children: lbl
+                    }
+                  )
+                ] }, lbl)) })
               ]
             }
           )
@@ -5998,7 +6347,7 @@ function Footer() {
           {
             "aria-hidden": "true",
             className: "pointer-events-none absolute inset-x-0 bottom-0 h-px",
-            style: { background: "linear-gradient(90deg, transparent, rgba(35,185,196,0.20), transparent)" }
+            style: { background: "linear-gradient(90deg, transparent, rgba(35,185,196,0.28), transparent)" }
           }
         )
       ]
@@ -6122,7 +6471,7 @@ function StickyConversionBar() {
         transition: { duration: reduceMotion ? 0.01 : 0.35, ease: [0.22, 1, 0.36, 1] },
         className: "pointer-events-none fixed inset-x-0 bottom-0 z-[80] px-2 pb-[calc(env(safe-area-inset-bottom)+0.5rem)] lg:hidden",
         children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "pointer-events-auto mx-auto max-w-[620px]", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "lux-border rounded-[18px] p-[1px] shadow-[0_26px_58px_-32px_rgba(23,25,28,0.2)]", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative overflow-hidden rounded-[17px] bg-[linear-gradient(145deg,rgba(252,250,246,0.95),rgba(244,240,232,0.92))] p-1.5 backdrop-blur-2xl", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-x-7 top-0 h-px bg-[linear-gradient(90deg,rgba(201,164,106,0),rgba(201,164,106,0.4),rgba(201,164,106,0))]" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-x-7 top-0 h-px bg-[linear-gradient(90deg,rgba(49,199,212,0),rgba(49,199,212,0.32),rgba(49,199,212,0))]" }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative rounded-[14px] bg-[linear-gradient(180deg,rgba(255,255,255,0.99),rgba(252,250,246,0.99))] p-1", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               "button",
@@ -6130,27 +6479,32 @@ function StickyConversionBar() {
                 type: "button",
                 onClick: () => setDismissed(true),
                 "aria-label": "Sluit mobiele conversiebalk",
-                className: "lux-x absolute right-2 top-2 flex h-6 w-6 items-center justify-center text-white",
-                children: /* @__PURE__ */ jsxRuntimeExports.jsx(X, { className: "h-3 w-3" })
+                className: "lux-x absolute right-2 top-1.5 flex h-7 w-7 items-center justify-center text-white",
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx(X, { className: "h-3.5 w-3.5" })
               }
             ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-3 gap-1.5 pt-3", children: actions2.map(({ label, meta, href, Icon: Icon2, primary, accent }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "a",
-              {
-                href,
-                "aria-label": `${label} · ${meta}`,
-                title: label,
-                className: `group flex min-h-[46px] items-center justify-center rounded-[12px] px-2 py-2 text-center transition-transform duration-400 ease-[var(--ease-premium)] active:translate-y-[1px] ${primary ? "bg-[linear-gradient(135deg,#06101a,#0c1826)] text-white shadow-[0_22px_44px_-30px_rgba(7,17,27,0.64)]" : "bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(244,240,232,0.94))] text-[var(--foreground)] shadow-[0_14px_26px_-22px_rgba(7,17,27,0.18)]"}`,
-                children: accent === "green" ? /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "flex h-8 w-8 items-center justify-center rounded-[11px] bg-[linear-gradient(180deg,var(--green-highlight),var(--green))] text-white shadow-[0_14px_24px_-20px_rgba(35,185,196,0.42)]", children: /* @__PURE__ */ jsxRuntimeExports.jsx(WhatsAppMark, { className: "h-4.5 w-4.5" }) }) : /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "span",
-                  {
-                    className: `flex h-8 w-8 items-center justify-center rounded-[11px] ${primary ? "bg-[rgba(255,255,255,0.04)] text-[var(--gold)]" : "bg-[rgba(12,24,36,0.06)] text-[var(--secondary)]"}`,
-                    children: /* @__PURE__ */ jsxRuntimeExports.jsx(Icon2, { className: "h-5 w-5" })
-                  }
-                )
-              },
-              label
-            )) })
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-3 gap-1.5 pt-2", children: actions2.map(({ label, meta, href, Icon: Icon2, primary, accent }) => {
+              const shortLabel = primary ? "Bezoek" : accent === "green" ? "WhatsApp" : "Bellen";
+              return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "a",
+                {
+                  href,
+                  "aria-label": `${label} · ${meta}`,
+                  className: `group flex min-h-[56px] flex-col items-center justify-center gap-[5px] rounded-[12px] px-2 py-2.5 text-center transition-transform duration-400 ease-[var(--ease-premium)] active:scale-[0.96] active:translate-y-[1px] ${primary ? "bg-[linear-gradient(135deg,#06101a,#0c1826)] text-white shadow-[0_22px_44px_-30px_rgba(7,17,27,0.64)]" : "bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(244,240,232,0.94))] text-[var(--foreground)] shadow-[0_14px_26px_-22px_rgba(7,17,27,0.18)]"}`,
+                  children: [
+                    accent === "green" ? /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "flex h-7 w-7 items-center justify-center rounded-[10px] bg-[linear-gradient(180deg,var(--green-highlight),var(--green))] text-white shadow-[0_10px_20px_-14px_rgba(35,185,196,0.42)]", children: /* @__PURE__ */ jsxRuntimeExports.jsx(WhatsAppMark, { className: "h-4 w-4" }) }) : /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "span",
+                      {
+                        className: `flex h-7 w-7 items-center justify-center rounded-[10px] ${primary ? "bg-[rgba(255,255,255,0.06)] text-[#31C7D4]" : "bg-[rgba(12,24,36,0.06)] text-[var(--secondary)]"}`,
+                        children: /* @__PURE__ */ jsxRuntimeExports.jsx(Icon2, { className: "h-4 w-4" })
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: `text-[9px] font-semibold uppercase tracking-[0.1em] leading-none ${primary ? "text-white/70" : accent === "green" ? "text-[#0a8a90]" : "text-[var(--text-soft)]"}`, children: shortLabel })
+                  ]
+                },
+                label
+              );
+            }) })
           ] })
         ] }) }) })
       }

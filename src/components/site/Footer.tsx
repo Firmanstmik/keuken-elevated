@@ -7,6 +7,10 @@ import { motionViewport } from "@/lib/motion";
 import logoKeuken from "@/assets/keukencentrum_logo_transparent_medium_centered_stripe.png";
 import showroomImg from "@/assets/showroom.jpg";
 
+// Correct showroom location URL (derived from Maps embed coordinates)
+const SHOWROOM_MAPS_URL =
+  "https://www.google.com/maps/place/Keuken-centrum.nl/@52.1187967,5.0434307,17z";
+
 // ─── Motion variants ──────────────────────────────────────────────────────────
 
 const luxe = [0.22, 1, 0.36, 1] as const;
@@ -87,14 +91,14 @@ function TrustBar({ reduceMotion }: { reduceMotion: boolean | null }) {
       variants={reduceMotion ? undefined : stagger(0.1)}
       className="relative border-b border-white/[0.06]"
     >
-      {/* Fine top edge */}
+      {/* Fine top edge — teal */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 top-0 h-px"
-        style={{ background: "linear-gradient(90deg, transparent, rgba(200,169,107,0.30), transparent)" }}
+        style={{ background: "linear-gradient(90deg, transparent, rgba(49,199,212,0.28), transparent)" }}
       />
 
-      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-0 px-6 py-11 md:grid-cols-4 lg:px-12">
+      <div className="mx-auto grid max-w-[90rem] grid-cols-2 gap-0 px-6 py-11 md:grid-cols-4 lg:px-12">
         {trustStats.map((stat, i) => (
           <motion.div
             key={stat.label}
@@ -105,9 +109,7 @@ function TrustBar({ reduceMotion }: { reduceMotion: boolean | null }) {
               i >= 2 ? "border-t border-white/[0.07] md:border-t-0" : "",
             ].join(" ")}
           >
-            <span
-              className="font-serif text-[2rem] font-light leading-none tracking-[-0.03em] text-[#F5F2EC]"
-            >
+            <span className="font-serif text-[2rem] font-light leading-none tracking-[-0.03em] text-[#F5F2EC]">
               {stat.value}
             </span>
             <span
@@ -141,13 +143,11 @@ function SocialRow({ links }: { links: SocialLink[] }) {
         >
           {/* Icon box */}
           <span
-            className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] border border-[rgba(35,185,196,0.20)] bg-[rgba(35,185,196,0.06)] text-[rgba(35,185,196,0.75)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-[3px] group-hover:border-[rgba(35,185,196,0.48)] group-hover:bg-[rgba(35,185,196,0.12)] group-hover:text-[#4FD6D9]"
-            style={{
-              boxShadow: "0 0 0 0 rgba(35,185,196,0)",
-            }}
+            className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] border border-[rgba(35,185,196,0.20)] bg-[rgba(35,185,196,0.06)] text-[rgba(35,185,196,0.75)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-[3px] group-hover:scale-[1.06] group-hover:border-[rgba(35,185,196,0.52)] group-hover:bg-[rgba(35,185,196,0.14)] group-hover:text-[#4FD6D9]"
+            style={{ boxShadow: "0 0 0 0 rgba(35,185,196,0)" }}
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLElement).style.boxShadow =
-                "0 8px 20px -8px rgba(35,185,196,0.28)";
+                "0 8px 20px -8px rgba(35,185,196,0.35)";
             }}
             onMouseLeave={(e) => {
               (e.currentTarget as HTMLElement).style.boxShadow =
@@ -174,10 +174,10 @@ function SocialRow({ links }: { links: SocialLink[] }) {
 function ShowroomCard() {
   return (
     <a
-      href={kc.contact.maps}
+      href={SHOWROOM_MAPS_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className="group relative mt-7 block overflow-hidden rounded-[18px] border border-[rgba(35,185,196,0.14)] shadow-[0_12px_40px_-16px_rgba(0,0,0,0.6)] transition-shadow duration-500 hover:shadow-[0_20px_56px_-16px_rgba(0,0,0,0.75)]"
+      className="group relative mt-7 block overflow-hidden rounded-[18px] border border-[rgba(35,185,196,0.16)] shadow-[0_12px_40px_-16px_rgba(0,0,0,0.6)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_24px_56px_-16px_rgba(0,0,0,0.75),0_0_0_1px_rgba(49,199,212,0.18)]"
     >
       {/* Photo */}
       <div className="relative h-[200px] overflow-hidden">
@@ -196,19 +196,27 @@ function ShowroomCard() {
               "linear-gradient(180deg, rgba(8,33,44,0.15) 0%, rgba(8,33,44,0.62) 65%, rgba(8,33,44,0.92) 100%)",
           }}
         />
-        {/* Badge */}
+        {/* Teal inner glow on hover */}
+        <div
+          className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+          style={{ boxShadow: "inset 0 0 40px rgba(49,199,212,0.10)" }}
+        />
+        {/* Badge — teal */}
         <div className="absolute left-4 top-4">
           <div
             className="flex items-center gap-1.5 rounded-full px-3 py-1.5"
             style={{
-              background: "rgba(8,33,44,0.60)",
-              border: "1px solid rgba(200,169,107,0.30)",
+              background: "rgba(8,33,44,0.72)",
+              border: "1px solid rgba(49,199,212,0.32)",
               backdropFilter: "blur(8px)",
             }}
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-[#C8A96B]" />
             <span
-              className="text-[9px] font-medium uppercase tracking-[0.22em] text-[#E8D6A8]"
+              className="h-1.5 w-1.5 rounded-full bg-[#31C7D4]"
+              style={{ boxShadow: "0 0 6px rgba(49,199,212,0.65)" }}
+            />
+            <span
+              className="text-[9px] font-medium uppercase tracking-[0.22em] text-[rgba(49,199,212,0.85)]"
               style={{ fontFamily: "var(--font-body)" }}
             >
               Premium Showroom
@@ -216,7 +224,7 @@ function ShowroomCard() {
           </div>
         </div>
         {/* Bottom text over image */}
-        <div className="absolute bottom-0 inset-x-0 px-4 pb-4">
+        <div className="absolute inset-x-0 bottom-0 px-4 pb-4">
           <p className="font-serif text-[1.1rem] font-light leading-tight text-[#F5F2EC]">
             Keuken Centrum Utrecht
           </p>
@@ -264,7 +272,7 @@ function FooterLink({ href, children }: { href: string; children: React.ReactNod
     <li>
       <a
         href={href}
-        className="group inline-flex items-center gap-2.5 text-[0.88rem] font-light text-[rgba(245,242,236,0.46)] transition-all duration-500 hover:text-[#F5F2EC]"
+        className="group inline-flex items-center gap-2.5 text-[0.88rem] font-light text-[rgba(245,242,236,0.46)] transition-all duration-500 hover:text-[#4FD6D9]"
         style={{ fontFamily: "var(--font-body)" }}
       >
         <span className="h-px w-2.5 bg-[rgba(35,185,196,0.35)] transition-all duration-500 group-hover:w-5 group-hover:bg-[#23B9C4]" />
@@ -278,12 +286,15 @@ function FooterLink({ href, children }: { href: string; children: React.ReactNod
 
 function ColTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h4
-      className="mb-7 text-[0.58rem] font-semibold uppercase tracking-[0.34em] text-[#23B9C4]"
-      style={{ fontFamily: "var(--font-body)" }}
-    >
-      {children}
-    </h4>
+    <div className="mb-7">
+      <h4
+        className="text-[0.58rem] font-semibold uppercase tracking-[0.34em] text-[#31C7D4]"
+        style={{ fontFamily: "var(--font-body)" }}
+      >
+        {children}
+      </h4>
+      <div className="mt-2 h-px w-8 bg-gradient-to-r from-[rgba(49,199,212,0.55)] to-transparent" />
+    </div>
   );
 }
 
@@ -316,11 +327,12 @@ export function Footer() {
 
   return (
     <footer
-      className="relative overflow-hidden text-[#F5F2EC] selection:bg-[#C8A96B]/25"
+      className="relative overflow-hidden text-[#F5F2EC] selection:bg-[#23B9C4]/20"
       style={{
         background: [
-          "radial-gradient(circle at top center, rgba(35,185,196,.12) 0%, transparent 45%)",
-          "radial-gradient(circle at bottom center, rgba(35,185,196,.08) 0%, transparent 50%)",
+          "radial-gradient(ellipse at 25% top, rgba(49,199,212,0.14) 0%, transparent 42%)",
+          "radial-gradient(ellipse at 75% top, rgba(35,185,196,0.08) 0%, transparent 38%)",
+          "radial-gradient(circle at bottom center, rgba(35,185,196,0.09) 0%, transparent 50%)",
           "linear-gradient(180deg, #08212C 0%, #0B2C39 50%, #061B24 100%)",
         ].join(", "),
       }}
@@ -328,14 +340,14 @@ export function Footer() {
       {/* Ambient depth light — mid-section */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-[40%] h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-[0.07] blur-3xl"
+        className="pointer-events-none absolute left-1/2 top-[40%] h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-[0.08] blur-3xl"
         style={{ background: "radial-gradient(circle, #23B9C4, transparent 65%)" }}
       />
 
       {/* ── Trust bar ───────────────────────────────── */}
       <TrustBar reduceMotion={reduceMotion} />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-12">
+      <div className="relative z-10 mx-auto max-w-[90rem] px-6 lg:px-12">
 
         {/* ── SECTION 1 — Hero CTA ─────────────────── */}
         <motion.div
@@ -350,14 +362,14 @@ export function Footer() {
             variants={reduceMotion ? undefined : fadeUp}
             className="mb-7 flex items-center gap-4"
           >
-            <span className="h-px w-10 bg-gradient-to-r from-transparent to-[#C8A96B]/55" />
+            <span className="h-px w-10 bg-gradient-to-r from-transparent to-[rgba(49,199,212,0.55)]" />
             <span
-              className="text-[0.6rem] font-medium uppercase tracking-[0.34em] text-[#C8A96B]"
+              className="text-[0.6rem] font-medium uppercase tracking-[0.34em] text-[#31C7D4]"
               style={{ fontFamily: "var(--font-body)" }}
             >
               Persoonlijk ontwerptraject
             </span>
-            <span className="h-px w-10 bg-gradient-to-l from-transparent to-[#C8A96B]/55" />
+            <span className="h-px w-10 bg-gradient-to-l from-transparent to-[rgba(49,199,212,0.55)]" />
           </motion.div>
 
           {/* Heading */}
@@ -366,7 +378,17 @@ export function Footer() {
             className="max-w-[30rem] font-serif text-[clamp(2rem,4.2vw,3.2rem)] font-light leading-[1.1] tracking-[-0.03em] text-[#F5F2EC]"
           >
             Klaar voor een keuken die echt bij uw{" "}
-            <em className="italic text-[#C8A96B]">woning past?</em>
+            <em
+              style={{
+                fontStyle: "italic",
+                background: "linear-gradient(128deg, #31C7D4 0%, #66DCE6 48%, #23B9C4 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              woning past?
+            </em>
           </motion.h2>
 
           {/* Sub-copy */}
@@ -411,8 +433,8 @@ export function Footer() {
           </motion.div>
         </motion.div>
 
-        {/* Gold divider */}
-        <div className="h-px bg-gradient-to-r from-transparent via-[rgba(200,169,107,0.18)] to-transparent" />
+        {/* Teal divider */}
+        <div className="h-px bg-gradient-to-r from-transparent via-[rgba(49,199,212,0.16)] to-transparent" />
 
         {/* ── SECTION 2 — Information grid ─────────── */}
         <motion.div
@@ -425,7 +447,7 @@ export function Footer() {
 
           {/* ── Col 1: Brand identity ── */}
           <motion.div variants={reduceMotion ? undefined : fadeUp}>
-            {/* Logo — enlarged ~30% from previous ~15rem */}
+            {/* Logo */}
             <img
               src={logoKeuken as unknown as string}
               alt="Keuken Centrum"
@@ -434,9 +456,9 @@ export function Footer() {
               height={56}
             />
 
-            {/* Tagline */}
+            {/* Tagline — teal */}
             <p
-              className="mb-7 text-[0.65rem] font-medium uppercase tracking-[0.28em] text-[rgba(200,169,107,0.65)]"
+              className="mb-7 text-[0.65rem] font-medium uppercase tracking-[0.28em] text-[rgba(49,199,212,0.45)]"
               style={{ fontFamily: "var(--font-body)" }}
             >
               Duitse precisie · Italiaanse elegantie
@@ -450,9 +472,9 @@ export function Footer() {
               compromisloze kwaliteit sinds {kc.founded}.
             </p>
 
-            {/* Social label */}
+            {/* Social label — teal */}
             <p
-              className="mb-4 text-[0.56rem] font-semibold uppercase tracking-[0.32em] text-[rgba(200,169,107,0.55)]"
+              className="mb-4 text-[0.56rem] font-semibold uppercase tracking-[0.32em] text-[rgba(49,199,212,0.38)]"
               style={{ fontFamily: "var(--font-body)" }}
             >
               Volg ons
@@ -490,7 +512,7 @@ export function Footer() {
               <FooterLink href="#">Onze merken</FooterLink>
               <FooterLink href="#">Projecten</FooterLink>
               <FooterLink href="#">Showroom</FooterLink>
-              <FooterLink href="#">Blog & Inspiratie</FooterLink>
+              <FooterLink href="#">Blog &amp; Inspiratie</FooterLink>
             </ul>
 
             <div className="mt-10">
@@ -557,14 +579,14 @@ export function Footer() {
               ))}
             </div>
 
-            {/* Premium showroom card (replaces Google Maps embed) */}
+            {/* Premium showroom card */}
             <ShowroomCard />
           </motion.div>
 
         </motion.div>
 
-        {/* Gold divider */}
-        <div className="h-px bg-gradient-to-r from-transparent via-[rgba(200,169,107,0.12)] to-transparent" />
+        {/* Teal divider */}
+        <div className="h-px bg-gradient-to-r from-transparent via-[rgba(49,199,212,0.10)] to-transparent" />
 
         {/* ── SECTION 3 — Bottom bar ───────────────── */}
         <motion.div
@@ -585,16 +607,23 @@ export function Footer() {
             Ontworpen voor generaties
           </p>
 
-          {/* Legal links */}
-          <div className="flex flex-wrap justify-center gap-5 md:gap-7">
-            {["Privacybeleid", "Cookiebeleid", "Algemene Voorwaarden"].map((lbl) => (
-              <a
-                key={lbl}
-                href="#"
-                className="text-[0.68rem] tracking-[0.08em] text-[rgba(245,242,236,0.22)] transition-colors duration-400 hover:text-[rgba(245,242,236,0.55)]"
-              >
-                {lbl}
-              </a>
+          {/* Legal links with separators */}
+          <div className="flex flex-wrap items-center justify-center gap-y-1">
+            {["Privacybeleid", "Cookiebeleid", "Algemene Voorwaarden"].map((lbl, i) => (
+              <span key={lbl} className="flex items-center">
+                {i > 0 && (
+                  <span
+                    className="mx-3.5 inline-block h-[10px] w-px bg-[rgba(255,255,255,0.12)]"
+                    aria-hidden="true"
+                  />
+                )}
+                <a
+                  href="#"
+                  className="text-[0.68rem] tracking-[0.08em] text-[rgba(245,242,236,0.22)] transition-colors duration-400 hover:text-[#31C7D4]"
+                >
+                  {lbl}
+                </a>
+              </span>
             ))}
           </div>
         </motion.div>
@@ -605,7 +634,7 @@ export function Footer() {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 bottom-0 h-px"
-        style={{ background: "linear-gradient(90deg, transparent, rgba(35,185,196,0.20), transparent)" }}
+        style={{ background: "linear-gradient(90deg, transparent, rgba(35,185,196,0.28), transparent)" }}
       />
     </footer>
   );

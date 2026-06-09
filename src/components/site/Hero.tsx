@@ -415,7 +415,7 @@ export function Hero() {
               initial={reduceMotion ? false : { opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: motionDuration.premium, ease: motionEase.premium, delay: 0.68 }}
-              className="mt-9 flex flex-wrap items-center gap-3"
+              className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center"
             >
               <motion.a
                 href="#showroom"
@@ -424,7 +424,7 @@ export function Hero() {
                 animate="rest"
                 whileHover="hover"
                 whileFocus="hover"
-                className="brand-green-button group relative inline-flex h-[58px] items-center justify-center gap-3 rounded-[14px] px-8 text-[0.96rem] font-medium tracking-[-0.02em] text-white"
+                className="brand-green-button group relative inline-flex h-[58px] w-full items-center justify-center gap-3 rounded-[14px] px-8 text-[0.96rem] font-medium tracking-[-0.02em] text-white sm:w-auto"
                 style={{ backgroundSize: "180% 180%" }}
               >
                 <motion.span
@@ -446,7 +446,7 @@ export function Hero() {
                 whileHover={reduceMotion ? undefined : { y: -1 }}
                 whileFocus={reduceMotion ? undefined : { y: -1 }}
                 transition={{ duration: motionDuration.premium, ease: motionEase.premium }}
-                className="group inline-flex h-[58px] items-center justify-center gap-3 rounded-[12px] border border-[rgba(247,245,242,0.16)] bg-[rgba(23,25,28,0.36)] px-8 text-[0.96rem] font-medium tracking-[-0.02em] text-[#F7F5F2] shadow-[0_18px_46px_-36px_rgba(23,25,28,0.42)] backdrop-blur-xl hover:bg-[rgba(23,25,28,0.48)]"
+                className="group inline-flex h-[58px] w-full items-center justify-center gap-3 rounded-[12px] border border-[rgba(247,245,242,0.16)] bg-[rgba(23,25,28,0.36)] px-8 text-[0.96rem] font-medium tracking-[-0.02em] text-[#F7F5F2] shadow-[0_18px_46px_-36px_rgba(23,25,28,0.42)] backdrop-blur-xl hover:bg-[rgba(23,25,28,0.48)] sm:w-auto"
               >
                 <span>Start Configurator</span>
                 <motion.span
