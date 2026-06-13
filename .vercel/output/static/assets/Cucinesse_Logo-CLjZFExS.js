@@ -1,0 +1,1 @@
+const s="/assets/Leicht_Logo-B_pT--zL.webp",o="/assets/aiKuchen_Logo-CclASofR.webp",e="/assets/Nobilia_Logo-DGTJK5tH.webp",a="/assets/Zampieri_Logo-BbbMI9Id.webp",c="/assets/Cucinesse_Logo-lzdBKhsp.webp";export{o as a,c,s as l,e as n,a as z};

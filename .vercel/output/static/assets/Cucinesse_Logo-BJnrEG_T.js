@@ -1,1 +1,0 @@
-const s="/assets/Leicht_Logo-B_pT--zL.webp",o="/assets/aiKuchen_Logo-CclASofR.webp",e="/assets/Zampieri_Logo-BbbMI9Id.webp",a="/assets/Cucinesse_Logo-lzdBKhsp.webp";export{o as a,a as c,s as l,e as z};

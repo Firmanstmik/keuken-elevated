@@ -113,7 +113,7 @@ function TrustBar({ reduceMotion }: { reduceMotion: boolean | null }) {
               {stat.value}
             </span>
             <span
-              className="mt-2 text-[0.58rem] font-medium uppercase tracking-[0.28em] text-[rgba(245,242,236,0.38)]"
+              className="mt-2 text-[0.58rem] font-medium uppercase tracking-[0.28em] text-[rgba(255,255,255,0.55)]"
               style={{ fontFamily: "var(--font-body)" }}
             >
               {stat.label}
@@ -158,7 +158,7 @@ function SocialRow({ links }: { links: SocialLink[] }) {
           </span>
           {/* Label */}
           <span
-            className="text-[0.8rem] font-light text-[rgba(245,242,236,0.42)] transition-colors duration-400 group-hover:text-[rgba(245,242,236,0.75)]"
+            className="text-[0.8rem] font-light text-[rgba(255,255,255,0.80)] transition-colors duration-400 group-hover:text-[#4FD6D9]"
             style={{ fontFamily: "var(--font-body)" }}
           >
             {handle}
@@ -177,7 +177,7 @@ function ShowroomCard() {
       href={SHOWROOM_MAPS_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className="group relative mt-7 block overflow-hidden rounded-[18px] border border-[rgba(35,185,196,0.16)] shadow-[0_12px_40px_-16px_rgba(0,0,0,0.6)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_24px_56px_-16px_rgba(0,0,0,0.75),0_0_0_1px_rgba(49,199,212,0.18)]"
+      className="group relative mt-7 block overflow-hidden rounded-[18px] border border-[rgba(35,185,196,0.22)] shadow-[0_18px_50px_-26px_rgba(8,33,44,0.7)] transition-all duration-500 hover:-translate-y-1 hover:border-[rgba(49,199,212,0.35)] hover:shadow-[0_30px_70px_-28px_rgba(8,33,44,0.8),0_0_30px_-10px_rgba(49,199,212,0.25)]"
     >
       {/* Photo */}
       <div className="relative h-[200px] overflow-hidden">
@@ -272,11 +272,14 @@ function FooterLink({ href, children }: { href: string; children: React.ReactNod
     <li>
       <a
         href={href}
-        className="group inline-flex items-center gap-2.5 text-[0.88rem] font-light text-[rgba(245,242,236,0.46)] transition-all duration-500 hover:text-[#4FD6D9]"
+        className="group inline-flex items-center gap-2.5 text-[0.88rem] font-light text-white transition-all duration-500 hover:text-[#4FD6D9]"
         style={{ fontFamily: "var(--font-body)" }}
       >
-        <span className="h-px w-2.5 bg-[rgba(35,185,196,0.35)] transition-all duration-500 group-hover:w-5 group-hover:bg-[#23B9C4]" />
-        <span className="transition-transform duration-500 group-hover:translate-x-0.5">{children}</span>
+        <span className="h-px w-2.5 bg-[rgba(35,185,196,0.5)] transition-all duration-500 group-hover:w-5 group-hover:bg-[#23B9C4]" />
+        <span className="relative transition-transform duration-500 group-hover:translate-x-0.5">
+          {children}
+          <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-[#4FD6D9] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:w-full" />
+        </span>
       </a>
     </li>
   );
@@ -394,7 +397,7 @@ export function Footer() {
           {/* Sub-copy */}
           <motion.p
             variants={reduceMotion ? undefined : fadeUp}
-            className="mt-5 max-w-[34rem] text-[0.95rem] font-light leading-[1.85] text-[rgba(245,242,236,0.50)]"
+            className="mt-5 max-w-[34rem] text-[0.95rem] font-light leading-[1.85] text-[rgba(255,255,255,0.80)]"
             style={{ fontFamily: "var(--font-body)" }}
           >
             Bezoek de showroom of start eerst online. Rustig, verfijnd en volledig
@@ -465,7 +468,7 @@ export function Footer() {
             </p>
 
             <p
-              className="mb-9 max-w-[18rem] text-[0.88rem] font-light leading-[1.9] text-[rgba(245,242,236,0.44)]"
+              className="mb-9 max-w-[18rem] text-[0.88rem] font-light leading-[1.9] text-[rgba(255,255,255,0.80)]"
               style={{ fontFamily: "var(--font-body)" }}
             >
               Verfijnde Europese designkeukens, exclusieve materialen en
@@ -530,27 +533,27 @@ export function Footer() {
             <ColTitle>Contact &amp; Showroom</ColTitle>
 
             {/* Address */}
-            <div className="mb-5 flex items-start gap-3 text-[rgba(245,242,236,0.50)]">
-              <span className="mt-[3px] text-[#23B9C4]/60">
+            <div className="mb-5 flex items-start gap-3 text-[rgba(255,255,255,0.90)]">
+              <span className="mt-[3px] text-[#23B9C4]">
                 <MapPinIcon />
               </span>
               <div
                 className="text-[0.88rem] font-light leading-[1.8]"
                 style={{ fontFamily: "var(--font-body)" }}
               >
-                <span className="block text-[rgba(245,242,236,0.78)]">{kc.contact.address}</span>
+                <span className="block text-white">{kc.contact.address}</span>
                 <span className="block">{kc.contact.postal}</span>
               </div>
             </div>
 
             {/* Phone */}
-            <div className="mb-6 flex items-center gap-3 text-[rgba(245,242,236,0.50)]">
-              <span className="text-[#23B9C4]/60">
+            <div className="mb-6 flex items-center gap-3 text-[rgba(255,255,255,0.90)]">
+              <span className="text-[#23B9C4]">
                 <PhoneIcon />
               </span>
               <a
                 href={kc.contact.phoneHref}
-                className="text-[0.88rem] font-light transition-colors duration-400 hover:text-[rgba(245,242,236,0.90)]"
+                className="text-[0.88rem] font-light transition-colors duration-400 hover:text-[#4FD6D9]"
                 style={{ fontFamily: "var(--font-body)" }}
               >
                 {kc.contact.phone}
@@ -558,19 +561,19 @@ export function Footer() {
             </div>
 
             {/* Opening hours */}
-            <div className="space-y-2 border-t border-white/[0.06] pt-5">
+            <div className="space-y-2 border-t border-[rgba(35,185,196,0.14)] pt-5">
               {kc.contact.hours.map((h) => (
                 <div
                   key={h.d}
                   className="flex items-baseline justify-between gap-4 text-[0.78rem]"
                   style={{ fontFamily: "var(--font-body)" }}
                 >
-                  <span className="text-[rgba(245,242,236,0.38)]">{h.d}</span>
+                  <span className="text-[rgba(255,255,255,0.70)]">{h.d}</span>
                   <span
                     className={
                       h.h === "Gesloten"
-                        ? "text-[rgba(245,242,236,0.25)]"
-                        : "tabular-nums text-[rgba(245,242,236,0.65)]"
+                        ? "text-[rgba(255,255,255,0.45)]"
+                        : "tabular-nums text-[rgba(255,255,255,0.90)]"
                     }
                   >
                     {h.h}
@@ -598,12 +601,12 @@ export function Footer() {
           style={{ fontFamily: "var(--font-body)" }}
         >
           {/* Copyright */}
-          <p className="text-[0.68rem] tracking-[0.10em] text-[rgba(245,242,236,0.22)]">
+          <p className="text-[0.68rem] tracking-[0.10em] text-[rgba(255,255,255,0.50)]">
             © {year} {kc.brandName}. Alle rechten voorbehouden.
           </p>
 
           {/* Luxury statement — center */}
-          <p className="order-first text-center text-[0.62rem] font-light uppercase tracking-[0.32em] text-[rgba(245,242,236,0.18)] md:order-none">
+          <p className="order-first text-center text-[0.62rem] font-light uppercase tracking-[0.32em] text-[rgba(255,255,255,0.40)] md:order-none">
             Ontworpen voor generaties
           </p>
 
@@ -619,7 +622,7 @@ export function Footer() {
                 )}
                 <a
                   href="#"
-                  className="text-[0.68rem] tracking-[0.08em] text-[rgba(245,242,236,0.22)] transition-colors duration-400 hover:text-[#31C7D4]"
+                  className="text-[0.68rem] tracking-[0.08em] text-[rgba(255,255,255,0.50)] transition-colors duration-400 hover:text-[#4FD6D9]"
                 >
                   {lbl}
                 </a>
