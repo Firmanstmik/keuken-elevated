@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { PremiumPillButton } from "@/components/ui/premium-pill-button";
 import { ArrowRight } from "@/components/ui/icons";
 import { kc } from "@/lib/kc-data";
 import { motionViewport } from "@/lib/motion";
@@ -219,7 +220,7 @@ function ShowroomCard() {
               className="text-[9px] font-medium uppercase tracking-[0.22em] text-[rgba(49,199,212,0.85)]"
               style={{ fontFamily: "var(--font-body)" }}
             >
-              Premium Showroom
+              Premium showroom
             </span>
           </div>
         </div>
@@ -409,30 +410,13 @@ export function Footer() {
             variants={reduceMotion ? undefined : fadeUp}
             className="mt-10 flex flex-col gap-4 sm:flex-row"
           >
-            <a
-              href="/brands"
-              className="group inline-flex items-center justify-center gap-3 rounded-[14px] px-9 py-[1.05rem] text-[0.73rem] font-medium uppercase tracking-[0.2em] text-white transition-all duration-500 hover:-translate-y-[2px] hover:shadow-[0_0_36px_rgba(35,185,196,0.38)]"
-              style={{
-                background: "linear-gradient(135deg, #23B9C4 0%, #3DCFD9 50%, #23B9C4 100%)",
-                backgroundSize: "200% 100%",
-                fontFamily: "var(--font-body)",
-              }}
-            >
-              Start Configurator
-              <ArrowRight className="h-[0.95rem] w-[0.95rem] transition-transform duration-500 group-hover:translate-x-1" />
-            </a>
+            <PremiumPillButton href="/brands" variant="blue" size="sm">
+              Start configurator
+            </PremiumPillButton>
 
-            <a
-              href="#contact"
-              className="group inline-flex items-center justify-center gap-3 rounded-[14px] border px-9 py-[1.05rem] text-[0.73rem] font-medium uppercase tracking-[0.2em] backdrop-blur-sm transition-all duration-500 hover:-translate-y-[2px] hover:bg-[rgba(35,185,196,0.08)]"
-              style={{
-                borderColor: "rgba(35,185,196,0.30)",
-                color: "#4FD6D9",
-                fontFamily: "var(--font-body)",
-              }}
-            >
+            <PremiumPillButton href="#contact" variant="ghost" size="sm">
               Plan Showroombezoek
-            </a>
+            </PremiumPillButton>
           </motion.div>
         </motion.div>
 

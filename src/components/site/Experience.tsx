@@ -30,7 +30,7 @@ const collections = [
   {
     id: "design",
     featured: true,
-    collectionTitle: "Design Collection",
+    collectionTitle: "Design Collectie",
     luxuryDescription:
       "Architecturale keukens met verfijnde materialen en tijdloze verhoudingen.",
     title: "Design Keukens",
@@ -40,7 +40,7 @@ const collections = [
   {
     id: "modern",
     featured: false,
-    collectionTitle: "Modern Living",
+    collectionTitle: "Modern Wonen",
     luxuryDescription:
       "Hedendaags wonen met slanke lijnen, warme texturen en intelligente indeling.",
     title: "Moderne Keukens",
@@ -50,7 +50,7 @@ const collections = [
   {
     id: "budget",
     featured: false,
-    collectionTitle: "Smart Budget",
+    collectionTitle: "Slim Budget",
     luxuryDescription:
       "Topkwaliteit en persoonlijk advies — voor elk budget, zonder compromis.",
     title: "Keukens voor elke prijs",

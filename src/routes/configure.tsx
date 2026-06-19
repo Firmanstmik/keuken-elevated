@@ -44,7 +44,7 @@ const hotspotKeyToCategoryId: Record<string, string> = {
 };
 
 const hotspotLabels: Record<string, string> = {
-  front: "Front",
+  front: "Frontpaneel",
   werkblad: "Werkblad",
   spoelbak: "Spoelbak",
   apparatuur: "Apparatuur",

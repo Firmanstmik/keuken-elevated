@@ -384,12 +384,12 @@ export function PremiumShowcase() {
 
               {/* Badge 2 — bottom-right */}
               <div className="absolute -bottom-5 -right-3 z-20 hidden sm:block">
-                <GlassBadge number="1000+" label="Materiaalcombinaties" sub="Curated collectie" delay={1.8} reduceMotion={reduceMotion} floatDir={1} />
+                <GlassBadge number="1000+" label="Materiaalcombinaties" sub="Geselecteerde collectie" delay={1.8} reduceMotion={reduceMotion} floatDir={1} />
               </div>
 
               {/* Badge 3 — bottom-left */}
               <div className="absolute -bottom-5 left-[30%] z-20 hidden lg:block">
-                <GlassBadge number="1978" label="Opgericht" sub="Seit 1978 · Utrecht" delay={3.2} reduceMotion={reduceMotion} floatDir={-1} />
+                <GlassBadge number="1978" label="Opgericht" sub="Sinds 1978 · Utrecht" delay={3.2} reduceMotion={reduceMotion} floatDir={-1} />
               </div>
 
               {/* ── Main gallery card ── */}

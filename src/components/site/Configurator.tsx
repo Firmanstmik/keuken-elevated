@@ -301,7 +301,7 @@ export function Configurator() {
     () => [
       {
         id: "finishes",
-        label: "Front",
+        label: "Frontpaneel",
         options: kc.config.finishes.map((item) => ({
           id: item.id,
           label: item.label,
@@ -659,7 +659,7 @@ export function Configurator() {
                         <div>
                           <p className="caption-text text-[rgba(247,245,242,0.44)]">Interactieve Preview</p>
                           <p className="mt-2 font-serif text-[1.8rem] leading-none tracking-[-0.03em] text-white">
-                            Configureer & preview
+                            Configureer & bekijk
                           </p>
                         </div>
                         <p className="text-[0.72rem] uppercase tracking-[0.18em] text-[var(--accent)]">
@@ -671,7 +671,7 @@ export function Configurator() {
                         <div className="relative overflow-hidden border border-white/8">
                           <img
                             src={previewImage}
-                            alt="Configurator preview"
+                            alt="Configuratorvoorbeeld"
                             className="aspect-[1.38/1] h-full w-full object-cover transition-all duration-500"
                             loading="lazy"
                           />
@@ -921,7 +921,7 @@ export function Configurator() {
                       <div className="relative">
                         <img
                           src={previewImage}
-                          alt="Moodboard preview"
+                          alt="Moodboardvoorbeeld"
                           className="aspect-[1.3/1] h-full w-full object-cover"
                           loading="lazy"
                         />

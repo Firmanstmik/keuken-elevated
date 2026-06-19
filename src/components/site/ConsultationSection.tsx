@@ -12,6 +12,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { PremiumPillButton } from "@/components/ui/premium-pill-button";
 import { ArrowRight, Check, House, Mail, Phone } from "@/components/ui/icons";
 import { Calendar, Clock, Shield } from "iconsax-react";
 import { kc } from "@/lib/kc-data";
@@ -41,25 +42,25 @@ type FormState = {
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
 const benefits = [
-  "Personal Design Session",
-  "Material Selection Review",
-  "Technical Planning",
-  "Budget Consultation",
-  "Showroom Walkthrough",
+  "Persoonlijk ontwerpgesprek",
+  "Materiaalkeuze bespreking",
+  "Technische planning",
+  "Budgetconsult",
+  "Showroomrondleiding",
 ] as const;
 
 const trustMetrics = [
-  { value: "45+", label: "Years Experience" },
-  { value: "4", label: "Premium European Brands" },
-  { value: "1000+", label: "Material Combinations" },
-  { value: "< 24h", label: "Response Time" },
+  { value: "45+", label: "Jaar ervaring" },
+  { value: "4", label: "Premium Europese merken" },
+  { value: "1000+", label: "Materiaalcombinaties" },
+  { value: "< 24u", label: "Reactietijd" },
 ] as const;
 
 const whatHappensNext = [
-  { n: "01", title: "Request Received", description: "Uw aanvraag wordt persoonlijk beoordeeld" },
-  { n: "02", title: "Personal Contact", description: "Een adviseur belt u binnen 24 uur" },
-  { n: "03", title: "Showroom Appointment", description: "Bezoek op een moment dat u uitkomt" },
-  { n: "04", title: "Design Proposal", description: "Ontvang uw persoonlijk ontwerpvoorstel" },
+  { n: "01", title: "Aanvraag ontvangen", description: "Uw aanvraag wordt persoonlijk beoordeeld" },
+  { n: "02", title: "Persoonlijk contact", description: "Een adviseur belt u binnen 24 uur" },
+  { n: "03", title: "Showroomafspraak", description: "Bezoek op een moment dat u uitkomt" },
+  { n: "04", title: "Ontwerpvoorstel", description: "Ontvang uw persoonlijk ontwerpvoorstel" },
 ] as const;
 
 const gallerySlides = [
@@ -67,9 +68,9 @@ const gallerySlides = [
   { src: collectionMinimal, label: "Minimaal Design",  tag: "Mat Wit"   },
   { src: collectionScandi,  label: "Scandinavisch",    tag: "Eiken"     },
   { src: collectionWarm,    label: "Warm Atelier",     tag: "Hout"      },
-  { src: heroKitchen,       label: "Signature Keuken", tag: "Premium"   },
+  { src: heroKitchen,       label: "Signatuur Keuken", tag: "Premium"   },
   { src: craftsmanship,     label: "Vakmanschap",      tag: "Handwerk"  },
-  { src: showroomAsset,     label: "Showroom Floor",   tag: "Utrecht"   },
+  { src: showroomAsset,     label: "Showroomvloer",    tag: "Utrecht"   },
   { src: matMarble,         label: "Italiaans Marmer", tag: "Calacatta" },
 ];
 
@@ -512,7 +513,7 @@ export function ConsultationSection() {
                         className="text-[0.6rem] font-semibold uppercase tracking-[0.28em]"
                         style={{ color: "#163847", fontFamily: "var(--font-body)" }}
                       >
-                        Consultation Request
+                        Consultatie aanvraag
                       </span>
                       <h3
                         className="mt-3 font-serif text-[clamp(1.5rem,2.4vw,2rem)] font-light leading-[1.1] tracking-[-0.025em]"
@@ -688,19 +689,14 @@ export function ConsultationSection() {
                         >
                           Door te verzenden gaat u akkoord met ons vertrouwelijkheidsbeleid.
                         </p>
-                        <button
+                        <PremiumPillButton
                           type="submit"
+                          variant="blue"
+                          size="sm"
                           disabled={!isValid}
-                          className="group inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-sm font-medium tracking-wide text-white transition-all duration-[250ms] hover:bg-[#1A9AA4] disabled:cursor-not-allowed disabled:opacity-50"
-                          style={{
-                            background: "#23B9C4",
-                            boxShadow: "0 12px 28px -14px rgba(35,185,196,0.45)",
-                            fontFamily: "var(--font-body)",
-                          }}
                         >
-                          Plan Consultation
-                          <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
-                        </button>
+                          Plan consultatie
+                        </PremiumPillButton>
                       </div>
                     </form>
                   </>
@@ -729,7 +725,7 @@ export function ConsultationSection() {
                     <div className="mt-6 w-full space-y-3 border-t border-[#EFE8D9] pt-5">
                       {[
                         { label: "Showroom", value: form.showroom },
-                        { label: "Budget", value: form.budget || "-" },
+                        { label: "Budget", value: form.budget || "—" },
                         { label: "Gewenste datum", value: form.date || "-" },
                       ].map((row) => (
                         <div

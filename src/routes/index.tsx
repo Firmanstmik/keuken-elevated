@@ -22,10 +22,10 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Premium German and Italian kitchen showroom in Utrecht sinds 1978. Persoonlijk showroomadvies, geselecteerde topmerken en een verfijnde keukenervaring.",
+          "Premium Duitse en Italiaanse keukenshowroom in Utrecht sinds 1978. Persoonlijk showroomadvies, geselecteerde topmerken en een verfijnde keukenervaring.",
       },
       { property: "og:title", content: "Keuken-Centrum Utrecht · Premium Keukenshowroom" },
-      { property: "og:description", content: "De premium keukenbestemming van Utrecht voor German precision, Italian elegance en persoonlijk showroomadvies." },
+      { property: "og:description", content: "De premium keukenbestemming van Utrecht voor Duitse precisie, Italiaanse elegantie en persoonlijk showroomadvies." },
       { property: "og:type", content: "website" },
       { property: "og:image", content: shareLogo },
       { property: "og:url", content: "/" },

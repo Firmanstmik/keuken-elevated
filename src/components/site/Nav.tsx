@@ -1,10 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "@tanstack/react-router";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import type { ComponentType, SVGAttributes } from "react";
 import {
   Call as IconsaxCall,
-  House as IconsaxHouse,
   Sms as IconsaxSms,
   ArrowRight2 as IconsaxArrowRight2,
 } from "@zethictech/iconsax-react";
@@ -33,6 +32,8 @@ import {
   FileText,
   ArrowUpRight,
   ArrowRight as LucideArrowRight,
+  ShieldCheck,
+  Truck,
 } from "lucide-react";
 
 // Import featured cover images
@@ -211,7 +212,7 @@ const desktopMenu: NavMenuItem[] = [
       },
     ],
     featured: {
-      title: "Premium Inbouwapparatuur",
+      title: "Hoogwaardige Inbouwapparatuur",
       description: "Ontdek de nieuwste systemen van Miele, Bora en Quooker geïntegreerd in onze showroom.",
       buttonText: "Bekijk Apparatuur",
       buttonHref: "/#showroom",
@@ -266,14 +267,34 @@ function makeNavIcon(Icon: ComponentType<NavIconProps>) {
 }
 
 const NavCall = makeNavIcon(IconsaxCall);
-const NavHouse = makeNavIcon(IconsaxHouse);
 const NavSms = makeNavIcon(IconsaxSms);
+
+const GOOGLE_RATING = "4,9";
+
+function GoogleLogo({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" aria-hidden="true">
+      <path fill="#EA4335" d="M12 10.2v3.9h5.5c-.2 1.4-1.7 4.1-5.5 4.1-3.3 0-6-2.7-6-6.1s2.7-6.1 6-6.1c1.9 0 3.2.8 3.9 1.5l2.7-2.6C16.9 3.3 14.7 2.3 12 2.3 6.6 2.3 2.3 6.6 2.3 12S6.6 21.7 12 21.7c6.9 0 9.5-4.9 9.5-9.4 0-.6-.1-1.1-.1-1.5H12z" />
+    </svg>
+  );
+}
+
+function TopbarStars() {
+  return (
+    <span className="nav-topbar-stars" aria-hidden="true">
+      {Array.from({ length: 5 }).map((_, i) => (
+        <svg key={i} viewBox="0 0 16 16" className="h-3 w-3 fill-[#C8A96B]">
+          <path d="M8 1.2l1.76 3.57 3.94.57-2.85 2.78.67 3.92L8 10.47l-3.52 1.85.67-3.92L2.3 5.34l3.94-.57L8 1.2z" />
+        </svg>
+      ))}
+    </span>
+  );
+}
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const lastScrollY = useRef(0);
   const reduceMotion = useReducedMotion();
   const location = useLocation();
 
@@ -283,14 +304,8 @@ export function Nav() {
       setScrolled(currentY > 24);
 
       if (!open) {
-        if (currentY > lastScrollY.current && currentY > 140) {
-          setHidden(true);
-        } else {
-          setHidden(false);
-        }
+        setHidden(currentY > 16);
       }
-
-      lastScrollY.current = currentY;
     };
 
     onScroll();
@@ -318,9 +333,9 @@ export function Nav() {
   return (
     <motion.header
       initial={{ y: -16, opacity: 0 }}
-      animate={{ y: hidden && !open ? -132 : 0, opacity: 1 }}
+      animate={{ y: hidden && !open ? "-100%" : 0, opacity: hidden && !open ? 0 : 1 }}
       transition={{ duration: motionDuration.luxury, ease: motionEase.premium }}
-      className={`fixed inset-x-0 top-0 z-50 ${heroNav ? "nav-hero" : ""}`}
+      className={`fixed inset-x-0 top-0 z-50 ${heroNav ? "nav-hero" : ""} ${hidden && !open ? "pointer-events-none" : ""}`}
     >
       <motion.div
         initial={reduceMotion ? false : { opacity: 0, y: -18 }}
@@ -330,23 +345,38 @@ export function Nav() {
       >
         <div className={`nav-band nav-topbar-band ${forceSolidNav ? "nav-band-forced" : elevated ? "nav-band-elevated" : "nav-topbar-hero"}`}>
           <div className="site-container nav-topbar">
-            <div className="hidden min-h-11 items-center justify-end gap-4 text-[0.72rem] tracking-[0.18em] text-[rgba(245,242,236,0.78)] md:flex">
-              <div className="flex items-center justify-end gap-4 whitespace-nowrap">
-                <span className="nav-topbar-item">
-                  <NavHouse className="nav-topbar-icon text-[rgba(49,199,212,0.65)]" />
-                  Zonnebaan 8, 3542 EC Utrecht
-                </span>
-                <span className="nav-topbar-sep" />
-                <a href={kc.contact.phoneHref} className="nav-topbar-item hover:text-[#F5F2EC]">
-                  <NavCall className="nav-topbar-icon text-[rgba(49,199,212,0.65)]" />
-                  {kc.contact.phone}
-                </a>
-                <span className="nav-topbar-sep" />
-                <a href={`mailto:${kc.contact.email}`} className="nav-topbar-item hover:text-[#F5F2EC]">
-                  <NavSms className="nav-topbar-icon text-[rgba(49,199,212,0.65)]" />
-                  {kc.contact.email}
-                </a>
-              </div>
+            <div className="hidden min-h-11 items-center justify-end gap-0 text-[0.72rem] tracking-[0.06em] text-[rgba(245,242,236,0.82)] md:flex">
+              <a
+                href={kc.contact.maps}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="nav-topbar-google-pill nav-topbar-item hover:text-[#F5F2EC]"
+              >
+                <GoogleLogo className="h-4 w-4 shrink-0" />
+                <span className="font-semibold text-[#C8A96B]">{GOOGLE_RATING}</span>
+                <TopbarStars />
+                <span className="text-[rgba(245,242,236,0.72)]">Google Reviews</span>
+              </a>
+              <span className="nav-topbar-sep" />
+              <span className="nav-topbar-item">
+                <Truck className="nav-topbar-icon nav-topbar-accent-icon" strokeWidth={1.8} />
+                Snelle levering
+              </span>
+              <span className="nav-topbar-sep" />
+              <span className="nav-topbar-item">
+                <ShieldCheck className="nav-topbar-icon nav-topbar-accent-icon" strokeWidth={1.8} />
+                +5 jaar garantie
+              </span>
+              <span className="nav-topbar-sep" />
+              <a href={kc.contact.phoneHref} className="nav-topbar-item hover:text-[#F5F2EC]">
+                <NavCall className="nav-topbar-icon nav-topbar-accent-icon" />
+                {kc.contact.phone}
+              </a>
+              <span className="nav-topbar-sep" />
+              <a href={`mailto:${kc.contact.email}`} className="nav-topbar-item hover:text-[#F5F2EC]">
+                <NavSms className="nav-topbar-icon nav-topbar-accent-icon" />
+                {kc.contact.email}
+              </a>
             </div>
           </div>
         </div>

@@ -9,9 +9,7 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import {
-  ArrowRight,
-} from "@/components/ui/icons";
+import { PremiumPillButton } from "@/components/ui/premium-pill-button";
 import type { ComponentType, SVGAttributes } from "react";
 import {
   Award as IconsaxAward,
@@ -22,6 +20,7 @@ import {
   Play as IconsaxPlay,
   Tag as IconsaxTag,
 } from "@zethictech/iconsax-react";
+import { ChevronDown } from "lucide-react";
 import { motionDuration, motionEase } from "@/lib/motion";
 import heroImg1 from "@/assets/hero_img1.webp";
 import heroImg2 from "@/assets/hero_img2.webp";
@@ -41,6 +40,177 @@ const headlineLines: ReactNode[] = [
     <span className="hero-accent">Utrecht.</span>
   </>,
 ];
+
+function ChefKnifeIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 32 32"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M6 24.5C6 24.5 8.5 22 12 22C14 22 15.5 23 16.5 24"
+        stroke="currentColor"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+      />
+      <path
+        d="M16.5 24L26 14.5C27.2 13.3 27.2 11.3 26 10.1C24.8 8.9 22.8 8.9 21.6 10.1L11 20.5"
+        stroke="currentColor"
+        strokeWidth="1.35"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M11 20.5L16.5 24"
+        stroke="currentColor"
+        strokeWidth="1.35"
+        strokeLinecap="round"
+      />
+      <path
+        d="M22 9.5L24.5 7"
+        stroke="currentColor"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function HeroPartnerBadge({
+  activeSlide,
+  activeIndex,
+  indicatorIds,
+  onSelect,
+  reduceMotion,
+}: {
+  activeSlide: (typeof heroSlides)[number];
+  activeIndex: number;
+  indicatorIds: string[];
+  onSelect: (index: number) => void;
+  reduceMotion: boolean | null;
+}) {
+  return (
+    <motion.div
+      initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: motionDuration.premium, ease: motionEase.premium, delay: 0.82 }}
+      className="mt-6 flex justify-start"
+    >
+      <div className="inline-flex items-center gap-2 rounded-full border border-[rgba(255,255,255,0.22)] bg-[rgba(255,255,255,0.10)] px-2.5 py-1.5 shadow-[0_12px_32px_-28px_rgba(23,25,28,0.35)] backdrop-blur-xl">
+        <AnimatePresence mode="wait">
+          <motion.span
+            key={activeSlide.brand}
+            initial={reduceMotion ? false : { opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={reduceMotion ? undefined : { opacity: 0, y: -6 }}
+            transition={{ duration: 0.35, ease: motionEase.premium }}
+            className="text-[0.62rem] tracking-[0.22em] text-[rgba(247,245,242,0.75)]"
+          >
+            {activeSlide.brand}
+          </motion.span>
+        </AnimatePresence>
+        <span className="h-px w-6 bg-[linear-gradient(90deg,rgba(247,245,242,0),rgba(247,245,242,0.24),rgba(247,245,242,0))]" />
+        <div className="flex items-center gap-1.5">
+          {indicatorIds.map((id, index) => (
+            <motion.button
+              key={id}
+              type="button"
+              onClick={() => onSelect(index)}
+              aria-label={`Toon slide ${id}`}
+              aria-pressed={index === activeIndex}
+              className="relative h-1.5 rounded-full bg-[rgba(247,245,242,0.12)]"
+              animate={{
+                width: index === activeIndex ? 20 : 8,
+                backgroundColor: index === activeIndex ? activeSlide.accent : "rgba(247,245,242,0.12)",
+              }}
+              transition={{ duration: 0.35, ease: motionEase.premium }}
+            />
+          ))}
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+function HeroScrollCue({ reduceMotion }: { reduceMotion: boolean | null }) {
+  const scrollToNext = () => {
+    const target = document.getElementById("brands");
+    if (target) {
+      target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
+      return;
+    }
+    window.scrollBy({ top: window.innerHeight * 0.85, behavior: reduceMotion ? "auto" : "smooth" });
+  };
+
+  return (
+    <motion.button
+      type="button"
+      onClick={scrollToNext}
+      aria-label="Ontdek meer — scroll naar beneden"
+      initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: motionDuration.luxury, ease: motionEase.premium, delay: 1.1 }}
+      className="hero-scroll-cue group absolute inset-x-0 bottom-8 z-30 mx-auto flex w-fit flex-col items-center gap-2.5 border-0 bg-transparent p-0 outline-none focus-visible:ring-2 focus-visible:ring-[rgba(200,169,107,0.45)] focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+    >
+      <motion.span
+        className="text-[0.58rem] font-light uppercase tracking-[0.34em] text-[rgba(247,245,242,0.45)] transition-colors duration-500 group-hover:text-[rgba(247,245,242,0.78)]"
+        animate={reduceMotion ? undefined : { opacity: [0.45, 0.85, 0.45] }}
+        transition={reduceMotion ? undefined : { duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
+      >
+        Ontdek meer
+      </motion.span>
+
+      <span className="relative flex flex-col items-center">
+        <motion.span
+          className="hero-scroll-cue-glow pointer-events-none absolute inset-0 rounded-full blur-xl"
+          aria-hidden="true"
+          animate={reduceMotion ? undefined : { opacity: [0.15, 0.35, 0.15], scale: [0.9, 1.05, 0.9] }}
+          transition={reduceMotion ? undefined : { duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        <motion.span
+          className="hero-scroll-cue-frame relative flex items-center justify-center px-7 py-3.5 text-[#C8A96B]"
+          animate={reduceMotion ? undefined : { y: [0, -2, 0] }}
+          transition={reduceMotion ? undefined : { duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <ChefKnifeIcon className="h-7 w-7 transition-colors duration-500 group-hover:text-[#D4BA82]" />
+        </motion.span>
+
+        <span className="hero-scroll-track relative mt-0.5 h-9 w-px overflow-hidden">
+          <span className="absolute inset-0 bg-[linear-gradient(180deg,rgba(200,169,107,0.55)_0%,rgba(200,169,107,0.08)_100%)]" />
+          {!reduceMotion ? (
+            <motion.span
+              aria-hidden="true"
+              className="absolute left-1/2 h-2 w-2 -translate-x-1/2 rounded-full bg-[#C8A96B] shadow-[0_0_10px_rgba(200,169,107,0.55)]"
+              animate={{ top: ["-10%", "110%"], opacity: [0, 1, 0] }}
+              transition={{ duration: 1.9, repeat: Infinity, ease: "easeInOut" }}
+            />
+          ) : null}
+        </span>
+
+        <span className="relative -mt-0.5 flex flex-col items-center">
+          {[0, 1].map((i) => (
+            <motion.span
+              key={i}
+              aria-hidden="true"
+              className="text-[rgba(247,245,242,0.38)] transition-colors duration-500 group-hover:text-[rgba(200,169,107,0.72)]"
+              animate={reduceMotion ? undefined : { y: [0, 4, 0], opacity: [0.25 + i * 0.15, 0.85 - i * 0.2, 0.25 + i * 0.15] }}
+              transition={
+                reduceMotion
+                  ? undefined
+                  : { duration: 1.9, repeat: Infinity, ease: "easeInOut", delay: i * 0.14 }
+              }
+            >
+              <ChevronDown className="h-3.5 w-3.5 -my-1" strokeWidth={1.5} />
+            </motion.span>
+          ))}
+        </span>
+      </span>
+    </motion.button>
+  );
+}
 
 const heroSlides = [
   {
@@ -177,28 +347,6 @@ export function Hero() {
 
   const activeSlide = heroSlides[activeIndex];
   const indicatorIds = useMemo(() => heroSlides.map((slide) => slide.brand), []);
-  const primaryCtaVariants = reduceMotion
-    ? undefined
-    : ({
-        rest: { y: 0, backgroundPosition: "0% 50%" },
-        hover: {
-          y: -1,
-          backgroundPosition: "100% 50%",
-          transition: { duration: motionDuration.premium, ease: motionEase.premium },
-        },
-      } as const);
-  const ctaShineVariants = reduceMotion
-    ? undefined
-    : ({
-        rest: { x: "-140%", opacity: 0 },
-        hover: { x: "140%", opacity: 1, transition: { duration: 0.9, ease: motionEase.soft } },
-      } as const);
-  const ctaArrowVariants = reduceMotion
-    ? undefined
-    : ({
-        rest: { x: 0 },
-        hover: { x: 4, transition: { duration: motionDuration.normal, ease: motionEase.precise } },
-      } as const);
 
   const flashPauseToast = () => {
     setShowPauseToast(true);
@@ -417,63 +565,34 @@ export function Hero() {
               transition={{ duration: motionDuration.premium, ease: motionEase.premium, delay: 0.68 }}
               className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center"
             >
-              <motion.a
+              <PremiumPillButton
                 href="#showroom"
-                variants={primaryCtaVariants}
-                initial="rest"
-                animate="rest"
-                whileHover="hover"
-                whileFocus="hover"
-                className="brand-green-button group relative inline-flex h-[58px] w-full items-center justify-center gap-3 rounded-[14px] px-8 text-[0.96rem] font-medium tracking-[-0.02em] text-white sm:w-auto"
-                style={{ backgroundSize: "180% 180%" }}
+                variant="blue"
+                shape="rounded"
+                size="md"
+                className="w-full sm:w-auto"
               >
-                <motion.span
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-y-0 left-[-34%] w-[34%] bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.22),transparent)]"
-                  variants={ctaShineVariants}
-                />
-                <span className="relative z-10">Plan Showroombezoek</span>
-                <motion.span
-                  className="relative z-10"
-                  variants={ctaArrowVariants}
-                >
-                  <ArrowRight className="h-4 w-4" />
-                </motion.span>
-              </motion.a>
+                Plan Showroombezoek
+              </PremiumPillButton>
 
-              <motion.a
+              <PremiumPillButton
                 href="/brands"
-                whileHover={reduceMotion ? undefined : { y: -1 }}
-                whileFocus={reduceMotion ? undefined : { y: -1 }}
-                transition={{ duration: motionDuration.premium, ease: motionEase.premium }}
-                className="group inline-flex h-[58px] w-full items-center justify-center gap-3 rounded-[12px] border border-[rgba(247,245,242,0.16)] bg-[rgba(23,25,28,0.36)] px-8 text-[0.96rem] font-medium tracking-[-0.02em] text-[#F7F5F2] shadow-[0_18px_46px_-36px_rgba(23,25,28,0.42)] backdrop-blur-xl hover:bg-[rgba(23,25,28,0.48)] sm:w-auto"
+                variant="ghost"
+                shape="rounded"
+                size="md"
+                className="w-full sm:w-auto"
               >
-                <span>Start Configurator</span>
-                <motion.span
-                  className="relative"
-                  whileHover={reduceMotion ? undefined : { x: 3 }}
-                  transition={{ duration: motionDuration.normal, ease: motionEase.precise }}
-                >
-                  <ArrowRight className="h-4 w-4" />
-                </motion.span>
-              </motion.a>
+                Start configurator
+              </PremiumPillButton>
             </motion.div>
 
-            <motion.div
-              initial={reduceMotion ? false : { opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: motionDuration.premium, ease: motionEase.premium, delay: 0.82 }}
-              className="mt-8 flex items-center gap-3"
-            >
-              <span className="text-[0.8rem] tracking-[0.12em] text-[var(--gold)]">★★★★★</span>
-              <span className="text-sm font-medium tracking-[-0.02em] text-[#F7F5F2]">
-                4.9 Google Reviews
-              </span>
-              <span className="h-px w-10 bg-[linear-gradient(90deg,rgba(200,169,107,0),rgba(200,169,107,0.65),rgba(200,169,107,0))]" />
-              <span className="text-[0.78rem] tracking-[0.12em] text-[rgba(247,245,242,0.5)]">
-                Gecurateerde Duitse en Italiaanse keukens
-              </span>
-            </motion.div>
+            <HeroPartnerBadge
+              activeSlide={activeSlide}
+              activeIndex={activeIndex}
+              indicatorIds={indicatorIds}
+              onSelect={setActiveIndex}
+              reduceMotion={reduceMotion}
+            />
           </motion.div>
 
           <div className="relative hidden min-h-[32rem] items-center justify-end lg:flex">
@@ -609,40 +728,9 @@ export function Hero() {
             </motion.aside>
           </div>
         </div>
-
-        <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: motionDuration.luxury, ease: motionEase.premium, delay: 0.92 }}
-          className="relative z-20 -mt-6 pb-10"
-        >
-          <div className="flex items-center justify-center">
-            <div className="inline-flex items-center gap-3 rounded-full border border-[rgba(255,255,255,0.5)] bg-[rgba(255,255,255,0.44)] px-4 py-2.5 shadow-[0_18px_46px_-34px_rgba(23,25,28,0.22)] backdrop-blur-xl">
-              <span className="text-[0.72rem] tracking-[0.26em] text-[var(--foreground)]/52">
-                {activeSlide.brand}
-              </span>
-              <span className="h-px w-10 bg-[linear-gradient(90deg,rgba(23,25,28,0),rgba(23,25,28,0.18),rgba(23,25,28,0))]" />
-              <div className="flex items-center gap-2">
-                {indicatorIds.map((id, index) => (
-                  <motion.button
-                    key={id}
-                    type="button"
-                    onClick={() => setActiveIndex(index)}
-                    aria-label={`Toon slide ${id}`}
-                    aria-pressed={index === activeIndex}
-                    className="relative h-2 rounded-full bg-[rgba(23,25,28,0.12)]"
-                    animate={{
-                      width: index === activeIndex ? 28 : 10,
-                      backgroundColor: index === activeIndex ? activeSlide.accent : "rgba(23,25,28,0.12)",
-                    }}
-                    transition={{ duration: 0.35, ease: motionEase.premium }}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-        </motion.div>
       </div>
+
+      <HeroScrollCue reduceMotion={reduceMotion} />
     </section>
   );
 }

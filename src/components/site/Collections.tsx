@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "@/components/ui/icons";
+import { PremiumPillButton } from "@/components/ui/premium-pill-button";
 import { kc } from "@/lib/kc-data";
 import { fadeUp, motionViewport } from "@/lib/motion";
 import matConcrete from "@/assets/mat-concrete.jpg";
@@ -12,37 +13,37 @@ import matConcrete from "@/assets/mat-concrete.jpg";
 const collections = [
   {
     id: "modern",
-    title: "Modern Living",
+    title: "Modern Wonen",
     number: "01",
-    collectionLabel: "MODERN COLLECTION",
-    descriptor: "Architectural · Minimal · Timeless",
+    collectionLabel: "MODERNE COLLECTIE",
+    descriptor: "Architecturaal · Minimaal · Tijdloos",
     description: "Slanke lijnen en functionele elegantie voor het hedendaagse leven.",
     image: kc.styles[1].img,
   },
   {
     id: "klassiek",
-    title: "Klassiek Elegance",
+    title: "Klassieke Elegantie",
     number: "02",
-    collectionLabel: "KLASSIEK COLLECTION",
-    descriptor: "Warm · Elegant · Refined",
+    collectionLabel: "KLASSIEKE COLLECTIE",
+    descriptor: "Warm · Elegant · Verfijnd",
     description: "Tijdloze proporties en rijke materialen die generaties meegaan.",
     image: kc.styles[2].img,
   },
   {
     id: "landelijk",
-    title: "Landelijk Heritage",
+    title: "Landelijk Erfgoed",
     number: "03",
-    collectionLabel: "LANDELIJK COLLECTION",
-    descriptor: "Natural · Authentic · Inviting",
+    collectionLabel: "LANDELIJKE COLLECTIE",
+    descriptor: "Natuurlijk · Authentiek · Uitnodigend",
     description: "Warme texturen en ambachtelijke details voor een thuis gevoel.",
     image: kc.styles[2].img,
   },
   {
     id: "industrieel",
-    title: "Industrieel Studio",
+    title: "Industrieel Atelier",
     number: "04",
-    collectionLabel: "INDUSTRIEEL COLLECTION",
-    descriptor: "Bold · Characterful · Contemporary",
+    collectionLabel: "INDUSTRIËLE COLLECTIE",
+    descriptor: "Krachtig · Karaktervol · Hedendaags",
     description: "Rauwe materialen en grafische vormen met een eigenzinnig karakter.",
     image: kc.styles[3].img,
   },
@@ -95,7 +96,7 @@ function GalleryCard({ item }: { item: CollectionItem }) {
           className="text-[0.52rem] font-semibold uppercase tracking-[0.24em] text-[rgba(200,169,107,0.70)]"
           style={{ fontFamily: "var(--font-body)" }}
         >
-          Curated
+          Geselecteerd
         </span>
       </div>
 
@@ -286,13 +287,14 @@ export function Collections() {
                 taal van materiaal, compositie en sfeer.
               </p>
             </div>
-            <a
+            <PremiumPillButton
               href="#showroom"
-              className="link-underline self-start text-sm text-[#111111]/60 lg:self-end"
+              variant="blue"
+              size="sm"
+              className="w-fit self-start lg:justify-self-end lg:self-end"
             >
               Alle keukens bekijken
-              <ArrowRight className="ml-1 inline-block h-4 w-4" />
-            </a>
+            </PremiumPillButton>
           </motion.div>
         </div>
 

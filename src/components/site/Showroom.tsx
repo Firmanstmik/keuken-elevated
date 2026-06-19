@@ -359,7 +359,7 @@ export function Showroom() {
                   className="absolute bottom-3 left-3 text-[0.48rem] font-semibold uppercase tracking-[0.22em] text-[rgba(247,244,238,0.52)]"
                   style={{ fontFamily: "var(--font-body)" }}
                 >
-                  Premium Materialen
+                  Premium materialen
                 </p>
               </motion.div>
 
@@ -494,7 +494,7 @@ export function Showroom() {
                 className="text-[0.52rem] font-light uppercase tracking-[0.24em] text-[rgba(49,199,212,0.42)]"
                 style={{ fontFamily: "var(--font-body)" }}
               >
-                Vakmanschap · Seit 1978
+                Vakmanschap · Sinds 1978
               </span>
               <div
                 className="h-px flex-1"

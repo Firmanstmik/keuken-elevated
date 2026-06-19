@@ -126,7 +126,7 @@ export const masterStyles: MasterStyle[] = [
 export const masterCategories: MasterCategory[] = [
   {
     id: "front",
-    label: "Front",
+    label: "Frontpaneel",
     options: [
       { id: "matte-black", name: "Mat zwart", color: "#1A1A1A", description: "Ultramat gelakt in diep zwart" },
       { id: "cashmere", name: "Cashmere", color: "#C4B49A", description: "Warme greige met zachte matte afwerking" },
@@ -235,7 +235,7 @@ export const masterConsultationBudgets = [
 ] as const;
 
 export const masterHotspotPositions = [
-  { id: "front", label: "Front", x: "30%", y: "45%" },
+  { id: "front", label: "Frontpaneel", x: "30%", y: "45%" },
   { id: "worktop", label: "Werkblad", x: "52%", y: "58%" },
   { id: "sink", label: "Spoelbak", x: "62%", y: "50%" },
   { id: "appliances", label: "Apparatuur", x: "14%", y: "38%" },

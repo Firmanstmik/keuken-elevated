@@ -13,14 +13,14 @@ import nobiliaLogo from "@/assets/Nobilia_Logo.webp";
 
 type Brand = { name: string; logo: string; tag: string };
 
-const leichtBrand: Brand = { name: "Leicht", logo: leichtLogo, tag: "Architectural German design" };
-const boraBrand: Brand = { name: "Bora", logo: boraLogo, tag: "Revolutionary cooking" };
+const leichtBrand: Brand = { name: "Leicht", logo: leichtLogo, tag: "Architecturaal Duits design" };
+const boraBrand: Brand = { name: "Bora", logo: boraLogo, tag: "Revolutionair koken" };
 const mieleBrand: Brand = { name: "Miele", logo: mieleLogo, tag: "Immer besser" };
-const quookerBrand: Brand = { name: "Quooker", logo: quookerLogo, tag: "The boiling water tap" };
+const quookerBrand: Brand = { name: "Quooker", logo: quookerLogo, tag: "De kokendwaterkraan" };
 const gaggenauBrand: Brand = { name: "Gaggenau", logo: gaggenauLogo, tag: "The difference is Gaggenau" };
-const aiKuchenBrand: Brand = { name: "AI Küchen", logo: aiKuchenLogo, tag: "German quality craftsmanship" };
-const zampieriBrand: Brand = { name: "Zampieri", logo: zampieriLogo, tag: "Italian luxury design" };
-const cucinesseBrand: Brand = { name: "Cucinesse", logo: cucinesseLogo, tag: "Italian tailor-made kitchens" };
+const aiKuchenBrand: Brand = { name: "AI Küchen", logo: aiKuchenLogo, tag: "Duitse vakmanschap" };
+const zampieriBrand: Brand = { name: "Zampieri", logo: zampieriLogo, tag: "Italiaans luxedesign" };
+const cucinesseBrand: Brand = { name: "Cucinesse", logo: cucinesseLogo, tag: "Italiaanse keukens op maat" };
 const nobiliaBrand: Brand = { name: "Nobilia", logo: nobiliaLogo, tag: "Made in Germany" };
 
 type Align = "left" | "right";
@@ -131,7 +131,7 @@ function PremiumLabel() {
   return (
     <span className="inline-flex items-center gap-1.5 rounded-full border border-[rgba(35,185,196,0.22)] bg-[rgba(35,185,196,0.07)] px-2.5 py-1 text-[0.6rem] font-medium uppercase tracking-[0.16em] text-[#1A9AA4]">
       <span className="h-1.5 w-1.5 rounded-full bg-[var(--green)] shadow-[0_0_0_3px_rgba(35,185,196,0.16)]" />
-      Premium Partner
+      Premium partner
     </span>
   );
 }
@@ -219,7 +219,7 @@ export function Brands() {
               variants={reduceMotion ? undefined : fadeUp}
               className="block text-[0.6875rem] font-medium uppercase tracking-[0.28em] text-[var(--green)]"
             >
-              Premium Partners
+              Premium partners
             </motion.p>
 
             <motion.h2

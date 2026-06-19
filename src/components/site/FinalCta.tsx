@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, House, Mail, Phone } from "@/components/ui/icons";
+import { PremiumPillButton } from "@/components/ui/premium-pill-button";
 import { kc } from "@/lib/kc-data";
 import { motionViewport } from "@/lib/motion";
 import matConcrete from "@/assets/mat-concrete.jpg";
@@ -126,31 +127,12 @@ export function FinalCta() {
             variants={reduceMotion ? undefined : fadeUp}
             className="mt-11 flex flex-wrap items-center justify-center gap-4"
           >
-            <a
-              href="/brands"
-              className={[
-                "brand-green-button group relative inline-flex h-[54px] items-center justify-center gap-3.5 rounded-[16px] px-10",
-                "text-[11px] font-normal tracking-[0.22em] text-[#F8F6F2] uppercase",
-                "transition-[transform,box-shadow,background-color] duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
-                "hover:-translate-y-[3px] active:scale-[0.98]",
-              ].join(" ")}
-              style={{ fontFamily: "'Jost', sans-serif" }}
-            >
-              <span className="relative">Start configurator</span>
-              <ArrowRight className="relative h-4 w-4 transition-transform duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1.5" />
-            </a>
-            <a
-              href="#consultation"
-              className={[
-                "group relative inline-flex h-[54px] items-center justify-center gap-3.5 overflow-hidden rounded-full border border-[rgba(35,185,196,0.22)] bg-transparent px-10",
-                "text-[11px] font-normal tracking-[0.22em] text-[#5A5A5A] uppercase",
-                "transition-[border-color,background-color,color,transform] duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
-                "hover:-translate-y-[3px] hover:border-[rgba(35,185,196,0.45)] hover:bg-[rgba(35,185,196,0.05)] hover:text-[#163847] active:scale-[0.98]",
-              ].join(" ")}
-              style={{ fontFamily: "'Jost', sans-serif" }}
-            >
-              <span className="relative">Boek consultatie</span>
-            </a>
+            <PremiumPillButton href="/brands" variant="blue" size="md">
+              Start configurator
+            </PremiumPillButton>
+            <PremiumPillButton href="#consultation" variant="ghost-light" size="md">
+              Boek consultatie
+            </PremiumPillButton>
           </motion.div>
         </motion.div>
 

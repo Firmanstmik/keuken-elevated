@@ -19,7 +19,7 @@ const testimonialsData = [
     quote:
       "We wilden geen standaard keuken, maar een ruimte die rust, precisie en luxe uitstraalt. Het ontwerp voelde vanaf de eerste presentatie architectonisch doordacht, en de uitvoering was even zorgvuldig.",
     client: "Familie Van Deurzen",
-    project: "LEICHT Residence Project",
+    project: "Leicht Residence Project",
     location: "Utrecht",
     year: "2025",
     brand: "LEICHT",
@@ -34,7 +34,7 @@ const testimonialsData = [
     location: "Bilthoven",
     year: "2024",
     brand: "NOBILIA",
-    tags: ["NOBILIA", "Warm Minimal", "Greeploos"],
+    tags: ["NOBILIA", "Warm Minimaal", "Greeploos"],
   },
   {
     image: collectionModern,
@@ -45,40 +45,40 @@ const testimonialsData = [
     location: "Nieuwegein",
     year: "2025",
     brand: "ZAMPIERI",
-    tags: ["ZAMPIERI", "Loft", "Stone Finish"],
+    tags: ["ZAMPIERI", "Loft", "Stenen Afwerking"],
   },
   {
     image: heroKitchen,
     quote:
       "De keuken voelt alsof hij altijd onderdeel van het huis is geweest. Juist die vanzelfsprekende luxe en het dagelijkse gebruiksgemak maken dit project bijzonder.",
     client: "Dhr. & Mevr. Jaspers",
-    project: "Cucinesse Courtyard Kitchen",
+    project: "Cucinesse Binnenplaatskeuken",
     location: "Houten",
     year: "2024",
     brand: "CUCINESSE",
-    tags: ["CUCINESSE", "Courtyard", "Soft Oak"],
+    tags: ["CUCINESSE", "Binnenplaats", "Zacht Eiken"],
   },
   {
     image: collectionMinimal,
     quote:
       "Er is slim meegedacht over licht, routing en werkruimte. Het eindresultaat oogt stil en luxe, maar werkt dagelijks ook gewoon perfect.",
     client: "Familie Keizer",
-    project: "Leicht Garden Villa",
+    project: "Leicht Tuinvilla",
     location: "Zeist",
     year: "2025",
     brand: "LEICHT",
-    tags: ["LEICHT", "Villa", "Natural Stone"],
+    tags: ["LEICHT", "Villa", "Natuursteen"],
   },
   {
     image: showroomImage,
     quote:
       "De verfijning zit in de details: voeglijnen, materiaalovergangen en de rust van het totaalbeeld. Dat zie je niet vaak zo consequent uitgevoerd.",
     client: "Familie Hesselink",
-    project: "Premium Atelier Kitchen",
+    project: "Premium Atelierkeuken",
     location: "Amersfoort",
     year: "2025",
     brand: "NOBILIA",
-    tags: ["NOBILIA", "Atelier", "Monolith"],
+    tags: ["NOBILIA", "Atelier", "Monoliet"],
   },
 ] as const;
 
@@ -333,7 +333,7 @@ function CenterShowcase() {
                     className="text-[10px] font-medium uppercase tracking-[0.22em]"
                     style={{ color: "#E8D6A8", fontFamily: "var(--font-body)" }}
                   >
-                    Google Reviews · Verified
+                    Google Reviews · Geverifieerd
                   </span>
                 </div>
               </div>

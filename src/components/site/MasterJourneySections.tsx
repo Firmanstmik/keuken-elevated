@@ -9,8 +9,8 @@ import heroKitchen from "@/assets/hero-kitchen.jpg";
 import craftsmanship from "@/assets/craftsmanship.jpg";
 import showroomImg from "@/assets/showroom.jpg";
 import matMarble from "@/assets/mat-marble.jpg";
-import { Button } from "@/components/ui/button";
 import { ArrowRight } from "@/components/ui/icons";
+import { PremiumPillButton } from "@/components/ui/premium-pill-button";
 import { fadeUp, motionViewport, staggerHeader, staggerList } from "@/lib/motion";
 import matConcrete from "@/assets/mat-concrete.jpg";
 import { masterCategories } from "@/lib/master-config-data";
@@ -30,7 +30,7 @@ const hotspotKeyToCategoryId: Record<string, string> = {
 };
 
 const hotspotLabels: Record<string, string> = {
-  front: "Front",
+  front: "Frontpaneel",
   werkblad: "Werkblad",
   spoelbak: "Spoelbak",
   apparatuur: "Apparatuur",
@@ -824,7 +824,7 @@ export function ShowroomJourneySection() {
               className="absolute -top-3 left-6 md:left-8 z-20"
             >
               <span className="rounded-full border border-[#C8A96B]/30 bg-[#111111] px-4 py-1.5 text-[0.6rem] font-medium uppercase tracking-[0.2em] text-[#C8A96B] shadow-[0_4px_12px_rgba(0,0,0,0.1)]">
-                Premium Configurator
+                Premium configurator
               </span>
             </motion.div>
 
@@ -1197,18 +1197,9 @@ export function ShowroomJourneySection() {
               })}
             </motion.div>
             <motion.div variants={reduceMotion ? undefined : fadeUp} className="mt-10">
-              <Button
-                asChild
-                className="brand-green-button group relative min-h-[3.5rem] rounded-[16px] px-[2.5rem] text-[0.8125rem] font-normal uppercase tracking-[0.15em] text-[#F5F2EC] transition-all duration-300 ease-out hover:scale-[1.02] active:scale-[0.98]"
-              >
-                <a href="/brands" className="flex items-center gap-2">
-                  <span>Start uw ontwerp</span>
-                  <ArrowRight className="h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-1" />
-                  
-                  {/* Premium Shine Swipe Effect */}
-                  <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-                </a>
-              </Button>
+              <PremiumPillButton href="/brands" variant="blue" size="md">
+                Start uw ontwerp
+              </PremiumPillButton>
             </motion.div>
           </motion.div>
         </div>
