@@ -272,26 +272,24 @@ export function Collections() {
             whileInView="visible"
             viewport={motionViewport}
             variants={reduceMotion ? undefined : fadeUp}
-            className="section-header-split"
+            className="max-w-[38rem]"
           >
-            <div className="max-w-[38rem]">
-              <div className="section-label-row">
-                <span className="luxe-rule" />
-                <span className="eyebrow text-[#C8A96B]">Onze Collecties</span>
-              </div>
-              <h2 className="heading-2 mt-4">
-                Ontdek uw <em className="italic" style={{ color: "#23B9C4" }}>Droomkeuken</em>
-              </h2>
-              <p className="mt-5 max-w-[480px] text-[1.05rem] font-light leading-[1.75] tracking-[0.01em] text-[#5A5A5A]">
-                Vier zorgvuldig samengestelde stijlwerelden — elk een unieke architectonische
-                taal van materiaal, compositie en sfeer.
-              </p>
+            <div className="section-label-row">
+              <span className="luxe-rule" />
+              <span className="eyebrow text-[#C8A96B]">Onze Collecties</span>
             </div>
+            <h2 className="heading-2 mt-4">
+              Ontdek uw <em className="italic" style={{ color: "#23B9C4" }}>Droomkeuken</em>
+            </h2>
+            <p className="mt-5 max-w-[480px] text-[1.05rem] font-light leading-[1.75] tracking-[0.01em] text-[#5A5A5A]">
+              Vier zorgvuldig samengestelde stijlwerelden — elk een unieke architectonische
+              taal van materiaal, compositie en sfeer.
+            </p>
             <PremiumPillButton
               href="#showroom"
               variant="blue"
               size="sm"
-              className="w-fit self-start lg:justify-self-end lg:self-end"
+              className="mt-7 w-fit"
             >
               Alle keukens bekijken
             </PremiumPillButton>
