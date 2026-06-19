@@ -308,18 +308,19 @@ function LuxuryCard({ item, reduceMotion }: CardProps) {
             {item.luxuryDescription}
           </p>
 
-          {/* CTA arrow */}
+          {/* Premium CTA pill — swipe in on card hover */}
           <span
             className={[
-              "mt-3 inline-flex translate-y-3 items-center gap-2 opacity-0",
-              "text-[0.7rem] font-light tracking-[0.2em] text-[rgba(139,197,64,0)]",
-              "transition-[transform,opacity,gap,color] duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
-              "group-hover:translate-y-0 group-hover:gap-[10px] group-hover:text-[rgba(139,197,64,0.90)] group-hover:opacity-100",
+              "experience-card__cta-wrap",
+              isFeatured ? "experience-card__cta-wrap--featured" : "experience-card__cta-wrap--compact",
             ].join(" ")}
-            style={{ fontFamily: "var(--font-body)" }}
           >
-            <span className="uppercase">Verken collectie</span>
-            <ArrowRight className="h-3 w-3 transition-transform duration-[500ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-2" />
+            <span className="experience-card__cta">
+              <span className="experience-card__cta-label">Verken collectie</span>
+              <span className="experience-card__cta-badge" aria-hidden="true">
+                <ArrowRight className="experience-card__cta-icon" />
+              </span>
+            </span>
           </span>
         </a>
       </motion.article>
