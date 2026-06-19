@@ -5,7 +5,7 @@ import { PremiumPillButton } from "@/components/ui/premium-pill-button";
 import { ArrowRight } from "@/components/ui/icons";
 import { kc } from "@/lib/kc-data";
 import { motionViewport } from "@/lib/motion";
-import logoKeuken from "@/assets/keukencentrum_logo_transparent_medium_centered_stripe.png";
+import logoKeuken from "@/assets/logo-keuken-1-1.webp";
 import showroomImg from "@/assets/showroom.jpg";
 
 // Correct showroom location URL (derived from Maps embed coordinates)
@@ -437,10 +437,10 @@ export function Footer() {
             {/* Logo */}
             <img
               src={logoKeuken as unknown as string}
-              alt="Keuken Centrum"
-              className="mb-4 h-auto w-[min(19rem,100%)]"
-              width={343}
-              height={56}
+              alt="KeukenCentrum.nl"
+              className="mb-4 h-auto w-[min(16rem,100%)]"
+              width={280}
+              height={48}
             />
 
             {/* Tagline — teal */}

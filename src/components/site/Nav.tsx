@@ -9,7 +9,7 @@ import {
 } from "@zethictech/iconsax-react";
 import { ChevronDown, ArrowRight } from "@/components/ui/icons";
 import { kc } from "@/lib/kc-data";
-import logoKeuken from "@/assets/keukencentrum_logo_transparent_medium_centered_stripe.png";
+import logoKeuken from "@/assets/logo-keuken-1-1.webp";
 import { motionDuration, motionEase } from "@/lib/motion";
 
 // Import Lucide icons for mega menu sub-items
@@ -394,7 +394,7 @@ export function Nav() {
               transition={{ duration: motionDuration.premium, ease: motionEase.premium, delay: 0.06 }}
               className="flex shrink-0 items-center"
             >
-              <img src={logoKeuken} alt="Keuken Centrum logo" className={`w-auto transition-all duration-300 ${elevated ? "h-7 md:h-8" : "h-8 md:h-10"}`} width={343} height={56} />
+              <img src={logoKeuken} alt="KeukenCentrum.nl" className={`w-auto transition-all duration-300 ${elevated ? "h-7 md:h-8" : "h-8 md:h-9"}`} width={280} height={48} />
             </motion.a>
 
             <motion.nav
@@ -649,7 +649,7 @@ export function Nav() {
               <nav className="nav-mobile-panel flex min-h-[100dvh] flex-col">
                 <div className="flex items-center justify-between px-6 py-7">
                   <a href="/" className="flex items-center" onClick={() => setOpen(false)}>
-                    <img src={logoKeuken} alt="Keuken Centrum logo" className="h-10 w-auto" width={343} height={56} />
+                    <img src={logoKeuken} alt="KeukenCentrum.nl" className="h-9 w-auto" width={280} height={48} />
                   </a>
 
                   <button
