@@ -129,8 +129,8 @@ const cardEase = "cubic-bezier(0.22,1,0.36,1)";
 
 function PremiumLabel() {
   return (
-    <span className="inline-flex items-center gap-1.5 rounded-full border border-[rgba(35,185,196,0.22)] bg-[rgba(35,185,196,0.07)] px-2.5 py-1 text-[0.6rem] font-medium uppercase tracking-[0.16em] text-[#1A9AA4]">
-      <span className="h-1.5 w-1.5 rounded-full bg-[var(--green)] shadow-[0_0_0_3px_rgba(35,185,196,0.16)]" />
+    <span className="inline-flex items-center gap-1.5 rounded-full border border-[rgba(139,197,64,0.22)] bg-[rgba(139,197,64,0.07)] px-2.5 py-1 text-[0.6rem] font-medium uppercase tracking-[0.16em] text-[#73A832]">
+      <span className="h-1.5 w-1.5 rounded-full bg-[var(--green)] shadow-[0_0_0_3px_rgba(139,197,64,0.16)]" />
       Premium partner
     </span>
   );
@@ -202,7 +202,7 @@ export function Brands() {
   return (
     <section
       id="brands"
-      className="section-shell border-b border-[rgba(35,185,196,0.12)]"
+      className="section-shell border-b border-[rgba(139,197,64,0.12)]"
       style={{ ["--card-ease" as string]: cardEase }}
     >
       <div className="site-container">
@@ -252,7 +252,7 @@ export function Brands() {
                 suffix="+"
                 className="font-serif text-[clamp(2.75rem,5vw,3.5rem)] font-light leading-none tracking-[-0.02em] text-[var(--green)]"
               />
-              <span className="h-10 w-px bg-[rgba(35,185,196,0.25)]" />
+              <span className="h-10 w-px bg-[rgba(139,197,64,0.25)]" />
               <span className="max-w-[9rem] text-[0.8rem] font-medium uppercase leading-snug tracking-[0.14em] text-[var(--secondary)]">
                 Premium keukenmerken
               </span>

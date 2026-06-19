@@ -103,7 +103,7 @@ export function StickyConversionBar() {
                 <div className="lux-border rounded-[22px] p-[1px] shadow-[0_30px_70px_-30px_rgba(23,25,28,0.22)]">
                   <div className="relative overflow-hidden rounded-[21px] bg-[linear-gradient(145deg,rgba(252,250,246,0.95),rgba(244,240,232,0.92))] p-1.5 backdrop-blur-2xl">
                   <div className="absolute inset-x-10 top-0 h-px bg-[linear-gradient(90deg,rgba(201,164,106,0),rgba(201,164,106,0.4),rgba(201,164,106,0))]" />
-                  <div className="absolute left-[18%] top-[-80%] h-[180px] w-[180px] rounded-full bg-[radial-gradient(circle,rgba(35,185,196,0.1),transparent_60%)]" />
+                  <div className="absolute left-[18%] top-[-80%] h-[180px] w-[180px] rounded-full bg-[radial-gradient(circle,rgba(139,197,64,0.1),transparent_60%)]" />
                   <div className="absolute right-[18%] top-[-86%] h-[190px] w-[190px] rounded-full bg-[radial-gradient(circle,rgba(201,164,106,0.1),transparent_58%)]" />
 
                   <div className="grid grid-cols-3 gap-1.5 rounded-[16px] border border-[rgba(200,169,107,0.18)] bg-[linear-gradient(180deg,rgba(255,255,255,0.99),rgba(252,250,246,0.99))] p-1.5 text-[var(--foreground)] shadow-[inset_0_1px_0_rgba(255,255,255,0.86),0_20px_44px_-38px_rgba(7,17,27,0.12)]">
@@ -130,7 +130,7 @@ export function StickyConversionBar() {
                           className="group relative flex items-center gap-3 rounded-[14px] bg-[linear-gradient(180deg,rgba(255,255,255,0.9),rgba(244,240,232,0.92))] px-4 py-3 shadow-[0_18px_32px_-28px_rgba(7,17,27,0.22)] transition-transform duration-400 ease-[var(--ease-premium)] hover:-translate-y-[1px]"
                         >
                           {accent === "green" ? (
-                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[12px] bg-[linear-gradient(180deg,var(--green-highlight),var(--green))] text-white shadow-[0_18px_32px_-26px_rgba(35,185,196,0.42)]">
+                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[12px] bg-[linear-gradient(180deg,var(--green-highlight),var(--green))] text-white shadow-[0_18px_32px_-26px_rgba(139,197,64,0.42)]">
                                <WhatsAppMark className="h-4.5 w-4.5" />
                             </span>
                           ) : (
@@ -162,7 +162,7 @@ export function StickyConversionBar() {
             <div className="pointer-events-auto mx-auto max-w-[620px]">
               <div className="lux-border rounded-[18px] p-[1px] shadow-[0_26px_58px_-32px_rgba(23,25,28,0.2)]">
                 <div className="relative overflow-hidden rounded-[17px] bg-[linear-gradient(145deg,rgba(252,250,246,0.95),rgba(244,240,232,0.92))] p-1.5 backdrop-blur-2xl">
-                  <div className="absolute inset-x-7 top-0 h-px bg-[linear-gradient(90deg,rgba(49,199,212,0),rgba(49,199,212,0.32),rgba(49,199,212,0))]" />
+                  <div className="absolute inset-x-7 top-0 h-px bg-[linear-gradient(90deg,rgba(139,197,64,0),rgba(139,197,64,0.32),rgba(139,197,64,0))]" />
                   <div className="relative rounded-[14px] bg-[linear-gradient(180deg,rgba(255,255,255,0.99),rgba(252,250,246,0.99))] p-1">
                     <button
                       type="button"
@@ -188,14 +188,14 @@ export function StickyConversionBar() {
                             }`}
                           >
                             {accent === "green" ? (
-                              <span className="flex h-7 w-7 items-center justify-center rounded-[10px] bg-[linear-gradient(180deg,var(--green-highlight),var(--green))] text-white shadow-[0_10px_20px_-14px_rgba(35,185,196,0.42)]">
+                              <span className="flex h-7 w-7 items-center justify-center rounded-[10px] bg-[linear-gradient(180deg,var(--green-highlight),var(--green))] text-white shadow-[0_10px_20px_-14px_rgba(139,197,64,0.42)]">
                                 <WhatsAppMark className="h-4 w-4" />
                               </span>
                             ) : (
                               <span
                                 className={`flex h-7 w-7 items-center justify-center rounded-[10px] ${
                                   primary
-                                    ? "bg-[rgba(255,255,255,0.06)] text-[#31C7D4]"
+                                    ? "bg-[rgba(255,255,255,0.06)] text-[#9CCD4A]"
                                     : "bg-[rgba(12,24,36,0.06)] text-[var(--secondary)]"
                                 }`}
                               >

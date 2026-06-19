@@ -187,7 +187,7 @@ export function WhyWithUsSection() {
       <div aria-hidden="true" className="pointer-events-none absolute inset-0"
         style={{ backgroundImage: `url(${matConcrete})`, backgroundSize: "cover", backgroundPosition: "center" }} />
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[rgba(253,252,249,0.94)]" />
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(35,185,196,0.04),transparent_55%)]" />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(139,197,64,0.04),transparent_55%)]" />
 
       <div className="relative mx-auto max-w-[1440px] px-5 sm:px-8 md:px-12 lg:px-16">
 
@@ -214,10 +214,10 @@ export function WhyWithUsSection() {
               transition={{ duration: 0.55, ease: easing, delay: 0.1 }}
               viewport={motionViewport}
               className="max-w-[650px] font-serif text-[clamp(2.4rem,5.5vw,3.6rem)] font-medium leading-[1.1] tracking-[-0.02em]"
-              style={{ color: "#163847" }}
+              style={{ color: "#2F5218" }}
             >
               Waarom Kiest U{" "}
-              <em className="italic" style={{ color: "#23B9C4" }}>Voor Ons?</em>
+              <em className="italic" style={{ color: "#8BC540" }}>Voor Ons?</em>
             </motion.h2>
 
             <motion.p
@@ -241,11 +241,11 @@ export function WhyWithUsSection() {
           {/* ─── LEFT: Feature cards ─── */}
           <div>
             <div className="mb-7 flex items-center gap-3">
-              <span className="text-[0.65rem] font-semibold uppercase tracking-[0.26em] text-[#163847]"
+              <span className="text-[0.65rem] font-semibold uppercase tracking-[0.26em] text-[#2F5218]"
                 style={{ fontFamily: "var(--font-body)" }}>
                 Wat Wij Bieden
               </span>
-              <span className="h-px flex-1 max-w-[56px] bg-[#23B9C4]/30" />
+              <span className="h-px flex-1 max-w-[56px] bg-[#8BC540]/30" />
             </div>
 
             <div className="flex flex-col gap-3.5">
@@ -262,9 +262,9 @@ export function WhyWithUsSection() {
                     onMouseLeave={() => setHoveredCard(null)}
                     className="group relative flex cursor-default items-start gap-5 overflow-hidden rounded-[22px] border bg-white px-6 py-5"
                     style={{
-                      borderColor: isActive ? "rgba(35,185,196,0.30)" : "rgba(0,0,0,0.05)",
+                      borderColor: isActive ? "rgba(139,197,64,0.30)" : "rgba(0,0,0,0.05)",
                       boxShadow: isActive
-                        ? "0 20px 56px -16px rgba(35,185,196,0.16), 0 4px 16px -4px rgba(0,0,0,0.06)"
+                        ? "0 20px 56px -16px rgba(139,197,64,0.16), 0 4px 16px -4px rgba(0,0,0,0.06)"
                         : "0 2px 16px -6px rgba(0,0,0,0.04)",
                       transform: isActive ? "translateY(-3px)" : "translateY(0)",
                       transition: "border-color 500ms, box-shadow 500ms, transform 500ms cubic-bezier(0.22,1,0.36,1)",
@@ -276,7 +276,7 @@ export function WhyWithUsSection() {
                       className="pointer-events-none absolute right-5 top-1/2 -translate-y-1/2 select-none font-serif font-bold leading-none tracking-tighter"
                       style={{
                         fontSize: "5.5rem",
-                        color: "rgba(22,56,71,0.042)",
+                        color: "rgba(47,82,24,0.042)",
                         transition: "color 500ms",
                       }}
                     >
@@ -285,7 +285,7 @@ export function WhyWithUsSection() {
 
                     {/* Left accent bar */}
                     <div
-                      className="absolute bottom-3 left-0 top-3 w-[3px] rounded-r-full bg-[#23B9C4]"
+                      className="absolute bottom-3 left-0 top-3 w-[3px] rounded-r-full bg-[#8BC540]"
                       style={{
                         opacity: isActive ? 1 : 0,
                         transform: isActive ? "scaleY(1)" : "scaleY(0.4)",
@@ -296,12 +296,12 @@ export function WhyWithUsSection() {
 
                     {/* Icon — uses currentColor, NEVER disappears */}
                     <div
-                      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[13px] border text-[#23B9C4]"
+                      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[13px] border text-[#8BC540]"
                       style={{
-                        borderColor: isActive ? "rgba(35,185,196,0.50)" : "rgba(35,185,196,0.18)",
-                        backgroundColor: isActive ? "rgba(35,185,196,0.14)" : "rgba(35,185,196,0.07)",
+                        borderColor: isActive ? "rgba(139,197,64,0.50)" : "rgba(139,197,64,0.18)",
+                        backgroundColor: isActive ? "rgba(139,197,64,0.14)" : "rgba(139,197,64,0.07)",
                         transform: isActive ? "scale(1.08)" : "scale(1)",
-                        boxShadow: isActive ? "0 4px 18px rgba(35,185,196,0.22)" : "none",
+                        boxShadow: isActive ? "0 4px 18px rgba(139,197,64,0.22)" : "none",
                         transition: "border-color 500ms, background-color 500ms, transform 500ms cubic-bezier(0.22,1,0.36,1), box-shadow 500ms",
                       }}
                     >
@@ -313,7 +313,7 @@ export function WhyWithUsSection() {
                       <p
                         className="text-[0.95rem] font-semibold tracking-[-0.005em]"
                         style={{
-                          color: isActive ? "#23B9C4" : "#163847",
+                          color: isActive ? "#8BC540" : "#2F5218",
                           transition: "color 500ms",
                           fontFamily: "var(--font-heading)",
                         }}
@@ -340,7 +340,7 @@ export function WhyWithUsSection() {
             >
               <a
                 href="/consultation"
-                className="group relative inline-flex h-[54px] min-w-[240px] items-center justify-center gap-2.5 overflow-hidden rounded-[14px] bg-[#23B9C4] px-8 text-[0.8rem] font-medium uppercase tracking-[0.14em] text-white shadow-[0_12px_28px_-8px_rgba(35,185,196,0.35)] transition-all duration-400 ease-out hover:bg-[#163847] hover:shadow-[0_16px_36px_-6px_rgba(22,56,71,0.40)] active:scale-[0.98]"
+                className="group relative inline-flex h-[54px] min-w-[240px] items-center justify-center gap-2.5 overflow-hidden rounded-[14px] bg-[#8BC540] px-8 text-[0.8rem] font-medium uppercase tracking-[0.14em] text-white shadow-[0_12px_28px_-8px_rgba(139,197,64,0.35)] transition-all duration-400 ease-out hover:bg-[#2F5218] hover:shadow-[0_16px_36px_-6px_rgba(47,82,24,0.40)] active:scale-[0.98]"
                 style={{ fontFamily: "var(--font-body)" }}
               >
                 <span>Plan uw showroombezoek</span>
@@ -488,7 +488,7 @@ export function WhyWithUsSection() {
                         {/* Main number */}
                         <span
                           className="relative font-serif text-[2.85rem] font-light leading-none tracking-tight"
-                          style={{ color: "#163847" }}
+                          style={{ color: "#2F5218" }}
                         >
                           15+
                         </span>
@@ -527,9 +527,9 @@ export function WhyWithUsSection() {
                   className="absolute -bottom-11 right-5 z-10 hidden sm:block"
                 >
                   {/* Vertical connector line */}
-                  <div className="absolute -top-6 left-1/2 h-6 w-px -translate-x-1/2 bg-gradient-to-b from-[#23B9C4]/40 to-[#23B9C4]/15" />
+                  <div className="absolute -top-6 left-1/2 h-6 w-px -translate-x-1/2 bg-gradient-to-b from-[#8BC540]/40 to-[#8BC540]/15" />
                   {/* Small dot at top of line */}
-                  <div className="absolute -top-7 left-1/2 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-[#23B9C4]/40" />
+                  <div className="absolute -top-7 left-1/2 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-[#8BC540]/40" />
 
                   {/* Thumbnail */}
                   <div className="relative h-[84px] w-[110px] overflow-hidden rounded-[14px] border border-white shadow-[0_8px_28px_rgba(0,0,0,0.16)]">

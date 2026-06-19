@@ -135,7 +135,7 @@ function TestimonialCard({ story }: { story: CardData }) {
 
   return (
     <article
-      className="group relative mb-5 overflow-hidden rounded-[28px] border border-white/[0.06] bg-gradient-to-b from-white/[0.05] to-white/[0.02] p-6 backdrop-blur-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:border-[rgba(35,185,196,0.20)] select-none"
+      className="group relative mb-5 overflow-hidden rounded-[28px] border border-white/[0.06] bg-gradient-to-b from-white/[0.05] to-white/[0.02] p-6 backdrop-blur-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:border-[rgba(139,197,64,0.20)] select-none"
       style={{
         boxShadow: "0 1px 0 rgba(255,255,255,0.04) inset, 0 18px 50px -22px rgba(0,0,0,0.6)",
       }}
@@ -144,7 +144,7 @@ function TestimonialCard({ story }: { story: CardData }) {
       <div
         className="pointer-events-none absolute inset-0 rounded-[28px] opacity-0 transition-opacity duration-400 group-hover:opacity-100"
         style={{
-          boxShadow: "0 0 0 1px rgba(35,185,196,0.14) inset, 0 28px 60px -30px rgba(35,185,196,0.18)",
+          boxShadow: "0 0 0 1px rgba(139,197,64,0.14) inset, 0 28px 60px -30px rgba(139,197,64,0.18)",
         }}
       />
 
@@ -199,7 +199,7 @@ function TestimonialCard({ story }: { story: CardData }) {
             </div>
           </div>
         </div>
-        <TickCircle size={20} variant="Bold" className="shrink-0 text-[#23B9C4]" />
+        <TickCircle size={20} variant="Bold" className="shrink-0 text-[#8BC540]" />
       </div>
     </article>
   );
@@ -280,14 +280,14 @@ function CenterShowcase() {
         className="pointer-events-none absolute -inset-20 -z-10 rounded-full opacity-60 blur-3xl"
         style={{
           background:
-            "radial-gradient(55% 50% at 50% 28%, rgba(35,185,196,0.22), transparent 65%), radial-gradient(45% 40% at 50% 78%, rgba(8,36,48,0.65), transparent 70%)",
+            "radial-gradient(55% 50% at 50% 28%, rgba(139,197,64,0.22), transparent 65%), radial-gradient(45% 40% at 50% 78%, rgba(8,36,48,0.65), transparent 70%)",
         }}
       />
       {/* Secondary soft teal bloom */}
       <div
         className="pointer-events-none absolute -inset-8 -z-10 opacity-40 blur-2xl"
         style={{
-          background: "radial-gradient(60% 55% at 50% 35%, rgba(35,185,196,0.14), transparent 70%)",
+          background: "radial-gradient(60% 55% at 50% 35%, rgba(139,197,64,0.14), transparent 70%)",
         }}
       />
 
@@ -299,7 +299,7 @@ function CenterShowcase() {
             background:
               "linear-gradient(160deg, rgba(220,190,130,0.85) 0%, rgba(180,140,70,0.25) 35%, rgba(255,255,255,0.55) 60%, rgba(180,140,70,0.65) 100%)",
             boxShadow:
-              "0 60px 120px -30px rgba(4,14,28,0.80), 0 24px 48px -16px rgba(0,0,0,0.45), 0 0 0 1px rgba(35,185,196,0.08)",
+              "0 60px 120px -30px rgba(4,14,28,0.80), 0 24px 48px -16px rgba(0,0,0,0.45), 0 0 0 1px rgba(139,197,64,0.08)",
           }}
         >
           {/* Dual-tone card: dark teal top → cream bottom */}
@@ -517,12 +517,12 @@ export function Testimonials() {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute left-1/2 top-1/2 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-20 blur-3xl"
-        style={{ background: "radial-gradient(circle, rgba(35,185,196,0.22), transparent 62%)" }}
+        style={{ background: "radial-gradient(circle, rgba(139,197,64,0.22), transparent 62%)" }}
       />
       {/* Subtle top edge light */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[rgba(35,185,196,0.20)] to-transparent"
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[rgba(139,197,64,0.20)] to-transparent"
       />
       {/* Bottom edge */}
       <div

@@ -96,7 +96,7 @@ function TrustBar({ reduceMotion }: { reduceMotion: boolean | null }) {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 top-0 h-px"
-        style={{ background: "linear-gradient(90deg, transparent, rgba(49,199,212,0.28), transparent)" }}
+        style={{ background: "linear-gradient(90deg, transparent, rgba(139,197,64,0.28), transparent)" }}
       />
 
       <div className="mx-auto grid max-w-[90rem] grid-cols-2 gap-0 px-6 py-11 md:grid-cols-4 lg:px-12">
@@ -144,22 +144,22 @@ function SocialRow({ links }: { links: SocialLink[] }) {
         >
           {/* Icon box */}
           <span
-            className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] border border-[rgba(35,185,196,0.20)] bg-[rgba(35,185,196,0.06)] text-[rgba(35,185,196,0.75)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-[3px] group-hover:scale-[1.06] group-hover:border-[rgba(35,185,196,0.52)] group-hover:bg-[rgba(35,185,196,0.14)] group-hover:text-[#4FD6D9]"
-            style={{ boxShadow: "0 0 0 0 rgba(35,185,196,0)" }}
+            className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] border border-[rgba(139,197,64,0.20)] bg-[rgba(139,197,64,0.06)] text-[rgba(139,197,64,0.75)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-[3px] group-hover:scale-[1.06] group-hover:border-[rgba(139,197,64,0.52)] group-hover:bg-[rgba(139,197,64,0.14)] group-hover:text-[#A8D95A]"
+            style={{ boxShadow: "0 0 0 0 rgba(139,197,64,0)" }}
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLElement).style.boxShadow =
-                "0 8px 20px -8px rgba(35,185,196,0.35)";
+                "0 8px 20px -8px rgba(139,197,64,0.35)";
             }}
             onMouseLeave={(e) => {
               (e.currentTarget as HTMLElement).style.boxShadow =
-                "0 0 0 0 rgba(35,185,196,0)";
+                "0 0 0 0 rgba(139,197,64,0)";
             }}
           >
             {icon}
           </span>
           {/* Label */}
           <span
-            className="text-[0.8rem] font-light text-[rgba(255,255,255,0.80)] transition-colors duration-400 group-hover:text-[#4FD6D9]"
+            className="text-[0.8rem] font-light text-[rgba(255,255,255,0.80)] transition-colors duration-400 group-hover:text-[#A8D95A]"
             style={{ fontFamily: "var(--font-body)" }}
           >
             {handle}
@@ -178,7 +178,7 @@ function ShowroomCard() {
       href={SHOWROOM_MAPS_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className="group relative mt-7 block overflow-hidden rounded-[18px] border border-[rgba(35,185,196,0.22)] shadow-[0_18px_50px_-26px_rgba(8,33,44,0.7)] transition-all duration-500 hover:-translate-y-1 hover:border-[rgba(49,199,212,0.35)] hover:shadow-[0_30px_70px_-28px_rgba(8,33,44,0.8),0_0_30px_-10px_rgba(49,199,212,0.25)]"
+      className="group relative mt-7 block overflow-hidden rounded-[18px] border border-[rgba(139,197,64,0.22)] shadow-[0_18px_50px_-26px_rgba(8,33,44,0.7)] transition-all duration-500 hover:-translate-y-1 hover:border-[rgba(139,197,64,0.35)] hover:shadow-[0_30px_70px_-28px_rgba(8,33,44,0.8),0_0_30px_-10px_rgba(139,197,64,0.25)]"
     >
       {/* Photo */}
       <div className="relative h-[200px] overflow-hidden">
@@ -200,7 +200,7 @@ function ShowroomCard() {
         {/* Teal inner glow on hover */}
         <div
           className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-          style={{ boxShadow: "inset 0 0 40px rgba(49,199,212,0.10)" }}
+          style={{ boxShadow: "inset 0 0 40px rgba(139,197,64,0.10)" }}
         />
         {/* Badge — teal */}
         <div className="absolute left-4 top-4">
@@ -208,16 +208,16 @@ function ShowroomCard() {
             className="flex items-center gap-1.5 rounded-full px-3 py-1.5"
             style={{
               background: "rgba(8,33,44,0.72)",
-              border: "1px solid rgba(49,199,212,0.32)",
+              border: "1px solid rgba(139,197,64,0.32)",
               backdropFilter: "blur(8px)",
             }}
           >
             <span
-              className="h-1.5 w-1.5 rounded-full bg-[#31C7D4]"
-              style={{ boxShadow: "0 0 6px rgba(49,199,212,0.65)" }}
+              className="h-1.5 w-1.5 rounded-full bg-[#9CCD4A]"
+              style={{ boxShadow: "0 0 6px rgba(139,197,64,0.65)" }}
             />
             <span
-              className="text-[9px] font-medium uppercase tracking-[0.22em] text-[rgba(49,199,212,0.85)]"
+              className="text-[9px] font-medium uppercase tracking-[0.22em] text-[rgba(139,197,64,0.85)]"
               style={{ fontFamily: "var(--font-body)" }}
             >
               Premium showroom
@@ -241,10 +241,10 @@ function ShowroomCard() {
       {/* CTA row */}
       <div
         className="flex divide-x divide-white/[0.07] bg-[rgba(8,28,38,0.96)]"
-        style={{ border: "1px solid rgba(35,185,196,0.10)", borderTop: "none" }}
+        style={{ border: "1px solid rgba(139,197,64,0.10)", borderTop: "none" }}
       >
         <span
-          className="flex flex-1 items-center justify-center gap-2 py-3 text-[0.66rem] font-medium uppercase tracking-[0.18em] text-[rgba(245,242,236,0.60)] transition-colors duration-400 group-hover:text-[#4FD6D9]"
+          className="flex flex-1 items-center justify-center gap-2 py-3 text-[0.66rem] font-medium uppercase tracking-[0.18em] text-[rgba(245,242,236,0.60)] transition-colors duration-400 group-hover:text-[#A8D95A]"
           style={{ fontFamily: "var(--font-body)" }}
         >
           <svg className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
@@ -253,7 +253,7 @@ function ShowroomCard() {
           Bekijk showroom
         </span>
         <span
-          className="flex flex-1 items-center justify-center gap-2 py-3 text-[0.66rem] font-medium uppercase tracking-[0.18em] text-[rgba(245,242,236,0.60)] transition-colors duration-400 group-hover:text-[#4FD6D9]"
+          className="flex flex-1 items-center justify-center gap-2 py-3 text-[0.66rem] font-medium uppercase tracking-[0.18em] text-[rgba(245,242,236,0.60)] transition-colors duration-400 group-hover:text-[#A8D95A]"
           style={{ fontFamily: "var(--font-body)" }}
         >
           <svg className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
@@ -273,13 +273,13 @@ function FooterLink({ href, children }: { href: string; children: React.ReactNod
     <li>
       <a
         href={href}
-        className="group inline-flex items-center gap-2.5 text-[0.88rem] font-light text-white transition-all duration-500 hover:text-[#4FD6D9]"
+        className="group inline-flex items-center gap-2.5 text-[0.88rem] font-light text-white transition-all duration-500 hover:text-[#A8D95A]"
         style={{ fontFamily: "var(--font-body)" }}
       >
-        <span className="h-px w-2.5 bg-[rgba(35,185,196,0.5)] transition-all duration-500 group-hover:w-5 group-hover:bg-[#23B9C4]" />
+        <span className="h-px w-2.5 bg-[rgba(139,197,64,0.5)] transition-all duration-500 group-hover:w-5 group-hover:bg-[#8BC540]" />
         <span className="relative transition-transform duration-500 group-hover:translate-x-0.5">
           {children}
-          <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-[#4FD6D9] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:w-full" />
+          <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-[#A8D95A] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:w-full" />
         </span>
       </a>
     </li>
@@ -292,12 +292,12 @@ function ColTitle({ children }: { children: React.ReactNode }) {
   return (
     <div className="mb-7">
       <h4
-        className="text-[0.58rem] font-semibold uppercase tracking-[0.34em] text-[#31C7D4]"
+        className="text-[0.58rem] font-semibold uppercase tracking-[0.34em] text-[#9CCD4A]"
         style={{ fontFamily: "var(--font-body)" }}
       >
         {children}
       </h4>
-      <div className="mt-2 h-px w-8 bg-gradient-to-r from-[rgba(49,199,212,0.55)] to-transparent" />
+      <div className="mt-2 h-px w-8 bg-gradient-to-r from-[rgba(139,197,64,0.55)] to-transparent" />
     </div>
   );
 }
@@ -331,12 +331,12 @@ export function Footer() {
 
   return (
     <footer
-      className="relative overflow-hidden text-[#F5F2EC] selection:bg-[#23B9C4]/20"
+      className="relative overflow-hidden text-[#F5F2EC] selection:bg-[#8BC540]/20"
       style={{
         background: [
-          "radial-gradient(ellipse at 25% top, rgba(49,199,212,0.14) 0%, transparent 42%)",
-          "radial-gradient(ellipse at 75% top, rgba(35,185,196,0.08) 0%, transparent 38%)",
-          "radial-gradient(circle at bottom center, rgba(35,185,196,0.09) 0%, transparent 50%)",
+          "radial-gradient(ellipse at 25% top, rgba(139,197,64,0.14) 0%, transparent 42%)",
+          "radial-gradient(ellipse at 75% top, rgba(139,197,64,0.08) 0%, transparent 38%)",
+          "radial-gradient(circle at bottom center, rgba(139,197,64,0.09) 0%, transparent 50%)",
           "linear-gradient(180deg, #08212C 0%, #0B2C39 50%, #061B24 100%)",
         ].join(", "),
       }}
@@ -345,7 +345,7 @@ export function Footer() {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute left-1/2 top-[40%] h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-[0.08] blur-3xl"
-        style={{ background: "radial-gradient(circle, #23B9C4, transparent 65%)" }}
+        style={{ background: "radial-gradient(circle, #8BC540, transparent 65%)" }}
       />
 
       {/* ── Trust bar ───────────────────────────────── */}
@@ -366,14 +366,14 @@ export function Footer() {
             variants={reduceMotion ? undefined : fadeUp}
             className="mb-7 flex items-center gap-4"
           >
-            <span className="h-px w-10 bg-gradient-to-r from-transparent to-[rgba(49,199,212,0.55)]" />
+            <span className="h-px w-10 bg-gradient-to-r from-transparent to-[rgba(139,197,64,0.55)]" />
             <span
-              className="text-[0.6rem] font-medium uppercase tracking-[0.34em] text-[#31C7D4]"
+              className="text-[0.6rem] font-medium uppercase tracking-[0.34em] text-[#9CCD4A]"
               style={{ fontFamily: "var(--font-body)" }}
             >
               Persoonlijk ontwerptraject
             </span>
-            <span className="h-px w-10 bg-gradient-to-l from-transparent to-[rgba(49,199,212,0.55)]" />
+            <span className="h-px w-10 bg-gradient-to-l from-transparent to-[rgba(139,197,64,0.55)]" />
           </motion.div>
 
           {/* Heading */}
@@ -385,7 +385,7 @@ export function Footer() {
             <em
               style={{
                 fontStyle: "italic",
-                background: "linear-gradient(128deg, #31C7D4 0%, #66DCE6 48%, #23B9C4 100%)",
+                background: "linear-gradient(128deg, #9CCD4A 0%, #C5E88A 48%, #8BC540 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -421,7 +421,7 @@ export function Footer() {
         </motion.div>
 
         {/* Teal divider */}
-        <div className="h-px bg-gradient-to-r from-transparent via-[rgba(49,199,212,0.16)] to-transparent" />
+        <div className="h-px bg-gradient-to-r from-transparent via-[rgba(139,197,64,0.16)] to-transparent" />
 
         {/* ── SECTION 2 — Information grid ─────────── */}
         <motion.div
@@ -445,7 +445,7 @@ export function Footer() {
 
             {/* Tagline — teal */}
             <p
-              className="mb-7 text-[0.65rem] font-medium uppercase tracking-[0.28em] text-[rgba(49,199,212,0.45)]"
+              className="mb-7 text-[0.65rem] font-medium uppercase tracking-[0.28em] text-[rgba(139,197,64,0.45)]"
               style={{ fontFamily: "var(--font-body)" }}
             >
               Duitse precisie · Italiaanse elegantie
@@ -461,7 +461,7 @@ export function Footer() {
 
             {/* Social label — teal */}
             <p
-              className="mb-4 text-[0.56rem] font-semibold uppercase tracking-[0.32em] text-[rgba(49,199,212,0.38)]"
+              className="mb-4 text-[0.56rem] font-semibold uppercase tracking-[0.32em] text-[rgba(139,197,64,0.38)]"
               style={{ fontFamily: "var(--font-body)" }}
             >
               Volg ons
@@ -518,7 +518,7 @@ export function Footer() {
 
             {/* Address */}
             <div className="mb-5 flex items-start gap-3 text-[rgba(255,255,255,0.90)]">
-              <span className="mt-[3px] text-[#23B9C4]">
+              <span className="mt-[3px] text-[#8BC540]">
                 <MapPinIcon />
               </span>
               <div
@@ -532,12 +532,12 @@ export function Footer() {
 
             {/* Phone */}
             <div className="mb-6 flex items-center gap-3 text-[rgba(255,255,255,0.90)]">
-              <span className="text-[#23B9C4]">
+              <span className="text-[#8BC540]">
                 <PhoneIcon />
               </span>
               <a
                 href={kc.contact.phoneHref}
-                className="text-[0.88rem] font-light transition-colors duration-400 hover:text-[#4FD6D9]"
+                className="text-[0.88rem] font-light transition-colors duration-400 hover:text-[#A8D95A]"
                 style={{ fontFamily: "var(--font-body)" }}
               >
                 {kc.contact.phone}
@@ -545,7 +545,7 @@ export function Footer() {
             </div>
 
             {/* Opening hours */}
-            <div className="space-y-2 border-t border-[rgba(35,185,196,0.14)] pt-5">
+            <div className="space-y-2 border-t border-[rgba(139,197,64,0.14)] pt-5">
               {kc.contact.hours.map((h) => (
                 <div
                   key={h.d}
@@ -573,7 +573,7 @@ export function Footer() {
         </motion.div>
 
         {/* Teal divider */}
-        <div className="h-px bg-gradient-to-r from-transparent via-[rgba(49,199,212,0.10)] to-transparent" />
+        <div className="h-px bg-gradient-to-r from-transparent via-[rgba(139,197,64,0.10)] to-transparent" />
 
         {/* ── SECTION 3 — Bottom bar ───────────────── */}
         <motion.div
@@ -606,7 +606,7 @@ export function Footer() {
                 )}
                 <a
                   href="#"
-                  className="text-[0.68rem] tracking-[0.08em] text-[rgba(255,255,255,0.50)] transition-colors duration-400 hover:text-[#4FD6D9]"
+                  className="text-[0.68rem] tracking-[0.08em] text-[rgba(255,255,255,0.50)] transition-colors duration-400 hover:text-[#A8D95A]"
                 >
                   {lbl}
                 </a>
@@ -621,7 +621,7 @@ export function Footer() {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 bottom-0 h-px"
-        style={{ background: "linear-gradient(90deg, transparent, rgba(35,185,196,0.28), transparent)" }}
+        style={{ background: "linear-gradient(90deg, transparent, rgba(139,197,64,0.28), transparent)" }}
       />
     </footer>
   );

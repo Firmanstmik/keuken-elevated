@@ -92,14 +92,14 @@ function GlassBadge({ number, label, sub, delay = 0, reduceMotion, floatDir = 1 
         className="flex items-center gap-3 rounded-[14px] px-4 py-3"
         style={{
           background: "rgba(11,30,44,0.82)",
-          border: "1px solid rgba(49,199,212,0.22)",
+          border: "1px solid rgba(139,197,64,0.22)",
           backdropFilter: "blur(18px)",
           boxShadow: "0 8px 32px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.04) inset",
         }}
       >
         <span
-          className="font-serif text-[1.55rem] font-light leading-none tracking-[-0.025em] text-[#31C7D4]"
-          style={{ textShadow: "0 0 22px rgba(49,199,212,0.45)" }}
+          className="font-serif text-[1.55rem] font-light leading-none tracking-[-0.025em] text-[#9CCD4A]"
+          style={{ textShadow: "0 0 22px rgba(139,197,64,0.45)" }}
         >
           {number}
         </span>
@@ -112,7 +112,7 @@ function GlassBadge({ number, label, sub, delay = 0, reduceMotion, floatDir = 1 
           </p>
           {sub && (
             <p
-              className="mt-0.5 text-[0.50rem] font-light tracking-[0.14em] text-[rgba(49,199,212,0.52)]"
+              className="mt-0.5 text-[0.50rem] font-light tracking-[0.14em] text-[rgba(139,197,64,0.52)]"
               style={{ fontFamily: "var(--font-body)" }}
             >
               {sub}
@@ -133,22 +133,22 @@ function CornerFrames() {
         <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
           <path
             d="M64 0 L64 48 Q64 64 48 64 L0 64"
-            stroke="rgba(49,199,212,0.52)"
+            stroke="rgba(139,197,64,0.52)"
             strokeWidth="1.5"
             fill="none"
           />
-          <circle cx="60" cy="4" r="2" fill="rgba(49,199,212,0.72)" />
+          <circle cx="60" cy="4" r="2" fill="rgba(139,197,64,0.72)" />
         </svg>
       </div>
       <div className="pointer-events-none absolute -bottom-[1px] -left-[1px] z-20">
         <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
           <path
             d="M0 64 L0 16 Q0 0 16 0 L64 0"
-            stroke="rgba(49,199,212,0.52)"
+            stroke="rgba(139,197,64,0.52)"
             strokeWidth="1.5"
             fill="none"
           />
-          <circle cx="4" cy="60" r="2" fill="rgba(49,199,212,0.72)" />
+          <circle cx="4" cy="60" r="2" fill="rgba(139,197,64,0.72)" />
         </svg>
       </div>
     </>
@@ -163,8 +163,8 @@ function WaterEffect() {
       <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="absolute bottom-0 h-full w-full">
         <defs>
           <linearGradient id="water-grad-teal" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="rgba(49,199,212,0)" />
-            <stop offset="100%" stopColor="rgba(49,199,212,0.28)" />
+            <stop offset="0%" stopColor="rgba(139,197,64,0)" />
+            <stop offset="100%" stopColor="rgba(139,197,64,0.28)" />
           </linearGradient>
         </defs>
         <path fill="url(#water-grad-teal)"
@@ -173,7 +173,7 @@ function WaterEffect() {
             values="M0,32L40,37.3C80,43,160,53,240,58.7C320,64,400,64,480,56C560,48,640,32,720,32C800,32,880,48,960,53.3C1040,59,1120,53,1160,50.7L1200,48L1200,120L0,120Z;M0,48L40,42.7C80,37,160,27,240,32C320,37,400,59,480,64C560,69,640,59,720,48C800,37,880,27,960,32C1040,37,1120,53,1160,61.3L1200,69L1200,120L0,120Z;M0,32L40,37.3C80,43,160,53,240,58.7C320,64,400,64,480,56C560,48,640,32,720,32C800,32,880,48,960,53.3C1040,59,1120,53,1160,50.7L1200,48L1200,120L0,120Z"
           />
         </path>
-        <path fill="rgba(49,199,212,0.07)"
+        <path fill="rgba(139,197,64,0.07)"
           d="M0,64L40,58.7C80,53,160,43,240,42.7C320,43,400,53,480,58.7C560,64,640,64,720,58.7C800,53,880,43,960,42.7C1040,43,1120,53,1160,58.7L1200,64L1200,120L0,120Z">
           <animate attributeName="d" dur="11s" repeatCount="indefinite"
             values="M0,64L40,58.7C80,53,160,43,240,42.7C320,43,400,53,480,58.7C560,64,640,64,720,58.7C800,53,880,43,960,42.7C1040,43,1120,53,1160,58.7L1200,64L1200,120L0,120Z;M0,56L40,50.7C80,45,160,35,240,37.3C320,40,400,56,480,64C560,72,640,72,720,64C800,56,880,40,960,37.3C1040,35,1120,45,1160,50.7L1200,56L1200,120L0,120Z;M0,64L40,58.7C80,53,160,43,240,42.7C320,43,400,53,480,58.7C560,64,640,64,720,58.7C800,53,880,43,960,42.7C1040,43,1120,53,1160,58.7L1200,64L1200,120L0,120Z"
@@ -193,9 +193,9 @@ function SmallVideo({ src, reduceMotion }: { src: string; reduceMotion: boolean 
     <div
       className="relative flex-1 cursor-pointer overflow-hidden rounded-[14px]"
       style={{
-        border: hovered ? "1px solid rgba(49,199,212,0.38)" : "1px solid rgba(255,255,255,0.05)",
+        border: hovered ? "1px solid rgba(139,197,64,0.38)" : "1px solid rgba(255,255,255,0.05)",
         opacity: hovered ? 1 : 0.68,
-        boxShadow: hovered ? "0 0 24px rgba(49,199,212,0.18)" : "none",
+        boxShadow: hovered ? "0 0 24px rgba(139,197,64,0.18)" : "none",
         transition: "opacity 550ms ease, border-color 500ms ease, box-shadow 500ms ease",
       }}
       onMouseEnter={() => setHovered(true)}
@@ -234,7 +234,7 @@ function SmallVideo({ src, reduceMotion }: { src: string; reduceMotion: boolean 
           >
             Bekijk showroom
           </span>
-          <ArrowRight className="h-2.5 w-2.5 text-[#31C7D4]" />
+          <ArrowRight className="h-2.5 w-2.5 text-[#9CCD4A]" />
         </div>
       </div>
     </div>
@@ -275,7 +275,7 @@ export function PremiumShowcase() {
       <motion.div
         aria-hidden="true"
         className="pointer-events-none absolute left-[50%] top-[35%] h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[200px]"
-        style={{ background: "radial-gradient(circle, rgba(49,199,212,0.14), transparent 62%)" }}
+        style={{ background: "radial-gradient(circle, rgba(139,197,64,0.14), transparent 62%)" }}
         animate={reduceMotion ? undefined : { opacity: [0.55, 0.90, 0.55] }}
         transition={{ duration: 25, ease: "easeInOut", repeat: Infinity }}
       />
@@ -284,7 +284,7 @@ export function PremiumShowcase() {
       <motion.div
         aria-hidden="true"
         className="pointer-events-none absolute -left-[22%] -top-[20%] h-[80vh] w-[80vh] rounded-full blur-[180px]"
-        style={{ background: "radial-gradient(circle, rgba(49,199,212,0.15), transparent 60%)" }}
+        style={{ background: "radial-gradient(circle, rgba(139,197,64,0.15), transparent 60%)" }}
         animate={reduceMotion ? undefined : { opacity: [0.40, 0.65, 0.40] }}
         transition={{ duration: 30, ease: "easeInOut", repeat: Infinity, delay: 5 }}
       />
@@ -293,14 +293,14 @@ export function PremiumShowcase() {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -bottom-[20%] -right-[15%] h-[60vh] w-[60vh] rounded-full blur-[160px] opacity-35"
-        style={{ background: "radial-gradient(circle, rgba(49,199,212,0.10), transparent 65%)" }}
+        style={{ background: "radial-gradient(circle, rgba(139,197,64,0.10), transparent 65%)" }}
       />
 
       {/* 5. Edge vignette */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
-        style={{ background: "radial-gradient(ellipse 80% 60% at 72% 22%, rgba(49,199,212,0.04), transparent 58%)" }}
+        style={{ background: "radial-gradient(ellipse 80% 60% at 72% 22%, rgba(139,197,64,0.04), transparent 58%)" }}
       />
 
       {/* 6. Fine grain texture */}
@@ -316,14 +316,14 @@ export function PremiumShowcase() {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 top-0 h-px"
-        style={{ background: "linear-gradient(90deg, transparent, rgba(49,199,212,0.28), transparent)" }}
+        style={{ background: "linear-gradient(90deg, transparent, rgba(139,197,64,0.28), transparent)" }}
       />
 
       {/* 8. Bottom hairline */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 bottom-0 h-px"
-        style={{ background: "linear-gradient(90deg, transparent, rgba(49,199,212,0.10), transparent)" }}
+        style={{ background: "linear-gradient(90deg, transparent, rgba(139,197,64,0.10), transparent)" }}
       />
 
       <div className="site-container relative">
@@ -339,8 +339,8 @@ export function PremiumShowcase() {
                   <div
                     className="flex h-8 w-8 items-center justify-center"
                     style={{
-                      color: i === 0 ? "#31C7D4" : "rgba(255,255,255,0.20)",
-                      textShadow: i === 0 ? "0 0 14px rgba(49,199,212,0.65)" : "none",
+                      color: i === 0 ? "#9CCD4A" : "rgba(255,255,255,0.20)",
+                      textShadow: i === 0 ? "0 0 14px rgba(139,197,64,0.65)" : "none",
                       transition: "color 500ms ease",
                     }}
                   >
@@ -357,7 +357,7 @@ export function PremiumShowcase() {
                       style={{
                         height: "36px",
                         background: i === 0
-                          ? "linear-gradient(to bottom, rgba(49,199,212,0.55), rgba(49,199,212,0.10))"
+                          ? "linear-gradient(to bottom, rgba(139,197,64,0.55), rgba(139,197,64,0.10))"
                           : "rgba(255,255,255,0.06)",
                       }}
                     />
@@ -396,7 +396,7 @@ export function PremiumShowcase() {
               <div
                 className="relative flex flex-col gap-3 rounded-[24px] p-2 backdrop-blur-xl sm:flex-row"
                 style={{
-                  border: "1px solid rgba(49,199,212,0.12)",
+                  border: "1px solid rgba(139,197,64,0.12)",
                   background: "rgba(11,30,44,0.30)",
                   boxShadow: "0 32px 80px -24px rgba(0,0,0,0.72), 0 0 0 1px rgba(255,255,255,0.03) inset",
                 }}
@@ -405,8 +405,8 @@ export function PremiumShowcase() {
                 <div
                   className="group/main relative w-full cursor-pointer overflow-hidden rounded-[18px] bg-black/40 sm:w-[65%]"
                   style={{
-                    border: "1px solid rgba(49,199,212,0.42)",
-                    boxShadow: "0 0 28px rgba(49,199,212,0.16), 0 0 0 1px rgba(49,199,212,0.07) inset",
+                    border: "1px solid rgba(139,197,64,0.42)",
+                    boxShadow: "0 0 28px rgba(139,197,64,0.16), 0 0 0 1px rgba(139,197,64,0.07) inset",
                   }}
                   onMouseEnter={() => setMainHovered(true)}
                   onMouseLeave={() => setMainHovered(false)}
@@ -433,16 +433,16 @@ export function PremiumShowcase() {
                       className="flex items-center gap-2 rounded-full px-3 py-1.5"
                       style={{
                         background: "rgba(11,30,44,0.75)",
-                        border: "1px solid rgba(49,199,212,0.30)",
+                        border: "1px solid rgba(139,197,64,0.30)",
                         backdropFilter: "blur(12px)",
                       }}
                     >
                       <span
-                        className="h-[5px] w-[5px] rounded-full bg-[#31C7D4]"
-                        style={{ boxShadow: "0 0 6px rgba(49,199,212,0.80)" }}
+                        className="h-[5px] w-[5px] rounded-full bg-[#9CCD4A]"
+                        style={{ boxShadow: "0 0 6px rgba(139,197,64,0.80)" }}
                       />
                       <span
-                        className="text-[0.44rem] font-semibold uppercase tracking-[0.24em] text-[rgba(49,199,212,0.85)]"
+                        className="text-[0.44rem] font-semibold uppercase tracking-[0.24em] text-[rgba(139,197,64,0.85)]"
                         style={{ fontFamily: "var(--font-body)" }}
                       >
                         Showroom Utrecht
@@ -466,7 +466,7 @@ export function PremiumShowcase() {
                       >
                         Bekijk showroom
                       </span>
-                      <ArrowRight className="h-3 w-3 text-[#31C7D4]" />
+                      <ArrowRight className="h-3 w-3 text-[#9CCD4A]" />
                     </div>
                   </div>
                 </div>
@@ -497,10 +497,10 @@ export function PremiumShowcase() {
               <span
                 aria-hidden="true"
                 className="mb-4 block h-px w-[60px]"
-                style={{ background: "linear-gradient(90deg, rgba(49,199,212,0.65), transparent)" }}
+                style={{ background: "linear-gradient(90deg, rgba(139,197,64,0.65), transparent)" }}
               />
               <p
-                className="text-[0.6rem] font-semibold uppercase tracking-[0.30em] text-[#31C7D4]"
+                className="text-[0.6rem] font-semibold uppercase tracking-[0.30em] text-[#9CCD4A]"
                 style={{ fontFamily: "var(--font-body)" }}
               >
                 Sinds 1978 · Utrecht Showroom
@@ -518,7 +518,7 @@ export function PremiumShowcase() {
               <div
                 aria-hidden="true"
                 className="pointer-events-none absolute -left-4 top-0 h-20 w-48 blur-2xl"
-                style={{ background: "radial-gradient(circle, rgba(49,199,212,0.10), transparent 70%)" }}
+                style={{ background: "radial-gradient(circle, rgba(139,197,64,0.10), transparent 70%)" }}
               />
               <h2 className="relative font-serif text-[clamp(2.15rem,3.6vw,3rem)] leading-[1.06] tracking-[-0.022em] text-white">
                 {headingLines.map((line, i) => (
@@ -529,7 +529,7 @@ export function PremiumShowcase() {
                       style={
                         i === 1
                           ? {
-                              background: "linear-gradient(128deg, #31C7D4 0%, #66DCE6 50%, #23B9C4 100%)",
+                              background: "linear-gradient(128deg, #9CCD4A 0%, #C5E88A 50%, #8BC540 100%)",
                               WebkitBackgroundClip: "text",
                               WebkitTextFillColor: "transparent",
                               backgroundClip: "text",
@@ -575,7 +575,7 @@ export function PremiumShowcase() {
                 <span key={item}>
                   <span
                     className="font-medium"
-                    style={{ color: "#31C7D4" }}
+                    style={{ color: "#9CCD4A" }}
                   >
                     {item}
                   </span>
@@ -599,14 +599,14 @@ export function PremiumShowcase() {
                 href="#showroom"
                 className="group relative inline-flex h-11 items-center justify-center gap-2.5 overflow-hidden rounded-[16px] px-6 text-[0.8125rem] font-normal uppercase tracking-[0.14em] text-white"
                 style={{
-                  background: "linear-gradient(135deg, #2FC5D0 0%, #23B9C4 55%, #1DAAB5 100%)",
+                  background: "linear-gradient(135deg, #9CCD4A 0%, #8BC540 55%, #689A2E 100%)",
                   fontFamily: "var(--font-body)",
                   transition: "transform 500ms cubic-bezier(0.22,1,0.36,1), box-shadow 500ms ease",
                 }}
                 onMouseEnter={(e) => {
                   const el = e.currentTarget as HTMLElement;
                   el.style.transform = "translateY(-2px)";
-                  el.style.boxShadow = "0 10px 28px rgba(49,199,212,0.32)";
+                  el.style.boxShadow = "0 10px 28px rgba(139,197,64,0.32)";
                 }}
                 onMouseLeave={(e) => {
                   const el = e.currentTarget as HTMLElement;
@@ -628,7 +628,7 @@ export function PremiumShowcase() {
                 href="#brands"
                 className="group inline-flex h-11 items-center justify-center rounded-[18px] border px-6 text-[0.8125rem] font-normal uppercase tracking-[0.14em]"
                 style={{
-                  borderColor: "rgba(49,199,212,0.28)",
+                  borderColor: "rgba(139,197,64,0.28)",
                   color: "rgba(247,244,238,0.62)",
                   fontFamily: "var(--font-body)",
                   transition: "transform 500ms ease, border-color 500ms ease, color 500ms ease",
@@ -636,13 +636,13 @@ export function PremiumShowcase() {
                 onMouseEnter={(e) => {
                   const el = e.currentTarget as HTMLElement;
                   el.style.transform = "translateY(-2px)";
-                  el.style.borderColor = "rgba(49,199,212,0.62)";
-                  el.style.color = "#66DCE6";
+                  el.style.borderColor = "rgba(139,197,64,0.62)";
+                  el.style.color = "#C5E88A";
                 }}
                 onMouseLeave={(e) => {
                   const el = e.currentTarget as HTMLElement;
                   el.style.transform = "translateY(0)";
-                  el.style.borderColor = "rgba(49,199,212,0.28)";
+                  el.style.borderColor = "rgba(139,197,64,0.28)";
                   el.style.color = "rgba(247,244,238,0.62)";
                 }}
               >

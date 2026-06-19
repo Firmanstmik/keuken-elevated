@@ -77,7 +77,7 @@ export function FinalCta() {
         }}
       />
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[rgba(248,246,242,0.87)]" />
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_40%_20%,rgba(35,185,196,0.05),transparent_45%)]" />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_40%_20%,rgba(139,197,64,0.05),transparent_45%)]" />
 
       <div className="mx-auto max-w-[1400px] px-6 lg:px-12 relative">
         {/* Header */}
@@ -93,23 +93,23 @@ export function FinalCta() {
             variants={reduceMotion ? undefined : fadeUp}
             className="mb-7 flex items-center justify-center gap-5"
           >
-            <span className="h-px w-10 bg-gradient-to-r from-transparent to-[#23B9C4]/35" />
+            <span className="h-px w-10 bg-gradient-to-r from-transparent to-[#8BC540]/35" />
             <span
-              className="text-[10px] font-normal tracking-[0.32em] text-[#23B9C4] uppercase"
+              className="text-[10px] font-normal tracking-[0.32em] text-[#8BC540] uppercase"
               style={{ fontFamily: "'Jost', sans-serif" }}
             >
               Begin uw reis
             </span>
-            <span className="h-px w-10 bg-gradient-to-l from-transparent to-[#23B9C4]/35" />
+            <span className="h-px w-10 bg-gradient-to-l from-transparent to-[#8BC540]/35" />
           </motion.div>
 
           {/* Display heading */}
           <motion.h2
             variants={reduceMotion ? undefined : fadeUp}
             className="mx-auto max-w-[52rem] font-serif text-[clamp(2.4rem,4.2vw,3.6rem)] font-light leading-[1.08] tracking-[-0.03em]"
-            style={{ color: "#163847" }}
+            style={{ color: "#2F5218" }}
           >
-            Klaar voor uw <em className="italic font-light font-serif" style={{ color: "#23B9C4" }}>droomkeuken?</em>
+            Klaar voor uw <em className="italic font-light font-serif" style={{ color: "#8BC540" }}>droomkeuken?</em>
           </motion.h2>
 
           {/* Subheading */}
@@ -149,20 +149,20 @@ export function FinalCta() {
               key={title}
               variants={reduceMotion ? undefined : fadeUp}
               className={[
-                "group relative overflow-hidden rounded-[24px] border border-[rgba(35,185,196,0.15)] bg-[#FAF8F4]/95 p-8",
+                "group relative overflow-hidden rounded-[24px] border border-[rgba(139,197,64,0.15)] bg-[#FAF8F4]/95 p-8",
                 "flex flex-col justify-between min-h-[290px] shadow-[0_8px_30px_rgba(23,25,28,0.015)]",
                 "transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
-                "hover:-translate-y-2 hover:bg-[#FAF8F4] hover:shadow-[0_24px_56px_-20px_rgba(35,185,196,0.12)]",
+                "hover:-translate-y-2 hover:bg-[#FAF8F4] hover:shadow-[0_24px_56px_-20px_rgba(139,197,64,0.12)]",
               ].join(" ")}
             >
               {/* Brand teal top hairline animates on hover */}
               <div
                 aria-hidden="true"
-                className="absolute inset-x-0 top-0 h-[2px] origin-left scale-x-0 bg-gradient-to-r from-[#23B9C4] to-[#4FD6D9] transition-transform duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100"
+                className="absolute inset-x-0 top-0 h-[2px] origin-left scale-x-0 bg-gradient-to-r from-[#8BC540] to-[#A8D95A] transition-transform duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100"
               />
 
               <div className="relative">
-                <div className="mb-6 flex h-11 w-11 items-center justify-center rounded-full border border-[#23B9C4]/15 bg-[rgba(35,185,196,0.05)] text-[#23B9C4] transition-all duration-500 group-hover:border-[#23B9C4]/35 group-hover:bg-[rgba(35,185,196,0.10)] group-hover:scale-105">
+                <div className="mb-6 flex h-11 w-11 items-center justify-center rounded-full border border-[#8BC540]/15 bg-[rgba(139,197,64,0.05)] text-[#8BC540] transition-all duration-500 group-hover:border-[#8BC540]/35 group-hover:bg-[rgba(139,197,64,0.10)] group-hover:scale-105">
                   <Icon className="h-5 w-5 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:rotate-[8deg]" />
                 </div>
 
@@ -195,7 +195,7 @@ export function FinalCta() {
           whileInView={reduceMotion ? undefined : { opacity: 1 }}
           viewport={motionViewport}
           transition={reduceMotion ? undefined : { delay: 0.4, duration: 0.8, ease: luxuryEase }}
-          className="mt-20 flex flex-wrap items-center justify-between gap-4 border-t border-[rgba(35,185,196,0.18)] pt-8"
+          className="mt-20 flex flex-wrap items-center justify-between gap-4 border-t border-[rgba(139,197,64,0.18)] pt-8"
         >
           <p
             className="text-[0.72rem] font-light tracking-[0.12em] text-[#5A5A5A]"

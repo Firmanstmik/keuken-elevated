@@ -116,21 +116,21 @@ export function Process() {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute left-1/2 top-1/2 h-[900px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[220px]"
-        style={{ background: "radial-gradient(circle, rgba(49,199,212,0.11), transparent 62%)" }}
+        style={{ background: "radial-gradient(circle, rgba(139,197,64,0.11), transparent 62%)" }}
       />
 
       {/* 2. Top-left directional spotlight */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -left-[20%] -top-[22%] h-[85vh] w-[85vh] rounded-full blur-[170px] opacity-50"
-        style={{ background: "radial-gradient(circle, rgba(49,199,212,0.14), transparent 58%)" }}
+        style={{ background: "radial-gradient(circle, rgba(139,197,64,0.14), transparent 58%)" }}
       />
 
       {/* 3. Bottom-right ambient fill */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -bottom-[18%] -right-[14%] h-[60vh] w-[60vh] rounded-full blur-[150px] opacity-35"
-        style={{ background: "radial-gradient(circle, rgba(49,199,212,0.10), transparent 65%)" }}
+        style={{ background: "radial-gradient(circle, rgba(139,197,64,0.10), transparent 65%)" }}
       />
 
       {/* 4. Edge vignette — depth */}
@@ -153,14 +153,14 @@ export function Process() {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 top-0 h-px"
-        style={{ background: "linear-gradient(90deg, transparent, rgba(49,199,212,0.26), transparent)" }}
+        style={{ background: "linear-gradient(90deg, transparent, rgba(139,197,64,0.26), transparent)" }}
       />
 
       {/* 7. Bottom hairline */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 bottom-0 h-px"
-        style={{ background: "linear-gradient(90deg, transparent, rgba(49,199,212,0.10), transparent)" }}
+        style={{ background: "linear-gradient(90deg, transparent, rgba(139,197,64,0.10), transparent)" }}
       />
 
       <div className="relative mx-auto max-w-6xl px-6 lg:px-12">
@@ -178,14 +178,14 @@ export function Process() {
             variants={reduceMotion ? undefined : fadeUp}
             className="mb-7 flex items-center justify-center gap-5"
           >
-            <span className="h-px w-10 bg-gradient-to-r from-transparent to-[rgba(49,199,212,0.45)]" />
+            <span className="h-px w-10 bg-gradient-to-r from-transparent to-[rgba(139,197,64,0.45)]" />
             <span
-              className="text-[10px] font-light tracking-[0.32em] text-[#31C7D4]"
+              className="text-[10px] font-light tracking-[0.32em] text-[#9CCD4A]"
               style={{ fontFamily: "var(--font-body)" }}
             >
               Het proces
             </span>
-            <span className="h-px w-10 bg-gradient-to-l from-transparent to-[rgba(49,199,212,0.45)]" />
+            <span className="h-px w-10 bg-gradient-to-l from-transparent to-[rgba(139,197,64,0.45)]" />
           </motion.div>
 
           {/* Heading */}
@@ -197,7 +197,7 @@ export function Process() {
             <em
               style={{
                 fontStyle: "italic",
-                background: "linear-gradient(128deg, #31C7D4 0%, #66DCE6 48%, #23B9C4 100%)",
+                background: "linear-gradient(128deg, #9CCD4A 0%, #C5E88A 48%, #8BC540 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -231,7 +231,7 @@ export function Process() {
             {/* Track */}
             <div
               className="h-px w-full"
-              style={{ background: "rgba(49,199,212,0.10)" }}
+              style={{ background: "rgba(139,197,64,0.10)" }}
             />
 
             {/* Animated fill */}
@@ -239,7 +239,7 @@ export function Process() {
               className="absolute left-0 top-0 h-px"
               style={{
                 width: `${linePercent}%`,
-                background: "linear-gradient(90deg, rgba(49,199,212,0.45), rgba(102,220,230,0.90))",
+                background: "linear-gradient(90deg, rgba(139,197,64,0.45), rgba(197,232,138,0.90))",
                 transition: "width 700ms cubic-bezier(0.22,1,0.36,1)",
               }}
             />
@@ -254,8 +254,8 @@ export function Process() {
                 width: "10px",
                 transform: "translateY(-50%)",
                 borderRadius: "9999px",
-                background: "#31C7D4",
-                boxShadow: "0 0 14px rgba(49,199,212,0.90), 0 0 28px rgba(49,199,212,0.50)",
+                background: "#9CCD4A",
+                boxShadow: "0 0 14px rgba(139,197,64,0.90), 0 0 28px rgba(139,197,64,0.50)",
                 opacity: linePercent > 0 ? 1 : 0,
                 transition: "left 700ms cubic-bezier(0.22,1,0.36,1), opacity 300ms ease",
               }}
@@ -292,13 +292,13 @@ export function Process() {
                         className="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-full"
                         style={{
                           background: isOn
-                            ? "rgba(49,199,212,0.09)"
+                            ? "rgba(139,197,64,0.09)"
                             : "rgba(11,30,44,0.65)",
                           borderWidth: "1px",
                           borderStyle: "solid",
                           borderColor: isOn
-                            ? "rgba(49,199,212,0.55)"
-                            : "rgba(49,199,212,0.13)",
+                            ? "rgba(139,197,64,0.55)"
+                            : "rgba(139,197,64,0.13)",
                           backdropFilter: "blur(12px)",
                           transition: "all 500ms cubic-bezier(0.22,1,0.36,1)",
                           transform:
@@ -311,7 +311,7 @@ export function Process() {
                         <div
                           className="pointer-events-none absolute inset-0 rounded-full"
                           style={{
-                            boxShadow: "0 0 22px rgba(49,199,212,0.32), 0 0 0 5px rgba(49,199,212,0.07), 0 8px 32px rgba(0,0,0,0.30)",
+                            boxShadow: "0 0 22px rgba(139,197,64,0.32), 0 0 0 5px rgba(139,197,64,0.07), 0 8px 32px rgba(0,0,0,0.30)",
                             opacity: isOn ? 1 : 0,
                             transition: "opacity 500ms ease",
                           }}
@@ -326,8 +326,8 @@ export function Process() {
                             fontWeight: 700,
                             letterSpacing: "0.22em",
                             color: isOn
-                              ? "rgba(49,199,212,0.78)"
-                              : "rgba(49,199,212,0.30)",
+                              ? "rgba(139,197,64,0.78)"
+                              : "rgba(139,197,64,0.30)",
                             transition: "color 500ms ease",
                           }}
                         >
@@ -345,7 +345,7 @@ export function Process() {
                         >
                           <Icon
                             size={20}
-                            color={isOn ? "#31C7D4" : "rgba(49,199,212,0.55)"}
+                            color={isOn ? "#9CCD4A" : "rgba(139,197,64,0.55)"}
                             variant="TwoTone"
                             aria-hidden="true"
                           />
@@ -360,9 +360,9 @@ export function Process() {
                             height: "5px",
                             width: "5px",
                             borderRadius: "9999px",
-                            background: isScrollActive ? "#31C7D4" : "rgba(49,199,212,0.16)",
+                            background: isScrollActive ? "#9CCD4A" : "rgba(139,197,64,0.16)",
                             boxShadow: isScrollActive
-                              ? "0 0 10px rgba(49,199,212,0.58)"
+                              ? "0 0 10px rgba(139,197,64,0.58)"
                               : "none",
                             transition: "all 500ms ease",
                           }}
@@ -427,7 +427,7 @@ export function Process() {
             className="block h-8 w-px"
             style={{
               background:
-                "linear-gradient(to bottom, transparent, rgba(49,199,212,0.32), transparent)",
+                "linear-gradient(to bottom, transparent, rgba(139,197,64,0.32), transparent)",
             }}
           />
 
@@ -437,7 +437,7 @@ export function Process() {
             className="group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-[14px] px-8 py-[0.88rem] text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-white"
             style={{
               background:
-                "linear-gradient(135deg, #2FC5D0 0%, #23B9C4 55%, #1DAAB5 100%)",
+                "linear-gradient(135deg, #9CCD4A 0%, #8BC540 55%, #689A2E 100%)",
               fontFamily: "var(--font-body)",
               transition:
                 "transform 500ms cubic-bezier(0.22,1,0.36,1), box-shadow 500ms ease",
@@ -445,7 +445,7 @@ export function Process() {
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
               (e.currentTarget as HTMLElement).style.boxShadow =
-                "0 14px 40px rgba(49,199,212,0.32)";
+                "0 14px 40px rgba(139,197,64,0.32)";
             }}
             onMouseLeave={(e) => {
               (e.currentTarget as HTMLElement).style.transform = "translateY(0)";

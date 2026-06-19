@@ -166,7 +166,7 @@ function LuxuryCard({ item, reduceMotion }: CardProps) {
     if (reduceMotion) return;
     rawY.set(-12);
     rawShadow.set(
-      "0 28px 64px -24px rgba(0,0,0,0.82), 0 0 48px -12px rgba(49,199,212,0.14)"
+      "0 28px 64px -24px rgba(0,0,0,0.82), 0 0 48px -12px rgba(139,197,64,0.14)"
     );
   }, [reduceMotion, rawY, rawShadow]);
 
@@ -192,7 +192,7 @@ function LuxuryCard({ item, reduceMotion }: CardProps) {
       onMouseLeave={handleMouseLeave}
     >
       <motion.article
-        className="group relative h-full cursor-pointer overflow-hidden border border-white/[0.06] transition-colors duration-700 hover:border-[rgba(49,199,212,0.26)]"
+        className="group relative h-full cursor-pointer overflow-hidden border border-white/[0.06] transition-colors duration-700 hover:border-[rgba(139,197,64,0.26)]"
         style={{
           borderRadius: "36px",
           y: reduceMotion ? 0 : liftY,
@@ -242,7 +242,7 @@ function LuxuryCard({ item, reduceMotion }: CardProps) {
           style={{
             borderRadius: "inherit",
             opacity: spot.visible ? 1 : 0,
-            background: `radial-gradient(280px circle at ${spot.x}px ${spot.y}px, rgba(49,199,212,0.10), transparent 58%)`,
+            background: `radial-gradient(280px circle at ${spot.x}px ${spot.y}px, rgba(139,197,64,0.10), transparent 58%)`,
           }}
         />
 
@@ -252,7 +252,7 @@ function LuxuryCard({ item, reduceMotion }: CardProps) {
           className="absolute inset-x-0 top-0 z-20 h-px origin-left scale-x-0 transition-transform duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100"
           style={{
             background:
-              "linear-gradient(90deg, rgba(49,199,212,0), rgba(49,199,212,0.88), rgba(49,199,212,0))",
+              "linear-gradient(90deg, rgba(139,197,64,0), rgba(139,197,64,0.88), rgba(139,197,64,0))",
           }}
         />
 
@@ -262,7 +262,7 @@ function LuxuryCard({ item, reduceMotion }: CardProps) {
           className="pointer-events-none absolute inset-0 z-10 opacity-0 transition-opacity duration-700 group-hover:opacity-100"
           style={{
             background:
-              "radial-gradient(ellipse 60% 28% at 50% 100%, rgba(49,199,212,0.11), transparent 65%)",
+              "radial-gradient(ellipse 60% 28% at 50% 100%, rgba(139,197,64,0.11), transparent 65%)",
           }}
         />
 
@@ -270,12 +270,12 @@ function LuxuryCard({ item, reduceMotion }: CardProps) {
         <a
           href={item.href}
           aria-label={`${item.collectionTitle}: ${item.luxuryDescription}`}
-          className="absolute inset-0 z-30 flex flex-col justify-end p-7 outline-none focus-visible:ring-2 focus-visible:ring-[rgba(49,199,212,0.75)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B1E2C]"
+          className="absolute inset-0 z-30 flex flex-col justify-end p-7 outline-none focus-visible:ring-2 focus-visible:ring-[rgba(139,197,64,0.75)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B1E2C]"
           style={{ borderRadius: "inherit" }}
         >
           {/* Collection tag */}
           <p
-            className="mb-2.5 text-[0.6rem] font-light tracking-[0.32em] text-[rgba(49,199,212,0.58)] transition-colors duration-500 group-hover:text-[rgba(49,199,212,0.92)]"
+            className="mb-2.5 text-[0.6rem] font-light tracking-[0.32em] text-[rgba(139,197,64,0.58)] transition-colors duration-500 group-hover:text-[rgba(139,197,64,0.92)]"
             style={{ fontFamily: "var(--font-body)" }}
           >
             {item.collectionTitle}
@@ -312,9 +312,9 @@ function LuxuryCard({ item, reduceMotion }: CardProps) {
           <span
             className={[
               "mt-3 inline-flex translate-y-3 items-center gap-2 opacity-0",
-              "text-[0.7rem] font-light tracking-[0.2em] text-[rgba(49,199,212,0)]",
+              "text-[0.7rem] font-light tracking-[0.2em] text-[rgba(139,197,64,0)]",
               "transition-[transform,opacity,gap,color] duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
-              "group-hover:translate-y-0 group-hover:gap-[10px] group-hover:text-[rgba(49,199,212,0.90)] group-hover:opacity-100",
+              "group-hover:translate-y-0 group-hover:gap-[10px] group-hover:text-[rgba(139,197,64,0.90)] group-hover:opacity-100",
             ].join(" ")}
             style={{ fontFamily: "var(--font-body)" }}
           >
@@ -345,21 +345,21 @@ export function Experience() {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute left-[50%] top-[35%] h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[190px]"
-        style={{ background: "radial-gradient(circle, rgba(49,199,212,0.10), transparent 65%)" }}
+        style={{ background: "radial-gradient(circle, rgba(139,197,64,0.10), transparent 65%)" }}
       />
 
       {/* 2. Top-left directional spotlight */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -left-[20%] -top-[20%] h-[80vh] w-[80vh] rounded-full blur-[160px] opacity-55"
-        style={{ background: "radial-gradient(circle, rgba(49,199,212,0.12), transparent 60%)" }}
+        style={{ background: "radial-gradient(circle, rgba(139,197,64,0.12), transparent 60%)" }}
       />
 
       {/* 3. Bottom-right ambient fill */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -bottom-[18%] -right-[15%] h-[55vh] w-[55vh] rounded-full blur-[140px] opacity-40"
-        style={{ background: "radial-gradient(circle, rgba(49,199,212,0.08), transparent 65%)" }}
+        style={{ background: "radial-gradient(circle, rgba(139,197,64,0.08), transparent 65%)" }}
       />
 
       {/* 4. Edge vignette — architectural depth */}
@@ -382,13 +382,13 @@ export function Experience() {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 top-0 h-px"
-        style={{ background: "linear-gradient(90deg, transparent, rgba(49,199,212,0.22), transparent)" }}
+        style={{ background: "linear-gradient(90deg, transparent, rgba(139,197,64,0.22), transparent)" }}
       />
       {/* 7. Bottom hairline */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 bottom-0 h-px"
-        style={{ background: "linear-gradient(90deg, transparent, rgba(49,199,212,0.10), transparent)" }}
+        style={{ background: "linear-gradient(90deg, transparent, rgba(139,197,64,0.10), transparent)" }}
       />
 
       <div className="site-container relative">
@@ -407,9 +407,9 @@ export function Experience() {
               variants={reduceMotion ? undefined : fadeUp}
               className="mb-5 flex items-center gap-4"
             >
-              <span className="h-px w-8 bg-gradient-to-r from-transparent to-[rgba(49,199,212,0.55)]" />
+              <span className="h-px w-8 bg-gradient-to-r from-transparent to-[rgba(139,197,64,0.55)]" />
               <span
-                className="text-[0.6rem] font-semibold uppercase tracking-[0.32em] text-[#31C7D4]"
+                className="text-[0.6rem] font-semibold uppercase tracking-[0.32em] text-[#9CCD4A]"
                 style={{ fontFamily: "var(--font-body)" }}
               >
                 Keukeninspiratie
@@ -426,7 +426,7 @@ export function Experience() {
                 style={{
                   fontStyle: "italic",
                   background:
-                    "linear-gradient(128deg, #31C7D4 0%, #66DCE6 48%, #23B9C4 100%)",
+                    "linear-gradient(128deg, #9CCD4A 0%, #C5E88A 48%, #8BC540 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
@@ -474,16 +474,16 @@ export function Experience() {
             <div
               className="flex items-center gap-2 rounded-full border px-4 py-1.5"
               style={{
-                borderColor: "rgba(49,199,212,0.22)",
-                background: "rgba(49,199,212,0.05)",
+                borderColor: "rgba(139,197,64,0.22)",
+                background: "rgba(139,197,64,0.05)",
               }}
             >
               <span
-                className="h-[5px] w-[5px] rounded-full bg-[#31C7D4]"
-                style={{ boxShadow: "0 0 6px rgba(49,199,212,0.65)" }}
+                className="h-[5px] w-[5px] rounded-full bg-[#9CCD4A]"
+                style={{ boxShadow: "0 0 6px rgba(139,197,64,0.65)" }}
               />
               <span
-                className="text-[0.55rem] font-semibold uppercase tracking-[0.26em] text-[rgba(49,199,212,0.70)]"
+                className="text-[0.55rem] font-semibold uppercase tracking-[0.26em] text-[rgba(139,197,64,0.70)]"
                 style={{ fontFamily: "var(--font-body)" }}
               >
                 Exclusieve Showroom · Utrecht
@@ -500,23 +500,23 @@ export function Experience() {
           variants={reduceMotion ? undefined : fadeUp}
           className="mb-8 rounded-[16px] border px-6 py-5 backdrop-blur-md md:px-10"
           style={{
-            borderColor: "rgba(49,199,212,0.09)",
+            borderColor: "rgba(139,197,64,0.09)",
             background: "rgba(11,30,44,0.55)",
           }}
         >
-          <ul className="grid grid-cols-3 divide-x divide-[rgba(49,199,212,0.07)]">
+          <ul className="grid grid-cols-3 divide-x divide-[rgba(139,197,64,0.07)]">
             {stats.map((stat, i) => (
               <li
                 key={stat.label}
                 className="group cursor-default px-4 text-center first:pl-0 last:pr-0 sm:px-6 md:px-8"
               >
                 {/* Icon */}
-                <div className="mb-2 flex justify-center text-[rgba(49,199,212,0.36)] transition-colors duration-400 group-hover:text-[#31C7D4]">
+                <div className="mb-2 flex justify-center text-[rgba(139,197,64,0.36)] transition-colors duration-400 group-hover:text-[#9CCD4A]">
                   {statIcons[i]}
                 </div>
 
                 {/* Number */}
-                <p className="font-serif text-[clamp(1.55rem,2.6vw,2.1rem)] font-light leading-none tracking-[-0.03em] text-white transition-colors duration-400 group-hover:text-[#31C7D4]">
+                <p className="font-serif text-[clamp(1.55rem,2.6vw,2.1rem)] font-light leading-none tracking-[-0.03em] text-white transition-colors duration-400 group-hover:text-[#9CCD4A]">
                   <CountUpValue value={stat.value} suffix={stat.suffix} />
                 </p>
 
@@ -530,7 +530,7 @@ export function Experience() {
 
                 {/* Teal underline — reveals on hover */}
                 <div className="mx-auto mt-3 h-px w-8 origin-center scale-x-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100"
-                  style={{ background: "linear-gradient(90deg, transparent, #31C7D4, transparent)" }}
+                  style={{ background: "linear-gradient(90deg, transparent, #9CCD4A, transparent)" }}
                 />
               </li>
             ))}

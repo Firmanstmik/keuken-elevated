@@ -59,7 +59,7 @@ export function Showroom() {
   return (
     <section
       id="showroom"
-      className="relative overflow-hidden py-20 text-[#F7F4EE] selection:bg-[#31C7D4]/20 md:py-28"
+      className="relative overflow-hidden py-20 text-[#F7F4EE] selection:bg-[#9CCD4A]/20 md:py-28"
     >
       {/* ── Layered background ── */}
 
@@ -74,21 +74,21 @@ export function Showroom() {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute left-[50%] top-[38%] h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[200px]"
-        style={{ background: "radial-gradient(circle, rgba(49,199,212,0.11), transparent 62%)" }}
+        style={{ background: "radial-gradient(circle, rgba(139,197,64,0.11), transparent 62%)" }}
       />
 
       {/* 3. Top-left directional spotlight */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -left-[22%] -top-[22%] h-[85vh] w-[85vh] rounded-full blur-[200px] opacity-50"
-        style={{ background: "radial-gradient(circle, rgba(49,199,212,0.16), transparent 60%)" }}
+        style={{ background: "radial-gradient(circle, rgba(139,197,64,0.16), transparent 60%)" }}
       />
 
       {/* 4. Bottom-right ambient fill */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -bottom-[18%] -right-[14%] h-[60vh] w-[60vh] rounded-full blur-[160px] opacity-40"
-        style={{ background: "radial-gradient(circle, rgba(49,199,212,0.10), transparent 65%)" }}
+        style={{ background: "radial-gradient(circle, rgba(139,197,64,0.10), transparent 65%)" }}
       />
 
       {/* 5. Edge vignette — depth */}
@@ -113,7 +113,7 @@ export function Showroom() {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 top-0 h-px"
-        style={{ background: "linear-gradient(90deg, transparent, rgba(49,199,212,0.32), transparent)" }}
+        style={{ background: "linear-gradient(90deg, transparent, rgba(139,197,64,0.32), transparent)" }}
       />
 
       {/* 8. Bottom hairline */}
@@ -138,7 +138,7 @@ export function Showroom() {
           <div
             aria-hidden="true"
             className="pointer-events-none absolute -left-8 -top-8 h-[240px] w-[560px] blur-[120px]"
-            style={{ background: "radial-gradient(ellipse, rgba(49,199,212,0.18), transparent 65%)", opacity: 0.55 }}
+            style={{ background: "radial-gradient(ellipse, rgba(139,197,64,0.18), transparent 65%)", opacity: 0.55 }}
           />
 
           {/* Eyebrow */}
@@ -146,9 +146,9 @@ export function Showroom() {
             variants={reduceMotion ? undefined : fadeUp}
             className="mb-5 flex items-center gap-4"
           >
-            <span className="h-px w-8 bg-gradient-to-r from-transparent to-[rgba(49,199,212,0.58)]" />
+            <span className="h-px w-8 bg-gradient-to-r from-transparent to-[rgba(139,197,64,0.58)]" />
             <span
-              className="text-[0.6rem] font-semibold uppercase tracking-[0.32em] text-[#31C7D4]"
+              className="text-[0.6rem] font-semibold uppercase tracking-[0.32em] text-[#9CCD4A]"
               style={{ fontFamily: "var(--font-body)" }}
             >
               Showroom · Zonnebaan 8 · Utrecht
@@ -164,7 +164,7 @@ export function Showroom() {
             <em
               style={{
                 fontStyle: "italic",
-                background: "linear-gradient(128deg, #31C7D4 0%, #66DCE6 50%, #23B9C4 100%)",
+                background: "linear-gradient(128deg, #9CCD4A 0%, #C5E88A 50%, #8BC540 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -188,9 +188,9 @@ export function Showroom() {
             variants={reduceMotion ? undefined : fadeUp}
             className="mt-5 flex items-center gap-3"
           >
-            <span className="h-px w-5 bg-[rgba(49,199,212,0.35)]" />
+            <span className="h-px w-5 bg-[rgba(139,197,64,0.35)]" />
             <span
-              className="text-[0.62rem] font-light tracking-[0.22em] text-[rgba(49,199,212,0.55)]"
+              className="text-[0.62rem] font-light tracking-[0.22em] text-[rgba(139,197,64,0.55)]"
               style={{ fontFamily: "var(--font-body)" }}
             >
               Deutsche precisie · Italiaanse elegantie
@@ -211,7 +211,7 @@ export function Showroom() {
               viewport={motionViewport}
               variants={reduceMotion ? undefined : revealCard}
               className="group relative overflow-hidden"
-              style={{ borderRadius: "22px", border: "1px solid rgba(49,199,212,0.10)" }}
+              style={{ borderRadius: "22px", border: "1px solid rgba(139,197,64,0.10)" }}
             >
               <motion.img
                 src={kc.showroomImg}
@@ -239,7 +239,7 @@ export function Showroom() {
               <div
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-0 rounded-[22px] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                style={{ boxShadow: "0 0 0 1px rgba(49,199,212,0.22) inset" }}
+                style={{ boxShadow: "0 0 0 1px rgba(139,197,64,0.22) inset" }}
               />
 
               {/* ── Floating trust badge ── */}
@@ -252,17 +252,17 @@ export function Showroom() {
                   className="flex items-center gap-3 rounded-[14px] px-4 py-3"
                   style={{
                     background: "rgba(11,30,44,0.82)",
-                    border: "1px solid rgba(49,199,212,0.22)",
+                    border: "1px solid rgba(139,197,64,0.22)",
                     backdropFilter: "blur(18px)",
                     boxShadow: "0 8px 32px rgba(0,0,0,0.42), 0 0 0 1px rgba(255,255,255,0.04) inset",
                   }}
                 >
                   {/* Icon ring */}
                   <div
-                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[#31C7D4]"
+                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[#9CCD4A]"
                     style={{
-                      background: "rgba(49,199,212,0.10)",
-                      border: "1px solid rgba(49,199,212,0.30)",
+                      background: "rgba(139,197,64,0.10)",
+                      border: "1px solid rgba(139,197,64,0.30)",
                     }}
                   >
                     <AwardIcon />
@@ -270,7 +270,7 @@ export function Showroom() {
 
                   <div>
                     <p
-                      className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[#31C7D4]"
+                      className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[#9CCD4A]"
                       style={{ fontFamily: "var(--font-body)" }}
                     >
                       45+ Jaar Vakmanschap
@@ -299,7 +299,7 @@ export function Showroom() {
                   visible: { opacity: 1, y: 0, transition: { duration: 0.75, delay: 0.15, ease: luxe } },
                 }}
                 className="group relative flex-1 overflow-hidden"
-                style={{ borderRadius: "16px", border: "1px solid rgba(49,199,212,0.08)" }}
+                style={{ borderRadius: "16px", border: "1px solid rgba(139,197,64,0.08)" }}
               >
                 <img
                   src={craftsmanshipImg}
@@ -315,7 +315,7 @@ export function Showroom() {
                 <div
                   aria-hidden="true"
                   className="pointer-events-none absolute inset-0 rounded-[16px] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                  style={{ boxShadow: "0 0 0 1px rgba(49,199,212,0.28) inset" }}
+                  style={{ boxShadow: "0 0 0 1px rgba(139,197,64,0.28) inset" }}
                 />
                 {/* Label */}
                 <p
@@ -336,7 +336,7 @@ export function Showroom() {
                   visible: { opacity: 1, y: 0, transition: { duration: 0.75, delay: 0.26, ease: luxe } },
                 }}
                 className="group relative flex-1 overflow-hidden"
-                style={{ borderRadius: "16px", border: "1px solid rgba(49,199,212,0.08)" }}
+                style={{ borderRadius: "16px", border: "1px solid rgba(139,197,64,0.08)" }}
               >
                 <img
                   src={matMarbleImg}
@@ -352,7 +352,7 @@ export function Showroom() {
                 <div
                   aria-hidden="true"
                   className="pointer-events-none absolute inset-0 rounded-[16px] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                  style={{ boxShadow: "0 0 0 1px rgba(49,199,212,0.28) inset" }}
+                  style={{ boxShadow: "0 0 0 1px rgba(139,197,64,0.28) inset" }}
                 />
                 {/* Label */}
                 <p
@@ -375,15 +375,15 @@ export function Showroom() {
             className="flex flex-col rounded-[22px] px-6 py-7"
             style={{
               background: "rgba(255,255,255,0.025)",
-              border: "1px solid rgba(49,199,212,0.09)",
+              border: "1px solid rgba(139,197,64,0.09)",
               backdropFilter: "blur(14px)",
               boxShadow: "0 20px 56px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.03) inset",
             }}
           >
             {/* Brand positioning */}
-            <div className="mb-5 pb-5" style={{ borderBottom: "1px solid rgba(49,199,212,0.07)" }}>
+            <div className="mb-5 pb-5" style={{ borderBottom: "1px solid rgba(139,197,64,0.07)" }}>
               <p
-                className="text-[0.52rem] font-semibold uppercase tracking-[0.30em] text-[rgba(49,199,212,0.50)]"
+                className="text-[0.52rem] font-semibold uppercase tracking-[0.30em] text-[rgba(139,197,64,0.50)]"
                 style={{ fontFamily: "var(--font-body)" }}
               >
                 Exclusieve Showroom · Utrecht
@@ -392,7 +392,7 @@ export function Showroom() {
                 className="mt-2 font-serif text-[1.15rem] font-light leading-[1.4] tracking-[-0.01em] text-[rgba(247,244,238,0.82)]"
               >
                 Uw droomkeuken begint{" "}
-                <em className="italic text-[#31C7D4]">hier.</em>
+                <em className="italic text-[#9CCD4A]">hier.</em>
               </p>
               <p
                 className="mt-2 text-[0.78rem] font-light leading-[1.75] text-[rgba(247,244,238,0.38)]"
@@ -406,9 +406,9 @@ export function Showroom() {
             <motion.div
               variants={reduceMotion ? undefined : fadeUp}
               className="flex items-start gap-3 pb-5"
-              style={{ borderBottom: "1px solid rgba(49,199,212,0.07)" }}
+              style={{ borderBottom: "1px solid rgba(139,197,64,0.07)" }}
             >
-              <House className="mt-0.5 h-4 w-4 shrink-0 text-[rgba(49,199,212,0.62)]" />
+              <House className="mt-0.5 h-4 w-4 shrink-0 text-[rgba(139,197,64,0.62)]" />
               <div>
                 <p
                   className="text-[0.88rem] font-medium text-[rgba(247,244,238,0.82)]"
@@ -429,7 +429,7 @@ export function Showroom() {
             <motion.div
               variants={reduceMotion ? undefined : fadeUp}
               className="py-5"
-              style={{ borderBottom: "1px solid rgba(49,199,212,0.07)" }}
+              style={{ borderBottom: "1px solid rgba(139,197,64,0.07)" }}
             >
               {kc.contact.hours.map((row) => (
                 <div
@@ -461,14 +461,14 @@ export function Showroom() {
             <motion.div
               variants={reduceMotion ? undefined : fadeUp}
               className="space-y-3 py-5"
-              style={{ borderBottom: "1px solid rgba(49,199,212,0.07)" }}
+              style={{ borderBottom: "1px solid rgba(139,197,64,0.07)" }}
             >
               <a
                 href={kc.contact.phoneHref}
                 className="flex items-center gap-3 text-[0.82rem] font-light text-[rgba(247,244,238,0.52)] transition-colors duration-300 hover:text-[rgba(247,244,238,0.88)]"
                 style={{ fontFamily: "var(--font-body)" }}
               >
-                <Phone className="h-3.5 w-3.5 shrink-0 text-[rgba(49,199,212,0.55)]" />
+                <Phone className="h-3.5 w-3.5 shrink-0 text-[rgba(139,197,64,0.55)]" />
                 {kc.contact.phone}
               </a>
               <a
@@ -476,7 +476,7 @@ export function Showroom() {
                 className="flex items-center gap-3 text-[0.82rem] font-light text-[rgba(247,244,238,0.52)] transition-colors duration-300 hover:text-[rgba(247,244,238,0.88)]"
                 style={{ fontFamily: "var(--font-body)" }}
               >
-                <Mail className="h-3.5 w-3.5 shrink-0 text-[rgba(49,199,212,0.55)]" />
+                <Mail className="h-3.5 w-3.5 shrink-0 text-[rgba(139,197,64,0.55)]" />
                 {kc.contact.email}
               </a>
             </motion.div>
@@ -488,17 +488,17 @@ export function Showroom() {
             >
               <div
                 className="h-px flex-1"
-                style={{ background: "linear-gradient(90deg, rgba(49,199,212,0.22), transparent)" }}
+                style={{ background: "linear-gradient(90deg, rgba(139,197,64,0.22), transparent)" }}
               />
               <span
-                className="text-[0.52rem] font-light uppercase tracking-[0.24em] text-[rgba(49,199,212,0.42)]"
+                className="text-[0.52rem] font-light uppercase tracking-[0.24em] text-[rgba(139,197,64,0.42)]"
                 style={{ fontFamily: "var(--font-body)" }}
               >
                 Vakmanschap · Sinds 1978
               </span>
               <div
                 className="h-px flex-1"
-                style={{ background: "linear-gradient(90deg, transparent, rgba(49,199,212,0.22))" }}
+                style={{ background: "linear-gradient(90deg, transparent, rgba(139,197,64,0.22))" }}
               />
             </motion.div>
 
@@ -510,9 +510,9 @@ export function Showroom() {
               {/* Primary — teal with shine sweep */}
               <a
                 href="#contact"
-                className="group relative inline-flex items-center justify-center gap-2.5 overflow-hidden rounded-[12px] px-6 py-[0.78rem] text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-white transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[2px] hover:shadow-[0_12px_32px_rgba(49,199,212,0.32)]"
+                className="group relative inline-flex items-center justify-center gap-2.5 overflow-hidden rounded-[12px] px-6 py-[0.78rem] text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-white transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[2px] hover:shadow-[0_12px_32px_rgba(139,197,64,0.32)]"
                 style={{
-                  background: "linear-gradient(135deg, #2FC5D0 0%, #23B9C4 55%, #1DAAB5 100%)",
+                  background: "linear-gradient(135deg, #9CCD4A 0%, #8BC540 55%, #689A2E 100%)",
                   fontFamily: "var(--font-body)",
                 }}
               >
@@ -532,19 +532,19 @@ export function Showroom() {
                 rel="noopener noreferrer"
                 className="group inline-flex items-center justify-center gap-2 rounded-[12px] border px-6 py-[0.78rem] text-[0.72rem] font-semibold uppercase tracking-[0.18em] transition-[transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[2px]"
                 style={{
-                  borderColor: "rgba(49,199,212,0.28)",
+                  borderColor: "rgba(139,197,64,0.28)",
                   color: "rgba(247,244,238,0.62)",
                   fontFamily: "var(--font-body)",
                 }}
                 onMouseEnter={(e) => {
                   const el = e.currentTarget as HTMLElement;
-                  el.style.borderColor = "rgba(49,199,212,0.62)";
-                  el.style.color = "#66DCE6";
+                  el.style.borderColor = "rgba(139,197,64,0.62)";
+                  el.style.color = "#C5E88A";
                   el.style.boxShadow = "0 8px 28px rgba(0,0,0,0.30)";
                 }}
                 onMouseLeave={(e) => {
                   const el = e.currentTarget as HTMLElement;
-                  el.style.borderColor = "rgba(49,199,212,0.28)";
+                  el.style.borderColor = "rgba(139,197,64,0.28)";
                   el.style.color = "rgba(247,244,238,0.62)";
                   el.style.boxShadow = "none";
                 }}

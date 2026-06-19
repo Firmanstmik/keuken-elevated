@@ -221,7 +221,7 @@ export function Collections() {
         style={{ backgroundImage: `url(${matConcrete})`, backgroundSize: "cover", backgroundPosition: "center" }}
       />
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[rgba(248,246,242,0.88)]" />
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_60%_30%,rgba(35,185,196,0.04),transparent_50%)]" />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_60%_30%,rgba(139,197,64,0.04),transparent_50%)]" />
 
       <div className="relative z-10">
         {/* Header */}
@@ -238,7 +238,7 @@ export function Collections() {
               <span className="eyebrow text-[#C8A96B]">Onze Collecties</span>
             </div>
             <h2 className="heading-2 mt-4">
-              Ontdek uw <em className="italic" style={{ color: "#23B9C4" }}>Droomkeuken</em>
+              Ontdek uw <em className="italic" style={{ color: "#8BC540" }}>Droomkeuken</em>
             </h2>
             <p className="mt-5 max-w-[480px] text-[1.05rem] font-light leading-[1.75] tracking-[0.01em] text-[#5A5A5A]">
               Vier zorgvuldig samengestelde stijlwerelden — elk een unieke architectonische
