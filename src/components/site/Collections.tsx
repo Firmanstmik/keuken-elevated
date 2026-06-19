@@ -160,7 +160,7 @@ function InfiniteGallery({ reduceMotion }: { reduceMotion: boolean | null }) {
   };
 
   return (
-    <div className="relative mt-16 pb-4">
+    <div className="relative mt-16 pb-8">
       {/* Edge fades — mask-image approach so they adapt to any background */}
       <div
         className="pointer-events-none absolute inset-y-0 left-0 z-10 w-32 md:w-52"
@@ -173,7 +173,7 @@ function InfiniteGallery({ reduceMotion }: { reduceMotion: boolean | null }) {
 
       <div
         ref={wrapRef}
-        className="overflow-hidden py-8 pb-10"
+        className="overflow-x-hidden overflow-y-visible py-8 pb-14"
         style={{
           cursor: drag.current.active ? "grabbing" : "grab",
           touchAction: "pan-y",
@@ -194,7 +194,7 @@ function InfiniteGallery({ reduceMotion }: { reduceMotion: boolean | null }) {
           {items.map((item, i) => (
             <div
               key={`${item.id}-${i}`}
-              className="shrink-0 pt-2 pb-6"
+              className="shrink-0 pt-2 pb-8"
               style={{ width: `${CARD_W_PX}px`, height: `${CARD_H_PX}px` }}
             >
               <GalleryCard item={item} />
