@@ -99,7 +99,7 @@ function GalleryCard({ item }: { item: CollectionItem }) {
 
 const SPEED = 26; // px/s — slow, premium
 const CARD_W_PX = 300;
-const CARD_H_PX = 472;
+const CARD_H_PX = 450;
 const CARD_GAP_PX = 24;
 
 function InfiniteGallery({ reduceMotion }: { reduceMotion: boolean | null }) {

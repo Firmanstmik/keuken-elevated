@@ -808,8 +808,7 @@
     --card-gold-bright: rgba(212, 184, 120, 0.95);
     --card-teal: rgba(35, 185, 196, 0.55);
     position: relative;
-    display: flex;
-    flex-direction: column;
+    display: block;
     height: 100%;
     overflow: visible;
     border-radius: 22px;
@@ -853,11 +852,10 @@
   }
 
   .collection-gallery-card__media {
-    position: relative;
-    flex: 0 0 46%;
-    min-height: 0;
+    position: absolute;
+    inset: 0;
     overflow: hidden;
-    border-radius: 21px 21px 0 0;
+    border-radius: 21px;
   }
 
   .collection-gallery-card__media img {
@@ -877,10 +875,11 @@
     inset: 0;
     background: linear-gradient(
       180deg,
-      transparent 0%,
-      transparent 58%,
-      rgb(12 16 20 / 0.28) 84%,
-      #0c1014 100%
+      rgb(0 0 0 / 0.12) 0%,
+      transparent 34%,
+      transparent 52%,
+      rgb(12 16 20 / 0.18) 72%,
+      rgb(12 16 20 / 0.42) 100%
     );
     pointer-events: none;
     z-index: 1;
@@ -989,40 +988,50 @@
   }
 
   .collection-gallery-card__body {
-    position: relative;
+    position: absolute;
+    inset: auto 0 0 0;
     z-index: 2;
-    flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 0.35rem 1.35rem 1.55rem;
+    justify-content: flex-end;
+    padding: 1.35rem 1.25rem 2.45rem;
     border-radius: 0 0 21px 21px;
-    background: linear-gradient(180deg, #0c1014 0%, #0f151b 100%);
+    background: linear-gradient(
+      180deg,
+      rgb(12 16 20 / 0) 0%,
+      rgb(12 16 20 / 0.42) 24%,
+      rgb(12 16 20 / 0.9) 52%,
+      #0f151b 100%
+    );
     transition: background 0.55s ease;
   }
 
   .collection-gallery-card:hover .collection-gallery-card__body {
-    background: linear-gradient(180deg, #0e141a 0%, #111920 100%);
+    background: linear-gradient(
+      180deg,
+      rgb(12 16 20 / 0) 0%,
+      rgb(12 16 20 / 0.48) 24%,
+      rgb(14 20 26 / 0.94) 52%,
+      #111920 100%
+    );
   }
 
   .collection-gallery-card__title {
     font-family: var(--font-serif);
-    font-size: 1.28rem;
+    font-size: 1.2rem;
     font-weight: 400;
-    line-height: 1.15;
+    line-height: 1.12;
     letter-spacing: -0.01em;
     color: var(--card-gold-bright);
-    transition:
-      color 0.45s ease,
-      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: color 0.45s ease;
   }
 
   .collection-gallery-card:hover .collection-gallery-card__title {
     color: #e8d4a8;
-    transform: translateY(-3px);
   }
 
   .collection-gallery-card__descriptor {
-    margin-top: 0.45rem;
+    margin-top: 0.32rem;
     font-family: var(--font-body);
     font-size: 0.5rem;
     font-weight: 500;
@@ -1037,11 +1046,11 @@
   }
 
   .collection-gallery-card__description {
-    margin-top: 0.55rem;
+    margin-top: 0.4rem;
     font-family: var(--font-body);
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     font-weight: 300;
-    line-height: 1.55;
+    line-height: 1.48;
     color: rgb(255 255 255 / 0.62);
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -1057,7 +1066,7 @@
   .collection-gallery-card__rule {
     width: 100%;
     height: 1px;
-    margin-top: 0.65rem;
+    margin-top: 0.5rem;
     background: linear-gradient(90deg, rgb(200 169 107 / 0.55), rgb(35 185 196 / 0.28));
     transition: background 0.45s ease;
   }
