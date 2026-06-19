@@ -59,6 +59,7 @@ function GalleryCard({ item }: { item: CollectionItem }) {
       <div className="collection-gallery-card__media">
         <img src={item.image} alt={item.title} loading="lazy" draggable={false} />
         <div className="collection-gallery-card__media-fade" aria-hidden="true" />
+        <div className="collection-gallery-card__media-hover-fade" aria-hidden="true" />
         <div className="collection-gallery-card__shine" aria-hidden="true" />
 
         <div className="collection-gallery-card__badges">
@@ -98,7 +99,7 @@ function GalleryCard({ item }: { item: CollectionItem }) {
 
 const SPEED = 26; // px/s — slow, premium
 const CARD_W_PX = 300;
-const CARD_H_PX = 448;
+const CARD_H_PX = 472;
 const CARD_GAP_PX = 24;
 
 function InfiniteGallery({ reduceMotion }: { reduceMotion: boolean | null }) {
