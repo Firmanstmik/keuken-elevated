@@ -41,38 +41,43 @@ const headlineLines: ReactNode[] = [
   </>,
 ];
 
-function ChefKnifeIcon({ className }: { className?: string }) {
+function KitchenFaucetIcon({ className }: { className?: string }) {
   return (
-    <svg
-      className={className}
-      viewBox="0 0 32 32"
-      fill="none"
-      aria-hidden="true"
-    >
+    <svg className={className} viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <rect x="10.5" y="24.5" width="11" height="2.2" rx="1.1" fill="currentColor" opacity="0.85" />
       <path
-        d="M6 24.5C6 24.5 8.5 22 12 22C14 22 15.5 23 16.5 24"
+        d="M15.2 24.5V13.2"
         stroke="currentColor"
-        strokeWidth="1.2"
+        strokeWidth="1.45"
         strokeLinecap="round"
       />
       <path
-        d="M16.5 24L26 14.5C27.2 13.3 27.2 11.3 26 10.1C24.8 8.9 22.8 8.9 21.6 10.1L11 20.5"
+        d="M15.2 13.2H21.2C24.2 13.2 25.8 14.8 25.8 17.2V19"
         stroke="currentColor"
-        strokeWidth="1.35"
+        strokeWidth="1.45"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
-        d="M11 20.5L16.5 24"
+        d="M25.8 19V21.2"
         stroke="currentColor"
-        strokeWidth="1.35"
+        strokeWidth="1.15"
         strokeLinecap="round"
+        opacity="0.55"
       />
       <path
-        d="M22 9.5L24.5 7"
+        d="M16.8 15.2V18.4"
         stroke="currentColor"
-        strokeWidth="1.2"
+        strokeWidth="1.15"
         strokeLinecap="round"
+      />
+      <circle cx="16.8" cy="19.6" r="1.05" fill="currentColor" />
+      <path
+        d="M13.2 11.2L15.2 13.2"
+        stroke="currentColor"
+        strokeWidth="1.15"
+        strokeLinecap="round"
+        opacity="0.7"
       />
     </svg>
   );
@@ -152,11 +157,11 @@ function HeroScrollCue({ reduceMotion }: { reduceMotion: boolean | null }) {
       initial={reduceMotion ? false : { opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: motionDuration.luxury, ease: motionEase.premium, delay: 1.1 }}
-      className="hero-scroll-cue group absolute inset-x-0 bottom-8 z-30 mx-auto flex w-fit flex-col items-center gap-2.5 border-0 bg-transparent p-0 outline-none focus-visible:ring-2 focus-visible:ring-[rgba(200,169,107,0.45)] focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+      className="hero-scroll-cue hero-scroll-cue--compact group absolute inset-x-0 bottom-6 z-30 mx-auto flex w-fit flex-col items-center gap-1.5 border-0 bg-transparent p-0 outline-none focus-visible:ring-2 focus-visible:ring-[rgba(35,185,196,0.45)] focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
     >
       <motion.span
-        className="text-[0.58rem] font-light uppercase tracking-[0.34em] text-[rgba(247,245,242,0.45)] transition-colors duration-500 group-hover:text-[rgba(247,245,242,0.78)]"
-        animate={reduceMotion ? undefined : { opacity: [0.45, 0.85, 0.45] }}
+        className="text-[0.5rem] font-light uppercase tracking-[0.28em] text-[rgba(247,245,242,0.42)] transition-colors duration-500 group-hover:text-[rgba(247,245,242,0.72)]"
+        animate={reduceMotion ? undefined : { opacity: [0.4, 0.75, 0.4] }}
         transition={reduceMotion ? undefined : { duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
       >
         Ontdek meer
@@ -164,26 +169,26 @@ function HeroScrollCue({ reduceMotion }: { reduceMotion: boolean | null }) {
 
       <span className="relative flex flex-col items-center">
         <motion.span
-          className="hero-scroll-cue-glow pointer-events-none absolute inset-0 rounded-full blur-xl"
+          className="hero-scroll-cue-glow pointer-events-none absolute inset-0 rounded-full blur-lg"
           aria-hidden="true"
-          animate={reduceMotion ? undefined : { opacity: [0.15, 0.35, 0.15], scale: [0.9, 1.05, 0.9] }}
+          animate={reduceMotion ? undefined : { opacity: [0.1, 0.22, 0.1], scale: [0.92, 1.02, 0.92] }}
           transition={reduceMotion ? undefined : { duration: 3, repeat: Infinity, ease: "easeInOut" }}
         />
 
         <motion.span
-          className="hero-scroll-cue-frame relative flex items-center justify-center px-7 py-3.5 text-[#C8A96B]"
-          animate={reduceMotion ? undefined : { y: [0, -2, 0] }}
+          className="hero-scroll-cue-frame relative flex items-center justify-center px-5 py-2.5 text-[#23B9C4]"
+          animate={reduceMotion ? undefined : { y: [0, -1.5, 0] }}
           transition={reduceMotion ? undefined : { duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
         >
-          <ChefKnifeIcon className="h-7 w-7 transition-colors duration-500 group-hover:text-[#D4BA82]" />
+          <KitchenFaucetIcon className="h-5 w-5 transition-colors duration-500 group-hover:text-[#4FD6D9]" />
         </motion.span>
 
-        <span className="hero-scroll-track relative mt-0.5 h-9 w-px overflow-hidden">
-          <span className="absolute inset-0 bg-[linear-gradient(180deg,rgba(200,169,107,0.55)_0%,rgba(200,169,107,0.08)_100%)]" />
+        <span className="hero-scroll-track relative mt-0.5 h-6 w-px overflow-hidden">
+          <span className="absolute inset-0 bg-[linear-gradient(180deg,rgba(35,185,196,0.5)_0%,rgba(35,185,196,0.06)_100%)]" />
           {!reduceMotion ? (
             <motion.span
               aria-hidden="true"
-              className="absolute left-1/2 h-2 w-2 -translate-x-1/2 rounded-full bg-[#C8A96B] shadow-[0_0_10px_rgba(200,169,107,0.55)]"
+              className="absolute left-1/2 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-[#23B9C4] shadow-[0_0_8px_rgba(35,185,196,0.45)]"
               animate={{ top: ["-10%", "110%"], opacity: [0, 1, 0] }}
               transition={{ duration: 1.9, repeat: Infinity, ease: "easeInOut" }}
             />
@@ -191,19 +196,19 @@ function HeroScrollCue({ reduceMotion }: { reduceMotion: boolean | null }) {
         </span>
 
         <span className="relative -mt-0.5 flex flex-col items-center">
-          {[0, 1].map((i) => (
+          {[0].map((i) => (
             <motion.span
               key={i}
               aria-hidden="true"
-              className="text-[rgba(247,245,242,0.38)] transition-colors duration-500 group-hover:text-[rgba(200,169,107,0.72)]"
-              animate={reduceMotion ? undefined : { y: [0, 4, 0], opacity: [0.25 + i * 0.15, 0.85 - i * 0.2, 0.25 + i * 0.15] }}
+              className="text-[rgba(247,245,242,0.32)] transition-colors duration-500 group-hover:text-[rgba(35,185,196,0.65)]"
+              animate={reduceMotion ? undefined : { y: [0, 3, 0], opacity: [0.35, 0.7, 0.35] }}
               transition={
                 reduceMotion
                   ? undefined
-                  : { duration: 1.9, repeat: Infinity, ease: "easeInOut", delay: i * 0.14 }
+                  : { duration: 1.9, repeat: Infinity, ease: "easeInOut" }
               }
             >
-              <ChevronDown className="h-3.5 w-3.5 -my-1" strokeWidth={1.5} />
+              <ChevronDown className="h-3 w-3" strokeWidth={1.5} />
             </motion.span>
           ))}
         </span>
@@ -569,7 +574,7 @@ export function Hero() {
                 href="#showroom"
                 variant="blue"
                 shape="rounded"
-                size="md"
+                size="xl"
                 className="w-full sm:w-auto"
               >
                 Plan Showroombezoek
@@ -579,7 +584,7 @@ export function Hero() {
                 href="/brands"
                 variant="ghost"
                 shape="rounded"
-                size="md"
+                size="xl"
                 className="w-full sm:w-auto"
               >
                 Start configurator

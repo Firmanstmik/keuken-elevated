@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, House, Mail, Phone } from "@/components/ui/icons";
+import { House, Mail, Phone } from "@/components/ui/icons";
 import { PremiumPillButton } from "@/components/ui/premium-pill-button";
 import { kc } from "@/lib/kc-data";
 import { motionViewport } from "@/lib/motion";
@@ -145,10 +145,9 @@ export function FinalCta() {
           className="grid gap-6 md:grid-cols-3"
         >
           {actions.map(({ title, description, href, cta, Icon }) => (
-            <motion.a
+            <motion.div
               key={title}
               variants={reduceMotion ? undefined : fadeUp}
-              href={href}
               className={[
                 "group relative overflow-hidden rounded-[24px] border border-[rgba(35,185,196,0.15)] bg-[#FAF8F4]/95 p-8",
                 "flex flex-col justify-between min-h-[290px] shadow-[0_8px_30px_rgba(23,25,28,0.015)]",
@@ -182,15 +181,11 @@ export function FinalCta() {
               </div>
 
               <div className="relative pt-6">
-                <span
-                  className="inline-flex items-center gap-2 text-[0.72rem] font-normal tracking-[0.16em] text-[#23B9C4] transition-[gap] duration-300 group-hover:gap-3"
-                  style={{ fontFamily: "'Jost', sans-serif" }}
-                >
-                  <span className="uppercase">{cta}</span>
-                  <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
-                </span>
+                <PremiumPillButton href={href} variant="blue" size="sm">
+                  {cta}
+                </PremiumPillButton>
               </div>
-            </motion.a>
+            </motion.div>
           ))}
         </motion.div>
 
@@ -208,14 +203,9 @@ export function FinalCta() {
           >
             Premium showroom Utrecht · Persoonlijk advies sinds {kc.founded}
           </p>
-          <a
-            href="#brands"
-            className="group/footer-link flex items-center gap-2 text-[0.75rem] font-normal tracking-[0.16em] text-[#5A5A5A] transition-colors duration-300 hover:text-[#23B9C4]"
-            style={{ fontFamily: "'Jost', sans-serif" }}
-          >
-            <span className="uppercase">Bekijk onze merken</span>
-            <ArrowRight className="h-4 w-4 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/footer-link:translate-x-1.5" />
-          </a>
+          <PremiumPillButton href="#brands" variant="ghost-light" size="sm">
+            Bekijk onze merken
+          </PremiumPillButton>
         </motion.div>
       </div>
     </section>

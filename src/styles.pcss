@@ -358,17 +358,17 @@
   }
 
   .hero-scroll-cue-glow {
-    background: radial-gradient(circle, rgba(200, 169, 107, 0.28) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(35, 185, 196, 0.22) 0%, transparent 70%);
   }
 
-  .hero-scroll-track {
-    mask-image: linear-gradient(180deg, black 0%, black 70%, transparent 100%);
+  .hero-scroll-cue--compact .hero-scroll-cue-frame {
+    padding: 0.45rem 0.85rem;
   }
 
   .hero-scroll-cue:hover .hero-scroll-cue-frame,
   .hero-scroll-cue:focus-visible .hero-scroll-cue-frame {
-    border-color: rgba(200, 169, 107, 0.48);
-    background: rgba(23, 25, 28, 0.28);
+    border-color: rgba(35, 185, 196, 0.42);
+    background: rgba(23, 25, 28, 0.24);
   }
 
   .heading-1,
@@ -656,6 +656,28 @@
   .premium-pill-button--lg .premium-pill-button__icon {
     width: 0.85rem;
     height: 0.85rem;
+  }
+
+  .premium-pill-button--xl {
+    padding: 0.34rem 0.38rem 0.34rem 1.15rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    gap: 0.65rem;
+  }
+
+  .premium-pill-button--xl .premium-pill-button__badge {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .premium-pill-button--xl .premium-pill-button__icon {
+    width: 0.9rem;
+    height: 0.9rem;
+  }
+
+  .premium-pill-button--rounded.premium-pill-button--xl {
+    border-radius: 12px;
+    padding: 0.38rem 0.42rem 0.38rem 1.25rem;
   }
 
   .premium-pill-button__label {

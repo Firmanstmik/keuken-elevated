@@ -3,7 +3,7 @@ import { ArrowRight } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 
 type Variant = "blue" | "ghost" | "ghost-light";
-type Size = "sm" | "md" | "lg";
+type Size = "sm" | "md" | "lg" | "xl";
 type Shape = "pill" | "rounded";
 
 type BaseProps = {
