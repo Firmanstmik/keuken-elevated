@@ -55,82 +55,40 @@ type CollectionItem = (typeof collections)[number];
 
 function GalleryCard({ item }: { item: CollectionItem }) {
   return (
-    <article
-      className={[
-        "group relative h-full w-full cursor-default select-none overflow-hidden",
-        "rounded-[22px] bg-[#0A0C0F]",
-        "border border-[rgba(255,255,255,0.06)]",
-        "shadow-[0_12px_40px_-16px_rgba(0,0,0,0.55)]",
-        "transition-[border-color,box-shadow] duration-500 ease-out",
-        "hover:border-[rgba(35,185,196,0.22)]",
-        "hover:shadow-[0_24px_64px_-20px_rgba(0,0,0,0.65),0_0_0_1px_rgba(35,185,196,0.08)]",
-      ].join(" ")}
-      draggable={false}
-    >
-      {/* Image */}
-      <img
-        src={item.image}
-        alt={item.title}
-        loading="lazy"
-        draggable={false}
-        className="pointer-events-none absolute inset-0 h-full w-full object-cover transition-transform duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
-      />
+    <article className="collection-gallery-card group" draggable={false}>
+      <div className="collection-gallery-card__media">
+        <img src={item.image} alt={item.title} loading="lazy" draggable={false} />
+        <div className="collection-gallery-card__media-fade" aria-hidden="true" />
+        <div className="collection-gallery-card__shine" aria-hidden="true" />
 
-      {/* Top vignette */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[45%] bg-gradient-to-b from-black/70 via-black/20 to-transparent" />
-
-      {/* Bottom vignette — lightens on hover for editorial reveal */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[68%] bg-gradient-to-t from-black/92 via-black/52 to-transparent transition-opacity duration-500 group-hover:opacity-80" />
-
-      {/* TOP LABEL */}
-      <div className="absolute inset-x-0 top-0 z-10 flex items-start justify-between p-5">
-        <div>
-          <span className="block font-serif text-[1.35rem] font-light leading-none tracking-tight text-white/90">
-            {item.number}
-          </span>
-          <span className="mt-1 block text-[0.48rem] font-medium uppercase tracking-[0.18em] text-white/30">
-            {item.collectionLabel}
-          </span>
+        <div className="collection-gallery-card__badges">
+          <div>
+            <span className="collection-gallery-card__number">{item.number}</span>
+            <span
+              className="mt-1.5 block text-[0.46rem] font-medium uppercase tracking-[0.18em] text-white/35"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
+              {item.collectionLabel}
+            </span>
+          </div>
+          <span className="collection-gallery-card__tag">Geselecteerd</span>
         </div>
-        <span
-          className="text-[0.52rem] font-semibold uppercase tracking-[0.24em] text-[rgba(200,169,107,0.70)]"
-          style={{ fontFamily: "var(--font-body)" }}
-        >
-          Geselecteerd
-        </span>
       </div>
 
-      {/* BOTTOM CONTENT */}
-      <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col p-6 text-left">
-        {/* Title — lifts 2px on hover */}
-        <p className="font-serif text-[1.55rem] font-light leading-tight tracking-[-0.01em] text-white transition-transform duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5">
-          {item.title}
-        </p>
+      <div className="collection-gallery-card__body">
+        <h3 className="collection-gallery-card__title">{item.title}</h3>
+        <p className="collection-gallery-card__descriptor">{item.descriptor}</p>
+        <p className="collection-gallery-card__description">{item.description}</p>
+        <div className="collection-gallery-card__rule" aria-hidden="true" />
+      </div>
 
-        {/* Descriptor */}
-        <p
-          className="mt-2 text-[0.58rem] font-light uppercase tracking-[0.20em] text-[rgba(200,169,107,0.80)]"
-          style={{ fontFamily: "var(--font-body)" }}
-        >
-          {item.descriptor}
-        </p>
-
-        {/* Description — unfolds on hover */}
-        <p
-          className="overflow-hidden text-[rgba(255,255,255,0)] opacity-0 [max-height:0px] font-light leading-[1.65] transition-all duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:mt-3 group-hover:text-[rgba(255,255,255,0.58)] group-hover:opacity-100 group-hover:[max-height:52px] text-[0.77rem]"
-          style={{ fontFamily: "var(--font-body)" }}
-        >
-          {item.description}
-        </p>
-
-        {/* CTA arrow — slides in */}
-        <span
-          className="mt-3 inline-flex translate-y-2 items-center gap-2 text-[0.62rem] font-light uppercase tracking-[0.18em] text-[rgba(35,185,196,0)] opacity-0 transition-[transform,opacity,color] duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0 group-hover:text-[rgba(35,185,196,0.82)] group-hover:opacity-100"
-          style={{ fontFamily: "var(--font-body)" }}
-        >
+      <div className="collection-gallery-card__cta-wrap">
+        <a href="#showroom" className="collection-gallery-card__cta">
           <span>Ontdek stijl</span>
-          <ArrowRight className="h-3 w-3 transition-transform duration-500 group-hover:translate-x-1.5" />
-        </span>
+          <span className="collection-gallery-card__cta-badge" aria-hidden="true">
+            <ArrowRight className="collection-gallery-card__cta-icon" />
+          </span>
+        </a>
       </div>
     </article>
   );
@@ -140,8 +98,8 @@ function GalleryCard({ item }: { item: CollectionItem }) {
 
 const SPEED = 26; // px/s — slow, premium
 const CARD_W_PX = 300;
-const CARD_H_PX = 410;
-const CARD_GAP_PX = 20;
+const CARD_H_PX = 448;
+const CARD_GAP_PX = 24;
 
 function InfiniteGallery({ reduceMotion }: { reduceMotion: boolean | null }) {
   const trackRef = useRef<HTMLDivElement>(null);
@@ -202,7 +160,7 @@ function InfiniteGallery({ reduceMotion }: { reduceMotion: boolean | null }) {
   };
 
   return (
-    <div className="relative mt-16">
+    <div className="relative mt-16 pb-4">
       {/* Edge fades — mask-image approach so they adapt to any background */}
       <div
         className="pointer-events-none absolute inset-y-0 left-0 z-10 w-32 md:w-52"
@@ -215,7 +173,7 @@ function InfiniteGallery({ reduceMotion }: { reduceMotion: boolean | null }) {
 
       <div
         ref={wrapRef}
-        className="overflow-hidden py-6"
+        className="overflow-hidden py-8 pb-10"
         style={{
           cursor: drag.current.active ? "grabbing" : "grab",
           touchAction: "pan-y",
@@ -236,7 +194,7 @@ function InfiniteGallery({ reduceMotion }: { reduceMotion: boolean | null }) {
           {items.map((item, i) => (
             <div
               key={`${item.id}-${i}`}
-              className="shrink-0"
+              className="shrink-0 pt-2 pb-6"
               style={{ width: `${CARD_W_PX}px`, height: `${CARD_H_PX}px` }}
             >
               <GalleryCard item={item} />
