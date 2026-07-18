@@ -5,14 +5,16 @@ import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-mot
 import PaletteOutlinedIcon from "@mui/icons-material/PaletteOutlined";
 import TuneIcon from "@mui/icons-material/Tune";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
-import heroKitchen from "@/assets/hero-kitchen.jpg";
-import craftsmanship from "@/assets/craftsmanship.jpg";
-import showroomImg from "@/assets/showroom.jpg";
-import matMarble from "@/assets/mat-marble.jpg";
-import { ArrowRight } from "@/components/ui/icons";
+import matOak from "@/assets/mat-oak.jpg";
+import whyVakmanschap from "@/assets/why/why-vakmanschap.webp";
+import whyPersoonlijk from "@/assets/why/why-persoonlijk.webp";
+import whyMaterialen from "@/assets/why/why-materialen.webp";
+import whyService from "@/assets/why/why-service.webp";
+import brandsDarkBg from "@/assets/brands/brands-dark-bg.webp";
 import { PremiumPillButton } from "@/components/ui/premium-pill-button";
+import { SectionChapter } from "@/components/site/SectionChapter";
+import { kc } from "@/lib/kc-data";
 import { fadeUp, motionViewport, staggerHeader, staggerList } from "@/lib/motion";
-import matConcrete from "@/assets/mat-concrete.jpg";
 import { masterCategories } from "@/lib/master-config-data";
 import klassiekBase from "@/assets/configurator/klassiek-base.webp";
 import klassiekHotspots from "@/data/hotspots/klassiek-hotspots.json";
@@ -54,24 +56,9 @@ const klassiekHotspotPositions = transformHotspots(klassiekHotspots);
 // Update to match live Google My Business review count
 const GOOGLE_REVIEWS_COUNT = 150;
 
-const valuePillars = [
-  {
-    title: "Premium Merken",
-    description: "Alleen de meest toonaangevende keukenmerken van Europa",
-  },
-  {
-    title: "Europees Vakmanschap",
-    description: "Decennialange traditie van precisie en productie",
-  },
-  {
-    title: "Persoonlijk Advies",
-    description: "Voor elk project een eigen ontwerpadviseur",
-  },
-  {
-    title: "Luxe Materialen",
-    description: "Een zorgvuldig gekozen selectie van de mooiste oppervlakken",
-  },
-] as const;
+// Kept in sync with the "45+ jaar" claim used across Experience, Footer,
+// Testimonials, PremiumShowcase and ConsultationSection.
+const YEARS_OF_EXPERIENCE = "45+";
 
 const experienceItems = [
   {
@@ -88,39 +75,23 @@ const experienceItems = [
   },
 ] as const;
 
-function useCountUp(target: number, duration: number, started: boolean, decimals = 0): number {
-  const [count, setCount] = useState(0);
-  useEffect(() => {
-    if (!started) return;
-    let raf: number;
-    const startTime = performance.now();
-    const tick = (now: number) => {
-      const t = Math.min((now - startTime) / duration, 1);
-      const eased = 1 - Math.pow(1 - t, 3);
-      setCount(parseFloat((eased * target).toFixed(decimals)));
-      if (t < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [started, target, duration, decimals]);
-  return count;
-}
+const easing: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
-export function WhyWithUsSection() {
-  const reduceMotion = useReducedMotion();
-  const sectionRef = useRef<HTMLElement>(null);
-  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+// Accessible green scale. #8BC540 is decorative only — at 2.1:1 on white it
+// must never carry text.
+const GREEN_DEEP = "#2F5218"; // headings / seal — 8.8:1 on the cream backdrop
+const GREEN_INK = "#43701F"; // small accent text — 5.7:1 on the cream backdrop
+const GREEN_BRIGHT = "#8BC540"; // bars, glows, tints, borders
 
-  const easing: [number, number, number, number] = [0.22, 1, 0.36, 1];
-
-  const pillars = [
+const pillars = [
     {
       id: "vakmanschap",
       number: "01",
       title: "Europees Vakmanschap",
       description: "Elk detail van uw keuken wordt met uiterste precisie en vakmanschap vervaardigd door onze Europese producenten.",
-      image: craftsmanship,
+      image: whyVakmanschap,
       imageAlt: "Europees vakmanschap — precisie en kwaliteit",
+      accent: "Precisie",
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
@@ -132,8 +103,9 @@ export function WhyWithUsSection() {
       number: "02",
       title: "Persoonlijke Aanpak",
       description: "Onze adviseurs luisteren naar uw wensen en vertalen deze naar een uniek keukenontwerp dat perfect aansluit bij uw woning.",
-      image: showroomImg,
+      image: whyPersoonlijk,
       imageAlt: "Persoonlijke consultatie in de showroom",
+      accent: "Begeleiding",
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
@@ -145,8 +117,9 @@ export function WhyWithUsSection() {
       number: "03",
       title: "Luxe & Duurzame Materialen",
       description: "Alleen geselecteerde premium materialen — van Carrara marmer tot gerookt eiken — worden gebruikt voor uw keuken.",
-      image: matMarble,
+      image: whyMaterialen,
       imageAlt: "Premium materialen — marmer en eiken afwerkingen",
+      accent: "Afwerking",
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <polygon points="6 3 18 3 22 9 12 22 2 9 6 3" />
@@ -160,8 +133,9 @@ export function WhyWithUsSection() {
       number: "04",
       title: "Premium Service & Montage",
       description: "Van 3D-ontwerp tot vakkundige montage bij u thuis: wij begeleiden en ontzorgen u volledig door het gehele proces.",
-      image: heroKitchen,
-      imageAlt: "Premium installatie en service",
+      image: whyService,
+      imageAlt: "Vakkundig gemonteerde keuken bij de klant thuis",
+      accent: "Ontzorging",
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
@@ -171,388 +145,514 @@ export function WhyWithUsSection() {
         </svg>
       ),
     },
-  ] as const;
+] as const;
 
-  const activePillar = hoveredCard ? pillars.find((p) => p.id === hoveredCard) ?? null : null;
-  const displayImage = activePillar ? activePillar.image : heroKitchen;
-  const displayAlt = activePillar ? activePillar.imageAlt : "Luxe designkeuken op maat";
+const materialSwatches = [
+  { label: "Carrara", image: whyMaterialen },
+  { label: "Gerookt eiken", image: matOak },
+  { label: "Showroom", image: whyService },
+] as const;
+
+export function WhyWithUsSection() {
+  const reduceMotion = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // `hoveredId` previews on pointer, `pinnedId` survives pointer-out and is what
+  // click, tap and keyboard focus set — so the panel works without a mouse.
+  const [pinnedId, setPinnedId] = useState<string>(pillars[0].id);
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
+
+  const activeId = hoveredId ?? pinnedId;
+  const activePillar = pillars.find((p) => p.id === activeId) ?? pillars[0];
+  const activeIndex = pillars.findIndex((p) => p.id === activeId);
+
+  // Warm the cache before the section lands, otherwise the first hover on each
+  // card shows a load flash instead of a crossfade.
+  const nearViewport = useInView(sectionRef, { once: true, margin: "400px" });
+  useEffect(() => {
+    if (!nearViewport) return;
+    for (const pillar of pillars) {
+      const img = new Image();
+      img.src = pillar.image;
+    }
+  }, [nearViewport]);
 
   return (
     <section
       ref={sectionRef}
       id="why-with-us"
-      className="relative overflow-hidden py-20 sm:py-24 lg:py-28"
+      className="why-scene section-shell relative overflow-hidden"
     >
-      {/* Background */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0"
-        style={{ backgroundImage: `url(${matConcrete})`, backgroundSize: "cover", backgroundPosition: "center" }} />
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[rgba(253,252,249,0.94)]" />
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(139,197,64,0.04),transparent_55%)]" />
+      {/* Atmospheric layers */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage: `url(${whyService})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center 40%",
+          opacity: 0.14,
+          filter: "blur(2px) saturate(0.75) brightness(0.95)",
+        }}
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(252,251,248,0.97) 0%, rgba(246,243,236,0.92) 48%, rgba(250,248,244,0.97) 100%)",
+        }}
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(70% 50% at 12% 20%, rgba(139,197,64,0.08), transparent 60%), radial-gradient(55% 45% at 88% 70%, rgba(200,169,107,0.07), transparent 65%)",
+        }}
+      />
 
-      <div className="relative mx-auto max-w-[1440px] px-5 sm:px-8 md:px-12 lg:px-16">
+      <div className="site-container relative">
+        <SectionChapter index={2} label="Waarom wij" />
 
         {/* ── Header ── */}
-        <div className="mb-14">
+        <div className="mb-12 xl:mb-16">
           <motion.div
             initial={reduceMotion ? false : { opacity: 0, y: -10 }}
             whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, ease: easing }}
+            transition={{ duration: 0.45, ease: easing }}
             viewport={motionViewport}
-            className="mb-4 inline-flex items-center gap-3"
+            className="mb-5 inline-flex items-center gap-3"
           >
-            <span className="h-px w-8 bg-gradient-to-r from-transparent to-[#C8A96B]/60" />
-            <span className="text-[0.62rem] font-bold uppercase tracking-[0.28em] text-[#C8A96B]"
-              style={{ fontFamily: "var(--font-body)" }}>
+            <span className="h-px w-10 bg-gradient-to-r from-transparent to-[rgba(200,169,107,0.55)]" />
+            <span
+              className="text-[0.68rem] font-semibold uppercase tracking-[0.26em]"
+              style={{ fontFamily: "var(--font-body)", color: "#8A7348" }}
+            >
               Onze belofte
             </span>
           </motion.div>
 
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-            <motion.h2
-              initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-              whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, ease: easing, delay: 0.1 }}
-              viewport={motionViewport}
-              className="max-w-[650px] font-serif text-[clamp(2.4rem,5.5vw,3.6rem)] font-medium leading-[1.1] tracking-[-0.02em]"
-              style={{ color: "#2F5218" }}
-            >
-              Waarom Kiest U{" "}
-              <em className="italic" style={{ color: "#8BC540" }}>Voor Ons?</em>
-            </motion.h2>
-
-            <motion.p
-              initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-              whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, ease: easing, delay: 0.22 }}
-              viewport={motionViewport}
-              className="max-w-[420px] text-[0.925rem] font-light leading-[1.75] text-[#555555]"
-              style={{ fontFamily: "var(--font-body)" }}
-            >
-              Bij Keuken Centrum Utrecht combineren we Europees vakmanschap met
-              modern design op maat. Wij geloven dat het ontwerpproces net zo
-              verfijnd moet aanvoelen als het uiteindelijke resultaat.
-            </motion.p>
-          </div>
+          <motion.h2
+            initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+            whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: easing, delay: 0.08 }}
+            viewport={motionViewport}
+            className="max-w-[640px] font-serif text-[clamp(2.35rem,3.9vw,3.25rem)] font-medium leading-[1.12] tracking-[-0.02em]"
+            style={{ color: GREEN_DEEP }}
+          >
+            Waarom Kiest U{" "}
+            <em className="italic" style={{ color: GREEN_INK }}>
+              Voor Ons?
+            </em>
+          </motion.h2>
         </div>
 
-        {/* ── MAIN GRID ── */}
-        <div className="grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 lg:items-start">
+        {/* ── MAIN STAGE ── */}
+        <div className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-12 xl:gap-16 lg:items-start">
 
           {/* ─── LEFT: Feature cards ─── */}
           <div>
-            <div className="mb-7 flex items-center gap-3">
-              <span className="text-[0.65rem] font-semibold uppercase tracking-[0.26em] text-[#2F5218]"
-                style={{ fontFamily: "var(--font-body)" }}>
-                Wat Wij Bieden
-              </span>
-              <span className="h-px flex-1 max-w-[56px] bg-[#8BC540]/30" />
-            </div>
+            <p
+              className="mb-4 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-[#8A8A8A]"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
+              Wat wij bieden
+            </p>
 
-            <div className="flex flex-col gap-3.5">
+            <div className="flex flex-col gap-3">
               {pillars.map((pillar, i) => {
-                const isActive = hoveredCard === pillar.id;
+                const isActive = activeId === pillar.id;
                 return (
-                  <motion.div
+                  <motion.button
                     key={pillar.id}
+                    type="button"
+                    aria-pressed={isActive}
                     initial={reduceMotion ? false : { opacity: 0, y: 18 }}
                     whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-                    transition={{ duration: 0.52, ease: easing, delay: i * 0.09 }}
+                    transition={{ duration: 0.52, ease: easing, delay: i * 0.08 }}
                     viewport={motionViewport}
-                    onMouseEnter={() => setHoveredCard(pillar.id)}
-                    onMouseLeave={() => setHoveredCard(null)}
-                    className="group relative flex cursor-default items-start gap-5 overflow-hidden rounded-[22px] border bg-white px-6 py-5"
+                    onMouseEnter={() => setHoveredId(pillar.id)}
+                    onMouseLeave={() => setHoveredId(null)}
+                    onFocus={() => setPinnedId(pillar.id)}
+                    onClick={() => setPinnedId(pillar.id)}
+                    className="group relative flex w-full flex-col overflow-hidden rounded-[20px] border text-left normal-case outline-none focus-visible:ring-2 focus-visible:ring-[rgba(139,197,64,0.7)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FDFCF9]"
                     style={{
-                      borderColor: isActive ? "rgba(139,197,64,0.30)" : "rgba(0,0,0,0.05)",
+                      textTransform: "none",
+                      letterSpacing: "normal",
+                      fontSize: "inherit",
+                      fontWeight: "inherit",
+                      borderColor: isActive ? "rgba(139,197,64,0.35)" : "rgba(23,25,28,0.06)",
+                      background: isActive
+                        ? "linear-gradient(135deg, #FFFFFF 0%, #F7FAF1 100%)"
+                        : "rgba(255,255,255,0.78)",
                       boxShadow: isActive
-                        ? "0 20px 56px -16px rgba(139,197,64,0.16), 0 4px 16px -4px rgba(0,0,0,0.06)"
-                        : "0 2px 16px -6px rgba(0,0,0,0.04)",
-                      transform: isActive ? "translateY(-3px)" : "translateY(0)",
-                      transition: "border-color 500ms, box-shadow 500ms, transform 500ms cubic-bezier(0.22,1,0.36,1)",
+                        ? "0 22px 50px -20px rgba(47,82,24,0.18), 0 0 0 1px rgba(139,197,64,0.08)"
+                        : "0 8px 28px -18px rgba(23,25,28,0.1)",
+                      transform: isActive ? "translateY(-2px)" : "translateY(0)",
+                      transition: "border-color 450ms, box-shadow 450ms, background 450ms, transform 450ms cubic-bezier(0.22,1,0.36,1)",
                     }}
                   >
-                    {/* Large editorial background number */}
-                    <span
-                      aria-hidden="true"
-                      className="pointer-events-none absolute right-5 top-1/2 -translate-y-1/2 select-none font-serif font-bold leading-none tracking-tighter"
-                      style={{
-                        fontSize: "5.5rem",
-                        color: "rgba(47,82,24,0.042)",
-                        transition: "color 500ms",
-                      }}
-                    >
-                      {pillar.number}
-                    </span>
-
-                    {/* Left accent bar */}
-                    <div
-                      className="absolute bottom-3 left-0 top-3 w-[3px] rounded-r-full bg-[#8BC540]"
-                      style={{
-                        opacity: isActive ? 1 : 0,
-                        transform: isActive ? "scaleY(1)" : "scaleY(0.4)",
-                        transition: "opacity 500ms, transform 500ms cubic-bezier(0.22,1,0.36,1)",
-                        transformOrigin: "center",
-                      }}
-                    />
-
-                    {/* Icon — uses currentColor, NEVER disappears */}
-                    <div
-                      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[13px] border text-[#8BC540]"
-                      style={{
-                        borderColor: isActive ? "rgba(139,197,64,0.50)" : "rgba(139,197,64,0.18)",
-                        backgroundColor: isActive ? "rgba(139,197,64,0.14)" : "rgba(139,197,64,0.07)",
-                        transform: isActive ? "scale(1.08)" : "scale(1)",
-                        boxShadow: isActive ? "0 4px 18px rgba(139,197,64,0.22)" : "none",
-                        transition: "border-color 500ms, background-color 500ms, transform 500ms cubic-bezier(0.22,1,0.36,1), box-shadow 500ms",
-                      }}
-                    >
-                      {pillar.icon}
-                    </div>
-
-                    {/* Text */}
-                    <div className="relative z-10 min-w-0 flex-1">
-                      <p
-                        className="text-[0.95rem] font-semibold tracking-[-0.005em]"
+                    <span className="flex w-full">
+                      {/* Mini preview strip */}
+                      <span
+                        aria-hidden="true"
+                        className="relative hidden w-[72px] shrink-0 overflow-hidden sm:block"
                         style={{
-                          color: isActive ? "#8BC540" : "#2F5218",
-                          transition: "color 500ms",
-                          fontFamily: "var(--font-heading)",
+                          opacity: isActive ? 1 : 0.55,
+                          transition: "opacity 450ms",
                         }}
                       >
-                        {pillar.title}
-                      </p>
-                      <p className="mt-1.5 text-[0.82rem] font-light leading-[1.65] text-[#666666]"
-                        style={{ fontFamily: "var(--font-body)" }}>
-                        {pillar.description}
-                      </p>
-                    </div>
-                  </motion.div>
+                        <img
+                          src={pillar.image}
+                          alt=""
+                          className="absolute inset-0 h-full w-full object-cover"
+                          loading="lazy"
+                          draggable={false}
+                        />
+                        <span
+                          className="absolute inset-0"
+                          style={{
+                            background: isActive
+                              ? "linear-gradient(90deg, transparent 40%, rgba(255,255,255,0.15))"
+                              : "rgba(47,82,24,0.18)",
+                          }}
+                        />
+                      </span>
+
+                      <span className="relative flex min-w-0 flex-1 items-start gap-4 px-5 py-5">
+                        {/* Number + accent bar */}
+                        <span className="flex shrink-0 flex-col items-center gap-2 pt-0.5">
+                          <span
+                            className="font-serif text-[0.95rem] font-light leading-none tracking-tight"
+                            style={{ color: isActive ? GREEN_INK : "rgba(47,82,24,0.35)" }}
+                          >
+                            {pillar.number}
+                          </span>
+                          <span
+                            className="w-[2px] rounded-full"
+                            style={{
+                              height: isActive ? 28 : 14,
+                              backgroundColor: GREEN_BRIGHT,
+                              opacity: isActive ? 1 : 0.25,
+                              transition: "height 450ms cubic-bezier(0.22,1,0.36,1), opacity 450ms",
+                            }}
+                          />
+                        </span>
+
+                        <span className="min-w-0 flex-1">
+                          <span className="flex items-center gap-2.5">
+                            <span
+                              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[11px] border"
+                              style={{
+                                color: GREEN_INK,
+                                borderColor: isActive ? "rgba(139,197,64,0.45)" : "rgba(139,197,64,0.16)",
+                                backgroundColor: isActive ? "rgba(139,197,64,0.12)" : "rgba(139,197,64,0.05)",
+                                transform: isActive ? "scale(1.05)" : "scale(1)",
+                                transition: "border-color 450ms, background-color 450ms, transform 450ms",
+                              }}
+                            >
+                              {pillar.icon}
+                            </span>
+                            <span className="min-w-0">
+                              <span
+                                className="block text-[0.72rem] font-medium uppercase tracking-[0.16em]"
+                                style={{
+                                  color: isActive ? "#8A7348" : "rgba(138,115,72,0.55)",
+                                  fontFamily: "var(--font-body)",
+                                  transition: "color 450ms",
+                                }}
+                              >
+                                {pillar.accent}
+                              </span>
+                              <span
+                                className="mt-0.5 block text-[0.98rem] font-semibold tracking-[-0.01em]"
+                                style={{ color: GREEN_DEEP, fontFamily: "var(--font-heading)" }}
+                              >
+                                {pillar.title}
+                              </span>
+                            </span>
+                          </span>
+                          <span
+                            className="mt-2.5 block text-[0.82rem] font-light leading-[1.65] text-[#666666]"
+                            style={{ fontFamily: "var(--font-body)" }}
+                          >
+                            {pillar.description}
+                          </span>
+                        </span>
+                      </span>
+                    </span>
+
+                    {/* Mobile inline image */}
+                    <motion.span
+                      aria-hidden="true"
+                      className="relative z-10 block w-full overflow-hidden lg:hidden"
+                      initial={false}
+                      animate={{
+                        height: isActive ? "auto" : 0,
+                        opacity: isActive ? 1 : 0,
+                      }}
+                      transition={reduceMotion ? { duration: 0 } : { duration: 0.5, ease: easing }}
+                    >
+                      <span className="block px-4 pb-4">
+                        <img
+                          src={pillar.image}
+                          alt=""
+                          loading="lazy"
+                          draggable={false}
+                          className="h-[180px] w-full rounded-[14px] object-cover"
+                        />
+                      </span>
+                    </motion.span>
+                  </motion.button>
                 );
               })}
             </div>
 
-            {/* CTA */}
+            {/* CTA + proof */}
             <motion.div
               initial={reduceMotion ? false : { opacity: 0, y: 16 }}
               whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, ease: easing, delay: 0.45 }}
+              transition={{ duration: 0.45, ease: easing, delay: 0.4 }}
               viewport={motionViewport}
               className="mt-8"
             >
-              <a
+              <PremiumPillButton
                 href="/consultation"
-                className="group relative inline-flex h-[54px] min-w-[240px] items-center justify-center gap-2.5 overflow-hidden rounded-[14px] bg-[#8BC540] px-8 text-[0.8rem] font-medium uppercase tracking-[0.14em] text-white shadow-[0_12px_28px_-8px_rgba(139,197,64,0.35)] transition-all duration-400 ease-out hover:bg-[#2F5218] hover:shadow-[0_16px_36px_-6px_rgba(47,82,24,0.40)] active:scale-[0.98]"
-                style={{ fontFamily: "var(--font-body)" }}
+                variant="blue"
+                shape="rounded"
+                size="xl"
               >
-                <span>Plan uw showroombezoek</span>
-                <ArrowRight className="h-4 w-4 transition-transform duration-400 ease-out group-hover:translate-x-1" />
-                <div aria-hidden="true"
-                  className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:translate-x-full" />
-              </a>
+                Plan uw showroombezoek
+              </PremiumPillButton>
+
+              <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3">
+                <img
+                  src={kc.cbwLogo}
+                  alt="CBW erkend"
+                  className="h-9 w-auto opacity-45"
+                  loading="lazy"
+                />
+                <span aria-hidden="true" className="h-4 w-px bg-black/10" />
+                <span
+                  className="text-[0.72rem] font-light text-[#555555]"
+                  style={{ fontFamily: "var(--font-body)" }}
+                >
+                  <span className="font-semibold" style={{ color: GREEN_INK }}>
+                    {GOOGLE_REVIEWS_COUNT}+
+                  </span>{" "}
+                  Google reviews
+                </span>
+                <span aria-hidden="true" className="h-4 w-px bg-black/10" />
+                <span
+                  className="text-[0.72rem] font-light text-[#555555]"
+                  style={{ fontFamily: "var(--font-body)" }}
+                >
+                  Showroom in Utrecht sinds{" "}
+                  <span className="font-semibold" style={{ color: GREEN_INK }}>
+                    {kc.founded}
+                  </span>
+                </span>
+              </div>
             </motion.div>
           </div>
 
-          {/* ─── RIGHT: Interactive image panel ─── */}
+          {/* ─── RIGHT: Cinematic image stage ─── */}
           <div className="hidden lg:block">
             <div className="sticky top-28">
-              {/* Outer wrapper — no overflow-hidden so floaters can extend outside */}
               <div className="relative">
+                {/* Soft glow behind frame */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -inset-6 rounded-[36px]"
+                  style={{
+                    background:
+                      "radial-gradient(ellipse at 50% 40%, rgba(139,197,64,0.14), transparent 70%)",
+                    filter: "blur(20px)",
+                  }}
+                />
 
-                {/* Main image frame */}
                 <motion.div
-                  initial={reduceMotion ? false : { opacity: 0, scale: 0.96 }}
+                  initial={reduceMotion ? false : { opacity: 0, scale: 0.97 }}
                   whileInView={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.7, ease: easing }}
+                  transition={{ duration: 0.75, ease: easing }}
                   viewport={motionViewport}
-                  className="relative overflow-hidden rounded-[28px] border border-black/[0.06] shadow-[0_24px_64px_-20px_rgba(0,0,0,0.15)]"
-                  style={{ aspectRatio: "4/5" }}
+                  className="relative rounded-[26px] p-[9px]"
+                  style={{
+                    background:
+                      "linear-gradient(150deg, #FCFAF5 0%, #F1E9D8 52%, #E7DAC0 100%)",
+                    boxShadow:
+                      "0 40px 90px -30px rgba(18,22,12,0.5), 0 0 0 1px rgba(200,169,107,0.35), inset 0 1px 0 rgba(255,255,255,0.9)",
+                  }}
                 >
-                  {/* Crossfade images */}
-                  <AnimatePresence mode="sync">
-                    <motion.img
-                      key={displayImage as string}
-                      src={displayImage}
-                      alt={displayAlt}
-                      loading="eager"
-                      draggable={false}
-                      className="absolute inset-0 h-full w-full object-cover"
-                      initial={{ opacity: 0, scale: 1.04 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.98 }}
-                      transition={{ duration: 0.65, ease: easing }}
-                    />
-                  </AnimatePresence>
+                  {/* Inner gold hairline frame */}
+                  <div
+                    className="relative overflow-hidden rounded-[18px]"
+                    style={{
+                      aspectRatio: "10/9",
+                      boxShadow: "inset 0 0 0 1px rgba(200,169,107,0.45)",
+                    }}
+                  >
+                    <AnimatePresence mode="sync">
+                      <motion.img
+                        key={activePillar.id}
+                        src={activePillar.image}
+                        alt={activePillar.imageAlt}
+                        loading="lazy"
+                        draggable={false}
+                        className="absolute inset-0 h-full w-full object-cover"
+                        initial={{ opacity: 0, scale: 1.06 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 1.02 }}
+                        transition={{ duration: 0.75, ease: easing }}
+                      />
+                    </AnimatePresence>
 
-                  {/* Depth gradient */}
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#061B24]/78 via-[#061B24]/12 to-transparent" />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[rgba(12,16,10,0.85)] via-[rgba(12,16,10,0.15)] to-transparent" />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[rgba(139,197,64,0.1)] via-transparent to-transparent" />
 
-                  {/* Active label at bottom — changes on hover */}
-                  <div className="absolute inset-x-0 bottom-0 p-7">
-                    <AnimatePresence mode="wait">
-                      {activePillar ? (
+                    {/* Corner accents — editorial gallery frame */}
+                    <span aria-hidden="true" className="pointer-events-none absolute left-3 top-3 h-5 w-5 border-l border-t border-white/45" />
+                    <span aria-hidden="true" className="pointer-events-none absolute right-3 top-3 h-5 w-5 border-r border-t border-white/45" />
+                    <span aria-hidden="true" className="pointer-events-none absolute bottom-3 left-3 h-5 w-5 border-b border-l border-white/30" />
+                    <span aria-hidden="true" className="pointer-events-none absolute bottom-3 right-3 h-5 w-5 border-b border-r border-white/30" />
+
+                    {/* Top meta */}
+                    <div className="absolute left-5 top-5 right-5 flex items-start justify-between">
+                      <span
+                        className="rounded-full border border-white/20 bg-black/30 px-3.5 py-1.5 text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-white/90 backdrop-blur-md"
+                        style={{ fontFamily: "var(--font-body)" }}
+                      >
+                        {activePillar.accent}
+                      </span>
+                      <span className="font-serif text-[0.95rem] font-light tracking-tight text-white/70">
+                        {activePillar.number}
+                        <span className="text-white/35"> / 0{pillars.length}</span>
+                      </span>
+                    </div>
+
+                    {/* Bottom caption */}
+                    <div className="absolute inset-x-0 bottom-0 p-6 xl:p-7">
+                      <AnimatePresence mode="wait">
                         <motion.div
                           key={activePillar.id}
-                          initial={{ opacity: 0, y: 10 }}
+                          initial={{ opacity: 0, y: 12 }}
                           animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -6 }}
-                          transition={{ duration: 0.35, ease: easing }}
+                          exit={{ opacity: 0, y: -8 }}
+                          transition={{ duration: 0.45, ease: easing }}
                         >
-                          <p className="text-[0.56rem] font-semibold uppercase tracking-[0.30em] text-[#C8A96B]"
-                            style={{ fontFamily: "var(--font-body)" }}>
-                            {activePillar.number} · Geselecteerd
+                          <p
+                            className="text-[0.62rem] font-semibold uppercase tracking-[0.28em] text-[#D8BE8A]"
+                            style={{ fontFamily: "var(--font-body)" }}
+                          >
+                            Kenmerk {activeIndex + 1}
                           </p>
-                          <p className="mt-2 font-serif text-[1.5rem] font-light leading-tight text-white">
+                          <p className="mt-2 max-w-[18rem] font-serif text-[1.5rem] font-light leading-tight text-white">
                             {activePillar.title}
                           </p>
                         </motion.div>
-                      ) : (
-                        <motion.div
-                          key="default-label"
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -6 }}
-                          transition={{ duration: 0.35, ease: easing }}
-                        >
-                          <p className="text-[0.56rem] font-semibold uppercase tracking-[0.30em] text-[#C8A96B]/60"
-                            style={{ fontFamily: "var(--font-body)" }}>
-                            Hover over een kenmerk
-                          </p>
-                          <p className="mt-2 font-serif text-[1.5rem] font-light leading-tight text-white/70">
-                            Uw droomkeuken op maat
-                          </p>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+                      </AnimatePresence>
+
+                      <div aria-hidden="true" className="mt-5 flex gap-1.5">
+                        {pillars.map((pillar) => (
+                          <span
+                            key={pillar.id}
+                            className="h-[2.5px] flex-1 overflow-hidden rounded-full bg-white/20"
+                          >
+                            <span
+                              className="block h-full origin-left rounded-full"
+                              style={{
+                                background: "linear-gradient(90deg, #A8D95A, #8BC540)",
+                                transform: activeId === pillar.id ? "scaleX(1)" : "scaleX(0)",
+                                transition: "transform 550ms cubic-bezier(0.22,1,0.36,1)",
+                              }}
+                            />
+                          </span>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </motion.div>
 
-                {/* ── Premium circular experience badge ── */}
+                {/* Experience seal */}
                 <motion.div
-                  initial={reduceMotion ? false : { opacity: 0, scale: 0.72 }}
+                  initial={reduceMotion ? false : { opacity: 0, scale: 0.78 }}
                   whileInView={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.7, ease: easing, delay: 0.35 }}
+                  transition={{ duration: 0.7, ease: easing, delay: 0.28 }}
                   viewport={motionViewport}
-                  className="absolute -right-9 -top-9 z-20"
+                  className="absolute -right-6 -top-7 z-20 xl:-right-8 xl:-top-9"
                 >
-                  {/* Subtle float loop */}
                   <motion.div
-                    animate={reduceMotion ? {} : { y: [0, -5, 0] }}
-                    transition={{ duration: 5.5, ease: "easeInOut", repeat: Infinity }}
+                    animate={reduceMotion ? {} : { y: [0, -6, 0] }}
+                    transition={{ duration: 6, ease: "easeInOut", repeat: Infinity }}
                   >
-                    {/* Outermost thin decorative ring */}
                     <div
+                      className="relative flex h-[118px] w-[118px] flex-col items-center justify-center rounded-full xl:h-[128px] xl:w-[128px]"
                       style={{
-                        width: 138,
-                        height: 138,
-                        borderRadius: "50%",
-                        border: "1px solid rgba(200,169,107,0.38)",
-                        padding: "6px",
-                        boxShadow: [
-                          "0 24px 64px rgba(0,0,0,0.13)",
-                          "0 8px 24px rgba(0,0,0,0.08)",
-                          "0 0 0 3px rgba(251,248,242,0.85)",
-                        ].join(", "),
+                        background:
+                          "linear-gradient(148deg, #FBF8F2 0%, #F3EBDA 52%, #E8D9BE 100%)",
+                        border: "1px solid rgba(200,169,107,0.4)",
+                        boxShadow:
+                          "0 22px 50px rgba(0,0,0,0.16), 0 0 0 4px rgba(252,251,248,0.9), inset 0 1px 0 rgba(255,255,255,0.9)",
                       }}
                     >
-                      {/* Inner content seal */}
                       <div
-                        className="relative flex h-full w-full flex-col items-center justify-center rounded-full"
+                        aria-hidden="true"
+                        className="pointer-events-none absolute inset-[7px] rounded-full border border-[rgba(200,169,107,0.28)]"
+                      />
+                      <span
+                        className="relative font-serif text-[2.55rem] font-light leading-none tracking-tight xl:text-[2.75rem]"
+                        style={{ color: GREEN_DEEP }}
+                      >
+                        {YEARS_OF_EXPERIENCE}
+                      </span>
+                      <span
+                        className="relative mt-1.5 text-[0.58rem] font-semibold uppercase"
                         style={{
-                          background: "linear-gradient(148deg, #FBF8F2 0%, #F4ECDA 55%, #EDE0C8 100%)",
-                          border: "1px solid rgba(200,169,107,0.30)",
-                          boxShadow: [
-                            "inset 0 1px 0 rgba(255,255,255,0.92)",
-                            "inset 0 -2px 8px rgba(180,130,60,0.06)",
-                          ].join(", "),
-                          overflow: "hidden",
+                          letterSpacing: "0.28em",
+                          color: GREEN_INK,
+                          fontFamily: "var(--font-body)",
                         }}
                       >
-                        {/* Glass highlight arc — top */}
-                        <div
-                          aria-hidden="true"
-                          className="pointer-events-none absolute left-3 right-3 top-2.5 h-7 rounded-full"
-                          style={{
-                            background: "linear-gradient(180deg, rgba(255,255,255,0.75) 0%, transparent 100%)",
-                            opacity: 0.60,
-                          }}
-                        />
-
-                        {/* Decorative hairline above number */}
-                        <div
-                          aria-hidden="true"
-                          className="pointer-events-none absolute left-1/2 top-[26px] h-px w-[38%] -translate-x-1/2"
-                          style={{
-                            background: "linear-gradient(90deg, transparent, rgba(200,169,107,0.45), transparent)",
-                          }}
-                        />
-
-                        {/* Main number */}
-                        <span
-                          className="relative font-serif text-[2.85rem] font-light leading-none tracking-tight"
-                          style={{ color: "#2F5218" }}
-                        >
-                          15+
-                        </span>
-
-                        {/* Label */}
-                        <span
-                          className="relative mt-1.5 text-[0.44rem] font-semibold uppercase"
-                          style={{
-                            letterSpacing: "0.30em",
-                            color: "#B08040",
-                            fontFamily: "var(--font-body)",
-                          }}
-                        >
-                          Jaar Ervaring
-                        </span>
-
-                        {/* Decorative hairline below label */}
-                        <div
-                          aria-hidden="true"
-                          className="pointer-events-none absolute bottom-[22px] left-1/2 h-px w-[38%] -translate-x-1/2"
-                          style={{
-                            background: "linear-gradient(90deg, transparent, rgba(200,169,107,0.35), transparent)",
-                          }}
-                        />
-                      </div>
+                        Jaar Ervaring
+                      </span>
                     </div>
                   </motion.div>
                 </motion.div>
 
-                {/* ── Craftsmanship thumbnail + connector ── */}
+                {/* Material swatches */}
                 <motion.div
-                  initial={reduceMotion ? false : { opacity: 0, scale: 0.9 }}
-                  whileInView={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.55, ease: easing, delay: 0.42 }}
+                  initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+                  whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+                  transition={{ duration: 0.55, ease: easing, delay: 0.35 }}
                   viewport={motionViewport}
-                  className="absolute -bottom-11 right-5 z-10 hidden sm:block"
+                  className="mt-5 flex gap-3"
                 >
-                  {/* Vertical connector line */}
-                  <div className="absolute -top-6 left-1/2 h-6 w-px -translate-x-1/2 bg-gradient-to-b from-[#8BC540]/40 to-[#8BC540]/15" />
-                  {/* Small dot at top of line */}
-                  <div className="absolute -top-7 left-1/2 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-[#8BC540]/40" />
-
-                  {/* Thumbnail */}
-                  <div className="relative h-[84px] w-[110px] overflow-hidden rounded-[14px] border border-white shadow-[0_8px_28px_rgba(0,0,0,0.16)]">
-                    <img
-                      src={craftsmanship}
-                      alt="Vakmanschap detail"
-                      className="h-full w-full object-cover"
-                      loading="lazy"
-                    />
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 to-transparent" />
-                    <div className="absolute bottom-2 left-2.5">
-                      <p className="text-[0.46rem] font-semibold uppercase tracking-[0.18em] text-white/90"
-                        style={{ fontFamily: "var(--font-body)" }}>
-                        Vakmanschap
+                  {materialSwatches.map((swatch) => (
+                    <div
+                      key={swatch.label}
+                      className="group/swatch relative flex-1 overflow-hidden rounded-[14px] border border-black/[0.06] shadow-[0_10px_28px_-16px_rgba(0,0,0,0.25)]"
+                      style={{ aspectRatio: "5/3.2" }}
+                    >
+                      <img
+                        src={swatch.image}
+                        alt=""
+                        className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/swatch:scale-105"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
+                      <p
+                        className="absolute bottom-2.5 left-3 text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-white"
+                        style={{ fontFamily: "var(--font-body)" }}
+                      >
+                        {swatch.label}
                       </p>
                     </div>
-                  </div>
+                  ))}
                 </motion.div>
-
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>
@@ -698,25 +798,25 @@ function HotspotTooltip({
         <motion.path
           d={pathD}
           fill="none"
-          stroke="#D4AF37"
+          stroke="#C8A96B"
           strokeWidth="1.2"
           strokeOpacity="0.55"
           strokeLinecap="round"
           initial={{ pathLength: 0 }}
           animate={{ pathLength: 1 }}
           exit={{ pathLength: 0 }}
-          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
         />
         <motion.circle
           cx={dotCX}
           cy={dotCY}
           r="1.5"
-          fill="#D4AF37"
+          fill="#C8A96B"
           fillOpacity="0.6"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           exit={{ scale: 0 }}
-          transition={{ delay: 0.15, duration: 0.2 }}
+          transition={{ delay: 0.15, duration: 0.35 }}
         />
       </svg>
 
@@ -730,10 +830,10 @@ function HotspotTooltip({
           initial={{ opacity: 0, y: placement === "top" ? 8 : (placement === "bottom" ? -8 : 0), x: placement === "left" ? 8 : (placement === "right" ? -8 : 0) }}
           animate={{ opacity: 1, y: 0, x: 0 }}
           exit={{ opacity: 0, y: placement === "top" ? 8 : (placement === "bottom" ? -8 : 0), x: placement === "left" ? 8 : (placement === "right" ? -8 : 0) }}
-          transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="flex flex-col">
-            <span className="block text-[8px] font-semibold uppercase tracking-[0.24em] text-[#D4AF37] mb-1">
+            <span className="block text-[10px] font-semibold uppercase tracking-[0.24em] text-[#C8A96B] mb-1">
               CONFIGURATIE
             </span>
             <h4 className="font-serif text-[12px] font-semibold leading-snug text-white tracking-[-0.01em] uppercase">
@@ -792,27 +892,36 @@ export function ShowroomJourneySection() {
   const currentCategory = masterCategories.find((c) => c.id === activeHotspotId);
 
   return (
-    <section className="relative overflow-hidden py-20 md:py-28">
-      {/* Concrete texture background */}
+    <section className="section-shell relative overflow-hidden" style={{ background: "linear-gradient(180deg, #0D0F0A 0%, #12140E 52%, #0C0E09 100%)" }}>
+      {/* Cinematic showroom backdrop — in harmony with the partner section */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
         style={{
-          backgroundImage: `url(${matConcrete})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
+          backgroundImage: `url(${brandsDarkBg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center 55%",
+          opacity: 0.5,
         }}
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[rgba(255,255,255,0.90)]"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(13,15,10,0.9) 0%, rgba(13,15,10,0.7) 45%, rgba(12,14,9,0.92) 100%)",
+        }}
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(200,169,107,0.05),transparent_45%)]"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(60% 45% at 20% 15%, rgba(139,197,64,0.08), transparent 60%), radial-gradient(55% 45% at 85% 80%, rgba(200,169,107,0.07), transparent 65%)",
+        }}
       />
       <div className="site-container relative">
+        <SectionChapter index={4} label="Digitale beleving" light />
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.92fr)] lg:items-center">
           <div className="relative">
             {/* The Badge */}
@@ -834,7 +943,7 @@ export function ShowroomJourneySection() {
               whileInView={reduceMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
               viewport={motionViewport}
-              className="relative aspect-[4/3] w-full overflow-hidden rounded-[28px] md:rounded-[36px] border border-[#C8A96B]/30 bg-[#111111] shadow-[0_32px_64px_-12px_rgba(0,0,0,0.14)] flex flex-col"
+              className="relative aspect-[4/3] w-full overflow-hidden rounded-[28px] md:rounded-[28px] border border-[#C8A96B]/30 bg-[#111111] shadow-[0_32px_64px_-12px_rgba(0,0,0,0.14)] flex flex-col"
             >
               {/* Fake Header */}
               <div className="flex h-8 md:h-10 shrink-0 items-center justify-between border-b border-white/10 px-4">
@@ -843,7 +952,7 @@ export function ShowroomJourneySection() {
                   <div className="h-2 w-2 rounded-full bg-white/20" />
                   <div className="h-2 w-2 rounded-full bg-white/20" />
                 </div>
-                <div className="text-[0.55rem] md:text-[0.6rem] tracking-[0.2em] text-white/40 uppercase">
+                <div className="text-[0.62rem] md:text-[0.6rem] tracking-[0.2em] text-white/40 uppercase">
                   Keuken Centrum
                 </div>
                 <div className="w-8" />
@@ -914,7 +1023,7 @@ export function ShowroomJourneySection() {
                                       : "0 0 12px rgba(255,255,255,0.18), 0 0 24px rgba(212,175,55,0.20)",
                                   animation:
                                     !isHovered && !isActive
-                                      ? "hotspotBreathe 3s ease-in-out infinite"
+                                      ? "hotspotBreathe 4.5s ease-in-out infinite"
                                       : "none",
                                   transition: "box-shadow 0.2s ease",
                                 }}
@@ -930,7 +1039,7 @@ export function ShowroomJourneySection() {
                                   left: "50%",
                                   transform: "translate(-50%, -50%)",
                                   border: `2px solid ${
-                                    isHovered || isActive ? "#D4AF37" : "rgba(212,175,55,0.85)"
+                                    isHovered || isActive ? "#C8A96B" : "rgba(212,175,55,0.85)"
                                   }`,
                                   backgroundColor:
                                     isHovered || isActive
@@ -1012,7 +1121,7 @@ export function ShowroomJourneySection() {
                             />
                           )}
                           <span
-                            className="text-[0.48rem] uppercase tracking-[0.13em] leading-none"
+                            className="text-[0.64rem] uppercase tracking-[0.13em] leading-none"
                             style={{
                               color: isTabActive
                                 ? "#B08D57"
@@ -1030,10 +1139,10 @@ export function ShowroomJourneySection() {
 
                   {/* Active category header */}
                   <div className="px-3 pt-2.5 pb-1.5">
-                    <p className="text-[0.48rem] uppercase tracking-[0.2em] text-[#B08D57] mb-0.5">Kies</p>
+                    <p className="text-[0.64rem] uppercase tracking-[0.2em] text-[#B08D57] mb-0.5">Kies</p>
                     <p
                       className="text-[0.72rem] text-[#F7F5F2]"
-                      style={{ fontFamily: '"Playfair Display", serif', fontWeight: 400 }}
+                      style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
                     >
                       {currentCategory?.label ?? hotspotsData[activeHotspot].label}
                     </p>
@@ -1046,7 +1155,7 @@ export function ShowroomJourneySection() {
                       initial={{ opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -6 }}
-                      transition={{ duration: 0.22 }}
+                      transition={{ duration: 0.4 }}
                       className="flex-1 overflow-y-auto px-2 pb-2"
                     >
                       <div className="grid grid-cols-2 gap-[5px]">
@@ -1086,7 +1195,7 @@ export function ShowroomJourneySection() {
                               />
                               {/* Name */}
                               <p
-                                className="text-[0.54rem] font-normal tracking-[0.04em] leading-tight"
+                                className="text-[0.62rem] font-normal tracking-[0.04em] leading-tight"
                                 style={{
                                   color: isSelected
                                     ? "#B08D57"
@@ -1097,7 +1206,7 @@ export function ShowroomJourneySection() {
                               </p>
                               {/* Description */}
                               {option.description && (
-                                <p className="mt-0.5 text-[0.46rem] leading-[1.35] text-white/30">
+                                <p className="mt-0.5 text-[0.62rem] leading-[1.35] text-white/30">
                                   {option.description}
                                 </p>
                               )}
@@ -1112,7 +1221,7 @@ export function ShowroomJourneySection() {
                   <div className="border-t border-white/[0.06] p-2 hidden md:block">
                     <a
                       href="/brands"
-                      className="flex h-7 w-full items-center justify-center rounded-[6px] bg-[#C8A96B] text-[0.52rem] font-medium uppercase tracking-[0.12em] text-white/90 transition-colors hover:bg-[#b59556]"
+                      className="flex h-7 w-full items-center justify-center rounded-[6px] bg-[#C8A96B] text-[0.6rem] font-medium uppercase tracking-[0.12em] text-white/90 transition-colors hover:bg-[#b59556]"
                     >
                       Volledig Ontwerp
                     </a>
@@ -1121,20 +1230,25 @@ export function ShowroomJourneySection() {
               </div>
             </motion.div>
 
-            {/* Floating Glass Card */}
+            {/* Caption bar — sits below the mockup so it never covers it */}
             <motion.div
-              initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+              initial={reduceMotion ? false : { opacity: 0, y: 16 }}
               whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               viewport={motionViewport}
-              className="absolute -bottom-6 -left-2 sm:-left-6 z-30 w-[260px] sm:w-[300px] rounded-[18px] border border-[rgba(212,175,55,0.18)] bg-[rgba(9,9,9,0.95)] p-5 sm:p-6 shadow-[0_20px_50px_rgba(0,0,0,0.7)] backdrop-blur-[24px]"
+              className="mt-5 flex items-center gap-4 rounded-[16px] border border-[rgba(200,169,107,0.2)] bg-[rgba(255,255,255,0.04)] px-5 py-4 backdrop-blur-md"
             >
-              <p className="text-[0.65rem] sm:text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[#C8A96B]">
-                Digitale Showroom
-              </p>
-              <p className="mt-2.5 text-[0.8rem] sm:text-[0.875rem] font-light leading-[1.65] text-zinc-300">
-                Configureer materialen, apparatuur en afwerkingen voordat u de showroom bezoekt.
-              </p>
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[rgba(200,169,107,0.4)] bg-[rgba(200,169,107,0.1)]">
+                <TuneIcon sx={{ fontSize: 18, color: "#C8A96B" }} />
+              </span>
+              <div className="min-w-0">
+                <p className="text-[0.62rem] font-semibold uppercase tracking-[0.24em] text-[#C8A96B]">
+                  Digitale Showroom
+                </p>
+                <p className="mt-1 text-[0.8rem] font-light leading-[1.55] text-[rgba(245,242,236,0.7)]">
+                  Configureer materialen, apparatuur en afwerkingen voordat u de showroom bezoekt.
+                </p>
+              </div>
             </motion.div>
           </div>
 
@@ -1153,14 +1267,14 @@ export function ShowroomJourneySection() {
             </motion.p>
             <motion.h2
               variants={reduceMotion ? undefined : fadeUp}
-              className="mt-6 max-w-[34rem] text-[clamp(2.35rem,3.9vw,3rem)] leading-[1.15] tracking-[-0.01em] text-[#111111]"
-              style={{ fontFamily: '"Playfair Display", "Georgia", serif', fontWeight: 400 }}
+              className="mt-6 max-w-[34rem] text-[clamp(2.35rem,3.9vw,3rem)] leading-[1.15] tracking-[-0.01em] text-[#F5F2EC]"
+              style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
             >
               Een showroom die naar u toe komt
             </motion.h2>
             <motion.p
               variants={reduceMotion ? undefined : fadeUp}
-              className="mt-6 max-w-[500px] text-[1.125rem] font-light leading-[1.6] tracking-[0.01em] text-[#666666]"
+              className="mt-6 max-w-[500px] text-[1.125rem] font-light leading-[1.6] tracking-[0.01em] text-[rgba(245,242,236,0.68)]"
             >
               Onze digitale configurator brengt de volledige luxe showroomervaring naar uw scherm.
               Ontdek materialen, bekijk combinaties en ontvang een compleet ontwerpvoorstel nog
@@ -1168,7 +1282,7 @@ export function ShowroomJourneySection() {
             </motion.p>
             <motion.div
               variants={reduceMotion ? undefined : fadeUp}
-              className="mt-6 h-px w-full bg-[rgba(200,169,107,0.15)]"
+              className="mt-6 h-px w-full bg-[rgba(200,169,107,0.22)]"
             />
             <motion.div
               initial={reduceMotion ? false : "hidden"}
@@ -1189,7 +1303,7 @@ export function ShowroomJourneySection() {
                   <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center text-[#C8A96B]">
                     <Icon sx={{ fontSize: 18, color: "#C8A96B" }} />
                   </span>
-                  <span className="text-[0.875rem] font-light leading-[1.65] text-[#555555]">
+                  <span className="text-[0.875rem] font-light leading-[1.65] text-[rgba(245,242,236,0.72)]">
                     {item.label}
                   </span>
                 </motion.div>

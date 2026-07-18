@@ -143,7 +143,7 @@ function BrandsPage() {
                     <h2
                       className="mb-0.5 text-[1.35rem] leading-[1.2] text-[#F7F5F2] sm:text-[1.5rem] md:text-[1.75rem]"
                       style={{
-                        fontFamily: '"Playfair Display", serif',
+                        fontFamily: "var(--font-display)",
                         fontWeight: 400,
                         textTransform: preserveUppercase ? "uppercase" : "none",
                       }}

@@ -5,6 +5,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Quote, Star } from "lucide-react";
 import { Location, TickCircle } from "iconsax-react";
 import { motionViewport } from "@/lib/motion";
+import { SectionChapter } from "@/components/site/SectionChapter";
 import collectionMinimal from "@/assets/collection-minimal.jpg";
 import collectionModern from "@/assets/collection-modern.jpg";
 import collectionWarm from "@/assets/collection-warm.jpg";
@@ -157,7 +158,7 @@ function TestimonialCard({ story }: { story: CardData }) {
             alt={story.project}
             loading="lazy"
             draggable={false}
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110 pointer-events-none"
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04] pointer-events-none"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
         </div>
@@ -280,7 +281,7 @@ function CenterShowcase() {
         className="pointer-events-none absolute -inset-20 -z-10 rounded-full opacity-60 blur-3xl"
         style={{
           background:
-            "radial-gradient(55% 50% at 50% 28%, rgba(139,197,64,0.22), transparent 65%), radial-gradient(45% 40% at 50% 78%, rgba(8,36,48,0.65), transparent 70%)",
+            "radial-gradient(55% 50% at 50% 28%, rgba(139,197,64,0.22), transparent 65%), radial-gradient(45% 40% at 50% 78%, rgba(18,20,14,0.72), transparent 70%)",
         }}
       />
       {/* Secondary soft teal bloom */}
@@ -294,20 +295,20 @@ function CenterShowcase() {
       <div className="animate-kc-float">
         {/* Premium border wrapper */}
         <div
-          className="relative rounded-[34px] p-[1.5px]"
+          className="relative rounded-[28px] p-[1.5px]"
           style={{
             background:
               "linear-gradient(160deg, rgba(220,190,130,0.85) 0%, rgba(180,140,70,0.25) 35%, rgba(255,255,255,0.55) 60%, rgba(180,140,70,0.65) 100%)",
             boxShadow:
-              "0 60px 120px -30px rgba(4,14,28,0.80), 0 24px 48px -16px rgba(0,0,0,0.45), 0 0 0 1px rgba(139,197,64,0.08)",
+              "0 60px 120px -30px rgba(17,19,21,0.80), 0 24px 48px -16px rgba(0,0,0,0.45), 0 0 0 1px rgba(139,197,64,0.08)",
           }}
         >
-          {/* Dual-tone card: dark teal top → cream bottom */}
+          {/* Dual-tone card: dark olive top → cream bottom */}
           <div
-            className="relative overflow-hidden rounded-[33px]"
+            className="relative overflow-hidden rounded-[27px]"
             style={{
               background:
-                "linear-gradient(180deg, #082430 0%, #0E3443 48%, #FFFFFF 48.2%, #F4F9FA 100%)",
+                "linear-gradient(180deg, #10130C 0%, #1A1E12 48%, #FFFFFF 48.2%, #F7F4EC 100%)",
             }}
           >
             {/* ── TOP: dark half ── */}
@@ -370,7 +371,7 @@ function CenterShowcase() {
                     >
                       {stat.label}
                     </span>
-                    <span className="font-serif text-3xl font-light" style={{ color: "#0B1B3A" }}>
+                    <span className="font-serif text-3xl font-light" style={{ color: "#171A11" }}>
                       {stat.value}
                     </span>
                   </div>
@@ -383,7 +384,7 @@ function CenterShowcase() {
                 style={{
                   background: "#FFFFFF",
                   border: "1px solid rgba(184,146,74,0.18)",
-                  boxShadow: "0 8px 20px -10px rgba(11,27,58,0.14)",
+                  boxShadow: "0 8px 20px -10px rgba(23,26,17,0.14)",
                 }}
               >
                 <div className="flex items-center gap-2">
@@ -393,7 +394,7 @@ function CenterShowcase() {
                       d="M12 10.2v3.9h5.5c-.2 1.4-1.7 4.1-5.5 4.1-3.3 0-6-2.7-6-6.1s2.7-6.1 6-6.1c1.9 0 3.2.8 3.9 1.5l2.7-2.6C16.9 3.3 14.7 2.3 12 2.3 6.6 2.3 2.3 6.6 2.3 12S6.6 21.7 12 21.7c6.9 0 9.5-4.9 9.5-9.4 0-.6-.1-1.1-.1-1.5H12z"
                     />
                   </svg>
-                  <span className="text-xs font-medium" style={{ color: "#0B1B3A", fontFamily: "var(--font-body)" }}>
+                  <span className="text-xs font-medium" style={{ color: "#171A11", fontFamily: "var(--font-body)" }}>
                     Google Reviews
                   </span>
                 </div>
@@ -495,7 +496,7 @@ export function Testimonials() {
     <section
       id="reviews"
       className="relative overflow-hidden border-t border-white/[0.06]"
-      style={{ background: "linear-gradient(180deg, #082430 0%, #0E3443 50%, #082430 100%)" }}
+      style={{ background: "linear-gradient(180deg, #0D0F0A 0%, #15180F 50%, #0C0E09 100%)" }}
     >
       {/* CSS for mobile marquee + scrollbar hide */}
       <style>{`
@@ -531,7 +532,8 @@ export function Testimonials() {
       />
 
       {/* ── Section header ─────────────────────────────────────── */}
-      <div className="relative z-10 mx-auto max-w-7xl px-6 pt-28 pb-0">
+      <div className="site-container relative z-10 max-w-7xl pt-20 pb-0 md:pt-32">
+        <SectionChapter index={9} label="Reviews" light />
         <motion.div
           initial={reduceMotion ? false : "hidden"}
           whileInView="visible"
@@ -568,7 +570,7 @@ export function Testimonials() {
             {/* Heading */}
             <motion.h2
               variants={reduceMotion ? undefined : fadeUp}
-              className="mt-6 font-serif text-5xl font-light leading-[1.05] tracking-tight text-white md:text-6xl"
+              className="mt-6 font-serif text-[clamp(2.35rem,3.9vw,3.25rem)] font-light leading-[1.12] tracking-[-0.02em] text-white"
             >
               Ervaringen van klanten
               <br />
@@ -589,7 +591,7 @@ export function Testimonials() {
       </div>
 
       {/* ── Triptych columns ─────────────────────────────────────── */}
-      <div className="relative z-10 mx-auto max-w-7xl px-6 pb-6 pt-20">
+      <div className="site-container relative z-10 max-w-7xl pb-6 pt-20">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-[3fr_4fr_3fr]">
 
           {/* Left column — scroll up */}
@@ -610,13 +612,13 @@ export function Testimonials() {
           {/* Mobile marquee rows */}
           <div className="flex flex-col gap-6 lg:hidden">
             <div className="relative overflow-hidden">
-              <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 sm:w-24 bg-gradient-to-r from-[#082430] to-transparent" />
-              <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 sm:w-24 bg-gradient-to-l from-[#082430] to-transparent" />
+              <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-[#0D0F0A] to-transparent sm:w-24" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-[#0D0F0A] to-transparent sm:w-24" />
               <DraggableMarqueeRow items={testimonialsData} animClass="animate-marquee-rtl" reduceMotion={reduceMotion} />
             </div>
             <div className="relative overflow-hidden">
-              <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 sm:w-24 bg-gradient-to-r from-[#082430] to-transparent" />
-              <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 sm:w-24 bg-gradient-to-l from-[#082430] to-transparent" />
+              <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-[#0D0F0A] to-transparent sm:w-24" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-[#0D0F0A] to-transparent sm:w-24" />
               <DraggableMarqueeRow items={row2Data} animClass="animate-marquee-ltr" reduceMotion={reduceMotion} />
             </div>
           </div>
@@ -630,7 +632,7 @@ export function Testimonials() {
         whileInView="visible"
         viewport={motionViewport}
         variants={reduceMotion ? undefined : fadeUp}
-        className="relative z-10 mx-auto max-w-7xl px-6 pb-28 pt-6"
+        className="site-container relative z-10 max-w-7xl pb-20 pt-6 md:pb-32"
       >
         <div className="flex flex-col items-center gap-7 text-center">
           {/* Ornamental rule */}

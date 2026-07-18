@@ -75,11 +75,11 @@ function Index() {
       {/* 3. WHY CHOOSE US — Build trust & authority */}
       <WhyWithUsSection />
 
-      {/* 4. PREMIUM SHOWROOM — Luxury centerpiece, dark prestige */}
-      <PremiumShowcase />
-
-      {/* 5. DIGITAL JOURNEY — "Een showroom die naar u toe komt" */}
+      {/* 4. DIGITAL JOURNEY — "Een showroom die naar u toe komt" */}
       <ShowroomJourneySection />
+
+      {/* 5. PREMIUM SHOWROOM — Physical Utrecht showroom */}
+      <PremiumShowcase />
 
       {/* 6. KITCHEN INSPIRATION — "What kitchens can I create?" */}
       <Experience />

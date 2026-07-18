@@ -1,0 +1,318 @@
+import type { BrandPageData } from "./types";
+import {
+  wp,
+  sharedKitchenFaq,
+  sharedCustomBlock,
+  sharedAdvisors,
+  defaultPartnershipStats,
+} from "./shared";
+
+export const leichtPage = {
+  id: "leicht",
+  name: "Leicht",
+  country: "Duitsland",
+  founded: "1928",
+  meta: {
+    title: "Leicht Keukens · Officiële dealer in Utrecht | Keuken-Centrum",
+    description:
+      "Officiële Leicht dealer in Utrecht. Ontdek Kyoto, Taj Mahal, Bossa Concrete en Ronde Wangen in onze showroom — Duits vakmanschap en actuele collecties.",
+  },
+  logo: `${wp}/1200px-Leicht_Küchen_logo.svg-1024x325.webp`,
+  hero: {
+    image: `${wp}/CM-1697-095-final_Koje-03.webp`,
+    eyebrow: "Officiële Leicht dealer",
+    title: "Leicht",
+    highlight: "Architectuur in de keuken.",
+    subtitle:
+      "Duits vakmanschap, tijdloze vormgeving en ongeëvenaarde kwaliteit — als erkende Leicht-dealer in Utrecht werken wij rechtstreeks met de fabrikant. Beleef de collectie live in onze showroom aan de Zonnebaan.",
+    cta: {
+      primary: "Bezoek showroom",
+      primaryHref: "/#consultation",
+      secondary: "Bel direct",
+      secondaryHref: "tel:+31302415122",
+    },
+    badges: [
+      { value: "Dealer", label: "Erkend" },
+      { value: "Duitsland", label: "Vakmanschap" },
+      { value: "6–8 wkn", label: "Levertijd" },
+    ],
+  },
+  intro: {
+    eyebrow: "Officiële dealer",
+    titleBefore: "Erkende ",
+    titleHighlight: "Leicht",
+    titleAfter: " specialist in Utrecht",
+    paragraphs: [
+      "Keuken-Centrum Utrecht is een officiële aanbieder van Leicht keukens in Nederland. Als erkende Leicht-dealer werken wij rechtstreeks samen met de fabrikant, zodat u verzekerd bent van originele producten, actuele collecties en de nieuwste innovaties op het gebied van keukendesign.",
+      "In onze showroom aan de Zonnebaan 10 in Utrecht vindt u meerdere Leicht-opstellingen, waaronder de populaire series Kyoto, Taj Mahal, Bossa Concrete en Ronde Wangen. Hier kunt u de materialen zien, de afwerking voelen en ervaren wat Leicht onderscheidt: Duits vakmanschap, tijdloze vormgeving en ongeëvenaarde kwaliteit.",
+      "Onze adviseurs staan klaar om samen met u een keuken te ontwerpen die perfect past bij uw woning, smaak en budget. Bezoek onze showroom of plan een afspraak — ontdek waarom Keuken-Centrum Utrecht dé Leicht-specialist van de regio Utrecht is.",
+    ],
+    image: `${wp}/Leicht-Kyoto-showroom.webp`,
+    signature: [
+      { value: "1928", label: "Opgericht" },
+      { value: "DE", label: "Duitsland" },
+      { value: "Dealer", label: "Erkend" },
+    ],
+    roundel: "LEICHT · DUITSLAND · SINDS 1928 ·",
+    caption: {
+      tag: "Showroom Utrecht",
+      title: "Kyoto, Taj Mahal, Bossa Concrete & Ronde Wangen live te ervaren",
+    },
+  },
+  pillars: {
+    eyebrow: "Waarom Leicht",
+    titleBefore: "Duits design met ",
+    titleHighlight: "karakter",
+    lead: "Leicht keukens geven uw ruimte een individueel karakter waarin u plezierig kunt koken, eten en praten met familie en vrienden — maatwerk designkeukens die ook aangrenzende woongedeelten bij de keuken betrekken.",
+    items: [
+      {
+        title: "Modern design",
+        description:
+          "De kracht van Leicht zit in het moderne design: maatwerk keukens met duurzaamheid en hoge kwaliteit in product en service. Van royale eilandkeukens tot functionele keukens op een klein oppervlak — voor ieder wat wils.",
+        icon: "sparkles",
+        image: `${wp}/leicht_verve_820px_2.webp`,
+      },
+      {
+        title: "Erkend leverancier",
+        description:
+          "Wij zijn een erkend leverancier van dit Duitse keukenmerk. Onze keukenspecialisten kennen de collectie door en door en begeleiden u van eerste idee tot definitieve keuze — rechtstreeks via de fabrikant.",
+        icon: "shield",
+        image: `${wp}/Leicht-Bossa-showroom--scaled.webp`,
+      },
+      {
+        title: "Designlijnen",
+        description:
+          "Leicht onderscheidt zich in drie stijlen: Modern Style, Traditional Style en greeploze keukens — waaronder Avance, Contino en Avance Pro. Diverse designlijnen bieden mogelijkheden voor elk budget.",
+        icon: "grid",
+        image: `${wp}/BOSSA_dunkel_12.webp`,
+      },
+    ],
+  },
+  partnership: {
+    ghost: "LEICHT",
+    eyebrow: "Erkende dealer",
+    titleBefore: "Geen wachttijden, ",
+    titleHighlight: "snelle levering",
+    titleAfter: " en de beste prijs",
+    body: "Als erkende Leicht-dealer werken wij direct samen met de fabrikant. Geen tussenpersonen, geen onnodige wachttijden — wel originele Leicht keukens, actuele collecties en de scherpste prijs via onze inkooporganisatie. Heeft u al een offerte? Wij bieden vrijwel altijd een betere prijs.",
+    highlights: [
+      "Rechtstreekse samenwerking met Leicht",
+      "Originele producten en actuele collecties",
+      "Snelle levering binnen 6–8 weken",
+      "Wij verslaan vrijwel elke offerte",
+    ],
+    note: "Direct contact met onze Leicht-specialisten — plan een vrijblijvend adviesgesprek in onze showroom.",
+    stats: defaultPartnershipStats,
+  },
+  series: {
+    eyebrow: "Collectie",
+    titleBefore: "Leicht ",
+    titleHighlight: "series",
+    lead: "Ontdek het volledige Leicht-assortiment — van populaire showroommodellen tot exclusieve designlijnen. De eerste vier series staan live opgesteld in onze showroom.",
+    items: [
+      {
+        id: "kyoto",
+        name: "Kyoto",
+        image: `${wp}/Leicht-Kyoto-showroom.webp`,
+        tag: "Showroom",
+        href: "/keukens/leicht/kyoto",
+        featured: true,
+      },
+      {
+        id: "ronde-wangen",
+        name: "Ronde Wangen",
+        image: `${wp}/Ronde-wangen-Leicht-scaled.webp`,
+        tag: "Showroom",
+        href: "/keukens/leicht/ronde-wangen",
+        featured: true,
+      },
+      {
+        id: "bossa",
+        name: "Bossa Concrete",
+        image: `${wp}/Leicht-Bossa-showroom--scaled.webp`,
+        tag: "Showroom",
+        href: "/keukens/leicht/bossa",
+        featured: true,
+      },
+      {
+        id: "taj-mahal",
+        name: "Taj Mahal",
+        image: `${wp}/Leicht-keukens.webp`,
+        tag: "Showroom",
+        href: "/keukens/leicht/taj-mahal",
+        featured: true,
+      },
+      {
+        id: "bossa-e-kera-e-madero",
+        name: "BOSSA-E, KERA-E, MADERO",
+        image: `${wp}/65692d7965ad93e188ae8c75_Bossa-E-Bossa-Kera-E.webp`,
+        tag: "Leicht",
+      },
+      {
+        id: "bossa-f-45c",
+        name: "BOSSA F 45c",
+        image: `${wp}/01_c_Leicht.webp`,
+        tag: "Leicht",
+      },
+      {
+        id: "concrete-a",
+        name: "CONCRETE-A",
+        image: `${wp}/LH-Shingler-Kitchen-11-1.webp`,
+        tag: "Leicht",
+      },
+      {
+        id: "largo-fg-ios-m",
+        name: "LARGO-FG | IOS-M",
+        image: `${wp}/LARGO-FG-IOS-M_288-226-M01-273-158-j12.webp`,
+        tag: "Leicht",
+      },
+      {
+        id: "orlando-k-pur-fg-k",
+        name: "ORLANDO-K | PUR-FG-K",
+        image: `${wp}/577b430411fc8aa3663755d4046331d8-1200x630-1.webp`,
+        tag: "Leicht",
+      },
+      {
+        id: "synthia-ios-largo",
+        name: "SYNTHIA IOS-LARGO",
+        image: `${wp}/1cb98cc9-fa5c-42a9-874c-0e3df1f37cbf222228292M02234292294RALj16.webp`,
+        tag: "Leicht",
+      },
+      {
+        id: "classic-fs-ios-m",
+        name: "CLASSIC-FS | IOS-M",
+        image: `${wp}/LEICHT-Keukens-CLASSIC-FS-IOS-M.webp`,
+        tag: "Leicht",
+      },
+      {
+        id: "topos-stone",
+        name: "TOPOS | STONE",
+        image: `${wp}/269-294-M01-309-148-j16-scaled.webp`,
+        tag: "Leicht",
+      },
+      {
+        id: "bondi-classic-fs",
+        name: "BONDI | CLASSIC-FS",
+        image: `${wp}/1622595d1aa08904c841cf405a467541-1200x630-1.webp`,
+        tag: "Leicht",
+      },
+      {
+        id: "topos-concrete",
+        name: "TOPOS | CONCRETE",
+        image: `${wp}/269-293-D01-312-188-192-j15_170225_130133.webp`,
+        tag: "Leicht",
+      },
+      {
+        id: "synthia-c-ceres",
+        name: "SYNTHIA-C-CERES",
+        image: `${wp}/K-5-Ceres-C-Synthia-C-4-scaled.webp`,
+        tag: "Leicht",
+      },
+      {
+        id: "avenida",
+        name: "AVENIDA",
+        image: `${wp}/25c8570cfe28a31bfe9e6919dc4099ba-1200x630-1.webp`,
+        tag: "Leicht",
+      },
+      {
+        id: "bondi",
+        name: "BONDI",
+        image: `${wp}/bondi-topos-239-269-m02-284-221-j15-h-scaled.webp`,
+        tag: "Leicht",
+      },
+      {
+        id: "classic-fs-xylo",
+        name: "CLASSIC-FS | XYLO",
+        image: `${wp}/LEICHT-Keukens-CLASSIC-FS-XYLO.webp`,
+        tag: "Leicht",
+      },
+      {
+        id: "bondi-valais",
+        name: "BONDI VALAIS",
+        image: `${wp}/bondi-valais-02-basis-h-scaled.webp`,
+        tag: "Leicht",
+      },
+    ],
+  },
+  catalogs: [
+    {
+      title: "Modern Style",
+      subtitle: "Leicht catalogus 2022",
+      href: "https://caisy.io/assets/c5b98fcc-5e23-4df0-a5cd-2a7527d26cff/NPbev0X5kC/ff9d65c7-56a0-46e2-8dea-70059fa1fed4200312LEICHTKuechenModernStyle2022Hompage150dpi.pdf",
+    },
+    {
+      title: "Interior Values",
+      subtitle: "Leicht interieurwaarden",
+      href: "https://assets.caisy.io/assets/c5b98fcc-5e23-4df0-a5cd-2a7527d26cff/ePpX0FdZqL/a224b4bf-1a0e-426b-8ae1-3f0a0fa493e1InteriorValues2022Inhalt.pdf",
+    },
+    {
+      title: "Architecture + Kitchen IV",
+      subtitle: "Leicht architectuur & keuken",
+      href: "https://caisy.io/assets/c5b98fcc-5e23-4df0-a5cd-2a7527d26cff/cp72xvXXTO/9f1759c9-b7d9-4abb-b911-41fb570ddeecLEICHTArchitectureKitchenIV2020Einzelseiten.pdf",
+    },
+    {
+      title: "Traditional Style",
+      subtitle: "Leicht catalogus 2021",
+      href: "https://caisy.io/assets/c5b98fcc-5e23-4df0-a5cd-2a7527d26cff/6Rkoboa9tk/ba6c50ed-5630-4b84-8964-12d005d00226TraditionalStyle2021Hompage150dpiDoppelseiten.pdf",
+    },
+  ],
+  gallery: {
+    eyebrow: "Inspiratie",
+    titleBefore: "Leicht in ",
+    titleHighlight: "beeld",
+    lead: "Van donkere Bossa-concrete tot lichte architectuurkeukens — een selectie uit onze showroom en de Leicht collectie.",
+    items: [
+      {
+        src: `${wp}/CM-1697-095-final_Koje-03.webp`,
+        title: "Architectuurkeuken",
+        tag: "Leicht design",
+        span: "large",
+        href: "/keukens/leicht/kyoto",
+      },
+      {
+        src: `${wp}/leicht_verve_820px_2.webp`,
+        title: "Modern vakmanschap",
+        tag: "Kwaliteit",
+        span: "medium",
+      },
+      {
+        src: `${wp}/BOSSA_dunkel_12.webp`,
+        title: "Bossa Concrete",
+        tag: "Donker decor",
+        span: "medium",
+        href: "/keukens/leicht/bossa",
+      },
+      {
+        src: `${wp}/Leicht-Bossa-showroom--scaled.webp`,
+        title: "Showroom Utrecht",
+        tag: "Live te ervaren",
+        span: "wide",
+        href: "/#consultation",
+      },
+    ],
+    cta: {
+      titleBefore: "Leicht ",
+      titleHighlight: "live",
+      body: "Meerdere series staan opgesteld in onze showroom aan de Zonnebaan — plan een vrijblijvend bezoek en ervaar materialen en afwerking in het echt.",
+      label: "Boek een afspraak",
+      href: "/#consultation",
+    },
+  },
+  custom: sharedCustomBlock,
+  faq: {
+    titleBefore: "Veel ",
+    titleHighlight: "gestelde vragen",
+    items: sharedKitchenFaq,
+  },
+  advisors: sharedAdvisors,
+  showroomCta: {
+    eyebrow: "In de showroom",
+    titleBefore: "Leicht ",
+    titleHighlight: "in het echt",
+    titleAfter: " bekijken?",
+    subtitle:
+      "Kyoto, Ronde Wangen, Bossa Concrete en Taj Mahal staan live opgesteld — kom langs in Utrecht.",
+    button: "Boek een afspraak",
+    href: "/#consultation",
+  },
+} as const satisfies BrandPageData;

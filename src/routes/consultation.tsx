@@ -110,7 +110,7 @@ function ConsultationPage() {
                   </p>
                   <h1
                     className="max-w-[26rem] text-[2rem] leading-[0.98] tracking-[-0.03em] text-[#F7F5F2] md:text-[3rem]"
-                    style={{ fontFamily: '"Playfair Display", serif', fontWeight: 400 }}
+                    style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
                   >
                     {config.brandName ?? "Uw"} {config.styleName ? `${config.styleName.toLowerCase()} ` : ""}
                     keukenvoorstel
@@ -181,7 +181,7 @@ function ConsultationPage() {
                     </p>
                     <h1
                       className="mb-2 text-[2rem] text-[#111111] md:text-[2.35rem]"
-                      style={{ fontFamily: '"Playfair Display", serif', fontWeight: 400, lineHeight: 1.2 }}
+                      style={{ fontFamily: "var(--font-display)", fontWeight: 400, lineHeight: 1.2 }}
                     >
                       Plan een consultatie
                     </h1>
@@ -301,7 +301,7 @@ function ConsultationPage() {
                     </p>
                     <h1
                       className="mx-auto mb-3 max-w-[420px] text-[2.1rem] text-[#111111] md:text-[2.35rem]"
-                      style={{ fontFamily: '"Playfair Display", serif', fontWeight: 400, lineHeight: 1.2 }}
+                      style={{ fontFamily: "var(--font-display)", fontWeight: 400, lineHeight: 1.2 }}
                     >
                       Wij kijken ernaar uit uw droomkeuken te ontwerpen
                     </h1>

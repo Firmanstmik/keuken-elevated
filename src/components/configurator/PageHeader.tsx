@@ -32,7 +32,7 @@ export function PageHeader({
         transition={{ duration: 0.6, delay: 0.1 }}
         className="mx-auto max-w-[680px] text-[clamp(2rem,9vw,3rem)] leading-[1.12] tracking-[-0.02em] md:leading-[1.15] md:tracking-[-0.01em]"
         style={{
-          fontFamily: '"Playfair Display", "Georgia", serif',
+          fontFamily: "var(--font-display)",
           fontWeight: 400,
           color: light ? "#F7F5F2" : "#111111",
         }}

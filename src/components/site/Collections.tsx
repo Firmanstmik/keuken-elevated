@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "@/components/ui/icons";
 import { PremiumPillButton } from "@/components/ui/premium-pill-button";
+import { SectionChapter } from "@/components/site/SectionChapter";
 import { kc } from "@/lib/kc-data";
 import { fadeUp, motionViewport } from "@/lib/motion";
 import matConcrete from "@/assets/mat-concrete.jpg";
@@ -66,7 +67,7 @@ function GalleryCard({ item }: { item: CollectionItem }) {
           <div>
             <span className="collection-gallery-card__number">{item.number}</span>
             <span
-              className="mt-1.5 block text-[0.46rem] font-medium uppercase tracking-[0.18em] text-white/35"
+              className="mt-1.5 block text-[0.62rem] font-medium uppercase tracking-[0.18em] text-white/35"
               style={{ fontFamily: "var(--font-body)" }}
             >
               {item.collectionLabel}
@@ -213,7 +214,7 @@ export function Collections() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section id="collections" className="relative overflow-hidden py-20 md:py-28">
+    <section id="collections" className="section-shell relative overflow-hidden">
       {/* Concrete texture */}
       <div
         aria-hidden="true"
@@ -226,6 +227,7 @@ export function Collections() {
       <div className="relative z-10">
         {/* Header */}
         <div className="site-container">
+          <SectionChapter index={6} label="Collecties" />
           <motion.div
             initial={reduceMotion ? false : "hidden"}
             whileInView="visible"

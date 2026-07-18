@@ -59,7 +59,7 @@ export function Showroom() {
   return (
     <section
       id="showroom"
-      className="relative overflow-hidden py-20 text-[#F7F4EE] selection:bg-[#9CCD4A]/20 md:py-28"
+      className="relative overflow-hidden py-20 text-[#F7F4EE] selection:bg-[#A8D95A]/20 md:py-28"
     >
       {/* ── Layered background ── */}
 
@@ -148,7 +148,7 @@ export function Showroom() {
           >
             <span className="h-px w-8 bg-gradient-to-r from-transparent to-[rgba(139,197,64,0.58)]" />
             <span
-              className="text-[0.6rem] font-semibold uppercase tracking-[0.32em] text-[#9CCD4A]"
+              className="text-[0.6rem] font-semibold uppercase tracking-[0.32em] text-[#A8D95A]"
               style={{ fontFamily: "var(--font-body)" }}
             >
               Showroom · Zonnebaan 8 · Utrecht
@@ -164,7 +164,7 @@ export function Showroom() {
             <em
               style={{
                 fontStyle: "italic",
-                background: "linear-gradient(128deg, #9CCD4A 0%, #C5E88A 50%, #8BC540 100%)",
+                background: "linear-gradient(128deg, #A8D95A 0%, #C5E88A 50%, #8BC540 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -238,7 +238,7 @@ export function Showroom() {
               {/* Hover inner teal border ring */}
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-0 rounded-[22px] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                className="pointer-events-none absolute inset-0 rounded-[24px] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                 style={{ boxShadow: "0 0 0 1px rgba(139,197,64,0.22) inset" }}
               />
 
@@ -259,7 +259,7 @@ export function Showroom() {
                 >
                   {/* Icon ring */}
                   <div
-                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[#9CCD4A]"
+                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[#A8D95A]"
                     style={{
                       background: "rgba(139,197,64,0.10)",
                       border: "1px solid rgba(139,197,64,0.30)",
@@ -270,13 +270,13 @@ export function Showroom() {
 
                   <div>
                     <p
-                      className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[#9CCD4A]"
+                      className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[#A8D95A]"
                       style={{ fontFamily: "var(--font-body)" }}
                     >
                       45+ Jaar Vakmanschap
                     </p>
                     <p
-                      className="mt-0.5 text-[0.55rem] font-light tracking-[0.12em] text-[rgba(247,244,238,0.42)]"
+                      className="mt-0.5 text-[0.62rem] font-light tracking-[0.12em] text-[rgba(247,244,238,0.42)]"
                       style={{ fontFamily: "var(--font-body)" }}
                     >
                       Keuken expertise · Depuis 1978
@@ -319,7 +319,7 @@ export function Showroom() {
                 />
                 {/* Label */}
                 <p
-                  className="absolute bottom-3 left-3 text-[0.48rem] font-semibold uppercase tracking-[0.22em] text-[rgba(247,244,238,0.52)]"
+                  className="absolute bottom-3 left-3 text-[0.64rem] font-semibold uppercase tracking-[0.22em] text-[rgba(247,244,238,0.52)]"
                   style={{ fontFamily: "var(--font-body)" }}
                 >
                   Vakmanschap
@@ -356,7 +356,7 @@ export function Showroom() {
                 />
                 {/* Label */}
                 <p
-                  className="absolute bottom-3 left-3 text-[0.48rem] font-semibold uppercase tracking-[0.22em] text-[rgba(247,244,238,0.52)]"
+                  className="absolute bottom-3 left-3 text-[0.64rem] font-semibold uppercase tracking-[0.22em] text-[rgba(247,244,238,0.52)]"
                   style={{ fontFamily: "var(--font-body)" }}
                 >
                   Premium materialen
@@ -372,7 +372,7 @@ export function Showroom() {
             whileInView="visible"
             viewport={motionViewport}
             variants={reduceMotion ? undefined : revealRight}
-            className="flex flex-col rounded-[22px] px-6 py-7"
+            className="flex flex-col rounded-[24px] px-6 py-7"
             style={{
               background: "rgba(255,255,255,0.025)",
               border: "1px solid rgba(139,197,64,0.09)",
@@ -383,7 +383,7 @@ export function Showroom() {
             {/* Brand positioning */}
             <div className="mb-5 pb-5" style={{ borderBottom: "1px solid rgba(139,197,64,0.07)" }}>
               <p
-                className="text-[0.52rem] font-semibold uppercase tracking-[0.30em] text-[rgba(139,197,64,0.50)]"
+                className="text-[0.6rem] font-semibold uppercase tracking-[0.30em] text-[rgba(139,197,64,0.50)]"
                 style={{ fontFamily: "var(--font-body)" }}
               >
                 Exclusieve Showroom · Utrecht
@@ -392,7 +392,7 @@ export function Showroom() {
                 className="mt-2 font-serif text-[1.15rem] font-light leading-[1.4] tracking-[-0.01em] text-[rgba(247,244,238,0.82)]"
               >
                 Uw droomkeuken begint{" "}
-                <em className="italic text-[#9CCD4A]">hier.</em>
+                <em className="italic text-[#A8D95A]">hier.</em>
               </p>
               <p
                 className="mt-2 text-[0.78rem] font-light leading-[1.75] text-[rgba(247,244,238,0.38)]"
@@ -491,7 +491,7 @@ export function Showroom() {
                 style={{ background: "linear-gradient(90deg, rgba(139,197,64,0.22), transparent)" }}
               />
               <span
-                className="text-[0.52rem] font-light uppercase tracking-[0.24em] text-[rgba(139,197,64,0.42)]"
+                className="text-[0.6rem] font-light uppercase tracking-[0.24em] text-[rgba(139,197,64,0.42)]"
                 style={{ fontFamily: "var(--font-body)" }}
               >
                 Vakmanschap · Sinds 1978
@@ -512,7 +512,7 @@ export function Showroom() {
                 href="#contact"
                 className="group relative inline-flex items-center justify-center gap-2.5 overflow-hidden rounded-[12px] px-6 py-[0.78rem] text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-white transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[2px] hover:shadow-[0_12px_32px_rgba(139,197,64,0.32)]"
                 style={{
-                  background: "linear-gradient(135deg, #9CCD4A 0%, #8BC540 55%, #689A2E 100%)",
+                  background: "linear-gradient(135deg, #A8D95A 0%, #8BC540 55%, #689A2E 100%)",
                   fontFamily: "var(--font-body)",
                 }}
               >

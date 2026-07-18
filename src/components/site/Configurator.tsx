@@ -213,7 +213,7 @@ function HotspotTooltip({
             <motion.path
               d={pathD}
               fill="none"
-              stroke="#D4AF37"
+              stroke="#C8A96B"
               strokeWidth="1.2"
               strokeOpacity="0.55"
               strokeLinecap="round"
@@ -227,7 +227,7 @@ function HotspotTooltip({
               cx={attachX}
               cy={attachY}
               r="1.5"
-              fill="#D4AF37"
+              fill="#C8A96B"
               fillOpacity="0.6"
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
@@ -246,7 +246,7 @@ function HotspotTooltip({
             transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
           >
             <div className="bg-[rgba(9,9,9,0.96)] border border-[rgba(212,175,55,0.18)] rounded-[12px] shadow-[0_12px_36px_rgba(0,0,0,0.6)] backdrop-blur-[20px] px-4 py-3">
-              <span className="block text-[9px] font-semibold uppercase tracking-[0.24em] text-[#D4AF37] mb-1.5">
+              <span className="block text-[10px] font-semibold uppercase tracking-[0.24em] text-[#C8A96B] mb-1.5">
                 CONFIGURATIE
               </span>
               <h4 className="font-serif text-[13px] font-semibold leading-snug text-white tracking-[-0.01em] uppercase">
@@ -730,7 +730,7 @@ export function Configurator() {
                                           ? "0 0 20px rgba(212,175,55,0.35), 0 0 36px rgba(255,255,255,0.12)"
                                           : "0 0 12px rgba(255,255,255,0.18), 0 0 24px rgba(212,175,55,0.20)",
                                         animation: !isHovered && !isActive
-                                          ? "hotspotBreathe 3s ease-in-out infinite"
+                                          ? "hotspotBreathe 4.5s ease-in-out infinite"
                                           : "none",
                                         transition: "box-shadow 0.2s ease",
                                       }}
@@ -745,7 +745,7 @@ export function Configurator() {
                                         top: "50%",
                                         left: "50%",
                                         transform: "translate(-50%, -50%)",
-                                        border: `2px solid ${isHovered || isActive ? "#D4AF37" : "rgba(212,175,55,0.85)"}`,
+                                        border: `2px solid ${isHovered || isActive ? "#C8A96B" : "rgba(212,175,55,0.85)"}`,
                                         backgroundColor: isHovered || isActive
                                           ? "rgba(212,175,55,0.12)"
                                           : "rgba(0,0,0,0.45)",

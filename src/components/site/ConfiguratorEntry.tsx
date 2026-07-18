@@ -34,7 +34,7 @@ export function ConfiguratorEntry() {
             <motion.h2
               variants={reduceMotion ? undefined : fadeUp}
               className="text-[clamp(2.35rem,3.9vw,3rem)] leading-[1.15] tracking-[-0.01em] text-[#F7F5F2]"
-              style={{ fontFamily: '"Playfair Display", serif', fontWeight: 400 }}
+              style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
             >
               De configurator opent nu als een dedicated ontwerpreis.
             </motion.h2>
@@ -62,7 +62,7 @@ export function ConfiguratorEntry() {
                   </div>
                   <h3
                     className="text-[1.0625rem] text-[#F7F5F2]"
-                    style={{ fontFamily: '"Playfair Display", serif', fontWeight: 400 }}
+                    style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
                   >
                     {step.t}
                   </h3>
@@ -80,7 +80,7 @@ export function ConfiguratorEntry() {
                 </p>
                 <h3
                   className="text-[1.75rem] leading-[1.2] text-[#F7F5F2]"
-                  style={{ fontFamily: '"Playfair Display", serif', fontWeight: 400 }}
+                  style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
                 >
                   Open de configuratorpagina&apos;s.
                 </h3>

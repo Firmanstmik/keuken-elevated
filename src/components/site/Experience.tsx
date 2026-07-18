@@ -12,9 +12,11 @@ import {
 } from "framer-motion";
 import { ArrowRight } from "@/components/ui/icons";
 import { CountUpValue } from "@/components/site/CountUpValue";
+import { SectionChapter } from "@/components/site/SectionChapter";
 import designImg from "@/assets/Eén plaats voor al uw wensen/Design_keukens.webp";
 import priceImg from "@/assets/Eén plaats voor al uw wensen/Keukens_voor_elke_prijs.webp";
 import modernImg from "@/assets/Eén plaats voor al uw wensen/Modern_keukens.webp";
+import brandsDarkBg from "@/assets/brands/brands-dark-bg.webp";
 import { kc } from "@/lib/kc-data";
 import { motionViewport } from "@/lib/motion";
 
@@ -145,7 +147,7 @@ function LuxuryCard({ item, reduceMotion }: CardProps) {
   const liftY = useSpring(rawY, { stiffness: 160, damping: 24 });
 
   // Shadow spring
-  const rawShadow = useMotionValue("0 8px 32px -16px rgba(0,0,0,0.65)");
+  const rawShadow = useMotionValue("0 18px 50px -24px rgba(0,0,0,0.82)");
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
@@ -166,7 +168,7 @@ function LuxuryCard({ item, reduceMotion }: CardProps) {
     if (reduceMotion) return;
     rawY.set(-12);
     rawShadow.set(
-      "0 28px 64px -24px rgba(0,0,0,0.82), 0 0 48px -12px rgba(139,197,64,0.14)"
+      "0 36px 80px -28px rgba(0,0,0,0.92), 0 0 44px -16px rgba(200,169,107,0.20)"
     );
   }, [reduceMotion, rawY, rawShadow]);
 
@@ -176,7 +178,7 @@ function LuxuryCard({ item, reduceMotion }: CardProps) {
     rawRotX.set(0);
     rawRotY.set(0);
     rawY.set(0);
-    rawShadow.set("0 8px 32px -16px rgba(0,0,0,0.65)");
+    rawShadow.set("0 18px 50px -24px rgba(0,0,0,0.82)");
   }, [reduceMotion, rawRotX, rawRotY, rawY, rawShadow]);
 
   const isFeatured = item.featured;
@@ -192,15 +194,15 @@ function LuxuryCard({ item, reduceMotion }: CardProps) {
       onMouseLeave={handleMouseLeave}
     >
       <motion.article
-        className="group relative h-full cursor-pointer overflow-hidden border border-white/[0.06] transition-colors duration-700 hover:border-[rgba(139,197,64,0.26)]"
+        className="group relative h-full cursor-pointer overflow-hidden border border-[rgba(200,169,107,0.18)] bg-[#11130d] transition-colors duration-700 hover:border-[rgba(200,169,107,0.52)]"
         style={{
-          borderRadius: "36px",
+          borderRadius: "28px",
           y: reduceMotion ? 0 : liftY,
           rotateX: reduceMotion ? 0 : rotX,
           rotateY: reduceMotion ? 0 : rotY,
           transformStyle: "preserve-3d",
           boxShadow: rawShadow as unknown as string,
-          minHeight: isFeatured ? "420px" : "196px",
+          minHeight: isFeatured ? "440px" : "210px",
           willChange: "transform",
         }}
       >
@@ -213,8 +215,8 @@ function LuxuryCard({ item, reduceMotion }: CardProps) {
           style={reduceMotion ? undefined : { y: imageParallax }}
           className={[
             "absolute inset-0 h-[120%] w-full -translate-y-[10%] object-cover will-change-transform",
-            "transition-[transform,filter] duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
-            "group-hover:scale-[1.042] group-hover:brightness-[1.04]",
+            "saturate-[0.88] transition-[transform,filter] duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
+            "group-hover:scale-[1.045] group-hover:brightness-[1.08] group-hover:saturate-100",
           ].join(" ")}
         />
 
@@ -223,7 +225,7 @@ function LuxuryCard({ item, reduceMotion }: CardProps) {
           className="absolute inset-0 transition-[background] duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
           style={{
             background:
-              "linear-gradient(180deg, rgba(0,0,0,0.06) 0%, rgba(0,0,0,0.50) 58%, rgba(0,0,0,0.90) 100%)",
+              "linear-gradient(180deg, rgba(8,10,6,0.08) 0%, rgba(8,10,6,0.30) 42%, rgba(8,10,6,0.94) 100%)",
           }}
         />
         {/* Hover scrim — slightly lighter, reveals more image */}
@@ -231,38 +233,38 @@ function LuxuryCard({ item, reduceMotion }: CardProps) {
           className="absolute inset-0 opacity-0 transition-opacity duration-[700ms] group-hover:opacity-100"
           style={{
             background:
-              "linear-gradient(180deg, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0.42) 56%, rgba(0,0,0,0.80) 100%)",
+              "linear-gradient(180deg, rgba(8,10,6,0.02) 0%, rgba(8,10,6,0.22) 44%, rgba(8,10,6,0.88) 100%)",
           }}
         />
 
-        {/* ── Cursor spotlight — teal ── */}
+        {/* ── Cursor spotlight — champagne ── */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 z-10 transition-opacity duration-500"
           style={{
             borderRadius: "inherit",
             opacity: spot.visible ? 1 : 0,
-            background: `radial-gradient(280px circle at ${spot.x}px ${spot.y}px, rgba(139,197,64,0.10), transparent 58%)`,
+            background: `radial-gradient(300px circle at ${spot.x}px ${spot.y}px, rgba(200,169,107,0.14), transparent 60%)`,
           }}
         />
 
-        {/* ── Top hairline — teal sweep ── */}
+        {/* ── Top hairline — champagne sweep ── */}
         <div
           aria-hidden="true"
           className="absolute inset-x-0 top-0 z-20 h-px origin-left scale-x-0 transition-transform duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100"
           style={{
             background:
-              "linear-gradient(90deg, rgba(139,197,64,0), rgba(139,197,64,0.88), rgba(139,197,64,0))",
+              "linear-gradient(90deg, rgba(200,169,107,0), rgba(200,169,107,0.9), rgba(200,169,107,0))",
           }}
         />
 
-        {/* ── Bottom teal ambient ── */}
+        {/* ── Bottom brand-green ambient ── */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 z-10 opacity-0 transition-opacity duration-700 group-hover:opacity-100"
           style={{
             background:
-              "radial-gradient(ellipse 60% 28% at 50% 100%, rgba(139,197,64,0.11), transparent 65%)",
+              "radial-gradient(ellipse 65% 30% at 50% 100%, rgba(139,197,64,0.13), transparent 68%)",
           }}
         />
 
@@ -270,37 +272,38 @@ function LuxuryCard({ item, reduceMotion }: CardProps) {
         <a
           href={item.href}
           aria-label={`${item.collectionTitle}: ${item.luxuryDescription}`}
-          className="absolute inset-0 z-30 flex flex-col justify-end p-7 outline-none focus-visible:ring-2 focus-visible:ring-[rgba(139,197,64,0.75)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B1E2C]"
+          className="absolute inset-0 z-30 flex flex-col justify-end p-6 outline-none focus-visible:ring-2 focus-visible:ring-[rgba(200,169,107,0.8)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0D0F0A] md:p-8"
           style={{ borderRadius: "inherit" }}
         >
           {/* Collection tag */}
           <p
-            className="mb-2.5 text-[0.6rem] font-light tracking-[0.32em] text-[rgba(139,197,64,0.58)] transition-colors duration-500 group-hover:text-[rgba(139,197,64,0.92)]"
+            className="mb-3 flex items-center gap-2.5 text-[0.58rem] font-semibold uppercase tracking-[0.28em] text-[rgba(200,169,107,0.78)] transition-colors duration-500 group-hover:text-[#D8BE87]"
             style={{ fontFamily: "var(--font-body)" }}
           >
-            {item.collectionTitle}
+            <span className="h-px w-6 bg-current opacity-60" />
+            {item.featured ? "Signature collectie" : "Ontdek de collectie"}
           </p>
 
           {/* Title */}
           <p
             className={[
-              "font-serif leading-[1.08] tracking-[-0.025em] text-white",
+              "font-serif leading-[1.06] tracking-[-0.025em] text-[#F5F2EC]",
               isFeatured
                 ? "text-[clamp(1.55rem,2.4vw,2.1rem)]"
                 : "text-[clamp(1.25rem,1.7vw,1.55rem)]",
               "transition-transform duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1",
             ].join(" ")}
           >
-            {item.collectionTitle}
+            {item.title}
           </p>
 
           {/* Description — reveals on hover */}
           <p
             className={[
-              "overflow-hidden font-light leading-[1.7] text-[rgba(255,255,255,0.0)]",
+              "mt-3 max-w-[31rem] overflow-hidden font-light leading-[1.65] text-[rgba(245,242,236,0.64)]",
               "transition-[max-height,opacity,margin,color] duration-[750ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
-              "[max-height:0px]",
-              "group-hover:mt-3 group-hover:text-[rgba(255,255,255,0.60)] group-hover:[max-height:72px]",
+              isFeatured ? "[max-height:72px]" : "[max-height:0px] text-transparent",
+              "group-hover:text-[rgba(245,242,236,0.82)] group-hover:[max-height:72px]",
               isFeatured ? "text-[0.9rem]" : "text-[0.82rem]",
             ].join(" ")}
             style={{ fontFamily: "var(--font-body)" }}
@@ -338,39 +341,69 @@ export function Experience() {
   return (
     <section
       id="experience"
-      className="relative overflow-hidden bg-[#0B1E2C] py-[80px] text-white md:py-[120px]"
+      className="section-shell relative overflow-hidden text-white"
+      style={{ background: "linear-gradient(180deg, #0D0F0A 0%, #12140E 52%, #0C0E09 100%)" }}
     >
       {/* ── Background layers ── */}
 
-      {/* 1. Central architectural teal glow */}
+      {/* 1. Cinematic showroom image — shared visual language with digital journey */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-[50%] top-[35%] h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[190px]"
-        style={{ background: "radial-gradient(circle, rgba(139,197,64,0.10), transparent 65%)" }}
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage: `url(${brandsDarkBg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center 48%",
+          opacity: 0.76,
+        }}
       />
 
-      {/* 2. Top-left directional spotlight */}
+      {/* 2. Deep olive veil */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -left-[20%] -top-[20%] h-[80vh] w-[80vh] rounded-full blur-[160px] opacity-55"
-        style={{ background: "radial-gradient(circle, rgba(139,197,64,0.12), transparent 60%)" }}
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(13,15,10,0.76) 0%, rgba(13,15,10,0.58) 44%, rgba(12,14,9,0.82) 100%)",
+        }}
       />
 
-      {/* 3. Bottom-right ambient fill */}
+      {/* 3. Visible architectural kitchen layer */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -bottom-[18%] -right-[15%] h-[55vh] w-[55vh] rounded-full blur-[140px] opacity-40"
-        style={{ background: "radial-gradient(circle, rgba(139,197,64,0.08), transparent 65%)" }}
+        className="pointer-events-none absolute inset-y-0 right-0 w-full overflow-hidden md:w-[72%]"
+        style={{
+          maskImage: "linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.58) 38%, #000 100%)",
+          WebkitMaskImage:
+            "linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.58) 38%, #000 100%)",
+        }}
+      >
+        <img
+          src={modernImg}
+          alt=""
+          className="h-full w-full object-cover object-center opacity-[0.34] saturate-[0.72]"
+          loading="lazy"
+        />
+      </div>
+
+      {/* 4. Brand green and champagne ambient light */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(58% 42% at 13% 8%, rgba(139,197,64,0.10), transparent 62%), radial-gradient(52% 42% at 88% 80%, rgba(200,169,107,0.09), transparent 66%)",
+        }}
       />
 
-      {/* 4. Edge vignette — architectural depth */}
+      {/* 5. Edge vignette — architectural depth */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 mix-blend-multiply"
-        style={{ background: "radial-gradient(circle at 50% 50%, transparent 42%, #040A0F 100%)" }}
+        style={{ background: "radial-gradient(circle at 50% 44%, transparent 48%, rgba(7,8,5,0.82) 100%)" }}
       />
 
-      {/* 5. Fine grain texture */}
+      {/* 6. Fine grain texture */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 opacity-[0.032] mix-blend-overlay"
@@ -379,20 +412,21 @@ export function Experience() {
         }}
       />
 
-      {/* 6. Top hairline — teal */}
+      {/* 7. Top hairline — champagne */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 top-0 h-px"
-        style={{ background: "linear-gradient(90deg, transparent, rgba(139,197,64,0.22), transparent)" }}
+        style={{ background: "linear-gradient(90deg, transparent, rgba(200,169,107,0.32), transparent)" }}
       />
-      {/* 7. Bottom hairline */}
+      {/* 8. Bottom hairline */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 bottom-0 h-px"
-        style={{ background: "linear-gradient(90deg, transparent, rgba(139,197,64,0.10), transparent)" }}
+        style={{ background: "linear-gradient(90deg, transparent, rgba(200,169,107,0.16), transparent)" }}
       />
 
       <div className="site-container relative">
+        <SectionChapter index={5} label="Inspiratie" light />
 
         {/* ── Section header ── */}
         <motion.div
@@ -400,17 +434,17 @@ export function Experience() {
           whileInView="visible"
           viewport={motionViewport}
           variants={reduceMotion ? undefined : staggerHeader}
-          className="mb-10 flex flex-col gap-5 md:flex-row md:items-end md:justify-between"
+          className="mb-12 flex flex-col gap-7 md:flex-row md:items-end md:justify-between"
         >
           <div className="max-w-[42rem]">
             {/* Eyebrow */}
             <motion.div
               variants={reduceMotion ? undefined : fadeUp}
-              className="mb-5 flex items-center gap-4"
+              className="mb-6 flex items-center gap-4"
             >
-              <span className="h-px w-8 bg-gradient-to-r from-transparent to-[rgba(139,197,64,0.55)]" />
+              <span className="h-px w-9 bg-gradient-to-r from-transparent to-[rgba(200,169,107,0.8)]" />
               <span
-                className="text-[0.6rem] font-semibold uppercase tracking-[0.32em] text-[#9CCD4A]"
+                className="text-[0.62rem] font-semibold uppercase tracking-[0.34em] text-[#C8A96B]"
                 style={{ fontFamily: "var(--font-body)" }}
               >
                 Keukeninspiratie
@@ -420,17 +454,13 @@ export function Experience() {
             {/* Heading */}
             <motion.h2
               variants={reduceMotion ? undefined : fadeUp}
-              className="font-serif text-[clamp(1.9rem,3.2vw,2.6rem)] font-light leading-[1.08] tracking-[-0.022em] text-white"
+              className="font-serif text-[clamp(2.55rem,4.3vw,3.65rem)] font-light leading-[1.08] tracking-[-0.025em] text-[#F5F2EC]"
             >
               Eén plaats voor{" "}
               <em
+                className="text-[#D8BE87]"
                 style={{
                   fontStyle: "italic",
-                  background:
-                    "linear-gradient(128deg, #9CCD4A 0%, #C5E88A 48%, #8BC540 100%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
                 }}
               >
                 al uw wensen
@@ -440,11 +470,11 @@ export function Experience() {
             {/* Subtext */}
             <motion.p
               variants={reduceMotion ? undefined : fadeUp}
-              className="mt-4 max-w-[32rem] text-[0.92rem] font-light leading-[1.82] text-[rgba(255,255,255,0.48)]"
+              className="mt-5 max-w-[36rem] text-[1rem] font-light leading-[1.75] tracking-[0.005em] text-[rgba(245,242,236,0.65)]"
               style={{ fontFamily: "var(--font-body)" }}
             >
-              Van verfijnd design tot modern en budgetvriendelijk: ontdek stijlen
-              die passen bij uw ruimte en manier van leven.
+              Van architecturaal design tot slimme luxe: ontdek een keukenwereld
+              die zorgvuldig wordt afgestemd op uw ruimte, smaak en manier van leven.
             </motion.p>
           </div>
 
@@ -458,11 +488,11 @@ export function Experience() {
               <img
                 src={kc.cbwLogo}
                 alt="CBW erkend"
-                className="h-12 w-auto opacity-40 md:h-14"
+                className="h-12 w-auto opacity-55 grayscale md:h-14"
                 loading="lazy"
               />
               <span
-                className="text-[0.68rem] font-light leading-snug text-[rgba(255,255,255,0.20)]"
+                className="text-[0.68rem] font-light leading-snug text-[rgba(245,242,236,0.42)]"
                 style={{ fontFamily: "var(--font-body)" }}
               >
                 Vertrouwen
@@ -475,16 +505,16 @@ export function Experience() {
             <div
               className="flex items-center gap-2 rounded-full border px-4 py-1.5"
               style={{
-                borderColor: "rgba(139,197,64,0.22)",
-                background: "rgba(139,197,64,0.05)",
+                borderColor: "rgba(200,169,107,0.28)",
+                background: "rgba(200,169,107,0.07)",
               }}
             >
               <span
-                className="h-[5px] w-[5px] rounded-full bg-[#9CCD4A]"
-                style={{ boxShadow: "0 0 6px rgba(139,197,64,0.65)" }}
+                className="h-[5px] w-[5px] rounded-full bg-[#8BC540]"
+                style={{ boxShadow: "0 0 8px rgba(139,197,64,0.72)" }}
               />
               <span
-                className="text-[0.55rem] font-semibold uppercase tracking-[0.26em] text-[rgba(139,197,64,0.70)]"
+                className="text-[0.62rem] font-semibold uppercase tracking-[0.26em] text-[rgba(216,190,135,0.82)]"
                 style={{ fontFamily: "var(--font-body)" }}
               >
                 Exclusieve Showroom · Utrecht
@@ -499,31 +529,32 @@ export function Experience() {
           whileInView="visible"
           viewport={motionViewport}
           variants={reduceMotion ? undefined : fadeUp}
-          className="mb-8 rounded-[16px] border px-6 py-5 backdrop-blur-md md:px-10"
+          className="mb-8 overflow-hidden rounded-[20px] border px-4 py-6 backdrop-blur-xl sm:px-6 md:px-10 md:py-7"
           style={{
-            borderColor: "rgba(139,197,64,0.09)",
-            background: "rgba(11,30,44,0.55)",
+            borderColor: "rgba(200,169,107,0.18)",
+            background: "linear-gradient(135deg, rgba(255,255,255,0.045), rgba(200,169,107,0.025))",
+            boxShadow: "inset 0 1px 0 rgba(255,255,255,0.035), 0 24px 60px -38px rgba(0,0,0,0.9)",
           }}
         >
-          <ul className="grid grid-cols-3 divide-x divide-[rgba(139,197,64,0.07)]">
+          <ul className="grid grid-cols-3 divide-x divide-[rgba(200,169,107,0.14)]">
             {stats.map((stat, i) => (
               <li
                 key={stat.label}
                 className="group cursor-default px-4 text-center first:pl-0 last:pr-0 sm:px-6 md:px-8"
               >
                 {/* Icon */}
-                <div className="mb-2 flex justify-center text-[rgba(139,197,64,0.36)] transition-colors duration-400 group-hover:text-[#9CCD4A]">
+                <div className="mb-3 flex justify-center text-[rgba(200,169,107,0.58)] transition-colors duration-400 group-hover:text-[#D8BE87]">
                   {statIcons[i]}
                 </div>
 
                 {/* Number */}
-                <p className="font-serif text-[clamp(1.55rem,2.6vw,2.1rem)] font-light leading-none tracking-[-0.03em] text-white transition-colors duration-400 group-hover:text-[#9CCD4A]">
+                <p className="font-serif text-[clamp(1.65rem,2.8vw,2.35rem)] font-light leading-none tracking-[-0.035em] text-[#F5F2EC] transition-colors duration-400 group-hover:text-[#D8BE87]">
                   <CountUpValue value={stat.value} suffix={stat.suffix} />
                 </p>
 
                 {/* Label */}
                 <p
-                  className="mt-1.5 text-[0.6rem] font-light uppercase tracking-[0.18em] text-[rgba(255,255,255,0.28)] transition-colors duration-400 group-hover:text-[rgba(247,244,238,0.52)]"
+                  className="mt-2 text-[0.55rem] font-medium uppercase tracking-[0.18em] text-[rgba(245,242,236,0.42)] transition-colors duration-400 group-hover:text-[rgba(245,242,236,0.68)] sm:text-[0.6rem]"
                   style={{ fontFamily: "var(--font-body)" }}
                 >
                   {stat.label}
@@ -531,7 +562,7 @@ export function Experience() {
 
                 {/* Teal underline — reveals on hover */}
                 <div className="mx-auto mt-3 h-px w-8 origin-center scale-x-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100"
-                  style={{ background: "linear-gradient(90deg, transparent, #9CCD4A, transparent)" }}
+                  style={{ background: "linear-gradient(90deg, transparent, #C8A96B, transparent)" }}
                 />
               </li>
             ))}
@@ -544,7 +575,7 @@ export function Experience() {
           whileInView="visible"
           viewport={motionViewport}
           variants={reduceMotion ? undefined : staggerCards}
-          className="grid gap-4 lg:grid-cols-12 lg:grid-rows-[240px_240px]"
+          className="grid gap-5 lg:grid-cols-12 lg:grid-rows-[255px_255px]"
         >
           {/* Featured — spans 2 rows */}
           <div className="lg:col-span-7 lg:row-span-2">

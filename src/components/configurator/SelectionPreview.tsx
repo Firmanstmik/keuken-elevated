@@ -75,7 +75,7 @@ export function SelectionPreview({
               </p>
               <h2
                 className="max-w-[13rem] text-[clamp(1.18rem,3.3vw,2rem)] leading-[1.04] tracking-[-0.026em] text-[#F7F5F2] sm:max-w-[14rem] md:max-w-[15rem] lg:max-w-[13rem]"
-                style={{ fontFamily: '"Playfair Display", serif', fontWeight: 400 }}
+                style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
               >
                 {title}
               </h2>
@@ -90,7 +90,7 @@ export function SelectionPreview({
             </p>
             <h3
               className="text-[1.75rem] leading-[1.15] text-[#111111]"
-              style={{ fontFamily: '"Playfair Display", serif', fontWeight: 400 }}
+              style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
             >
               {title}
             </h3>
@@ -116,7 +116,7 @@ export function SelectionPreview({
                     ) : null}
                     <p
                       className="text-[1rem] leading-[1.45] text-[#111111]"
-                      style={{ fontFamily: '"Playfair Display", serif', fontWeight: 400 }}
+                      style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
                     >
                       {detail.value}
                     </p>

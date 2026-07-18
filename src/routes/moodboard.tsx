@@ -318,7 +318,7 @@ function MoodboardPage() {
               <h1
                 className="mb-2 text-[2.25rem] text-[#F7F5F2] md:text-[3.5rem]"
                 style={{
-                  fontFamily: '"Playfair Display", serif',
+                  fontFamily: "var(--font-display)",
                   fontWeight: 400,
                   textShadow: "0 2px 20px rgba(0,0,0,0.3)",
                 }}
@@ -366,7 +366,7 @@ function MoodboardPage() {
               <div className="mb-5">
                 <h2
                   className="mb-3 text-[1.375rem] text-[#111111]"
-                  style={{ fontFamily: '"Playfair Display", serif', fontWeight: 400 }}
+                  style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
                 >
                   Merk en stijl
                 </h2>
@@ -379,7 +379,7 @@ function MoodboardPage() {
               <div className="mb-5 border-t border-[rgba(0,0,0,0.08)] pt-5">
                 <h2
                   className="mb-3 text-[1.375rem] text-[#111111]"
-                  style={{ fontFamily: '"Playfair Display", serif', fontWeight: 400 }}
+                  style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
                 >
                   Materialen en afwerkingen
                 </h2>
@@ -439,7 +439,7 @@ function MoodboardPage() {
                 </p>
                 <p
                   className="mb-1 text-[2rem] text-[#B08D57]"
-                  style={{ fontFamily: '"Playfair Display", serif', fontWeight: 400 }}
+                  style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
                 >
                   {budget}
                 </p>
@@ -455,7 +455,7 @@ function MoodboardPage() {
                 </p>
                 <h2
                   className="mb-2 text-[1.125rem] text-[#111111]"
-                  style={{ fontFamily: '"Playfair Display", serif', fontWeight: 400 }}
+                  style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
                 >
                   Plan uw ontwerpconsultatie
                 </h2>
@@ -536,7 +536,7 @@ function InfoCard({ label, value }: { label: string; value: string }) {
       <p className="mb-1 block text-[0.75rem] uppercase tracking-[0.1em] text-[#B08D57]">{label}</p>
       <p
         className="text-[1.125rem] text-[#111111]"
-        style={{ fontFamily: '"Playfair Display", serif', fontWeight: 400 }}
+        style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
       >
         {value}
       </p>

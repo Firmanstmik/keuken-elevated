@@ -100,8 +100,8 @@ export function StickyConversionBar() {
                   <X className="h-3.5 w-3.5" />
                 </button>
 
-                <div className="lux-border rounded-[22px] p-[1px] shadow-[0_30px_70px_-30px_rgba(23,25,28,0.22)]">
-                  <div className="relative overflow-hidden rounded-[21px] bg-[linear-gradient(145deg,rgba(252,250,246,0.95),rgba(244,240,232,0.92))] p-1.5 backdrop-blur-2xl">
+                <div className="lux-border rounded-[24px] p-[1px] shadow-[0_30px_70px_-30px_rgba(23,25,28,0.22)]">
+                  <div className="relative overflow-hidden rounded-[23px] bg-[linear-gradient(145deg,rgba(252,250,246,0.95),rgba(244,240,232,0.92))] p-1.5 backdrop-blur-2xl">
                   <div className="absolute inset-x-10 top-0 h-px bg-[linear-gradient(90deg,rgba(201,164,106,0),rgba(201,164,106,0.4),rgba(201,164,106,0))]" />
                   <div className="absolute left-[18%] top-[-80%] h-[180px] w-[180px] rounded-full bg-[radial-gradient(circle,rgba(139,197,64,0.1),transparent_60%)]" />
                   <div className="absolute right-[18%] top-[-86%] h-[190px] w-[190px] rounded-full bg-[radial-gradient(circle,rgba(201,164,106,0.1),transparent_58%)]" />
@@ -195,15 +195,15 @@ export function StickyConversionBar() {
                               <span
                                 className={`flex h-7 w-7 items-center justify-center rounded-[10px] ${
                                   primary
-                                    ? "bg-[rgba(255,255,255,0.06)] text-[#9CCD4A]"
+                                    ? "bg-[rgba(255,255,255,0.06)] text-[#A8D95A]"
                                     : "bg-[rgba(12,24,36,0.06)] text-[var(--secondary)]"
                                 }`}
                               >
                                 <Icon className="h-4 w-4" />
                               </span>
                             )}
-                            <span className={`text-[9px] font-semibold uppercase tracking-[0.1em] leading-none ${
-                              primary ? "text-white/70" : accent === "green" ? "text-[#0a8a90]" : "text-[var(--text-soft)]"
+                            <span className={`text-[10px] font-semibold uppercase tracking-[0.1em] leading-none ${
+                              primary ? "text-white/70" : accent === "green" ? "text-[#73A832]" : "text-[var(--text-soft)]"
                             }`}>
                               {shortLabel}
                             </span>

@@ -44,7 +44,7 @@ export function FlowActionBar({
             className={`text-[1.18rem] leading-[1.08] md:truncate md:text-[1.75rem] ${
               isLight ? "text-[#111111]" : "text-[#F7F5F2]"
             }`}
-            style={{ fontFamily: '"Playfair Display", serif', fontWeight: 400 }}
+            style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
           >
             {title}
           </p>

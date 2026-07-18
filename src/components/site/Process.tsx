@@ -8,7 +8,9 @@ import {
   useTransform,
   type Variants,
 } from "framer-motion";
-import { Shop, Brush2, Layer, Gallery, People, ArrowRight2 } from "iconsax-react";
+import { Shop, Brush2, Layer, Gallery, People } from "iconsax-react";
+import { PremiumPillButton } from "@/components/ui/premium-pill-button";
+import { SectionChapter } from "@/components/site/SectionChapter";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -108,11 +110,12 @@ export function Process() {
     <section
       ref={sectionRef}
       id="process"
-      className="relative overflow-hidden bg-[#0B1E2C] py-24 text-white md:py-36"
+      className="section-shell relative overflow-hidden text-white"
+      style={{ background: "linear-gradient(180deg, #0D0F0A 0%, #12140E 50%, #0C0E09 100%)" }}
     >
       {/* ── Background layers ── */}
 
-      {/* 1. Central architectural teal bloom */}
+      {/* 1. Central architectural brand-green bloom */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute left-1/2 top-1/2 h-[900px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[220px]"
@@ -133,11 +136,11 @@ export function Process() {
         style={{ background: "radial-gradient(circle, rgba(139,197,64,0.10), transparent 65%)" }}
       />
 
-      {/* 4. Edge vignette — depth */}
+      {/* 4. Warm-black edge vignette — depth */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 mix-blend-multiply"
-        style={{ background: "radial-gradient(circle at 50% 50%, transparent 42%, #040A0F 100%)" }}
+        style={{ background: "radial-gradient(circle at 50% 50%, transparent 42%, #070805 100%)" }}
       />
 
       {/* 5. Fine grain texture */}
@@ -163,7 +166,8 @@ export function Process() {
         style={{ background: "linear-gradient(90deg, transparent, rgba(139,197,64,0.10), transparent)" }}
       />
 
-      <div className="relative mx-auto max-w-6xl px-6 lg:px-12">
+      <div className="site-container relative max-w-6xl">
+        <SectionChapter index={7} label="Proces" light />
 
         {/* ── Section header ── */}
         <motion.div
@@ -180,7 +184,7 @@ export function Process() {
           >
             <span className="h-px w-10 bg-gradient-to-r from-transparent to-[rgba(139,197,64,0.45)]" />
             <span
-              className="text-[10px] font-light tracking-[0.32em] text-[#9CCD4A]"
+              className="text-[10px] font-light tracking-[0.32em] text-[#A8D95A]"
               style={{ fontFamily: "var(--font-body)" }}
             >
               Het proces
@@ -191,13 +195,13 @@ export function Process() {
           {/* Heading */}
           <motion.h2
             variants={reduceMotion ? undefined : fadeUp}
-            className="mx-auto max-w-[46rem] font-serif text-[clamp(2.2rem,4vw,3.2rem)] font-light leading-[1.1] tracking-[-0.02em] text-[#F7F4EE]"
+            className="mx-auto max-w-[46rem] font-serif text-[clamp(2.35rem,3.9vw,3.25rem)] font-light leading-[1.12] tracking-[-0.02em] text-[#F7F4EE]"
           >
             Van concept tot{" "}
             <em
               style={{
                 fontStyle: "italic",
-                background: "linear-gradient(128deg, #9CCD4A 0%, #C5E88A 48%, #8BC540 100%)",
+                background: "linear-gradient(128deg, #A8D95A 0%, #C5E88A 48%, #8BC540 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -254,7 +258,7 @@ export function Process() {
                 width: "10px",
                 transform: "translateY(-50%)",
                 borderRadius: "9999px",
-                background: "#9CCD4A",
+                background: "#A8D95A",
                 boxShadow: "0 0 14px rgba(139,197,64,0.90), 0 0 28px rgba(139,197,64,0.50)",
                 opacity: linePercent > 0 ? 1 : 0,
                 transition: "left 700ms cubic-bezier(0.22,1,0.36,1), opacity 300ms ease",
@@ -293,7 +297,7 @@ export function Process() {
                         style={{
                           background: isOn
                             ? "rgba(139,197,64,0.09)"
-                            : "rgba(11,30,44,0.65)",
+                            : "rgba(17,19,13,0.72)",
                           borderWidth: "1px",
                           borderStyle: "solid",
                           borderColor: isOn
@@ -322,7 +326,7 @@ export function Process() {
                           className="pointer-events-none absolute left-1/2 top-[9px] -translate-x-1/2"
                           style={{
                             fontFamily: "var(--font-body)",
-                            fontSize: "0.42rem",
+                            fontSize: "0.55rem",
                             fontWeight: 700,
                             letterSpacing: "0.22em",
                             color: isOn
@@ -345,7 +349,7 @@ export function Process() {
                         >
                           <Icon
                             size={20}
-                            color={isOn ? "#9CCD4A" : "rgba(139,197,64,0.55)"}
+                            color={isOn ? "#A8D95A" : "rgba(139,197,64,0.55)"}
                             variant="TwoTone"
                             aria-hidden="true"
                           />
@@ -360,7 +364,7 @@ export function Process() {
                             height: "5px",
                             width: "5px",
                             borderRadius: "9999px",
-                            background: isScrollActive ? "#9CCD4A" : "rgba(139,197,64,0.16)",
+                            background: isScrollActive ? "#A8D95A" : "rgba(139,197,64,0.16)",
                             boxShadow: isScrollActive
                               ? "0 0 10px rgba(139,197,64,0.58)"
                               : "none",
@@ -431,40 +435,14 @@ export function Process() {
             }}
           />
 
-          {/* Premium teal button with shine sweep */}
-          <a
+          <PremiumPillButton
             href="/brands"
-            className="group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-[14px] px-8 py-[0.88rem] text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-white"
-            style={{
-              background:
-                "linear-gradient(135deg, #9CCD4A 0%, #8BC540 55%, #689A2E 100%)",
-              fontFamily: "var(--font-body)",
-              transition:
-                "transform 500ms cubic-bezier(0.22,1,0.36,1), box-shadow 500ms ease",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
-              (e.currentTarget as HTMLElement).style.boxShadow =
-                "0 14px 40px rgba(139,197,64,0.32)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-              (e.currentTarget as HTMLElement).style.boxShadow = "none";
-            }}
+            variant="blue"
+            shape="rounded"
+            size="xl"
           >
-            <span className="relative z-10">Begin uw ontwerptraject</span>
-            <ArrowRight2
-              size={14}
-              color="currentColor"
-              className="relative z-10 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1.5"
-              aria-hidden="true"
-            />
-            {/* Shine sweep */}
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/24 to-transparent transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:translate-x-full"
-            />
-          </a>
+            Begin uw ontwerptraject
+          </PremiumPillButton>
         </motion.div>
 
       </div>

@@ -58,6 +58,11 @@ type NavMenuItem = {
     description?: string;
     icon?: ComponentType<{ className?: string }>;
   }>;
+  /** Compact single-line link groups used by the desktop megamenu. */
+  groups?: Array<{
+    title: string;
+    items: Array<{ label: string; href: string }>;
+  }>;
   featured?: {
     title: string;
     description: string;
@@ -71,34 +76,59 @@ const desktopMenu: NavMenuItem[] = [
   { label: "Home", href: "/" },
   {
     label: "Keukens",
+    href: "/keukens",
     items: [
       {
         label: "AI Küchen",
-        href: "/#brands",
+        href: "/keukens/ai-kuchen",
         description: "Innovatieve en moderne keukens, ontworpen met AI en Duitse precisie.",
         icon: Sparkles,
       },
       {
         label: "Leicht",
-        href: "/#brands",
+        href: "/keukens/leicht",
         description: "Duitse topkwaliteit en architectonisch design voor uw droomkeuken.",
         icon: Layers,
       },
       {
+        label: "Leicht Bossa",
+        href: "/keukens/leicht/bossa",
+        description: "Verticale structuur en Bossa Concrete — sculpturale showroomkeukens.",
+        icon: Layers,
+      },
+      {
+        label: "Leicht Taj Mahal",
+        href: "/keukens/leicht/taj-mahal",
+        description: "Monumentaal Leicht-design met elegante rust in de showroom.",
+        icon: Award,
+      },
+      {
+        label: "Leicht Ronde Wangen",
+        href: "/keukens/leicht/ronde-wangen",
+        description: "Zachte rondingen met Duitse precisie — live te ervaren in Utrecht.",
+        icon: Compass,
+      },
+      {
+        label: "Leicht Kyoto",
+        href: "/keukens/leicht/kyoto",
+        description: "Japandi calm meets Duitse architectuur — serene showroomserie.",
+        icon: Sparkles,
+      },
+      {
         label: "Nobilia",
-        href: "/#brands",
+        href: "/keukens/nobilia",
         description: "De absolute marktleider in Europa. Veelzijdig, betrouwbaar en modern.",
         icon: Award,
       },
       {
         label: "Zampieri",
-        href: "/#brands",
+        href: "/keukens/zampieri",
         description: "Exclusief Italiaans design. Minimalistisch, verfijnd en elegant.",
         icon: Gem,
       },
       {
         label: "Cucinesse",
-        href: "/#brands",
+        href: "/keukens/cucinesse",
         description: "Warme Italiaanse sfeer gecombineerd met functionaliteit en passie.",
         icon: Heart,
       },
@@ -110,122 +140,203 @@ const desktopMenu: NavMenuItem[] = [
       },
       {
         label: "Keuken op maat",
-        href: "/#showroom",
+        href: "/configure",
         description: "Volledig gepersonaliseerd ontwerp, afgestemd op uw ruimte en wensen.",
         icon: Wrench,
+      },
+    ],
+    groups: [
+      {
+        title: "Merken",
+        items: [
+          { label: "AI Küchen", href: "/keukens/ai-kuchen" },
+          { label: "Leicht", href: "/keukens/leicht" },
+          { label: "Nobilia", href: "/keukens/nobilia" },
+          { label: "Zampieri", href: "/keukens/zampieri" },
+          { label: "Cucinesse", href: "/keukens/cucinesse" },
+        ],
+      },
+      {
+        title: "Leicht series",
+        items: [
+          { label: "Bossa", href: "/keukens/leicht/bossa" },
+          { label: "Taj Mahal", href: "/keukens/leicht/taj-mahal" },
+          { label: "Ronde Wangen", href: "/keukens/leicht/ronde-wangen" },
+          { label: "Kyoto", href: "/keukens/leicht/kyoto" },
+        ],
+      },
+      {
+        title: "Ontdekken",
+        items: [
+          { label: "Keukenstijlen", href: "/#collections" },
+          { label: "Keuken op maat", href: "/configure" },
+          { label: "Showroom keukens", href: "/showroom-keukens" },
+        ],
       },
     ],
     featured: {
       title: "Duitse & Italiaanse Kwaliteit",
       description: "Ervaar vakmanschap in onze showroom te Utrecht. Al meer dan 45 jaar uw keukenspecialist.",
-      buttonText: "Plan showroombezoek",
-      buttonHref: "/consultation",
+      buttonText: "Alle keukenmerken",
+      buttonHref: "/keukens",
       imageSrc: showroomImg,
     },
   },
   {
     label: "Keukenbladen",
+    href: "/keukenbladen",
     items: [
       {
         label: "Silestone",
-        href: "/#collections",
+        href: "/keukenbladen/silestone",
         description: "Kwartscomposiet bladen met extreme hardheid en prachtige kleuren.",
         icon: Gem,
       },
       {
         label: "Dekton",
-        href: "/#collections",
+        href: "/keukenbladen/dekton",
         description: "Ultra-compact oppervlak, bestand tegen hitte, krassen en vlekken.",
         icon: Shield,
       },
       {
         label: "Neolith",
-        href: "/#collections",
+        href: "/keukenbladen/neolith",
         description: "Gesinterde steenbladen voor een luxueuze, natuurlijke uitstraling.",
         icon: Mountain,
       },
       {
         label: "Sensa",
-        href: "/#collections",
+        href: "/keukenbladen/sensa",
         description: "Exclusief natuursteen met een unieke, vlekbestendige bescherming.",
         icon: Sparkles,
+      },
+    ],
+    groups: [
+      {
+        title: "Materialen",
+        items: [
+          { label: "Silestone", href: "/keukenbladen/silestone" },
+          { label: "Dekton", href: "/keukenbladen/dekton" },
+          { label: "Neolith", href: "/keukenbladen/neolith" },
+          { label: "Sensa", href: "/keukenbladen/sensa" },
+        ],
+      },
+      {
+        title: "Advies",
+        items: [
+          { label: "Alle keukenbladen", href: "/keukenbladen" },
+          { label: "Offerte op maat", href: "/consultation" },
+        ],
       },
     ],
     featured: {
       title: "Natuursteen & Composiet",
       description: "Kies uit honderden kleuren en afwerkingen. Van hittebestendig Dekton tot luxe marmerlook.",
       buttonText: "Ontdek Materialen",
-      buttonHref: "/#collections",
+      buttonHref: "/keukenbladen",
       imageSrc: marmerImg,
     },
   },
   {
     label: "Apparatuur",
+    href: "/apparatuur",
     items: [
       {
         label: "Quooker",
-        href: "/#showroom",
+        href: "/apparatuur/quooker",
         description: "De kraan die alles kan: 100°C kokend, gekoeld en bruisend water.",
         icon: Droplet,
       },
       {
         label: "Kookplaten",
-        href: "/#showroom",
+        href: "/apparatuur/kookplaten",
         description: "Inductiekookplaten van topmerken voor optimaal kookcomfort.",
         icon: Grid,
       },
       {
         label: "Fornuizen",
-        href: "/#showroom",
+        href: "/apparatuur/fornuizen",
         description: "Professionele fornuizen voor de ultieme culinaire ervaring.",
         icon: Flame,
       },
       {
         label: "Afzuigkappen",
-        href: "/#showroom",
+        href: "/apparatuur/afzuigkappen",
         description: "Stijlvolle afzuigkappen die design en prestaties perfect combineren.",
         icon: Wind,
       },
       {
         label: "Werkblad afzuiging",
-        href: "/#showroom",
+        href: "/apparatuur/werkblad-afzuiging",
         description: "Geavanceerde kookveldafzuiging die geuren direct bij de bron weghaalt.",
         icon: Wind,
       },
       {
         label: "Koelkasten & Vriezers",
-        href: "/#showroom",
+        href: "/apparatuur/koelkasten-vriezers",
         description: "Geavanceerde koelapparatuur met slimme vershoudzones.",
         icon: Snowflake,
       },
       {
         label: "Vaatwassers",
-        href: "/#showroom",
+        href: "/apparatuur/vaatwassers",
         description: "Stille, inbouwvaatwassers voor een perfect schone vaat.",
         icon: Droplet,
       },
       {
         label: "Wave afzuigkappen",
-        href: "/#showroom",
+        href: "/apparatuur/wave-afzuigkappen",
         description: "Exclusieve design afzuigkappen als statement in uw keuken.",
         icon: Wind,
+      },
+    ],
+    groups: [
+      {
+        title: "Koken",
+        items: [
+          { label: "Kookplaten", href: "/apparatuur/kookplaten" },
+          { label: "Fornuizen", href: "/apparatuur/fornuizen" },
+          { label: "Quooker", href: "/apparatuur/quooker" },
+        ],
+      },
+      {
+        title: "Ventilatie",
+        items: [
+          { label: "Afzuigkappen", href: "/apparatuur/afzuigkappen" },
+          { label: "Werkblad afzuiging", href: "/apparatuur/werkblad-afzuiging" },
+          { label: "Wave afzuigkappen", href: "/apparatuur/wave-afzuigkappen" },
+        ],
+      },
+      {
+        title: "Koelen & vaat",
+        items: [
+          { label: "Koelkasten & Vriezers", href: "/apparatuur/koelkasten-vriezers" },
+          { label: "Vaatwassers", href: "/apparatuur/vaatwassers" },
+        ],
       },
     ],
     featured: {
       title: "Hoogwaardige Inbouwapparatuur",
       description: "Ontdek de nieuwste systemen van Miele, Bora en Quooker geïntegreerd in onze showroom.",
       buttonText: "Bekijk Apparatuur",
-      buttonHref: "/#showroom",
+      buttonHref: "/apparatuur",
       imageSrc: boraImg,
     },
   },
-  { label: "Aanbiedingen", href: "/#collections" },
+  { label: "Aanbiedingen", href: "/aanbiedingen" },
   {
     label: "Contact",
+    href: "/contact",
     items: [
       {
+        label: "Contact & route",
+        href: "/contact",
+        description: "Stuur een bericht, bel ons of plan uw route naar de Zonnebaan.",
+        icon: MapPin,
+      },
+      {
         label: "Showroom keukens",
-        href: "/#showroom",
+        href: "/showroom-keukens",
         description: "Kom langs in onze showroom in Utrecht en laat u inspireren.",
         icon: MapPin,
       },
@@ -299,13 +410,26 @@ export function Nav() {
   const location = useLocation();
 
   useEffect(() => {
+    let lastY = window.scrollY;
+
     const onScroll = () => {
       const currentY = window.scrollY;
       setScrolled(currentY > 24);
 
       if (!open) {
-        setHidden(currentY > 16);
+        const delta = currentY - lastY;
+        // Direction-aware auto-hide: hide while scrolling down past the hero
+        // top, reveal as soon as the user scrolls back up.
+        if (currentY <= 96) {
+          setHidden(false);
+        } else if (delta > 6) {
+          setHidden(true);
+        } else if (delta < -6) {
+          setHidden(false);
+        }
       }
+
+      lastY = currentY;
     };
 
     onScroll();
@@ -327,7 +451,9 @@ export function Nav() {
 
   const forceSolidNav = location.pathname === "/moodboard" || location.pathname === "/consultation";
   const elevated = scrolled || open || forceSolidNav;
-  const heroNav = location.pathname === "/" && !elevated;
+  // Transparent over the dark hero at the top; once scrolled the navbar gains
+  // a light glass background, so links switch to the dark treatment.
+  const heroNav = !elevated;
   const currentHash = location.href.includes("#") ? `#${location.href.split("#")[1]}` : "";
 
   return (
@@ -385,7 +511,7 @@ export function Nav() {
       <div className={`nav-header-wash ${elevated || forceSolidNav ? "opacity-0" : "opacity-100"} transition-opacity duration-500`} />
 
       <div className={`nav-band ${forceSolidNav ? "nav-band-forced" : elevated ? "nav-band-elevated" : ""}`}>
-        <div className="site-container py-4">
+        <div className={`site-container transition-[padding] duration-500 ${elevated ? "py-3" : "py-4"}`}>
           <div className={`nav-frame nav-shell flex items-center justify-between gap-6 ${elevated ? "nav-shell-elevated" : "nav-shell-top"}`}>
             <motion.a
               href="/"
@@ -394,14 +520,14 @@ export function Nav() {
               transition={{ duration: motionDuration.premium, ease: motionEase.premium, delay: 0.06 }}
               className="flex shrink-0 items-center"
             >
-              <img src={logoKeuken} alt="KeukenCentrum.nl" className={`w-auto transition-all duration-300 ${elevated ? "h-7 md:h-8" : "h-8 md:h-9"}`} width={280} height={48} />
+              <img src={logoKeuken} alt="KeukenCentrum.nl" className={`nav-logo w-auto transition-all duration-300 ${elevated ? "h-7 md:h-8" : "h-8 md:h-9"}`} width={280} height={48} />
             </motion.a>
 
             <motion.nav
               initial={reduceMotion ? false : { opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: motionDuration.premium, ease: motionEase.premium, delay: 0.34 }}
-              className="hidden flex-1 items-center justify-center xl:flex"
+              className="hidden flex-1 items-center justify-end xl:flex"
             >
               <motion.div
                 initial={reduceMotion ? false : "hidden"}
@@ -415,12 +541,11 @@ export function Nav() {
                     },
                   },
                 }}
-                className="flex items-center gap-9"
+                className="flex items-center gap-6 2xl:gap-7"
               >
                 {desktopMenu.map((item) => {
                   const hasDropdown = Boolean(item.items?.length);
                   const isOpen = openDropdown === item.label;
-                  const isHome = item.label === "Home";
                   const isMegamenu = item.label === "Keukens" || item.label === "Keukenbladen" || item.label === "Apparatuur";
 
                   return (
@@ -459,117 +584,185 @@ export function Nav() {
                           />
                         </button>
                       ) : (
-                        isHome ? (
-                          <motion.a
-                            href={item.href}
-                            className="nav-link"
-                            data-active={item.href ? isActiveLink(location.pathname, currentHash, item.href) : false}
-                          >
-                            {item.label}
-                          </motion.a>
-                        ) : (
-                          <span className="nav-link cursor-default opacity-80" aria-disabled>
-                            {item.label}
-                          </span>
-                        )
+                        <motion.a
+                          href={item.href}
+                          className="nav-link"
+                          data-active={item.href ? isActiveLink(location.pathname, currentHash, item.href) : false}
+                        >
+                          {item.label}
+                        </motion.a>
                       )}
 
                       <AnimatePresence initial={false}>
                         {hasDropdown && isOpen ? (
                           <motion.div
-                            initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 15, scale: 0.98, filter: "blur(10px)" }}
-                            animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
-                            exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 10, scale: 0.98, filter: "blur(10px)" }}
-                            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                            className={`absolute z-50 mt-4 overflow-hidden rounded-[24px] border border-[#E5DCD3]/50 bg-[#FAF8F4]/95 shadow-[0_32px_64px_-12px_rgba(23,25,28,0.12),0_0_0_1px_rgba(255,255,255,0.7)_inset] backdrop-blur-2xl ${isMegamenu
-                              ? "left-1/2 w-[860px] -translate-x-1/2"
+                            initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 12, scale: 0.99 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 8, scale: 0.99 }}
+                            transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+                            className={`absolute z-50 mt-4 overflow-hidden rounded-[26px] border backdrop-blur-2xl ${heroNav
+                              ? "border-[rgba(200,169,107,0.18)] bg-[rgba(14,17,10,0.92)] shadow-[0_42px_110px_-28px_rgba(0,0,0,0.82),0_0_0_1px_rgba(255,255,255,0.035)_inset]"
+                              : "border-[rgba(200,169,107,0.24)] bg-[linear-gradient(145deg,rgba(255,254,251,0.99),rgba(245,241,232,0.985))] shadow-[0_40px_100px_-30px_rgba(23,25,20,0.38),0_0_0_1px_rgba(255,255,255,0.95)_inset]"
+                              } ${isMegamenu
+                              ? "left-1/2 w-[min(840px,calc(100vw-3rem))] -translate-x-1/2"
                               : "left-1/2 w-[280px] -translate-x-1/2 p-2.5"
                               }`}
                             role="menu"
                             aria-label={item.label}
                           >
+                            {/* Gold-green hairline along the top edge — jewellery detail */}
+                            <div
+                              aria-hidden
+                              className="pointer-events-none absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-[rgba(200,169,107,0.82)] to-transparent"
+                            />
+                            <div
+                              aria-hidden
+                              className={`pointer-events-none absolute -right-16 -top-24 h-64 w-64 rounded-full blur-3xl ${heroNav ? "bg-[rgba(139,197,64,0.08)]" : "bg-[rgba(139,197,64,0.07)]"}`}
+                            />
                             {isMegamenu ? (
-                              <div className="grid grid-cols-[1.22fr_0.78fr]">
-                                {/* Left Column: Sub-items list */}
-                                <div className="p-6 text-left">
-                                  <div>
-                                    <div className="text-[10px] font-medium tracking-[0.15em] text-[#C8A96B] uppercase">
-                                      {item.label}
+                              <div className="relative grid grid-cols-[1.55fr_0.75fr]">
+                                {/* Left: editorial link index */}
+                                <div className="p-8 pr-7 text-left">
+                                  <div className="flex items-start justify-between gap-5">
+                                    <div>
+                                      <div className="mb-4 flex items-center gap-3">
+                                        <span className="relative flex h-9 w-9 items-center justify-center rounded-full border border-[rgba(200,169,107,0.38)] bg-[linear-gradient(145deg,rgba(255,255,255,0.15),rgba(200,169,107,0.13))] shadow-[inset_0_1px_0_rgba(255,255,255,0.3),0_8px_24px_-14px_rgba(200,169,107,0.8)]">
+                                          <span className="absolute inset-[4px] rounded-full border border-[rgba(200,169,107,0.16)]" />
+                                          <Gem className="relative h-4 w-4 text-[#C8A96B]" strokeWidth={1.35} />
+                                        </span>
+                                        <div>
+                                          <span className="block text-[0.56rem] font-semibold uppercase tracking-[0.3em] text-[#A68A53]">
+                                            Premium collectie
+                                          </span>
+                                          <span className={`mt-1 block text-[0.55rem] font-light tracking-[0.08em] ${heroNav ? "text-white/38" : "text-[#656052]/55"}`}>
+                                            Met zorg geselecteerd in Utrecht
+                                          </span>
+                                        </div>
+                                      </div>
+                                      <span className={`font-display text-[1.35rem] leading-[1.15] tracking-[-0.02em] ${heroNav ? "text-[#F5F2EC]" : "text-[#1E2013]"}`}>
+                                      {item.label === "Keukens" && "Duitse en Italiaanse keukenmerken"}
+                                      {item.label === "Keukenbladen" && "Stijlvolle en duurzame keukenbladen"}
+                                      {item.label === "Apparatuur" && "Hoogwaardige inbouwapparatuur"}
+                                      </span>
                                     </div>
-                                    <div className="mt-1.5 font-display text-xl leading-normal text-[#111111] tracking-tight">
-                                      {item.label === "Keukens" && "Duitse en Italiaanse keukenmerken."}
-                                      {item.label === "Keukenbladen" && "Stijlvolle en duurzame keukenbladen."}
-                                      {item.label === "Apparatuur" && "Hoogwaardige inbouwapparatuur."}
-                                    </div>
+                                    <span className={`mt-1 font-serif text-[0.72rem] italic ${heroNav ? "text-white/30" : "text-[#1E2013]/35"}`}>
+                                      Curated by KC
+                                    </span>
                                   </div>
-                                  <div className="my-4 h-px bg-[#E5DCD3]/30" />
+                                  <div className={`mb-6 mt-5 h-px bg-gradient-to-r ${heroNav
+                                    ? "from-[rgba(200,169,107,0.5)] via-white/10 to-transparent"
+                                    : "from-[rgba(200,169,107,0.42)] via-[rgba(23,25,28,0.07)] to-transparent"}`} />
 
-                                  <div className={`grid gap-1.5 ${item.label === "Keukens" || item.label === "Apparatuur" ? "grid-cols-2" : "grid-cols-1"}`}>
-                                    {item.items?.map((sub, index) => {
-                                      const IconComponent = sub.icon;
-                                      return (
-                                        <motion.div
-                                          key={sub.label}
-                                          initial={reduceMotion ? false : { opacity: 0, x: -8 }}
-                                          animate={reduceMotion ? undefined : { opacity: 1, x: 0 }}
-                                          transition={{ delay: 0.04 + index * 0.03, duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                                          className="group flex items-start gap-3 rounded-xl border border-transparent bg-transparent p-2.5 cursor-default"
-                                        >
-                                          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-[#E5DCD3]/30 bg-white shadow-[0_4px_12px_-4px_rgba(23,25,28,0.06)] group-hover:bg-[#FAF8F4] transition-colors duration-300">
-                                            {IconComponent && <IconComponent className="h-4 w-4 text-[#8BC540] group-hover:text-[#2F5218] transition-colors duration-300" />}
+                                  <div className={`grid gap-x-6 gap-y-6 ${(item.groups?.length ?? 0) >= 3 ? "grid-cols-3" : "grid-cols-2"}`}>
+                                    {item.groups?.map((group, groupIndex) => (
+                                      <motion.div
+                                        key={group.title}
+                                        initial={reduceMotion ? false : { opacity: 0, y: 6 }}
+                                        animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.05 + groupIndex * 0.05, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                                      >
+                                        <div className="mb-2.5 flex items-center gap-2">
+                                          <span className={`font-serif text-[0.68rem] italic ${heroNav ? "text-[#C8A96B]/55" : "text-[#A68A53]/65"}`}>
+                                            0{groupIndex + 1}
                                           </span>
-                                          <span className="min-w-0 flex-1">
-                                            <span className="flex items-center justify-between gap-2">
-                                              <span className="text-[12px] font-semibold tracking-[0.02em] text-[#111111] transition-colors duration-300 group-hover:text-[#8BC540]">
-                                                {sub.label}
-                                              </span>
-                                            </span>
-                                            <span className="mt-0.5 block text-[11px] leading-relaxed text-[#5A5A5A]/80 font-light">
-                                              {sub.description}
-                                            </span>
-                                          </span>
-                                        </motion.div>
-                                      );
-                                    })}
+                                          <div className={`text-[0.58rem] font-semibold uppercase tracking-[0.2em] ${heroNav ? "text-[#C8A96B]" : "text-[#8E7950]"}`}>
+                                            {group.title}
+                                          </div>
+                                        </div>
+                                        <ul className="space-y-1">
+                                          {group.items.map((sub) => (
+                                            <li key={sub.label}>
+                                              <a
+                                                href={sub.href}
+                                                onClick={() => setOpenDropdown(null)}
+                                                role="menuitem"
+                                                className={`group/link -mx-2 flex items-center justify-between rounded-[9px] border border-transparent px-2.5 py-2 text-[0.79rem] font-medium tracking-[0.01em] transition-all duration-300 ${heroNav
+                                                  ? "text-[rgba(245,242,236,0.8)] hover:border-white/[0.06] hover:bg-white/[0.045] hover:text-[#CDEB9C]"
+                                                  : "text-[#35382D] hover:border-[rgba(139,197,64,0.13)] hover:bg-[rgba(139,197,64,0.065)] hover:text-[#3E6317]"}`}
+                                              >
+                                                <span>{sub.label}</span>
+                                                <span className={`flex h-5 w-5 -translate-x-1 items-center justify-center rounded-full opacity-0 transition-all duration-300 group-hover/link:translate-x-0 group-hover/link:opacity-100 ${heroNav ? "bg-white/[0.06]" : "bg-white/80"}`}>
+                                                  <IconsaxArrowRight2 size={10} variant="Linear" className="text-[#8BC540]" />
+                                                </span>
+                                              </a>
+                                            </li>
+                                          ))}
+                                        </ul>
+                                      </motion.div>
+                                    ))}
                                   </div>
                                 </div>
 
-                                {/* Right Column: Featured image card */}
-                                <div className="relative border-l border-[#E5DCD3]/40 bg-[#FAF8F4]/30 p-6 flex flex-col justify-between">
-                                  <div>
-                                    <div className="text-left text-[10px] font-medium tracking-[0.15em] text-[#C8A96B] uppercase">
-                                      Uitgelicht
-                                    </div>
-                                    <div className="mt-3 overflow-hidden rounded-xl border border-[#E5DCD3]/40 bg-white shadow-[0_12px_32px_-12px_rgba(23,25,28,0.12)]">
-                                      <div className="relative aspect-[16/10] overflow-hidden group/featured">
-                                        <img
-                                          src={item.featured?.imageSrc}
-                                          alt=""
-                                          aria-hidden
-                                          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-105"
-                                          loading="lazy"
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
-                                        <div className="absolute inset-x-0 bottom-0 p-4 text-left">
-                                          <div className="text-[12px] font-semibold text-white tracking-[0.02em]">
-                                            {item.featured?.title}
-                                          </div>
-                                          <div className="mt-1 text-[11px] leading-relaxed text-white/80 font-light">
-                                            {item.featured?.description}
-                                          </div>
+                                {/* Right: immersive featured card */}
+                                <div className={`relative flex flex-col border-l p-6 ${heroNav
+                                  ? "border-white/[0.07] bg-white/[0.025]"
+                                  : "border-[rgba(200,169,107,0.16)] bg-[linear-gradient(155deg,rgba(246,244,239,0.68),rgba(235,230,219,0.88))]"}`}>
+                                  <div
+                                    aria-hidden
+                                    className="pointer-events-none absolute inset-0 opacity-50"
+                                    style={{
+                                      background:
+                                        "radial-gradient(circle at 80% 55%, rgba(139,197,64,0.09), transparent 32%), radial-gradient(circle at 20% 85%, rgba(200,169,107,0.08), transparent 34%)",
+                                    }}
+                                  />
+                                  <div className={`group/feature overflow-hidden rounded-[18px] ${heroNav
+                                    ? "shadow-[0_24px_54px_-18px_rgba(0,0,0,0.8)] ring-1 ring-white/10"
+                                    : "shadow-[0_22px_50px_-22px_rgba(23,25,20,0.42)] ring-1 ring-[rgba(200,169,107,0.12)]"}`}>
+                                    <div className="relative aspect-[5/4] overflow-hidden">
+                                      <img
+                                        src={item.featured?.imageSrc}
+                                        alt=""
+                                        aria-hidden
+                                        className="absolute inset-0 h-full w-full object-cover saturate-[0.9] transition-[transform,filter] duration-700 group-hover/feature:scale-[1.055] group-hover/feature:saturate-100"
+                                        loading="lazy"
+                                      />
+                                      <div className="absolute inset-0 bg-gradient-to-t from-[rgba(13,16,9,0.96)] via-[rgba(13,16,9,0.24)] to-transparent" />
+                                      <span className="absolute right-3 top-3 flex items-center gap-1.5 rounded-full border border-white/15 bg-black/25 px-2.5 py-1 text-[0.48rem] font-semibold uppercase tracking-[0.18em] text-white/78 backdrop-blur-md">
+                                        <Award className="h-2.5 w-2.5 text-[#D8BE87]" strokeWidth={1.7} />
+                                        Showroom keuze
+                                      </span>
+                                      <div className="absolute inset-x-0 bottom-0 p-5 text-left">
+                                        <div className="font-display text-[1rem] leading-tight tracking-[-0.01em] text-white">
+                                          {item.featured?.title}
+                                        </div>
+                                        <div className="mt-2 text-[0.67rem] font-light leading-[1.55] text-white/68">
+                                          {item.featured?.description}
                                         </div>
                                       </div>
                                     </div>
                                   </div>
 
-                                  <div className="mt-5 text-left">
-                                    <div
-                                      className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#8BC540]/50 px-4 py-2.5 text-[11px] font-medium tracking-[0.12em] text-white/80 uppercase cursor-default shadow-sm"
-                                    >
-                                      <span>{item.featured?.buttonText}</span>
-                                      <ArrowUpRight size={13} />
+                                  <div className={`relative my-4 grid grid-cols-2 divide-x ${heroNav ? "divide-white/10" : "divide-[rgba(200,169,107,0.2)]"}`}>
+                                    <div className="pr-3">
+                                      <span className={`block font-serif text-[1.05rem] leading-none ${heroNav ? "text-[#F5F2EC]" : "text-[#22251A]"}`}>
+                                        45+
+                                      </span>
+                                      <span className={`mt-1.5 block text-[0.48rem] font-semibold uppercase tracking-[0.18em] ${heroNav ? "text-white/38" : "text-[#6B6658]/60"}`}>
+                                        Jaar ervaring
+                                      </span>
+                                    </div>
+                                    <div className="pl-4">
+                                      <span className={`flex items-center gap-1.5 font-serif text-[0.82rem] leading-none ${heroNav ? "text-[#F5F2EC]" : "text-[#22251A]"}`}>
+                                        <MapPin className="h-3 w-3 text-[#8BC540]" strokeWidth={1.7} />
+                                        Utrecht
+                                      </span>
+                                      <span className={`mt-1.5 block text-[0.48rem] font-semibold uppercase tracking-[0.18em] ${heroNav ? "text-white/38" : "text-[#6B6658]/60"}`}>
+                                        Eigen showroom
+                                      </span>
                                     </div>
                                   </div>
+
+                                  <a
+                                    href={item.featured?.buttonHref}
+                                    onClick={() => setOpenDropdown(null)}
+                                    className="group/cta relative mt-auto inline-flex w-full items-center justify-between overflow-hidden rounded-[12px] border border-[rgba(168,217,90,0.62)] bg-[linear-gradient(135deg,#A8D95A_0%,#8BC540_55%,#74AA31_100%)] px-4 py-3.5 text-[0.6rem] font-bold uppercase tracking-[0.17em] text-[#14200A] shadow-[0_16px_30px_-16px_rgba(139,197,64,0.72),inset_0_1px_0_rgba(255,255,255,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#C5E88A] hover:brightness-105 hover:shadow-[0_20px_36px_-14px_rgba(139,197,64,0.82),inset_0_1px_0_rgba(255,255,255,0.42)]"
+                                  >
+                                    <span className="relative z-10">{item.featured?.buttonText}</span>
+                                    <span className="relative z-10 flex h-6 w-6 items-center justify-center rounded-full bg-[rgba(20,32,10,0.12)] transition-transform duration-300 group-hover/cta:rotate-6 group-hover/cta:scale-105">
+                                      <ArrowUpRight size={12} className="text-[#14200A] transition-transform duration-300 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5" />
+                                    </span>
+                                    <span aria-hidden className="absolute -left-12 top-0 h-full w-10 -skew-x-12 bg-white/25 blur-sm transition-transform duration-700 group-hover/cta:translate-x-[290px]" />
+                                  </a>
                                 </div>
                               </div>
                             ) : (
@@ -577,21 +770,25 @@ export function Nav() {
                                 {item.items?.map((sub, index) => {
                                   const IconComponent = sub.icon;
                                   return (
-                                    <motion.div
+                                    <motion.a
                                       key={sub.label}
+                                      href={sub.href}
+                                      onClick={() => setOpenDropdown(null)}
                                       initial={reduceMotion ? false : { opacity: 0, x: -8 }}
                                       animate={reduceMotion ? undefined : { opacity: 1, x: 0 }}
                                       transition={{ delay: 0.05 + index * 0.04, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                                      className="group relative flex cursor-default items-center justify-between rounded-[14px] px-4 py-3 text-[0.92rem] font-medium tracking-[0.01em] text-[#555555]"
+                                      className={`group relative flex cursor-pointer items-center justify-between rounded-[12px] px-4 py-3 text-[0.92rem] font-medium tracking-[0.01em] transition-colors duration-200 ${heroNav ? "hover:bg-[rgba(139,197,64,0.12)]" : "hover:bg-[rgba(139,197,64,0.08)]"}`}
                                       role="menuitem"
                                     >
                                       <span className="flex items-center gap-3">
-                                        {IconComponent && <IconComponent className="h-4 w-4 text-[#C8A96B]" />}
-                                        <span className="text-[13px] font-medium text-[#111111]">
+                                        {IconComponent && <IconComponent className="h-4 w-4 text-[#8BC540]" />}
+                                        <span className={`text-[13px] font-medium transition-colors duration-200 ${heroNav
+                                          ? "text-[rgba(245,242,236,0.88)] group-hover:text-[#CDEB9C]"
+                                          : "text-[#2E3128] group-hover:text-[#3E6317]"}`}>
                                           {sub.label}
                                         </span>
                                       </span>
-                                    </motion.div>
+                                    </motion.a>
                                   );
                                 })}
                               </div>
@@ -609,12 +806,15 @@ export function Nav() {
               initial={reduceMotion ? false : { opacity: 0, y: -8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: motionDuration.premium, ease: motionEase.premium, delay: 0.52 }}
-              className="hidden items-center gap-5 lg:flex"
+              className="hidden items-center gap-5 lg:flex xl:gap-6"
             >
-              <span className="nav-cta cursor-default opacity-85" aria-disabled>
+              <span className="nav-divider hidden xl:block" aria-hidden="true" />
+              <a href="/consultation" className="nav-cta">
                 <span className="relative z-10">Plan showroombezoek</span>
-                <IconsaxArrowRight2 size={15} variant="Linear" className="relative z-10" />
-              </span>
+                <span className="nav-cta__arrow relative z-10" aria-hidden="true">
+                  <IconsaxArrowRight2 size={14} variant="Linear" />
+                </span>
+              </a>
             </motion.div>
 
             <button
@@ -735,11 +935,14 @@ export function Nav() {
                                   },
                                 }}
                               >
-                                <div
-                                  className="flex items-center justify-between py-3.5 text-[15px] font-medium tracking-[0.06em] text-[#5A5A5A]/60 border-b border-[#E5DCD3]/30 cursor-default"
+                                <a
+                                  href={item.href}
+                                  onClick={() => setOpen(false)}
+                                  className="flex items-center justify-between py-3.5 text-[15px] font-medium tracking-[0.06em] text-[#111111] border-b border-[#E5DCD3]/30 hover:text-[#8BC540]"
                                 >
                                   <span>{item.label}</span>
-                                </div>
+                                  <LucideArrowRight className="h-4 w-4 text-[#C8A96B]" />
+                                </a>
                               </motion.div>
                             );
                           }
@@ -768,9 +971,11 @@ export function Nav() {
                                     {item.items?.map((sub) => {
                                       const SubIcon = sub.icon;
                                       return (
-                                        <div
+                                        <a
                                           key={sub.label}
-                                          className="flex items-start gap-3 rounded-lg py-2.5 px-3 transition-colors duration-200"
+                                          href={sub.href}
+                                          onClick={() => setOpen(false)}
+                                          className="flex items-start gap-3 rounded-lg py-2.5 px-3 transition-colors duration-200 active:bg-white/70"
                                         >
                                           <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-[#E5DCD3]/30 bg-white">
                                             {SubIcon && <SubIcon className="h-4.5 w-4.5 text-[#C8A96B]" />}
@@ -783,7 +988,7 @@ export function Nav() {
                                               {sub.description}
                                             </span>
                                           </div>
-                                        </div>
+                                        </a>
                                       );
                                     })}
                                   </div>

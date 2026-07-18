@@ -83,6 +83,34 @@ function KitchenFaucetIcon({ className }: { className?: string }) {
   );
 }
 
+/** Cloche (serving dome) — the fine-dining mark that opens the hero eyebrow. */
+function ClocheIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 28 20" fill="none" aria-hidden="true">
+      <circle cx="14" cy="3.1" r="1.5" stroke="currentColor" strokeWidth="1.2" />
+      <path
+        d="M4.6 14.2C4.6 9 8.8 5.6 14 5.6s9.4 3.4 9.4 8.6"
+        stroke="currentColor"
+        strokeWidth="1.3"
+        strokeLinecap="round"
+      />
+      <path
+        d="M2.2 16.6h23.6"
+        stroke="currentColor"
+        strokeWidth="1.3"
+        strokeLinecap="round"
+      />
+      <path
+        d="M9.4 8.6c-1.5 1-2.4 2.4-2.7 4"
+        stroke="currentColor"
+        strokeWidth="1"
+        strokeLinecap="round"
+        opacity="0.5"
+      />
+    </svg>
+  );
+}
+
 function HeroPartnerBadge({
   activeSlide,
   activeIndex,
@@ -101,7 +129,7 @@ function HeroPartnerBadge({
       initial={reduceMotion ? false : { opacity: 0, y: 14 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: motionDuration.premium, ease: motionEase.premium, delay: 0.82 }}
-      className="mt-6 flex justify-start"
+      className="mt-5 flex justify-start"
     >
       <div className="inline-flex items-center gap-2 rounded-full border border-[rgba(255,255,255,0.22)] bg-[rgba(255,255,255,0.10)] px-2.5 py-1.5 shadow-[0_12px_32px_-28px_rgba(23,25,28,0.35)] backdrop-blur-xl">
         <AnimatePresence mode="wait">
@@ -110,7 +138,7 @@ function HeroPartnerBadge({
             initial={reduceMotion ? false : { opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             exit={reduceMotion ? undefined : { opacity: 0, y: -6 }}
-            transition={{ duration: 0.35, ease: motionEase.premium }}
+            transition={{ duration: 0.5, ease: motionEase.premium }}
             className="text-[0.62rem] tracking-[0.22em] text-[rgba(247,245,242,0.75)]"
           >
             {activeSlide.brand}
@@ -130,7 +158,7 @@ function HeroPartnerBadge({
                 width: index === activeIndex ? 20 : 8,
                 backgroundColor: index === activeIndex ? activeSlide.accent : "rgba(247,245,242,0.12)",
               }}
-              transition={{ duration: 0.35, ease: motionEase.premium }}
+              transition={{ duration: 0.5, ease: motionEase.premium }}
             />
           ))}
         </div>
@@ -159,13 +187,9 @@ function HeroScrollCue({ reduceMotion }: { reduceMotion: boolean | null }) {
       transition={{ duration: motionDuration.luxury, ease: motionEase.premium, delay: 1.1 }}
       className="hero-scroll-cue hero-scroll-cue--compact group absolute inset-x-0 bottom-6 z-30 mx-auto flex w-fit flex-col items-center gap-1.5 border-0 bg-transparent p-0 outline-none focus-visible:ring-2 focus-visible:ring-[rgba(139,197,64,0.45)] focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
     >
-      <motion.span
-        className="text-[0.5rem] font-light uppercase tracking-[0.28em] text-[rgba(247,245,242,0.42)] transition-colors duration-500 group-hover:text-[rgba(247,245,242,0.72)]"
-        animate={reduceMotion ? undefined : { opacity: [0.4, 0.75, 0.4] }}
-        transition={reduceMotion ? undefined : { duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
-      >
+      <span className="text-[0.6rem] font-light uppercase tracking-[0.28em] text-[rgba(247,245,242,0.55)] transition-colors duration-500 group-hover:text-[rgba(247,245,242,0.8)]">
         Ontdek meer
-      </motion.span>
+      </span>
 
       <span className="relative flex flex-col items-center">
         <motion.span
@@ -175,13 +199,9 @@ function HeroScrollCue({ reduceMotion }: { reduceMotion: boolean | null }) {
           transition={reduceMotion ? undefined : { duration: 3, repeat: Infinity, ease: "easeInOut" }}
         />
 
-        <motion.span
-          className="hero-scroll-cue-frame relative flex items-center justify-center px-5 py-2.5 text-[#8BC540]"
-          animate={reduceMotion ? undefined : { y: [0, -1.5, 0] }}
-          transition={reduceMotion ? undefined : { duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
-        >
+        <span className="hero-scroll-cue-frame relative flex items-center justify-center px-5 py-2.5 text-[#8BC540]">
           <KitchenFaucetIcon className="h-5 w-5 transition-colors duration-500 group-hover:text-[#A8D95A]" />
-        </motion.span>
+        </span>
 
         <span className="hero-scroll-track relative mt-0.5 h-6 w-px overflow-hidden">
           <span className="absolute inset-0 bg-[linear-gradient(180deg,rgba(139,197,64,0.5)_0%,rgba(139,197,64,0.06)_100%)]" />
@@ -399,7 +419,7 @@ export function Hero() {
       id="top"
       onMouseMove={handlePointerMove}
       onMouseLeave={resetPointer}
-      className="relative overflow-hidden border-b border-[rgba(200,169,107,0.15)] pt-32 md:pt-36"
+      className="relative overflow-hidden border-b border-[rgba(139,197,64,0.14)] pt-32 md:pt-36"
     >
       <motion.div
         initial={reduceMotion ? false : { opacity: 0, y: 18 }}
@@ -495,28 +515,38 @@ export function Hero() {
         />
         <motion.div
           aria-hidden="true"
-          className="absolute inset-0 bg-[radial-gradient(circle_at_76%_18%,rgba(200,169,107,0.12),transparent_24%),radial-gradient(circle_at_72%_68%,rgba(139,197,64,0.08),transparent_28%)]"
+          className="absolute inset-0 bg-[radial-gradient(circle_at_76%_18%,rgba(200,169,107,0.07),transparent_24%)]"
           style={{ x: bgOffsetX, y: bgOffsetY }}
         />
         <div className="absolute inset-x-0 bottom-0 h-[18rem] bg-[linear-gradient(180deg,rgba(23,25,28,0)_0%,rgba(23,25,28,0.06)_24%,rgba(23,25,28,0.28)_72%,rgba(23,25,28,0.42)_100%)]" />
       </motion.div>
 
       <div className="site-container relative z-10">
-        <div className="grid min-h-[clamp(40rem,80vh,52rem)] items-center gap-12 pb-16 xl:grid-cols-[minmax(0,0.56fr)_minmax(0,0.44fr)] xl:gap-14 xl:pb-20">
-          <motion.div className="py-10 md:py-14" style={{ opacity: textOpacity, y: textY }}>
+        <div className="grid min-h-[calc(100svh-8rem)] items-center gap-10 pb-14 md:min-h-[calc(100svh-9rem)] xl:grid-cols-[minmax(0,0.56fr)_minmax(0,0.44fr)] xl:gap-12 xl:pb-16">
+          <motion.div className="py-6 md:py-8" style={{ opacity: textOpacity, y: textY }}>
             <motion.div
               initial={reduceMotion ? false : { opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: motionDuration.premium, ease: motionEase.premium, delay: 0.05 }}
               className="section-label-row"
             >
-              <motion.span
-                initial={reduceMotion ? false : { scaleX: 0, opacity: 0.6 }}
-                animate={{ scaleX: 1, opacity: 1 }}
-                transition={{ duration: 0.9, ease: motionEase.precise, delay: 0.18 }}
-                className="luxe-rule origin-left"
-                style={{ background: `linear-gradient(90deg, ${activeSlide.accent}, rgba(201,164,106,0.08))` }}
-              />
+              <span className="hero-eyebrow-ornament">
+                <motion.span
+                  initial={reduceMotion ? false : { opacity: 0, scale: 0.7, rotate: -8 }}
+                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                  transition={{ duration: 0.9, ease: motionEase.premium, delay: 0.14 }}
+                  className="hero-eyebrow-ornament__icon inline-flex text-[var(--gold)]"
+                >
+                  <ClocheIcon className="h-[1.05rem] w-auto" />
+                </motion.span>
+                <motion.span
+                  initial={reduceMotion ? false : { scaleX: 0, opacity: 0.6 }}
+                  animate={{ scaleX: 1, opacity: 1 }}
+                  transition={{ duration: 0.9, ease: motionEase.precise, delay: 0.24 }}
+                  className="hero-eyebrow-ornament__line origin-left"
+                  style={{ background: `linear-gradient(90deg, ${activeSlide.accent}, rgba(201,164,106,0.08))` }}
+                />
+              </span>
               <span className="eyebrow text-[rgba(247,245,242,0.64)]">SINDS 1978 • PREMIUM SHOWROOM UTRECHT</span>
             </motion.div>
 
@@ -558,7 +588,7 @@ export function Hero() {
               initial={reduceMotion ? false : { opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: motionDuration.premium, ease: motionEase.premium, delay: 0.52 }}
-              className="mt-7 max-w-[500px] text-[1.125rem] font-light leading-[1.6] tracking-[0.01em] text-[rgba(247,245,242,0.72)]"
+              className="mt-6 max-w-[460px] text-[1.05rem] font-light leading-[1.65] tracking-[0.01em] text-[rgba(247,245,242,0.78)]"
             >
               Ontdek Duitse precisie en Italiaanse elegantie onder één dak. Persoonlijk showroomadvies,
               premium apparatuur en een doordachte configurator voor uw eerste ontwerpkeuze.
@@ -568,7 +598,7 @@ export function Hero() {
               initial={reduceMotion ? false : { opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: motionDuration.premium, ease: motionEase.premium, delay: 0.68 }}
-              className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center"
+              className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center"
             >
               <PremiumPillButton
                 href="#showroom"
@@ -600,7 +630,7 @@ export function Hero() {
             />
           </motion.div>
 
-          <div className="relative hidden min-h-[32rem] items-center justify-end lg:flex">
+          <div className="relative hidden min-h-[24rem] items-center justify-end lg:flex">
             <motion.aside
               aria-label="Videopreview van de showroom"
               initial={reduceMotion ? false : { opacity: 0, x: 18, y: 10 }}
@@ -631,7 +661,7 @@ export function Hero() {
                   toggleVideoPlayback();
                 }
               }}
-              className="group relative w-full max-w-[880px] rounded-[28px] p-[1px] text-left text-white shadow-[0_40px_100px_-54px_rgba(23,25,28,0.72)] outline-none focus-visible:ring-2 focus-visible:ring-[rgba(200,169,107,0.55)] focus-visible:ring-offset-2 focus-visible:ring-offset-[rgba(23,25,28,0.2)] lux-border"
+              className="group relative w-full max-w-[560px] rounded-[28px] p-[1px] text-left text-white shadow-[0_40px_100px_-54px_rgba(23,25,28,0.72)] outline-none focus-visible:ring-2 focus-visible:ring-[rgba(200,169,107,0.55)] focus-visible:ring-offset-2 focus-visible:ring-offset-[rgba(23,25,28,0.2)] lux-border"
               style={{ x: trustCardX, y: trustCardY }}
             >
               <div className="relative z-10 overflow-hidden rounded-[27px] bg-[rgba(23,25,28,0.22)] backdrop-blur-2xl">
@@ -665,7 +695,7 @@ export function Hero() {
                            initial={{ opacity: 0, y: -8, scale: 0.96 }}
                            animate={{ opacity: 1, y: 0, scale: 1 }}
                            exit={{ opacity: 0, y: -8, scale: 0.96 }}
-                           transition={{ duration: 0.35, ease: motionEase.premium }}
+                           transition={{ duration: 0.5, ease: motionEase.premium }}
                            className="pointer-events-none inline-flex items-center gap-2 rounded-full border border-white/10 bg-[rgba(23,25,28,0.46)] px-3 py-2 text-[0.72rem] font-medium tracking-[-0.01em] text-white/90 shadow-[0_18px_46px_-34px_rgba(23,25,28,0.55)] backdrop-blur-xl"
                         >
                           <HeroPause className="h-4 w-4 text-white/90" />

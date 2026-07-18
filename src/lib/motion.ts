@@ -1,9 +1,14 @@
+/**
+ * Central motion language — every homepage section should consume these
+ * presets instead of redefining its own. Luxury motion is slower and
+ * settles softly: entrances ~0.7s, micro-interactions ~0.5s.
+ */
 export const motionDuration = {
-  fast: 0.15,
-  normal: 0.25,
-  premium: 0.4,
-  luxury: 0.6,
-  count: 1.2,
+  fast: 0.2,
+  normal: 0.32,
+  premium: 0.5,
+  luxury: 0.75,
+  count: 1.4,
 } as const;
 
 export const motionEase = {
@@ -57,8 +62,8 @@ export const staggerHeader = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.02,
+      staggerChildren: 0.12,
+      delayChildren: 0.04,
     },
   },
 } as const;
@@ -67,8 +72,8 @@ export const staggerList = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.04,
+      staggerChildren: 0.09,
+      delayChildren: 0.05,
     },
   },
 } as const;

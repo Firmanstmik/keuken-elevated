@@ -99,7 +99,7 @@ function TrustBar({ reduceMotion }: { reduceMotion: boolean | null }) {
         style={{ background: "linear-gradient(90deg, transparent, rgba(139,197,64,0.28), transparent)" }}
       />
 
-      <div className="mx-auto grid max-w-[90rem] grid-cols-2 gap-0 px-6 py-11 md:grid-cols-4 lg:px-12">
+      <div className="site-container grid grid-cols-2 gap-0 py-11 md:grid-cols-4">
         {trustStats.map((stat, i) => (
           <motion.div
             key={stat.label}
@@ -114,7 +114,7 @@ function TrustBar({ reduceMotion }: { reduceMotion: boolean | null }) {
               {stat.value}
             </span>
             <span
-              className="mt-2 text-[0.58rem] font-medium uppercase tracking-[0.28em] text-[rgba(255,255,255,0.55)]"
+              className="mt-2 text-[0.64rem] font-medium uppercase tracking-[0.28em] text-[rgba(255,255,255,0.55)]"
               style={{ fontFamily: "var(--font-body)" }}
             >
               {stat.label}
@@ -178,7 +178,7 @@ function ShowroomCard() {
       href={SHOWROOM_MAPS_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className="group relative mt-7 block overflow-hidden rounded-[18px] border border-[rgba(139,197,64,0.22)] shadow-[0_18px_50px_-26px_rgba(8,33,44,0.7)] transition-all duration-500 hover:-translate-y-1 hover:border-[rgba(139,197,64,0.35)] hover:shadow-[0_30px_70px_-28px_rgba(8,33,44,0.8),0_0_30px_-10px_rgba(139,197,64,0.25)]"
+      className="group relative mt-7 block overflow-hidden rounded-[18px] border border-[rgba(139,197,64,0.22)] shadow-[0_18px_50px_-26px_rgba(17,19,21,0.7)] transition-all duration-500 hover:-translate-y-1 hover:border-[rgba(139,197,64,0.35)] hover:shadow-[0_30px_70px_-28px_rgba(17,19,21,0.8),0_0_30px_-10px_rgba(139,197,64,0.25)]"
     >
       {/* Photo */}
       <div className="relative h-[200px] overflow-hidden">
@@ -194,7 +194,7 @@ function ShowroomCard() {
           className="pointer-events-none absolute inset-0 transition-opacity duration-500 group-hover:opacity-80"
           style={{
             background:
-              "linear-gradient(180deg, rgba(8,33,44,0.15) 0%, rgba(8,33,44,0.62) 65%, rgba(8,33,44,0.92) 100%)",
+              "linear-gradient(180deg, rgba(17,19,21,0.15) 0%, rgba(17,19,21,0.62) 65%, rgba(17,19,21,0.92) 100%)",
           }}
         />
         {/* Teal inner glow on hover */}
@@ -207,17 +207,17 @@ function ShowroomCard() {
           <div
             className="flex items-center gap-1.5 rounded-full px-3 py-1.5"
             style={{
-              background: "rgba(8,33,44,0.72)",
+              background: "rgba(17,19,21,0.72)",
               border: "1px solid rgba(139,197,64,0.32)",
               backdropFilter: "blur(8px)",
             }}
           >
             <span
-              className="h-1.5 w-1.5 rounded-full bg-[#9CCD4A]"
+              className="h-1.5 w-1.5 rounded-full bg-[#A8D95A]"
               style={{ boxShadow: "0 0 6px rgba(139,197,64,0.65)" }}
             />
             <span
-              className="text-[9px] font-medium uppercase tracking-[0.22em] text-[rgba(139,197,64,0.85)]"
+              className="text-[10px] font-medium uppercase tracking-[0.22em] text-[rgba(139,197,64,0.85)]"
               style={{ fontFamily: "var(--font-body)" }}
             >
               Premium showroom
@@ -292,7 +292,7 @@ function ColTitle({ children }: { children: React.ReactNode }) {
   return (
     <div className="mb-7">
       <h4
-        className="text-[0.58rem] font-semibold uppercase tracking-[0.34em] text-[#9CCD4A]"
+        className="text-[0.64rem] font-semibold uppercase tracking-[0.34em] text-[#A8D95A]"
         style={{ fontFamily: "var(--font-body)" }}
       >
         {children}
@@ -335,9 +335,9 @@ export function Footer() {
       style={{
         background: [
           "radial-gradient(ellipse at 25% top, rgba(139,197,64,0.14) 0%, transparent 42%)",
-          "radial-gradient(ellipse at 75% top, rgba(139,197,64,0.08) 0%, transparent 38%)",
-          "radial-gradient(circle at bottom center, rgba(139,197,64,0.09) 0%, transparent 50%)",
-          "linear-gradient(180deg, #08212C 0%, #0B2C39 50%, #061B24 100%)",
+          "radial-gradient(ellipse at 75% top, rgba(200,169,107,0.09) 0%, transparent 38%)",
+          "radial-gradient(circle at bottom center, rgba(139,197,64,0.07) 0%, transparent 50%)",
+          "linear-gradient(180deg, #0D0F0A 0%, #15180F 50%, #090B07 100%)",
         ].join(", "),
       }}
     >
@@ -351,7 +351,7 @@ export function Footer() {
       {/* ── Trust bar ───────────────────────────────── */}
       <TrustBar reduceMotion={reduceMotion} />
 
-      <div className="relative z-10 mx-auto max-w-[90rem] px-6 lg:px-12">
+      <div className="site-container relative z-10">
 
         {/* ── SECTION 1 — Hero CTA ─────────────────── */}
         <motion.div
@@ -368,7 +368,7 @@ export function Footer() {
           >
             <span className="h-px w-10 bg-gradient-to-r from-transparent to-[rgba(139,197,64,0.55)]" />
             <span
-              className="text-[0.6rem] font-medium uppercase tracking-[0.34em] text-[#9CCD4A]"
+              className="text-[0.6rem] font-medium uppercase tracking-[0.34em] text-[#A8D95A]"
               style={{ fontFamily: "var(--font-body)" }}
             >
               Persoonlijk ontwerptraject
@@ -385,7 +385,7 @@ export function Footer() {
             <em
               style={{
                 fontStyle: "italic",
-                background: "linear-gradient(128deg, #9CCD4A 0%, #C5E88A 48%, #8BC540 100%)",
+                background: "linear-gradient(128deg, #A8D95A 0%, #C5E88A 48%, #8BC540 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -461,7 +461,7 @@ export function Footer() {
 
             {/* Social label — teal */}
             <p
-              className="mb-4 text-[0.56rem] font-semibold uppercase tracking-[0.32em] text-[rgba(139,197,64,0.38)]"
+              className="mb-4 text-[0.62rem] font-semibold uppercase tracking-[0.32em] text-[rgba(139,197,64,0.38)]"
               style={{ fontFamily: "var(--font-body)" }}
             >
               Volg ons

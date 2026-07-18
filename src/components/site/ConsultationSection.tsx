@@ -17,6 +17,7 @@ import { ArrowRight, Check, House, Mail, Phone } from "@/components/ui/icons";
 import { Calendar, Clock, Shield } from "iconsax-react";
 import { kc } from "@/lib/kc-data";
 import { motionViewport } from "@/lib/motion";
+import { SectionChapter } from "@/components/site/SectionChapter";
 
 import collectionModern from "@/assets/collection-modern.jpg";
 import collectionMinimal from "@/assets/collection-minimal.jpg";
@@ -210,12 +211,12 @@ function HorizontalSlider() {
         transition={{ duration: 4.5, ease: "easeInOut", repeat: Infinity }}
       >
         <span
-          className="h-[5px] w-[5px] rounded-full bg-[#9CCD4A]"
+          className="h-[5px] w-[5px] rounded-full bg-[#A8D95A]"
           style={{ boxShadow: "0 0 6px rgba(139,197,64,0.75)" }}
         />
         <span
-          className="text-[9.5px] font-semibold uppercase tracking-[0.24em]"
-          style={{ color: "#0C8690", fontFamily: "var(--font-body)" }}
+          className="text-[10px] font-semibold uppercase tracking-[0.24em]"
+          style={{ color: "#73A832", fontFamily: "var(--font-body)" }}
         >
           Showroom Selectie
         </span>
@@ -248,14 +249,14 @@ function HorizontalSlider() {
                 "hover:opacity-100 hover:scale-[1.03]",
                 "md:h-72 md:w-[310px]",
               ].join(" ")}
-              style={{ boxShadow: "0 30px 60px -30px rgba(60,45,20,0.30)" }}
+              style={{ boxShadow: "0 30px 60px -30px rgba(23,25,28,0.30)" }}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLElement).style.boxShadow =
-                  "0 40px 80px -22px rgba(60,45,20,0.52)";
+                  "0 40px 80px -22px rgba(23,25,28,0.52)";
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLElement).style.boxShadow =
-                  "0 30px 60px -30px rgba(60,45,20,0.30)";
+                  "0 30px 60px -30px rgba(23,25,28,0.30)";
               }}
               onClickCapture={(e) => {
                 if (dragRef.current.moved) {
@@ -270,7 +271,7 @@ function HorizontalSlider() {
                 alt={slide.label}
                 draggable={false}
                 loading="lazy"
-                className="pointer-events-none h-full w-full object-cover transition-transform duration-[800ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.08]"
+                className="pointer-events-none h-full w-full object-cover transition-transform duration-[800ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
               />
 
               {/* Gradient overlay */}
@@ -288,9 +289,9 @@ function HorizontalSlider() {
               {/* Caption */}
               <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 p-5">
                 <div className="inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-black/35 px-2 py-0.5 backdrop-blur-sm">
-                  <span className="h-1 w-1 rounded-full bg-[#9CCD4A]" />
+                  <span className="h-1 w-1 rounded-full bg-[#A8D95A]" />
                   <span
-                    className="text-[9px] font-medium uppercase tracking-[0.18em] text-white/90"
+                    className="text-[10px] font-medium uppercase tracking-[0.18em] text-white/90"
                     style={{ fontFamily: "var(--font-body)" }}
                   >
                     {slide.tag}
@@ -337,7 +338,7 @@ export function ConsultationSection() {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
-        style={{ background: "linear-gradient(180deg, #FFFFFF 0%, #F6F3EE 50%, #EEF7F8 100%)" }}
+        style={{ background: "linear-gradient(180deg, #FFFFFF 0%, #F6F3EE 50%, #F3F9EB 100%)" }}
       />
       {/* Top gold radial glow */}
       <div
@@ -346,7 +347,8 @@ export function ConsultationSection() {
         style={{ background: "radial-gradient(circle, rgba(139,197,64,0.12), transparent 60%)" }}
       />
 
-      <div className="relative mx-auto max-w-7xl px-6 py-28">
+      <div className="site-container section-shell relative max-w-7xl">
+        <SectionChapter index={10} label="Consultatie" />
 
         {/* ── Centered Editorial Header ─────────────────────────── */}
         <motion.div
@@ -361,7 +363,7 @@ export function ConsultationSection() {
               <span className="h-1.5 w-1.5 rounded-full" style={{ background: "#8BC540" }} />
               <span
                 className="text-[10px] font-semibold uppercase tracking-[0.24em]"
-                style={{ color: "#5a4418", fontFamily: "var(--font-body)" }}
+                style={{ color: "var(--green-soft)", fontFamily: "var(--font-body)" }}
               >
                 Persoonlijk Ontwerpgesprek
               </span>
@@ -370,7 +372,7 @@ export function ConsultationSection() {
 
           <motion.h2
             variants={reduceMotion ? undefined : fadeUp}
-            className="mt-6 font-serif text-4xl font-light leading-[1.1] tracking-tight md:text-5xl"
+            className="mt-6 font-serif text-[clamp(2.35rem,3.9vw,3.25rem)] font-light leading-[1.12] tracking-[-0.02em]"
             style={{ color: "#2F5218" }}
           >
             Boek uw persoonlijk
@@ -408,10 +410,10 @@ export function ConsultationSection() {
           className="mt-10"
         >
           <div
-            className="relative overflow-hidden rounded-[20px] border border-[#E4DCCB]"
+            className="relative overflow-hidden rounded-[24px] border border-[#E4DCCB]"
             style={{
               boxShadow:
-                "0 40px 90px -50px rgba(26,20,16,0.25), 0 1px 0 rgba(255,255,255,0.6) inset",
+                "0 40px 90px -50px rgba(23,25,28,0.25), 0 1px 0 rgba(255,255,255,0.6) inset",
             }}
           >
             <div className="grid grid-cols-1 md:grid-cols-[300px_1fr]">
@@ -424,9 +426,9 @@ export function ConsultationSection() {
                 {/* TOP: Badge + heading */}
                 <div>
                   <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-3 py-1">
-                    <span className="h-1 w-1 rounded-full" style={{ background: "#C9A961" }} />
+                    <span className="h-1 w-1 rounded-full" style={{ background: "#C8A96B" }} />
                     <span
-                      className="text-[9px] font-semibold uppercase tracking-[0.24em] text-white/75"
+                      className="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/75"
                       style={{ fontFamily: "var(--font-body)" }}
                     >
                       Atelier
@@ -435,7 +437,7 @@ export function ConsultationSection() {
                   <h3 className="mt-5 font-serif text-2xl font-light leading-tight text-white">
                     Persoonlijk
                     <br />
-                    <em className="italic" style={{ color: "#C9A961" }}>ontwerpgesprek</em>
+                    <em className="italic" style={{ color: "#C8A96B" }}>ontwerpgesprek</em>
                   </h3>
                   <p
                     className="mt-3 text-[12px] leading-relaxed text-white/55"
@@ -672,7 +674,7 @@ export function ConsultationSection() {
                               {metric.value}
                             </span>
                             <span
-                              className="mt-0.5 block text-[0.55rem] font-semibold uppercase tracking-[0.18em]"
+                              className="mt-0.5 block text-[0.62rem] font-semibold uppercase tracking-[0.18em]"
                               style={{ color: "#7a6a4a", fontFamily: "var(--font-body)" }}
                             >
                               {metric.label}
@@ -774,17 +776,17 @@ export function ConsultationSection() {
         >
           <motion.p
             variants={reduceMotion ? undefined : fadeUp}
-            className="mb-6 text-[0.6rem] font-semibold uppercase tracking-[0.28em]"
-            style={{ color: "rgba(47,82,24,0.40)", fontFamily: "var(--font-body)" }}
+            className="mb-6 text-[0.6875rem] font-semibold uppercase tracking-[0.24em]"
+            style={{ color: "rgba(47,82,24,0.45)", fontFamily: "var(--font-body)" }}
           >
-            What Happens Next
+            Wat u hierna kunt verwachten
           </motion.p>
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
             {whatHappensNext.map((step) => (
               <motion.div
                 key={step.n}
                 variants={reduceMotion ? undefined : fadeUp}
-                className="rounded-[18px] border border-[#D4ECF0] bg-white px-5 py-5 transition-all duration-300 hover:border-[rgba(139,197,64,0.5)] hover:shadow-[0_14px_32px_-16px_rgba(139,197,64,0.15)]"
+                className="rounded-[18px] border border-[rgba(139,197,64,0.22)] bg-white px-5 py-5 transition-all duration-300 hover:border-[rgba(139,197,64,0.5)] hover:shadow-[0_14px_32px_-16px_rgba(139,197,64,0.15)]"
               >
                 <span
                   className="font-serif text-[1.3rem] font-light tracking-tight"
@@ -800,7 +802,7 @@ export function ConsultationSection() {
                 </p>
                 <p
                   className="mt-1.5 text-[0.72rem] font-light leading-[1.55]"
-                  style={{ color: "rgba(26,20,16,0.55)", fontFamily: "var(--font-body)" }}
+                  style={{ color: "rgba(23,25,28,0.55)", fontFamily: "var(--font-body)" }}
                 >
                   {step.description}
                 </p>

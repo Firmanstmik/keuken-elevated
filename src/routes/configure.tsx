@@ -547,7 +547,7 @@ function ConfigurePage() {
                             ? "0 0 20px rgba(212,175,55,0.35), 0 0 36px rgba(255,255,255,0.12)"
                             : "0 0 12px rgba(255,255,255,0.18), 0 0 24px rgba(212,175,55,0.20)",
                           animation: !isHovered && !active
-                            ? "hotspotBreathe 3s ease-in-out infinite"
+                            ? "hotspotBreathe 4.5s ease-in-out infinite"
                             : "none",
                           transition: "box-shadow 0.2s ease",
                         }}
@@ -703,7 +703,7 @@ function ConfigurePage() {
                       </p>
                       <h2
                         className="text-[1.25rem] text-[#F7F5F2]"
-                        style={{ fontFamily: '"Playfair Display", serif', fontWeight: 400 }}
+                        style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
                       >
                         {activeCategoryData.label}
                       </h2>
@@ -770,7 +770,7 @@ function ConfigurePage() {
                   </p>
                   <p
                     className="text-[1rem] text-[rgba(247,245,242,0.4)]"
-                    style={{ fontFamily: '"Playfair Display", serif', fontWeight: 400 }}
+                    style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
                   >
                     Klik op een hotspot of categorie om uw keuken samen te stellen
                   </p>
@@ -820,7 +820,7 @@ function ConfigurePage() {
                 </p>
                 <p
                   className="text-[0.75rem] text-[#8BC540]"
-                  style={{ fontFamily: '"Playfair Display", serif', fontWeight: 400 }}
+                  style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
                 >
                   {config.budget ?? budget}
                 </p>

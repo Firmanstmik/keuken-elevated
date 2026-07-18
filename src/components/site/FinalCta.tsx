@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { House, Mail, Phone } from "@/components/ui/icons";
 import { PremiumPillButton } from "@/components/ui/premium-pill-button";
+import { SectionChapter } from "@/components/site/SectionChapter";
 import { kc } from "@/lib/kc-data";
 import { motionViewport } from "@/lib/motion";
 import matConcrete from "@/assets/mat-concrete.jpg";
@@ -64,7 +65,7 @@ export function FinalCta() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden py-24 text-[#111111] md:py-36"
+      className="section-shell relative overflow-hidden text-[#111111]"
     >
       {/* Concrete texture background */}
       <div
@@ -79,7 +80,8 @@ export function FinalCta() {
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[rgba(248,246,242,0.87)]" />
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_40%_20%,rgba(139,197,64,0.05),transparent_45%)]" />
 
-      <div className="mx-auto max-w-[1400px] px-6 lg:px-12 relative">
+      <div className="site-container relative">
+        <SectionChapter index={8} label="Start ontwerp" />
         {/* Header */}
         <motion.div
           initial={reduceMotion ? false : "hidden"}
@@ -94,10 +96,7 @@ export function FinalCta() {
             className="mb-7 flex items-center justify-center gap-5"
           >
             <span className="h-px w-10 bg-gradient-to-r from-transparent to-[#8BC540]/35" />
-            <span
-              className="text-[10px] font-normal tracking-[0.32em] text-[#8BC540] uppercase"
-              style={{ fontFamily: "'Jost', sans-serif" }}
-            >
+            <span className="text-[0.6875rem] font-medium uppercase tracking-[0.24em] text-[var(--green-soft)]">
               Begin uw reis
             </span>
             <span className="h-px w-10 bg-gradient-to-l from-transparent to-[#8BC540]/35" />
@@ -106,7 +105,7 @@ export function FinalCta() {
           {/* Display heading */}
           <motion.h2
             variants={reduceMotion ? undefined : fadeUp}
-            className="mx-auto max-w-[52rem] font-serif text-[clamp(2.4rem,4.2vw,3.6rem)] font-light leading-[1.08] tracking-[-0.03em]"
+            className="mx-auto max-w-[52rem] font-serif text-[clamp(2.35rem,3.9vw,3.25rem)] font-light leading-[1.12] tracking-[-0.02em]"
             style={{ color: "#2F5218" }}
           >
             Klaar voor uw <em className="italic font-light font-serif" style={{ color: "#8BC540" }}>droomkeuken?</em>
@@ -115,8 +114,7 @@ export function FinalCta() {
           {/* Subheading */}
           <motion.p
             variants={reduceMotion ? undefined : fadeUp}
-            className="mx-auto mt-6 max-w-[36rem] text-[1.02rem] font-light leading-[1.82] text-[#5A5A5A]"
-            style={{ fontFamily: "'Jost', sans-serif" }}
+            className="mx-auto mt-6 max-w-[36rem] text-[1.02rem] font-light leading-[1.7] text-[var(--text-soft)]"
           >
             Van eerste inspiratie tot installatie: wij begeleiden u persoonlijk naar een keuken
             die klopt in stijl, functie en afwerking.
@@ -172,10 +170,7 @@ export function FinalCta() {
                   {title}
                 </h3>
 
-                <p
-                  className="mt-3 text-[0.875rem] font-light leading-[1.75] text-[#5A5A5A]"
-                  style={{ fontFamily: "'Jost', sans-serif" }}
-                >
+                <p className="mt-3 text-[0.875rem] font-light leading-[1.7] text-[var(--text-soft)]">
                   {description}
                 </p>
               </div>
@@ -197,10 +192,7 @@ export function FinalCta() {
           transition={reduceMotion ? undefined : { delay: 0.4, duration: 0.8, ease: luxuryEase }}
           className="mt-20 flex flex-wrap items-center justify-between gap-4 border-t border-[rgba(139,197,64,0.18)] pt-8"
         >
-          <p
-            className="text-[0.72rem] font-light tracking-[0.12em] text-[#5A5A5A]"
-            style={{ fontFamily: "'Jost', sans-serif" }}
-          >
+          <p className="text-[0.72rem] font-light tracking-[0.12em] text-[var(--text-soft)]">
             Premium showroom Utrecht · Persoonlijk advies sinds {kc.founded}
           </p>
           <PremiumPillButton href="#brands" variant="ghost-light" size="sm">

@@ -10,20 +10,79 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as StyleRouteImport } from './routes/style'
+import { Route as SilestoneRouteImport } from './routes/silestone'
+import { Route as ShowroomKeukensRouteImport } from './routes/showroom-keukens'
+import { Route as SensaRouteImport } from './routes/sensa'
+import { Route as NeolithRouteImport } from './routes/neolith'
 import { Route as MoodboardRouteImport } from './routes/moodboard'
+import { Route as DektonRouteImport } from './routes/dekton'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ConsultationRouteImport } from './routes/consultation'
 import { Route as ConfigureRouteImport } from './routes/configure'
 import { Route as BrandsRouteImport } from './routes/brands'
+import { Route as AanbiedingenRouteImport } from './routes/aanbiedingen'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as KeukensIndexRouteImport } from './routes/keukens/index'
+import { Route as KeukenbladenIndexRouteImport } from './routes/keukenbladen/index'
+import { Route as ApparatuurIndexRouteImport } from './routes/apparatuur/index'
+import { Route as KeukensZampieriRouteImport } from './routes/keukens/zampieri'
+import { Route as KeukensNobiliaRouteImport } from './routes/keukens/nobilia'
+import { Route as KeukensHackerRouteImport } from './routes/keukens/hacker'
+import { Route as KeukensCucinesseRouteImport } from './routes/keukens/cucinesse'
+import { Route as KeukensAiKuchenRouteImport } from './routes/keukens/ai-kuchen'
+import { Route as KeukenbladenSilestoneRouteImport } from './routes/keukenbladen/silestone'
+import { Route as KeukenbladenSensaRouteImport } from './routes/keukenbladen/sensa'
+import { Route as KeukenbladenNeolithRouteImport } from './routes/keukenbladen/neolith'
+import { Route as KeukenbladenDektonRouteImport } from './routes/keukenbladen/dekton'
+import { Route as ApparatuurWerkbladAfzuigingRouteImport } from './routes/apparatuur/werkblad-afzuiging'
+import { Route as ApparatuurWaveAfzuigkappenRouteImport } from './routes/apparatuur/wave-afzuigkappen'
+import { Route as ApparatuurVaatwassersRouteImport } from './routes/apparatuur/vaatwassers'
+import { Route as ApparatuurQuookerRouteImport } from './routes/apparatuur/quooker'
+import { Route as ApparatuurKookplatenRouteImport } from './routes/apparatuur/kookplaten'
+import { Route as ApparatuurKoelkastenVriezersRouteImport } from './routes/apparatuur/koelkasten-vriezers'
+import { Route as ApparatuurFornuizenRouteImport } from './routes/apparatuur/fornuizen'
+import { Route as ApparatuurAfzuigkappenRouteImport } from './routes/apparatuur/afzuigkappen'
+import { Route as KeukensLeichtIndexRouteImport } from './routes/keukens/leicht/index'
+import { Route as KeukensLeichtSlugRouteImport } from './routes/keukens/leicht/$slug'
 
 const StyleRoute = StyleRouteImport.update({
   id: '/style',
   path: '/style',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SilestoneRoute = SilestoneRouteImport.update({
+  id: '/silestone',
+  path: '/silestone',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShowroomKeukensRoute = ShowroomKeukensRouteImport.update({
+  id: '/showroom-keukens',
+  path: '/showroom-keukens',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SensaRoute = SensaRouteImport.update({
+  id: '/sensa',
+  path: '/sensa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NeolithRoute = NeolithRouteImport.update({
+  id: '/neolith',
+  path: '/neolith',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MoodboardRoute = MoodboardRouteImport.update({
   id: '/moodboard',
   path: '/moodboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DektonRoute = DektonRouteImport.update({
+  id: '/dekton',
+  path: '/dekton',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ConsultationRoute = ConsultationRouteImport.update({
@@ -41,65 +100,392 @@ const BrandsRoute = BrandsRouteImport.update({
   path: '/brands',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AanbiedingenRoute = AanbiedingenRouteImport.update({
+  id: '/aanbiedingen',
+  path: '/aanbiedingen',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const KeukensIndexRoute = KeukensIndexRouteImport.update({
+  id: '/keukens/',
+  path: '/keukens/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KeukenbladenIndexRoute = KeukenbladenIndexRouteImport.update({
+  id: '/keukenbladen/',
+  path: '/keukenbladen/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApparatuurIndexRoute = ApparatuurIndexRouteImport.update({
+  id: '/apparatuur/',
+  path: '/apparatuur/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KeukensZampieriRoute = KeukensZampieriRouteImport.update({
+  id: '/keukens/zampieri',
+  path: '/keukens/zampieri',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KeukensNobiliaRoute = KeukensNobiliaRouteImport.update({
+  id: '/keukens/nobilia',
+  path: '/keukens/nobilia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KeukensHackerRoute = KeukensHackerRouteImport.update({
+  id: '/keukens/hacker',
+  path: '/keukens/hacker',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KeukensCucinesseRoute = KeukensCucinesseRouteImport.update({
+  id: '/keukens/cucinesse',
+  path: '/keukens/cucinesse',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KeukensAiKuchenRoute = KeukensAiKuchenRouteImport.update({
+  id: '/keukens/ai-kuchen',
+  path: '/keukens/ai-kuchen',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KeukenbladenSilestoneRoute = KeukenbladenSilestoneRouteImport.update({
+  id: '/keukenbladen/silestone',
+  path: '/keukenbladen/silestone',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KeukenbladenSensaRoute = KeukenbladenSensaRouteImport.update({
+  id: '/keukenbladen/sensa',
+  path: '/keukenbladen/sensa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KeukenbladenNeolithRoute = KeukenbladenNeolithRouteImport.update({
+  id: '/keukenbladen/neolith',
+  path: '/keukenbladen/neolith',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KeukenbladenDektonRoute = KeukenbladenDektonRouteImport.update({
+  id: '/keukenbladen/dekton',
+  path: '/keukenbladen/dekton',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApparatuurWerkbladAfzuigingRoute =
+  ApparatuurWerkbladAfzuigingRouteImport.update({
+    id: '/apparatuur/werkblad-afzuiging',
+    path: '/apparatuur/werkblad-afzuiging',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApparatuurWaveAfzuigkappenRoute =
+  ApparatuurWaveAfzuigkappenRouteImport.update({
+    id: '/apparatuur/wave-afzuigkappen',
+    path: '/apparatuur/wave-afzuigkappen',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApparatuurVaatwassersRoute = ApparatuurVaatwassersRouteImport.update({
+  id: '/apparatuur/vaatwassers',
+  path: '/apparatuur/vaatwassers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApparatuurQuookerRoute = ApparatuurQuookerRouteImport.update({
+  id: '/apparatuur/quooker',
+  path: '/apparatuur/quooker',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApparatuurKookplatenRoute = ApparatuurKookplatenRouteImport.update({
+  id: '/apparatuur/kookplaten',
+  path: '/apparatuur/kookplaten',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApparatuurKoelkastenVriezersRoute =
+  ApparatuurKoelkastenVriezersRouteImport.update({
+    id: '/apparatuur/koelkasten-vriezers',
+    path: '/apparatuur/koelkasten-vriezers',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApparatuurFornuizenRoute = ApparatuurFornuizenRouteImport.update({
+  id: '/apparatuur/fornuizen',
+  path: '/apparatuur/fornuizen',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApparatuurAfzuigkappenRoute = ApparatuurAfzuigkappenRouteImport.update({
+  id: '/apparatuur/afzuigkappen',
+  path: '/apparatuur/afzuigkappen',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KeukensLeichtIndexRoute = KeukensLeichtIndexRouteImport.update({
+  id: '/keukens/leicht/',
+  path: '/keukens/leicht/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KeukensLeichtSlugRoute = KeukensLeichtSlugRouteImport.update({
+  id: '/keukens/leicht/$slug',
+  path: '/keukens/leicht/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/aanbiedingen': typeof AanbiedingenRoute
   '/brands': typeof BrandsRoute
   '/configure': typeof ConfigureRoute
   '/consultation': typeof ConsultationRoute
+  '/contact': typeof ContactRoute
+  '/dekton': typeof DektonRoute
   '/moodboard': typeof MoodboardRoute
+  '/neolith': typeof NeolithRoute
+  '/sensa': typeof SensaRoute
+  '/showroom-keukens': typeof ShowroomKeukensRoute
+  '/silestone': typeof SilestoneRoute
   '/style': typeof StyleRoute
+  '/apparatuur/afzuigkappen': typeof ApparatuurAfzuigkappenRoute
+  '/apparatuur/fornuizen': typeof ApparatuurFornuizenRoute
+  '/apparatuur/koelkasten-vriezers': typeof ApparatuurKoelkastenVriezersRoute
+  '/apparatuur/kookplaten': typeof ApparatuurKookplatenRoute
+  '/apparatuur/quooker': typeof ApparatuurQuookerRoute
+  '/apparatuur/vaatwassers': typeof ApparatuurVaatwassersRoute
+  '/apparatuur/wave-afzuigkappen': typeof ApparatuurWaveAfzuigkappenRoute
+  '/apparatuur/werkblad-afzuiging': typeof ApparatuurWerkbladAfzuigingRoute
+  '/keukenbladen/dekton': typeof KeukenbladenDektonRoute
+  '/keukenbladen/neolith': typeof KeukenbladenNeolithRoute
+  '/keukenbladen/sensa': typeof KeukenbladenSensaRoute
+  '/keukenbladen/silestone': typeof KeukenbladenSilestoneRoute
+  '/keukens/ai-kuchen': typeof KeukensAiKuchenRoute
+  '/keukens/cucinesse': typeof KeukensCucinesseRoute
+  '/keukens/hacker': typeof KeukensHackerRoute
+  '/keukens/nobilia': typeof KeukensNobiliaRoute
+  '/keukens/zampieri': typeof KeukensZampieriRoute
+  '/apparatuur/': typeof ApparatuurIndexRoute
+  '/keukenbladen/': typeof KeukenbladenIndexRoute
+  '/keukens/': typeof KeukensIndexRoute
+  '/keukens/leicht/$slug': typeof KeukensLeichtSlugRoute
+  '/keukens/leicht/': typeof KeukensLeichtIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/aanbiedingen': typeof AanbiedingenRoute
   '/brands': typeof BrandsRoute
   '/configure': typeof ConfigureRoute
   '/consultation': typeof ConsultationRoute
+  '/contact': typeof ContactRoute
+  '/dekton': typeof DektonRoute
   '/moodboard': typeof MoodboardRoute
+  '/neolith': typeof NeolithRoute
+  '/sensa': typeof SensaRoute
+  '/showroom-keukens': typeof ShowroomKeukensRoute
+  '/silestone': typeof SilestoneRoute
   '/style': typeof StyleRoute
+  '/apparatuur/afzuigkappen': typeof ApparatuurAfzuigkappenRoute
+  '/apparatuur/fornuizen': typeof ApparatuurFornuizenRoute
+  '/apparatuur/koelkasten-vriezers': typeof ApparatuurKoelkastenVriezersRoute
+  '/apparatuur/kookplaten': typeof ApparatuurKookplatenRoute
+  '/apparatuur/quooker': typeof ApparatuurQuookerRoute
+  '/apparatuur/vaatwassers': typeof ApparatuurVaatwassersRoute
+  '/apparatuur/wave-afzuigkappen': typeof ApparatuurWaveAfzuigkappenRoute
+  '/apparatuur/werkblad-afzuiging': typeof ApparatuurWerkbladAfzuigingRoute
+  '/keukenbladen/dekton': typeof KeukenbladenDektonRoute
+  '/keukenbladen/neolith': typeof KeukenbladenNeolithRoute
+  '/keukenbladen/sensa': typeof KeukenbladenSensaRoute
+  '/keukenbladen/silestone': typeof KeukenbladenSilestoneRoute
+  '/keukens/ai-kuchen': typeof KeukensAiKuchenRoute
+  '/keukens/cucinesse': typeof KeukensCucinesseRoute
+  '/keukens/hacker': typeof KeukensHackerRoute
+  '/keukens/nobilia': typeof KeukensNobiliaRoute
+  '/keukens/zampieri': typeof KeukensZampieriRoute
+  '/apparatuur': typeof ApparatuurIndexRoute
+  '/keukenbladen': typeof KeukenbladenIndexRoute
+  '/keukens': typeof KeukensIndexRoute
+  '/keukens/leicht/$slug': typeof KeukensLeichtSlugRoute
+  '/keukens/leicht': typeof KeukensLeichtIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/aanbiedingen': typeof AanbiedingenRoute
   '/brands': typeof BrandsRoute
   '/configure': typeof ConfigureRoute
   '/consultation': typeof ConsultationRoute
+  '/contact': typeof ContactRoute
+  '/dekton': typeof DektonRoute
   '/moodboard': typeof MoodboardRoute
+  '/neolith': typeof NeolithRoute
+  '/sensa': typeof SensaRoute
+  '/showroom-keukens': typeof ShowroomKeukensRoute
+  '/silestone': typeof SilestoneRoute
   '/style': typeof StyleRoute
+  '/apparatuur/afzuigkappen': typeof ApparatuurAfzuigkappenRoute
+  '/apparatuur/fornuizen': typeof ApparatuurFornuizenRoute
+  '/apparatuur/koelkasten-vriezers': typeof ApparatuurKoelkastenVriezersRoute
+  '/apparatuur/kookplaten': typeof ApparatuurKookplatenRoute
+  '/apparatuur/quooker': typeof ApparatuurQuookerRoute
+  '/apparatuur/vaatwassers': typeof ApparatuurVaatwassersRoute
+  '/apparatuur/wave-afzuigkappen': typeof ApparatuurWaveAfzuigkappenRoute
+  '/apparatuur/werkblad-afzuiging': typeof ApparatuurWerkbladAfzuigingRoute
+  '/keukenbladen/dekton': typeof KeukenbladenDektonRoute
+  '/keukenbladen/neolith': typeof KeukenbladenNeolithRoute
+  '/keukenbladen/sensa': typeof KeukenbladenSensaRoute
+  '/keukenbladen/silestone': typeof KeukenbladenSilestoneRoute
+  '/keukens/ai-kuchen': typeof KeukensAiKuchenRoute
+  '/keukens/cucinesse': typeof KeukensCucinesseRoute
+  '/keukens/hacker': typeof KeukensHackerRoute
+  '/keukens/nobilia': typeof KeukensNobiliaRoute
+  '/keukens/zampieri': typeof KeukensZampieriRoute
+  '/apparatuur/': typeof ApparatuurIndexRoute
+  '/keukenbladen/': typeof KeukenbladenIndexRoute
+  '/keukens/': typeof KeukensIndexRoute
+  '/keukens/leicht/$slug': typeof KeukensLeichtSlugRoute
+  '/keukens/leicht/': typeof KeukensLeichtIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/aanbiedingen'
     | '/brands'
     | '/configure'
     | '/consultation'
+    | '/contact'
+    | '/dekton'
     | '/moodboard'
+    | '/neolith'
+    | '/sensa'
+    | '/showroom-keukens'
+    | '/silestone'
     | '/style'
+    | '/apparatuur/afzuigkappen'
+    | '/apparatuur/fornuizen'
+    | '/apparatuur/koelkasten-vriezers'
+    | '/apparatuur/kookplaten'
+    | '/apparatuur/quooker'
+    | '/apparatuur/vaatwassers'
+    | '/apparatuur/wave-afzuigkappen'
+    | '/apparatuur/werkblad-afzuiging'
+    | '/keukenbladen/dekton'
+    | '/keukenbladen/neolith'
+    | '/keukenbladen/sensa'
+    | '/keukenbladen/silestone'
+    | '/keukens/ai-kuchen'
+    | '/keukens/cucinesse'
+    | '/keukens/hacker'
+    | '/keukens/nobilia'
+    | '/keukens/zampieri'
+    | '/apparatuur/'
+    | '/keukenbladen/'
+    | '/keukens/'
+    | '/keukens/leicht/$slug'
+    | '/keukens/leicht/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/brands' | '/configure' | '/consultation' | '/moodboard' | '/style'
+  to:
+    | '/'
+    | '/aanbiedingen'
+    | '/brands'
+    | '/configure'
+    | '/consultation'
+    | '/contact'
+    | '/dekton'
+    | '/moodboard'
+    | '/neolith'
+    | '/sensa'
+    | '/showroom-keukens'
+    | '/silestone'
+    | '/style'
+    | '/apparatuur/afzuigkappen'
+    | '/apparatuur/fornuizen'
+    | '/apparatuur/koelkasten-vriezers'
+    | '/apparatuur/kookplaten'
+    | '/apparatuur/quooker'
+    | '/apparatuur/vaatwassers'
+    | '/apparatuur/wave-afzuigkappen'
+    | '/apparatuur/werkblad-afzuiging'
+    | '/keukenbladen/dekton'
+    | '/keukenbladen/neolith'
+    | '/keukenbladen/sensa'
+    | '/keukenbladen/silestone'
+    | '/keukens/ai-kuchen'
+    | '/keukens/cucinesse'
+    | '/keukens/hacker'
+    | '/keukens/nobilia'
+    | '/keukens/zampieri'
+    | '/apparatuur'
+    | '/keukenbladen'
+    | '/keukens'
+    | '/keukens/leicht/$slug'
+    | '/keukens/leicht'
   id:
     | '__root__'
     | '/'
+    | '/aanbiedingen'
     | '/brands'
     | '/configure'
     | '/consultation'
+    | '/contact'
+    | '/dekton'
     | '/moodboard'
+    | '/neolith'
+    | '/sensa'
+    | '/showroom-keukens'
+    | '/silestone'
     | '/style'
+    | '/apparatuur/afzuigkappen'
+    | '/apparatuur/fornuizen'
+    | '/apparatuur/koelkasten-vriezers'
+    | '/apparatuur/kookplaten'
+    | '/apparatuur/quooker'
+    | '/apparatuur/vaatwassers'
+    | '/apparatuur/wave-afzuigkappen'
+    | '/apparatuur/werkblad-afzuiging'
+    | '/keukenbladen/dekton'
+    | '/keukenbladen/neolith'
+    | '/keukenbladen/sensa'
+    | '/keukenbladen/silestone'
+    | '/keukens/ai-kuchen'
+    | '/keukens/cucinesse'
+    | '/keukens/hacker'
+    | '/keukens/nobilia'
+    | '/keukens/zampieri'
+    | '/apparatuur/'
+    | '/keukenbladen/'
+    | '/keukens/'
+    | '/keukens/leicht/$slug'
+    | '/keukens/leicht/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AanbiedingenRoute: typeof AanbiedingenRoute
   BrandsRoute: typeof BrandsRoute
   ConfigureRoute: typeof ConfigureRoute
   ConsultationRoute: typeof ConsultationRoute
+  ContactRoute: typeof ContactRoute
+  DektonRoute: typeof DektonRoute
   MoodboardRoute: typeof MoodboardRoute
+  NeolithRoute: typeof NeolithRoute
+  SensaRoute: typeof SensaRoute
+  ShowroomKeukensRoute: typeof ShowroomKeukensRoute
+  SilestoneRoute: typeof SilestoneRoute
   StyleRoute: typeof StyleRoute
+  ApparatuurAfzuigkappenRoute: typeof ApparatuurAfzuigkappenRoute
+  ApparatuurFornuizenRoute: typeof ApparatuurFornuizenRoute
+  ApparatuurKoelkastenVriezersRoute: typeof ApparatuurKoelkastenVriezersRoute
+  ApparatuurKookplatenRoute: typeof ApparatuurKookplatenRoute
+  ApparatuurQuookerRoute: typeof ApparatuurQuookerRoute
+  ApparatuurVaatwassersRoute: typeof ApparatuurVaatwassersRoute
+  ApparatuurWaveAfzuigkappenRoute: typeof ApparatuurWaveAfzuigkappenRoute
+  ApparatuurWerkbladAfzuigingRoute: typeof ApparatuurWerkbladAfzuigingRoute
+  KeukenbladenDektonRoute: typeof KeukenbladenDektonRoute
+  KeukenbladenNeolithRoute: typeof KeukenbladenNeolithRoute
+  KeukenbladenSensaRoute: typeof KeukenbladenSensaRoute
+  KeukenbladenSilestoneRoute: typeof KeukenbladenSilestoneRoute
+  KeukensAiKuchenRoute: typeof KeukensAiKuchenRoute
+  KeukensCucinesseRoute: typeof KeukensCucinesseRoute
+  KeukensHackerRoute: typeof KeukensHackerRoute
+  KeukensNobiliaRoute: typeof KeukensNobiliaRoute
+  KeukensZampieriRoute: typeof KeukensZampieriRoute
+  ApparatuurIndexRoute: typeof ApparatuurIndexRoute
+  KeukenbladenIndexRoute: typeof KeukenbladenIndexRoute
+  KeukensIndexRoute: typeof KeukensIndexRoute
+  KeukensLeichtSlugRoute: typeof KeukensLeichtSlugRoute
+  KeukensLeichtIndexRoute: typeof KeukensLeichtIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -111,11 +497,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StyleRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/silestone': {
+      id: '/silestone'
+      path: '/silestone'
+      fullPath: '/silestone'
+      preLoaderRoute: typeof SilestoneRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/showroom-keukens': {
+      id: '/showroom-keukens'
+      path: '/showroom-keukens'
+      fullPath: '/showroom-keukens'
+      preLoaderRoute: typeof ShowroomKeukensRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sensa': {
+      id: '/sensa'
+      path: '/sensa'
+      fullPath: '/sensa'
+      preLoaderRoute: typeof SensaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/neolith': {
+      id: '/neolith'
+      path: '/neolith'
+      fullPath: '/neolith'
+      preLoaderRoute: typeof NeolithRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/moodboard': {
       id: '/moodboard'
       path: '/moodboard'
       fullPath: '/moodboard'
       preLoaderRoute: typeof MoodboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dekton': {
+      id: '/dekton'
+      path: '/dekton'
+      fullPath: '/dekton'
+      preLoaderRoute: typeof DektonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/consultation': {
@@ -139,6 +567,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BrandsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/aanbiedingen': {
+      id: '/aanbiedingen'
+      path: '/aanbiedingen'
+      fullPath: '/aanbiedingen'
+      preLoaderRoute: typeof AanbiedingenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -146,16 +581,199 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/keukens/': {
+      id: '/keukens/'
+      path: '/keukens'
+      fullPath: '/keukens/'
+      preLoaderRoute: typeof KeukensIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/keukenbladen/': {
+      id: '/keukenbladen/'
+      path: '/keukenbladen'
+      fullPath: '/keukenbladen/'
+      preLoaderRoute: typeof KeukenbladenIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/apparatuur/': {
+      id: '/apparatuur/'
+      path: '/apparatuur'
+      fullPath: '/apparatuur/'
+      preLoaderRoute: typeof ApparatuurIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/keukens/zampieri': {
+      id: '/keukens/zampieri'
+      path: '/keukens/zampieri'
+      fullPath: '/keukens/zampieri'
+      preLoaderRoute: typeof KeukensZampieriRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/keukens/nobilia': {
+      id: '/keukens/nobilia'
+      path: '/keukens/nobilia'
+      fullPath: '/keukens/nobilia'
+      preLoaderRoute: typeof KeukensNobiliaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/keukens/hacker': {
+      id: '/keukens/hacker'
+      path: '/keukens/hacker'
+      fullPath: '/keukens/hacker'
+      preLoaderRoute: typeof KeukensHackerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/keukens/cucinesse': {
+      id: '/keukens/cucinesse'
+      path: '/keukens/cucinesse'
+      fullPath: '/keukens/cucinesse'
+      preLoaderRoute: typeof KeukensCucinesseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/keukens/ai-kuchen': {
+      id: '/keukens/ai-kuchen'
+      path: '/keukens/ai-kuchen'
+      fullPath: '/keukens/ai-kuchen'
+      preLoaderRoute: typeof KeukensAiKuchenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/keukenbladen/silestone': {
+      id: '/keukenbladen/silestone'
+      path: '/keukenbladen/silestone'
+      fullPath: '/keukenbladen/silestone'
+      preLoaderRoute: typeof KeukenbladenSilestoneRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/keukenbladen/sensa': {
+      id: '/keukenbladen/sensa'
+      path: '/keukenbladen/sensa'
+      fullPath: '/keukenbladen/sensa'
+      preLoaderRoute: typeof KeukenbladenSensaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/keukenbladen/neolith': {
+      id: '/keukenbladen/neolith'
+      path: '/keukenbladen/neolith'
+      fullPath: '/keukenbladen/neolith'
+      preLoaderRoute: typeof KeukenbladenNeolithRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/keukenbladen/dekton': {
+      id: '/keukenbladen/dekton'
+      path: '/keukenbladen/dekton'
+      fullPath: '/keukenbladen/dekton'
+      preLoaderRoute: typeof KeukenbladenDektonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/apparatuur/werkblad-afzuiging': {
+      id: '/apparatuur/werkblad-afzuiging'
+      path: '/apparatuur/werkblad-afzuiging'
+      fullPath: '/apparatuur/werkblad-afzuiging'
+      preLoaderRoute: typeof ApparatuurWerkbladAfzuigingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/apparatuur/wave-afzuigkappen': {
+      id: '/apparatuur/wave-afzuigkappen'
+      path: '/apparatuur/wave-afzuigkappen'
+      fullPath: '/apparatuur/wave-afzuigkappen'
+      preLoaderRoute: typeof ApparatuurWaveAfzuigkappenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/apparatuur/vaatwassers': {
+      id: '/apparatuur/vaatwassers'
+      path: '/apparatuur/vaatwassers'
+      fullPath: '/apparatuur/vaatwassers'
+      preLoaderRoute: typeof ApparatuurVaatwassersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/apparatuur/quooker': {
+      id: '/apparatuur/quooker'
+      path: '/apparatuur/quooker'
+      fullPath: '/apparatuur/quooker'
+      preLoaderRoute: typeof ApparatuurQuookerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/apparatuur/kookplaten': {
+      id: '/apparatuur/kookplaten'
+      path: '/apparatuur/kookplaten'
+      fullPath: '/apparatuur/kookplaten'
+      preLoaderRoute: typeof ApparatuurKookplatenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/apparatuur/koelkasten-vriezers': {
+      id: '/apparatuur/koelkasten-vriezers'
+      path: '/apparatuur/koelkasten-vriezers'
+      fullPath: '/apparatuur/koelkasten-vriezers'
+      preLoaderRoute: typeof ApparatuurKoelkastenVriezersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/apparatuur/fornuizen': {
+      id: '/apparatuur/fornuizen'
+      path: '/apparatuur/fornuizen'
+      fullPath: '/apparatuur/fornuizen'
+      preLoaderRoute: typeof ApparatuurFornuizenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/apparatuur/afzuigkappen': {
+      id: '/apparatuur/afzuigkappen'
+      path: '/apparatuur/afzuigkappen'
+      fullPath: '/apparatuur/afzuigkappen'
+      preLoaderRoute: typeof ApparatuurAfzuigkappenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/keukens/leicht/': {
+      id: '/keukens/leicht/'
+      path: '/keukens/leicht'
+      fullPath: '/keukens/leicht/'
+      preLoaderRoute: typeof KeukensLeichtIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/keukens/leicht/$slug': {
+      id: '/keukens/leicht/$slug'
+      path: '/keukens/leicht/$slug'
+      fullPath: '/keukens/leicht/$slug'
+      preLoaderRoute: typeof KeukensLeichtSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AanbiedingenRoute: AanbiedingenRoute,
   BrandsRoute: BrandsRoute,
   ConfigureRoute: ConfigureRoute,
   ConsultationRoute: ConsultationRoute,
+  ContactRoute: ContactRoute,
+  DektonRoute: DektonRoute,
   MoodboardRoute: MoodboardRoute,
+  NeolithRoute: NeolithRoute,
+  SensaRoute: SensaRoute,
+  ShowroomKeukensRoute: ShowroomKeukensRoute,
+  SilestoneRoute: SilestoneRoute,
   StyleRoute: StyleRoute,
+  ApparatuurAfzuigkappenRoute: ApparatuurAfzuigkappenRoute,
+  ApparatuurFornuizenRoute: ApparatuurFornuizenRoute,
+  ApparatuurKoelkastenVriezersRoute: ApparatuurKoelkastenVriezersRoute,
+  ApparatuurKookplatenRoute: ApparatuurKookplatenRoute,
+  ApparatuurQuookerRoute: ApparatuurQuookerRoute,
+  ApparatuurVaatwassersRoute: ApparatuurVaatwassersRoute,
+  ApparatuurWaveAfzuigkappenRoute: ApparatuurWaveAfzuigkappenRoute,
+  ApparatuurWerkbladAfzuigingRoute: ApparatuurWerkbladAfzuigingRoute,
+  KeukenbladenDektonRoute: KeukenbladenDektonRoute,
+  KeukenbladenNeolithRoute: KeukenbladenNeolithRoute,
+  KeukenbladenSensaRoute: KeukenbladenSensaRoute,
+  KeukenbladenSilestoneRoute: KeukenbladenSilestoneRoute,
+  KeukensAiKuchenRoute: KeukensAiKuchenRoute,
+  KeukensCucinesseRoute: KeukensCucinesseRoute,
+  KeukensHackerRoute: KeukensHackerRoute,
+  KeukensNobiliaRoute: KeukensNobiliaRoute,
+  KeukensZampieriRoute: KeukensZampieriRoute,
+  ApparatuurIndexRoute: ApparatuurIndexRoute,
+  KeukenbladenIndexRoute: KeukenbladenIndexRoute,
+  KeukensIndexRoute: KeukensIndexRoute,
+  KeukensLeichtSlugRoute: KeukensLeichtSlugRoute,
+  KeukensLeichtIndexRoute: KeukensLeichtIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
