@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
+import { Calendar, Call, TickCircle, User } from "@zethictech/iconsax-react";
 import { SelectionPreview } from "@/components/configurator/SelectionPreview";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -344,38 +345,17 @@ function ConsultationPage() {
 }
 
 function PersonMark() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 fill-none stroke-current stroke-[1.7]">
-      <circle cx="12" cy="8" r="3.5" />
-      <path d="M5.5 19a6.5 6.5 0 0 1 13 0" />
-    </svg>
-  );
+  return <User size={16} variant="Linear" aria-hidden="true" />;
 }
 
 function CalendarMark() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 fill-none stroke-current stroke-[1.7]">
-      <path d="M7 3v4" />
-      <path d="M17 3v4" />
-      <rect x="4" y="5" width="16" height="15" rx="1.5" />
-      <path d="M4 9.5h16" />
-    </svg>
-  );
+  return <Calendar size={16} variant="Linear" aria-hidden="true" />;
 }
 
 function PhoneMark() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 fill-none stroke-current stroke-[1.7]">
-      <path d="M7.8 4h2.4l1.2 4-1.8 1.8a15 15 0 0 0 4.6 4.6l1.8-1.8 4 1.2v2.4a1.8 1.8 0 0 1-2 1.8C10.7 17.8 6.2 13.3 6 6a1.8 1.8 0 0 1 1.8-2Z" />
-    </svg>
-  );
+  return <Call size={16} variant="Linear" aria-hidden="true" />;
 }
 
 function CheckCircleMark() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-8 w-8 fill-none stroke-[#B08D57] stroke-[1.8]">
-      <circle cx="12" cy="12" r="8.5" />
-      <path d="m8.5 12 2.3 2.4 4.7-5.2" />
-    </svg>
-  );
+  return <TickCircle size={32} color="#B08D57" variant="Linear" aria-hidden="true" />;
 }

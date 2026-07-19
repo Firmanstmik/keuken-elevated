@@ -14,7 +14,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { PremiumPillButton } from "@/components/ui/premium-pill-button";
 import { ArrowRight, Check, House, Mail, Phone } from "@/components/ui/icons";
-import { Calendar, Clock, Shield } from "iconsax-react";
+import { Calendar, Clock, Shield } from "@zethictech/iconsax-react";
 import { kc } from "@/lib/kc-data";
 import { motionViewport } from "@/lib/motion";
 import { SectionChapter } from "@/components/site/SectionChapter";
@@ -27,6 +27,7 @@ import heroKitchen from "@/assets/hero-kitchen.jpg";
 import craftsmanship from "@/assets/craftsmanship.jpg";
 import showroomAsset from "@/assets/showroom.jpg";
 import matMarble from "@/assets/mat-marble.jpg";
+import matConcrete from "@/assets/mat-concrete.jpg";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -338,8 +339,13 @@ export function ConsultationSection() {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
-        style={{ background: "linear-gradient(180deg, #FFFFFF 0%, #F6F3EE 50%, #F3F9EB 100%)" }}
+        style={{
+          backgroundImage: `url(${matConcrete})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
       />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[rgba(248,246,242,0.87)]" />
       {/* Top gold radial glow */}
       <div
         aria-hidden="true"

@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
-import { StickyConversionBar } from "@/components/site/StickyConversionBar";
 import { BrandPage } from "@/components/site/brand-pages/BrandPage";
 import { leichtPage } from "@/lib/brand-pages/leicht";
 import leichtLogo from "@/assets/Leicht_Logo.webp";
@@ -27,7 +26,6 @@ function LeichtRoute() {
       <Nav />
       <BrandPage data={leichtPage} logoSrc={leichtLogo} />
       <Footer />
-      <StickyConversionBar />
     </main>
   );
 }

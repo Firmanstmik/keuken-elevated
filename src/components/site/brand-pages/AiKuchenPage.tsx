@@ -1,27 +1,22 @@
 "use client";
 
-import { useRef, type ReactNode } from "react";
+import { useRef } from "react";
+import { motion, useReducedMotion, useScroll, useTransform, type Variants } from "framer-motion";
 import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-  type Variants,
-} from "framer-motion";
-import {
-  Grid3x3,
-  Layers,
-  Sparkles,
-  ShieldCheck,
-  Factory,
+  Grid4 as Grid3x3,
+  Layer as Layers,
+  MagicStar as Sparkles,
+  ShieldTick as ShieldCheck,
+  Building4 as Factory,
   Clock,
   Award,
-  ArrowDown,
-  ArrowUpRight,
-  Phone,
-  Check,
-} from "lucide-react";
+  ArrowDown2 as ArrowDown,
+  Export as ArrowUpRight,
+  Call as Phone,
+  TickCircle as Check,
+} from "@zethictech/iconsax-react";
 import { PremiumPillButton } from "@/components/ui/premium-pill-button";
+import { KitchenEyebrow as Eyebrow } from "@/components/site/KitchenEyebrow";
 import {
   Accordion,
   AccordionContent,
@@ -55,16 +50,6 @@ const pillarIcons = {
   layers: Layers,
   grid: Grid3x3,
 } as const;
-
-/** Editorial eyebrow — thin rule + tracked label. */
-function Eyebrow({ children, light = false }: { children: ReactNode; light?: boolean }) {
-  return (
-    <span className={`brand-eyebrow ${light ? "brand-eyebrow--light" : ""}`}>
-      <span className="brand-eyebrow__line" aria-hidden="true" />
-      {children}
-    </span>
-  );
-}
 
 export function AiKuchenPage() {
   const reduceMotion = useReducedMotion();
@@ -105,7 +90,10 @@ export function AiKuchenPage() {
             variants={reduceMotion ? undefined : heroStagger}
             className="max-w-[54rem]"
           >
-            <motion.div variants={reduceMotion ? undefined : fadeUp} className="mb-10 flex items-center gap-5">
+            <motion.div
+              variants={reduceMotion ? undefined : fadeUp}
+              className="mb-10 flex items-center gap-5"
+            >
               <div className="brand-page-hero__logo-wrap">
                 <img
                   src={aiKuchenLogo}
@@ -134,7 +122,9 @@ export function AiKuchenPage() {
             >
               {aiKuchenPage.hero.title}
               <br />
-              <em className="italic text-[var(--green-highlight)]">{aiKuchenPage.hero.highlight}</em>
+              <em className="italic text-[var(--green-highlight)]">
+                {aiKuchenPage.hero.highlight}
+              </em>
             </motion.h1>
 
             <motion.p
@@ -151,7 +141,11 @@ export function AiKuchenPage() {
               <PremiumPillButton href={aiKuchenPage.hero.cta.primaryHref} size="lg">
                 {aiKuchenPage.hero.cta.primary}
               </PremiumPillButton>
-              <PremiumPillButton href={aiKuchenPage.hero.cta.secondaryHref} variant="ghost" size="lg">
+              <PremiumPillButton
+                href={aiKuchenPage.hero.cta.secondaryHref}
+                variant="ghost"
+                size="lg"
+              >
                 {aiKuchenPage.hero.cta.secondary}
               </PremiumPillButton>
             </motion.div>
@@ -161,7 +155,9 @@ export function AiKuchenPage() {
               <div className="brand-page-hero__badge-strip">
                 {aiKuchenPage.hero.badges.map((badge, index) => (
                   <div key={badge.label} className="brand-page-hero__badge">
-                    {index > 0 && <span className="brand-page-hero__badge-divider" aria-hidden="true" />}
+                    {index > 0 && (
+                      <span className="brand-page-hero__badge-divider" aria-hidden="true" />
+                    )}
                     <span className="brand-page-hero__badge-value">{badge.value}</span>
                     <span className="brand-page-hero__badge-label">{badge.label}</span>
                   </div>
@@ -183,7 +179,7 @@ export function AiKuchenPage() {
             transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
             className="flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(255,255,255,0.22)] text-white/70"
           >
-            <ArrowDown className="h-4 w-4" strokeWidth={1.5} />
+            <ArrowDown className="h-4 w-4" variant="Linear" />
           </motion.div>
         </motion.div>
       </section>
@@ -200,18 +196,21 @@ export function AiKuchenPage() {
             >
               <Eyebrow>{aiKuchenPage.intro.eyebrow}</Eyebrow>
               <h2 className="mt-6 font-serif text-[clamp(2.1rem,3.8vw,3.1rem)] leading-[1.1] tracking-[-0.015em] text-[var(--secondary)]">
-                Moderne architectuur met{" "}
-                <em className="italic text-[var(--green)]">innovatie</em> in elk detail
+                Moderne architectuur met <em className="italic text-[var(--green)]">innovatie</em>{" "}
+                in elk detail
               </h2>
 
               {/* Lead paragraph — larger, editorial weight */}
-              <p className="mt-8 border-l-2 border-[var(--green)] pl-6 font-serif text-[1.2rem] leading-[1.65] text-[var(--secondary)] opacity-[0.88]">
+              <p className="mt-8 border-l-2 border-[var(--green)] pl-6 font-serif text-[1.2rem] leading-[1.65] text-[#111111]">
                 {aiKuchenPage.intro.paragraphs[0]}
               </p>
 
               <div className="mt-6 space-y-5">
                 {aiKuchenPage.intro.paragraphs.slice(1).map((paragraph) => (
-                  <p key={paragraph.slice(0, 24)} className="text-[1rem] font-light leading-[1.8] tracking-[0.01em] text-[var(--text-soft)]">
+                  <p
+                    key={paragraph.slice(0, 24)}
+                    className="text-[1rem] font-light leading-[1.8] tracking-[0.01em] text-[var(--text-soft)]"
+                  >
                     {paragraph}
                   </p>
                 ))}
@@ -273,14 +272,16 @@ export function AiKuchenPage() {
                   </text>
                 </svg>
                 <span className="brand-page-intro__roundel-center">
-                  <Sparkles className="h-4 w-4" strokeWidth={1.5} />
+                  <Sparkles className="h-4 w-4" variant="Linear" />
                 </span>
               </div>
 
               {/* Floating caption card */}
               <div className="brand-page-intro__caption">
                 <span className="brand-page-intro__caption-tag">Showroom Utrecht</span>
-                <span className="brand-page-intro__caption-title">Meerdere modellen live te ervaren</span>
+                <span className="brand-page-intro__caption-title">
+                  Meerdere modellen live te ervaren
+                </span>
               </div>
             </motion.div>
           </div>
@@ -300,8 +301,8 @@ export function AiKuchenPage() {
             <div className="max-w-[32rem]">
               <Eyebrow>Drie pijlers</Eyebrow>
               <h2 className="mt-5 font-serif text-[clamp(2rem,3.4vw,2.85rem)] leading-[1.12] tracking-[-0.015em] text-[var(--secondary)]">
-                Kwaliteit, maatwerk en{" "}
-                <em className="italic text-[var(--green)]">innovatie</em> in balans
+                Kwaliteit, maatwerk en <em className="italic text-[var(--green)]">innovatie</em> in
+                balans
               </h2>
             </div>
             <p className="max-w-[21rem] text-[0.95rem] font-light leading-[1.7] text-[var(--text-soft)]">
@@ -323,14 +324,19 @@ export function AiKuchenPage() {
                   className="brand-pillar-card group"
                 >
                   <div className="brand-pillar-card__media">
-                    <img src={photo} alt={pillar.title} loading="lazy" className="brand-pillar-card__photo" />
+                    <img
+                      src={photo}
+                      alt={pillar.title}
+                      loading="lazy"
+                      className="brand-pillar-card__photo"
+                    />
                     <span className="brand-pillar-card__num" aria-hidden="true">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                   </div>
                   <div className="brand-pillar-card__body">
                     <div className="brand-pillar-card__icon">
-                      <Icon className="h-5 w-5" strokeWidth={1.5} />
+                      <Icon className="h-5 w-5" variant="Linear" />
                     </div>
                     <h3 className="mt-5 font-serif text-[1.5rem] leading-[1.2] tracking-[-0.01em] text-[var(--secondary)]">
                       {pillar.title}
@@ -351,7 +357,9 @@ export function AiKuchenPage() {
       <section className="section-shell">
         <div className="site-container">
           <div className="brand-partnership">
-            <span className="brand-partnership__ghost" aria-hidden="true">Häcker</span>
+            <span className="brand-partnership__ghost" aria-hidden="true">
+              Häcker
+            </span>
 
             <motion.div
               initial={reduceMotion ? false : "hidden"}
@@ -372,7 +380,7 @@ export function AiKuchenPage() {
                 {aiKuchenPage.partnership.highlights.map((item) => (
                   <li key={item} className="brand-partnership__highlight">
                     <span className="brand-partnership__check">
-                      <Check className="h-3 w-3" strokeWidth={2.4} />
+                      <Check className="h-3 w-3" variant="Bold" />
                     </span>
                     {item}
                   </li>
@@ -395,14 +403,17 @@ export function AiKuchenPage() {
                   { icon: Award, label: "ISO 9001 gecertificeerd", value: "Kwaliteit" },
                 ].map((stat) => (
                   <div key={stat.label} className="brand-stat-cell">
-                    <stat.icon className="h-[1.15rem] w-[1.15rem] text-[var(--green-highlight)]" strokeWidth={1.5} />
+                    <stat.icon
+                      className="h-[1.15rem] w-[1.15rem] text-[var(--green-highlight)]"
+                      variant="Linear"
+                    />
                     <span className="brand-stat-cell__value">{stat.value}</span>
                     <span className="brand-stat-cell__label">{stat.label}</span>
                   </div>
                 ))}
               </div>
               <p className="mt-5 flex items-center gap-2.5 text-[0.78rem] font-light tracking-[0.02em] text-[rgba(255,255,255,0.48)]">
-                <span className="h-px w-8 bg-[rgba(168,217,90,0.4)]" aria-hidden="true" />
+                <span className="kitchen-eyebrow-mark" aria-hidden="true" />
                 Al een offerte elders? Neem deze mee. Wij bieden vrijwel altijd beter.
               </p>
             </motion.div>
@@ -451,7 +462,12 @@ export function AiKuchenPage() {
                 transition={{ duration: 0.8, delay: index * 0.1, ease: luxuryEase }}
                 className={`brand-gallery__item brand-gallery__item--${item.span} group`}
               >
-                <img src={item.src} alt={item.title} loading="lazy" className="brand-gallery__image" />
+                <img
+                  src={item.src}
+                  alt={item.title}
+                  loading="lazy"
+                  className="brand-gallery__image"
+                />
                 <span className="brand-gallery__index" aria-hidden="true">
                   {String(index + 1).padStart(2, "0")}
                 </span>
@@ -460,7 +476,7 @@ export function AiKuchenPage() {
                   <span className="brand-gallery__title">{item.title}</span>
                 </figcaption>
                 <span className="brand-gallery__arrow" aria-hidden="true">
-                  <ArrowUpRight className="h-4 w-4" strokeWidth={1.7} />
+                  <ArrowUpRight className="h-4 w-4" variant="Linear" />
                 </span>
               </motion.figure>
             ))}
@@ -474,11 +490,14 @@ export function AiKuchenPage() {
               transition={{ duration: 0.8, delay: 0.4, ease: luxuryEase }}
               className="brand-gallery__cta-tile group"
             >
-              <span className="brand-gallery__cta-ghost" aria-hidden="true">Live</span>
+              <span className="brand-gallery__cta-ghost" aria-hidden="true">
+                Live
+              </span>
               <div className="relative z-[1]">
                 <Eyebrow light>Showroom Utrecht</Eyebrow>
                 <h3 className="mt-4 font-serif text-[1.6rem] leading-[1.15] tracking-[-0.01em] text-white">
-                  Liever <em className="italic text-[var(--green-highlight)]">in het echt</em> ervaren?
+                  Liever <em className="italic text-[var(--green-highlight)]">in het echt</em>{" "}
+                  ervaren?
                 </h3>
                 <p className="mt-3 max-w-[16rem] text-[0.88rem] font-light leading-[1.65] text-[rgba(255,255,255,0.62)]">
                   Meerdere AI Küchen opstellingen staan voor u klaar op de Zonnebaan.
@@ -489,7 +508,7 @@ export function AiKuchenPage() {
                   Boek een afspraak
                 </span>
                 <span className="brand-gallery__cta-arrow">
-                  <ArrowUpRight className="h-[1.1rem] w-[1.1rem]" strokeWidth={1.7} />
+                  <ArrowUpRight className="h-[1.1rem] w-[1.1rem]" variant="Linear" />
                 </span>
               </div>
             </motion.a>
@@ -499,7 +518,9 @@ export function AiKuchenPage() {
 
       {/* ── Custom kitchens ──────────────────────────────────── */}
       <section className="brand-custom-band">
-        <span className="brand-custom-band__ghost" aria-hidden="true">Maatwerk</span>
+        <span className="brand-custom-band__ghost" aria-hidden="true">
+          Maatwerk
+        </span>
         <div className="site-container relative z-[1]">
           <motion.div
             initial={reduceMotion ? false : "hidden"}
@@ -548,10 +569,12 @@ export function AiKuchenPage() {
 
               {/* Contact card — dark premium echo of the partnership panel */}
               <div className="brand-faq__contact-card">
-                <span className="brand-faq__contact-ghost" aria-hidden="true">?</span>
+                <span className="brand-faq__contact-ghost" aria-hidden="true">
+                  ?
+                </span>
                 <div className="relative z-[1] flex items-center gap-4">
                   <span className="brand-faq__contact-icon">
-                    <Phone className="h-[1.05rem] w-[1.05rem]" strokeWidth={1.6} />
+                    <Phone className="h-[1.05rem] w-[1.05rem]" variant="Linear" />
                   </span>
                   <div className="flex flex-col">
                     <span className="text-[0.62rem] font-medium uppercase tracking-[0.2em] text-[rgba(255,255,255,0.5)]">
@@ -571,7 +594,10 @@ export function AiKuchenPage() {
                   className="group relative z-[1] inline-flex items-center gap-2 text-[0.88rem] font-medium text-[var(--green-highlight)]"
                 >
                   {kc.contact.email}
-                  <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" strokeWidth={1.8} />
+                  <ArrowUpRight
+                    className="h-3.5 w-3.5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                    variant="Linear"
+                  />
                 </a>
                 <p className="relative z-[1] mt-4 text-[0.76rem] font-light tracking-[0.03em] text-[rgba(255,255,255,0.45)]">
                   Maandag tot vrijdag 09:00 tot 18:00 · Zaterdag 09:00 tot 17:00
@@ -648,7 +674,10 @@ export function AiKuchenPage() {
                 </p>
                 <a href={`mailto:${advisor.email}`} className="brand-advisor-card__email">
                   {advisor.email}
-                  <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" strokeWidth={1.8} />
+                  <ArrowUpRight
+                    className="h-3.5 w-3.5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                    variant="Linear"
+                  />
                 </a>
               </motion.article>
             ))}
@@ -669,14 +698,16 @@ export function AiKuchenPage() {
             <div className="max-w-[34rem]">
               <Eyebrow light>{aiKuchenPage.showroomCta.eyebrow}</Eyebrow>
               <h2 className="mt-5 font-serif text-[clamp(2.1rem,4vw,3.1rem)] leading-[1.08] tracking-[-0.02em] text-white">
-                AI Küchen{" "}
-                <em className="italic text-[var(--green-highlight)]">in het echt</em> bekijken?
+                AI Küchen <em className="italic text-[var(--green-highlight)]">in het echt</em>{" "}
+                bekijken?
               </h2>
               <p className="mt-5 text-[1.02rem] font-light leading-[1.75] text-[rgba(255,255,255,0.78)]">
                 {aiKuchenPage.showroomCta.subtitle}
               </p>
               <p className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.88rem] font-light tracking-[0.02em] text-[rgba(255,255,255,0.52)]">
-                <span>{kc.contact.address}, {kc.contact.postal}</span>
+                <span>
+                  {kc.contact.address}, {kc.contact.postal}
+                </span>
                 <span className="hidden h-3 w-px bg-[rgba(255,255,255,0.25)] sm:block" />
                 <span>{kc.contact.phone}</span>
               </p>

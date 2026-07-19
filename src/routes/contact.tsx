@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
-import { StickyConversionBar } from "@/components/site/StickyConversionBar";
 import { ContactPage } from "@/components/site/contact/ContactPage";
 
 const title = "Contact · Keuken-Centrum Utrecht | Zonnebaan 8";
@@ -28,7 +27,6 @@ function ContactRoute() {
       <Nav />
       <ContactPage />
       <Footer />
-      <StickyConversionBar />
     </main>
   );
 }

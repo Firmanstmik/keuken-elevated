@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
-import { StickyConversionBar } from "@/components/site/StickyConversionBar";
 import { BrandPage } from "@/components/site/brand-pages/BrandPage";
 import { nobiliaPage } from "@/lib/brand-pages/nobilia";
 import nobiliaLogo from "@/assets/Nobilia_Logo.webp";
@@ -26,7 +25,6 @@ function NobiliaRoute() {
       <Nav />
       <BrandPage data={nobiliaPage} logoSrc={nobiliaLogo} />
       <Footer />
-      <StickyConversionBar />
     </main>
   );
 }

@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
-import { StickyConversionBar } from "@/components/site/StickyConversionBar";
 import { ApparatuurOverviewPage } from "@/components/site/apparatuur-pages/ApparatuurOverviewPage";
 import { apparatuurOverview } from "@/lib/apparatuur-pages/apparatuur";
 
@@ -26,7 +25,6 @@ function ApparatuurRoute() {
       <Nav />
       <ApparatuurOverviewPage />
       <Footer />
-      <StickyConversionBar />
     </main>
   );
 }

@@ -418,8 +418,9 @@ export function Experience() {
             {/* Eyebrow */}
             <motion.div
               variants={reduceMotion ? undefined : fadeUp}
-              className="mb-6"
+              className="mb-6 flex items-center gap-3"
             >
+              <span className="kitchen-eyebrow-mark" aria-hidden="true" />
               <span
                 className="text-[0.62rem] font-semibold uppercase tracking-[0.34em] text-[#C8A96B]"
                 style={{ fontFamily: "var(--font-body)" }}

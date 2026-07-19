@@ -1,5 +1,6 @@
 import { useReveal } from "@/hooks/use-reveal";
 import { kc } from "@/lib/kc-data";
+import { KitchenEyebrow } from "@/components/site/KitchenEyebrow";
 
 export function Offers() {
   const ref = useReveal<HTMLDivElement>();
@@ -7,10 +8,7 @@ export function Offers() {
     <section id="aanbiedingen" className="bg-surface py-24 md:py-36">
       <div ref={ref} className="reveal mx-auto grid max-w-[1600px] grid-cols-1 gap-12 px-6 md:px-12 lg:grid-cols-12 lg:gap-16">
         <div className="flex flex-col justify-center lg:col-span-5">
-          <div className="mb-4 flex items-center gap-4">
-            <span className="luxe-rule bg-gold" />
-            <span className="eyebrow text-muted-light">Aanbiedingen</span>
-          </div>
+          <KitchenEyebrow light className="mb-4">Aanbiedingen</KitchenEyebrow>
           <h2 className="editorial-h text-5xl text-ivory md:text-6xl">
             Showroomkeukens
             <br />

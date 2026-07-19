@@ -2,7 +2,9 @@
 
 import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { Award as AwardIcon } from "@zethictech/iconsax-react";
 import { ArrowRight, House, Mail, Phone } from "@/components/ui/icons";
+import { KitchenEyebrow } from "@/components/site/KitchenEyebrow";
 import { kc } from "@/lib/kc-data";
 import { motionViewport } from "@/lib/motion";
 import craftsmanshipImg from "@/assets/craftsmanship.jpg";
@@ -33,15 +35,6 @@ const revealRight = {
 };
 
 // ─── Award icon ──────────────────────────────────────────────────────────────
-
-function AwardIcon() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="8" r="6" />
-      <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
-    </svg>
-  );
-}
 
 // ─── Component ───────────────────────────────────────────────────────────────
 
@@ -142,17 +135,8 @@ export function Showroom() {
           />
 
           {/* Eyebrow */}
-          <motion.div
-            variants={reduceMotion ? undefined : fadeUp}
-            className="mb-5 flex items-center gap-4"
-          >
-            <span className="h-px w-8 bg-gradient-to-r from-transparent to-[rgba(139,197,64,0.58)]" />
-            <span
-              className="text-[0.6rem] font-semibold uppercase tracking-[0.32em] text-[#A8D95A]"
-              style={{ fontFamily: "var(--font-body)" }}
-            >
-              Showroom · Zonnebaan 8 · Utrecht
-            </span>
+          <motion.div variants={reduceMotion ? undefined : fadeUp} className="mb-5">
+            <KitchenEyebrow light>Showroom · Zonnebaan 8 · Utrecht</KitchenEyebrow>
           </motion.div>
 
           {/* Primary heading — dominant brand name */}
@@ -184,17 +168,10 @@ export function Showroom() {
           </motion.p>
 
           {/* Brand positioning tagline */}
-          <motion.div
-            variants={reduceMotion ? undefined : fadeUp}
-            className="mt-5 flex items-center gap-3"
-          >
-            <span className="h-px w-5 bg-[rgba(139,197,64,0.35)]" />
-            <span
-              className="text-[0.62rem] font-light tracking-[0.22em] text-[rgba(139,197,64,0.55)]"
-              style={{ fontFamily: "var(--font-body)" }}
-            >
+          <motion.div variants={reduceMotion ? undefined : fadeUp} className="mt-5">
+            <KitchenEyebrow light className="opacity-70">
               Deutsche precisie · Italiaanse elegantie
-            </span>
+            </KitchenEyebrow>
           </motion.div>
         </motion.div>
 
@@ -265,7 +242,7 @@ export function Showroom() {
                       border: "1px solid rgba(139,197,64,0.30)",
                     }}
                   >
-                    <AwardIcon />
+                    <AwardIcon size={14} variant="Linear" />
                   </div>
 
                   <div>

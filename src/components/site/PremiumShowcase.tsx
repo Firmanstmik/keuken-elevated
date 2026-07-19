@@ -15,6 +15,7 @@ import keukenVid1 from "@/assets/keuken_vid1.webm";
 import keukenVid2 from "@/assets/keuken_vid2.webm";
 import keukenVid3 from "@/assets/keuken_vid3.webm";
 import keukenVid4 from "@/assets/keuken_vid4.webm";
+import matConcrete from "@/assets/mat-concrete.jpg";
 import { motionViewport } from "@/lib/motion";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
@@ -151,10 +152,18 @@ export function PremiumShowcase() {
       ref={sectionRef}
       id="premium-showcase"
       className="section-shell relative w-full overflow-hidden"
-      style={{
-        background: "linear-gradient(180deg, #FDFCF9 0%, #FFFFFF 48%, #FBFAF6 100%)",
-      }}
     >
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage: `url(${matConcrete})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[rgba(248,246,242,0.87)]" />
+
       {/* Soft ambient glow */}
       <div
         aria-hidden="true"
@@ -308,11 +317,7 @@ export function PremiumShowcase() {
               className="mb-5"
             >
               <div className="mb-4 flex items-center gap-3">
-                <span
-                  aria-hidden="true"
-                  className="h-px w-10"
-                  style={{ background: "linear-gradient(90deg, rgba(200,169,107,0.55), transparent)" }}
-                />
+                <span className="kitchen-eyebrow-mark" aria-hidden="true" />
                 <p
                   className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[#8A7348]"
                   style={{ fontFamily: "var(--font-body)" }}

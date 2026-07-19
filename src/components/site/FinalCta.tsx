@@ -95,11 +95,10 @@ export function FinalCta() {
             variants={reduceMotion ? undefined : fadeUp}
             className="mb-7 flex items-center justify-center gap-5"
           >
-            <span className="h-px w-10 bg-gradient-to-r from-transparent to-[#8BC540]/35" />
+            <span className="kitchen-eyebrow-mark" aria-hidden="true" />
             <span className="text-[0.6875rem] font-medium uppercase tracking-[0.24em] text-[var(--green-soft)]">
               Begin uw reis
             </span>
-            <span className="h-px w-10 bg-gradient-to-l from-transparent to-[#8BC540]/35" />
           </motion.div>
 
           {/* Display heading */}

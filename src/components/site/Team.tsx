@@ -1,5 +1,6 @@
 import { useReveal } from "@/hooks/use-reveal";
 import { kc } from "@/lib/kc-data";
+import { KitchenEyebrow } from "@/components/site/KitchenEyebrow";
 
 export function Team() {
   const ref = useReveal<HTMLDivElement>();
@@ -8,10 +9,7 @@ export function Team() {
       <div ref={ref} className="reveal mx-auto max-w-[1600px] px-6 md:px-12">
         <div className="mb-20 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
-            <div className="mb-4 flex items-center gap-4">
-              <span className="luxe-rule bg-gold" />
-              <span className="eyebrow text-muted-light">Het Team</span>
-            </div>
+            <KitchenEyebrow light className="mb-4">Het Team</KitchenEyebrow>
             <h2 className="editorial-h text-5xl text-ivory md:text-6xl">
               Kom in contact
               <br />

@@ -1,30 +1,25 @@
 "use client";
 
-import { useRef, type ReactNode } from "react";
+import { useRef } from "react";
+import { motion, useReducedMotion, useScroll, useTransform, type Variants } from "framer-motion";
 import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-  type Variants,
-} from "framer-motion";
-import {
-  Grid3x3,
-  Layers,
-  Sparkles,
-  ShieldCheck,
-  Factory,
+  Grid4 as Grid3x3,
+  Layer as Layers,
+  MagicStar as Sparkles,
+  ShieldTick as ShieldCheck,
+  Building4 as Factory,
   Clock,
   Award,
-  ArrowDown,
-  ArrowUpRight,
-  Phone,
-  Check,
+  ArrowDown2 as ArrowDown,
+  Export as ArrowUpRight,
+  Call as Phone,
+  TickCircle as Check,
   Heart,
   Shield,
-  FileText,
-} from "lucide-react";
+  DocumentText as FileText,
+} from "@zethictech/iconsax-react";
 import { PremiumPillButton } from "@/components/ui/premium-pill-button";
+import { KitchenEyebrow as Eyebrow } from "@/components/site/KitchenEyebrow";
 import {
   Accordion,
   AccordionContent,
@@ -67,15 +62,6 @@ const statIcons = {
   clock: Clock,
   award: Award,
 } as const;
-
-function Eyebrow({ children, light = false }: { children: ReactNode; light?: boolean }) {
-  return (
-    <span className={`brand-eyebrow ${light ? "brand-eyebrow--light" : ""}`}>
-      <span className="brand-eyebrow__line" aria-hidden="true" />
-      {children}
-    </span>
-  );
-}
 
 function TitleParts({
   before,
@@ -133,7 +119,10 @@ export function BrandPage({ data, logoSrc }: { data: BrandPageData; logoSrc?: st
             className="max-w-[54rem]"
           >
             {(logo || data.legacyName || data.country) && (
-              <motion.div variants={reduceMotion ? undefined : fadeUp} className="mb-10 flex items-center gap-5">
+              <motion.div
+                variants={reduceMotion ? undefined : fadeUp}
+                className="mb-10 flex items-center gap-5"
+              >
                 {logo && (
                   <div className="brand-page-hero__logo-wrap">
                     <img
@@ -196,7 +185,9 @@ export function BrandPage({ data, logoSrc }: { data: BrandPageData; logoSrc?: st
               <div className="brand-page-hero__badge-strip">
                 {data.hero.badges.map((badge, index) => (
                   <div key={badge.label} className="brand-page-hero__badge">
-                    {index > 0 && <span className="brand-page-hero__badge-divider" aria-hidden="true" />}
+                    {index > 0 && (
+                      <span className="brand-page-hero__badge-divider" aria-hidden="true" />
+                    )}
                     <span className="brand-page-hero__badge-value">{badge.value}</span>
                     <span className="brand-page-hero__badge-label">{badge.label}</span>
                   </div>
@@ -217,7 +208,7 @@ export function BrandPage({ data, logoSrc }: { data: BrandPageData; logoSrc?: st
             transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
             className="flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(255,255,255,0.22)] text-white/70"
           >
-            <ArrowDown className="h-4 w-4" strokeWidth={1.5} />
+            <ArrowDown className="h-4 w-4" variant="Linear" />
           </motion.div>
         </motion.div>
       </section>
@@ -240,7 +231,7 @@ export function BrandPage({ data, logoSrc }: { data: BrandPageData; logoSrc?: st
                 />
               </h2>
 
-              <p className="mt-8 border-l-2 border-[var(--green)] pl-6 font-serif text-[1.2rem] leading-[1.65] text-[var(--secondary)] opacity-[0.88]">
+              <p className="mt-8 border-l-2 border-[var(--green)] pl-6 font-serif text-[1.2rem] leading-[1.65] text-[#111111]">
                 {data.intro.paragraphs[0]}
               </p>
 
@@ -299,11 +290,13 @@ export function BrandPage({ data, logoSrc }: { data: BrandPageData; logoSrc?: st
                     />
                   </defs>
                   <text className="brand-page-intro__roundel-text">
-                    <textPath href={`#intro-roundel-path-${data.id}`}>{data.intro.roundel}</textPath>
+                    <textPath href={`#intro-roundel-path-${data.id}`}>
+                      {data.intro.roundel}
+                    </textPath>
                   </text>
                 </svg>
                 <span className="brand-page-intro__roundel-center">
-                  <Sparkles className="h-4 w-4" strokeWidth={1.5} />
+                  <Sparkles className="h-4 w-4" variant="Linear" />
                 </span>
               </div>
 
@@ -354,14 +347,19 @@ export function BrandPage({ data, logoSrc }: { data: BrandPageData; logoSrc?: st
                   className="brand-pillar-card group"
                 >
                   <div className="brand-pillar-card__media">
-                    <img src={photo} alt={pillar.title} loading="lazy" className="brand-pillar-card__photo" />
+                    <img
+                      src={photo}
+                      alt={pillar.title}
+                      loading="lazy"
+                      className="brand-pillar-card__photo"
+                    />
                     <span className="brand-pillar-card__num" aria-hidden="true">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                   </div>
                   <div className="brand-pillar-card__body">
                     <div className="brand-pillar-card__icon">
-                      <Icon className="h-5 w-5" strokeWidth={1.5} />
+                      <Icon className="h-5 w-5" variant="Linear" />
                     </div>
                     <h3 className="mt-5 font-serif text-[1.5rem] leading-[1.2] tracking-[-0.01em] text-[var(--secondary)]">
                       {pillar.title}
@@ -406,7 +404,12 @@ export function BrandPage({ data, logoSrc }: { data: BrandPageData; logoSrc?: st
               {data.series.items.map((item, index) => {
                 const card = (
                   <>
-                    <img src={item.image} alt={item.name} loading="lazy" className="brand-series__image" />
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      loading="lazy"
+                      className="brand-series__image"
+                    />
                     <div className="brand-series__overlay" />
                     <div className="brand-series__meta">
                       {item.tag && <span className="brand-series__tag">{item.tag}</span>}
@@ -414,7 +417,7 @@ export function BrandPage({ data, logoSrc }: { data: BrandPageData; logoSrc?: st
                       {item.href && (
                         <span className="brand-series__cta">
                           Bekijk serie
-                          <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={1.8} />
+                          <ArrowUpRight className="h-3.5 w-3.5" variant="Linear" />
                         </span>
                       )}
                     </div>
@@ -429,7 +432,11 @@ export function BrandPage({ data, logoSrc }: { data: BrandPageData; logoSrc?: st
                     initial={reduceMotion ? false : { opacity: 0, y: 24 }}
                     whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
                     viewport={motionViewport}
-                    transition={{ duration: 0.65, delay: Math.min(index, 8) * 0.05, ease: luxuryEase }}
+                    transition={{
+                      duration: 0.65,
+                      delay: Math.min(index, 8) * 0.05,
+                      ease: luxuryEase,
+                    }}
                     className={className}
                   >
                     {item.href ? (
@@ -466,14 +473,14 @@ export function BrandPage({ data, logoSrc }: { data: BrandPageData; logoSrc?: st
                     rel="noopener noreferrer"
                     className="brand-catalogs__item"
                   >
-                    <FileText className="h-4 w-4 text-[var(--green)]" strokeWidth={1.6} />
+                    <FileText className="h-4 w-4 text-[var(--green)]" variant="Linear" />
                     <span>
                       <span className="brand-catalogs__title">{catalog.title}</span>
                       {catalog.subtitle && (
                         <span className="brand-catalogs__subtitle">{catalog.subtitle}</span>
                       )}
                     </span>
-                    <ArrowUpRight className="ml-auto h-4 w-4 opacity-50" strokeWidth={1.7} />
+                    <ArrowUpRight className="ml-auto h-4 w-4 opacity-50" variant="Linear" />
                   </a>
                 ))}
               </div>
@@ -499,7 +506,9 @@ export function BrandPage({ data, logoSrc }: { data: BrandPageData; logoSrc?: st
               <Eyebrow light>{data.partnership.eyebrow}</Eyebrow>
               <h2 className="mt-6 font-serif text-[clamp(2rem,3.5vw,2.9rem)] leading-[1.1] tracking-[-0.015em] text-white">
                 {data.partnership.titleBefore}
-                <em className="italic text-[var(--green-highlight)]">{data.partnership.titleHighlight}</em>
+                <em className="italic text-[var(--green-highlight)]">
+                  {data.partnership.titleHighlight}
+                </em>
                 {data.partnership.titleAfter ?? ""}
               </h2>
               <p className="mt-7 text-[1rem] font-light leading-[1.8] tracking-[0.01em] text-[rgba(255,255,255,0.72)]">
@@ -509,7 +518,7 @@ export function BrandPage({ data, logoSrc }: { data: BrandPageData; logoSrc?: st
                 {data.partnership.highlights.map((item) => (
                   <li key={item} className="brand-partnership__highlight">
                     <span className="brand-partnership__check">
-                      <Check className="h-3 w-3" strokeWidth={2.4} />
+                      <Check className="h-3 w-3" variant="Bold" />
                     </span>
                     {item}
                   </li>
@@ -531,7 +540,7 @@ export function BrandPage({ data, logoSrc }: { data: BrandPageData; logoSrc?: st
                     <div key={stat.label} className="brand-stat-cell">
                       <Icon
                         className="h-[1.15rem] w-[1.15rem] text-[var(--green-highlight)]"
-                        strokeWidth={1.5}
+                        variant="Linear"
                       />
                       <span className="brand-stat-cell__value">{stat.value}</span>
                       <span className="brand-stat-cell__label">{stat.label}</span>
@@ -540,7 +549,7 @@ export function BrandPage({ data, logoSrc }: { data: BrandPageData; logoSrc?: st
                 })}
               </div>
               <p className="mt-5 flex items-center gap-2.5 text-[0.78rem] font-light tracking-[0.02em] text-[rgba(255,255,255,0.48)]">
-                <span className="h-px w-8 bg-[rgba(168,217,90,0.4)]" aria-hidden="true" />
+                <span className="kitchen-eyebrow-mark" aria-hidden="true" />
                 {data.partnership.note}
               </p>
             </motion.div>
@@ -591,7 +600,12 @@ export function BrandPage({ data, logoSrc }: { data: BrandPageData; logoSrc?: st
                 transition={{ duration: 0.8, delay: index * 0.1, ease: luxuryEase }}
                 className={`brand-gallery__item brand-gallery__item--${item.span} group`}
               >
-                <img src={item.src} alt={item.title} loading="lazy" className="brand-gallery__image" />
+                <img
+                  src={item.src}
+                  alt={item.title}
+                  loading="lazy"
+                  className="brand-gallery__image"
+                />
                 <span className="brand-gallery__index" aria-hidden="true">
                   {String(index + 1).padStart(2, "0")}
                 </span>
@@ -600,7 +614,7 @@ export function BrandPage({ data, logoSrc }: { data: BrandPageData; logoSrc?: st
                   <span className="brand-gallery__title">{item.title}</span>
                 </figcaption>
                 <span className="brand-gallery__arrow" aria-hidden="true">
-                  <ArrowUpRight className="h-4 w-4" strokeWidth={1.7} />
+                  <ArrowUpRight className="h-4 w-4" variant="Linear" />
                 </span>
               </motion.figure>
             ))}
@@ -620,7 +634,9 @@ export function BrandPage({ data, logoSrc }: { data: BrandPageData; logoSrc?: st
                 <Eyebrow light>Showroom Utrecht</Eyebrow>
                 <h3 className="mt-4 font-serif text-[1.6rem] leading-[1.15] tracking-[-0.01em] text-white">
                   {data.gallery.cta.titleBefore}{" "}
-                  <em className="italic text-[var(--green-highlight)]">{data.gallery.cta.titleHighlight}</em>
+                  <em className="italic text-[var(--green-highlight)]">
+                    {data.gallery.cta.titleHighlight}
+                  </em>
                 </h3>
                 <p className="mt-3 max-w-[16rem] text-[0.88rem] font-light leading-[1.65] text-[rgba(255,255,255,0.62)]">
                   {data.gallery.cta.body}
@@ -631,7 +647,7 @@ export function BrandPage({ data, logoSrc }: { data: BrandPageData; logoSrc?: st
                   {data.gallery.cta.label}
                 </span>
                 <span className="brand-gallery__cta-arrow">
-                  <ArrowUpRight className="h-[1.1rem] w-[1.1rem]" strokeWidth={1.7} />
+                  <ArrowUpRight className="h-[1.1rem] w-[1.1rem]" variant="Linear" />
                 </span>
               </div>
             </motion.a>
@@ -696,7 +712,7 @@ export function BrandPage({ data, logoSrc }: { data: BrandPageData; logoSrc?: st
                 </span>
                 <div className="relative z-[1] flex items-center gap-4">
                   <span className="brand-faq__contact-icon">
-                    <Phone className="h-[1.05rem] w-[1.05rem]" strokeWidth={1.6} />
+                    <Phone className="h-[1.05rem] w-[1.05rem]" variant="Linear" />
                   </span>
                   <div className="flex flex-col">
                     <span className="text-[0.62rem] font-medium uppercase tracking-[0.2em] text-[rgba(255,255,255,0.5)]">
@@ -718,7 +734,7 @@ export function BrandPage({ data, logoSrc }: { data: BrandPageData; logoSrc?: st
                   {kc.contact.email}
                   <ArrowUpRight
                     className="h-3.5 w-3.5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                    strokeWidth={1.8}
+                    variant="Linear"
                   />
                 </a>
                 <p className="relative z-[1] mt-4 text-[0.76rem] font-light tracking-[0.03em] text-[rgba(255,255,255,0.45)]">
@@ -771,7 +787,9 @@ export function BrandPage({ data, logoSrc }: { data: BrandPageData; logoSrc?: st
             </p>
           </motion.div>
 
-          <div className={`grid gap-5 ${data.advisors.length > 2 ? "md:grid-cols-3" : "md:grid-cols-2"}`}>
+          <div
+            className={`grid gap-5 ${data.advisors.length > 2 ? "md:grid-cols-3" : "md:grid-cols-2"}`}
+          >
             {data.advisors.map((advisor, index) => (
               <motion.article
                 key={advisor.email}
@@ -797,7 +815,7 @@ export function BrandPage({ data, logoSrc }: { data: BrandPageData; logoSrc?: st
                   {advisor.email}
                   <ArrowUpRight
                     className="h-3.5 w-3.5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                    strokeWidth={1.8}
+                    variant="Linear"
                   />
                 </a>
               </motion.article>
@@ -819,7 +837,9 @@ export function BrandPage({ data, logoSrc }: { data: BrandPageData; logoSrc?: st
               <Eyebrow light>{data.showroomCta.eyebrow}</Eyebrow>
               <h2 className="mt-5 font-serif text-[clamp(2.1rem,4vw,3.1rem)] leading-[1.08] tracking-[-0.02em] text-white">
                 {data.showroomCta.titleBefore}{" "}
-                <em className="italic text-[var(--green-highlight)]">{data.showroomCta.titleHighlight}</em>
+                <em className="italic text-[var(--green-highlight)]">
+                  {data.showroomCta.titleHighlight}
+                </em>
                 {data.showroomCta.titleAfter ? ` ${data.showroomCta.titleAfter}` : ""}
               </h2>
               <p className="mt-5 text-[1.02rem] font-light leading-[1.75] text-[rgba(255,255,255,0.78)]">

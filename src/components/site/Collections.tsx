@@ -236,7 +236,7 @@ export function Collections() {
             className="max-w-[38rem]"
           >
             <div className="section-label-row">
-              <span className="luxe-rule" />
+              <span className="kitchen-eyebrow-mark" aria-hidden="true" />
               <span className="eyebrow text-[#C8A96B]">Onze Collecties</span>
             </div>
             <h2 className="heading-2 mt-4">

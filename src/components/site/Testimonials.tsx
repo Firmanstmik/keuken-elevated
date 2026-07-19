@@ -2,8 +2,11 @@
 
 import { useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { Quote, Star } from "lucide-react";
-import { Location, TickCircle } from "iconsax-react";
+import {
+  QuoteDown as Quote,
+  Star1 as Star,
+} from "@zethictech/iconsax-react";
+import { Location, TickCircle } from "@zethictech/iconsax-react";
 import { motionViewport } from "@/lib/motion";
 import { SectionChapter } from "@/components/site/SectionChapter";
 import collectionMinimal from "@/assets/collection-minimal.jpg";
@@ -120,6 +123,7 @@ function Stars({ size = 14 }: { size?: number }) {
           key={i}
           style={{ width: size, height: size }}
           className="fill-[#C8A96B] text-[#C8A96B]"
+          variant="Bold"
         />
       ))}
     </div>
@@ -177,7 +181,7 @@ function TestimonialCard({ story }: { story: CardData }) {
 
       {/* Quote */}
       <p className="mt-4 min-h-[108px] font-serif text-[17px] font-light leading-relaxed text-white/82">
-        <Quote className="-mt-1 mr-1 inline h-3.5 w-3.5 text-[#C8A96B]/60" />
+        <Quote className="-mt-1 mr-1 inline h-3.5 w-3.5 text-[#C8A96B]/60" variant="Linear" />
         {story.quote}
       </p>
 
@@ -549,7 +553,7 @@ export function Testimonials() {
               variants={reduceMotion ? undefined : fadeUp}
               className="mb-2 flex items-center justify-center gap-4"
             >
-              <span aria-hidden="true" className="h-px w-10 bg-gradient-to-r from-transparent to-[#C8A96B]/60" />
+              <span className="kitchen-eyebrow-mark" aria-hidden="true" />
               <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-1.5 backdrop-blur">
                 <svg className="h-3.5 w-3.5 shrink-0" viewBox="0 0 24 24" aria-hidden="true">
                   <path
@@ -564,7 +568,6 @@ export function Testimonials() {
                   Google Beoordelingen
                 </span>
               </div>
-              <span aria-hidden="true" className="h-px w-10 bg-gradient-to-l from-transparent to-[#C8A96B]/60" />
             </motion.div>
 
             {/* Heading */}

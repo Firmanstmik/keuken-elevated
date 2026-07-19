@@ -1,9 +1,8 @@
 "use client";
 
-import { type ReactNode } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { ArrowUpRight, Phone } from "lucide-react";
+import { Export as ArrowUpRight, Call as Phone } from "@zethictech/iconsax-react";
 import { PremiumPillButton } from "@/components/ui/premium-pill-button";
 import {
   Accordion,
@@ -18,17 +17,9 @@ import {
   type ApparatuurCategoryData,
 } from "@/lib/apparatuur-pages/apparatuur";
 import { BrandMarquee } from "@/components/site/apparatuur-pages/BrandMarquee";
+import { KitchenEyebrow as Eyebrow } from "@/components/site/KitchenEyebrow";
 
 const luxuryEase = motionEase.premium;
-
-function Eyebrow({ children, light = false }: { children: ReactNode; light?: boolean }) {
-  return (
-    <span className={`brand-eyebrow ${light ? "brand-eyebrow--light" : ""}`}>
-      <span className="brand-eyebrow__line" aria-hidden="true" />
-      {children}
-    </span>
-  );
-}
 
 export function ApparatuurCategoryPage({ data }: { data: ApparatuurCategoryData }) {
   const reduceMotion = useReducedMotion();
@@ -241,7 +232,7 @@ export function ApparatuurCategoryPage({ data }: { data: ApparatuurCategoryData 
                 </span>
                 <div className="relative z-[1] flex items-center gap-4">
                   <span className="brand-faq__contact-icon">
-                    <Phone className="h-[1.05rem] w-[1.05rem]" strokeWidth={1.6} />
+                    <Phone className="h-[1.05rem] w-[1.05rem]" variant="Linear" />
                   </span>
                   <div>
                     <span className="text-[0.62rem] font-medium uppercase tracking-[0.2em] text-[rgba(255,255,255,0.5)]">
@@ -297,7 +288,7 @@ export function ApparatuurCategoryPage({ data }: { data: ApparatuurCategoryData 
                     </p>
                   </div>
                   <span className="app-related-card__arrow" aria-hidden="true">
-                    <ArrowUpRight className="h-4 w-4" strokeWidth={1.8} />
+                    <ArrowUpRight className="h-4 w-4" variant="Linear" />
                   </span>
                 </div>
               </motion.a>

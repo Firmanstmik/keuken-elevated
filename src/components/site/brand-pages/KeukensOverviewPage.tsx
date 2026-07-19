@@ -1,9 +1,8 @@
 "use client";
 
-import { type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRight, Phone } from "lucide-react";
+import { Export as ArrowUpRight, Call as Phone } from "@zethictech/iconsax-react";
 import { PremiumPillButton } from "@/components/ui/premium-pill-button";
 import {
   Accordion,
@@ -14,17 +13,9 @@ import {
 import { fadeUp, motionEase, motionViewport } from "@/lib/motion";
 import { kc } from "@/lib/kc-data";
 import { keukensOverview } from "@/lib/brand-pages/keukens-overview";
+import { KitchenEyebrow as Eyebrow } from "@/components/site/KitchenEyebrow";
 
 const luxuryEase = motionEase.premium;
-
-function Eyebrow({ children, light = false }: { children: ReactNode; light?: boolean }) {
-  return (
-    <span className={`brand-eyebrow ${light ? "brand-eyebrow--light" : ""}`}>
-      <span className="brand-eyebrow__line" aria-hidden="true" />
-      {children}
-    </span>
-  );
-}
 
 export function KeukensOverviewPage() {
   const reduceMotion = useReducedMotion();
@@ -133,7 +124,7 @@ export function KeukensOverviewPage() {
                       <span className="text-[0.62rem] font-medium uppercase tracking-[0.2em] text-[var(--green)]">
                         {brand.country}
                       </span>
-                      <ArrowUpRight className="h-4 w-4 text-[var(--text-soft)] transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[var(--green)]" strokeWidth={1.7} />
+                      <ArrowUpRight className="h-4 w-4 text-[var(--text-soft)] transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[var(--green)]" variant="Linear" />
                     </div>
                     <h3 className="mt-3 font-serif text-[1.75rem] leading-none text-[var(--secondary)]">{brand.name}</h3>
                     <p className="mt-2 text-[0.78rem] font-medium uppercase tracking-[0.12em] text-[var(--text-soft)]">
@@ -231,7 +222,7 @@ export function KeukensOverviewPage() {
                 <span className="brand-faq__contact-ghost" aria-hidden="true">?</span>
                 <div className="relative z-[1] flex items-center gap-4">
                   <span className="brand-faq__contact-icon">
-                    <Phone className="h-[1.05rem] w-[1.05rem]" strokeWidth={1.6} />
+                    <Phone className="h-[1.05rem] w-[1.05rem]" variant="Linear" />
                   </span>
                   <div>
                     <span className="text-[0.62rem] font-medium uppercase tracking-[0.2em] text-[rgba(255,255,255,0.5)]">
@@ -278,7 +269,7 @@ export function KeukensOverviewPage() {
                 <p className="mt-5 text-[0.95rem] font-light leading-[1.75] text-[var(--text-soft)]">“{advisor.bio}”</p>
                 <a href={`mailto:${advisor.email}`} className="brand-advisor-card__email">
                   {advisor.email}
-                  <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={1.8} />
+                  <ArrowUpRight className="h-3.5 w-3.5" variant="Linear" />
                 </a>
               </article>
             ))}

@@ -1,79 +1,80 @@
-import type { SVGAttributes } from "react";
-import type { SvgIconComponent } from "@mui/icons-material";
-import CheckIcon from "@mui/icons-material/Check";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import CloseIcon from "@mui/icons-material/Close";
-import ViewSidebarOutlinedIcon from "@mui/icons-material/ViewSidebarOutlined";
-import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
-import DragIndicatorIcon from "@mui/icons-material/DragIndicator";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import RemoveIcon from "@mui/icons-material/Remove";
-import SearchIcon from "@mui/icons-material/Search";
-import SouthIcon from "@mui/icons-material/South";
-import WestIcon from "@mui/icons-material/West";
-import EastIcon from "@mui/icons-material/East";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
-import CallOutlinedIcon from "@mui/icons-material/CallOutlined";
-import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
-import DiamondOutlinedIcon from "@mui/icons-material/DiamondOutlined";
-import SupportAgentIcon from "@mui/icons-material/SupportAgent";
-import VerifiedUserOutlinedIcon from "@mui/icons-material/VerifiedUserOutlined";
-import LocalOfferOutlinedIcon from "@mui/icons-material/LocalOfferOutlined";
-import LocalShippingOutlinedIcon from "@mui/icons-material/LocalShippingOutlined";
-import MenuIcon from "@mui/icons-material/Menu";
-import MouseOutlinedIcon from "@mui/icons-material/MouseOutlined";
+import type { ComponentType, SVGAttributes } from "react";
+import {
+  TickCircle,
+  ArrowDown2,
+  ArrowUp2,
+  ArrowLeft2,
+  ArrowRight2,
+  CloseCircle,
+  SidebarLeft,
+  RecordCircle,
+  RowVertical,
+  More,
+  Minus as IconsaxMinus,
+  SearchNormal1,
+  Home2,
+  Sms,
+  Call,
+  Award as IconsaxAward,
+  Diamonds as IconsaxDiamonds,
+  Headphone as IconsaxHeadphone,
+  ShieldTick,
+  Tag as IconsaxTag,
+  TruckFast,
+  HamburgerMenu,
+  MouseCircle as IconsaxMouseCircle,
+} from "@zethictech/iconsax-react";
 
 type IconProps = SVGAttributes<SVGSVGElement> & {
   size?: string | number;
   variant?: "Linear" | "Outline" | "Broken" | "Bold" | "Bulk" | "TwoTone";
 };
 
-function makeIcon(Icon: SvgIconComponent) {
+function makeIcon(Icon: ComponentType<IconProps>) {
   return function WrappedIcon(props: IconProps) {
-    const { size = 24, style, color, fontSize, ...rest } = props;
+    const {
+      size = 24,
+      style,
+      color = "currentColor",
+      fontSize: _fontSize,
+      strokeWidth: _strokeWidth,
+      variant = "Linear",
+      ...rest
+    } = props;
 
-    return (
-      <Icon
-        {...(rest as any)}
-        style={{ fontSize: typeof size === "number" ? `${size}px` : size, color, ...style }}
-      />
-    );
+    return <Icon {...rest} size={size} color={color} variant={variant} style={style} />;
   };
 }
 
-export const Check = makeIcon(CheckIcon);
-export const ChevronDown = makeIcon(KeyboardArrowDownIcon);
+export const Check = makeIcon(TickCircle);
+export const ChevronDown = makeIcon(ArrowDown2);
 export const ChevronDownIcon = ChevronDown;
-export const ChevronUp = makeIcon(KeyboardArrowUpIcon);
-export const ChevronLeft = makeIcon(KeyboardArrowLeftIcon);
+export const ChevronUp = makeIcon(ArrowUp2);
+export const ChevronLeft = makeIcon(ArrowLeft2);
 export const ChevronLeftIcon = ChevronLeft;
-export const ChevronRight = makeIcon(KeyboardArrowRightIcon);
+export const ChevronRight = makeIcon(ArrowRight2);
 export const ChevronRightIcon = ChevronRight;
-export const X = makeIcon(CloseIcon);
-export const PanelLeft = makeIcon(ViewSidebarOutlinedIcon);
-export const Circle = makeIcon(FiberManualRecordIcon);
-export const GripVertical = makeIcon(DragIndicatorIcon);
-export const MoreHorizontal = makeIcon(MoreHorizIcon);
-export const MinusIcon = makeIcon(RemoveIcon);
+export const X = makeIcon(CloseCircle);
+export const PanelLeft = makeIcon(SidebarLeft);
+export const Circle = makeIcon(RecordCircle);
+export const GripVertical = makeIcon(RowVertical);
+export const MoreHorizontal = makeIcon(More);
+export const MinusIcon = makeIcon(IconsaxMinus);
 export const Minus = MinusIcon;
-export const Search = makeIcon(SearchIcon);
-export const ArrowDown = makeIcon(SouthIcon);
-export const ArrowLeft = makeIcon(WestIcon);
-export const ArrowRight = makeIcon(EastIcon);
-export const HouseIcon = makeIcon(HomeOutlinedIcon);
+export const Search = makeIcon(SearchNormal1);
+export const ArrowDown = makeIcon(ArrowDown2);
+export const ArrowLeft = makeIcon(ArrowLeft2);
+export const ArrowRight = makeIcon(ArrowRight2);
+export const HouseIcon = makeIcon(Home2);
 export const House2 = HouseIcon;
 export const House = HouseIcon;
-export const Mail = makeIcon(EmailOutlinedIcon);
-export const Phone = makeIcon(CallOutlinedIcon);
-export const Award = makeIcon(WorkspacePremiumIcon);
-export const Diamonds = makeIcon(DiamondOutlinedIcon);
-export const Headphone = makeIcon(SupportAgentIcon);
-export const ShieldCheck = makeIcon(VerifiedUserOutlinedIcon);
-export const Tag = makeIcon(LocalOfferOutlinedIcon);
-export const Truck = makeIcon(LocalShippingOutlinedIcon);
-export const Menu = makeIcon(MenuIcon);
-export const MouseCircle = makeIcon(MouseOutlinedIcon);
+export const Mail = makeIcon(Sms);
+export const Phone = makeIcon(Call);
+export const Award = makeIcon(IconsaxAward);
+export const Diamonds = makeIcon(IconsaxDiamonds);
+export const Headphone = makeIcon(IconsaxHeadphone);
+export const ShieldCheck = makeIcon(ShieldTick);
+export const Tag = makeIcon(IconsaxTag);
+export const Truck = makeIcon(TruckFast);
+export const Menu = makeIcon(HamburgerMenu);
+export const MouseCircle = makeIcon(IconsaxMouseCircle);

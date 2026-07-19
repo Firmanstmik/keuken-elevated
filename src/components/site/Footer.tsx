@@ -1,7 +1,16 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import {
+  ArrowRight2 as IconsaxArrowRight,
+  Call,
+  Home2,
+  Location,
+  Map1,
+  Sms,
+} from "@zethictech/iconsax-react";
 import { PremiumPillButton } from "@/components/ui/premium-pill-button";
+import { KitchenEyebrow } from "@/components/site/KitchenEyebrow";
 import { ArrowRight } from "@/components/ui/icons";
 import { kc } from "@/lib/kc-data";
 import { motionViewport } from "@/lib/motion";
@@ -50,28 +59,15 @@ function InstagramIcon() {
 }
 
 function EmailIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="h-[1.1rem] w-[1.1rem]">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-    </svg>
-  );
+  return <Sms size={18} variant="Linear" />;
 }
 
 function PhoneIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="h-4 w-4">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
-    </svg>
-  );
+  return <Call size={16} variant="Linear" />;
 }
 
 function MapPinIcon({ className = "h-4 w-4" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className={`${className} flex-shrink-0`}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-    </svg>
-  );
+  return <Location className={`${className} flex-shrink-0`} variant="Linear" />;
 }
 
 // ─── Trust bar ───────────────────────────────────────────────────────────────
@@ -128,41 +124,49 @@ function TrustBar({ reduceMotion }: { reduceMotion: boolean | null }) {
 
 // ─── Social icons ─────────────────────────────────────────────────────────────
 
-type SocialLink = { href: string; label: string; icon: React.ReactNode; handle: string };
+type SocialLink = {
+  href: string;
+  label: string;
+  icon: React.ReactNode;
+  handle: string;
+  tone: "facebook" | "instagram" | "email";
+  color: string;
+};
+
+const socialIconTone = {
+  facebook:
+    "border-[#1877F2]/35 bg-[#1877F2]/10 text-[#1877F2] group-hover:border-[#1877F2] group-hover:bg-[#1877F2] group-hover:text-white group-hover:shadow-[0_14px_32px_-10px_rgba(24,119,242,0.82)]",
+  instagram:
+    "border-[#E1306C]/40 bg-[linear-gradient(135deg,#833AB4,#E1306C_52%,#F77737)] text-white shadow-[0_8px_24px_-14px_rgba(225,48,108,0.7)] group-hover:border-[#FCAF45]/70 group-hover:shadow-[0_16px_34px_-10px_rgba(225,48,108,0.78)]",
+  email:
+    "border-[#EA4335]/35 bg-[#EA4335]/10 text-[#EA4335] group-hover:border-[#EA4335] group-hover:bg-[#EA4335] group-hover:text-white group-hover:shadow-[0_14px_32px_-10px_rgba(234,67,53,0.72)]",
+} as const;
 
 function SocialRow({ links }: { links: SocialLink[] }) {
   return (
     <div className="flex flex-col gap-3">
-      {links.map(({ href, label, icon, handle }) => (
+      {links.map(({ href, label, icon, handle, tone, color }) => (
         <a
           key={label}
           href={href}
           target={href.startsWith("mailto") ? undefined : "_blank"}
           rel="noopener noreferrer"
           aria-label={label}
-          className="group flex w-fit items-center gap-3"
+          className="group flex w-fit items-center gap-3.5"
+          style={{ "--social-color": color } as React.CSSProperties}
         >
-          {/* Icon box */}
           <span
-            className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] border border-[rgba(139,197,64,0.20)] bg-[rgba(139,197,64,0.06)] text-[rgba(139,197,64,0.75)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-[3px] group-hover:scale-[1.06] group-hover:border-[rgba(139,197,64,0.52)] group-hover:bg-[rgba(139,197,64,0.14)] group-hover:text-[#A8D95A]"
-            style={{ boxShadow: "0 0 0 0 rgba(139,197,64,0)" }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.boxShadow =
-                "0 8px 20px -8px rgba(139,197,64,0.35)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.boxShadow =
-                "0 0 0 0 rgba(139,197,64,0)";
-            }}
+            className={`relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-[12px] border transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1 group-hover:scale-[1.1] ${socialIconTone[tone]}`}
           >
-            {icon}
+            <span className="pointer-events-none absolute inset-y-0 -left-1/2 w-1/3 -skew-x-12 bg-white/45 opacity-0 blur-[1px] transition-all duration-700 group-hover:left-[125%] group-hover:opacity-100" />
+            <span className="relative z-10 transition-transform duration-500 group-hover:scale-[1.08]">{icon}</span>
           </span>
-          {/* Label */}
           <span
-            className="text-[0.8rem] font-light text-[rgba(255,255,255,0.80)] transition-colors duration-400 group-hover:text-[#A8D95A]"
+            className="relative text-[0.8rem] font-light text-[rgba(255,255,255,0.80)] transition-colors duration-400 group-hover:text-[var(--social-color)]"
             style={{ fontFamily: "var(--font-body)" }}
           >
             {handle}
+            <span className="absolute -bottom-1 left-0 h-px w-0 bg-[var(--social-color)] opacity-70 transition-all duration-500 group-hover:w-full" />
           </span>
         </a>
       ))}
@@ -247,18 +251,14 @@ function ShowroomCard() {
           className="flex flex-1 items-center justify-center gap-2 py-3 text-[0.66rem] font-medium uppercase tracking-[0.18em] text-[rgba(245,242,236,0.60)] transition-colors duration-400 group-hover:text-[#A8D95A]"
           style={{ fontFamily: "var(--font-body)" }}
         >
-          <svg className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-          </svg>
+          <Home2 size={12} variant="Linear" />
           Bekijk showroom
         </span>
         <span
           className="flex flex-1 items-center justify-center gap-2 py-3 text-[0.66rem] font-medium uppercase tracking-[0.18em] text-[rgba(245,242,236,0.60)] transition-colors duration-400 group-hover:text-[#A8D95A]"
           style={{ fontFamily: "var(--font-body)" }}
         >
-          <svg className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z" />
-          </svg>
+          <Map1 size={12} variant="Linear" />
           Route plannen
         </span>
       </div>
@@ -276,7 +276,14 @@ function FooterLink({ href, children }: { href: string; children: React.ReactNod
         className="group inline-flex items-center gap-2.5 text-[0.88rem] font-light text-white transition-all duration-500 hover:text-[#A8D95A]"
         style={{ fontFamily: "var(--font-body)" }}
       >
-        <span className="h-px w-2.5 bg-[rgba(139,197,64,0.5)] transition-all duration-500 group-hover:w-5 group-hover:bg-[#8BC540]" />
+        <span className="relative grid h-6 w-6 shrink-0 place-items-center overflow-hidden rounded-full border border-[#8BC540]/25 bg-[#8BC540]/[0.07] text-[#A8D95A] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:rotate-[-8deg] group-hover:scale-110 group-hover:border-[#A8D95A]/70 group-hover:bg-[#A8D95A] group-hover:text-[#12200B] group-hover:shadow-[0_8px_20px_-7px_rgba(139,197,64,0.9)]">
+          <span className="absolute inset-0 -translate-x-full bg-[linear-gradient(110deg,transparent,rgba(255,255,255,0.65),transparent)] transition-transform duration-700 group-hover:translate-x-full" />
+          <IconsaxArrowRight
+            size={12}
+            variant="Linear"
+            className="relative z-10 transition-transform duration-500 group-hover:translate-x-0.5"
+          />
+        </span>
         <span className="relative transition-transform duration-500 group-hover:translate-x-0.5">
           {children}
           <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-[#A8D95A] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:w-full" />
@@ -291,13 +298,9 @@ function FooterLink({ href, children }: { href: string; children: React.ReactNod
 function ColTitle({ children }: { children: React.ReactNode }) {
   return (
     <div className="mb-7">
-      <h4
-        className="text-[0.64rem] font-semibold uppercase tracking-[0.34em] text-[#A8D95A]"
-        style={{ fontFamily: "var(--font-body)" }}
-      >
-        {children}
+      <h4>
+        <KitchenEyebrow light>{children}</KitchenEyebrow>
       </h4>
-      <div className="mt-2 h-px w-8 bg-gradient-to-r from-[rgba(139,197,64,0.55)] to-transparent" />
     </div>
   );
 }
@@ -314,18 +317,24 @@ export function Footer() {
       label: "Facebook",
       icon: <FacebookIcon />,
       handle: "Facebook",
+      tone: "facebook",
+      color: "#1877F2",
     },
     {
       href: "https://www.instagram.com/keukencentrum_utrecht/",
       label: "Instagram",
       icon: <InstagramIcon />,
       handle: "@keukencentrum_utrecht",
+      tone: "instagram",
+      color: "#E1306C",
     },
     {
       href: `mailto:${kc.contact.email}`,
       label: "E-mail",
       icon: <EmailIcon />,
       handle: kc.contact.email,
+      tone: "email",
+      color: "#EA4335",
     },
   ];
 
@@ -362,18 +371,8 @@ export function Footer() {
           className="flex flex-col items-center pb-20 pt-24 text-center md:pb-24 md:pt-28"
         >
           {/* Eyebrow */}
-          <motion.div
-            variants={reduceMotion ? undefined : fadeUp}
-            className="mb-7 flex items-center gap-4"
-          >
-            <span className="h-px w-10 bg-gradient-to-r from-transparent to-[rgba(139,197,64,0.55)]" />
-            <span
-              className="text-[0.6rem] font-medium uppercase tracking-[0.34em] text-[#A8D95A]"
-              style={{ fontFamily: "var(--font-body)" }}
-            >
-              Persoonlijk ontwerptraject
-            </span>
-            <span className="h-px w-10 bg-gradient-to-l from-transparent to-[rgba(139,197,64,0.55)]" />
+          <motion.div variants={reduceMotion ? undefined : fadeUp} className="mb-7">
+            <KitchenEyebrow light align="center">Persoonlijk ontwerptraject</KitchenEyebrow>
           </motion.div>
 
           {/* Heading */}

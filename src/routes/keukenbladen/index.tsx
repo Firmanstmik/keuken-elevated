@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
-import { StickyConversionBar } from "@/components/site/StickyConversionBar";
 import { KeukenbladenOverviewPage } from "@/components/site/worktop-pages/KeukenbladenOverviewPage";
 import { worktopOverview } from "@/lib/worktop-pages/worktops";
 
@@ -26,7 +25,6 @@ function KeukenbladenRoute() {
       <Nav />
       <KeukenbladenOverviewPage />
       <Footer />
-      <StickyConversionBar />
     </main>
   );
 }

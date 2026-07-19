@@ -1,3 +1,5 @@
+import aiKuchenLogo from "@/assets/aiKuchen_Logo.webp";
+
 const wp = "https://keuken-centrum.nl/wp-content/uploads";
 
 export const aiKuchenPage = {
@@ -10,7 +12,7 @@ export const aiKuchenPage = {
     description:
       "Ontdek AI Küchen (Häcker) bij Keuken-Centrum Utrecht. Ambitieuze systeemkeukens met Duitse precisie, maatwerk en de scherpste prijs via directe fabrieksrelatie.",
   },
-  logo: `${wp}/Ai-kuchen-keukens-logo-blauw.webp`,
+  logo: aiKuchenLogo,
   hero: {
     image: `${wp}/AI-KUCHEN-Hacker-keukens-utrecht0-scaled.webp`,
     eyebrow: "Duitse systeemkeukens",

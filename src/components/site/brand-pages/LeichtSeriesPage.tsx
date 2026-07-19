@@ -1,24 +1,18 @@
 "use client";
 
-import { type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import {
+  ArrowLeft2 as ArrowLeft,
+  Export as ArrowUpRight,
+} from "@zethictech/iconsax-react";
 import { PremiumPillButton } from "@/components/ui/premium-pill-button";
 import { fadeUp, motionEase, motionViewport } from "@/lib/motion";
 import type { LeichtSeriesContent } from "@/lib/brand-pages/leicht-series";
 import { leichtSeriesPages } from "@/lib/brand-pages/leicht-series";
+import { KitchenEyebrow as Eyebrow } from "@/components/site/KitchenEyebrow";
 
 const luxuryEase = motionEase.premium;
-
-function Eyebrow({ children, light = false }: { children: ReactNode; light?: boolean }) {
-  return (
-    <span className={`brand-eyebrow ${light ? "brand-eyebrow--light" : ""}`}>
-      <span className="brand-eyebrow__line" aria-hidden="true" />
-      {children}
-    </span>
-  );
-}
 
 export function LeichtSeriesPage({ series }: { series: LeichtSeriesContent }) {
   const reduceMotion = useReducedMotion();

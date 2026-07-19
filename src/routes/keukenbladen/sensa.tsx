@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
-import { StickyConversionBar } from "@/components/site/StickyConversionBar";
 import { BrandPage } from "@/components/site/brand-pages/BrandPage";
 import { sensaPage } from "@/lib/worktop-pages/worktops";
 
@@ -25,7 +24,6 @@ function SensaRoute() {
       <Nav />
       <BrandPage data={sensaPage} />
       <Footer />
-      <StickyConversionBar />
     </main>
   );
 }

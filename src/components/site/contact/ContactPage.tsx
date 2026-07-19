@@ -1,25 +1,23 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRight, Clock, Mail, MapPin, Phone } from "lucide-react";
+import {
+  Export as ArrowUpRight,
+  Clock,
+  Sms as Mail,
+  Location as MapPin,
+  Call as Phone,
+} from "@zethictech/iconsax-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { PremiumPillButton } from "@/components/ui/premium-pill-button";
 import { fadeUp, motionEase, motionViewport } from "@/lib/motion";
 import { kc } from "@/lib/kc-data";
 import showroomImg from "@/assets/showroom.jpg";
+import { KitchenEyebrow as Eyebrow } from "@/components/site/KitchenEyebrow";
 
 const luxuryEase = motionEase.premium;
-
-function Eyebrow({ children, light = false }: { children: ReactNode; light?: boolean }) {
-  return (
-    <span className={`brand-eyebrow ${light ? "brand-eyebrow--light" : ""}`}>
-      <span className="brand-eyebrow__line" aria-hidden="true" />
-      {children}
-    </span>
-  );
-}
 
 const contactChannels = [
   {
@@ -176,7 +174,7 @@ export function ContactPage() {
                         className="group flex items-center gap-4 rounded-[18px] border border-[rgba(139,197,64,0.14)] bg-white/80 p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-[rgba(139,197,64,0.35)] hover:shadow-[0_18px_38px_-28px_rgba(20,40,18,0.45)]"
                       >
                         <span className="grid h-11 w-11 shrink-0 place-items-center rounded-[14px] border border-[rgba(139,197,64,0.22)] bg-white text-[var(--green)] transition-colors duration-300 group-hover:bg-[var(--green)] group-hover:text-white">
-                          <Icon className="h-[1.1rem] w-[1.1rem]" strokeWidth={1.7} />
+                          <Icon className="h-[1.1rem] w-[1.1rem]" variant="Linear" />
                         </span>
                         <span className="min-w-0 flex-1">
                           <span className="block text-[0.6rem] font-medium uppercase tracking-[0.2em] text-[var(--text-soft)]">
@@ -188,7 +186,7 @@ export function ContactPage() {
                         </span>
                         <ArrowUpRight
                           className="h-4 w-4 shrink-0 text-[var(--text-soft)] transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[var(--green)]"
-                          strokeWidth={1.7}
+                          variant="Linear"
                         />
                       </motion.a>
                     );
@@ -206,7 +204,7 @@ export function ContactPage() {
                 <div className="relative z-[1]">
                   <div className="flex items-center gap-3">
                     <span className="grid h-10 w-10 place-items-center rounded-[12px] border border-[rgba(255,255,255,0.16)] bg-[rgba(255,255,255,0.08)] text-[var(--green-highlight)]">
-                      <Clock className="h-[1.05rem] w-[1.05rem]" strokeWidth={1.7} />
+                      <Clock className="h-[1.05rem] w-[1.05rem]" variant="Linear" />
                     </span>
                     <h3 className="font-serif text-[1.35rem] text-white">Openingstijden</h3>
                   </div>

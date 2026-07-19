@@ -19,8 +19,8 @@ import {
   Pause as IconsaxPause,
   Play as IconsaxPlay,
   Tag as IconsaxTag,
+  ArrowDown2 as ChevronDown,
 } from "@zethictech/iconsax-react";
-import { ChevronDown } from "lucide-react";
 import { motionDuration, motionEase } from "@/lib/motion";
 import heroImg1 from "@/assets/hero_img1.webp";
 import heroImg2 from "@/assets/hero_img2.webp";
@@ -228,7 +228,7 @@ function HeroScrollCue({ reduceMotion }: { reduceMotion: boolean | null }) {
                   : { duration: 1.9, repeat: Infinity, ease: "easeInOut" }
               }
             >
-              <ChevronDown className="h-3 w-3" strokeWidth={1.5} />
+              <ChevronDown className="h-3 w-3" variant="Linear" />
             </motion.span>
           ))}
         </span>
@@ -539,13 +539,6 @@ export function Hero() {
                 >
                   <ClocheIcon className="h-[1.05rem] w-auto" />
                 </motion.span>
-                <motion.span
-                  initial={reduceMotion ? false : { scaleX: 0, opacity: 0.6 }}
-                  animate={{ scaleX: 1, opacity: 1 }}
-                  transition={{ duration: 0.9, ease: motionEase.precise, delay: 0.24 }}
-                  className="hero-eyebrow-ornament__line origin-left"
-                  style={{ background: `linear-gradient(90deg, ${activeSlide.accent}, rgba(201,164,106,0.08))` }}
-                />
               </span>
               <span className="eyebrow text-[rgba(247,245,242,0.64)]">SINDS 1978 • PREMIUM SHOWROOM UTRECHT</span>
             </motion.div>

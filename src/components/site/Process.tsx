@@ -8,7 +8,7 @@ import {
   useTransform,
   type Variants,
 } from "framer-motion";
-import { Shop, Brush2, Layer, Gallery, People } from "iconsax-react";
+import { Shop, Brush2, Layer, Gallery, People } from "@zethictech/iconsax-react";
 import { PremiumPillButton } from "@/components/ui/premium-pill-button";
 import { SectionChapter } from "@/components/site/SectionChapter";
 
@@ -182,14 +182,13 @@ export function Process() {
             variants={reduceMotion ? undefined : fadeUp}
             className="mb-7 flex items-center justify-center gap-5"
           >
-            <span className="h-px w-10 bg-gradient-to-r from-transparent to-[rgba(139,197,64,0.45)]" />
+            <span className="kitchen-eyebrow-mark" aria-hidden="true" />
             <span
               className="text-[10px] font-light tracking-[0.32em] text-[#A8D95A]"
               style={{ fontFamily: "var(--font-body)" }}
             >
               Het proces
             </span>
-            <span className="h-px w-10 bg-gradient-to-l from-transparent to-[rgba(139,197,64,0.45)]" />
           </motion.div>
 
           {/* Heading */}

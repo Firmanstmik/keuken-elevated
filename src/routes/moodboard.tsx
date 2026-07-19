@@ -7,6 +7,7 @@ import companyLogo from "@/assets/keukencentrum_logo_transparent_medium_centered
 import { FlowActionBar } from "@/components/configurator/FlowActionBar";
 import { FlowNav } from "@/components/configurator/FlowNav";
 import { ArrowRight } from "@/components/ui/icons";
+import { ArchiveAdd, DocumentDownload, Export } from "@zethictech/iconsax-react";
 import { useConfigurator } from "@/context/configurator-context";
 import { masterBrands, masterBudgetRanges, masterCategories, masterStyles } from "@/lib/master-config-data";
 
@@ -545,29 +546,13 @@ function InfoCard({ label, value }: { label: string; value: string }) {
 }
 
 function DownloadMark() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 fill-none stroke-current stroke-[1.7]">
-      <path d="M12 4v10" />
-      <path d="m8 10 4 4 4-4" />
-      <path d="M5 18h14" />
-    </svg>
-  );
+  return <DocumentDownload size={16} variant="Linear" aria-hidden="true" />;
 }
 
 function BookmarkMark() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 fill-none stroke-current stroke-[1.7]">
-      <path d="M7 4h10v16l-5-3.5L7 20V4Z" />
-    </svg>
-  );
+  return <ArchiveAdd size={16} variant="Linear" aria-hidden="true" />;
 }
 
 function ShareMark() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 fill-none stroke-current stroke-[1.7]">
-      <path d="M15 8l4-4" />
-      <path d="M14 4h5v5" />
-      <path d="M10 6H7a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-3" />
-    </svg>
-  );
+  return <Export size={16} variant="Linear" aria-hidden="true" />;
 }

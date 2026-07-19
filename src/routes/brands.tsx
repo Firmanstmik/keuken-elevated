@@ -11,7 +11,7 @@ import leichtLogo from "@/assets/Leicht_Logo.webp";
 import aiKuchenLogo from "@/assets/aiKuchen_Logo.webp";
 import nobiliaLogo from "@/assets/Nobilia_Logo.webp";
 import zampieriLogo from "@/assets/Zampieri_Logo.webp";
-import cucinesseLogo from "@/assets/Cucinesse_Logo.webp";
+import cucinesseLogo from "@/assets/Cucinesse_Logo_Official.png";
 
 export const Route = createFileRoute("/brands")({
   component: BrandsPage,

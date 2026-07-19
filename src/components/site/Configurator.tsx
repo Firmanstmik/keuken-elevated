@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { ArrowLeft, ArrowRight, Check, House, Mail, Phone } from "@/components/ui/icons";
+import { KitchenEyebrow } from "@/components/site/KitchenEyebrow";
 import { kc } from "@/lib/kc-data";
 import { cn } from "@/lib/utils";
 import { fadeUp, motionViewport, revealImage, staggerHeader, staggerList } from "@/lib/motion";
@@ -411,9 +412,8 @@ export function Configurator() {
             className="section-header-split"
           >
             <div className="max-w-[38rem]">
-              <motion.div variants={reduceMotion ? undefined : fadeUp} className="section-label-row">
-                <span className="luxe-rule" />
-                <span className="eyebrow">Ontwerp Journey</span>
+              <motion.div variants={reduceMotion ? undefined : fadeUp}>
+                <KitchenEyebrow>Ontwerp Journey</KitchenEyebrow>
               </motion.div>
               <motion.h2 variants={reduceMotion ? undefined : fadeUp} className="heading-2">
                 Configureer uw

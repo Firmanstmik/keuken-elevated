@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
-import { StickyConversionBar } from "@/components/site/StickyConversionBar";
 import { AiKuchenPage } from "@/components/site/brand-pages/AiKuchenPage";
 import { aiKuchenPage } from "@/lib/brand-pages/ai-kuchen";
 
@@ -28,7 +27,6 @@ function AiKuchenRoute() {
       <Nav />
       <AiKuchenPage />
       <Footer />
-      <StickyConversionBar />
     </main>
   );
 }

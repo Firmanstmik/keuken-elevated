@@ -1,5 +1,6 @@
 import { useReveal } from "@/hooks/use-reveal";
 import { kc } from "@/lib/kc-data";
+import { KitchenEyebrow } from "@/components/site/KitchenEyebrow";
 
 export function Craft() {
   const ref = useReveal<HTMLDivElement>();
@@ -28,10 +29,7 @@ export function Craft() {
         </div>
 
         <div className="flex flex-col justify-center lg:col-span-5">
-          <div className="mb-4 flex items-center gap-4">
-            <span className="luxe-rule" />
-            <span className="eyebrow text-muted-light">Apparatuur · Vakmanschap</span>
-          </div>
+          <KitchenEyebrow light className="mb-4">Apparatuur · Vakmanschap</KitchenEyebrow>
           <h2 className="editorial-h text-4xl text-ivory md:text-6xl">
             Alles voor de
             <br />

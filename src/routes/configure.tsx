@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { FlowActionBar } from "@/components/configurator/FlowActionBar";
 import { ArrowLeft, ArrowRight, Circle, Search } from "@/components/ui/icons";
 import { useConfigurator } from "@/context/configurator-context";
-import logoKeuken from "@/assets/keukencentrum_logo_transparent_medium_centered_stripe.png";
+import logoKeuken from "@/assets/logo-keuken-1-1.webp";
 import {
   masterBrands,
   masterBudgetRanges,
@@ -134,14 +134,14 @@ function HotspotTooltip({
     if (hx - halfW < margin) {
       offsetX = margin - (hx - halfW);
     } else if (hx + halfW > viewportSize.width - margin) {
-      offsetX = (viewportSize.width - margin) - (hx + halfW);
+      offsetX = viewportSize.width - margin - (hx + halfW);
     }
   } else if (placement === "left" || placement === "right") {
     const halfH = 50; // estimated half height of 100px card
     if (hy - halfH < margin) {
       offsetY = margin - (hy - halfH);
     } else if (hy + halfH > viewportSize.height - margin) {
-      offsetY = (viewportSize.height - margin) - (hy + halfH);
+      offsetY = viewportSize.height - margin - (hy + halfH);
     }
   }
 
@@ -200,8 +200,18 @@ function HotspotTooltip({
   }
 
   // Draw end-dot coordinates
-  const dotCX = placement === "top" || placement === "bottom" ? offsetX : (placement === "left" ? -cardOffset : cardOffset);
-  const dotCY = placement === "left" || placement === "right" ? offsetY : (placement === "top" ? -cardOffset : cardOffset);
+  const dotCX =
+    placement === "top" || placement === "bottom"
+      ? offsetX
+      : placement === "left"
+        ? -cardOffset
+        : cardOffset;
+  const dotCY =
+    placement === "left" || placement === "right"
+      ? offsetY
+      : placement === "top"
+        ? -cardOffset
+        : cardOffset;
 
   return (
     <div className="absolute pointer-events-none z-50" style={{ left: 0, top: 0 }}>
@@ -237,16 +247,21 @@ function HotspotTooltip({
       </svg>
 
       {/* Floating Card Wrapper */}
-      <div
-        className="absolute pointer-events-none"
-        style={cardStyle}
-      >
+      <div className="absolute pointer-events-none" style={cardStyle}>
         <motion.div
           className="pointer-events-auto bg-[rgba(9,9,9,0.96)] border border-[rgba(212,175,55,0.18)] rounded-[12px] shadow-[0_12px_36px_rgba(0,0,0,0.6)] backdrop-blur-[20px] px-4 py-3 text-left"
           style={{ width: cardWidth }}
-          initial={{ opacity: 0, y: placement === "top" ? 8 : (placement === "bottom" ? -8 : 0), x: placement === "left" ? 8 : (placement === "right" ? -8 : 0) }}
+          initial={{
+            opacity: 0,
+            y: placement === "top" ? 8 : placement === "bottom" ? -8 : 0,
+            x: placement === "left" ? 8 : placement === "right" ? -8 : 0,
+          }}
           animate={{ opacity: 1, y: 0, x: 0 }}
-          exit={{ opacity: 0, y: placement === "top" ? 8 : (placement === "bottom" ? -8 : 0), x: placement === "left" ? 8 : (placement === "right" ? -8 : 0) }}
+          exit={{
+            opacity: 0,
+            y: placement === "top" ? 8 : placement === "bottom" ? -8 : 0,
+            x: placement === "left" ? 8 : placement === "right" ? -8 : 0,
+          }}
           transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="flex flex-col">
@@ -257,9 +272,7 @@ function HotspotTooltip({
               {title}
             </h4>
             <div className="h-px w-full bg-[rgba(212,175,55,0.1)] my-2" />
-            <p className="text-[11px] leading-[1.6] text-zinc-400 normal-case">
-              {description}
-            </p>
+            <p className="text-[11px] leading-[1.6] text-zinc-400 normal-case">{description}</p>
           </div>
         </motion.div>
       </div>
@@ -304,7 +317,7 @@ function ConfigurePage() {
     const viewport = imageViewportRef.current;
     if (!viewport) return;
     const resizeObserver = new ResizeObserver((entries) => {
-      for (let entry of entries) {
+      for (const entry of entries) {
         setViewportSize({
           width: entry.contentRect.width,
           height: entry.contentRect.height,
@@ -320,7 +333,9 @@ function ConfigurePage() {
     else if (!config.style) navigate({ to: "/style" });
   }, [config.brand, config.style, navigate]);
 
-  const budget = config.brand ? masterBudgetRanges[config.brand] ?? "€35,000 tot €85,000" : "€35,000 tot €85,000";
+  const budget = config.brand
+    ? (masterBudgetRanges[config.brand] ?? "€35,000 tot €85,000")
+    : "€35,000 tot €85,000";
   const activeCategoryData = masterCategories.find((item) => item.id === activeCategory) ?? null;
   const completedCount = Object.keys(config.selections).length;
   const totalCategories = masterCategories.length;
@@ -333,19 +348,17 @@ function ConfigurePage() {
     [config.style],
   );
 
-  const selectedStyleKey = selectedStyle
-    ? typeof selectedStyle === "string"
-      ? selectedStyle
-      : (selectedStyle.id || (selectedStyle as any).slug || (selectedStyle as any).name || "")
-    : "";
+  const selectedStyleKey = selectedStyle?.id ?? "";
 
   const activeImage =
-    (selectedStyleKey ? configuratorImages[selectedStyleKey.toLowerCase() as keyof typeof configuratorImages] : null) ??
-    modernBase;
+    (selectedStyleKey
+      ? configuratorImages[selectedStyleKey.toLowerCase() as keyof typeof configuratorImages]
+      : null) ?? modernBase;
 
   const activeHotspots =
-    (selectedStyleKey ? hotspotMap[selectedStyleKey.toLowerCase() as keyof typeof hotspotMap] : null) ??
-    hotspotMap.modern;
+    (selectedStyleKey
+      ? hotspotMap[selectedStyleKey.toLowerCase() as keyof typeof hotspotMap]
+      : null) ?? hotspotMap.modern;
 
   // Temporary console logs for debugging as per rules
   console.log("Selected Style:", selectedStyle);
@@ -359,8 +372,8 @@ function ConfigurePage() {
       return { x: 0, y: 0 };
     }
 
-    const maxX = ((viewport.clientWidth * scale) - viewport.clientWidth) / 2;
-    const maxY = ((viewport.clientHeight * scale) - viewport.clientHeight) / 2;
+    const maxX = (viewport.clientWidth * scale - viewport.clientWidth) / 2;
+    const maxY = (viewport.clientHeight * scale - viewport.clientHeight) / 2;
 
     return {
       x: Math.min(Math.max(nextX, -maxX), maxX),
@@ -388,7 +401,11 @@ function ConfigurePage() {
     const offsetX = clientX - rect.left - rect.width / 2;
     const offsetY = clientY - rect.top - rect.height / 2;
     const clampedScale = Math.min(Math.max(nextScale, 1), 2.6);
-    const nextPan = clampPan(-offsetX * (clampedScale - 1), -offsetY * (clampedScale - 1), clampedScale);
+    const nextPan = clampPan(
+      -offsetX * (clampedScale - 1),
+      -offsetY * (clampedScale - 1),
+      clampedScale,
+    );
 
     setZoomLevel(clampedScale);
     setPanOffset(nextPan);
@@ -405,7 +422,7 @@ function ConfigurePage() {
         />
       </div>
 
-      <header className="fixed inset-x-0 top-0 z-[1200] flex h-[60px] items-center justify-between border-b border-[rgba(255,255,255,0.05)] bg-[rgba(17,17,17,0.95)] px-3 backdrop-blur-[12px] md:px-5">
+      <header className="fixed inset-x-0 top-0 z-[1200] flex h-[60px] items-center justify-between border-b border-[rgba(139,197,64,0.16)] bg-[#111411] px-3 shadow-[0_12px_34px_-24px_rgba(0,0,0,0.9)] md:px-5">
         <button
           type="button"
           onClick={() => navigate({ to: "/style" })}
@@ -416,7 +433,7 @@ function ConfigurePage() {
         </button>
 
         <div className="flex items-center">
-          <img src={logoKeuken} alt="Keuken Centrum logo" className="h-4 w-auto opacity-90 md:h-[18px]" />
+          <img src={logoKeuken} alt="KeukenCentrum.nl" className="h-6 w-auto md:h-7" />
         </div>
 
         <p className="text-[0.6rem] uppercase tracking-[0.15em] text-[rgba(247,245,242,0.3)]">
@@ -498,7 +515,9 @@ function ConfigurePage() {
               const dotSize = active ? 24 : isHovered ? 22 : 18;
 
               const fullCategory = masterCategories.find((c) => c.id === hotspot.id);
-              const fullOption = selected ? fullCategory?.options.find((o) => o.id === selected.id) : null;
+              const fullOption = selected
+                ? fullCategory?.options.find((o) => o.id === selected.id)
+                : null;
 
               return (
                 <motion.div
@@ -543,12 +562,14 @@ function ConfigurePage() {
                         style={{
                           background: "rgba(212,175,55,0.10)",
                           filter: "blur(8px)",
-                          boxShadow: isHovered || active
-                            ? "0 0 20px rgba(212,175,55,0.35), 0 0 36px rgba(255,255,255,0.12)"
-                            : "0 0 12px rgba(255,255,255,0.18), 0 0 24px rgba(212,175,55,0.20)",
-                          animation: !isHovered && !active
-                            ? "hotspotBreathe 4.5s ease-in-out infinite"
-                            : "none",
+                          boxShadow:
+                            isHovered || active
+                              ? "0 0 20px rgba(212,175,55,0.35), 0 0 36px rgba(255,255,255,0.12)"
+                              : "0 0 12px rgba(255,255,255,0.18), 0 0 24px rgba(212,175,55,0.20)",
+                          animation:
+                            !isHovered && !active
+                              ? "hotspotBreathe 4.5s ease-in-out infinite"
+                              : "none",
                           transition: "box-shadow 0.2s ease",
                         }}
                       />
@@ -563,9 +584,8 @@ function ConfigurePage() {
                           left: "50%",
                           transform: "translate(-50%, -50%)",
                           border: `2px solid ${isHovered || active ? "#D4AF37" : "rgba(212,175,55,0.85)"}`,
-                          backgroundColor: isHovered || active
-                            ? "rgba(212,175,55,0.12)"
-                            : "rgba(0,0,0,0.45)",
+                          backgroundColor:
+                            isHovered || active ? "rgba(212,175,55,0.12)" : "rgba(0,0,0,0.45)",
                           backdropFilter: "blur(4px)",
                           transition: "all 0.2s ease",
                         }}
@@ -595,7 +615,7 @@ function ConfigurePage() {
                         title={hotspot.label}
                         description={
                           selected
-                            ? (fullOption?.description || selected.name)
+                            ? fullOption?.description || selected.name
                             : `Klik om de mogelijkheden voor uw ${hotspot.label.toLowerCase()} te ontdekken.`
                         }
                         viewportSize={viewportSize}
@@ -640,7 +660,9 @@ function ConfigurePage() {
           ) : null}
 
           <div className="absolute left-5 top-5 border border-[rgba(247,245,242,0.1)] bg-[rgba(17,17,17,0.75)] px-2.5 py-1.5 backdrop-blur-[8px]">
-            <p className="block text-[0.6rem] uppercase tracking-[0.2em] text-[#8BC540]">Stap 03 van 05</p>
+            <p className="block text-[0.6rem] uppercase tracking-[0.2em] text-[#8BC540]">
+              Stap 03 van 05
+            </p>
             <p className="text-[0.625rem] text-[rgba(247,245,242,0.6)]">
               {completedCount}/{totalCategories} opties samengesteld
             </p>
@@ -676,7 +698,11 @@ function ConfigurePage() {
                   <span
                     className="text-[0.6rem] uppercase tracking-[0.15em]"
                     style={{
-                      color: active ? "#8BC540" : selected ? "rgba(247,245,242,0.7)" : "rgba(247,245,242,0.35)",
+                      color: active
+                        ? "#8BC540"
+                        : selected
+                          ? "rgba(247,245,242,0.7)"
+                          : "rgba(247,245,242,0.35)",
                     }}
                   >
                     {category.label}
@@ -728,13 +754,20 @@ function ConfigurePage() {
                           animate={{ opacity: 1, scale: 1 }}
                           transition={{ delay: index * 0.05 }}
                           onClick={() => {
-                            setSelection(activeCategoryData.id, option.id, option.name, option.color);
+                            setSelection(
+                              activeCategoryData.id,
+                              option.id,
+                              option.name,
+                              option.color,
+                            );
                             if (config.brand) setBudget(budget);
                           }}
                           className="cursor-pointer p-2 text-left transition-all duration-300"
                           style={{
                             border: `1px solid ${selected ? "#8BC540" : "rgba(255,255,255,0.07)"}`,
-                            backgroundColor: selected ? "rgba(139,197,64,0.08)" : "rgba(255,255,255,0.02)",
+                            backgroundColor: selected
+                              ? "rgba(139,197,64,0.08)"
+                              : "rgba(255,255,255,0.02)",
                           }}
                         >
                           <div
@@ -789,7 +822,8 @@ function ConfigurePage() {
                 { label: "Merk", value: selectedBrand?.name },
                 { label: "Stijl", value: selectedStyle?.name },
                 ...Object.entries(config.selections).map(([categoryId, selection]) => ({
-                  label: masterCategories.find((item) => item.id === categoryId)?.label ?? categoryId,
+                  label:
+                    masterCategories.find((item) => item.id === categoryId)?.label ?? categoryId,
                   value: selection.name,
                   color: selection.color,
                 })),
@@ -806,7 +840,9 @@ function ConfigurePage() {
                           style={{ backgroundColor: item.color }}
                         />
                       ) : null}
-                      <span className="text-[0.7rem] text-[rgba(247,245,242,0.7)]">{item.value}</span>
+                      <span className="text-[0.7rem] text-[rgba(247,245,242,0.7)]">
+                        {item.value}
+                      </span>
                     </div>
                   </div>
                 ) : null,

@@ -1,23 +1,19 @@
 "use client";
 
-import { useRef, type ReactNode } from "react";
+import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { ArrowUpRight, Quote, Sparkles } from "lucide-react";
+import {
+  Export as ArrowUpRight,
+  QuoteDown as Quote,
+  MagicStar as Sparkles,
+} from "@zethictech/iconsax-react";
 import { PremiumPillButton } from "@/components/ui/premium-pill-button";
 import { fadeUp, motionEase, motionViewport } from "@/lib/motion";
 import { kc } from "@/lib/kc-data";
 import { showroomKeukens } from "@/lib/showroom-keukens";
+import { KitchenEyebrow as Eyebrow } from "@/components/site/KitchenEyebrow";
 
 const luxuryEase = motionEase.premium;
-
-function Eyebrow({ children, light = false }: { children: ReactNode; light?: boolean }) {
-  return (
-    <span className={`brand-eyebrow ${light ? "brand-eyebrow--light" : ""}`}>
-      <span className="brand-eyebrow__line" aria-hidden="true" />
-      {children}
-    </span>
-  );
-}
 
 export function ShowroomKeukensPage() {
   const reduceMotion = useReducedMotion();
@@ -173,7 +169,7 @@ export function ShowroomKeukensPage() {
                   <div className="flex items-start justify-between gap-3">
                     <h3 className="font-serif text-[1.35rem] text-[var(--secondary)]">{service.title}</h3>
                     <span className="showroom-service-card__arrow">
-                      <ArrowUpRight className="h-4 w-4" strokeWidth={1.7} />
+                      <ArrowUpRight className="h-4 w-4" variant="Linear" />
                     </span>
                   </div>
                   <p className="mt-2 text-[0.92rem] font-light leading-[1.7] text-[var(--text-soft)]">
@@ -225,7 +221,7 @@ export function ShowroomKeukensPage() {
               </h2>
             </div>
             <span className="inline-flex items-center gap-2 rounded-full border border-[rgba(139,197,64,0.22)] bg-white/70 px-4 py-2 text-[0.72rem] font-medium uppercase tracking-[0.16em] text-[var(--secondary)]">
-              <Sparkles className="h-3.5 w-3.5 text-[var(--green)]" strokeWidth={1.7} />
+              <Sparkles className="h-3.5 w-3.5 text-[var(--green)]" variant="Linear" />
               4,9 Google Reviews
             </span>
           </div>
@@ -239,7 +235,7 @@ export function ShowroomKeukensPage() {
                 transition={{ duration: 0.6, delay: index * 0.08, ease: luxuryEase }}
                 className="showroom-quote"
               >
-                <Quote className="showroom-quote__icon" strokeWidth={1.4} />
+                <Quote className="showroom-quote__icon" variant="Linear" />
                 <p className="showroom-quote__text">“{item.quote}”</p>
                 <footer className="showroom-quote__name">{item.name}</footer>
               </motion.blockquote>

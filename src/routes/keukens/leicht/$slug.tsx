@@ -1,7 +1,6 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
-import { StickyConversionBar } from "@/components/site/StickyConversionBar";
 import { LeichtSeriesPage } from "@/components/site/brand-pages/LeichtSeriesPage";
 import { leichtSeriesPages } from "@/lib/brand-pages/leicht-series";
 
@@ -35,7 +34,6 @@ function LeichtSeriesRoute() {
       <Nav />
       <LeichtSeriesPage series={series} />
       <Footer />
-      <StickyConversionBar />
     </main>
   );
 }

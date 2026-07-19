@@ -2,10 +2,17 @@
 import { useState, useMemo, useRef, useEffect } from "react";
 
 import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
-import PaletteOutlinedIcon from "@mui/icons-material/PaletteOutlined";
-import TuneIcon from "@mui/icons-material/Tune";
-import SupportAgentIcon from "@mui/icons-material/SupportAgent";
+import {
+  Setting4 as TuneIcon,
+  ColorSwatch as PaletteOutlinedIcon,
+  Headphone as SupportAgentIcon,
+  Setting2,
+  Heart,
+  Diamonds,
+  People,
+} from "@zethictech/iconsax-react";
 import matOak from "@/assets/mat-oak.jpg";
+import matConcrete from "@/assets/mat-concrete.jpg";
 import whyVakmanschap from "@/assets/why/why-vakmanschap.webp";
 import whyPersoonlijk from "@/assets/why/why-persoonlijk.webp";
 import whyMaterialen from "@/assets/why/why-materialen.webp";
@@ -84,67 +91,50 @@ const GREEN_INK = "#43701F"; // small accent text — 5.7:1 on the cream backdro
 const GREEN_BRIGHT = "#8BC540"; // bars, glows, tints, borders
 
 const pillars = [
-    {
-      id: "vakmanschap",
-      number: "01",
-      title: "Europees Vakmanschap",
-      description: "Elk detail van uw keuken wordt met uiterste precisie en vakmanschap vervaardigd door onze Europese producenten.",
-      image: whyVakmanschap,
-      imageAlt: "Europees vakmanschap met precisie en kwaliteit",
-      accent: "Precisie",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
-        </svg>
-      ),
-    },
-    {
-      id: "persoonlijk",
-      number: "02",
-      title: "Persoonlijke Aanpak",
-      description: "Onze adviseurs luisteren naar uw wensen en vertalen deze naar een uniek keukenontwerp dat perfect aansluit bij uw woning.",
-      image: whyPersoonlijk,
-      imageAlt: "Persoonlijke consultatie in de showroom",
-      accent: "Begeleiding",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-        </svg>
-      ),
-    },
-    {
-      id: "materialen",
-      number: "03",
-      title: "Luxe & Duurzame Materialen",
-      description: "Voor uw keuken gebruiken we alleen geselecteerde premium materialen, van Carrara marmer tot gerookt eiken.",
-      image: whyMaterialen,
-      imageAlt: "Premium materialen met marmer en eiken afwerkingen",
-      accent: "Afwerking",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-          <polygon points="6 3 18 3 22 9 12 22 2 9 6 3" />
-          <path d="M11 3 8 9l4 13 4-13-3-6" />
-          <path d="M2 9h20" />
-        </svg>
-      ),
-    },
-    {
-      id: "service",
-      number: "04",
-      title: "Premium Service & Montage",
-      description: "Van 3D-ontwerp tot vakkundige montage bij u thuis: wij begeleiden en ontzorgen u volledig door het gehele proces.",
-      image: whyService,
-      imageAlt: "Vakkundig gemonteerde keuken bij de klant thuis",
-      accent: "Ontzorging",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-          <circle cx="9" cy="7" r="4" />
-          <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-          <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-        </svg>
-      ),
-    },
+  {
+    id: "vakmanschap",
+    number: "01",
+    title: "Europees Vakmanschap",
+    description:
+      "Elk detail van uw keuken wordt met uiterste precisie en vakmanschap vervaardigd door onze Europese producenten.",
+    image: whyVakmanschap,
+    imageAlt: "Europees vakmanschap met precisie en kwaliteit",
+    accent: "Precisie",
+    icon: <Setting2 size={20} variant="Linear" />,
+  },
+  {
+    id: "persoonlijk",
+    number: "02",
+    title: "Persoonlijke Aanpak",
+    description:
+      "Onze adviseurs luisteren naar uw wensen en vertalen deze naar een uniek keukenontwerp dat perfect aansluit bij uw woning.",
+    image: whyPersoonlijk,
+    imageAlt: "Persoonlijke consultatie in de showroom",
+    accent: "Begeleiding",
+    icon: <Heart size={20} variant="Linear" />,
+  },
+  {
+    id: "materialen",
+    number: "03",
+    title: "Luxe & Duurzame Materialen",
+    description:
+      "Voor uw keuken gebruiken we alleen geselecteerde premium materialen, van Carrara marmer tot gerookt eiken.",
+    image: whyMaterialen,
+    imageAlt: "Premium materialen met marmer en eiken afwerkingen",
+    accent: "Afwerking",
+    icon: <Diamonds size={20} variant="Linear" />,
+  },
+  {
+    id: "service",
+    number: "04",
+    title: "Premium Service & Montage",
+    description:
+      "Van 3D-ontwerp tot vakkundige montage bij u thuis: wij begeleiden en ontzorgen u volledig door het gehele proces.",
+    image: whyService,
+    imageAlt: "Vakkundig gemonteerde keuken bij de klant thuis",
+    accent: "Ontzorging",
+    icon: <People size={20} variant="Linear" />,
+  },
 ] as const;
 
 const materialSwatches = [
@@ -188,19 +178,16 @@ export function WhyWithUsSection() {
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
         style={{
-          backgroundImage: `url(${whyService})`,
+          backgroundImage: `url(${matConcrete})`,
           backgroundSize: "cover",
-          backgroundPosition: "center 40%",
-          opacity: 0.14,
-          filter: "blur(2px) saturate(0.75) brightness(0.95)",
+          backgroundPosition: "center",
         }}
       />
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
         style={{
-          background:
-            "linear-gradient(180deg, rgba(252,251,248,0.97) 0%, rgba(246,243,236,0.92) 48%, rgba(250,248,244,0.97) 100%)",
+          background: "rgba(248,246,242,0.87)",
         }}
       />
       <div
@@ -224,7 +211,7 @@ export function WhyWithUsSection() {
             viewport={motionViewport}
             className="mb-5 inline-flex items-center gap-3"
           >
-            <span className="h-px w-10 bg-gradient-to-r from-transparent to-[rgba(200,169,107,0.55)]" />
+            <span className="kitchen-eyebrow-mark" aria-hidden="true" />
             <span
               className="text-[0.68rem] font-semibold uppercase tracking-[0.26em]"
               style={{ fontFamily: "var(--font-body)", color: "#8A7348" }}
@@ -250,7 +237,6 @@ export function WhyWithUsSection() {
 
         {/* ── MAIN STAGE ── */}
         <div className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-12 xl:gap-16 lg:items-start">
-
           {/* ─── LEFT: Feature cards ─── */}
           <div>
             <p
@@ -290,7 +276,8 @@ export function WhyWithUsSection() {
                         ? "0 22px 50px -20px rgba(47,82,24,0.18), 0 0 0 1px rgba(139,197,64,0.08)"
                         : "0 8px 28px -18px rgba(23,25,28,0.1)",
                       transform: isActive ? "translateY(-2px)" : "translateY(0)",
-                      transition: "border-color 450ms, box-shadow 450ms, background 450ms, transform 450ms cubic-bezier(0.22,1,0.36,1)",
+                      transition:
+                        "border-color 450ms, box-shadow 450ms, background 450ms, transform 450ms cubic-bezier(0.22,1,0.36,1)",
                     }}
                   >
                     <span className="flex w-full">
@@ -346,10 +333,15 @@ export function WhyWithUsSection() {
                               className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[11px] border"
                               style={{
                                 color: GREEN_INK,
-                                borderColor: isActive ? "rgba(139,197,64,0.45)" : "rgba(139,197,64,0.16)",
-                                backgroundColor: isActive ? "rgba(139,197,64,0.12)" : "rgba(139,197,64,0.05)",
+                                borderColor: isActive
+                                  ? "rgba(139,197,64,0.45)"
+                                  : "rgba(139,197,64,0.16)",
+                                backgroundColor: isActive
+                                  ? "rgba(139,197,64,0.12)"
+                                  : "rgba(139,197,64,0.05)",
                                 transform: isActive ? "scale(1.05)" : "scale(1)",
-                                transition: "border-color 450ms, background-color 450ms, transform 450ms",
+                                transition:
+                                  "border-color 450ms, background-color 450ms, transform 450ms",
                               }}
                             >
                               {pillar.icon}
@@ -417,12 +409,7 @@ export function WhyWithUsSection() {
               viewport={motionViewport}
               className="mt-8"
             >
-              <PremiumPillButton
-                href="/consultation"
-                variant="blue"
-                shape="rounded"
-                size="xl"
-              >
+              <PremiumPillButton href="/consultation" variant="blue" shape="rounded" size="xl">
                 Plan uw showroombezoek
               </PremiumPillButton>
 
@@ -479,8 +466,7 @@ export function WhyWithUsSection() {
                   viewport={motionViewport}
                   className="relative rounded-[26px] p-[9px]"
                   style={{
-                    background:
-                      "linear-gradient(150deg, #FCFAF5 0%, #F1E9D8 52%, #E7DAC0 100%)",
+                    background: "linear-gradient(150deg, #FCFAF5 0%, #F1E9D8 52%, #E7DAC0 100%)",
                     boxShadow:
                       "0 40px 90px -30px rgba(18,22,12,0.5), 0 0 0 1px rgba(200,169,107,0.35), inset 0 1px 0 rgba(255,255,255,0.9)",
                   }}
@@ -512,10 +498,22 @@ export function WhyWithUsSection() {
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[rgba(139,197,64,0.1)] via-transparent to-transparent" />
 
                     {/* Corner accents — editorial gallery frame */}
-                    <span aria-hidden="true" className="pointer-events-none absolute left-3 top-3 h-5 w-5 border-l border-t border-white/45" />
-                    <span aria-hidden="true" className="pointer-events-none absolute right-3 top-3 h-5 w-5 border-r border-t border-white/45" />
-                    <span aria-hidden="true" className="pointer-events-none absolute bottom-3 left-3 h-5 w-5 border-b border-l border-white/30" />
-                    <span aria-hidden="true" className="pointer-events-none absolute bottom-3 right-3 h-5 w-5 border-b border-r border-white/30" />
+                    <span
+                      aria-hidden="true"
+                      className="pointer-events-none absolute left-3 top-3 h-5 w-5 border-l border-t border-white/45"
+                    />
+                    <span
+                      aria-hidden="true"
+                      className="pointer-events-none absolute right-3 top-3 h-5 w-5 border-r border-t border-white/45"
+                    />
+                    <span
+                      aria-hidden="true"
+                      className="pointer-events-none absolute bottom-3 left-3 h-5 w-5 border-b border-l border-white/30"
+                    />
+                    <span
+                      aria-hidden="true"
+                      className="pointer-events-none absolute bottom-3 right-3 h-5 w-5 border-b border-r border-white/30"
+                    />
 
                     {/* Top meta */}
                     <div className="absolute left-5 top-5 right-5 flex items-start justify-between">
@@ -659,7 +657,6 @@ export function WhyWithUsSection() {
   );
 }
 
-
 function HotspotTooltip({
   active,
   x,
@@ -721,14 +718,14 @@ function HotspotTooltip({
     if (hx - halfW < margin) {
       offsetX = margin - (hx - halfW);
     } else if (hx + halfW > viewportSize.width - margin) {
-      offsetX = (viewportSize.width - margin) - (hx + halfW);
+      offsetX = viewportSize.width - margin - (hx + halfW);
     }
   } else if (placement === "left" || placement === "right") {
     const halfH = 45;
     if (hy - halfH < margin) {
       offsetY = margin - (hy - halfH);
     } else if (hy + halfH > viewportSize.height - margin) {
-      offsetY = (viewportSize.height - margin) - (hy + halfH);
+      offsetY = viewportSize.height - margin - (hy + halfH);
     }
   }
 
@@ -786,8 +783,18 @@ function HotspotTooltip({
     }
   }
 
-  const dotCX = placement === "top" || placement === "bottom" ? offsetX : (placement === "left" ? -cardOffset : cardOffset);
-  const dotCY = placement === "left" || placement === "right" ? offsetY : (placement === "top" ? -cardOffset : cardOffset);
+  const dotCX =
+    placement === "top" || placement === "bottom"
+      ? offsetX
+      : placement === "left"
+        ? -cardOffset
+        : cardOffset;
+  const dotCY =
+    placement === "left" || placement === "right"
+      ? offsetY
+      : placement === "top"
+        ? -cardOffset
+        : cardOffset;
 
   return (
     <div className="absolute pointer-events-none z-50" style={{ left: 0, top: 0 }}>
@@ -820,29 +827,32 @@ function HotspotTooltip({
         />
       </svg>
 
-      <div
-        className="absolute pointer-events-none"
-        style={cardStyle}
-      >
+      <div className="absolute pointer-events-none" style={cardStyle}>
         <motion.div
           className="pointer-events-auto bg-[rgba(9,9,9,0.96)] border border-[rgba(212,175,55,0.18)] rounded-[12px] shadow-[0_12px_36px_rgba(0,0,0,0.6)] backdrop-blur-[20px] px-3.5 py-2.5 text-left"
           style={{ width: cardWidth }}
-          initial={{ opacity: 0, y: placement === "top" ? 8 : (placement === "bottom" ? -8 : 0), x: placement === "left" ? 8 : (placement === "right" ? -8 : 0) }}
+          initial={{
+            opacity: 0,
+            y: placement === "top" ? 8 : placement === "bottom" ? -8 : 0,
+            x: placement === "left" ? 8 : placement === "right" ? -8 : 0,
+          }}
           animate={{ opacity: 1, y: 0, x: 0 }}
-          exit={{ opacity: 0, y: placement === "top" ? 8 : (placement === "bottom" ? -8 : 0), x: placement === "left" ? 8 : (placement === "right" ? -8 : 0) }}
+          exit={{
+            opacity: 0,
+            y: placement === "top" ? 8 : placement === "bottom" ? -8 : 0,
+            x: placement === "left" ? 8 : placement === "right" ? -8 : 0,
+          }}
           transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="flex flex-col">
-            <span className="block text-[10px] font-semibold uppercase tracking-[0.24em] text-[#C8A96B] mb-1">
-              CONFIGURATIE
+            <span className="mb-1 block text-[10px] font-semibold tracking-[0.08em] text-[#C8A96B]">
+              Configuratie
             </span>
-            <h4 className="font-serif text-[12px] font-semibold leading-snug text-white tracking-[-0.01em] uppercase">
+            <h4 className="font-serif text-[12px] font-semibold leading-snug tracking-[-0.01em] text-white">
               {title}
             </h4>
             <div className="h-px w-full bg-[rgba(212,175,55,0.1)] my-1.5" />
-            <p className="text-[10px] leading-[1.5] text-zinc-400 normal-case">
-              {description}
-            </p>
+            <p className="text-[10px] leading-[1.5] text-zinc-400 normal-case">{description}</p>
           </div>
         </motion.div>
       </div>
@@ -857,7 +867,9 @@ export function ShowroomJourneySection() {
   const [viewportSize, setViewportSize] = useState({ width: 600, height: 450 });
   const mockupViewportRef = useRef<HTMLDivElement | null>(null);
 
-  const [selections, setSelections] = useState<Record<string, { id: string; color: string; name: string }>>({
+  const [selections, setSelections] = useState<
+    Record<string, { id: string; color: string; name: string }>
+  >({
     front: { id: "cashmere", color: "#C4B49A", name: "Cashmere" },
     worktop: { id: "marble-white", color: "#F2EFE8", name: "Wit marmer" },
     sink: { id: "sink-stainless", color: "#C8C8C8", name: "RVS" },
@@ -892,7 +904,10 @@ export function ShowroomJourneySection() {
   const currentCategory = masterCategories.find((c) => c.id === activeHotspotId);
 
   return (
-    <section className="section-shell relative overflow-hidden" style={{ background: "linear-gradient(180deg, #0D0F0A 0%, #12140E 52%, #0C0E09 100%)" }}>
+    <section
+      className="section-shell relative overflow-hidden"
+      style={{ background: "linear-gradient(180deg, #0D0F0A 0%, #12140E 52%, #0C0E09 100%)" }}
+    >
       {/* Cinematic showroom backdrop — in harmony with the partner section */}
       <div
         aria-hidden="true"
@@ -921,7 +936,12 @@ export function ShowroomJourneySection() {
         }}
       />
       <div className="site-container relative max-w-7xl">
-        <SectionChapter index={4} label="Digitale beleving" light />
+        <SectionChapter
+          index={4}
+          label="Digitale beleving"
+          light
+          className="chapter-mark--sentence"
+        />
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.92fr)] lg:items-center">
           <div className="relative">
             {/* The Badge */}
@@ -932,7 +952,7 @@ export function ShowroomJourneySection() {
               viewport={motionViewport}
               className="absolute -top-3 left-6 md:left-8 z-20"
             >
-              <span className="rounded-full border border-[#C8A96B]/30 bg-[#111111] px-4 py-1.5 text-[0.6rem] font-medium uppercase tracking-[0.2em] text-[#C8A96B] shadow-[0_4px_12px_rgba(0,0,0,0.1)]">
+              <span className="rounded-full border border-[#C8A96B]/30 bg-[#111111] px-4 py-1.5 text-[0.6rem] font-medium tracking-[0.08em] text-[#C8A96B] shadow-[0_4px_12px_rgba(0,0,0,0.1)]">
                 Premium configurator
               </span>
             </motion.div>
@@ -952,7 +972,7 @@ export function ShowroomJourneySection() {
                   <div className="h-2 w-2 rounded-full bg-white/20" />
                   <div className="h-2 w-2 rounded-full bg-white/20" />
                 </div>
-                <div className="text-[0.62rem] md:text-[0.6rem] tracking-[0.2em] text-white/40 uppercase">
+                <div className="text-[0.62rem] tracking-[0.08em] text-white/40 md:text-[0.6rem]">
                   Keuken Centrum
                 </div>
                 <div className="w-8" />
@@ -961,7 +981,10 @@ export function ShowroomJourneySection() {
               {/* Fake Body */}
               <div className="flex flex-1 overflow-hidden">
                 {/* Image Area */}
-                <div ref={mockupViewportRef} className="relative flex-1 bg-[#0A0A0A] overflow-hidden">
+                <div
+                  ref={mockupViewportRef}
+                  className="relative flex-1 bg-[#0A0A0A] overflow-hidden"
+                >
                   <img
                     src={klassiekBase}
                     alt="Klassieke keuken configurator"
@@ -1090,10 +1113,9 @@ export function ShowroomJourneySection() {
                 </div>
 
                 {/* Interactive Sidebar – mirrors configure.tsx layout */}
-                <div className="w-[32%] md:w-[28%] shrink-0 border-l border-white/10 bg-[#0F0F0F] flex flex-col overflow-hidden">
-
+                <div className="flex w-[36%] shrink-0 flex-col overflow-hidden border-l border-white/10 bg-[linear-gradient(180deg,#111411_0%,#0b0d0b_100%)] md:w-[34%]">
                   {/* Category tab strip */}
-                  <div className="flex flex-wrap gap-[3px] border-b border-white/[0.06] p-2">
+                  <div className="flex flex-wrap gap-1 border-b border-white/[0.07] bg-white/[0.018] p-2">
                     {hotspotsData.map((h, i) => {
                       const sel = selections[h.id];
                       const isTabActive = activeHotspot === i;
@@ -1102,16 +1124,16 @@ export function ShowroomJourneySection() {
                           key={h.id}
                           type="button"
                           onClick={() => setActiveHotspot(i)}
-                          className="inline-flex items-center gap-1 border px-1.5 py-1 transition-all duration-300"
+                          className="inline-flex items-center gap-1 rounded-[5px] border px-1.5 py-1 normal-case transition-all duration-300"
                           style={{
                             borderColor: isTabActive
                               ? "#B08D57"
                               : sel
-                              ? "rgba(176,141,87,0.35)"
-                              : "rgba(255,255,255,0.08)",
+                                ? "rgba(176,141,87,0.35)"
+                                : "rgba(255,255,255,0.08)",
                             backgroundColor: isTabActive
-                              ? "rgba(176,141,87,0.1)"
-                              : "transparent",
+                              ? "rgba(176,141,87,0.13)"
+                              : "rgba(255,255,255,0.015)",
                           }}
                         >
                           {sel && (
@@ -1121,13 +1143,13 @@ export function ShowroomJourneySection() {
                             />
                           )}
                           <span
-                            className="text-[0.64rem] uppercase tracking-[0.13em] leading-none"
+                            className="text-[0.64rem] leading-none tracking-[0.04em]"
                             style={{
                               color: isTabActive
                                 ? "#B08D57"
                                 : sel
-                                ? "rgba(247,245,242,0.65)"
-                                : "rgba(247,245,242,0.3)",
+                                  ? "rgba(247,245,242,0.65)"
+                                  : "rgba(247,245,242,0.3)",
                             }}
                           >
                             {h.label}
@@ -1138,10 +1160,10 @@ export function ShowroomJourneySection() {
                   </div>
 
                   {/* Active category header */}
-                  <div className="px-3 pt-2.5 pb-1.5">
-                    <p className="text-[0.64rem] uppercase tracking-[0.2em] text-[#B08D57] mb-0.5">Kies</p>
+                  <div className="border-b border-white/[0.05] px-3 pb-2.5 pt-3">
+                    <p className="mb-0.5 text-[0.6rem] tracking-[0.03em] text-[#C8A96B]">Kies</p>
                     <p
-                      className="text-[0.72rem] text-[#F7F5F2]"
+                      className="text-[0.82rem] leading-tight text-[#F7F5F2]"
                       style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
                     >
                       {currentCategory?.label ?? hotspotsData[activeHotspot].label}
@@ -1156,9 +1178,9 @@ export function ShowroomJourneySection() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -6 }}
                       transition={{ duration: 0.4 }}
-                      className="flex-1 overflow-y-auto px-2 pb-2"
+                      className="flex-1 overflow-y-auto p-2"
                     >
-                      <div className="grid grid-cols-2 gap-[5px]">
+                      <div className="grid grid-cols-2 gap-1.5">
                         {currentCategory?.options.slice(0, 4).map((option, idx) => {
                           const isSelected = selections[activeHotspotId]?.id === option.id;
                           return (
@@ -1178,35 +1200,36 @@ export function ShowroomJourneySection() {
                                   },
                                 }))
                               }
-                              className="cursor-pointer p-1.5 text-left transition-all duration-300"
+                              className="cursor-pointer rounded-[9px] p-1.5 text-left normal-case transition-all duration-300 hover:-translate-y-px hover:border-[#C8A96B]/45 hover:bg-white/[0.045]"
                               style={{
                                 border: `1px solid ${
                                   isSelected ? "#B08D57" : "rgba(255,255,255,0.07)"
                                 }`,
                                 backgroundColor: isSelected
-                                  ? "rgba(176,141,87,0.08)"
-                                  : "rgba(255,255,255,0.02)",
+                                  ? "rgba(176,141,87,0.12)"
+                                  : "rgba(255,255,255,0.025)",
+                                boxShadow: isSelected
+                                  ? "0 10px 22px -15px rgba(200,169,107,0.75), inset 0 1px 0 rgba(255,255,255,0.05)"
+                                  : "inset 0 1px 0 rgba(255,255,255,0.025)",
                               }}
                             >
                               {/* Color block */}
                               <div
-                                className="mb-1 h-8 w-full border border-white/10"
+                                className="mb-1.5 h-8 w-full rounded-[6px] border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.14)]"
                                 style={{ backgroundColor: option.color }}
                               />
                               {/* Name */}
                               <p
-                                className="text-[0.62rem] font-normal tracking-[0.04em] leading-tight"
+                                className="text-[0.65rem] font-medium leading-tight tracking-[-0.005em]"
                                 style={{
-                                  color: isSelected
-                                    ? "#B08D57"
-                                    : "rgba(247,245,242,0.75)",
+                                  color: isSelected ? "#D8BE87" : "rgba(247,245,242,0.86)",
                                 }}
                               >
                                 {option.name}
                               </p>
                               {/* Description */}
                               {option.description && (
-                                <p className="mt-0.5 text-[0.62rem] leading-[1.35] text-white/30">
+                                <p className="mt-1 text-[0.55rem] leading-[1.35] tracking-[-0.005em] text-white/42">
                                   {option.description}
                                 </p>
                               )}
@@ -1218,12 +1241,12 @@ export function ShowroomJourneySection() {
                   </AnimatePresence>
 
                   {/* Footer CTA */}
-                  <div className="border-t border-white/[0.06] p-2 hidden md:block">
+                  <div className="hidden border-t border-white/[0.07] bg-black/15 p-2 md:block">
                     <a
                       href="/brands"
-                      className="flex h-7 w-full items-center justify-center rounded-[6px] bg-[#C8A96B] text-[0.6rem] font-medium uppercase tracking-[0.12em] text-white/90 transition-colors hover:bg-[#b59556]"
+                      className="flex h-8 w-full items-center justify-center rounded-[8px] bg-[linear-gradient(135deg,#D8BE87,#B8924E)] text-[0.62rem] font-semibold tracking-[-0.005em] text-[#17140d] shadow-[0_10px_24px_-14px_rgba(200,169,107,0.8)] transition-all hover:-translate-y-px hover:brightness-105"
                     >
-                      Volledig Ontwerp
+                      Volledig ontwerp
                     </a>
                   </div>
                 </div>
@@ -1242,7 +1265,7 @@ export function ShowroomJourneySection() {
                 <TuneIcon sx={{ fontSize: 18, color: "#C8A96B" }} />
               </span>
               <div className="min-w-0">
-                <p className="text-[0.62rem] font-semibold uppercase tracking-[0.24em] text-[#C8A96B]">
+                <p className="text-[0.62rem] font-semibold tracking-[0.08em] text-[#C8A96B]">
                   Digitale Showroom
                 </p>
                 <p className="mt-1 text-[0.8rem] font-light leading-[1.55] text-[rgba(245,242,236,0.7)]">
@@ -1261,7 +1284,7 @@ export function ShowroomJourneySection() {
           >
             <motion.p
               variants={reduceMotion ? undefined : fadeUp}
-              className="text-[0.72rem] uppercase tracking-[0.25em] text-[#C8A96B]"
+              className="text-[0.72rem] tracking-[0.08em] text-[#C8A96B]"
             >
               De beleving
             </motion.p>
@@ -1295,18 +1318,18 @@ export function ShowroomJourneySection() {
                 const Icon = item.icon;
 
                 return (
-                <motion.div
-                  key={item.label}
-                  variants={reduceMotion ? undefined : fadeUp}
-                  className="flex items-center gap-3"
-                >
-                  <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center text-[#C8A96B]">
-                    <Icon sx={{ fontSize: 18, color: "#C8A96B" }} />
-                  </span>
-                  <span className="text-[0.875rem] font-light leading-[1.65] text-[rgba(245,242,236,0.72)]">
-                    {item.label}
-                  </span>
-                </motion.div>
+                  <motion.div
+                    key={item.label}
+                    variants={reduceMotion ? undefined : fadeUp}
+                    className="flex items-center gap-3"
+                  >
+                    <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center text-[#C8A96B]">
+                      <Icon size={18} color="#C8A96B" variant="Linear" />
+                    </span>
+                    <span className="text-[0.875rem] font-light leading-[1.65] text-[rgba(245,242,236,0.72)]">
+                      {item.label}
+                    </span>
+                  </motion.div>
                 );
               })}
             </motion.div>

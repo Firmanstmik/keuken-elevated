@@ -1,69 +1,62 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { Mail, Phone, Tag, X } from "@/components/ui/icons";
+import {
+  ArrowRight2 as IconsaxArrowRight,
+  CalendarTick as IconsaxCalendar,
+  Call as IconsaxCall,
+  CloseCircle as IconsaxClose,
+  Messages as IconsaxMessages,
+} from "@zethictech/iconsax-react";
 import { kc } from "@/lib/kc-data";
 
-const revealThreshold = 300;
+const revealThreshold = 280;
 const whatsappHref =
   "https://wa.me/31302415122?text=Hallo%20Keuken-Centrum,%20ik%20heb%20een%20vraag%20over%20een%20showroombezoek.";
 
-type ActionItem = {
-  label: string;
-  meta: string;
-  href: string;
-  Icon: typeof Phone;
-  primary?: boolean;
-  accent?: "green";
-};
-
-function WhatsAppMark({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
-      <path d="M19.11 4.89A9.89 9.89 0 0 0 3.42 16.85L2 22l5.27-1.38a9.89 9.89 0 0 0 4.72 1.2h.01c5.46 0 9.91-4.44 9.91-9.9a9.84 9.84 0 0 0-2.8-7.03Zm-7.1 15.25h-.01a8.24 8.24 0 0 1-4.2-1.14l-.3-.18-3.13.82.84-3.05-.2-.31a8.21 8.21 0 0 1 1.27-10.24 8.2 8.2 0 0 1 13.99 5.88 8.23 8.23 0 0 1-8.26 8.22Zm4.52-6.14c-.25-.12-1.49-.73-1.72-.82-.23-.08-.4-.12-.57.13-.17.24-.66.81-.81.97-.15.17-.3.18-.55.06-.25-.13-1.07-.39-2.03-1.24a7.66 7.66 0 0 1-1.4-1.74c-.15-.25-.02-.38.11-.5.11-.11.25-.3.38-.44.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.57-1.37-.78-1.87-.21-.51-.42-.43-.57-.44h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.44 1.03 2.6c.13.17 1.77 2.71 4.29 3.8.6.26 1.07.42 1.44.54.61.19 1.16.16 1.59.1.49-.08 1.49-.61 1.7-1.19.21-.58.21-1.09.15-1.19-.06-.1-.23-.16-.48-.29Z" />
-    </svg>
-  );
-}
+const actions = [
+  {
+    label: "Plan showroombezoek",
+    mobileLabel: "Afspraak",
+    meta: "Vrijblijvend advies in Utrecht",
+    href: "/consultation",
+    Icon: IconsaxCalendar,
+    tone: "primary",
+  },
+  {
+    label: "Bel een adviseur",
+    mobileLabel: "Bellen",
+    meta: kc.contact.phone,
+    href: kc.contact.phoneHref,
+    Icon: IconsaxCall,
+    tone: "neutral",
+  },
+  {
+    label: "WhatsApp",
+    mobileLabel: "WhatsApp",
+    meta: "Persoonlijk & snel antwoord",
+    href: whatsappHref,
+    Icon: IconsaxMessages,
+    tone: "chat",
+  },
+] as const;
 
 export function StickyConversionBar() {
   const reduceMotion = useReducedMotion();
   const [visible, setVisible] = useState(false);
   const [dismissed, setDismissed] = useState(false);
 
-  const actions = useMemo<ActionItem[]>(
-    () => [
-      {
-        label: "Plan showroombezoek",
-        meta: "Afspraak in Utrecht",
-        href: "#showroom",
-        Icon: Tag,
-        primary: true,
-      },
-      { label: "Bel adviseur", meta: kc.contact.phone, href: kc.contact.phoneHref, Icon: Phone },
-      {
-        label: "WhatsApp",
-        meta: "Snel antwoord",
-        href: whatsappHref,
-        Icon: Mail,
-        accent: "green",
-      },
-    ],
-    [],
-  );
-
   useEffect(() => {
     let lastY = window.scrollY;
 
     const onScroll = () => {
       const currentY = window.scrollY;
-
       if (currentY < revealThreshold) {
         setVisible(false);
-      } else if (currentY > lastY + 8) {
+      } else if (currentY > lastY + 7) {
         setVisible(true);
-      } else if (currentY < lastY - 12) {
+      } else if (currentY < lastY - 14) {
         setVisible(false);
       }
-
       lastY = currentY;
     };
 
@@ -74,150 +67,115 @@ export function StickyConversionBar() {
 
   if (dismissed) return null;
 
-  const animateProps = reduceMotion
-    ? { opacity: visible ? 1 : 0 }
-    : { opacity: visible ? 1 : 0, y: visible ? 0 : 24, scale: visible ? 1 : 0.988 };
-
   return (
     <AnimatePresence>
-      {visible ? (
+      {visible && (
         <>
-          <motion.div
-            initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 24, scale: 0.988 }}
-            animate={animateProps}
-            exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 24, scale: 0.988 }}
-            transition={{ duration: reduceMotion ? 0.01 : 0.42, ease: [0.22, 1, 0.36, 1] }}
-            className="pointer-events-none fixed inset-x-0 bottom-4 z-[80] hidden px-5 lg:block"
+          <motion.aside
+            aria-label="Direct contact met Keuken-Centrum Utrecht"
+            initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 26, scale: 0.975 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 22, scale: 0.982 }}
+            transition={{ duration: reduceMotion ? 0.01 : 0.48, ease: [0.22, 1, 0.36, 1] }}
+            className="pointer-events-none fixed inset-x-0 bottom-5 z-[80] hidden px-5 md:block"
           >
-            <div className="mx-auto max-w-[1440px]">
-              <div className="pointer-events-auto relative mx-auto w-[min(52vw,720px)]">
-                <button
-                  type="button"
-                  onClick={() => setDismissed(true)}
-                  aria-label="Sluit sticky conversiebalk"
-                  className="lux-x absolute right-2 top-[-11px] z-20 flex h-7 w-7 items-center justify-center text-white"
-                >
-                  <X className="h-3.5 w-3.5" />
-                </button>
+            <div className="pointer-events-auto relative mx-auto w-[min(880px,calc(100vw-2.5rem))]">
+              <div className="absolute -top-3 left-6 z-20 inline-flex items-center gap-2 rounded-full border border-[rgba(200,169,107,0.26)] bg-[#11170f] px-3 py-1.5 text-[0.48rem] font-semibold uppercase tracking-[0.22em] text-[#D8BE87] shadow-[0_10px_26px_-15px_rgba(0,0,0,0.8)]">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#8BC540] shadow-[0_0_8px_rgba(139,197,64,0.9)]" />
+                KC Concierge
+              </div>
 
-                <div className="lux-border rounded-[24px] p-[1px] shadow-[0_30px_70px_-30px_rgba(23,25,28,0.22)]">
-                  <div className="relative overflow-hidden rounded-[23px] bg-[linear-gradient(145deg,rgba(252,250,246,0.95),rgba(244,240,232,0.92))] p-1.5 backdrop-blur-2xl">
-                  <div className="absolute inset-x-10 top-0 h-px bg-[linear-gradient(90deg,rgba(201,164,106,0),rgba(201,164,106,0.4),rgba(201,164,106,0))]" />
-                  <div className="absolute left-[18%] top-[-80%] h-[180px] w-[180px] rounded-full bg-[radial-gradient(circle,rgba(139,197,64,0.1),transparent_60%)]" />
-                  <div className="absolute right-[18%] top-[-86%] h-[190px] w-[190px] rounded-full bg-[radial-gradient(circle,rgba(201,164,106,0.1),transparent_58%)]" />
+              <button
+                type="button"
+                onClick={() => setDismissed(true)}
+                aria-label="Sluit contactbalk"
+                className="group absolute -right-2 -top-4 z-30 grid h-9 w-9 place-items-center rounded-full border border-white/12 bg-[#171b16] text-white/70 shadow-[0_12px_28px_-12px_rgba(0,0,0,0.85)] transition-all duration-300 hover:rotate-6 hover:border-[#C8A96B]/50 hover:text-[#D8BE87]"
+              >
+                <IconsaxClose size={20} variant="Linear" />
+              </button>
 
-                  <div className="grid grid-cols-3 gap-1.5 rounded-[16px] border border-[rgba(200,169,107,0.18)] bg-[linear-gradient(180deg,rgba(255,255,255,0.99),rgba(252,250,246,0.99))] p-1.5 text-[var(--foreground)] shadow-[inset_0_1px_0_rgba(255,255,255,0.86),0_20px_44px_-38px_rgba(7,17,27,0.12)]">
-                    {actions.map(({ label, meta, href, Icon, primary, accent }) =>
-                      primary ? (
-                        <a
-                          key={label}
-                          href={href}
-                          className="group relative flex items-center gap-3 overflow-hidden rounded-[14px] bg-[linear-gradient(135deg,#06101a,#0c1826)] px-4 py-3 text-white shadow-[0_26px_48px_-30px_rgba(7,17,27,0.66)]"
-                        >
-                          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(201,164,106,0.2),transparent_54%)] opacity-90" />
-                          <span className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-[12px] border border-[rgba(201,164,106,0.22)] bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] text-[var(--gold)]">
-                            <Icon className="h-4 w-4" />
+              <div className="overflow-hidden rounded-[26px] border border-[rgba(200,169,107,0.3)] bg-[linear-gradient(145deg,rgba(17,22,15,0.97),rgba(8,13,10,0.97))] p-2 shadow-[0_34px_90px_-35px_rgba(0,0,0,0.92),0_0_0_1px_rgba(255,255,255,0.035)_inset] backdrop-blur-2xl">
+                <div className="pointer-events-none absolute inset-x-20 top-0 h-px bg-gradient-to-r from-transparent via-[#D8BE87]/70 to-transparent" />
+                <div className="grid grid-cols-3 gap-2">
+                  {actions.map(({ label, meta, href, Icon, tone }) => {
+                    const primary = tone === "primary";
+                    const chat = tone === "chat";
+                    return (
+                      <a
+                        key={label}
+                        href={href}
+                        className={`group relative flex min-h-[82px] items-center gap-3 overflow-hidden rounded-[18px] border px-4 transition-all duration-500 hover:-translate-y-0.5 ${primary
+                          ? "border-[#A8D95A]/38 bg-[linear-gradient(135deg,#8BC540,#659B2C)] text-white shadow-[0_22px_42px_-24px_rgba(139,197,64,0.68)]"
+                          : chat
+                            ? "border-[#8BC540]/16 bg-[linear-gradient(145deg,rgba(139,197,64,0.095),rgba(255,255,255,0.025))] text-white"
+                            : "border-white/[0.07] bg-white/[0.035] text-white"
+                          }`}
+                      >
+                        <span className="absolute inset-0 translate-y-[102%] bg-[linear-gradient(180deg,#ffffff,#F1EFE7)] transition-transform duration-[580ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0" />
+                        <span className={`relative z-10 grid h-11 w-11 shrink-0 place-items-center rounded-[13px] border transition-all duration-500 group-hover:rotate-[-6deg] group-hover:border-[#192012]/10 group-hover:bg-[#192f0d] group-hover:text-white ${primary
+                          ? "border-white/18 bg-white/12 text-white"
+                          : chat
+                            ? "border-[#8BC540]/24 bg-[#8BC540]/12 text-[#A8D95A]"
+                            : "border-[#C8A96B]/18 bg-[#C8A96B]/08 text-[#D8BE87]"
+                          }`}>
+                          <Icon size={20} variant="Linear" />
+                        </span>
+                        <span className="relative z-10 min-w-0 flex-1 transition-colors duration-500 group-hover:text-[#192012]">
+                          <span className="block text-[0.84rem] font-semibold tracking-[-0.015em]">{label}</span>
+                          <span className={`mt-1 block truncate text-[0.66rem] ${primary ? "text-white/72" : "text-white/42"} transition-colors duration-500 group-hover:text-[#192012]/58`}>
+                            {meta}
                           </span>
-                          <div className="relative min-w-0">
-                            <p className="text-[0.88rem] font-semibold tracking-[-0.024em]">{label}</p>
-                            <p className="mt-0.5 text-[0.7rem] text-white/70">{meta}</p>
-                          </div>
-                        </a>
-                      ) : (
-                        <a
-                          key={label}
-                          href={href}
-                          className="group relative flex items-center gap-3 rounded-[14px] bg-[linear-gradient(180deg,rgba(255,255,255,0.9),rgba(244,240,232,0.92))] px-4 py-3 shadow-[0_18px_32px_-28px_rgba(7,17,27,0.22)] transition-transform duration-400 ease-[var(--ease-premium)] hover:-translate-y-[1px]"
-                        >
-                          {accent === "green" ? (
-                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[12px] bg-[linear-gradient(180deg,var(--green-highlight),var(--green))] text-white shadow-[0_18px_32px_-26px_rgba(139,197,64,0.42)]">
-                               <WhatsAppMark className="h-4.5 w-4.5" />
-                            </span>
-                          ) : (
-                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[12px] border border-[rgba(7,17,27,0.06)] bg-white text-[var(--green)] shadow-[0_16px_28px_-26px_rgba(7,17,27,0.18)]">
-                              <Icon className="h-4 w-4" />
-                            </span>
-                          )}
-                          <div className="min-w-0">
-                            <p className="text-[0.88rem] font-semibold tracking-[-0.022em] text-[var(--foreground)]">{label}</p>
-                            <p className="truncate text-[0.7rem] text-[var(--text-soft)]">{meta}</p>
-                          </div>
-                        </a>
-                      ),
-                    )}
-                  </div>
-                  </div>
+                        </span>
+                        <span className="relative z-10 grid h-7 w-7 shrink-0 place-items-center rounded-full border border-white/10 text-white/40 transition-all duration-500 group-hover:translate-x-0.5 group-hover:border-[#192012]/10 group-hover:bg-[#192012]/06 group-hover:text-[#192012]">
+                          <IconsaxArrowRight size={12} variant="Linear" />
+                        </span>
+                      </a>
+                    );
+                  })}
                 </div>
               </div>
             </div>
-          </motion.div>
+          </motion.aside>
 
-          <motion.div
+          <motion.aside
+            aria-label="Direct contact"
             initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 18 }}
-            animate={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-            exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 18 }}
-            transition={{ duration: reduceMotion ? 0.01 : 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="pointer-events-none fixed inset-x-0 bottom-0 z-[80] px-2 pb-[calc(env(safe-area-inset-bottom)+0.5rem)] lg:hidden"
+            animate={{ opacity: 1, y: 0 }}
+            exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 16 }}
+            transition={{ duration: reduceMotion ? 0.01 : 0.38, ease: [0.22, 1, 0.36, 1] }}
+            className="pointer-events-none fixed inset-x-0 bottom-0 z-[80] px-2 pb-[calc(env(safe-area-inset-bottom)+0.5rem)] md:hidden"
           >
-            <div className="pointer-events-auto mx-auto max-w-[620px]">
-              <div className="lux-border rounded-[18px] p-[1px] shadow-[0_26px_58px_-32px_rgba(23,25,28,0.2)]">
-                <div className="relative overflow-hidden rounded-[17px] bg-[linear-gradient(145deg,rgba(252,250,246,0.95),rgba(244,240,232,0.92))] p-1.5 backdrop-blur-2xl">
-                  <div className="absolute inset-x-7 top-0 h-px bg-[linear-gradient(90deg,rgba(139,197,64,0),rgba(139,197,64,0.32),rgba(139,197,64,0))]" />
-                  <div className="relative rounded-[14px] bg-[linear-gradient(180deg,rgba(255,255,255,0.99),rgba(252,250,246,0.99))] p-1">
-                    <button
-                      type="button"
-                      onClick={() => setDismissed(true)}
-                      aria-label="Sluit mobiele conversiebalk"
-                      className="lux-x absolute right-2 top-1.5 flex h-7 w-7 items-center justify-center text-white"
-                    >
-                      <X className="h-3.5 w-3.5" />
-                    </button>
-
-                    <div className="grid grid-cols-3 gap-1.5 pt-2">
-                      {actions.map(({ label, meta, href, Icon, primary, accent }) => {
-                        const shortLabel = primary ? "Bezoek" : accent === "green" ? "WhatsApp" : "Bellen";
-                        return (
-                          <a
-                            key={label}
-                            href={href}
-                            aria-label={`${label} · ${meta}`}
-                            className={`group flex min-h-[56px] flex-col items-center justify-center gap-[5px] rounded-[12px] px-2 py-2.5 text-center transition-transform duration-400 ease-[var(--ease-premium)] active:scale-[0.96] active:translate-y-[1px] ${
-                              primary
-                                ? "bg-[linear-gradient(135deg,#06101a,#0c1826)] text-white shadow-[0_22px_44px_-30px_rgba(7,17,27,0.64)]"
-                                : "bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(244,240,232,0.94))] text-[var(--foreground)] shadow-[0_14px_26px_-22px_rgba(7,17,27,0.18)]"
-                            }`}
-                          >
-                            {accent === "green" ? (
-                              <span className="flex h-7 w-7 items-center justify-center rounded-[10px] bg-[linear-gradient(180deg,var(--green-highlight),var(--green))] text-white shadow-[0_10px_20px_-14px_rgba(139,197,64,0.42)]">
-                                <WhatsAppMark className="h-4 w-4" />
-                              </span>
-                            ) : (
-                              <span
-                                className={`flex h-7 w-7 items-center justify-center rounded-[10px] ${
-                                  primary
-                                    ? "bg-[rgba(255,255,255,0.06)] text-[#A8D95A]"
-                                    : "bg-[rgba(12,24,36,0.06)] text-[var(--secondary)]"
-                                }`}
-                              >
-                                <Icon className="h-4 w-4" />
-                              </span>
-                            )}
-                            <span className={`text-[10px] font-semibold uppercase tracking-[0.1em] leading-none ${
-                              primary ? "text-white/70" : accent === "green" ? "text-[#73A832]" : "text-[var(--text-soft)]"
-                            }`}>
-                              {shortLabel}
-                            </span>
-                          </a>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
+            <div className="pointer-events-auto relative mx-auto max-w-[620px] rounded-[22px] border border-[rgba(200,169,107,0.3)] bg-[linear-gradient(145deg,rgba(17,22,15,0.97),rgba(8,13,10,0.97))] p-1.5 shadow-[0_28px_68px_-28px_rgba(0,0,0,0.9)] backdrop-blur-2xl">
+              <button
+                type="button"
+                onClick={() => setDismissed(true)}
+                aria-label="Sluit contactbalk"
+                className="absolute -right-1 -top-4 z-20 grid h-8 w-8 place-items-center rounded-full border border-white/12 bg-[#171b16] text-white/70"
+              >
+                <IconsaxClose size={18} variant="Linear" />
+              </button>
+              <div className="grid grid-cols-3 gap-1.5">
+                {actions.map(({ label, mobileLabel, href, Icon, tone }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    aria-label={label}
+                    className={`group flex min-h-[62px] flex-col items-center justify-center gap-1.5 rounded-[16px] border px-2 py-2 text-center transition-transform active:scale-[0.97] ${tone === "primary"
+                      ? "border-[#A8D95A]/32 bg-[linear-gradient(135deg,#8BC540,#659B2C)] text-white"
+                      : "border-white/[0.06] bg-white/[0.035] text-white/70"
+                      }`}
+                  >
+                    <span className={`grid h-8 w-8 place-items-center rounded-[10px] ${tone === "primary" ? "bg-white/12 text-white" : tone === "chat" ? "bg-[#8BC540]/14 text-[#A8D95A]" : "bg-[#C8A96B]/10 text-[#D8BE87]"}`}>
+                      <Icon size={17} variant="Linear" />
+                    </span>
+                    <span className="text-[0.54rem] font-semibold uppercase tracking-[0.11em]">{mobileLabel}</span>
+                  </a>
+                ))}
               </div>
             </div>
-          </motion.div>
+          </motion.aside>
         </>
-      ) : null}
+      )}
     </AnimatePresence>
   );
 }

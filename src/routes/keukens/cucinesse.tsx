@@ -1,10 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
-import { StickyConversionBar } from "@/components/site/StickyConversionBar";
 import { BrandPage } from "@/components/site/brand-pages/BrandPage";
 import { cucinessePage } from "@/lib/brand-pages/cucinesse";
-import cucinesseLogo from "@/assets/Cucinesse_Logo.webp";
+import cucinesseLogo from "@/assets/Cucinesse_Logo_Official.png";
 
 export const Route = createFileRoute("/keukens/cucinesse")({
   head: () => ({
@@ -26,7 +25,6 @@ function CucinesseRoute() {
       <Nav />
       <BrandPage data={cucinessePage} logoSrc={cucinesseLogo} />
       <Footer />
-      <StickyConversionBar />
     </main>
   );
 }

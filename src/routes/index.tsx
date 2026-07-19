@@ -11,7 +11,6 @@ import { Testimonials } from "@/components/site/Testimonials";
 import { ConsultationSection } from "@/components/site/ConsultationSection";
 import { FinalCta } from "@/components/site/FinalCta";
 import { Footer } from "@/components/site/Footer";
-import { StickyConversionBar } from "@/components/site/StickyConversionBar";
 import { kc } from "@/lib/kc-data";
 import shareLogo from "@/assets/Logo_Keuken_Centrum.png";
 
@@ -100,7 +99,6 @@ function Index() {
       <ConsultationSection />
 
       <Footer />
-      <StickyConversionBar />
     </main>
   );
 }

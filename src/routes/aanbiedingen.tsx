@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
-import { StickyConversionBar } from "@/components/site/StickyConversionBar";
 import { AanbiedingenPage } from "@/components/site/aanbiedingen/AanbiedingenPage";
 import { aanbiedingen } from "@/lib/aanbiedingen";
 
@@ -26,7 +25,6 @@ function AanbiedingenRoute() {
       <Nav />
       <AanbiedingenPage />
       <Footer />
-      <StickyConversionBar />
     </main>
   );
 }

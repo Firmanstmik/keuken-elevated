@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
-import { StickyConversionBar } from "@/components/site/StickyConversionBar";
 import { ShowroomKeukensPage } from "@/components/site/contact/ShowroomKeukensPage";
 import { showroomKeukens } from "@/lib/showroom-keukens";
 
@@ -25,7 +24,6 @@ function ShowroomKeukensRoute() {
       <Nav />
       <ShowroomKeukensPage />
       <Footer />
-      <StickyConversionBar />
     </main>
   );
 }

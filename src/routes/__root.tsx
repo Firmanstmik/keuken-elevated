@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useLocation,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -14,6 +15,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { ConfiguratorProvider } from "../context/configurator-context";
 import { Toaster } from "../components/ui/sonner";
 import shareLogo from "@/assets/Logo_Keuken_Centrum.png";
+import { StickyConversionBar } from "@/components/site/StickyConversionBar";
 
 function NotFoundComponent() {
   return (
@@ -84,7 +86,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "Premium keukenshowroom in Utrecht sinds 1978." },
       { name: "author", content: "Keuken-Centrum Utrecht" },
       { property: "og:title", content: "Keuken-Centrum Utrecht" },
-      { property: "og:description", content: "Premium Duitse en Italiaanse keukenshowroom in Utrecht sinds 1978." },
+      {
+        property: "og:description",
+        content: "Premium Duitse en Italiaanse keukenshowroom in Utrecht sinds 1978.",
+      },
       { property: "og:type", content: "website" },
       { property: "og:image", content: shareLogo },
       { name: "twitter:card", content: "summary_large_image" },
@@ -128,12 +133,21 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const location = useLocation();
+  const isConfiguratorRoute = [
+    "/brands",
+    "/style",
+    "/configure",
+    "/moodboard",
+    "/consultation",
+  ].includes(location.pathname);
 
   return (
     <QueryClientProvider client={queryClient}>
       <ConfiguratorProvider>
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
+        {!isConfiguratorRoute && <StickyConversionBar />}
         <Toaster richColors position="top-right" />
       </ConfiguratorProvider>
     </QueryClientProvider>
