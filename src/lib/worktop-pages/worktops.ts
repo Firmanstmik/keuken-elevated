@@ -11,7 +11,7 @@ export const worktopCustomBlock: BrandPageData["custom"] = {
   titleBefore: "Écht",
   titleHighlight: "alles",
   titleAfter: "is mogelijk",
-  body: "Een uitdagende moderne designkeuken, een robuuste industrielook of de nostalgische intimiteit van een landelijk klassiek werkblad — bij Keuken-Centrum Utrecht koopt u het keukenwerkblad van uw dromen voor een verrassend betaalbare prijs.",
+  body: "Een uitdagende moderne designkeuken, een robuuste industrielook of de nostalgische intimiteit van een landelijk klassiek werkblad: bij Keuken-Centrum Utrecht koopt u het keukenwerkblad van uw dromen voor een verrassend betaalbare prijs.",
   secondary:
     "Graniet, composiet, hardsteen, keramiek, betonlook of marmerlook: wij adviseren over materiaal, kleur, dikte, formaat, randafwerking en praktische eigenschappen zodat het blad perfect past bij uw keukenstijl.",
 };
@@ -147,7 +147,7 @@ export const silestonePage = {
     title: "Silestone",
     highlight: "kwarts met karakter.",
     subtitle:
-      "Een vrijwel niet-poreus oppervlak dat bestand is tegen dagelijkse vlekkenmakers zoals koffie, wijn en citroensap — met de kracht en krasbestendigheid van natuurlijk kwarts.",
+      "Een vrijwel niet-poreus oppervlak dat bestand is tegen dagelijkse vlekkenmakers zoals koffie, wijn en citroensap, met de kracht en krasbestendigheid van natuurlijk kwarts.",
     cta: { primary: "Bezoek showroom", primaryHref: "/#consultation", secondary: "Bel direct", secondaryHref: "tel:+31302415122" },
     badges: [
       { value: "Quartz", label: "Natuurlijk kwarts" },
@@ -191,7 +191,7 @@ export const silestonePage = {
     eyebrow: "Beste prijs",
     titleBefore: "Silestone keukenbladen voor de ",
     titleHighlight: "scherpste prijs",
-    body: "Wij leveren Silestone op maat en adviseren over kleur, dikte, formaat en randafwerking. Heeft u al een offerte? Neem deze mee — wij kijken graag hoe wij een betere prijs kunnen bieden.",
+    body: "Wij leveren Silestone op maat en adviseren over kleur, dikte, formaat en randafwerking. Heeft u al een offerte? Neem deze mee. Wij kijken graag hoe wij een betere prijs kunnen bieden.",
     highlights: ["Vrijwel niet-poreus oppervlak", "Bestand tegen koffie, wijn en citroensap", "Hoge schok- en krasbestendigheid", "Advies in materiaal, kleur en afwerking"],
     note: "Silestone live bekijken? Kom langs in onze showroom in Utrecht.",
     stats: baseWorktopStats,
@@ -200,7 +200,7 @@ export const silestonePage = {
     eyebrow: "Inspiratie",
     titleBefore: "Silestone in ",
     titleHighlight: "beeld",
-    lead: "Van rustige marmerlook tot karaktervolle kleuren — Silestone zet de toon voor uw keukenstijl.",
+    lead: "Van rustige marmerlook tot karaktervolle kleuren: Silestone zet de toon voor uw keukenstijl.",
     items: [
       { src: `${wp}/Silestone-Kitchen-HD-Desert-Silver.webp`, title: "Desert Silver", tag: "Silestone", span: "large" },
       { src: `${wp}/Calacatta-gold-silestone-composiet-keukenblad-Eternal-collectie-Stonecenter-01.webp`, title: "Calacatta Gold", tag: "Marmerlook", span: "medium" },
@@ -212,7 +212,7 @@ export const silestonePage = {
   custom: worktopCustomBlock,
   faq: { titleBefore: "Veel ", titleHighlight: "gestelde vragen", items: worktopFaq },
   advisors: sharedAdvisors,
-  showroomCta: { eyebrow: "Showroom Utrecht", titleBefore: "Silestone ", titleHighlight: "live", titleAfter: " bekijken?", subtitle: "Neem uw wensen mee — wij adviseren over kleur, dikte, rand en prijs.", button: "Boek een afspraak", href: "/#consultation" },
+  showroomCta: { eyebrow: "Showroom Utrecht", titleBefore: "Silestone ", titleHighlight: "live", titleAfter: " bekijken?", subtitle: "Neem uw wensen mee. Wij adviseren over kleur, dikte, rand en prijs.", button: "Boek een afspraak", href: "/#consultation" },
 } as const satisfies BrandPageData;
 
 export const dektonPage = {
@@ -247,7 +247,7 @@ export const dektonPage = {
     paragraphs: [
       "Dekton is ontwikkeld door Cosentino, bekend van composietmerk Silestone. Het kleurenprogramma groeit en omvat egale kleuren, natuursteenlooks en betonlooks.",
       "Dekton is sterk verwant aan keramiek. Door technieken en ingrediënten uit de glas- en composietindustrie ontstaat onder hoge druk en temperatuur een ultracompacte massa.",
-      "Wij leveren Dekton keukenbladen in verschillende designs, formaten, diktes en randafwerkingen — altijd passend bij uw keukenstijl.",
+      "Wij leveren Dekton keukenbladen in verschillende designs, formaten, diktes en randafwerkingen die altijd bij uw keukenstijl passen.",
     ],
     image: `${wp}/ed83ddc34ftieleman_keukens_arte_granieten_keukenbladen-dekton-1.webp`,
     signature: [
@@ -366,7 +366,7 @@ export const neolithPage = {
     eyebrow: "Inspiratie",
     titleBefore: "Neolith in ",
     titleHighlight: "beeld",
-    lead: "Robuust, strak en architectonisch — Neolith past bij een minimalistische keukenbeleving.",
+    lead: "Robuust, strak en architectonisch: Neolith past bij een minimalistische keukenbeleving.",
     items: [
       { src: `${wp}/Neolith_blog_febrero04.webp`, title: "Kitchen Lounge", tag: "Neolith", span: "large" },
       { src: `${wp}/Neolith-Countertops-Gallery-2019-53.webp`, title: "Gallery 53", tag: "Werkblad", span: "medium" },
@@ -427,11 +427,11 @@ export const sensaPage = {
     eyebrow: "Kleurwerelden",
     titleBefore: "Voor elke ",
     titleHighlight: "smaak",
-    lead: "Sensa biedt natuurlijke kleuren vol persoonlijkheid — van helder wit tot krachtig zwart en warme aardetinten.",
+    lead: "Sensa biedt natuurlijke kleuren vol persoonlijkheid, van helder wit tot krachtig zwart en warme aardetinten.",
     items: [
       { title: "Witte kleuren", description: "Natuursteen biedt unieke wittinten voor levendige, minimalistische, tijdloze of klassieke ruimtes.", icon: "sparkles", image: `${wp}/7-8-1.webp` },
       { title: "Krachtige zwarte kleuren", description: "Donkere tinten creëren intieme ruimtes in moderne, klassieke of minimalistische stijl.", icon: "layers", image: `${wp}/11-6.webp` },
-      { title: "Voor elke smaak", description: "Crème, grijs, oranje, klassieke texturen of sterke contrasten — Cosentino biedt oneindig veel mogelijkheden.", icon: "heart", image: `${wp}/Sensa-Kitchen-Graphite-Grey-lr.webp` },
+      { title: "Voor elke smaak", description: "Crème, grijs, oranje, klassieke texturen of sterke contrasten: Cosentino biedt oneindig veel mogelijkheden.", icon: "heart", image: `${wp}/Sensa-Kitchen-Graphite-Grey-lr.webp` },
     ],
   },
   partnership: {

@@ -90,7 +90,7 @@ const pillars = [
       title: "Europees Vakmanschap",
       description: "Elk detail van uw keuken wordt met uiterste precisie en vakmanschap vervaardigd door onze Europese producenten.",
       image: whyVakmanschap,
-      imageAlt: "Europees vakmanschap — precisie en kwaliteit",
+      imageAlt: "Europees vakmanschap met precisie en kwaliteit",
       accent: "Precisie",
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -116,9 +116,9 @@ const pillars = [
       id: "materialen",
       number: "03",
       title: "Luxe & Duurzame Materialen",
-      description: "Alleen geselecteerde premium materialen — van Carrara marmer tot gerookt eiken — worden gebruikt voor uw keuken.",
+      description: "Voor uw keuken gebruiken we alleen geselecteerde premium materialen, van Carrara marmer tot gerookt eiken.",
       image: whyMaterialen,
-      imageAlt: "Premium materialen — marmer en eiken afwerkingen",
+      imageAlt: "Premium materialen met marmer en eiken afwerkingen",
       accent: "Afwerking",
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -212,7 +212,7 @@ export function WhyWithUsSection() {
         }}
       />
 
-      <div className="site-container relative">
+      <div className="site-container relative max-w-7xl">
         <SectionChapter index={2} label="Waarom wij" />
 
         {/* ── Header ── */}
@@ -920,7 +920,7 @@ export function ShowroomJourneySection() {
             "radial-gradient(60% 45% at 20% 15%, rgba(139,197,64,0.08), transparent 60%), radial-gradient(55% 45% at 85% 80%, rgba(200,169,107,0.07), transparent 65%)",
         }}
       />
-      <div className="site-container relative">
+      <div className="site-container relative max-w-7xl">
         <SectionChapter index={4} label="Digitale beleving" light />
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.92fr)] lg:items-center">
           <div className="relative">

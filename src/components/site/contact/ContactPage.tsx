@@ -51,7 +51,7 @@ export function ContactPage() {
   const isValid = form.name.trim() !== "" && form.message.trim() !== "" && (form.email.trim() !== "" || form.phone.trim() !== "");
 
   const handleSubmit = () => {
-    const subject = encodeURIComponent(`Contactaanvraag via website — ${form.name}`);
+    const subject = encodeURIComponent(`Contactaanvraag via website: ${form.name}`);
     const body = encodeURIComponent(
       `Naam: ${form.name}\nTelefoonnummer: ${form.phone}\nEmail: ${form.email}\n\nBericht:\n${form.message}`,
     );
@@ -80,7 +80,7 @@ export function ContactPage() {
               Kom in <em className="italic text-[var(--green-highlight)]">contact</em>
             </h1>
             <p className="mt-6 max-w-[36rem] text-[1.08rem] font-light leading-[1.8] text-[rgba(255,255,255,0.78)]">
-              Heb je vragen over een keuken? Wij staan je graag te woord — laat een bericht achter en wij nemen vaak
+              Heb je vragen over een keuken? Laat een bericht achter. Wij staan je graag te woord en nemen vaak
               dezelfde werkdag nog contact op.
             </p>
           </motion.div>
@@ -201,7 +201,7 @@ export function ContactPage() {
                   className="pointer-events-none absolute -right-3 -bottom-6 font-serif text-[5.5rem] italic leading-none text-[rgba(139,197,64,0.14)]"
                   aria-hidden="true"
                 >
-                  9–18
+                  9 tot 18
                 </span>
                 <div className="relative z-[1]">
                   <div className="flex items-center gap-3">
@@ -241,7 +241,7 @@ export function ContactPage() {
             className="overflow-hidden rounded-[26px] border border-[rgba(139,197,64,0.16)] shadow-[0_28px_70px_-48px_rgba(20,40,18,0.5)]"
           >
             <iframe
-              title="Keuken-Centrum Utrecht — Zonnebaan 8, 3542 EC Utrecht"
+              title="Keuken-Centrum Utrecht, Zonnebaan 8, 3542 EC Utrecht"
               src="https://www.google.com/maps?q=Keuken-centrum.nl,+Zonnebaan+8,+3542+EC+Utrecht&output=embed"
               className="h-[26rem] w-full border-0 grayscale-[0.25] transition-[filter] duration-500 hover:grayscale-0"
               loading="lazy"
@@ -261,7 +261,7 @@ export function ContactPage() {
                 Liever <em className="italic text-[var(--green-highlight)]">persoonlijk</em> langskomen?
               </h2>
               <p className="mt-5 text-[1rem] font-light leading-[1.75] text-[rgba(255,255,255,0.75)]">
-                Bezoek onze showroom op de Zonnebaan — persoonlijk advies bij een goede kop koffie.
+                Bezoek onze showroom op de Zonnebaan voor persoonlijk advies bij een goede kop koffie.
               </p>
             </div>
             <div className="flex flex-wrap gap-3">

@@ -20,7 +20,7 @@ export const Route = createFileRoute("/keukens/leicht/$slug")({
         name: "description",
         content:
           loaderData?.description[0] ??
-          "Ontdek deze Leicht serie bij Keuken-Centrum Utrecht — officiële dealer.",
+          "Ontdek deze Leicht serie bij Keuken-Centrum Utrecht, uw officiële dealer.",
       },
       { property: "og:image", content: loaderData?.heroImage },
     ],

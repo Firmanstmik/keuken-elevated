@@ -722,7 +722,7 @@ export function BrandPage({ data, logoSrc }: { data: BrandPageData; logoSrc?: st
                   />
                 </a>
                 <p className="relative z-[1] mt-4 text-[0.76rem] font-light tracking-[0.03em] text-[rgba(255,255,255,0.45)]">
-                  Ma–Vr 09:00–18:00 · Za 09:00–17:00
+                  Maandag tot vrijdag 09:00 tot 18:00 · Zaterdag 09:00 tot 17:00
                 </p>
               </div>
             </motion.div>
@@ -767,7 +767,7 @@ export function BrandPage({ data, logoSrc }: { data: BrandPageData; logoSrc?: st
               </h2>
             </div>
             <p className="max-w-[21rem] text-[0.95rem] font-light leading-[1.7] text-[var(--text-soft)]">
-              Persoonlijk advies van mensen die hun vak verstaan — loop binnen op de Zonnebaan.
+              Persoonlijk advies van mensen die hun vak verstaan. Loop binnen op de Zonnebaan.
             </p>
           </motion.div>
 

@@ -14,7 +14,7 @@ export const zampieriPage = {
   meta: {
     title: "Zampieri keukens · Italiaans design bij Keuken-Centrum Utrecht",
     description:
-      "Ontdek Zampieri bij Keuken-Centrum Utrecht. Italiaanse keukens en kasten met comfort, ergonomie en schoonheid — made in Italy, gegarandeerd laagste prijs en eigen montagedienst.",
+      "Ontdek Zampieri bij Keuken-Centrum Utrecht. Italiaanse keukens en kasten met comfort, ergonomie en schoonheid, made in Italy, tegen een gegarandeerd lage prijs en met een eigen montagedienst.",
   },
   hero: {
     image: `${wp}/cucina3.webp`,
@@ -22,7 +22,7 @@ export const zampieriPage = {
     title: "Zampieri",
     highlight: "Comfort. Ergonomie. Schoonheid.",
     subtitle:
-      "Het Italiaanse merk Zampieri verrast met stijlvolle, functionele meubels — made in Italy, in vele kleuren, maten en configuraties volledig naar uw smaak samen te stellen.",
+      "Het Italiaanse merk Zampieri verrast met stijlvolle, functionele meubels, made in Italy en in vele kleuren, maten en configuraties volledig naar uw smaak samen te stellen.",
     cta: {
       primary: "Bezoek showroom",
       primaryHref: "/#consultation",
@@ -41,9 +41,9 @@ export const zampieriPage = {
     titleHighlight: "comfort",
     titleAfter: ", ergonomie en schoonheid",
     paragraphs: [
-      "Zampieri — de keuken zal u verrassen met zijn comfort, ergonomie en schoonheid. Het bekende Italiaanse bedrijf maakt stijlvolle, functionele en betrouwbare meubels voor een van de belangrijkste kamers van elk appartement of elke woning.",
+      "Zampieri zal u verrassen met het comfort, de ergonomie en de schoonheid van de keuken. Het bekende Italiaanse bedrijf maakt stijlvolle, functionele en betrouwbare meubels voor een van de belangrijkste kamers van elk appartement of elke woning.",
       "In de catalogus worden verschillende oplossingen 'made in Italy' gepresenteerd in diverse kleuren, maten en configuraties. Ze helpen om van uw keuken de perfecte ruimte te maken om te koken, maar passen ook naadloos in het interieur van compacte studio-appartementen.",
-      "Een grote verscheidenheid aan modellen en de mogelijkheid van individuele bestellingen maken het kopen van Zampieri-meubels gemakkelijk en plezierig — zelfs de kleinste details kunnen worden aangepast aan uw smaak en behoeften.",
+      "Een grote verscheidenheid aan modellen en de mogelijkheid van individuele bestellingen maken het kopen van Zampieri-meubels gemakkelijk en plezierig. Zelfs de kleinste details kunnen worden aangepast aan uw smaak en behoeften.",
     ],
     image: `${wp}/fbef50e4763d4463f7f6119f92163f02-grey-kitchens-contemporary-kitchens.webp`,
     signature: [
@@ -62,12 +62,12 @@ export const zampieriPage = {
     titleBefore: "Italiaanse kwaliteit, maatwerk en",
     titleHighlight: "stijl",
     titleAfter: "in balans",
-    lead: "Zampieri combineert hoogwaardige functionaliteit met een stijlvolle uitstraling — volledig aanpasbaar tot in het kleinste detail.",
+    lead: "Zampieri combineert hoogwaardige functionaliteit met een stijlvolle uitstraling die volledig aanpasbaar is tot in het kleinste detail.",
     items: [
       {
         title: "Comfort & ergonomie",
         description:
-          "Zampieri verrast met comfort en ergonomie — keukens ontworpen voor dagelijks gebruik, waarin koken een genot wordt.",
+          "Zampieri verrast met comfort en ergonomie. De keukens zijn ontworpen voor dagelijks gebruik, waarin koken een genot wordt.",
         icon: "heart",
         image: `${wp}/cucina3.webp`,
       },
@@ -81,7 +81,7 @@ export const zampieriPage = {
       {
         title: "Made in Italy",
         description:
-          "Hoogwaardige, functionele en zeer stijlvolle meubels — een grote verscheidenheid aan modellen in diverse kleuren, maten en configuraties.",
+          "Hoogwaardige, functionele en zeer stijlvolle meubels, met een grote verscheidenheid aan modellen in diverse kleuren, maten en configuraties.",
         icon: "sparkles",
         image: `${wp}/unnamed.webp`,
       },
@@ -92,7 +92,7 @@ export const zampieriPage = {
     eyebrow: "Direct van fabrikant",
     titleBefore: "Zampieri keukens voor de",
     titleHighlight: "scherpste prijs",
-    body: "U koopt een Zampieri keuken via ons voor gegarandeerd de laagste prijs van topkwaliteit en met topservice. Zampieri heeft een uitermate breed assortiment — wij nodigen u van harte uit om in onze showroom te komen kijken.",
+    body: "U koopt een Zampieri keuken via ons voor gegarandeerd de laagste prijs van topkwaliteit en met topservice. Zampieri heeft een uitermate breed assortiment. Wij nodigen u van harte uit om in onze showroom te komen kijken.",
     highlights: [
       "Italiaanse kwaliteit en degelijkheid",
       "Gegarandeerd de laagste prijs",
@@ -100,14 +100,14 @@ export const zampieriPage = {
       "Standaard vijf jaar garantie",
       "Altijd één jaar garantie op montagewerkzaamheden",
     ],
-    note: "Al een offerte elders? Neem deze mee — wij bieden vrijwel altijd beter.",
+    note: "Al een offerte elders? Neem deze mee. Wij bieden vrijwel altijd beter.",
     stats: defaultPartnershipStats,
   },
   gallery: {
     eyebrow: "Inspiratie",
     titleBefore: "Zampieri",
     titleHighlight: "in beeld",
-    lead: "Italiaanse keukenopstellingen — stijlvol, functioneel en volledig aanpasbaar.",
+    lead: "Italiaanse keukenopstellingen die stijlvol, functioneel en volledig aanpasbaar zijn.",
     items: [
       {
         src: `${wp}/cucina3.webp`,
@@ -131,7 +131,7 @@ export const zampieriPage = {
     cta: {
       titleBefore: "Liever",
       titleHighlight: "in het echt",
-      body: "Zampieri opstellingen staan voor u klaar op de Zonnebaan — ontdek het assortiment in onze showroom.",
+      body: "Zampieri opstellingen staan voor u klaar op de Zonnebaan. Ontdek het assortiment in onze showroom.",
       label: "Boek een afspraak",
       href: "/#consultation",
     },
@@ -148,7 +148,7 @@ export const zampieriPage = {
     titleBefore: "Zampieri",
     titleHighlight: "in het echt",
     titleAfter: "bekijken?",
-    subtitle: "Italiaanse keukens en kasten in onze showroom — kom langs in Utrecht.",
+    subtitle: "Italiaanse keukens en kasten in onze showroom. Kom langs in Utrecht.",
     button: "Boek een afspraak",
     href: "/#consultation",
   },

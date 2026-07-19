@@ -15,7 +15,7 @@ export const leichtPage = {
   meta: {
     title: "Leicht Keukens · Officiële dealer in Utrecht | Keuken-Centrum",
     description:
-      "Officiële Leicht dealer in Utrecht. Ontdek Kyoto, Taj Mahal, Bossa Concrete en Ronde Wangen in onze showroom — Duits vakmanschap en actuele collecties.",
+      "Officiële Leicht dealer in Utrecht. Ontdek Kyoto, Taj Mahal, Bossa Concrete en Ronde Wangen in onze showroom, met Duits vakmanschap en actuele collecties.",
   },
   logo: `${wp}/1200px-Leicht_Küchen_logo.svg-1024x325.webp`,
   hero: {
@@ -24,7 +24,7 @@ export const leichtPage = {
     title: "Leicht",
     highlight: "Architectuur in de keuken.",
     subtitle:
-      "Duits vakmanschap, tijdloze vormgeving en ongeëvenaarde kwaliteit — als erkende Leicht-dealer in Utrecht werken wij rechtstreeks met de fabrikant. Beleef de collectie live in onze showroom aan de Zonnebaan.",
+      "Duits vakmanschap, tijdloze vormgeving en ongeëvenaarde kwaliteit. Als erkende Leicht-dealer in Utrecht werken wij rechtstreeks met de fabrikant. Beleef de collectie live in onze showroom aan de Zonnebaan.",
     cta: {
       primary: "Bezoek showroom",
       primaryHref: "/#consultation",
@@ -34,7 +34,7 @@ export const leichtPage = {
     badges: [
       { value: "Dealer", label: "Erkend" },
       { value: "Duitsland", label: "Vakmanschap" },
-      { value: "6–8 wkn", label: "Levertijd" },
+      { value: "6 tot 8 wkn", label: "Levertijd" },
     ],
   },
   intro: {
@@ -45,7 +45,7 @@ export const leichtPage = {
     paragraphs: [
       "Keuken-Centrum Utrecht is een officiële aanbieder van Leicht keukens in Nederland. Als erkende Leicht-dealer werken wij rechtstreeks samen met de fabrikant, zodat u verzekerd bent van originele producten, actuele collecties en de nieuwste innovaties op het gebied van keukendesign.",
       "In onze showroom aan de Zonnebaan 10 in Utrecht vindt u meerdere Leicht-opstellingen, waaronder de populaire series Kyoto, Taj Mahal, Bossa Concrete en Ronde Wangen. Hier kunt u de materialen zien, de afwerking voelen en ervaren wat Leicht onderscheidt: Duits vakmanschap, tijdloze vormgeving en ongeëvenaarde kwaliteit.",
-      "Onze adviseurs staan klaar om samen met u een keuken te ontwerpen die perfect past bij uw woning, smaak en budget. Bezoek onze showroom of plan een afspraak — ontdek waarom Keuken-Centrum Utrecht dé Leicht-specialist van de regio Utrecht is.",
+      "Onze adviseurs staan klaar om samen met u een keuken te ontwerpen die perfect past bij uw woning, smaak en budget. Bezoek onze showroom of plan een afspraak en ontdek waarom Keuken-Centrum Utrecht dé Leicht-specialist van de regio Utrecht is.",
     ],
     image: `${wp}/Leicht-Kyoto-showroom.webp`,
     signature: [
@@ -63,26 +63,26 @@ export const leichtPage = {
     eyebrow: "Waarom Leicht",
     titleBefore: "Duits design met ",
     titleHighlight: "karakter",
-    lead: "Leicht keukens geven uw ruimte een individueel karakter waarin u plezierig kunt koken, eten en praten met familie en vrienden — maatwerk designkeukens die ook aangrenzende woongedeelten bij de keuken betrekken.",
+    lead: "Leicht keukens geven uw ruimte een individueel karakter waarin u plezierig kunt koken, eten en praten met familie en vrienden. Deze maatwerk designkeukens betrekken ook aangrenzende woongedeelten bij de keuken.",
     items: [
       {
         title: "Modern design",
         description:
-          "De kracht van Leicht zit in het moderne design: maatwerk keukens met duurzaamheid en hoge kwaliteit in product en service. Van royale eilandkeukens tot functionele keukens op een klein oppervlak — voor ieder wat wils.",
+          "De kracht van Leicht zit in het moderne design: maatwerk keukens met duurzaamheid en hoge kwaliteit in product en service. Van royale eilandkeukens tot functionele keukens op een klein oppervlak, voor ieder wat wils.",
         icon: "sparkles",
         image: `${wp}/leicht_verve_820px_2.webp`,
       },
       {
         title: "Erkend leverancier",
         description:
-          "Wij zijn een erkend leverancier van dit Duitse keukenmerk. Onze keukenspecialisten kennen de collectie door en door en begeleiden u van eerste idee tot definitieve keuze — rechtstreeks via de fabrikant.",
+          "Wij zijn een erkend leverancier van dit Duitse keukenmerk. Onze keukenspecialisten kennen de collectie door en door en begeleiden u van eerste idee tot definitieve keuze, rechtstreeks via de fabrikant.",
         icon: "shield",
         image: `${wp}/Leicht-Bossa-showroom--scaled.webp`,
       },
       {
         title: "Designlijnen",
         description:
-          "Leicht onderscheidt zich in drie stijlen: Modern Style, Traditional Style en greeploze keukens — waaronder Avance, Contino en Avance Pro. Diverse designlijnen bieden mogelijkheden voor elk budget.",
+          "Leicht onderscheidt zich in drie stijlen: Modern Style, Traditional Style en greeploze keukens, waaronder Avance, Contino en Avance Pro. Diverse designlijnen bieden mogelijkheden voor elk budget.",
         icon: "grid",
         image: `${wp}/BOSSA_dunkel_12.webp`,
       },
@@ -94,21 +94,21 @@ export const leichtPage = {
     titleBefore: "Geen wachttijden, ",
     titleHighlight: "snelle levering",
     titleAfter: " en de beste prijs",
-    body: "Als erkende Leicht-dealer werken wij direct samen met de fabrikant. Geen tussenpersonen, geen onnodige wachttijden — wel originele Leicht keukens, actuele collecties en de scherpste prijs via onze inkooporganisatie. Heeft u al een offerte? Wij bieden vrijwel altijd een betere prijs.",
+    body: "Als erkende Leicht-dealer werken wij direct samen met de fabrikant. Geen tussenpersonen of onnodige wachttijden, maar wel originele Leicht keukens, actuele collecties en de scherpste prijs via onze inkooporganisatie. Heeft u al een offerte? Wij bieden vrijwel altijd een betere prijs.",
     highlights: [
       "Rechtstreekse samenwerking met Leicht",
       "Originele producten en actuele collecties",
-      "Snelle levering binnen 6–8 weken",
+      "Snelle levering binnen 6 tot 8 weken",
       "Wij verslaan vrijwel elke offerte",
     ],
-    note: "Direct contact met onze Leicht-specialisten — plan een vrijblijvend adviesgesprek in onze showroom.",
+    note: "Direct contact met onze Leicht-specialisten. Plan een vrijblijvend adviesgesprek in onze showroom.",
     stats: defaultPartnershipStats,
   },
   series: {
     eyebrow: "Collectie",
     titleBefore: "Leicht ",
     titleHighlight: "series",
-    lead: "Ontdek het volledige Leicht-assortiment — van populaire showroommodellen tot exclusieve designlijnen. De eerste vier series staan live opgesteld in onze showroom.",
+    lead: "Ontdek het volledige Leicht-assortiment, van populaire showroommodellen tot exclusieve designlijnen. De eerste vier series staan live opgesteld in onze showroom.",
     items: [
       {
         id: "kyoto",
@@ -260,7 +260,7 @@ export const leichtPage = {
     eyebrow: "Inspiratie",
     titleBefore: "Leicht in ",
     titleHighlight: "beeld",
-    lead: "Van donkere Bossa-concrete tot lichte architectuurkeukens — een selectie uit onze showroom en de Leicht collectie.",
+    lead: "Van donkere Bossa-concrete tot lichte architectuurkeukens: een selectie uit onze showroom en de Leicht collectie.",
     items: [
       {
         src: `${wp}/CM-1697-095-final_Koje-03.webp`,
@@ -293,7 +293,7 @@ export const leichtPage = {
     cta: {
       titleBefore: "Leicht ",
       titleHighlight: "live",
-      body: "Meerdere series staan opgesteld in onze showroom aan de Zonnebaan — plan een vrijblijvend bezoek en ervaar materialen en afwerking in het echt.",
+      body: "Meerdere series staan opgesteld in onze showroom aan de Zonnebaan. Plan een vrijblijvend bezoek en ervaar materialen en afwerking in het echt.",
       label: "Boek een afspraak",
       href: "/#consultation",
     },
@@ -311,7 +311,7 @@ export const leichtPage = {
     titleHighlight: "in het echt",
     titleAfter: " bekijken?",
     subtitle:
-      "Kyoto, Ronde Wangen, Bossa Concrete en Taj Mahal staan live opgesteld — kom langs in Utrecht.",
+      "Kyoto, Ronde Wangen, Bossa Concrete en Taj Mahal staan live opgesteld. Kom langs in Utrecht.",
     button: "Boek een afspraak",
     href: "/#consultation",
   },

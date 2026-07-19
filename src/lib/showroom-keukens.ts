@@ -4,7 +4,7 @@ export const showroomKeukens = {
   meta: {
     title: "Showroom keukens · Bezoek onze showroom in Utrecht | Keuken-Centrum",
     description:
-      "Bezoek de showroom van Keuken-Centrum Utrecht op Zonnebaan 8. Ontdek eersteklas keukens, werkbladen en A-merk apparatuur tegen betaalbare prijzen — persoonlijk advies inbegrepen.",
+      "Bezoek de showroom van Keuken-Centrum Utrecht op Zonnebaan 8. Ontdek eersteklas keukens, werkbladen en A-merk apparatuur tegen betaalbare prijzen, inclusief persoonlijk advies.",
   },
   hero: {
     image: `${wp}/IMG_0637-LEICHT-BOSSA-1024x768.webp`,
@@ -12,7 +12,7 @@ export const showroomKeukens = {
     title: "Showroom",
     highlight: "keukens",
     subtitle:
-      "Kom langs op de Zonnebaan en ervaar eersteklas keukens, materialen en apparatuur live — tegen ongelooflijk betaalbare prijzen.",
+      "Kom langs op de Zonnebaan en ervaar eersteklas keukens, materialen en apparatuur live tegen ongelooflijk betaalbare prijzen.",
   },
   intro: {
     eyebrow: "De showroom",
@@ -20,7 +20,7 @@ export const showroomKeukens = {
     highlight: "zonder de prijs",
     paragraphs: [
       "Wij begrijpen het belang van investeren in hoogwaardige keukenapparatuur en -functies, en daarom bieden wij een selectie van eersteklas keukens aan tegen ongelooflijk betaalbare prijzen.",
-      "Ons team van experts is toegewijd aan het leveren van het best mogelijke product en service. Wij geloven dat niemand kwaliteit zou moeten opofferen voor betaalbaarheid. Daarom zijn wij er trots op een breed scala aan keuzemogelijkheden te bieden die zowel functionaliteit als stijl bevatten — voor een prijs die uw portemonnee niet breekt.",
+      "Ons team van experts is toegewijd aan het leveren van het best mogelijke product en service. Wij geloven dat niemand kwaliteit zou moeten opofferen voor betaalbaarheid. Daarom zijn wij er trots op een breed scala aan keuzemogelijkheden te bieden die zowel functionaliteit als stijl bevatten, voor een prijs die uw portemonnee niet breekt.",
       "Wij nodigen u graag uit om een kijkje te nemen in onze collectie en zelf te zien welke ongelofelijke waarde wij te bieden hebben. Met onze toewijding aan klanttevredenheid en onverslaanbare prijzen, zult u geen betere keuze vinden voor uw keukenbehoeften.",
     ],
   },
@@ -77,21 +77,21 @@ export const showroomKeukens = {
       href: "/keukenbladen",
       image: `${wp}/11-6.webp`,
       description:
-        "Silestone, Dekton, Neolith en Sensa — duurzame, stijlvolle werkbladen die uw keuken naar een hoger niveau tillen.",
+        "Silestone, Dekton, Neolith en Sensa: duurzame, stijlvolle werkbladen die uw keuken naar een hoger niveau tillen.",
     },
     {
       title: "Keukens",
       href: "/keukens",
       image: `${wp}/995d9059-097b-46e3-8a90-bb11c293b83bCM19365490.webp`,
       description:
-        "Van AI Küchen tot Leicht, Nobilia, Zampieri en Cucinesse — premium merken die u live in onze showroom kunt ervaren.",
+        "Van AI Küchen tot Leicht, Nobilia, Zampieri en Cucinesse. Deze premium merken kunt u live in onze showroom ervaren.",
     },
     {
       title: "BORA",
       href: "/apparatuur/werkblad-afzuiging",
       image: `${wp}/2019_bora_pure_pued_rehkarree_rgb-1200x800-1.webp`,
       description:
-        "Koken zonder afzuigkap: krachtige werkblad-afzuiging van BORA — stil, elegant en ruimtebesparend.",
+        "Koken zonder afzuigkap met krachtige werkblad-afzuiging van BORA: stil, elegant en ruimtebesparend.",
     },
     {
       title: "Quooker",
@@ -104,7 +104,7 @@ export const showroomKeukens = {
   reasons: [
     {
       title: "Scherpe prijs",
-      body: "Complete keukens voor de scherpste prijs — zonder concessies aan kwaliteit of afwerking.",
+      body: "Complete keukens voor de scherpste prijs, zonder concessies aan kwaliteit of afwerking.",
     },
     {
       title: "Zelf samenstellen",
@@ -139,7 +139,7 @@ export const showroomKeukens = {
   cta: {
     title: "Klaar om de showroom",
     highlight: "te bezoeken?",
-    body: "Plan een vrijblijvend showroombezoek of bel ons direct — persoonlijk advies bij een goede kop koffie.",
+    body: "Plan een vrijblijvend showroombezoek of bel ons direct voor persoonlijk advies bij een goede kop koffie.",
     primaryLabel: "Plan showroombezoek",
     primaryHref: "/consultation",
     secondaryLabel: "Contact opnemen",

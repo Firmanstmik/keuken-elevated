@@ -211,7 +211,7 @@ export function AanbiedingenPage() {
               />
               <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(8,14,9,0.65)_100%)]" />
               <span className="absolute bottom-4 left-5 font-serif text-[0.95rem] italic text-[rgba(255,255,255,0.85)]">
-                Häcker showroommodellen — nu in de sale
+                Häcker showroommodellen, nu in de sale
               </span>
             </div>
           </motion.div>

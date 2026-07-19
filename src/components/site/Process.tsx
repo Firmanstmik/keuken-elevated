@@ -166,7 +166,7 @@ export function Process() {
         style={{ background: "linear-gradient(90deg, transparent, rgba(139,197,64,0.10), transparent)" }}
       />
 
-      <div className="site-container relative max-w-6xl">
+      <div className="site-container relative max-w-7xl">
         <SectionChapter index={7} label="Proces" light />
 
         {/* ── Section header ── */}

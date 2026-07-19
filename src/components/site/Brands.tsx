@@ -33,7 +33,7 @@ function logoClass(brand: Brand) {
 const leichtBrand: Brand = {
   name: "Leicht",
   logo: leichtLogo,
-  tag: "Architecturaal Duits design — al meer dan 90 jaar de maatstaf voor de premium keuken.",
+  tag: "Architecturaal Duits design, al meer dan 90 jaar de maatstaf voor de premium keuken.",
   category: "Keukens",
   origin: "Duitsland",
   href: "/keukens/leicht",
@@ -52,7 +52,7 @@ const kitchenBrands: Brand[] = [
   {
     name: "Nobilia",
     logo: nobiliaLogo,
-    tag: "Made in Germany — precisie op schaal.",
+    tag: "Made in Germany, met precisie op schaal.",
     category: "Keukens",
     origin: "Duitsland",
     href: "/keukens/nobilia",
@@ -77,7 +77,7 @@ const kitchenBrands: Brand[] = [
 
 const applianceBrands: Brand[] = [
   { name: "Bora", logo: boraLogo, tag: "Revolutionair koken zonder afzuigkap.", category: "Apparatuur", origin: "Duitsland" },
-  { name: "Miele", logo: mieleLogo, tag: "Immer besser — een leven lang.", category: "Apparatuur", origin: "Duitsland", badge: true },
+  { name: "Miele", logo: mieleLogo, tag: "Immer besser, een leven lang.", category: "Apparatuur", origin: "Duitsland", badge: true },
   { name: "Quooker", logo: quookerLogo, tag: "De originele kokendwaterkraan.", category: "Apparatuur", origin: "Nederland" },
   { name: "Gaggenau", logo: gaggenauLogo, tag: "The difference is Gaggenau.", category: "Apparatuur", origin: "Duitsland" },
 ];
@@ -190,15 +190,15 @@ export function Brands() {
       />
       <div className="brands-scene__aurora" aria-hidden="true" />
 
-      <div className="site-container relative z-10">
-        <SectionChapter index={1} label="Partners" light className="xl:mx-auto xl:max-w-[1240px]" />
+      <div className="site-container relative z-10 max-w-7xl">
+        <SectionChapter index={1} label="Partners" light />
 
         <motion.div
           initial={reduceMotion ? false : "hidden"}
           whileInView="visible"
           viewport={motionViewport}
           variants={reduceMotion ? undefined : staggerHeader}
-          className="mt-6 grid gap-x-16 gap-y-14 xl:mx-auto xl:max-w-[1240px] xl:grid-cols-[minmax(0,0.86fr)_minmax(0,1.14fr)]"
+          className="mt-6 grid gap-x-16 gap-y-14 xl:grid-cols-[minmax(0,0.86fr)_minmax(0,1.14fr)]"
         >
           {/* ── LEFT: sticky editorial statement ─────────────── */}
           <motion.div
@@ -217,7 +217,7 @@ export function Brands() {
             </h2>
 
             <p className="mt-6 max-w-[30rem] text-[1.02rem] font-light leading-[1.7] tracking-[0.01em] text-[rgba(245,242,236,0.68)]">
-              Van Duitse precisie tot Italiaanse elegantie — wij verenigen alleen merken
+              Van Duitse precisie tot Italiaanse elegantie. Wij verenigen alleen merken
               die passen bij een hoogwaardige showroom: architectonische keukens,
               verfijnde afwerkingen en apparatuur die vertrouwen uitstraalt.
             </p>

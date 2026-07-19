@@ -63,7 +63,7 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <main className="bg-[var(--background)] text-[var(--foreground)]">
+    <main className="home-page bg-[var(--background)] text-[var(--foreground)]">
       <Nav />
 
       {/* 1. HERO — Emotional impact */}

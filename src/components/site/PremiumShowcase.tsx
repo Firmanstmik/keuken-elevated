@@ -165,7 +165,7 @@ export function PremiumShowcase() {
         }}
       />
 
-      <div className="site-container relative">
+      <div className="site-container relative max-w-7xl">
         <SectionChapter index={5} label="Showroom" />
 
         <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-12 xl:gap-16">
@@ -363,7 +363,7 @@ export function PremiumShowcase() {
             >
               De talloze keukenopstellingen in onze showroom geven u genoeg inspiratie.
               Doordat we met meerdere keukenfabrikanten werken, bieden we een groot en breed
-              assortiment aan — voor elk budget een droomkeuken.
+              assortiment aan. Zo is er voor elk budget een droomkeuken.
             </motion.p>
 
             <motion.p
@@ -382,7 +382,7 @@ export function PremiumShowcase() {
                   {index < highlights.length - 1 ? ", " : ""}
                 </span>
               ))}{" "}
-              tot verlichting — alles wat met keukens te maken heeft, is bij ons verkrijgbaar.
+              tot verlichting: alles wat met keukens te maken heeft, is bij ons verkrijgbaar.
             </motion.p>
 
             {/* CTA — primary solid + secondary text link */}

@@ -80,7 +80,7 @@ export function FinalCta() {
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[rgba(248,246,242,0.87)]" />
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_40%_20%,rgba(139,197,64,0.05),transparent_45%)]" />
 
-      <div className="site-container relative">
+      <div className="site-container relative max-w-7xl">
         <SectionChapter index={8} label="Start ontwerp" />
         {/* Header */}
         <motion.div

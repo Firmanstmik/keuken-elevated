@@ -167,7 +167,7 @@ export function LeichtSeriesPage({ series }: { series: LeichtSeriesContent }) {
                 {series.name} <em className="italic text-[var(--green-highlight)]">ervaren</em>?
               </h2>
               <p className="mt-4 text-[1rem] font-light text-[rgba(255,255,255,0.72)]">
-                Kom langs in Utrecht of plan een adviesgesprek — wij ontwerpen deze serie volledig op maat.
+                Kom langs in Utrecht of plan een adviesgesprek. Wij ontwerpen deze serie volledig op maat.
               </p>
             </div>
             <PremiumPillButton href="/#consultation" size="xl">

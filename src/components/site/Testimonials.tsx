@@ -583,8 +583,8 @@ export function Testimonials() {
               className="mx-auto mt-6 max-w-xl text-[15px] leading-relaxed text-white/50"
               style={{ fontFamily: "var(--font-body)" }}
             >
-              Persoonlijk ontwerpadvies, Duitse precisie en Italiaanse elegantie
-              — samengebracht in een installatie die generaties meegaat.
+              Persoonlijk ontwerpadvies, Duitse precisie en Italiaanse elegantie komen samen
+              in een installatie die generaties meegaat.
             </motion.p>
           </motion.div>
         </motion.div>

@@ -40,7 +40,7 @@ export const keukensOverview = {
   meta: {
     title: "Keukens · A-merk keukens bij Keuken-Centrum Utrecht",
     description:
-      "Breed assortiment A-merk keukens van Leicht, Nobilia, AI Küchen, Zampieri en Cucinesse — betaalbare prijzen, 3D-ontwerp en gegarandeerd de scherpste prijs in Utrecht.",
+      "Breed assortiment A-merk keukens van Leicht, Nobilia, AI Küchen, Zampieri en Cucinesse, met betaalbare prijzen, 3D-ontwerp en gegarandeerd de scherpste prijs in Utrecht.",
   },
   hero: {
     image: `${wp}/Schermafbeelding-2021-05-19-om-10.29.17.webp`,
@@ -53,15 +53,15 @@ export const keukensOverview = {
     title: "Keukens",
     highlight: "Kom langs.",
     subtitle:
-      "Leicht. Nobilia. Zampieri. AI Küchen. Cucinesse. — een breed assortiment A-merk keukens en apparatuur tegen betaalbare prijzen, volledig op maat ontworpen met onze 3D-software.",
+      "Leicht. Nobilia. Zampieri. AI Küchen. Cucinesse. Een breed assortiment A-merk keukens en apparatuur tegen betaalbare prijzen, volledig op maat ontworpen met onze 3D-software.",
   },
   intro: {
     eyebrow: "Ons assortiment",
-    title: "Van wens tot droomkeuken — stap voor stap",
+    title: "Van wens tot droomkeuken, stap voor stap",
     paragraphs: [
       "Wij bieden een breed assortiment A-merk keukens en apparatuur tegen betaalbare prijzen. Een klant vertelt ons eerst wat voor soort keuken ze willen, of wij achterhalen met het stellen van vragen hun eisen en wensen. We leggen de mogelijkheden en nieuwste trends uit.",
       "Vervolgens komt de gewenste en noodzakelijke inbouwapparatuur en de grote variatie aan merken die wij daarin bieden aan bod. Daarna gaan we nog dieper in op de gewenste keuken: welk type werkblad geschikt is, de overige accessoires, levertijden en tips voor de montage.",
-      "Nostalgisch, landelijk, modern of trendy design — op basis van het type keuken dat u wenst en de beschikbare ruimte adviseren wij over de meest handige opstelling. Vervolgens ontwerpen wij de keuken met onze 3D-software geheel naar wens, stap voor stap.",
+      "Nostalgisch, landelijk, modern of trendy design: op basis van het type keuken dat u wenst en de beschikbare ruimte adviseren wij over de meest handige opstelling. Vervolgens ontwerpen wij de keuken met onze 3D-software geheel naar wens, stap voor stap.",
     ],
   },
   brands: [
@@ -115,7 +115,7 @@ export const keukensOverview = {
       country: "Italië",
       tagline: "Modulaire keukens sinds 1979",
       description:
-        "Modulaire keukens met oneindig veel oplossingen — handgrepen, werkbladen en fronts in vele vormen en afwerkingen, aangevuld met bijpassende livingmeubels op maat.",
+        "Modulaire keukens met oneindig veel oplossingen: handgrepen, werkbladen en fronts in vele vormen en afwerkingen, aangevuld met bijpassende livingmeubels op maat.",
       image: `${wp}/cucinesse-cucina-LAB-3-3.webp`,
       href: "/keukens/cucinesse",
       logo: `${wp}/cucinesse-logo.webp`,
@@ -130,12 +130,12 @@ export const keukensOverview = {
     },
     {
       title: "Wij verslaan elke prijs",
-      body: "Welke keuken u ook kiest, u wilt er niet te veel voor betalen. En waarom zou u? Wij leveren de kwaliteitskeuken van uw dromen die naadloos past bij uw portemonnee — compleet met topmerk-apparatuur, zorgeloze garantie en uitstekende service, zonder opdringerig gedoe.",
+      body: "Welke keuken u ook kiest, u wilt er niet te veel voor betalen. En waarom zou u? Wij leveren de kwaliteitskeuken van uw dromen die naadloos past bij uw portemonnee, compleet met topmerk-apparatuur, zorgeloze garantie en uitstekende service, zonder opdringerig gedoe.",
     },
   ],
   customNote: [
-    "Een keuken kan in vele verschillende stijlen worden uitgevoerd. We kennen keukens met een landelijke of klassieke uitstraling, maar ook in een moderne stijl of luxe uitvoering met kookeiland. Sommige trends zijn blijvend — zo zien we steeds vaker een combinatie van stijlen, zoals een 'moderne, landelijke keuken' of 'strakke, stoere keuken'. Bij deze keukens is de grens tussen twee stijlen vervaagd.",
-    "Wat uw stijl ook is, bij Keuken-Centrum hebben wij altijd de oplossing. Wij kunnen uw keuken geheel op maat maken en met onze vakkennis adviseren wij u over de combinaties en materialen die mogelijk zijn. Ook de keukenapparatuur en de plaatsing ervan is geheel afhankelijk van uw wensen — van een luxe stoomoven of wijnkoeler tot een combi-oven of extra breed gasfornuis.",
+    "Een keuken kan in vele verschillende stijlen worden uitgevoerd. We kennen keukens met een landelijke of klassieke uitstraling, maar ook in een moderne stijl of luxe uitvoering met kookeiland. Sommige trends zijn blijvend. Zo zien we steeds vaker een combinatie van stijlen, zoals een 'moderne, landelijke keuken' of 'strakke, stoere keuken'. Bij deze keukens is de grens tussen twee stijlen vervaagd.",
+    "Wat uw stijl ook is, bij Keuken-Centrum hebben wij altijd de oplossing. Wij kunnen uw keuken geheel op maat maken en met onze vakkennis adviseren wij u over de combinaties en materialen die mogelijk zijn. Ook de keukenapparatuur en de plaatsing ervan is geheel afhankelijk van uw wensen, van een luxe stoomoven of wijnkoeler tot een combi-oven of extra breed gasfornuis.",
   ],
   faq: sharedKitchenFaq,
   advisors: [

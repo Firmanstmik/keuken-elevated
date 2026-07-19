@@ -99,7 +99,7 @@ function TrustBar({ reduceMotion }: { reduceMotion: boolean | null }) {
         style={{ background: "linear-gradient(90deg, transparent, rgba(139,197,64,0.28), transparent)" }}
       />
 
-      <div className="site-container grid grid-cols-2 gap-0 py-11 md:grid-cols-4">
+      <div className="site-container grid max-w-7xl grid-cols-2 gap-0 py-11 md:grid-cols-4">
         {trustStats.map((stat, i) => (
           <motion.div
             key={stat.label}
@@ -351,7 +351,7 @@ export function Footer() {
       {/* ── Trust bar ───────────────────────────────── */}
       <TrustBar reduceMotion={reduceMotion} />
 
-      <div className="site-container relative z-10">
+      <div className="site-container relative z-10 max-w-7xl">
 
         {/* ── SECTION 1 — Hero CTA ─────────────────── */}
         <motion.div

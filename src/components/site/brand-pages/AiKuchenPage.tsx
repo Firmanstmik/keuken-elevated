@@ -391,7 +391,7 @@ export function AiKuchenPage() {
                 {[
                   { icon: Factory, label: "Directe fabriek", value: "Beste prijs" },
                   { icon: ShieldCheck, label: "CBW + 10 jaar", value: "Garantie" },
-                  { icon: Clock, label: "Gemiddelde levertijd", value: "6–8 weken" },
+                  { icon: Clock, label: "Gemiddelde levertijd", value: "6 tot 8 weken" },
                   { icon: Award, label: "ISO 9001 gecertificeerd", value: "Kwaliteit" },
                 ].map((stat) => (
                   <div key={stat.label} className="brand-stat-cell">
@@ -403,7 +403,7 @@ export function AiKuchenPage() {
               </div>
               <p className="mt-5 flex items-center gap-2.5 text-[0.78rem] font-light tracking-[0.02em] text-[rgba(255,255,255,0.48)]">
                 <span className="h-px w-8 bg-[rgba(168,217,90,0.4)]" aria-hidden="true" />
-                Al een offerte elders? Neem deze mee — wij bieden vrijwel altijd beter.
+                Al een offerte elders? Neem deze mee. Wij bieden vrijwel altijd beter.
               </p>
             </motion.div>
           </div>
@@ -428,7 +428,7 @@ export function AiKuchenPage() {
             </div>
             <div className="flex items-end gap-6 md:gap-8">
               <p className="max-w-[19rem] text-[0.95rem] font-light leading-[1.7] text-[var(--text-soft)]">
-                Officiële keukenopstellingen uit onze showroom — elk ontwerp volledig aanpasbaar.
+                Officiële keukenopstellingen uit onze showroom. Elk ontwerp is volledig aanpasbaar.
               </p>
               <div className="hidden shrink-0 flex-col items-end border-l border-[rgba(139,197,64,0.2)] pl-6 md:flex">
                 <span className="font-serif text-[2.6rem] italic leading-none text-[var(--green)]">
@@ -574,7 +574,7 @@ export function AiKuchenPage() {
                   <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" strokeWidth={1.8} />
                 </a>
                 <p className="relative z-[1] mt-4 text-[0.76rem] font-light tracking-[0.03em] text-[rgba(255,255,255,0.45)]">
-                  Ma–Vr 09:00–18:00 · Za 09:00–17:00
+                  Maandag tot vrijdag 09:00 tot 18:00 · Zaterdag 09:00 tot 17:00
                 </p>
               </div>
             </motion.div>
@@ -620,7 +620,7 @@ export function AiKuchenPage() {
               </h2>
             </div>
             <p className="max-w-[21rem] text-[0.95rem] font-light leading-[1.7] text-[var(--text-soft)]">
-              Persoonlijk advies van mensen die hun vak verstaan — loop binnen op de Zonnebaan.
+              Persoonlijk advies van mensen die hun vak verstaan. Loop binnen op de Zonnebaan.
             </p>
           </motion.div>
 

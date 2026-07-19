@@ -180,7 +180,7 @@ export function Showroom() {
             className="mt-3 text-[1.0rem] font-light leading-[1.75] tracking-[0.005em] text-[rgba(247,244,238,0.46)]"
             style={{ fontFamily: "var(--font-body)" }}
           >
-            Ervaar materialen, kleuren en afwerkingen — waar vakmanschap zichtbaar wordt.
+            Ervaar materialen, kleuren en afwerkingen op een plek waar vakmanschap zichtbaar wordt.
           </motion.p>
 
           {/* Brand positioning tagline */}
@@ -215,7 +215,7 @@ export function Showroom() {
             >
               <motion.img
                 src={kc.showroomImg}
-                alt="Showroom Keuken-Centrum Utrecht — Zonnebaan 8"
+                alt="Showroom Keuken-Centrum Utrecht aan de Zonnebaan 8"
                 loading="lazy"
                 style={reduceMotion ? undefined : { y: largeImgParallax }}
                 className="h-[120%] w-full -translate-y-[10%] object-cover will-change-transform transition-[transform,filter] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.030] group-hover:brightness-[1.05]"

@@ -181,7 +181,7 @@ function HeroScrollCue({ reduceMotion }: { reduceMotion: boolean | null }) {
     <motion.button
       type="button"
       onClick={scrollToNext}
-      aria-label="Ontdek meer — scroll naar beneden"
+      aria-label="Ontdek meer, scroll naar beneden"
       initial={reduceMotion ? false : { opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: motionDuration.luxury, ease: motionEase.premium, delay: 1.1 }}

@@ -727,7 +727,7 @@ export function ConsultationSection() {
                     <div className="mt-6 w-full space-y-3 border-t border-[#EFE8D9] pt-5">
                       {[
                         { label: "Showroom", value: form.showroom },
-                        { label: "Budget", value: form.budget || "—" },
+                        { label: "Budget", value: form.budget || "Niet opgegeven" },
                         { label: "Gewenste datum", value: form.date || "-" },
                       ].map((row) => (
                         <div

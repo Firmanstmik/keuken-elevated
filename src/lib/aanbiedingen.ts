@@ -4,7 +4,7 @@ export const aanbiedingen = {
   meta: {
     title: "Aanbiedingen · Showroomkeukens vanaf €3.227 | Keuken-Centrum Utrecht",
     description:
-      "Spectaculaire aanbiedingen op complete keukens, showroommodellen en inbouwapparatuur van topmerken. Showroomkeukens vanaf €3.227 — kortingen tot 50%, inclusief apparatuur.",
+      "Spectaculaire aanbiedingen op complete keukens, showroommodellen en inbouwapparatuur van topmerken. Showroomkeukens vanaf €3.227, met kortingen tot 50% en inclusief apparatuur.",
   },
   hero: {
     image: `${wp}/keukens-uit-showroom-beste-prijs-.webp`,
@@ -12,7 +12,7 @@ export const aanbiedingen = {
     title: "Showroomkeukens",
     highlight: "vanaf €3.227,-",
     subtitle:
-      "Het hele jaar door spectaculaire aanbiedingen op complete keukens, showroommodellen en inbouwapparatuur van topmerken — voor de beste prijs van Nederland.",
+      "Het hele jaar door spectaculaire aanbiedingen op complete keukens, showroommodellen en inbouwapparatuur van topmerken, voor de beste prijs van Nederland.",
     badges: [
       { value: "30+", label: "Aanbiedingen" },
       { value: "50%", label: "Korting tot" },
@@ -24,24 +24,24 @@ export const aanbiedingen = {
     title: "Topkeukens tegen een scherpe prijs",
     paragraphs: [
       "Ben je op zoek naar een nieuwe keuken tegen een scherpe prijs? Bij Keuken-Centrum Utrecht vind je het hele jaar door spectaculaire aanbiedingen op complete keukens, showroommodellen en inbouwapparatuur van topmerken.",
-      "Of je nu houdt van modern, klassiek of industrieel design — wij hebben de keuken die bij jou past. Wij leveren uitsluitend keukens van hoogwaardige merken zoals Leicht, Nobilia, AI Küchen en Zampieri.",
-      "Daarnaast profiteer je van extra korting op inbouwapparatuur van Miele, Siemens, AEG, ATAG, Smeg en Bosch — vaak direct uit voorraad leverbaar. Zo combineer je stijl, functionaliteit en betrouwbaarheid zonder te veel te betalen.",
+      "Of je nu houdt van modern, klassiek of industrieel design, wij hebben de keuken die bij jou past. Wij leveren uitsluitend keukens van hoogwaardige merken zoals Leicht, Nobilia, AI Küchen en Zampieri.",
+      "Daarnaast profiteer je van extra korting op inbouwapparatuur van Miele, Siemens, AEG, ATAG, Smeg en Bosch, vaak direct uit voorraad leverbaar. Zo combineer je stijl, functionaliteit en betrouwbaarheid zonder te veel te betalen.",
     ],
   },
   benefits: [
     {
       title: "Direct voordeel op topkeukens",
-      body: "Spectaculaire kortingen op onze showroomkeukens — volledig uitgerust met A-merk apparatuur en direct leverbaar. Zo haal je jouw droomkeuken in huis voor de helft van de oorspronkelijke prijs.",
+      body: "Spectaculaire kortingen op onze showroomkeukens. Ze zijn volledig uitgerust met A-merk apparatuur en direct leverbaar. Zo haal je jouw droomkeuken in huis voor de helft van de oorspronkelijke prijs.",
       image: `${wp}/hacker-keuken-sale-prijs-.webp`,
     },
     {
       title: "Snel, compleet en betaalbaar",
-      body: "Onze showroommodellen zijn direct beschikbaar en zorgvuldig onderhouden. Dezelfde kwaliteit en uitstraling als een nieuwe keuken — zonder wachttijd én tegen een scherpe aanbiedingsprijs.",
+      body: "Onze showroommodellen zijn direct beschikbaar en zorgvuldig onderhouden. Je krijgt dezelfde kwaliteit en uitstraling als een nieuwe keuken, zonder wachttijd én tegen een scherpe aanbiedingsprijs.",
       image: `${wp}/hacker-showroom-keuken-sale.webp`,
     },
     {
       title: "Persoonlijk advies bij jouw keuze",
-      body: "Twijfel je welke showroomkeuken het beste bij jouw woning past? Onze ervaren keukenadviseurs helpen je graag met eerlijk advies, maatwerk en een offerte op maat — geheel vrijblijvend.",
+      body: "Twijfel je welke showroomkeuken het beste bij jouw woning past? Onze ervaren keukenadviseurs helpen je graag met eerlijk advies, maatwerk en een offerte op maat. Dat is geheel vrijblijvend.",
       image: `${wp}/showroom-keuken-in-de-verkoop-utrecht.webp`,
     },
   ],
@@ -52,7 +52,7 @@ export const aanbiedingen = {
     image: `${wp}/hacker-keuken.webp`,
     paragraphs: [
       "Bij Keuken-Centrum Utrecht vind je op dit moment veel Häcker-keukens in de sale. Deze Duitse topkeukens staan bekend om hun hoogwaardige afwerking, slimme indeling en tijdloos design.",
-      "Dankzij onze showroomvernieuwing bieden we nu diverse Häcker-modellen aan met kortingen tot wel 50% — compleet inclusief apparatuur. Zo haal je de kwaliteit van een Duitse designkeuken in huis voor een verrassend lage prijs.",
+      "Dankzij onze showroomvernieuwing bieden we nu diverse Häcker-modellen aan met kortingen tot wel 50%, compleet inclusief apparatuur. Zo haal je de kwaliteit van een Duitse designkeuken in huis voor een verrassend lage prijs.",
     ],
     stats: [
       { value: "50%", label: "Korting tot" },
@@ -87,7 +87,7 @@ export const aanbiedingen = {
     },
     {
       q: "Zijn showroomkeukens nog steeds van A-merk kwaliteit?",
-      a: "Absoluut. Al onze showroomkeukens zijn afkomstig van A-merken zoals Leicht, Nobilia, AI Küchen en Zampieri. Je krijgt dezelfde hoogwaardige materialen, scharnieren en apparatuur als bij een nieuwe keuken — voor een veel lagere prijs.",
+      a: "Absoluut. Al onze showroomkeukens zijn afkomstig van A-merken zoals Leicht, Nobilia, AI Küchen en Zampieri. Je krijgt dezelfde hoogwaardige materialen, scharnieren en apparatuur als bij een nieuwe keuken, voor een veel lagere prijs.",
     },
   ],
   advisors: [

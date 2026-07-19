@@ -14,7 +14,7 @@ export const nobiliaPage = {
   meta: {
     title: "Nobilia keukens · Duitse kwaliteit bij Keuken-Centrum Utrecht",
     description:
-      "Ontdek Nobilia bij Keuken-Centrum Utrecht. Officieel Duits merk, gegarandeerd laagste prijs, eigen montagedienst en vijf jaar standaardgarantie — ruim een half miljoen keukens per jaar.",
+      "Ontdek Nobilia bij Keuken-Centrum Utrecht. Een officieel Duits merk met gegarandeerd de laagste prijs, een eigen montagedienst, vijf jaar standaardgarantie en ruim een half miljoen keukens per jaar.",
   },
   logo: `${wp}/Logo-524-112-1.webp`,
   hero: {
@@ -23,7 +23,7 @@ export const nobiliaPage = {
     title: "Nobilia",
     highlight: "Duitse kwaliteit. Scherpe prijs.",
     subtitle:
-      "Europa's meest verkochte keukenmerk — trendy decors, eindeloze variatie en betrouwbare Duitse degelijkheid, snel geleverd en professioneel gemonteerd.",
+      "Europa's meest verkochte keukenmerk biedt trendy decors, eindeloze variatie en betrouwbare Duitse degelijkheid, snel geleverd en professioneel gemonteerd.",
     cta: {
       primary: "Bezoek showroom",
       primaryHref: "/#consultation",
@@ -38,12 +38,12 @@ export const nobiliaPage = {
   },
   intro: {
     eyebrow: "Het merk",
-    titleBefore: "Bijna een half miljoen keukens per jaar —",
+    titleBefore: "Bijna een half miljoen keukens per jaar:",
     titleHighlight: "kwaliteit",
     titleAfter: "die nooit uit het oog verloren gaat",
     paragraphs: [
-      "Nobilia is het officiële Duitse keukenmerk dat jaarlijks bijna een half miljoen keukens produceert en verkoopt. Ruim dertig procent van de complete productie vindt zijn weg naar Duitse huishoudens — een bewijs van vertrouwen in de thuismarkt.",
-      "Bij dit schaalbare productieproces gaat kwaliteit nooit verloren. Processen verlopen probleemloos, waardoor elke keuken dezelfde Duitse degelijkheid en betrouwbaarheid uitstraalt — van trendy decors tot innovatieve kwaliteitsverbeteringen tot in detail.",
+      "Nobilia is het officiële Duitse keukenmerk dat jaarlijks bijna een half miljoen keukens produceert en verkoopt. Ruim dertig procent van de complete productie vindt zijn weg naar Duitse huishoudens, een bewijs van vertrouwen in de thuismarkt.",
+      "Bij dit schaalbare productieproces gaat kwaliteit nooit verloren. Processen verlopen probleemloos, waardoor elke keuken dezelfde Duitse degelijkheid en betrouwbaarheid uitstraalt, van trendy decors tot innovatieve kwaliteitsverbeteringen tot in detail.",
       "Niet alleen de betaalbaarheid maakt Nobilia aantrekkelijk, maar ook de zekerheid die wij bieden: snelle levering, professionele montage door onze eigen montagedienst en gegarandeerd de laagste prijs van topkwaliteit met topservice.",
     ],
     image: `${wp}/Schermafbeelding-2021-06-07-om-16.37.15.webp`,
@@ -75,14 +75,14 @@ export const nobiliaPage = {
       {
         title: "Duitse kwaliteit",
         description:
-          "Duitse kwaliteit en degelijkheid — bijna een half miljoen keukens per jaar, zonder concessies aan productieprocessen of afwerking.",
+          "Duitse kwaliteit en degelijkheid in bijna een half miljoen keukens per jaar, zonder concessies aan productieprocessen of afwerking.",
         icon: "shield",
         image: `${wp}/Schermafbeelding-2021-06-07-om-16.37.15.webp`,
       },
       {
         title: "Snelle levering & montage",
         description:
-          "Doordat wij de keuken snel kunnen leveren en monteren, bent u in no-time aan de slag in uw nieuwe keuken — zonder zorgen over installatie.",
+          "Doordat wij de keuken snel kunnen leveren en monteren, bent u in no-time aan de slag in uw nieuwe keuken, zonder zorgen over installatie.",
         icon: "award",
         image: `${wp}/Schermafbeelding-2021-06-07-om-16.39.24.webp`,
       },
@@ -93,7 +93,7 @@ export const nobiliaPage = {
     eyebrow: "Direct van fabrikant",
     titleBefore: "Nobilia keukens voor de",
     titleHighlight: "scherpste prijs",
-    body: "U koopt een Nobilia keuken via ons voor gegarandeerd de laagste prijs van topkwaliteit en met topservice. Nobilia heeft een uitermate breed assortiment — wij nodigen u van harte uit om in onze showroom te komen kijken.",
+    body: "U koopt een Nobilia keuken via ons voor gegarandeerd de laagste prijs van topkwaliteit en met topservice. Nobilia heeft een uitermate breed assortiment. Wij nodigen u van harte uit om in onze showroom te komen kijken.",
     highlights: [
       "Duitse kwaliteit en degelijkheid",
       "Gegarandeerd de laagste prijs",
@@ -101,14 +101,14 @@ export const nobiliaPage = {
       "Standaard vijf jaar garantie",
       "Altijd één jaar garantie op montagewerkzaamheden",
     ],
-    note: "Al een offerte elders? Neem deze mee — wij bieden vrijwel altijd beter.",
+    note: "Al een offerte elders? Neem deze mee. Wij bieden vrijwel altijd beter.",
     stats: defaultPartnershipStats,
   },
   gallery: {
     eyebrow: "Inspiratie",
     titleBefore: "Nobilia",
     titleHighlight: "in beeld",
-    lead: "Officiële keukenopstellingen — trendy decors en eindeloze configuratiemogelijkheden.",
+    lead: "Officiële keukenopstellingen met trendy decors en eindeloze configuratiemogelijkheden.",
     items: [
       {
         src: `${wp}/453_flash.webp`,
@@ -132,7 +132,7 @@ export const nobiliaPage = {
     cta: {
       titleBefore: "Liever",
       titleHighlight: "in het echt",
-      body: "Nobilia opstellingen staan voor u klaar op de Zonnebaan — kom langs en ontdek het volledige assortiment.",
+      body: "Nobilia opstellingen staan voor u klaar op de Zonnebaan. Kom langs en ontdek het volledige assortiment.",
       label: "Boek een afspraak",
       href: "/#consultation",
     },
@@ -149,7 +149,7 @@ export const nobiliaPage = {
     titleBefore: "Nobilia",
     titleHighlight: "in het echt",
     titleAfter: "bekijken?",
-    subtitle: "Uitermate breed assortiment in onze showroom — kom langs in Utrecht.",
+    subtitle: "Uitermate breed assortiment in onze showroom. Kom langs in Utrecht.",
     button: "Boek een afspraak",
     href: "/#consultation",
   },

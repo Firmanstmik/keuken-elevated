@@ -11,7 +11,6 @@ import {
   type Variants,
 } from "framer-motion";
 import { ArrowRight } from "@/components/ui/icons";
-import { CountUpValue } from "@/components/site/CountUpValue";
 import { SectionChapter } from "@/components/site/SectionChapter";
 import designImg from "@/assets/Eén plaats voor al uw wensen/Design_keukens.webp";
 import priceImg from "@/assets/Eén plaats voor al uw wensen/Keukens_voor_elke_prijs.webp";
@@ -22,76 +21,41 @@ import { motionViewport } from "@/lib/motion";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
-const stats = [
-  { value: 50, suffix: "+", label: "Keukenconcepten" },
-  { value: 1000, suffix: "+", label: "Materiaalcombinaties" },
-  { value: 45, suffix: "+", label: "Jaar ervaring" },
-] as const;
-
 const collections = [
   {
     id: "design",
+    number: "01",
     featured: true,
     collectionTitle: "Design Collectie",
     luxuryDescription:
       "Architecturale keukens met verfijnde materialen en tijdloze verhoudingen.",
     title: "Design Keukens",
     image: designImg,
-    href: "#showroom",
+    href: "/keukens",
   },
   {
     id: "modern",
+    number: "02",
     featured: false,
     collectionTitle: "Modern Wonen",
     luxuryDescription:
       "Hedendaags wonen met slanke lijnen, warme texturen en intelligente indeling.",
     title: "Moderne Keukens",
     image: modernImg,
-    href: "#showroom",
+    href: "/#collections",
   },
   {
     id: "budget",
+    number: "03",
     featured: false,
     collectionTitle: "Slim Budget",
     luxuryDescription:
-      "Topkwaliteit en persoonlijk advies — voor elk budget, zonder compromis.",
+      "Topkwaliteit en persoonlijk advies voor elk budget, zonder compromis.",
     title: "Keukens voor elke prijs",
     image: priceImg,
     href: "#consultation",
   },
 ] as const;
-
-// ─── Stat icons ───────────────────────────────────────────────────────────────
-
-function LayersIcon() {
-  return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 2L2 7l10 5 10-5-10-5z" />
-      <path d="M2 17l10 5 10-5" />
-      <path d="M2 12l10 5 10-5" />
-    </svg>
-  );
-}
-
-function SwatchIcon() {
-  return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M11 2a2 2 0 0 0-2 2v7H4a2 2 0 0 0-2 2v2c0 1.1.9 2 2 2h3l6 5v-5h4a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-1V4a2 2 0 0 0-2-2h-3z" />
-      <path d="M15 8h.01M15 12h.01" />
-    </svg>
-  );
-}
-
-function AwardIcon() {
-  return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="8" r="6" />
-      <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
-    </svg>
-  );
-}
-
-const statIcons = [<LayersIcon key="layers" />, <SwatchIcon key="swatch" />, <AwardIcon key="award" />];
 
 // ─── Motion config ────────────────────────────────────────────────────────────
 
@@ -206,6 +170,15 @@ function LuxuryCard({ item, reduceMotion }: CardProps) {
           willChange: "transform",
         }}
       >
+        {/* Architectural inner frame */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-3 z-20 rounded-[20px] border border-white/[0.08] transition-all duration-700 group-hover:inset-2.5 group-hover:border-[rgba(216,190,135,0.32)]"
+        >
+          <span className="absolute -left-px -top-px h-8 w-8 rounded-tl-[20px] border-l border-t border-[rgba(216,190,135,0.72)] transition-all duration-700 group-hover:h-11 group-hover:w-11" />
+          <span className="absolute -bottom-px -right-px h-8 w-8 rounded-br-[20px] border-b border-r border-[rgba(216,190,135,0.72)] transition-all duration-700 group-hover:h-11 group-hover:w-11" />
+        </div>
+
         {/* ── Parallax image ── */}
         <motion.img
           src={item.image}
@@ -275,12 +248,18 @@ function LuxuryCard({ item, reduceMotion }: CardProps) {
           className="absolute inset-0 z-30 flex flex-col justify-end p-6 outline-none focus-visible:ring-2 focus-visible:ring-[rgba(200,169,107,0.8)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0D0F0A] md:p-8"
           style={{ borderRadius: "inherit" }}
         >
+          <span
+            aria-hidden="true"
+            className="absolute right-6 top-6 flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-black/15 font-serif text-[0.7rem] italic text-white/65 backdrop-blur-md transition-colors duration-500 group-hover:border-[rgba(200,169,107,0.38)] group-hover:text-[#D8BE87] md:right-7 md:top-7"
+          >
+            {item.number}
+          </span>
+
           {/* Collection tag */}
           <p
-            className="mb-3 flex items-center gap-2.5 text-[0.58rem] font-semibold uppercase tracking-[0.28em] text-[rgba(200,169,107,0.78)] transition-colors duration-500 group-hover:text-[#D8BE87]"
+            className="mb-3 text-[0.58rem] font-semibold uppercase tracking-[0.28em] text-[rgba(200,169,107,0.78)] transition-colors duration-500 group-hover:text-[#D8BE87]"
             style={{ fontFamily: "var(--font-body)" }}
           >
-            <span className="h-px w-6 bg-current opacity-60" />
             {item.featured ? "Signature collectie" : "Ontdek de collectie"}
           </p>
 
@@ -301,9 +280,8 @@ function LuxuryCard({ item, reduceMotion }: CardProps) {
           <p
             className={[
               "mt-3 max-w-[31rem] overflow-hidden font-light leading-[1.65] text-[rgba(245,242,236,0.64)]",
-              "transition-[max-height,opacity,margin,color] duration-[750ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
-              isFeatured ? "[max-height:72px]" : "[max-height:0px] text-transparent",
-              "group-hover:text-[rgba(245,242,236,0.82)] group-hover:[max-height:72px]",
+              "[max-height:72px] transition-colors duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
+              "group-hover:text-[rgba(245,242,236,0.86)]",
               isFeatured ? "text-[0.9rem]" : "text-[0.82rem]",
             ].join(" ")}
             style={{ fontFamily: "var(--font-body)" }}
@@ -354,7 +332,7 @@ export function Experience() {
           backgroundImage: `url(${brandsDarkBg})`,
           backgroundSize: "cover",
           backgroundPosition: "center 48%",
-          opacity: 0.76,
+          opacity: 0.54,
         }}
       />
 
@@ -364,7 +342,7 @@ export function Experience() {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "linear-gradient(180deg, rgba(13,15,10,0.76) 0%, rgba(13,15,10,0.58) 44%, rgba(12,14,9,0.82) 100%)",
+            "linear-gradient(180deg, rgba(9,11,7,0.88) 0%, rgba(10,12,8,0.76) 44%, rgba(8,10,6,0.92) 100%)",
         }}
       />
 
@@ -381,7 +359,7 @@ export function Experience() {
         <img
           src={modernImg}
           alt=""
-          className="h-full w-full object-cover object-center opacity-[0.34] saturate-[0.72]"
+          className="h-full w-full object-cover object-center opacity-[0.2] saturate-[0.62]"
           loading="lazy"
         />
       </div>
@@ -425,7 +403,7 @@ export function Experience() {
         style={{ background: "linear-gradient(90deg, transparent, rgba(200,169,107,0.16), transparent)" }}
       />
 
-      <div className="site-container relative">
+      <div className="site-container relative max-w-7xl">
         <SectionChapter index={5} label="Inspiratie" light />
 
         {/* ── Section header ── */}
@@ -434,15 +412,14 @@ export function Experience() {
           whileInView="visible"
           viewport={motionViewport}
           variants={reduceMotion ? undefined : staggerHeader}
-          className="mb-12 flex flex-col gap-7 md:flex-row md:items-end md:justify-between"
+          className="mb-10 grid gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(280px,0.65fr)] lg:items-start"
         >
-          <div className="max-w-[42rem]">
+          <div className="max-w-[46rem]">
             {/* Eyebrow */}
             <motion.div
               variants={reduceMotion ? undefined : fadeUp}
-              className="mb-6 flex items-center gap-4"
+              className="mb-6"
             >
-              <span className="h-px w-9 bg-gradient-to-r from-transparent to-[rgba(200,169,107,0.8)]" />
               <span
                 className="text-[0.62rem] font-semibold uppercase tracking-[0.34em] text-[#C8A96B]"
                 style={{ fontFamily: "var(--font-body)" }}
@@ -454,7 +431,7 @@ export function Experience() {
             {/* Heading */}
             <motion.h2
               variants={reduceMotion ? undefined : fadeUp}
-              className="font-serif text-[clamp(2.55rem,4.3vw,3.65rem)] font-light leading-[1.08] tracking-[-0.025em] text-[#F5F2EC]"
+              className="font-serif text-[clamp(2.7rem,4.7vw,4rem)] font-light leading-[1.04] tracking-[-0.035em] text-[#F5F2EC]"
             >
               Eén plaats voor{" "}
               <em
@@ -470,7 +447,7 @@ export function Experience() {
             {/* Subtext */}
             <motion.p
               variants={reduceMotion ? undefined : fadeUp}
-              className="mt-5 max-w-[36rem] text-[1rem] font-light leading-[1.75] tracking-[0.005em] text-[rgba(245,242,236,0.65)]"
+              className="mt-6 max-w-[38rem] text-[1.02rem] font-light leading-[1.78] tracking-[0.005em] text-[rgba(245,242,236,0.68)]"
               style={{ fontFamily: "var(--font-body)" }}
             >
               Van architecturaal design tot slimme luxe: ontdek een keukenwereld
@@ -478,95 +455,62 @@ export function Experience() {
             </motion.p>
           </div>
 
-          {/* Right: CBW + luxury pill */}
+          {/* Right: editorial trust panel */}
           <motion.div
             variants={reduceMotion ? undefined : fadeUp}
-            className="flex shrink-0 flex-col items-start gap-4 md:items-end"
+            className="relative overflow-hidden rounded-[24px] border border-[rgba(200,169,107,0.2)] bg-[linear-gradient(145deg,rgba(255,255,255,0.055),rgba(200,169,107,0.025))] p-6 backdrop-blur-xl"
+            style={{
+              boxShadow:
+                "inset 0 1px 0 rgba(255,255,255,0.045), 0 24px 60px -42px rgba(0,0,0,0.95)",
+            }}
           >
-            {/* CBW badge */}
-            <div className="flex items-center gap-3">
-              <img
-                src={kc.cbwLogo}
-                alt="CBW erkend"
-                className="h-12 w-auto opacity-55 grayscale md:h-14"
-                loading="lazy"
-              />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute -right-16 -top-20 h-48 w-48 rounded-full bg-[rgba(139,197,64,0.09)] blur-3xl"
+            />
+            <div className="relative">
+              <div className="mb-4">
+                <span
+                  className="text-[0.58rem] font-semibold uppercase tracking-[0.28em] text-[#C8A96B]"
+                  style={{ fontFamily: "var(--font-body)" }}
+                >
+                  Persoonlijk samengesteld
+                </span>
+              </div>
+              <p className="max-w-[21rem] font-serif text-[1.28rem] font-light leading-[1.42] tracking-[-0.015em] text-[#F5F2EC]">
+                Een keuken die klopt in uitstraling, materiaal en dagelijks gebruik.
+              </p>
               <span
-                className="text-[0.68rem] font-light leading-snug text-[rgba(245,242,236,0.42)]"
+                className="mt-3 block max-w-[20rem] text-[0.78rem] font-light leading-[1.65] text-[rgba(245,242,236,0.48)]"
                 style={{ fontFamily: "var(--font-body)" }}
               >
-                Vertrouwen
-                <br />
-                sinds {kc.founded}
+                Ontdek combinaties die onze ontwerpers dagelijks in de showroom samenstellen.
               </span>
             </div>
 
-            {/* Luxury floating pill badge */}
-            <div
-              className="flex items-center gap-2 rounded-full border px-4 py-1.5"
-              style={{
-                borderColor: "rgba(200,169,107,0.28)",
-                background: "rgba(200,169,107,0.07)",
-              }}
-            >
-              <span
-                className="h-[5px] w-[5px] rounded-full bg-[#8BC540]"
-                style={{ boxShadow: "0 0 8px rgba(139,197,64,0.72)" }}
-              />
-              <span
-                className="text-[0.62rem] font-semibold uppercase tracking-[0.26em] text-[rgba(216,190,135,0.82)]"
-                style={{ fontFamily: "var(--font-body)" }}
-              >
-                Exclusieve Showroom · Utrecht
+            <div className="relative mt-6 flex items-center justify-between gap-5 border-t border-[rgba(200,169,107,0.14)] pt-4">
+              <div className="flex items-center gap-3">
+                <img
+                  src={kc.cbwLogo}
+                  alt="CBW erkend"
+                  className="h-9 w-auto opacity-60 grayscale"
+                  loading="lazy"
+                />
+                <span
+                  className="text-[0.58rem] font-medium uppercase tracking-[0.16em] text-[rgba(245,242,236,0.42)]"
+                  style={{ fontFamily: "var(--font-body)" }}
+                >
+                  Vertrouwd sinds {kc.founded}
+                </span>
+              </div>
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[rgba(139,197,64,0.32)] bg-[rgba(139,197,64,0.08)]">
+                <span
+                  className="h-1.5 w-1.5 rounded-full bg-[#8BC540]"
+                  style={{ boxShadow: "0 0 8px rgba(139,197,64,0.8)" }}
+                />
               </span>
             </div>
           </motion.div>
-        </motion.div>
-
-        {/* ── Stats bar ── */}
-        <motion.div
-          initial={reduceMotion ? false : "hidden"}
-          whileInView="visible"
-          viewport={motionViewport}
-          variants={reduceMotion ? undefined : fadeUp}
-          className="mb-8 overflow-hidden rounded-[20px] border px-4 py-6 backdrop-blur-xl sm:px-6 md:px-10 md:py-7"
-          style={{
-            borderColor: "rgba(200,169,107,0.18)",
-            background: "linear-gradient(135deg, rgba(255,255,255,0.045), rgba(200,169,107,0.025))",
-            boxShadow: "inset 0 1px 0 rgba(255,255,255,0.035), 0 24px 60px -38px rgba(0,0,0,0.9)",
-          }}
-        >
-          <ul className="grid grid-cols-3 divide-x divide-[rgba(200,169,107,0.14)]">
-            {stats.map((stat, i) => (
-              <li
-                key={stat.label}
-                className="group cursor-default px-4 text-center first:pl-0 last:pr-0 sm:px-6 md:px-8"
-              >
-                {/* Icon */}
-                <div className="mb-3 flex justify-center text-[rgba(200,169,107,0.58)] transition-colors duration-400 group-hover:text-[#D8BE87]">
-                  {statIcons[i]}
-                </div>
-
-                {/* Number */}
-                <p className="font-serif text-[clamp(1.65rem,2.8vw,2.35rem)] font-light leading-none tracking-[-0.035em] text-[#F5F2EC] transition-colors duration-400 group-hover:text-[#D8BE87]">
-                  <CountUpValue value={stat.value} suffix={stat.suffix} />
-                </p>
-
-                {/* Label */}
-                <p
-                  className="mt-2 text-[0.55rem] font-medium uppercase tracking-[0.18em] text-[rgba(245,242,236,0.42)] transition-colors duration-400 group-hover:text-[rgba(245,242,236,0.68)] sm:text-[0.6rem]"
-                  style={{ fontFamily: "var(--font-body)" }}
-                >
-                  {stat.label}
-                </p>
-
-                {/* Teal underline — reveals on hover */}
-                <div className="mx-auto mt-3 h-px w-8 origin-center scale-x-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100"
-                  style={{ background: "linear-gradient(90deg, transparent, #C8A96B, transparent)" }}
-                />
-              </li>
-            ))}
-          </ul>
         </motion.div>
 
         {/* ── Luxury card grid ── */}
@@ -575,7 +519,7 @@ export function Experience() {
           whileInView="visible"
           viewport={motionViewport}
           variants={reduceMotion ? undefined : staggerCards}
-          className="grid gap-5 lg:grid-cols-12 lg:grid-rows-[255px_255px]"
+          className="grid gap-5 lg:grid-cols-12 lg:grid-rows-[245px_295px]"
         >
           {/* Featured — spans 2 rows */}
           <div className="lg:col-span-7 lg:row-span-2">

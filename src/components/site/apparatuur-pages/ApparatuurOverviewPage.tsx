@@ -253,7 +253,7 @@ export function ApparatuurOverviewPage() {
                 Ervaar <em className="italic text-[var(--green-highlight)]">topapparatuur</em> live
               </h2>
               <p className="mt-5 text-[1rem] font-light leading-[1.75] text-[rgba(255,255,255,0.75)]">
-                BORA, Quooker, Miele en meer — vergelijk systemen side-by-side met persoonlijk advies.
+                BORA, Quooker, Miele en meer. Vergelijk systemen naast elkaar met persoonlijk advies.
               </p>
             </div>
             <PremiumPillButton href="/#consultation" size="xl">

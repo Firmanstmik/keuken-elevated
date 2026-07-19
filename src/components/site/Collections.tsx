@@ -226,7 +226,7 @@ export function Collections() {
 
       <div className="relative z-10">
         {/* Header */}
-        <div className="site-container">
+        <div className="site-container max-w-7xl">
           <SectionChapter index={6} label="Collecties" />
           <motion.div
             initial={reduceMotion ? false : "hidden"}
@@ -243,7 +243,7 @@ export function Collections() {
               Ontdek uw <em className="italic" style={{ color: "#8BC540" }}>Droomkeuken</em>
             </h2>
             <p className="mt-5 max-w-[480px] text-[1.05rem] font-light leading-[1.75] tracking-[0.01em] text-[#5A5A5A]">
-              Vier zorgvuldig samengestelde stijlwerelden — elk een unieke architectonische
+              Vier zorgvuldig samengestelde stijlwerelden, elk met een unieke architectonische
               taal van materiaal, compositie en sfeer.
             </p>
             <PremiumPillButton

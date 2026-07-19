@@ -22,7 +22,7 @@ export const applianceFaq: BrandPageData["faq"]["items"] = [
   },
   {
     q: "Kunnen jullie apparatuur ook apart leveren?",
-    a: "Ja. Wij verkopen keukeninbouwapparatuur ook apart — tegen zeer voordelige prijzen — en combineren bekende topmerken met kwalitatieve, scherp geprijsde alternatieven.",
+    a: "Ja. Wij verkopen keukeninbouwapparatuur ook apart tegen zeer voordelige prijzen en combineren bekende topmerken met kwalitatieve, scherp geprijsde alternatieven.",
   },
 ];
 
@@ -68,7 +68,7 @@ const advisors = sharedAdvisors;
 const showroomBase = (title: string, highlight: string): ApparatuurCategoryData["showroomCta"] => ({
   title,
   highlight,
-  body: "Bekijk de apparatuur live in onze showroom op de Zonnebaan — persoonlijk advies, scherpe prijs en snelle levering.",
+  body: "Bekijk de apparatuur live in onze showroom op de Zonnebaan, met persoonlijk advies, een scherpe prijs en snelle levering.",
   primaryLabel: "Boek een afspraak",
   secondaryLabel: "Bel direct",
 });
@@ -85,7 +85,7 @@ export const apparatuurOverview = {
     title: "Apparatuur",
     highlight: "die meekookt.",
     subtitle:
-      "Van stille vaatwassers tot BORA-afzuiging en de Quooker die alles kan — topmerken geïntegreerd in één keukenontwerp, met de beste prijsgarantie.",
+      "Van stille vaatwassers tot BORA-afzuiging en de Quooker die alles kan: topmerken geïntegreerd in één keukenontwerp, met de beste prijsgarantie.",
     badges: [
       { value: "15+", label: "Topmerken" },
       { value: "Beste", label: "Prijs" },
@@ -98,7 +98,7 @@ export const apparatuurOverview = {
     paragraphs: [
       "In alle keukens komt inbouwapparatuur voor. Denk daarbij aan vaatwassers, magnetrons, ijskasten enzovoorts. Wij als keukencentrum bieden een breed assortiment in de meest bekende merken inbouwapparatuur.",
       "We noemen enkele merken zoals Bosch, Siemens, Miele, ATAG, Gaggenau, Pelgrim, Neff, AEG, AGA, Falcon en KitchenAid. Daarnaast leveren we ook andere merken die voordeliger zijn dan de bekende namen, maar kwalitatief zeer goed.",
-      "Daardoor combineren wij kwaliteit en een scherpere prijs. Wij verkopen keukeninbouwapparatuur ook apart — tegen zeer voordelige prijzen. Ziet u uw model niet? Geen probleem: wij kunnen vrijwel alles bestellen.",
+      "Daardoor combineren wij kwaliteit en een scherpere prijs. Wij verkopen keukeninbouwapparatuur ook apart tegen zeer voordelige prijzen. Ziet u uw model niet? Geen probleem: wij kunnen vrijwel alles bestellen.",
     ],
   },
   categories: [
@@ -107,7 +107,7 @@ export const apparatuurOverview = {
       name: "Afzuigkappen",
       tagline: "Eiland · Schouw · Inbouw · Plafond · BORA",
       description:
-        "Breed assortiment afzuigkappen voor elke keukenstijl. Vooral eiland- en schouwkappen hangen prominent in het zicht — daarom kiezen wij voor design én vermogen.",
+        "Breed assortiment afzuigkappen voor elke keukenstijl. Vooral eiland- en schouwkappen hangen prominent in het zicht. Daarom kiezen wij voor design én vermogen.",
       image: `${wp}/2019/01/eiland-afzuigkappen-keukens.webp`,
       href: "/apparatuur/afzuigkappen",
     },
@@ -116,7 +116,7 @@ export const apparatuurOverview = {
       name: "Werkblad afzuiging",
       tagline: "BORA · kookveldafzuiging",
       description:
-        "Geuren worden direct bij de bron weggezogen. Geen overhangende kap nodig — vrij zicht, stil vermogen en een ultraminimaal keukenbeeld.",
+        "Geuren worden direct bij de bron weggezogen. Een overhangende kap is niet nodig, waardoor u vrij zicht, stil vermogen en een ultraminimaal keukenbeeld krijgt.",
       image: `${wp}/2019_bora_pure_pued_rehkarree_rgb-1200x800-1.webp`,
       href: "/apparatuur/werkblad-afzuiging",
     },
@@ -134,7 +134,7 @@ export const apparatuurOverview = {
       name: "Fornuizen",
       tagline: "AGA · Falcon · La Cornue · Lofra",
       description:
-        "Exclusieve fornuizen van AGA, Falcon, Steel, La Cornue, Lofra en Viking — met strakke prijzen en in principe een korte levertijd van 2 dagen.",
+        "Exclusieve fornuizen van AGA, Falcon, Steel, La Cornue, Lofra en Viking, met strakke prijzen en in principe een korte levertijd van 2 dagen.",
       image: `${wp}/2018/03/LaCornue.webp`,
       href: "/apparatuur/fornuizen",
     },
@@ -152,7 +152,7 @@ export const apparatuurOverview = {
       name: "Vaatwassers",
       tagline: "Siemens · Bosch · Miele",
       description:
-        "Stille, efficiënte inbouwvaatwassers van Siemens, Bosch en Miele — volledig geïntegreerd in uw keukenfront.",
+        "Stille, efficiënte inbouwvaatwassers van Siemens, Bosch en Miele, volledig geïntegreerd in uw keukenfront.",
       image: `${wp}/2020/03/MCMI02365333_Siemens_Global_Category_Dishwashing_SN678X36TE_01_4_3.webp`,
       href: "/apparatuur/vaatwassers",
     },
@@ -161,7 +161,7 @@ export const apparatuurOverview = {
       name: "Quooker",
       tagline: "100°C · Gekoeld · Bruisend",
       description:
-        "De kraan die alles kan: direct kokend water, en optioneel gekoeld of bruisend. Fusion, Flex, Nordic Classic — altijd op voorraad in de showroom.",
+        "De kraan die alles kan: direct kokend water, en optioneel gekoeld of bruisend. Fusion, Flex en Nordic Classic zijn altijd op voorraad in de showroom.",
       image: `${wp}/fusion_square_black_carbon_kook_model_3-1.webp`,
       href: "/apparatuur/quooker",
     },
@@ -170,7 +170,7 @@ export const apparatuurOverview = {
       name: "Wave afzuigkappen",
       tagline: "Design · Maatwerk · Verlichting",
       description:
-        "Wave Design staat synoniem voor bijzondere afzuigkappen en verlichting. Hoogwaardige afwerking tot in het kleinste detail — volledig op maat.",
+        "Wave Design staat synoniem voor bijzondere afzuigkappen en verlichting. Hoogwaardige afwerking tot in het kleinste detail, volledig op maat.",
       image: `${wp}/Wave-Model-2119-Alphenberg.webp`,
       href: "/apparatuur/wave-afzuigkappen",
     },
@@ -178,7 +178,7 @@ export const apparatuurOverview = {
   valueProps: [
     {
       title: "Topmerken & alternatieven",
-      body: "Bekende merken én scherp geprijsde kwaliteitsalternatieven — zodat u kwaliteit en prijs in balans houdt.",
+      body: "Bekende merken én scherp geprijsde kwaliteitsalternatieven, zodat u kwaliteit en prijs in balans houdt.",
     },
     {
       title: "Apart of geïntegreerd",
@@ -186,7 +186,7 @@ export const apparatuurOverview = {
     },
     {
       title: "Showroom & snelle levering",
-      body: "Ervaar de systemen live. Veel fornuizen en Quookers zijn snel leverbaar — vaak binnen enkele dagen.",
+      body: "Ervaar de systemen live. Veel fornuizen en Quookers zijn snel leverbaar, vaak binnen enkele dagen.",
     },
   ],
   faq: applianceFaq,
@@ -206,7 +206,7 @@ export const afzuigkappenPage: ApparatuurCategoryData = {
     title: "Afzuigkappen",
     highlight: "met karakter.",
     subtitle:
-      "Bij Keuken-Centrum vindt u een breed assortiment afzuigkappen voor uiteenlopende doeleinden. Vooral eiland- en schouwkappen hangen prominent in het zicht — daarom kiezen we voor stijl én prestatie.",
+      "Bij Keuken-Centrum vindt u een breed assortiment afzuigkappen voor uiteenlopende doeleinden. Vooral eiland- en schouwkappen hangen prominent in het zicht. Daarom kiezen we voor stijl én prestatie.",
     badges: [
       { value: "6", label: "Typen" },
       { value: "BORA", label: "In showroom" },
@@ -218,7 +218,7 @@ export const afzuigkappenPage: ApparatuurCategoryData = {
     title: "Design dat ook écht afzuigt",
     paragraphs: [
       "Een afzuigkap is onmisbaar voor goede keukenventilatie. Bij Keuken-Centrum geloven we dat een afzuigkap niet alleen functioneel, maar ook decoratief bijdraagt aan uw keuken.",
-      "Van subtiele onderbouwmodellen tot statement eilandkappen en BORA-werkbladafzuiging: wij helpen u het juiste type, vermogen en design te kiezen — passend bij uw kookplaat, plafondhoogte en keukenstijl.",
+      "Van subtiele onderbouwmodellen tot statement eilandkappen en BORA-werkbladafzuiging: wij helpen u het juiste type, vermogen en design te kiezen dat past bij uw kookplaat, plafondhoogte en keukenstijl.",
     ],
   },
   types: [
@@ -234,7 +234,7 @@ export const afzuigkappenPage: ApparatuurCategoryData = {
     },
     {
       title: "Schouwkappen",
-      body: "Klassiek of modern wandmodel. Van strak zwart tot rvs — het icoon aan de wand boven uw kookplaat.",
+      body: "Klassiek of modern wandmodel. Van strak zwart tot rvs: het icoon aan de wand boven uw kookplaat.",
       image: `${wp}/2019/01/wand-afzuigkappen-keukens.webp`,
     },
     {
@@ -244,12 +244,12 @@ export const afzuigkappenPage: ApparatuurCategoryData = {
     },
     {
       title: "Plafond afzuigkap",
-      body: "Vlak geïntegreerd in het plafond. Minimale uitstraling, maximale ruimtebeleving — perfect boven een eiland.",
+      body: "Vlak geïntegreerd in het plafond. Minimale uitstraling en maximale ruimtebeleving, perfect boven een eiland.",
       image: `${wp}/2019/01/plafond-afzuigkappen-keukens.webp`,
     },
     {
       title: "BORA Afzuigingen",
-      body: "Werkbladafzuiging die damp direct bij de pan wegzuigt. Geen overhangende kap — vrij zicht en stil vermogen.",
+      body: "Werkbladafzuiging die damp direct bij de pan wegzuigt. Zonder overhangende kap behoudt u vrij zicht en stil vermogen.",
       image: `${wp}/2019_bora_pure_pued_rehkarree_rgb-1200x800-1.webp`,
     },
   ],
@@ -279,7 +279,7 @@ export const werkbladAfzuigingPage: ApparatuurCategoryData = {
   meta: {
     title: "Werkblad afzuiging · BORA & Wave | Keuken-Centrum Utrecht",
     description:
-      "Ontdek werkbladafzuiging van BORA en Wave bij Keuken-Centrum Utrecht. Damp weg bij de bron — stil, krachtig en designgericht.",
+      "Ontdek werkbladafzuiging van BORA en Wave bij Keuken-Centrum Utrecht. Damp verdwijnt bij de bron, stil, krachtig en designgericht.",
   },
   hero: {
     image: `${wp}/2019_bora_pure_pued_rehkarree_rgb-1200x800-1.webp`,
@@ -287,7 +287,7 @@ export const werkbladAfzuigingPage: ApparatuurCategoryData = {
     title: "Werkblad",
     highlight: "afzuiging.",
     subtitle:
-      "Damp, geur en vet worden direct bij de pan afgezogen. Geen overhangende kap — wel vrij zicht, stil vermogen en een ultraminimaal keukenbeeld.",
+      "Damp, geur en vet worden direct bij de pan afgezogen. Zonder overhangende kap behoudt u vrij zicht, stil vermogen en een ultraminimaal keukenbeeld.",
     badges: [
       { value: "BORA", label: "Specialist" },
       { value: "Wave", label: "Design" },
@@ -298,7 +298,7 @@ export const werkbladAfzuigingPage: ApparatuurCategoryData = {
     eyebrow: "Direct bij de bron",
     title: "Afzuiging die uw keukenbeeld vrijhoudt",
     paragraphs: [
-      "Werkbladafzuiging (ook wel kookveldafzuiging) zuigt damp direct naast of tussen de kookzones weg. Dat maakt een overhangende kap overbodig — ideaal bij eilanden en open woonkeukens.",
+      "Werkbladafzuiging (ook wel kookveldafzuiging) zuigt damp direct naast of tussen de kookzones weg. Dat maakt een overhangende kap overbodig en is ideaal bij eilanden en open woonkeukens.",
       "Keuken-Centrum is verkooppunt van BORA en Wave. In de showroom ervaart u hoe stil, krachtig en schoon deze systemen in de praktijk zijn.",
     ],
   },
@@ -310,12 +310,12 @@ export const werkbladAfzuigingPage: ApparatuurCategoryData = {
     },
     {
       title: "BORA systemen",
-      body: "Van compacte units tot professionele opstellingen — met recirculatie of afvoer, afgestemd op uw woning.",
+      body: "Van compacte units tot professionele opstellingen, met recirculatie of afvoer en afgestemd op uw woning.",
       image: `${wp}/2020/03/kookplaat_met_afzuiging-1.webp`,
     },
     {
       title: "Wave designunits",
-      body: "Bijzondere designoplossingen waarbij afzuiging en verlichting naadloos samenkomen — volledig maatwerk.",
+      body: "Bijzondere designoplossingen waarbij afzuiging en verlichting naadloos samenkomen, volledig op maat.",
       image: `${wp}/Wave-Model-2119-Alphenberg.webp`,
     },
   ],
@@ -339,7 +339,7 @@ export const kookplatenPage: ApparatuurCategoryData = {
     title: "Kookplaten",
     highlight: "op maat.",
     subtitle:
-      "Inductie, keramisch, domino of met geïntegreerde afzuiging — topmerken inbouwapparatuur voor optimaal kookcomfort in elke keuken.",
+      "Inductie, keramisch, domino of met geïntegreerde afzuiging: topmerken inbouwapparatuur voor optimaal kookcomfort in elke keuken.",
     badges: [
       { value: "Inductie", label: "Snel & veilig" },
       { value: "Flex", label: "Zones" },
@@ -357,7 +357,7 @@ export const kookplatenPage: ApparatuurCategoryData = {
   types: [
     {
       title: "Inductie kookplaten",
-      body: "Snel, veilig en energiezuinig. Precisie per zone — met modern design in zwart glas of rvs.",
+      body: "Snel, veilig en energiezuinig. Precisie per zone, met modern design in zwart glas of rvs.",
       image: `${wp}/inductie_kookplaat.webp`,
     },
     {
@@ -367,7 +367,7 @@ export const kookplatenPage: ApparatuurCategoryData = {
     },
     {
       title: "Domino elementen",
-      body: "Modulaire zones — combineer inductie, teppanyaki, wok of grill tot een persoonlijk kooklandschap.",
+      body: "Modulaire zones om inductie, teppanyaki, wok of grill te combineren tot een persoonlijk kooklandschap.",
       image: `${wp}/2020/03/dominokeuken.webp`,
     },
     {
@@ -395,10 +395,10 @@ export const fornuizenPage: ApparatuurCategoryData = {
     title: "Fornuizen",
     highlight: "met allure.",
     subtitle:
-      "Keuken-Centrum Utrecht biedt exclusieve fornuizen van o.a. AGA, Falcon, Steel, La Cornue, Lofra en Viking — met strakke prijzen en in principe een korte levertijd van 2 dagen.",
+      "Keuken-Centrum Utrecht biedt exclusieve fornuizen van o.a. AGA, Falcon, Steel, La Cornue, Lofra en Viking, met strakke prijzen en in principe een korte levertijd van 2 dagen.",
     badges: [
       { value: "2 dgn", label: "Levertijd*" },
-      { value: "90–100", label: "cm" },
+      { value: "90 tot 100", label: "cm" },
       { value: "Exclusief", label: "Merken" },
     ],
   },
@@ -406,7 +406,7 @@ export const fornuizenPage: ApparatuurCategoryData = {
     eyebrow: "Range cookers",
     title: "Professioneel koken, thuis",
     paragraphs: [
-      "Bij onze showroom in Utrecht kunt u terecht voor fornuizen van topmerken. Wij bieden complete maatwerkkeukens én losse fornuizen — inclusief accessoires.",
+      "Bij onze showroom in Utrecht kunt u terecht voor fornuizen van topmerken. Wij bieden complete maatwerkkeukens én losse fornuizen, inclusief accessoires.",
       "Kies de juiste breedte (90 of 100 cm), branders/ovens-combinatie en afwerking. Onze adviseurs helpen u met aansluiting, ventilatie en passend werkblad.",
     ],
   },
@@ -418,7 +418,7 @@ export const fornuizenPage: ApparatuurCategoryData = {
     },
     {
       title: "Falcon",
-      body: "Britse range cookers met karakter — krachtige ovens, betrouwbare branders en een tijdloze silhouet.",
+      body: "Britse range cookers met karakter, krachtige ovens, betrouwbare branders en een tijdloos silhouet.",
       image: `${wp}/2018/03/Falcon.webp`,
     },
     {
@@ -428,11 +428,11 @@ export const fornuizenPage: ApparatuurCategoryData = {
     },
     {
       title: "Lofra & meer",
-      body: "Italiaanse precisie en andere exclusieve merken — ook Steel en Viking, met snelle levering.",
+      body: "Italiaanse precisie en andere exclusieve merken, waaronder Steel en Viking, met snelle levering.",
       image: `${wp}/2018/03/Lofra.webp`,
     },
   ],
-  brandsNote: "AGA, Falcon, Steel, La Cornue, Lofra, Viking — accessoires leverbaar.",
+  brandsNote: "AGA, Falcon, Steel, La Cornue, Lofra en Viking. Accessoires zijn leverbaar.",
   faq: applianceFaq,
   advisors,
   showroomCta: showroomBase("Fornuis kiezen", "met advies?"),
@@ -452,7 +452,7 @@ export const koelkastenPage: ApparatuurCategoryData = {
     title: "Koelkasten",
     highlight: "& vriezers.",
     subtitle:
-      "Keeping it cool. Een vrijstaande koelkast of wijnkoeler als eye-catcher — of inbouwkoelkasten die volledig verdwijnen in uw keukenontwerp.",
+      "Keeping it cool. Kies een vrijstaande koelkast of wijnkoeler als eye-catcher, of inbouwkoelkasten die volledig verdwijnen in uw keukenontwerp.",
     badges: [
       { value: "Inbouw", label: "Invisible" },
       { value: "Fresh", label: "Zones" },
@@ -463,7 +463,7 @@ export const koelkastenPage: ApparatuurCategoryData = {
     eyebrow: "Vers houden",
     title: "Koeling die past bij uw design",
     paragraphs: [
-      "Benieuwd hoe een koelkast werkt, of hoeveel deze per jaar kost? Wij zetten de praktische keuzes voor u op een rij — van energieklasse tot hyperFresh-zones.",
+      "Benieuwd hoe een koelkast werkt, of hoeveel deze per jaar kost? Wij zetten de praktische keuzes voor u op een rij, van energieklasse tot hyperFresh-zones.",
       "Kies inbouw voor een naadloos front, of een vrijstaand statement-model. Onze adviseurs helpen u met nismaten, scharnierkanten en vriescapaciteit.",
     ],
   },
@@ -475,7 +475,7 @@ export const koelkastenPage: ApparatuurCategoryData = {
     },
     {
       title: "Onderbouw koelkasten",
-      body: "Compact onder het werkblad — ideaal als tweede koelzone of in kleinere keukens.",
+      body: "Compact onder het werkblad, ideaal als tweede koelzone of in kleinere keukens.",
       image: `${wp}/MCIM01003124_F6810_17_P_hyperfresh_mixed.webp`,
     },
     {
@@ -508,7 +508,7 @@ export const vaatwassersPage: ApparatuurCategoryData = {
     title: "Vaatwassers",
     highlight: "die stil werken.",
     subtitle:
-      "Stille, efficiënte inbouwvaatwassers van Siemens, Bosch en Miele — volledig geïntegreerd, met programma’s voor kristalglas tot intensieve kookpannen.",
+      "Stille, efficiënte inbouwvaatwassers van Siemens, Bosch en Miele, volledig geïntegreerd en met programma’s voor kristalglas tot intensieve kookpannen.",
     badges: [
       { value: "Silent", label: "Nachttijd" },
       { value: "A", label: "Energie" },
@@ -519,14 +519,14 @@ export const vaatwassersPage: ApparatuurCategoryData = {
     eyebrow: "Inbouwvaatwassers",
     title: "Schoon resultaat, onzichtbaar geïntegreerd",
     paragraphs: [
-      "Wij bieden een breed assortiment inbouwapparatuur van bekende merken. Voor vaatwassers focussen wij op Siemens, Bosch en Miele — merken die stilte, reinigingskracht en duurzaamheid combineren.",
+      "Wij bieden een breed assortiment inbouwapparatuur van bekende merken. Voor vaatwassers focussen wij op Siemens, Bosch en Miele, merken die stilte, reinigingskracht en duurzaamheid combineren.",
       "Kies volledig geïntegreerd of met bedieningspaneel. Wij helpen u met hoogte (standaard of XXL), bestekladen en aansluiting op uw keukenontwerp.",
     ],
   },
   types: [
     {
       title: "Siemens vaatwassers",
-      body: "Innovatie en design — van varioSpeed tot intelligent sensor-reinigen in studioLine-uitvoeringen.",
+      body: "Innovatie en design, van varioSpeed tot intelligent sensor-reinigen in studioLine-uitvoeringen.",
       image: `${wp}/2020/03/MCMI02365333_Siemens_Global_Category_Dishwashing_SN678X36TE_01_4_3.webp`,
     },
     {
@@ -536,7 +536,7 @@ export const vaatwassersPage: ApparatuurCategoryData = {
     },
     {
       title: "Miele vaatwassers",
-      body: "Premium afwerking, lange levensduur en uitzonderlijke reinigingsresultaten — merk met garantie op kwaliteit.",
+      body: "Premium afwerking, lange levensduur en uitzonderlijke reinigingsresultaten van een merk met garantie op kwaliteit.",
       image: `${wp}/Schermafbeelding-2021-10-13-om-13.29.28.webp`,
     },
   ],
@@ -559,7 +559,7 @@ export const quookerPage: ApparatuurCategoryData = {
     title: "Quooker",
     highlight: "die alles kan.",
     subtitle:
-      "Direct 100°C kokend water — en optioneel gekoeld of bruisend. Van Fusion tot Flex en Nordic Classic: ervaar Quooker in onze showroom.",
+      "Direct 100°C kokend water, en optioneel gekoeld of bruisend. Van Fusion tot Flex en Nordic Classic: ervaar Quooker in onze showroom.",
     badges: [
       { value: "100°C", label: "Direct" },
       { value: "Cube", label: "Gekoeld & bruis" },
@@ -570,14 +570,14 @@ export const quookerPage: ApparatuurCategoryData = {
     eyebrow: "Quooker",
     title: "Eén kraan. Alle water.",
     paragraphs: [
-      "De Quooker is meer dan een kraan: het is een systeem. Kokend water voor thee, koken of steriliseren — zonder fluitketel. Met Quooker Cube ook gefilterd gekoeld en bruisend water.",
+      "De Quooker is meer dan een kraan: het is een systeem. Kokend water voor thee, koken of steriliseren, zonder fluitketel. Met Quooker Cube krijgt u ook gefilterd gekoeld en bruisend water.",
       "Keuken-Centrum is Quooker-specialist in Utrecht. Onze adviseurs helpen u met keuze van model, afwerking (chroom, rvs, zwart, goud) en de juiste boiler of COMBI+ opslag.",
     ],
   },
   types: [
     {
       title: "Fusion",
-      body: "Iconische vierkante kraan. Kokend, warm en koud uit één elegant silhouet — beschikbaar in meerdere afwerkingen.",
+      body: "Iconische vierkante kraan. Kokend, warm en koud uit één elegant silhouet, beschikbaar in meerdere afwerkingen.",
       image: `${wp}/fusion_square_black_carbon_kook_model_3-1.webp`,
     },
     {
@@ -592,11 +592,11 @@ export const quookerPage: ApparatuurCategoryData = {
     },
     {
       title: "Nordic TwinTaps",
-      body: "Aparte kranen voor kokend en kraanwater — een strak twin-tap arrangement op het blad.",
+      body: "Aparte kranen voor kokend water en kraanwater vormen een strak twin-tap arrangement op het blad.",
       image: `${wp}/quookerMerken.webp`,
     },
   ],
-  brandsNote: "Officieel Quooker-assortiment: Fusion, Flex, Classic, Nordic — met Cube-optie.",
+  brandsNote: "Officieel Quooker-assortiment: Fusion, Flex, Classic en Nordic, met Cube-optie.",
   faq: [
     ...applianceFaq,
     {
@@ -614,7 +614,7 @@ export const wavePage: ApparatuurCategoryData = {
   meta: {
     title: "Wave afzuigkappen & verlichting | Keuken-Centrum Utrecht",
     description:
-      "Wave Design afzuigkappen en verlichting bij Keuken-Centrum Utrecht. Efficiënt, innovatief en stijlvol — volledig op maat.",
+      "Wave Design afzuigkappen en verlichting bij Keuken-Centrum Utrecht. Efficiënt, innovatief, stijlvol en volledig op maat.",
   },
   hero: {
     image: `${wp}/Wave-Model-2119-Alphenberg.webp`,
@@ -622,7 +622,7 @@ export const wavePage: ApparatuurCategoryData = {
     title: "Wave",
     highlight: "afzuigkappen.",
     subtitle:
-      "Efficiënt, innovatief & stijlvol: de afzuigkappen en verlichting van Wave zijn een must voor elke keuken. Garantie op de beste prijs — direct leverbaar.",
+      "Efficiënt, innovatief & stijlvol: de afzuigkappen en verlichting van Wave zijn een must voor elke keuken. U krijgt garantie op de beste prijs en ze zijn direct leverbaar.",
     badges: [
       { value: "Maatwerk", label: "100%" },
       { value: "Design", label: "Lighting" },
@@ -635,36 +635,36 @@ export const wavePage: ApparatuurCategoryData = {
     paragraphs: [
       "Wave Design is een ware specialist in afzuigkappen en bijzondere verlichting voor in de keuken. Het merk staat synoniem voor bijzondere oplossingen, als u zoekt naar design afzuigkappen en verlichting. Daar wordt een hoogwaardige afwerking doorgevoerd tot in het kleinste detail.",
       "Bij ons in de showroom hebben we verschillende plafondunits en lampen van Wave Design hangen, die onze adviseurs u graag laten zien. Het toont de mogelijkheden en de hoge kwaliteit, terwijl u altijd de keuze hebt om alles helemaal naar wens samen te stellen.",
-      "Dat geldt voor de afzuigkappen en de verlichting, waarmee er tot in de puntjes maatwerk mogelijk is. Uw vraag vormt onze uitdaging — het resultaat ziet u terug in collecties waarin techniek en design volledig integreren.",
+      "Dat geldt voor de afzuigkappen en de verlichting, waarmee er tot in de puntjes maatwerk mogelijk is. Uw vraag vormt onze uitdaging. Het resultaat ziet u terug in collecties waarin techniek en design volledig integreren.",
     ],
   },
   types: [
     {
       title: "Plafondunits",
-      body: "Vlakke of sculpturale units in het plafond — met geïntegreerde LED en krachtige afzuiging.",
+      body: "Vlakke of sculpturale units in het plafond, met geïntegreerde LED en krachtige afzuiging.",
       image: `${wp}/Wave-Model-2119-Alphenberg.webp`,
     },
     {
       title: "Frame & designframes",
-      body: "Wave Frame in rvs of maatwerkafwerking — architecturale lijnen die de keuken structureren.",
+      body: "Wave Frame in rvs of maatwerkafwerking, met architecturale lijnen die de keuken structureren.",
       image: `${wp}/Wave_Frame_2056_RVS_A_L_1920-1200x800h.webp`,
     },
     {
       title: "Inbouwunits",
-      body: "Discrete inbouwunits die verdwijnen in omkasting of plafonddoos — puur functioneel design.",
+      body: "Discrete inbouwunits die verdwijnen in omkasting of plafonddoos: puur functioneel design.",
       image: `${wp}/2120_B.webp`,
     },
     {
       title: "Verlichting",
-      body: "Bijzondere keukenverlichting die samensmelt met afzuiging — sfeer én taaklicht in één systeem.",
+      body: "Bijzondere keukenverlichting die samensmelt met afzuiging, voor sfeer én taaklicht in één systeem.",
       image: `${wp}/1627_A.webp`,
     },
   ],
-  brandsNote: "Officieel Wave verkooppunt — Zonnebaan 8, 3542 EC Utrecht.",
+  brandsNote: "Officieel Wave verkooppunt aan de Zonnebaan 8, 3542 EC Utrecht.",
   valueProps: [
     {
       title: "Maatwerk tot in detail",
-      body: "Afmetingen, afwerking en lichtkleur volledig naar wens — tot in het kleinste detail.",
+      body: "Afmetingen, afwerking en lichtkleur volledig naar wens, tot in het kleinste detail.",
     },
     {
       title: "Showroomexperiëntie",
@@ -672,7 +672,7 @@ export const wavePage: ApparatuurCategoryData = {
     },
     {
       title: "Beste prijsgarantie",
-      body: "Garantie op de beste prijs bij Keuken-Centrum — snel en deskundig geadviseerd.",
+      body: "Garantie op de beste prijs bij Keuken-Centrum, met snel en deskundig advies.",
     },
   ],
   faq: applianceFaq,

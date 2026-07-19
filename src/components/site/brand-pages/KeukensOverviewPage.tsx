@@ -295,7 +295,7 @@ export function KeukensOverviewPage() {
                 Klaar voor uw <em className="italic text-[var(--green-highlight)]">droomkeuken</em>?
               </h2>
               <p className="mt-5 text-[1rem] font-light leading-[1.75] text-[rgba(255,255,255,0.75)]">
-                Boek een afspraak — wij helpen u graag verder van eerste idee tot professionele installatie.
+                Boek een afspraak. Wij helpen u graag verder, van het eerste idee tot de professionele installatie.
               </p>
             </div>
             <PremiumPillButton href="/#consultation" size="xl">

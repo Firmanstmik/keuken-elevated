@@ -6,6 +6,13 @@ import {
   Call as IconsaxCall,
   Sms as IconsaxSms,
   ArrowRight2 as IconsaxArrowRight2,
+  Award as IconsaxAward,
+  Layer as IconsaxLayer,
+  Designtools as IconsaxDesigntools,
+  RulerPen as IconsaxRulerPen,
+  Shop as IconsaxShop,
+  Messages as IconsaxMessages,
+  Export as IconsaxExport,
 } from "@zethictech/iconsax-react";
 import { ChevronDown, ArrowRight } from "@/components/ui/icons";
 import { kc } from "@/lib/kc-data";
@@ -40,6 +47,9 @@ import {
 import showroomImg from "@/assets/showroom.jpg";
 import marmerImg from "@/assets/marmer-img.webp";
 import boraImg from "@/assets/Bora-img.webp";
+import aiKuchenHero from "@/assets/brands/aikuchen-hero.webp";
+import leichtHero from "@/assets/brands/leicht-hero.webp";
+import zampieriHero from "@/assets/brands/zampieri-hero.webp";
 
 // Import mobile menu accordion components
 import {
@@ -93,7 +103,7 @@ const desktopMenu: NavMenuItem[] = [
       {
         label: "Leicht Bossa",
         href: "/keukens/leicht/bossa",
-        description: "Verticale structuur en Bossa Concrete — sculpturale showroomkeukens.",
+        description: "Verticale structuur en Bossa Concrete, vertaald naar sculpturale showroomkeukens.",
         icon: Layers,
       },
       {
@@ -105,13 +115,13 @@ const desktopMenu: NavMenuItem[] = [
       {
         label: "Leicht Ronde Wangen",
         href: "/keukens/leicht/ronde-wangen",
-        description: "Zachte rondingen met Duitse precisie — live te ervaren in Utrecht.",
+        description: "Zachte rondingen met Duitse precisie, live te ervaren in Utrecht.",
         icon: Compass,
       },
       {
         label: "Leicht Kyoto",
         href: "/keukens/leicht/kyoto",
-        description: "Japandi calm meets Duitse architectuur — serene showroomserie.",
+        description: "Japandi-rust ontmoet Duitse architectuur in een serene showroomserie.",
         icon: Sparkles,
       },
       {
@@ -350,6 +360,99 @@ const desktopMenu: NavMenuItem[] = [
   },
 ];
 
+const kitchenMenuCategories = [
+  {
+    label: "Keukenmerken",
+    icon: IconsaxAward,
+    eyebrow: "Uitgelichte keukenmerken",
+    title: "Europees design, geselecteerd in Utrecht",
+    footer: "5 premium merken",
+    detail: "Duitse precisie & Italiaanse finesse",
+    linkLabel: "Alle keukenmerken",
+    href: "/keukens",
+    highlights: [
+      { label: "AI Küchen", note: "Innovatief & modern", href: "/keukens/ai-kuchen", image: aiKuchenHero },
+      { label: "Leicht", note: "Architectonisch design", href: "/keukens/leicht", image: leichtHero },
+      { label: "Zampieri", note: "Italiaanse verfijning", href: "/keukens/zampieri", image: zampieriHero },
+    ],
+  },
+  {
+    label: "Leicht collecties",
+    icon: IconsaxLayer,
+    eyebrow: "Leicht signature series",
+    title: "Architecturale collecties met karakter",
+    footer: "4 showroomseries",
+    detail: "Van sculpturale Bossa tot serene Kyoto",
+    linkLabel: "Alle Leicht collecties",
+    href: "/keukens/leicht",
+    highlights: [
+      { label: "Bossa", note: "Verticale structuur", href: "/keukens/leicht/bossa", image: "https://keuken-centrum.nl/wp-content/uploads/Leicht-Bossa-showroom--scaled.webp" },
+      { label: "Taj Mahal", note: "Monumentale elegantie", href: "/keukens/leicht/taj-mahal", image: "https://keuken-centrum.nl/wp-content/uploads/Leicht-keukens.webp" },
+      { label: "Kyoto", note: "Japandi rust", href: "/keukens/leicht/kyoto", image: "https://keuken-centrum.nl/wp-content/uploads/Leicht-Kyoto-showroom.webp" },
+    ],
+  },
+  {
+    label: "Keukenstijlen",
+    icon: IconsaxDesigntools,
+    eyebrow: "Vind uw eigen stijl",
+    title: "Van minimalistisch tot warm en tijdloos",
+    footer: "Voor iedere woonstijl",
+    detail: "Ontdek materialen, kleuren en vormen",
+    linkLabel: "Alle keukenstijlen",
+    href: "/#collections",
+    highlights: [
+      { label: "Modern", note: "Strak & greeploos", href: "/#collections", image: kc.hero.main },
+      { label: "Japandi", note: "Warm & sereen", href: "/#collections", image: kc.hero.alt1 },
+      { label: "Industrieel", note: "Krachtig & karaktervol", href: "/#collections", image: kc.hero.alt2 },
+    ],
+  },
+  {
+    label: "Keuken op maat",
+    icon: IconsaxRulerPen,
+    eyebrow: "Persoonlijk maatwerk",
+    title: "Ontworpen rond uw ruimte en dagelijks leven",
+    footer: "Volledig persoonlijk",
+    detail: "Van eerste schets tot perfecte montage",
+    linkLabel: "Start uw ontwerp",
+    href: "/configure",
+    highlights: [
+      { label: "3D ontwerp", note: "Uw ideeën in beeld", href: "/configure", image: kc.hero.alt2 },
+      { label: "Materiaalkeuze", note: "Voel het verschil", href: "/configure", image: kc.hero.alt3 },
+      { label: "Montage", note: "Zorgeloos geplaatst", href: "/configure", image: kc.hero.alt4 },
+    ],
+  },
+  {
+    label: "Showroomkeukens",
+    icon: IconsaxShop,
+    eyebrow: "Direct te ervaren",
+    title: "Inspiratie en voordeel in onze showroom",
+    footer: "Showroom Utrecht",
+    detail: "Bekijk, voel en vergelijk in alle rust",
+    linkLabel: "Bekijk showroomkeukens",
+    href: "/showroom-keukens",
+    highlights: [
+      { label: "Nieuwe opstellingen", note: "Live te bekijken", href: "/showroom-keukens", image: kc.showroomImg },
+      { label: "Showroomdeals", note: "Direct voordeel", href: "/aanbiedingen", image: kc.aanbiedingenImg },
+      { label: "Direct leverbaar", note: "Snel in huis", href: "/aanbiedingen", image: kc.aanbiedingen2 },
+    ],
+  },
+  {
+    label: "Persoonlijk advies",
+    icon: IconsaxMessages,
+    eyebrow: "Advies van onze specialisten",
+    title: "Samen maken we van uw wensen een ontwerp",
+    footer: "45+ jaar ervaring",
+    detail: "Persoonlijk advies zonder verplichtingen",
+    linkLabel: "Plan een showroombezoek",
+    href: "/consultation",
+    highlights: [
+      { label: "Kennismaken", note: "Vertel ons uw wensen", href: "/consultation", image: kc.hero.alt3 },
+      { label: "Ontwerpsessie", note: "Samen aan tafel", href: "/consultation", image: showroomImg },
+      { label: "Vrijblijvende offerte", note: "Helder & persoonlijk", href: "/consultation", image: kc.hero.alt4 },
+    ],
+  },
+];
+
 function isActiveLink(pathname: string, hash: string, href: string) {
   if (href === "/brands") {
     return pathname === "/brands" || pathname === "/style";
@@ -406,6 +509,7 @@ export function Nav() {
   const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [activeKitchenCategory, setActiveKitchenCategory] = useState(0);
   const reduceMotion = useReducedMotion();
   const location = useLocation();
 
@@ -455,6 +559,7 @@ export function Nav() {
   // a light glass background, so links switch to the dark treatment.
   const heroNav = !elevated;
   const currentHash = location.href.includes("#") ? `#${location.href.split("#")[1]}` : "";
+  const activeKitchenMenu = kitchenMenuCategories[activeKitchenCategory];
 
   return (
     <motion.header
@@ -604,7 +709,7 @@ export function Nav() {
                               ? "border-[rgba(200,169,107,0.18)] bg-[rgba(14,17,10,0.92)] shadow-[0_42px_110px_-28px_rgba(0,0,0,0.82),0_0_0_1px_rgba(255,255,255,0.035)_inset]"
                               : "border-[rgba(200,169,107,0.24)] bg-[linear-gradient(145deg,rgba(255,254,251,0.99),rgba(245,241,232,0.985))] shadow-[0_40px_100px_-30px_rgba(23,25,20,0.38),0_0_0_1px_rgba(255,255,255,0.95)_inset]"
                               } ${isMegamenu
-                              ? "left-1/2 w-[min(840px,calc(100vw-3rem))] -translate-x-1/2"
+                              ? `left-1/2 -translate-x-1/2 ${item.label === "Keukens" ? "w-[min(980px,calc(100vw-3rem))]" : "w-[min(840px,calc(100vw-3rem))]"}`
                               : "left-1/2 w-[280px] -translate-x-1/2 p-2.5"
                               }`}
                             role="menu"
@@ -620,6 +725,128 @@ export function Nav() {
                               className={`pointer-events-none absolute -right-16 -top-24 h-64 w-64 rounded-full blur-3xl ${heroNav ? "bg-[rgba(139,197,64,0.08)]" : "bg-[rgba(139,197,64,0.07)]"}`}
                             />
                             {isMegamenu ? (
+                              item.label === "Keukens" ? (
+                                <div className={`relative grid grid-cols-[290px_1fr] text-left ${heroNav ? "text-[#F5F2EC]" : "text-[#20231A]"}`}>
+                                  <div className={`border-r px-5 py-6 ${heroNav
+                                    ? "border-white/[0.08] bg-white/[0.025]"
+                                    : "border-[#E6E2D8] bg-[#F7F7F4]"}`}>
+                                    <div className={`mb-4 px-3 text-[0.56rem] font-semibold uppercase tracking-[0.26em] ${heroNav ? "text-[#C8A96B]" : "text-[#86724C]"}`}>
+                                      Ontdek onze keukens
+                                    </div>
+                                    <div className="space-y-1.5">
+                                      {kitchenMenuCategories.map((category, index) => {
+                                        const CategoryIcon = category.icon;
+                                        return (
+                                          <motion.button
+                                            key={category.label}
+                                            type="button"
+                                            onMouseEnter={() => setActiveKitchenCategory(index)}
+                                            onFocus={() => setActiveKitchenCategory(index)}
+                                            initial={reduceMotion ? false : { opacity: 0, x: -7 }}
+                                            animate={reduceMotion ? undefined : { opacity: 1, x: 0 }}
+                                            transition={{ delay: 0.04 + index * 0.035, duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+                                            aria-pressed={activeKitchenCategory === index}
+                                            className={`group/category flex w-full items-center gap-3 rounded-[12px] border px-3 py-3 text-left transition-all duration-300 ${activeKitchenCategory === index
+                                              ? heroNav
+                                                ? "border-[rgba(200,169,107,0.22)] bg-[rgba(200,169,107,0.12)] text-[#E7D2A5]"
+                                                : "border-[rgba(200,169,107,0.22)] bg-white text-[#8A6429] shadow-[0_10px_30px_-22px_rgba(30,32,19,0.45)]"
+                                              : heroNav
+                                                ? "border-transparent text-white/72 hover:border-white/[0.06] hover:bg-white/[0.045] hover:text-white"
+                                                : "border-transparent text-[#394035] hover:border-[#E7E4DB] hover:bg-white hover:text-[#537D25]"
+                                              }`}
+                                          >
+                                            <span className={`grid h-9 w-9 shrink-0 place-items-center rounded-[10px] transition-colors duration-300 ${activeKitchenCategory === index
+                                              ? "bg-[linear-gradient(145deg,#D4B16F,#B48B43)] text-white shadow-[0_8px_18px_-10px_rgba(166,125,55,0.9)]"
+                                              : heroNav
+                                                ? "bg-white/[0.05] text-[#C8A96B]"
+                                                : "bg-white text-[#A88A51] shadow-[0_6px_18px_-14px_rgba(30,32,19,0.5)]"
+                                              }`}>
+                                              <CategoryIcon className="h-4 w-4" size={16} variant="Linear" />
+                                            </span>
+                                            <span className="flex-1 text-[0.76rem] font-medium tracking-[0.01em]">
+                                              {category.label}
+                                            </span>
+                                            <IconsaxArrowRight2
+                                              size={11}
+                                              variant="Linear"
+                                              className="opacity-35 transition-all duration-300 group-hover/category:translate-x-0.5 group-hover/category:opacity-100"
+                                            />
+                                          </motion.button>
+                                        );
+                                      })}
+                                    </div>
+                                  </div>
+
+                                  <div className="flex min-w-0 flex-col p-7 pb-5">
+                                    <div className="mb-5 flex items-end justify-between gap-6">
+                                      <div>
+                                        <span className={`block text-[0.55rem] font-semibold uppercase tracking-[0.26em] ${heroNav ? "text-[#C8A96B]" : "text-[#8F774A]"}`}>
+                                          {activeKitchenMenu.eyebrow}
+                                        </span>
+                                        <span className={`mt-2 block font-display text-[1.35rem] leading-tight tracking-[-0.02em] ${heroNav ? "text-[#F5F2EC]" : "text-[#20231A]"}`}>
+                                          {activeKitchenMenu.title}
+                                        </span>
+                                      </div>
+                                      <span className={`shrink-0 font-serif text-[0.68rem] italic ${heroNav ? "text-white/32" : "text-[#4E5148]/45"}`}>
+                                        Curated by KC
+                                      </span>
+                                    </div>
+
+                                    <div className="grid grid-cols-3 gap-4">
+                                      {activeKitchenMenu.highlights.map((highlight, index) => (
+                                        <motion.a
+                                          key={`${activeKitchenMenu.label}-${highlight.label}`}
+                                          href={highlight.href}
+                                          onClick={() => setOpenDropdown(null)}
+                                          initial={reduceMotion ? false : { opacity: 0, y: 7 }}
+                                          animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+                                          transition={{ delay: 0.08 + index * 0.055, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                                          className={`group/card overflow-hidden rounded-[15px] border transition-all duration-500 hover:-translate-y-1 ${heroNav
+                                            ? "border-white/[0.09] bg-white/[0.04] shadow-[0_20px_44px_-22px_rgba(0,0,0,0.8)] hover:border-[rgba(200,169,107,0.28)]"
+                                            : "border-[#E7E3D9] bg-[#FAFAF7] shadow-[0_18px_38px_-26px_rgba(29,32,22,0.45)] hover:border-[rgba(200,169,107,0.42)] hover:shadow-[0_24px_44px_-24px_rgba(29,32,22,0.38)]"}`}
+                                        >
+                                          <div className="relative aspect-[4/3] overflow-hidden">
+                                            <img
+                                              src={highlight.image}
+                                              alt={`${highlight.label} keuken`}
+                                              className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover/card:scale-[1.06]"
+                                              loading="lazy"
+                                            />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/38 via-transparent to-transparent" />
+                                            <span className="absolute right-3 top-3 grid h-7 w-7 place-items-center rounded-full border border-white/25 bg-black/20 text-white opacity-0 backdrop-blur-md transition-all duration-300 group-hover/card:opacity-100">
+                                              <IconsaxExport size={12} variant="Linear" />
+                                            </span>
+                                          </div>
+                                          <div className="px-4 py-3.5">
+                                            <div className={`text-[0.78rem] font-semibold ${heroNav ? "text-white/90" : "text-[#272B22]"}`}>
+                                              {highlight.label}
+                                            </div>
+                                            <div className="mt-1.5 text-[0.62rem] font-medium text-[#A67C3D]">
+                                              {highlight.note}
+                                            </div>
+                                          </div>
+                                        </motion.a>
+                                      ))}
+                                    </div>
+
+                                    <div className={`mt-5 flex items-center justify-between border-t pt-4 ${heroNav ? "border-white/[0.08]" : "border-[#E5E1D7]"}`}>
+                                      <span className={`text-[0.65rem] ${heroNav ? "text-white/45" : "text-[#63675E]"}`}>
+                                        <strong className={heroNav ? "text-[#E8D5AC]" : "text-[#8B6931]"}>{activeKitchenMenu.footer}</strong>
+                                        <span className="mx-2 opacity-35">•</span>
+                                        {activeKitchenMenu.detail}
+                                      </span>
+                                      <a
+                                        href={activeKitchenMenu.href}
+                                        onClick={() => setOpenDropdown(null)}
+                                        className={`group/all flex items-center gap-2 text-[0.63rem] font-semibold uppercase tracking-[0.12em] transition-colors ${heroNav ? "text-[#D8BE87] hover:text-white" : "text-[#98743B] hover:text-[#527C24]"}`}
+                                      >
+                                        {activeKitchenMenu.linkLabel}
+                                        <IconsaxArrowRight2 size={12} variant="Linear" className="transition-transform duration-300 group-hover/all:translate-x-1" />
+                                      </a>
+                                    </div>
+                                  </div>
+                                </div>
+                              ) : (
                               <div className="relative grid grid-cols-[1.55fr_0.75fr]">
                                 {/* Left: editorial link index */}
                                 <div className="p-8 pr-7 text-left">
@@ -765,6 +992,7 @@ export function Nav() {
                                   </a>
                                 </div>
                               </div>
+                              )
                             ) : (
                               <div className="flex flex-col gap-0.5 text-left">
                                 {item.items?.map((sub, index) => {
