@@ -36,8 +36,7 @@ const headlineLines: ReactNode[] = [
   "De Premium",
   "Keukenbestemming",
   <>
-    van{" "}
-    <span className="hero-accent">Utrecht.</span>
+    van <span className="hero-accent">Utrecht.</span>
   </>,
 ];
 
@@ -45,12 +44,7 @@ function KitchenFaucetIcon({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 32 32" fill="none" aria-hidden="true">
       <rect x="10.5" y="24.5" width="11" height="2.2" rx="1.1" fill="currentColor" opacity="0.85" />
-      <path
-        d="M15.2 24.5V13.2"
-        stroke="currentColor"
-        strokeWidth="1.45"
-        strokeLinecap="round"
-      />
+      <path d="M15.2 24.5V13.2" stroke="currentColor" strokeWidth="1.45" strokeLinecap="round" />
       <path
         d="M15.2 13.2H21.2C24.2 13.2 25.8 14.8 25.8 17.2V19"
         stroke="currentColor"
@@ -65,12 +59,7 @@ function KitchenFaucetIcon({ className }: { className?: string }) {
         strokeLinecap="round"
         opacity="0.55"
       />
-      <path
-        d="M16.8 15.2V18.4"
-        stroke="currentColor"
-        strokeWidth="1.15"
-        strokeLinecap="round"
-      />
+      <path d="M16.8 15.2V18.4" stroke="currentColor" strokeWidth="1.15" strokeLinecap="round" />
       <circle cx="16.8" cy="19.6" r="1.05" fill="currentColor" />
       <path
         d="M13.2 11.2L15.2 13.2"
@@ -94,12 +83,7 @@ function ClocheIcon({ className }: { className?: string }) {
         strokeWidth="1.3"
         strokeLinecap="round"
       />
-      <path
-        d="M2.2 16.6h23.6"
-        stroke="currentColor"
-        strokeWidth="1.3"
-        strokeLinecap="round"
-      />
+      <path d="M2.2 16.6h23.6" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
       <path
         d="M9.4 8.6c-1.5 1-2.4 2.4-2.7 4"
         stroke="currentColor"
@@ -156,7 +140,8 @@ function HeroPartnerBadge({
               className="relative h-1.5 rounded-full bg-[rgba(247,245,242,0.12)]"
               animate={{
                 width: index === activeIndex ? 20 : 8,
-                backgroundColor: index === activeIndex ? activeSlide.accent : "rgba(247,245,242,0.12)",
+                backgroundColor:
+                  index === activeIndex ? activeSlide.accent : "rgba(247,245,242,0.12)",
               }}
               transition={{ duration: 0.5, ease: motionEase.premium }}
             />
@@ -195,8 +180,12 @@ function HeroScrollCue({ reduceMotion }: { reduceMotion: boolean | null }) {
         <motion.span
           className="hero-scroll-cue-glow pointer-events-none absolute inset-0 rounded-full blur-lg"
           aria-hidden="true"
-          animate={reduceMotion ? undefined : { opacity: [0.1, 0.22, 0.1], scale: [0.92, 1.02, 0.92] }}
-          transition={reduceMotion ? undefined : { duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          animate={
+            reduceMotion ? undefined : { opacity: [0.1, 0.22, 0.1], scale: [0.92, 1.02, 0.92] }
+          }
+          transition={
+            reduceMotion ? undefined : { duration: 3, repeat: Infinity, ease: "easeInOut" }
+          }
         />
 
         <span className="hero-scroll-cue-frame relative flex items-center justify-center px-5 py-2.5 text-[#8BC540]">
@@ -223,9 +212,7 @@ function HeroScrollCue({ reduceMotion }: { reduceMotion: boolean | null }) {
               className="text-[rgba(247,245,242,0.32)] transition-colors duration-500 group-hover:text-[rgba(139,197,64,0.65)]"
               animate={reduceMotion ? undefined : { y: [0, 3, 0], opacity: [0.35, 0.7, 0.35] }}
               transition={
-                reduceMotion
-                  ? undefined
-                  : { duration: 1.9, repeat: Infinity, ease: "easeInOut" }
+                reduceMotion ? undefined : { duration: 1.9, repeat: Infinity, ease: "easeInOut" }
               }
             >
               <ChevronDown className="h-3 w-3" variant="Linear" />
@@ -419,7 +406,7 @@ export function Hero() {
       id="top"
       onMouseMove={handlePointerMove}
       onMouseLeave={resetPointer}
-      className="relative overflow-hidden border-b border-[rgba(139,197,64,0.14)] pt-32 md:pt-36"
+      className="home-hero relative overflow-hidden border-b border-[rgba(139,197,64,0.14)] pt-32 md:pt-36"
     >
       <motion.div
         initial={reduceMotion ? false : { opacity: 0, y: 18 }}
@@ -522,12 +509,16 @@ export function Hero() {
       </motion.div>
 
       <div className="site-container relative z-10">
-        <div className="grid min-h-[calc(100svh-8rem)] items-center gap-10 pb-14 md:min-h-[calc(100svh-9rem)] xl:grid-cols-[minmax(0,0.56fr)_minmax(0,0.44fr)] xl:gap-12 xl:pb-16">
+        <div className="home-hero__layout grid min-h-0 items-center gap-10 pb-14 md:min-h-[calc(100svh-9rem)] xl:grid-cols-[minmax(0,0.56fr)_minmax(0,0.44fr)] xl:gap-12 xl:pb-16">
           <motion.div className="py-6 md:py-8" style={{ opacity: textOpacity, y: textY }}>
             <motion.div
               initial={reduceMotion ? false : { opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: motionDuration.premium, ease: motionEase.premium, delay: 0.05 }}
+              transition={{
+                duration: motionDuration.premium,
+                ease: motionEase.premium,
+                delay: 0.05,
+              }}
               className="section-label-row"
             >
               <span className="hero-eyebrow-ornament">
@@ -540,7 +531,9 @@ export function Hero() {
                   <ClocheIcon className="h-[1.05rem] w-auto" />
                 </motion.span>
               </span>
-              <span className="eyebrow text-[rgba(247,245,242,0.64)]">SINDS 1978 • PREMIUM SHOWROOM UTRECHT</span>
+              <span className="eyebrow text-[rgba(247,245,242,0.64)]">
+                SINDS 1978 • PREMIUM SHOWROOM UTRECHT
+              </span>
             </motion.div>
 
             <motion.h1
@@ -580,25 +573,34 @@ export function Hero() {
             <motion.p
               initial={reduceMotion ? false : { opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: motionDuration.premium, ease: motionEase.premium, delay: 0.52 }}
+              transition={{
+                duration: motionDuration.premium,
+                ease: motionEase.premium,
+                delay: 0.52,
+              }}
               className="mt-6 max-w-[460px] text-[1.05rem] font-light leading-[1.65] tracking-[0.01em] text-[rgba(247,245,242,0.78)]"
             >
-              Ontdek Duitse precisie en Italiaanse elegantie onder één dak. Persoonlijk showroomadvies,
-              premium apparatuur en een doordachte configurator voor uw eerste ontwerpkeuze.
+              Ontdek Duitse precisie en Italiaanse elegantie onder één dak. Persoonlijk
+              showroomadvies, premium apparatuur en een doordachte configurator voor uw eerste
+              ontwerpkeuze.
             </motion.p>
 
             <motion.div
               initial={reduceMotion ? false : { opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: motionDuration.premium, ease: motionEase.premium, delay: 0.68 }}
-              className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center"
+              transition={{
+                duration: motionDuration.premium,
+                ease: motionEase.premium,
+                delay: 0.68,
+              }}
+              className="home-hero__actions mt-8 flex flex-row flex-wrap items-center gap-2.5 sm:gap-3"
             >
               <PremiumPillButton
                 href="#showroom"
                 variant="blue"
                 shape="rounded"
                 size="xl"
-                className="w-full sm:w-auto"
+                className="home-hero__cta home-hero__cta--primary"
               >
                 Plan Showroombezoek
               </PremiumPillButton>
@@ -608,7 +610,7 @@ export function Hero() {
                 variant="ghost"
                 shape="rounded"
                 size="xl"
-                className="w-full sm:w-auto"
+                className="home-hero__cta home-hero__cta--secondary"
               >
                 Start configurator
               </PremiumPillButton>
@@ -640,8 +642,16 @@ export function Hero() {
                 reduceMotion
                   ? { duration: motionDuration.premium, ease: motionEase.premium, delay: 0.62 }
                   : {
-                      opacity: { duration: motionDuration.premium, ease: motionEase.premium, delay: 0.62 },
-                      x: { duration: motionDuration.premium, ease: motionEase.premium, delay: 0.62 },
+                      opacity: {
+                        duration: motionDuration.premium,
+                        ease: motionEase.premium,
+                        delay: 0.62,
+                      },
+                      x: {
+                        duration: motionDuration.premium,
+                        ease: motionEase.premium,
+                        delay: 0.62,
+                      },
                       y: { duration: 7.2, repeat: Number.POSITIVE_INFINITY, ease: motionEase.soft },
                     }
               }
@@ -670,34 +680,39 @@ export function Hero() {
                 />
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(23,25,28,0.12)_0%,rgba(23,25,28,0.42)_64%,rgba(23,25,28,0.78)_100%)]" />
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_18%,rgba(200,169,107,0.18),transparent_44%),radial-gradient(circle_at_78%_28%,rgba(139,197,64,0.10),transparent_42%)] opacity-0 transition-opacity duration-[2200ms] [transition-timing-function:cubic-bezier(0.19,1,0.22,1)] group-hover:opacity-100" />
-                <div aria-hidden="true" className="pointer-events-none absolute -inset-x-14 top-[-30%] h-[58%] rotate-[12deg] bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.22),transparent)] opacity-0 blur-[1px] transition-[opacity,transform] duration-[2200ms] [transition-timing-function:cubic-bezier(0.19,1,0.22,1)] group-hover:opacity-100 group-hover:translate-x-28" />
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -inset-x-14 top-[-30%] h-[58%] rotate-[12deg] bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.22),transparent)] opacity-0 blur-[1px] transition-[opacity,transform] duration-[2200ms] [transition-timing-function:cubic-bezier(0.19,1,0.22,1)] group-hover:opacity-100 group-hover:translate-x-28"
+                />
 
                 <div className="relative aspect-[16/9]">
                   <div className="absolute left-4 top-4 right-4 flex items-start justify-between gap-3">
-                  <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-[rgba(23,25,28,0.44)] px-3 py-2 shadow-[0_18px_46px_-34px_rgba(23,25,28,0.5)] backdrop-blur-xl">
-                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[rgba(255,255,255,0.06)] text-[var(--gold)]">
-                      <HeroHouse className="h-4.5 w-4.5" />
-                    </span>
-                    <span className="text-[0.68rem] tracking-[0.22em] text-white/70">SHOWROOM UTRECHT</span>
-                  </div>
+                    <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-[rgba(23,25,28,0.44)] px-3 py-2 shadow-[0_18px_46px_-34px_rgba(23,25,28,0.5)] backdrop-blur-xl">
+                      <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[rgba(255,255,255,0.06)] text-[var(--gold)]">
+                        <HeroHouse className="h-4.5 w-4.5" />
+                      </span>
+                      <span className="text-[0.68rem] tracking-[0.22em] text-white/70">
+                        SHOWROOM UTRECHT
+                      </span>
+                    </div>
 
-                  <div className="relative">
-                    <AnimatePresence initial={false}>
-                      {showPauseToast ? (
-                        <motion.div
-                           initial={{ opacity: 0, y: -8, scale: 0.96 }}
-                           animate={{ opacity: 1, y: 0, scale: 1 }}
-                           exit={{ opacity: 0, y: -8, scale: 0.96 }}
-                           transition={{ duration: 0.5, ease: motionEase.premium }}
-                           className="pointer-events-none inline-flex items-center gap-2 rounded-full border border-white/10 bg-[rgba(23,25,28,0.46)] px-3 py-2 text-[0.72rem] font-medium tracking-[-0.01em] text-white/90 shadow-[0_18px_46px_-34px_rgba(23,25,28,0.55)] backdrop-blur-xl"
-                        >
-                          <HeroPause className="h-4 w-4 text-white/90" />
-                          <span>Pauze</span>
-                        </motion.div>
-                      ) : null}
-                    </AnimatePresence>
+                    <div className="relative">
+                      <AnimatePresence initial={false}>
+                        {showPauseToast ? (
+                          <motion.div
+                            initial={{ opacity: 0, y: -8, scale: 0.96 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: -8, scale: 0.96 }}
+                            transition={{ duration: 0.5, ease: motionEase.premium }}
+                            className="pointer-events-none inline-flex items-center gap-2 rounded-full border border-white/10 bg-[rgba(23,25,28,0.46)] px-3 py-2 text-[0.72rem] font-medium tracking-[-0.01em] text-white/90 shadow-[0_18px_46px_-34px_rgba(23,25,28,0.55)] backdrop-blur-xl"
+                          >
+                            <HeroPause className="h-4 w-4 text-white/90" />
+                            <span>Pauze</span>
+                          </motion.div>
+                        ) : null}
+                      </AnimatePresence>
+                    </div>
                   </div>
-                </div>
 
                   <div className="absolute inset-x-0 bottom-0 flex items-center justify-between px-4 pb-4">
                     <button
@@ -709,12 +724,19 @@ export function Hero() {
                       className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-[rgba(200,169,107,0.38)] bg-[rgba(23,25,28,0.44)] px-4 py-2 text-[0.78rem] font-medium tracking-[-0.01em] text-white/90 shadow-[0_18px_46px_-34px_rgba(23,25,28,0.55)] backdrop-blur-xl transition-colors duration-300 hover:bg-[rgba(23,25,28,0.58)]"
                       aria-label={videoPaused ? "Video afspelen" : "Video pauzeren"}
                     >
-                      {videoPaused ? <HeroPlay className="h-4 w-4" /> : <HeroPause className="h-4 w-4" />}
+                      {videoPaused ? (
+                        <HeroPlay className="h-4 w-4" />
+                      ) : (
+                        <HeroPause className="h-4 w-4" />
+                      )}
                       <span>{videoPaused ? "Klik om af te spelen" : "Klik om te pauzeren"}</span>
                     </button>
 
                     <div className="relative opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                      <div aria-hidden="true" className="absolute -inset-2 rounded-[18px] border border-[rgba(200,169,107,0.55)] shadow-[0_16px_44px_-28px_rgba(200,169,107,0.42)]" />
+                      <div
+                        aria-hidden="true"
+                        className="absolute -inset-2 rounded-[18px] border border-[rgba(200,169,107,0.55)] shadow-[0_16px_44px_-28px_rgba(200,169,107,0.42)]"
+                      />
                       <button
                         type="button"
                         onClick={(event) => {

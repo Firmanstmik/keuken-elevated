@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { ArrowLeft2, ArrowRight2 } from "@zethictech/iconsax-react";
 
 type FlowActionBarProps = {
   overline: string;
@@ -31,15 +32,58 @@ export function FlowActionBar({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 16 }}
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed inset-x-0 bottom-0 z-[140] border-t backdrop-blur-xl ${
+      className={`flow-action-bar fixed inset-x-0 bottom-0 z-[140] border-t backdrop-blur-xl ${
         isLight
           ? "border-[rgba(17,17,17,0.08)] bg-[rgba(247,245,242,0.94)] shadow-[0_-24px_60px_-40px_rgba(17,17,17,0.18)]"
           : "border-[rgba(247,245,242,0.08)] bg-[rgba(10,10,10,0.88)] shadow-[0_-24px_60px_-40px_rgba(0,0,0,0.55)]"
       }`}
     >
-      <div className="mx-auto flex w-[min(calc(100%-1rem),1536px)] flex-col gap-4 px-1 py-3 pb-[calc(env(safe-area-inset-bottom)+0.75rem)] md:w-[min(calc(100%-6rem),1536px)] md:flex-row md:items-center md:justify-between md:gap-6 md:px-0 md:py-5">
+      <div className="mx-auto flex w-full items-center gap-2 px-3 pb-[calc(env(safe-area-inset-bottom)+0.65rem)] pt-2.5 md:hidden">
+        {onBack ? (
+          <button
+            type="button"
+            onClick={onBack}
+            aria-label={backLabel}
+            className={`grid h-12 w-12 shrink-0 place-items-center rounded-[15px] border ${
+              isLight
+                ? "border-black/10 bg-white/75 text-[#25281f]"
+                : "border-white/10 bg-white/[0.06] text-white"
+            }`}
+          >
+            <ArrowLeft2 size={20} variant="Linear" />
+          </button>
+        ) : null}
+
+        <div className="min-w-0 flex-1 px-1">
+          <p className="truncate text-[0.62rem] font-medium text-[#6b9539]">{overline}</p>
+          <p
+            className={`truncate text-[1rem] leading-tight ${
+              isLight ? "text-[#111111]" : "text-[#F7F5F2]"
+            }`}
+            style={{ fontFamily: "var(--font-display)", fontWeight: 500 }}
+          >
+            {title}
+          </p>
+        </div>
+
+        {continueLabel && onContinue ? (
+          <button
+            type="button"
+            onClick={onContinue}
+            disabled={continueDisabled}
+            className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-[15px] border border-[#8BC540] bg-[#79af37] px-4 text-[0.76rem] font-semibold text-white shadow-[0_12px_26px_-16px_rgba(66,105,27,0.9)] active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-45"
+          >
+            <span className="max-w-[8.2rem] truncate">{continueLabel}</span>
+            <ArrowRight2 size={16} variant="Linear" />
+          </button>
+        ) : null}
+      </div>
+
+      <div className="mx-auto hidden w-[min(calc(100%-6rem),1536px)] items-center justify-between gap-6 py-5 md:flex">
         <div className="min-w-0">
-          <p className="mb-1 block text-[0.62rem] uppercase tracking-[0.24em] text-[#8BC540] md:text-[0.6875rem]">{overline}</p>
+          <p className="mb-1 block text-[0.62rem] uppercase tracking-[0.24em] text-[#8BC540] md:text-[0.6875rem]">
+            {overline}
+          </p>
           <p
             className={`text-[1.18rem] leading-[1.08] md:truncate md:text-[1.75rem] ${
               isLight ? "text-[#111111]" : "text-[#F7F5F2]"
@@ -49,13 +93,15 @@ export function FlowActionBar({
             {title}
           </p>
           {subtitle ? (
-            <p className={`mt-1 max-w-[38rem] text-[0.8rem] leading-[1.6] md:text-[0.85rem] md:leading-[1.65] ${isLight ? "text-[#666666]" : "text-[rgba(247,245,242,0.56)]"}`}>
+            <p
+              className={`mt-1 max-w-[38rem] text-[0.8rem] leading-[1.6] md:text-[0.85rem] md:leading-[1.65] ${isLight ? "text-[#666666]" : "text-[rgba(247,245,242,0.56)]"}`}
+            >
               {subtitle}
             </p>
           ) : null}
         </div>
 
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-end">
+        <div className="flex items-center justify-end gap-2">
           {onBack ? (
             <button
               type="button"

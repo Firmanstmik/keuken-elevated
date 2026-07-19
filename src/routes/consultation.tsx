@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
-import { Calendar, Call, TickCircle, User } from "@zethictech/iconsax-react";
+import { ArrowDown2, Calendar, Call, TickCircle, User } from "@zethictech/iconsax-react";
 import { SelectionPreview } from "@/components/configurator/SelectionPreview";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -32,6 +32,8 @@ type FormData = {
 function ConsultationPage() {
   const { config } = useConfigurator();
   const [submitted, setSubmitted] = useState(false);
+  const [attempted, setAttempted] = useState(false);
+  const [proposalOpen, setProposalOpen] = useState(false);
   const [form, setForm] = useState<FormData>({
     name: "",
     email: "",
@@ -77,7 +79,8 @@ function ConsultationPage() {
     }
   }, [config.budget, form.budget]);
 
-  const isValid = Boolean(form.name && form.email && form.showroom);
+  const emailIsValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email);
+  const isValid = Boolean(form.name.trim() && emailIsValid && form.showroom);
 
   return (
     <main className="min-h-screen bg-[#F7F5F2]">
@@ -93,9 +96,9 @@ function ConsultationPage() {
             initial={{ opacity: 0, x: -24 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.65, ease: "easeOut" }}
-            className={`relative min-h-[340px] ${submitted ? "hidden md:block" : "block"}`}
+            className={`consultation-hero relative min-h-[340px] ${submitted ? "hidden md:block" : "block"}`}
           >
-            <div className="relative h-[340px] overflow-hidden md:sticky md:top-0 md:h-screen">
+            <div className="relative h-[300px] overflow-hidden md:sticky md:top-0 md:h-screen">
               <div
                 className="h-full w-full bg-cover bg-center"
                 style={{ backgroundImage: `url(${heroImage})` }}
@@ -104,7 +107,7 @@ function ConsultationPage() {
               <div className="absolute inset-x-0 top-0 h-40 bg-[linear-gradient(180deg,rgba(7,17,27,0.52)_0%,rgba(7,17,27,0.22)_42%,rgba(7,17,27,0)_100%)]" />
               <div className="absolute inset-x-0 bottom-0 h-48 bg-[linear-gradient(180deg,rgba(7,17,27,0)_0%,rgba(7,17,27,0.18)_26%,rgba(7,17,27,0.62)_100%)]" />
 
-              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
+              <div className="absolute bottom-0 left-0 right-0 p-5 md:p-10">
                 <div className="max-w-[36rem]">
                   <p className="mb-3 block text-[0.7rem] uppercase tracking-[0.28em] text-[#D1AF78]">
                     Ontwerpconsultatie
@@ -113,28 +116,34 @@ function ConsultationPage() {
                     className="max-w-[26rem] text-[2rem] leading-[0.98] tracking-[-0.03em] text-[#F7F5F2] md:text-[3rem]"
                     style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
                   >
-                    {config.brandName ?? "Uw"} {config.styleName ? `${config.styleName.toLowerCase()} ` : ""}
+                    {config.brandName ?? "Uw"}{" "}
+                    {config.styleName ? `${config.styleName.toLowerCase()} ` : ""}
                     keukenvoorstel
                   </h1>
 
-                  <p className="mt-4 max-w-[31rem] text-[0.98rem] leading-[1.8] text-[rgba(247,245,242,0.76)]">
+                  <p className="mt-4 hidden max-w-[31rem] text-[0.98rem] leading-[1.8] text-[rgba(247,245,242,0.76)] sm:block">
                     Uw configuratie is klaar voor de laatste bespreking. Plan uw afspraak en ontvang
                     een verfijnd ontwerpvoorstel dat aansluit op uw gekozen materialen en stijl.
                   </p>
 
-                  <div className="mt-6 grid max-w-[34rem] gap-x-8 gap-y-3 sm:grid-cols-2">
+                  <div className="mt-6 hidden max-w-[34rem] gap-x-8 gap-y-3 sm:grid sm:grid-cols-2">
                     {[
                       { icon: <PersonMark />, text: "Persoonlijk ontwerpadvies" },
                       { icon: <CalendarMark />, text: "Flexibele afspraakplanning" },
                       { icon: <PhoneMark />, text: "Showroom of online consultatie" },
-                      { icon: <CheckCircleMark />, text: `${configuredCount} details samengesteld` },
+                      {
+                        icon: <CheckCircleMark />,
+                        text: `${configuredCount} details samengesteld`,
+                      },
                     ].map((item) => (
                       <div
                         key={item.text}
                         className="flex items-center gap-2.5 border-b border-[rgba(247,245,242,0.12)] pb-3"
                       >
                         <span className="text-[#D1AF78]">{item.icon}</span>
-                        <span className="text-[0.88rem] text-[rgba(247,245,242,0.82)]">{item.text}</span>
+                        <span className="text-[0.88rem] text-[rgba(247,245,242,0.82)]">
+                          {item.text}
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -149,194 +158,335 @@ function ConsultationPage() {
             transition={{ duration: 0.65, ease: "easeOut", delay: 0.15 }}
             className="bg-[#F7F5F2] md:h-screen md:overflow-y-auto"
           >
-            <div className="mx-auto w-full max-w-[760px] px-4 pb-10 pt-28 md:px-8 md:pb-16 md:pt-32 lg:px-10">
-            <AnimatePresence mode="wait">
-              {!submitted ? (
-                <motion.div
-                  key="form"
-                  initial={{ opacity: 0, y: 24 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -16 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <SelectionPreview
-                    overline="Stap 05 laatste controle"
-                    title={`${config.brandName ?? "Uw"} keukenconsultatie`}
-                    description="Controleer uw merk, stijl, budget en geselecteerde materialen. Alles hieronder vormt de basis voor uw persoonlijke ontwerpgesprek."
-                    image={selectedStyle?.image ?? selectedBrand?.image}
-                    imageAlt="Laatste projectvoorvertoning"
-                    accentColor={selectedBrand?.accentColor ?? "#B08D57"}
-                    details={[
-                      { label: "Merk", value: config.brandName ?? "Niet gekozen" },
-                      { label: "Stijl", value: config.styleName ?? "Niet gekozen" },
-                      { label: "Samengestelde onderdelen", value: `${configuredCount} gekozen details` },
-                      { label: "Budget", value: form.budget || "Kies uw budget" },
-                    ]}
-                    selections={selectedMaterials}
-                    footerNote="Met het formulier hieronder verstuurt u uw keukenvoorstel naar ons consultatieteam."
-                  />
-
-                  <div className="mb-6 mt-8 md:mb-8 md:mt-10">
-                    <p className="mb-2 block text-[0.6875rem] uppercase tracking-[0.25em] text-[#B08D57]">
-                      Stap 05 van 05
-                    </p>
-                    <h1
-                      className="mb-2 text-[2rem] text-[#111111] md:text-[2.35rem]"
-                      style={{ fontFamily: "var(--font-display)", fontWeight: 400, lineHeight: 1.2 }}
-                    >
-                      Plan een consultatie
-                    </h1>
-                    <p className="max-w-[42rem] text-[1rem] leading-[1.7] text-[#666666]">
-                      Vul het formulier in en uw persoonlijke ontwerpadviseur neemt binnen 24 uur
-                      contact met u op om uw project verder uit te werken.
-                    </p>
-                  </div>
-
-                  <div className="rounded-[24px] border border-[rgba(17,17,17,0.08)] bg-[rgba(255,255,255,0.72)] p-4 shadow-[0_26px_70px_-52px_rgba(17,17,17,0.18)] backdrop-blur-[14px] md:p-6">
-                    <form
-                      onSubmit={(event) => {
-                        event.preventDefault();
-                        if (!isValid) return;
-                        setSubmitted(true);
-                      }}
-                      className="flex flex-col gap-3"
-                    >
-                      <Input
-                        placeholder="Volledige naam"
-                        value={form.name}
-                        onChange={(event) => setForm((current) => ({ ...current, name: event.target.value }))}
-                      />
-                      <Input
-                        type="email"
-                        placeholder="E-mailadres"
-                        value={form.email}
-                        onChange={(event) => setForm((current) => ({ ...current, email: event.target.value }))}
-                      />
-                      <Input
-                        type="tel"
-                        placeholder="Telefoonnummer"
-                        value={form.phone}
-                        onChange={(event) => setForm((current) => ({ ...current, phone: event.target.value }))}
-                      />
-                      <select
-                        value={form.showroom}
-                        onChange={(event) => setForm((current) => ({ ...current, showroom: event.target.value }))}
-                        className="flex h-12 w-full rounded-[16px] border border-input bg-white/82 px-4 py-2 text-[1rem] font-light leading-[1.7] text-[#111111] outline-none"
-                      >
-                        <option value="">Gewenste showroom</option>
-                        {masterShowrooms.map((showroom) => (
-                          <option key={showroom} value={showroom}>
-                            {showroom}
-                          </option>
-                        ))}
-                      </select>
-                      <select
-                        value={form.budget}
-                        onChange={(event) => setForm((current) => ({ ...current, budget: event.target.value }))}
-                        className="flex h-12 w-full rounded-[16px] border border-input bg-white/82 px-4 py-2 text-[1rem] font-light leading-[1.7] text-[#111111] outline-none"
-                      >
-                        <option value="">Projectbudget</option>
-                        {masterConsultationBudgets.map((budget) => (
-                          <option key={budget} value={budget}>
-                            {budget}
-                          </option>
-                        ))}
-                      </select>
-                      <Input
-                        type="date"
-                        value={form.date}
-                        onChange={(event) => setForm((current) => ({ ...current, date: event.target.value }))}
-                      />
-                      <Textarea
-                        placeholder="Vertel ons meer over uw project, planning of specifieke wensen..."
-                        value={form.notes}
-                        onChange={(event) => setForm((current) => ({ ...current, notes: event.target.value }))}
-                      />
-
-                      <div className="mt-2">
-                        <button
-                          type="submit"
-                          disabled={!isValid}
-                          className="inline-flex min-h-14 w-full items-center justify-center rounded-[16px] border px-4 text-[0.8125rem] uppercase tracking-[0.15em] transition-colors duration-300 disabled:cursor-not-allowed"
-                          style={{
-                            backgroundColor: isValid ? "#B08D57" : "rgba(0,0,0,0.1)",
-                            borderColor: isValid ? "#B08D57" : "rgba(0,0,0,0.1)",
-                            color: isValid ? "#F7F5F2" : "rgba(0,0,0,0.3)",
-                          }}
-                        >
-                          Consultatie plannen
-                        </button>
-                      </div>
-
-                      <p className="mt-1 text-center text-[0.75rem] leading-[1.6] text-[#AAAAAA]">
-                        Uw gegevens worden volledig discreet behandeld. Wij delen uw informatie nooit
-                        met derden.
-                      </p>
-                    </form>
-                  </div>
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="success"
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6 }}
-                  className="flex min-h-[70vh] flex-col items-center justify-center py-8 text-center md:min-h-[calc(100vh-9rem)]"
-                >
+            <div className="mx-auto w-full max-w-[760px] px-4 pb-28 pt-8 md:px-8 md:pb-16 md:pt-32 lg:px-10">
+              <AnimatePresence mode="wait">
+                {!submitted ? (
                   <motion.div
-                    initial={{ scale: 0, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 0.2, type: "spring", stiffness: 200, damping: 20 }}
-                    className="mb-5 flex h-[72px] w-[72px] items-center justify-center rounded-[20px] border-[1.5px] border-[#B08D57] bg-white/70"
-                  >
-                    <CheckCircleMark />
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    key="form"
+                    initial={{ opacity: 0, y: 24 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 }}
+                    exit={{ opacity: 0, y: -16 }}
+                    transition={{ duration: 0.5 }}
                   >
-                    <p className="mb-3 block text-[0.6875rem] uppercase tracking-[0.25em] text-[#B08D57]">
-                      Consultatie aangevraagd
-                    </p>
-                    <h1
-                      className="mx-auto mb-3 max-w-[420px] text-[2.1rem] text-[#111111] md:text-[2.35rem]"
-                      style={{ fontFamily: "var(--font-display)", fontWeight: 400, lineHeight: 1.2 }}
+                    <button
+                      type="button"
+                      onClick={() => setProposalOpen((open) => !open)}
+                      aria-expanded={proposalOpen}
+                      className="mb-4 flex min-h-14 w-full items-center justify-between rounded-[18px] border border-black/[0.08] bg-white/75 px-4 text-left md:hidden"
                     >
-                      Wij kijken ernaar uit uw droomkeuken te ontwerpen
-                    </h1>
-                  </motion.div>
+                      <span>
+                        <span className="block text-xs font-medium text-[#789d48]">
+                          Uw voorstel
+                        </span>
+                        <span className="mt-0.5 block text-sm font-semibold text-[#171917]">
+                          {configuredCount} keuzes controleren
+                        </span>
+                      </span>
+                      <ArrowDown2
+                        size={19}
+                        variant="Linear"
+                        className={`transition-transform ${proposalOpen ? "rotate-180" : ""}`}
+                      />
+                    </button>
+                    <div className={proposalOpen ? "block" : "hidden md:block"}>
+                      <SelectionPreview
+                        overline="Stap 05 laatste controle"
+                        title={`${config.brandName ?? "Uw"} keukenconsultatie`}
+                        description="Controleer uw merk, stijl, budget en geselecteerde materialen. Alles hieronder vormt de basis voor uw persoonlijke ontwerpgesprek."
+                        image={selectedStyle?.image ?? selectedBrand?.image}
+                        imageAlt="Laatste projectvoorvertoning"
+                        accentColor={selectedBrand?.accentColor ?? "#B08D57"}
+                        details={[
+                          { label: "Merk", value: config.brandName ?? "Niet gekozen" },
+                          { label: "Stijl", value: config.styleName ?? "Niet gekozen" },
+                          {
+                            label: "Samengestelde onderdelen",
+                            value: `${configuredCount} gekozen details`,
+                          },
+                          { label: "Budget", value: form.budget || "Kies uw budget" },
+                        ]}
+                        selections={selectedMaterials}
+                        footerNote="Met het formulier hieronder verstuurt u uw keukenvoorstel naar ons consultatieteam."
+                      />
+                    </div>
 
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.6 }}
-                  >
-                    <p className="mx-auto mb-2 max-w-[380px] text-[1rem] leading-[1.8] text-[#666666]">
-                      Dank u, {form.name.split(" ")[0]}. Uw persoonlijke ontwerpadviseur neemt
-                      binnen 24 uur contact met u op om de afspraak te bevestigen.
-                    </p>
-
-                    <div className="mx-auto my-5 h-px w-[120px] bg-[#B08D57]" />
-
-                    <p className="mb-1 text-[0.875rem] text-[#999999]">
-                      Showroom: <span className="text-[#555555]">{form.showroom}</span>
-                    </p>
-                    {form.date ? (
-                      <p className="mb-5 text-[0.875rem] text-[#999999]">
-                        Gewenste datum: <span className="text-[#555555]">{form.date}</span>
+                    <div className="mb-6 mt-8 md:mb-8 md:mt-10">
+                      <p className="mb-2 block text-[0.6875rem] uppercase tracking-[0.25em] text-[#B08D57]">
+                        Stap 05 van 05
                       </p>
-                    ) : null}
+                      <h1
+                        className="mb-2 text-[2rem] text-[#111111] md:text-[2.35rem]"
+                        style={{
+                          fontFamily: "var(--font-display)",
+                          fontWeight: 400,
+                          lineHeight: 1.2,
+                        }}
+                      >
+                        Plan een consultatie
+                      </h1>
+                      <p className="max-w-[42rem] text-[1rem] leading-[1.7] text-[#666666]">
+                        Vul het formulier in en uw persoonlijke ontwerpadviseur neemt binnen 24 uur
+                        contact met u op om uw project verder uit te werken.
+                      </p>
+                    </div>
 
-                    <p className="text-[0.6875rem] uppercase tracking-[0.2em] text-[#B08D57]">
-                      Keuken Centrum Utrecht
-                    </p>
+                    <div className="rounded-[24px] border border-[rgba(17,17,17,0.08)] bg-[rgba(255,255,255,0.72)] p-4 shadow-[0_26px_70px_-52px_rgba(17,17,17,0.18)] backdrop-blur-[14px] md:p-6">
+                      <form
+                        onSubmit={(event) => {
+                          event.preventDefault();
+                          setAttempted(true);
+                          if (!isValid) return;
+                          setSubmitted(true);
+                        }}
+                        noValidate
+                        className="flex flex-col gap-4"
+                      >
+                        <div>
+                          <label
+                            htmlFor="consultation-name"
+                            className="mb-1.5 block text-sm font-medium text-[#30342d]"
+                          >
+                            Volledige naam <span className="text-[#789d48]">*</span>
+                          </label>
+                          <Input
+                            id="consultation-name"
+                            autoComplete="name"
+                            placeholder="Voor- en achternaam"
+                            value={form.name}
+                            required
+                            aria-invalid={attempted && !form.name.trim()}
+                            onChange={(event) =>
+                              setForm((current) => ({ ...current, name: event.target.value }))
+                            }
+                          />
+                          {attempted && !form.name.trim() ? (
+                            <p className="mt-1.5 text-xs text-red-700">Vul uw naam in.</p>
+                          ) : null}
+                        </div>
+
+                        <div>
+                          <label
+                            htmlFor="consultation-email"
+                            className="mb-1.5 block text-sm font-medium text-[#30342d]"
+                          >
+                            E-mailadres <span className="text-[#789d48]">*</span>
+                          </label>
+                          <Input
+                            id="consultation-email"
+                            type="email"
+                            inputMode="email"
+                            autoComplete="email"
+                            placeholder="naam@voorbeeld.nl"
+                            value={form.email}
+                            required
+                            aria-invalid={attempted && !emailIsValid}
+                            onChange={(event) =>
+                              setForm((current) => ({ ...current, email: event.target.value }))
+                            }
+                          />
+                          {attempted && !emailIsValid ? (
+                            <p className="mt-1.5 text-xs text-red-700">
+                              Vul een geldig e-mailadres in.
+                            </p>
+                          ) : null}
+                        </div>
+
+                        <div>
+                          <label
+                            htmlFor="consultation-phone"
+                            className="mb-1.5 block text-sm font-medium text-[#30342d]"
+                          >
+                            Telefoonnummer{" "}
+                            <span className="font-normal text-[#73786e]">(optioneel)</span>
+                          </label>
+                          <Input
+                            id="consultation-phone"
+                            type="tel"
+                            inputMode="tel"
+                            autoComplete="tel"
+                            placeholder="06 12345678"
+                            value={form.phone}
+                            onChange={(event) =>
+                              setForm((current) => ({ ...current, phone: event.target.value }))
+                            }
+                          />
+                        </div>
+
+                        <div>
+                          <label
+                            htmlFor="consultation-showroom"
+                            className="mb-1.5 block text-sm font-medium text-[#30342d]"
+                          >
+                            Gewenste showroom <span className="text-[#789d48]">*</span>
+                          </label>
+                          <select
+                            id="consultation-showroom"
+                            value={form.showroom}
+                            required
+                            aria-invalid={attempted && !form.showroom}
+                            onChange={(event) =>
+                              setForm((current) => ({ ...current, showroom: event.target.value }))
+                            }
+                            className="flex h-12 w-full rounded-[16px] border border-input bg-white/82 px-4 py-2 text-[1rem] font-light leading-[1.7] text-[#111111] outline-none"
+                          >
+                            <option value="">Selecteer een showroom</option>
+                            {masterShowrooms.map((showroom) => (
+                              <option key={showroom} value={showroom}>
+                                {showroom}
+                              </option>
+                            ))}
+                          </select>
+                          {attempted && !form.showroom ? (
+                            <p className="mt-1.5 text-xs text-red-700">Selecteer een showroom.</p>
+                          ) : null}
+                        </div>
+
+                        <div>
+                          <label
+                            htmlFor="consultation-budget"
+                            className="mb-1.5 block text-sm font-medium text-[#30342d]"
+                          >
+                            Projectbudget
+                          </label>
+                          <select
+                            id="consultation-budget"
+                            value={form.budget}
+                            onChange={(event) =>
+                              setForm((current) => ({ ...current, budget: event.target.value }))
+                            }
+                            className="flex h-12 w-full rounded-[16px] border border-input bg-white/82 px-4 py-2 text-[1rem] font-light leading-[1.7] text-[#111111] outline-none"
+                          >
+                            <option value="">Kies een budgetindicatie</option>
+                            {masterConsultationBudgets.map((budget) => (
+                              <option key={budget} value={budget}>
+                                {budget}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+
+                        <div>
+                          <label
+                            htmlFor="consultation-date"
+                            className="mb-1.5 block text-sm font-medium text-[#30342d]"
+                          >
+                            Gewenste datum
+                          </label>
+                          <Input
+                            id="consultation-date"
+                            type="date"
+                            value={form.date}
+                            onChange={(event) =>
+                              setForm((current) => ({ ...current, date: event.target.value }))
+                            }
+                          />
+                        </div>
+
+                        <div>
+                          <label
+                            htmlFor="consultation-notes"
+                            className="mb-1.5 block text-sm font-medium text-[#30342d]"
+                          >
+                            Uw wensen
+                          </label>
+                          <Textarea
+                            id="consultation-notes"
+                            placeholder="Vertel ons meer over uw project, planning of specifieke wensen..."
+                            value={form.notes}
+                            onChange={(event) =>
+                              setForm((current) => ({ ...current, notes: event.target.value }))
+                            }
+                          />
+                        </div>
+
+                        <div className="mt-2">
+                          <button
+                            type="submit"
+                            disabled={!isValid}
+                            className="inline-flex min-h-14 w-full items-center justify-center rounded-[16px] border px-4 text-[0.8125rem] uppercase tracking-[0.15em] transition-colors duration-300 disabled:cursor-not-allowed"
+                            style={{
+                              backgroundColor: isValid ? "#B08D57" : "rgba(0,0,0,0.1)",
+                              borderColor: isValid ? "#B08D57" : "rgba(0,0,0,0.1)",
+                              color: isValid ? "#F7F5F2" : "rgba(0,0,0,0.3)",
+                            }}
+                          >
+                            Consultatie plannen
+                          </button>
+                        </div>
+
+                        <p className="mt-1 text-center text-[0.75rem] leading-[1.6] text-[#AAAAAA]">
+                          Uw gegevens worden volledig discreet behandeld. Wij delen uw informatie
+                          nooit met derden.
+                        </p>
+                      </form>
+                    </div>
                   </motion.div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+                ) : (
+                  <motion.div
+                    key="success"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.6 }}
+                    className="flex min-h-[70vh] flex-col items-center justify-center py-8 text-center md:min-h-[calc(100vh-9rem)]"
+                  >
+                    <motion.div
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ delay: 0.2, type: "spring", stiffness: 200, damping: 20 }}
+                      className="mb-5 flex h-[72px] w-[72px] items-center justify-center rounded-[20px] border-[1.5px] border-[#B08D57] bg-white/70"
+                    >
+                      <CheckCircleMark />
+                    </motion.div>
+
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.4 }}
+                    >
+                      <p className="mb-3 block text-[0.6875rem] uppercase tracking-[0.25em] text-[#B08D57]">
+                        Consultatie aangevraagd
+                      </p>
+                      <h1
+                        className="mx-auto mb-3 max-w-[420px] text-[2.1rem] text-[#111111] md:text-[2.35rem]"
+                        style={{
+                          fontFamily: "var(--font-display)",
+                          fontWeight: 400,
+                          lineHeight: 1.2,
+                        }}
+                      >
+                        Wij kijken ernaar uit uw droomkeuken te ontwerpen
+                      </h1>
+                    </motion.div>
+
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.6 }}
+                    >
+                      <p className="mx-auto mb-2 max-w-[380px] text-[1rem] leading-[1.8] text-[#666666]">
+                        Dank u, {form.name.split(" ")[0]}. Uw persoonlijke ontwerpadviseur neemt
+                        binnen 24 uur contact met u op om de afspraak te bevestigen.
+                      </p>
+
+                      <div className="mx-auto my-5 h-px w-[120px] bg-[#B08D57]" />
+
+                      <p className="mb-1 text-[0.875rem] text-[#999999]">
+                        Showroom: <span className="text-[#555555]">{form.showroom}</span>
+                      </p>
+                      {form.date ? (
+                        <p className="mb-5 text-[0.875rem] text-[#999999]">
+                          Gewenste datum: <span className="text-[#555555]">{form.date}</span>
+                        </p>
+                      ) : null}
+
+                      <p className="text-[0.6875rem] uppercase tracking-[0.2em] text-[#B08D57]">
+                        Keuken Centrum Utrecht
+                      </p>
+                    </motion.div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </motion.div>
         </div>
       </motion.section>

@@ -9,6 +9,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
+import { MotionConfig } from "framer-motion";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -16,6 +17,8 @@ import { ConfiguratorProvider } from "../context/configurator-context";
 import { Toaster } from "../components/ui/sonner";
 import shareLogo from "@/assets/Logo_Keuken_Centrum.png";
 import { StickyConversionBar } from "@/components/site/StickyConversionBar";
+import { MobileAppShell } from "@/components/shell/MobileAppShell";
+import { isConfiguratorPath } from "@/components/shell/shell-routes";
 
 function NotFoundComponent() {
   return (
@@ -81,7 +84,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   head: () => ({
     meta: [
       { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      {
+        name: "viewport",
+        content: "width=device-width, initial-scale=1, viewport-fit=cover",
+      },
       { title: "Keuken-Centrum Utrecht" },
       { name: "description", content: "Premium keukenshowroom in Utrecht sinds 1978." },
       { name: "author", content: "Keuken-Centrum Utrecht" },
@@ -134,21 +140,19 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const location = useLocation();
-  const isConfiguratorRoute = [
-    "/brands",
-    "/style",
-    "/configure",
-    "/moodboard",
-    "/consultation",
-  ].includes(location.pathname);
+  const isConfiguratorRoute = isConfiguratorPath(location.pathname);
 
   return (
     <QueryClientProvider client={queryClient}>
       <ConfiguratorProvider>
-        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-        <Outlet />
-        {!isConfiguratorRoute && <StickyConversionBar />}
-        <Toaster richColors position="top-right" />
+        <MotionConfig reducedMotion="user">
+          <MobileAppShell pathname={location.pathname}>
+            {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+            <Outlet />
+          </MobileAppShell>
+          {!isConfiguratorRoute && <StickyConversionBar />}
+          <Toaster richColors position="top-right" />
+        </MotionConfig>
       </ConfiguratorProvider>
     </QueryClientProvider>
   );

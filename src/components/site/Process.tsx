@@ -1,13 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-  type Variants,
-} from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform, type Variants } from "framer-motion";
 import { Shop, Brush2, Layer, Gallery, People } from "@zethictech/iconsax-react";
 import { PremiumPillButton } from "@/components/ui/premium-pill-button";
 import { SectionChapter } from "@/components/site/SectionChapter";
@@ -67,7 +61,7 @@ const stepReveal: Variants = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.80, delay: i * 0.09, ease: luxuryEase },
+    transition: { duration: 0.8, delay: i * 0.09, ease: luxuryEase },
   }),
 };
 
@@ -101,10 +95,7 @@ export function Process() {
   }, [scrollYProgress, reduceMotion]);
 
   // Progress line fill width (0–100%)
-  const linePercent =
-    activeCount <= 1
-      ? 0
-      : ((activeCount - 1) / (steps.length - 1)) * 100;
+  const linePercent = activeCount <= 1 ? 0 : ((activeCount - 1) / (steps.length - 1)) * 100;
 
   return (
     <section
@@ -156,14 +147,18 @@ export function Process() {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 top-0 h-px"
-        style={{ background: "linear-gradient(90deg, transparent, rgba(139,197,64,0.26), transparent)" }}
+        style={{
+          background: "linear-gradient(90deg, transparent, rgba(139,197,64,0.26), transparent)",
+        }}
       />
 
       {/* 7. Bottom hairline */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 bottom-0 h-px"
-        style={{ background: "linear-gradient(90deg, transparent, rgba(139,197,64,0.10), transparent)" }}
+        style={{
+          background: "linear-gradient(90deg, transparent, rgba(139,197,64,0.10), transparent)",
+        }}
       />
 
       <div className="site-container relative max-w-7xl">
@@ -221,10 +216,7 @@ export function Process() {
         </motion.div>
 
         {/* ── Timeline ── */}
-        <motion.div
-          className="relative"
-          style={reduceMotion ? undefined : { y: timelineParallax }}
-        >
+        <motion.div className="relative" style={reduceMotion ? undefined : { y: timelineParallax }}>
           {/* ── Animated progress line (desktop only) ── */}
           <div
             aria-hidden="true"
@@ -232,10 +224,7 @@ export function Process() {
             style={{ top: "32px" }}
           >
             {/* Track */}
-            <div
-              className="h-px w-full"
-              style={{ background: "rgba(139,197,64,0.10)" }}
-            />
+            <div className="h-px w-full" style={{ background: "rgba(139,197,64,0.10)" }} />
 
             {/* Animated fill */}
             <div
@@ -266,7 +255,7 @@ export function Process() {
           </div>
 
           {/* ── Steps ── */}
-          <div className="flex flex-col gap-10 md:flex-row md:gap-0">
+          <div className="process-mobile-steps flex gap-4 overflow-x-auto pb-4 md:gap-0 md:overflow-visible md:pb-0">
             {steps.map(({ n, t, d, Icon }, index) => {
               const isScrollActive = index < activeCount;
               const isHovered = hoveredStep === index;
@@ -280,28 +269,23 @@ export function Process() {
                   whileInView="visible"
                   viewport={viewport}
                   variants={reduceMotion ? undefined : stepReveal}
-                  className="w-full md:flex-1"
+                  className="process-mobile-step w-[82vw] max-w-[320px] shrink-0 md:w-full md:max-w-none md:flex-1"
                 >
                   <button
                     type="button"
                     onMouseEnter={() => setHoveredStep(index)}
                     onMouseLeave={() => setHoveredStep(null)}
-                    className="group relative z-10 w-full cursor-default text-left normal-case tracking-normal md:px-4 md:text-center"
+                    className="group relative z-10 min-h-[168px] w-full cursor-default rounded-[22px] border border-white/[0.08] bg-white/[0.035] p-5 text-left normal-case tracking-normal md:min-h-0 md:rounded-none md:border-0 md:bg-transparent md:p-0 md:px-4 md:text-center"
                   >
                     <div className="relative flex items-start gap-5 md:flex-col md:items-center">
-
                       {/* ── Glass Node ── */}
                       <div
                         className="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-full"
                         style={{
-                          background: isOn
-                            ? "rgba(139,197,64,0.09)"
-                            : "rgba(17,19,13,0.72)",
+                          background: isOn ? "rgba(139,197,64,0.09)" : "rgba(17,19,13,0.72)",
                           borderWidth: "1px",
                           borderStyle: "solid",
-                          borderColor: isOn
-                            ? "rgba(139,197,64,0.55)"
-                            : "rgba(139,197,64,0.13)",
+                          borderColor: isOn ? "rgba(139,197,64,0.55)" : "rgba(139,197,64,0.13)",
                           backdropFilter: "blur(12px)",
                           transition: "all 500ms cubic-bezier(0.22,1,0.36,1)",
                           transform:
@@ -314,7 +298,8 @@ export function Process() {
                         <div
                           className="pointer-events-none absolute inset-0 rounded-full"
                           style={{
-                            boxShadow: "0 0 22px rgba(139,197,64,0.32), 0 0 0 5px rgba(139,197,64,0.07), 0 8px 32px rgba(0,0,0,0.30)",
+                            boxShadow:
+                              "0 0 22px rgba(139,197,64,0.32), 0 0 0 5px rgba(139,197,64,0.07), 0 8px 32px rgba(0,0,0,0.30)",
                             opacity: isOn ? 1 : 0,
                             transition: "opacity 500ms ease",
                           }}
@@ -328,9 +313,7 @@ export function Process() {
                             fontSize: "0.55rem",
                             fontWeight: 700,
                             letterSpacing: "0.22em",
-                            color: isOn
-                              ? "rgba(139,197,64,0.78)"
-                              : "rgba(139,197,64,0.30)",
+                            color: isOn ? "rgba(139,197,64,0.78)" : "rgba(139,197,64,0.30)",
                             transition: "color 500ms ease",
                           }}
                         >
@@ -341,9 +324,9 @@ export function Process() {
                         <div
                           style={{
                             opacity: isOn ? 1 : 0.32,
-                            transform:
-                              isHovered && !reduceMotion ? "scale(1.10)" : "scale(1)",
-                            transition: "opacity 500ms ease, transform 500ms cubic-bezier(0.22,1,0.36,1)",
+                            transform: isHovered && !reduceMotion ? "scale(1.10)" : "scale(1)",
+                            transition:
+                              "opacity 500ms ease, transform 500ms cubic-bezier(0.22,1,0.36,1)",
                           }}
                         >
                           <Icon
@@ -364,9 +347,7 @@ export function Process() {
                             width: "5px",
                             borderRadius: "9999px",
                             background: isScrollActive ? "#A8D95A" : "rgba(139,197,64,0.16)",
-                            boxShadow: isScrollActive
-                              ? "0 0 10px rgba(139,197,64,0.58)"
-                              : "none",
+                            boxShadow: isScrollActive ? "0 0 10px rgba(139,197,64,0.58)" : "none",
                             transition: "all 500ms ease",
                           }}
                         />
@@ -377,9 +358,7 @@ export function Process() {
                         className="md:mt-6"
                         style={{
                           transform:
-                            isHovered && !reduceMotion
-                              ? "translateY(-2px)"
-                              : "translateY(0)",
+                            isHovered && !reduceMotion ? "translateY(-2px)" : "translateY(0)",
                           transition: "transform 500ms cubic-bezier(0.22,1,0.36,1)",
                         }}
                       >
@@ -393,12 +372,10 @@ export function Process() {
                           {t}
                         </h3>
                         <p
-                          className="mt-2.5 max-w-[115px] text-[0.875rem] font-light leading-[1.75] tracking-[0.01em] md:mx-auto"
+                          className="mt-2.5 max-w-[190px] text-[0.875rem] font-light leading-[1.75] tracking-[0.01em] md:mx-auto md:max-w-[115px]"
                           style={{
                             fontFamily: "var(--font-body)",
-                            color: isOn
-                              ? "rgba(247,244,238,0.52)"
-                              : "rgba(247,244,238,0.24)",
+                            color: isOn ? "rgba(247,244,238,0.52)" : "rgba(247,244,238,0.24)",
                             transition: "color 500ms ease",
                           }}
                         >
@@ -418,11 +395,7 @@ export function Process() {
           initial={reduceMotion ? false : { opacity: 0, y: 14 }}
           whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
           viewport={viewport}
-          transition={
-            reduceMotion
-              ? undefined
-              : { delay: 0.6, duration: 0.7, ease: luxuryEase }
-          }
+          transition={reduceMotion ? undefined : { delay: 0.6, duration: 0.7, ease: luxuryEase }}
           className="mt-20 flex flex-col items-center gap-8 md:mt-28"
         >
           {/* Vertical connector line */}
@@ -434,16 +407,10 @@ export function Process() {
             }}
           />
 
-          <PremiumPillButton
-            href="/brands"
-            variant="blue"
-            shape="rounded"
-            size="xl"
-          >
+          <PremiumPillButton href="/brands" variant="blue" shape="rounded" size="xl">
             Begin uw ontwerptraject
           </PremiumPillButton>
         </motion.div>
-
       </div>
     </section>
   );

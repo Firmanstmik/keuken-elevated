@@ -9,7 +9,12 @@ import { FlowNav } from "@/components/configurator/FlowNav";
 import { ArrowRight } from "@/components/ui/icons";
 import { ArchiveAdd, DocumentDownload, Export } from "@zethictech/iconsax-react";
 import { useConfigurator } from "@/context/configurator-context";
-import { masterBrands, masterBudgetRanges, masterCategories, masterStyles } from "@/lib/master-config-data";
+import {
+  masterBrands,
+  masterBudgetRanges,
+  masterCategories,
+  masterStyles,
+} from "@/lib/master-config-data";
 
 // Import base configurator images for each style
 import modernBase from "@/assets/configurator/modern-base.webp";
@@ -48,7 +53,9 @@ function MoodboardPage() {
     [config.selections],
   );
 
-  const budget = config.brand ? masterBudgetRanges[config.brand] ?? "€35,000 tot €85,000" : "€35,000 tot €85,000";
+  const budget = config.brand
+    ? (masterBudgetRanges[config.brand] ?? "€35,000 tot €85,000")
+    : "€35,000 tot €85,000";
   const selectedBrand = useMemo(
     () => masterBrands.find((brand) => brand.id === config.brand) ?? null,
     [config.brand],
@@ -58,15 +65,12 @@ function MoodboardPage() {
     [config.style],
   );
 
-  const selectedStyleKey = selectedStyle
-    ? typeof selectedStyle === "string"
-      ? selectedStyle
-      : (selectedStyle.id || (selectedStyle as any).slug || (selectedStyle as any).name || "")
-    : "";
+  const selectedStyleKey = selectedStyle?.id ?? "";
 
   const activeImage =
-    (selectedStyleKey ? configuratorImages[selectedStyleKey.toLowerCase() as keyof typeof configuratorImages] : null) ??
-    modernBase;
+    (selectedStyleKey
+      ? configuratorImages[selectedStyleKey.toLowerCase() as keyof typeof configuratorImages]
+      : null) ?? modernBase;
 
   async function getImageDataUrl(src: string) {
     return new Promise<{ dataUrl: string; width: number; height: number }>((resolve, reject) => {
@@ -135,7 +139,11 @@ function MoodboardPage() {
     doc.text("Persoonlijk keukenvoorstel", margin, 27);
 
     doc.setFontSize(11);
-    doc.text(`${config.brandName ?? "Merk"} ${config.styleName ? `· ${config.styleName}` : ""}`, margin, 36);
+    doc.text(
+      `${config.brandName ?? "Merk"} ${config.styleName ? `· ${config.styleName}` : ""}`,
+      margin,
+      36,
+    );
 
     doc.setDrawColor(accent[0], accent[1], accent[2]);
     doc.setLineWidth(0.6);
@@ -299,15 +307,16 @@ function MoodboardPage() {
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.45, ease: "easeInOut" }}
+        className="pt-[calc(var(--app-safe-top)+4.9rem)] md:pt-0"
       >
-        <div className="relative h-[60vh] overflow-hidden md:h-[80vh]">
+        <div className="relative h-[44svh] min-h-[300px] overflow-hidden md:h-[80vh]">
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{ backgroundImage: `url(${activeImage})` }}
           />
           <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.1)_0%,rgba(0,0,0,0.5)_70%,rgba(247,245,242,1)_100%)]" />
 
-          <div className="absolute inset-x-0 bottom-[60px] px-4 text-center">
+          <div className="absolute inset-x-0 bottom-10 px-4 text-center md:bottom-[60px]">
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
@@ -333,20 +342,32 @@ function MoodboardPage() {
           </div>
         </div>
 
-        <div className="mx-auto w-[min(calc(100%-4rem),1200px)] pt-6 pb-32 md:w-[min(calc(100%-6rem),1200px)] md:pt-10 md:pb-40">
+        <div className="mx-auto w-[min(calc(100%-2rem),1200px)] pb-32 pt-5 md:w-[min(calc(100%-6rem),1200px)] md:pb-40 md:pt-10">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="mb-8 flex flex-wrap justify-center gap-2 md:mb-12">
-              <ActionButton icon={<DownloadMark />} label="Pdf downloaden" onClick={handleDownloadPdf} />
-              <ActionButton icon={<BookmarkMark />} label="Project opslaan" onClick={handleSaveProject} />
-              <ActionButton icon={<ShareMark />} label="Project delen" onClick={handleShareProject} />
+            <div className="moodboard-actions mb-8 flex gap-2 overflow-x-auto pb-2 md:mb-12 md:flex-wrap md:justify-center md:overflow-visible md:pb-0">
+              <ActionButton
+                icon={<DownloadMark />}
+                label="Pdf downloaden"
+                onClick={handleDownloadPdf}
+              />
+              <ActionButton
+                icon={<BookmarkMark />}
+                label="Project opslaan"
+                onClick={handleSaveProject}
+              />
+              <ActionButton
+                icon={<ShareMark />}
+                label="Project delen"
+                onClick={handleShareProject}
+              />
               <button
                 type="button"
                 onClick={() => navigate({ to: "/consultation" })}
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[14px] border border-[#B08D57] bg-[#B08D57] px-4 text-[0.7rem] uppercase tracking-[0.15em] text-[#F7F5F2] transition-colors duration-300 hover:border-[#8A6D3A] hover:bg-[#8A6D3A]"
+                className="hidden min-h-11 shrink-0 items-center justify-center gap-2 rounded-[14px] border border-[#B08D57] bg-[#B08D57] px-4 text-[0.7rem] tracking-[0.04em] text-[#F7F5F2] transition-colors duration-300 hover:border-[#8A6D3A] hover:bg-[#8A6D3A] md:inline-flex"
               >
                 Consultatie boeken
                 <ArrowRight className="h-4 w-4" />
@@ -403,7 +424,9 @@ function MoodboardPage() {
                             <p className="mb-0.5 block text-[0.75rem] uppercase tracking-[0.1em] text-[#999999]">
                               {category}
                             </p>
-                            <p className="text-[0.9rem] font-normal text-[#111111]">{selection!.name}</p>
+                            <p className="text-[0.9rem] font-normal text-[#111111]">
+                              {selection!.name}
+                            </p>
                           </div>
                           <span className="inline-flex h-[22px] items-center border border-[rgba(176,141,87,0.3)] bg-[rgba(176,141,87,0.1)] px-2 text-[0.5625rem] text-[#B08D57]">
                             Gekozen
@@ -434,7 +457,7 @@ function MoodboardPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
             >
-              <div className="mb-4 border border-[rgba(176,141,87,0.3)] bg-[#111111] p-4">
+              <div className="mb-4 rounded-[20px] border border-[rgba(176,141,87,0.3)] bg-[#111111] p-4">
                 <p className="mb-2 block text-[0.6875rem] uppercase tracking-[0.2em] text-[rgba(247,245,242,0.4)]">
                   Geschatte investering
                 </p>
@@ -450,7 +473,7 @@ function MoodboardPage() {
                 </p>
               </div>
 
-              <div className="border border-[rgba(0,0,0,0.08)] bg-[rgba(255,255,255,0.75)] p-4">
+              <div className="moodboard-next-step rounded-[20px] border border-[rgba(0,0,0,0.08)] bg-[rgba(255,255,255,0.75)] p-4">
                 <p className="mb-2 block text-[0.6875rem] uppercase tracking-[0.2em] text-[#B08D57]">
                   Volgende stap
                 </p>
@@ -523,7 +546,7 @@ function ActionButton({
       onClick={() => {
         void onClick();
       }}
-      className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[14px] border border-[#111111] px-3 text-[0.7rem] uppercase tracking-[0.15em] text-[#111111] transition-colors duration-300 hover:border-[#B08D57] hover:text-[#B08D57]"
+      className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-[14px] border border-[#111111] px-3 text-[0.7rem] tracking-[0.04em] text-[#111111] transition-colors duration-300 hover:border-[#B08D57] hover:text-[#B08D57]"
     >
       {icon}
       {label}

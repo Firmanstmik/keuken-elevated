@@ -87,7 +87,7 @@ function BrandsPage() {
                   onClick={() => setBrand(brand.id, brand.name)}
                   onMouseEnter={() => setHovered(brand.id)}
                   onMouseLeave={() => setHovered(null)}
-                  className="relative h-[320px] cursor-pointer overflow-hidden rounded-[18px] border text-left sm:h-[360px] md:h-[460px]"
+                  className="relative h-[250px] cursor-pointer overflow-hidden rounded-[22px] border text-left transition-transform active:scale-[0.985] sm:h-[360px] md:h-[460px]"
                   style={{
                     borderColor: selected ? "#B08D57" : "rgba(0,0,0,0.08)",
                     boxShadow: selected
@@ -154,6 +154,10 @@ function BrandsPage() {
                       {brand.tagline}
                     </p>
 
+                    <p className="line-clamp-2 max-w-[32rem] text-[0.8rem] normal-case leading-[1.5] tracking-[0.01em] text-[rgba(247,245,242,0.78)] md:hidden">
+                      {brand.description}
+                    </p>
+
                     <AnimatePresence mode="wait">
                       {isHovered ? (
                         <motion.p
@@ -161,7 +165,7 @@ function BrandsPage() {
                           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                           exit={{ opacity: 0, y: 10, filter: "blur(6px)" }}
                           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                          className="max-w-[32rem] text-[0.82rem] leading-[1.6] text-[rgba(247,245,242,0.75)] normal-case sm:text-[0.875rem]"
+                          className="hidden max-w-[32rem] text-[0.82rem] normal-case leading-[1.6] text-[rgba(247,245,242,0.75)] md:block sm:text-[0.875rem]"
                           style={{ textTransform: "none", letterSpacing: "0.01em" }}
                         >
                           {brand.description}
@@ -188,7 +192,6 @@ function BrandsPage() {
               );
             })}
           </div>
-
         </div>
       </motion.section>
 

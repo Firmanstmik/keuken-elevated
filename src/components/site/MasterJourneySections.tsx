@@ -963,7 +963,7 @@ export function ShowroomJourneySection() {
               whileInView={reduceMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
               viewport={motionViewport}
-              className="relative aspect-[4/3] w-full overflow-hidden rounded-[28px] md:rounded-[28px] border border-[#C8A96B]/30 bg-[#111111] shadow-[0_32px_64px_-12px_rgba(0,0,0,0.14)] flex flex-col"
+              className="home-configurator-preview relative flex aspect-[4/3] w-full flex-col overflow-hidden rounded-[28px] border border-[#C8A96B]/30 bg-[#111111] shadow-[0_32px_64px_-12px_rgba(0,0,0,0.14)] md:rounded-[28px]"
             >
               {/* Fake Header */}
               <div className="flex h-8 md:h-10 shrink-0 items-center justify-between border-b border-white/10 px-4">
@@ -1113,7 +1113,7 @@ export function ShowroomJourneySection() {
                 </div>
 
                 {/* Interactive Sidebar – mirrors configure.tsx layout */}
-                <div className="flex w-[36%] shrink-0 flex-col overflow-hidden border-l border-white/10 bg-[linear-gradient(180deg,#111411_0%,#0b0d0b_100%)] md:w-[34%]">
+                <div className="home-configurator-sidebar flex w-[36%] shrink-0 flex-col overflow-hidden border-l border-white/10 bg-[linear-gradient(180deg,#111411_0%,#0b0d0b_100%)] md:w-[34%]">
                   {/* Category tab strip */}
                   <div className="flex flex-wrap gap-1 border-b border-white/[0.07] bg-white/[0.018] p-2">
                     {hotspotsData.map((h, i) => {

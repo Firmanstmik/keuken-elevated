@@ -1293,7 +1293,7 @@ export function Nav() {
               onClick={() => setOpen((value) => !value)}
               aria-label={open ? "Sluit menu" : "Open menu"}
               aria-expanded={open}
-              className={`nav-mobile-toggle flex h-12 w-12 items-center justify-center rounded-[2px] border lg:hidden ${
+              className={`nav-mobile-toggle flex h-12 w-12 items-center justify-center rounded-[14px] border xl:hidden ${
                 elevated
                   ? "border-[rgb(7,17,27,0.12)] bg-[rgba(255,255,255,0.82)] text-[var(--foreground)]"
                   : "border-[rgb(7,17,27,0.12)] bg-[rgba(246,244,238,0.78)] text-[var(--foreground)] backdrop-blur-xl"
@@ -1316,11 +1316,11 @@ export function Nav() {
             animate={{ opacity: 1, y: 0 }}
             exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -8 }}
             transition={{ duration: motionDuration.premium, ease: motionEase.premium }}
-            className="lg:hidden"
+            className="xl:hidden"
           >
             <div className="fixed inset-0 z-[90] bg-[rgba(247,245,242,0.96)] backdrop-blur-[6px]">
-              <nav className="nav-mobile-panel flex min-h-[100dvh] flex-col">
-                <div className="flex items-center justify-between px-6 py-7">
+              <nav className="nav-mobile-panel flex h-[100dvh] flex-col overflow-y-auto overscroll-contain">
+                <div className="sticky top-0 z-20 flex items-center justify-between border-b border-black/[0.05] bg-[rgba(247,245,242,0.94)] px-5 pb-4 pt-[calc(env(safe-area-inset-top)+1rem)] backdrop-blur-xl">
                   <a href="/" className="flex items-center" onClick={() => setOpen(false)}>
                     <img
                       src={logoKeuken}
@@ -1344,7 +1344,7 @@ export function Nav() {
                   </button>
                 </div>
 
-                <div className="flex flex-1 flex-col items-center justify-center px-8 pb-[calc(env(safe-area-inset-bottom)+2rem)] pt-6 text-center">
+                <div className="flex flex-1 flex-col items-center justify-start px-5 pb-[calc(env(safe-area-inset-bottom)+6rem)] pt-7 text-center sm:px-8">
                   <motion.div
                     initial={reduceMotion ? false : "hidden"}
                     animate="visible"

@@ -520,7 +520,7 @@ export function Brands() {
           {[...marqueeBrands, ...marqueeBrands].map((brand, index) => (
             <span key={`${brand.name}-${index}`} className="brands-marquee__item">
               <span className="group/logo relative z-10 inline-flex min-w-[125px] items-center justify-center py-2 transition-all duration-500 hover:z-30 hover:scale-[1.16] hover:drop-shadow-[0_18px_24px_rgba(0,0,0,0.55)]">
-                <span className="pointer-events-none absolute bottom-[calc(100%+0.7rem)] left-1/2 z-40 w-max max-w-[230px] -translate-x-1/2 translate-y-2 rounded-[14px] border border-[rgba(200,169,107,0.32)] bg-[rgba(13,17,11,0.98)] px-4 py-3 text-center opacity-0 shadow-[0_22px_52px_-18px_rgba(0,0,0,0.95)] backdrop-blur-xl transition-all duration-400 group-hover/logo:translate-y-0 group-hover/logo:opacity-100">
+                <span className="brands-marquee__tooltip pointer-events-none absolute bottom-[calc(100%+0.7rem)] left-1/2 z-40 w-max max-w-[230px] -translate-x-1/2 translate-y-2 rounded-[14px] border border-[rgba(200,169,107,0.32)] bg-[rgba(13,17,11,0.98)] px-4 py-3 text-center opacity-0 shadow-[0_22px_52px_-18px_rgba(0,0,0,0.95)] backdrop-blur-xl transition-all duration-400 group-hover/logo:translate-y-0 group-hover/logo:opacity-100">
                   <span className="block text-[0.55rem] font-semibold uppercase tracking-[0.2em] text-[#D8BE87]">
                     {brand.name}
                   </span>

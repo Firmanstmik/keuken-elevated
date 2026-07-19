@@ -104,25 +104,33 @@ export function StickyConversionBar() {
                       <a
                         key={label}
                         href={href}
-                        className={`group relative flex min-h-[82px] items-center gap-3 overflow-hidden rounded-[18px] border px-4 transition-all duration-500 hover:-translate-y-0.5 ${primary
-                          ? "border-[#A8D95A]/38 bg-[linear-gradient(135deg,#8BC540,#659B2C)] text-white shadow-[0_22px_42px_-24px_rgba(139,197,64,0.68)]"
-                          : chat
-                            ? "border-[#8BC540]/16 bg-[linear-gradient(145deg,rgba(139,197,64,0.095),rgba(255,255,255,0.025))] text-white"
-                            : "border-white/[0.07] bg-white/[0.035] text-white"
-                          }`}
+                        className={`group relative flex min-h-[82px] items-center gap-3 overflow-hidden rounded-[18px] border px-4 transition-all duration-500 hover:-translate-y-0.5 ${
+                          primary
+                            ? "border-[#A8D95A]/38 bg-[linear-gradient(135deg,#8BC540,#659B2C)] text-white shadow-[0_22px_42px_-24px_rgba(139,197,64,0.68)]"
+                            : chat
+                              ? "border-[#8BC540]/16 bg-[linear-gradient(145deg,rgba(139,197,64,0.095),rgba(255,255,255,0.025))] text-white"
+                              : "border-white/[0.07] bg-white/[0.035] text-white"
+                        }`}
                       >
                         <span className="absolute inset-0 translate-y-[102%] bg-[linear-gradient(180deg,#ffffff,#F1EFE7)] transition-transform duration-[580ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0" />
-                        <span className={`relative z-10 grid h-11 w-11 shrink-0 place-items-center rounded-[13px] border transition-all duration-500 group-hover:rotate-[-6deg] group-hover:border-[#192012]/10 group-hover:bg-[#192f0d] group-hover:text-white ${primary
-                          ? "border-white/18 bg-white/12 text-white"
-                          : chat
-                            ? "border-[#8BC540]/24 bg-[#8BC540]/12 text-[#A8D95A]"
-                            : "border-[#C8A96B]/18 bg-[#C8A96B]/08 text-[#D8BE87]"
-                          }`}>
+                        <span
+                          className={`relative z-10 grid h-11 w-11 shrink-0 place-items-center rounded-[13px] border transition-all duration-500 group-hover:rotate-[-6deg] group-hover:border-[#192012]/10 group-hover:bg-[#192f0d] group-hover:text-white ${
+                            primary
+                              ? "border-white/18 bg-white/12 text-white"
+                              : chat
+                                ? "border-[#8BC540]/24 bg-[#8BC540]/12 text-[#A8D95A]"
+                                : "border-[#C8A96B]/18 bg-[#C8A96B]/08 text-[#D8BE87]"
+                          }`}
+                        >
                           <Icon size={20} variant="Linear" />
                         </span>
                         <span className="relative z-10 min-w-0 flex-1 transition-colors duration-500 group-hover:text-[#192012]">
-                          <span className="block text-[0.84rem] font-semibold tracking-[-0.015em]">{label}</span>
-                          <span className={`mt-1 block truncate text-[0.66rem] ${primary ? "text-white/72" : "text-white/42"} transition-colors duration-500 group-hover:text-[#192012]/58`}>
+                          <span className="block text-[0.84rem] font-semibold tracking-[-0.015em]">
+                            {label}
+                          </span>
+                          <span
+                            className={`mt-1 block truncate text-[0.66rem] ${primary ? "text-white/72" : "text-white/42"} transition-colors duration-500 group-hover:text-[#192012]/58`}
+                          >
                             {meta}
                           </span>
                         </span>
@@ -133,44 +141,6 @@ export function StickyConversionBar() {
                     );
                   })}
                 </div>
-              </div>
-            </div>
-          </motion.aside>
-
-          <motion.aside
-            aria-label="Direct contact"
-            initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 16 }}
-            transition={{ duration: reduceMotion ? 0.01 : 0.38, ease: [0.22, 1, 0.36, 1] }}
-            className="pointer-events-none fixed inset-x-0 bottom-0 z-[80] px-2 pb-[calc(env(safe-area-inset-bottom)+0.5rem)] md:hidden"
-          >
-            <div className="pointer-events-auto relative mx-auto max-w-[620px] rounded-[22px] border border-[rgba(200,169,107,0.3)] bg-[linear-gradient(145deg,rgba(17,22,15,0.97),rgba(8,13,10,0.97))] p-1.5 shadow-[0_28px_68px_-28px_rgba(0,0,0,0.9)] backdrop-blur-2xl">
-              <button
-                type="button"
-                onClick={() => setDismissed(true)}
-                aria-label="Sluit contactbalk"
-                className="absolute -right-1 -top-4 z-20 grid h-8 w-8 place-items-center rounded-full border border-white/12 bg-[#171b16] text-white/70"
-              >
-                <IconsaxClose size={18} variant="Linear" />
-              </button>
-              <div className="grid grid-cols-3 gap-1.5">
-                {actions.map(({ label, mobileLabel, href, Icon, tone }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    aria-label={label}
-                    className={`group flex min-h-[62px] flex-col items-center justify-center gap-1.5 rounded-[16px] border px-2 py-2 text-center transition-transform active:scale-[0.97] ${tone === "primary"
-                      ? "border-[#A8D95A]/32 bg-[linear-gradient(135deg,#8BC540,#659B2C)] text-white"
-                      : "border-white/[0.06] bg-white/[0.035] text-white/70"
-                      }`}
-                  >
-                    <span className={`grid h-8 w-8 place-items-center rounded-[10px] ${tone === "primary" ? "bg-white/12 text-white" : tone === "chat" ? "bg-[#8BC540]/14 text-[#A8D95A]" : "bg-[#C8A96B]/10 text-[#D8BE87]"}`}>
-                      <Icon size={17} variant="Linear" />
-                    </span>
-                    <span className="text-[0.54rem] font-semibold uppercase tracking-[0.11em]">{mobileLabel}</span>
-                  </a>
-                ))}
               </div>
             </div>
           </motion.aside>

@@ -265,10 +265,10 @@ function HotspotTooltip({
           transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="flex flex-col">
-            <span className="block text-[9px] font-semibold uppercase tracking-[0.24em] text-[#D4AF37] mb-1.5">
+            <span className="mb-1.5 block text-[9px] font-semibold tracking-[0.06em] text-[#D4AF37]">
               CONFIGURATIE
             </span>
-            <h4 className="font-serif text-[13px] font-semibold leading-snug text-white tracking-[-0.01em] uppercase">
+            <h4 className="font-serif text-[13px] font-semibold leading-snug tracking-[-0.01em] text-white">
               {title}
             </h4>
             <div className="h-px w-full bg-[rgba(212,175,55,0.1)] my-2" />
@@ -360,10 +360,6 @@ function ConfigurePage() {
       ? hotspotMap[selectedStyleKey.toLowerCase() as keyof typeof hotspotMap]
       : null) ?? hotspotMap.modern;
 
-  // Temporary console logs for debugging as per rules
-  console.log("Selected Style:", selectedStyle);
-  console.log("Active Image:", activeImage);
-
   const zoomedIn = zoomLevel > 1.001;
 
   function clampPan(nextX: number, nextY: number, scale = zoomLevel) {
@@ -422,11 +418,11 @@ function ConfigurePage() {
         />
       </div>
 
-      <header className="fixed inset-x-0 top-0 z-[1200] flex h-[60px] items-center justify-between border-b border-[rgba(139,197,64,0.16)] bg-[#111411] px-3 shadow-[0_12px_34px_-24px_rgba(0,0,0,0.9)] md:px-5">
+      <header className="configure-app-header fixed inset-x-0 top-0 z-[1200] flex h-[60px] items-center justify-between border-b border-[rgba(139,197,64,0.16)] bg-[#111411] px-3 shadow-[0_12px_34px_-24px_rgba(0,0,0,0.9)] md:px-5">
         <button
           type="button"
           onClick={() => navigate({ to: "/style" })}
-          className="inline-flex min-w-0 items-center gap-1 px-1.5 py-0.5 text-[0.65rem] uppercase tracking-[0.15em] text-[rgba(247,245,242,0.5)] transition-colors duration-300 hover:text-[#F7F5F2]"
+          className="inline-flex min-w-0 items-center gap-1 px-1.5 py-0.5 text-[0.72rem] tracking-[0.03em] text-[rgba(247,245,242,0.68)] transition-colors duration-300 hover:text-[#F7F5F2]"
         >
           <ArrowLeft className="h-[14px] w-[14px]" />
           Terug
@@ -436,7 +432,7 @@ function ConfigurePage() {
           <img src={logoKeuken} alt="KeukenCentrum.nl" className="h-6 w-auto md:h-7" />
         </div>
 
-        <p className="text-[0.6rem] uppercase tracking-[0.15em] text-[rgba(247,245,242,0.3)]">
+        <p className="text-[0.68rem] tracking-[0.04em] text-[rgba(247,245,242,0.5)]">
           Samenstellen
         </p>
       </header>
@@ -445,13 +441,13 @@ function ConfigurePage() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.55, ease: "easeOut" }}
-        className={`flex min-h-screen flex-col pt-[62px] md:h-[calc(100vh-62px)] md:flex-row ${
+        className={`configure-layout flex min-h-screen flex-col pt-[62px] md:h-[calc(100vh-62px)] md:flex-row ${
           completedCount > 0 ? "pb-28 md:pb-32" : ""
         }`}
       >
         <div
           ref={imageViewportRef}
-          className="relative min-h-[280px] flex-none overflow-hidden bg-[#0A0A0A] md:h-[calc(100vh-62px)] md:basis-[68%]"
+          className="configure-image-stage sticky top-[60px] z-20 h-[36svh] min-h-[260px] max-h-[380px] flex-none overflow-hidden bg-[#0A0A0A] md:static md:h-[calc(100vh-62px)] md:max-h-none md:basis-[68%]"
           onWheel={(event) => {
             event.preventDefault();
             const nextZoom = zoomLevel + (event.deltaY < 0 ? 0.14 : -0.14);
@@ -491,7 +487,7 @@ function ConfigurePage() {
               hasDraggedRef.current = false;
               dragStartRef.current = { x: event.clientX, y: event.clientY };
               panStartRef.current = panOffset;
-              if (zoomLevel <= 1) {
+              if (zoomLevel <= 1 && !isTouch) {
                 zoomToPointer(event.clientX, event.clientY, 1.6);
                 return;
               }
@@ -509,7 +505,7 @@ function ConfigurePage() {
               const active = activeCategory === hotspot.id;
               const isHovered = hoveredCategory === hotspot.id;
               const anyHovered = hoveredCategory !== null;
-              const visible = isHovered || (active && isTouch);
+              const visible = isHovered && !isTouch;
 
               // Dot size: 18 default → 22 hover → 24 active
               const dotSize = active ? 24 : isHovered ? 22 : 18;
@@ -539,7 +535,7 @@ function ConfigurePage() {
                   <button
                     type="button"
                     onClick={() => setActiveCategory(active ? null : hotspot.id)}
-                    className="absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+                    className="configure-hotspot absolute grid h-11 w-11 -translate-x-1/2 -translate-y-1/2 cursor-pointer place-items-center rounded-full"
                     style={{
                       transition: "opacity 0.3s ease",
                       opacity: anyHovered && !isHovered ? 0.3 : 1,
@@ -629,48 +625,49 @@ function ConfigurePage() {
 
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_60%,rgba(0,0,0,0.4)_100%)]" />
 
-          <div className="absolute bottom-5 right-5 flex items-center gap-2">
+          <div className="configure-zoom-controls absolute bottom-3 right-3 flex items-center gap-2 md:bottom-5 md:right-5">
             <button
               type="button"
               onClick={() => updateZoom(zoomLevel - 0.2)}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-[12px] border border-[rgba(247,245,242,0.15)] bg-[rgba(17,17,17,0.72)] text-[#F7F5F2] backdrop-blur-[8px] transition-colors duration-300 hover:border-[#8BC540] hover:bg-[rgba(139,197,64,0.3)]"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-[13px] border border-[rgba(247,245,242,0.15)] bg-[rgba(17,17,17,0.82)] text-[#F7F5F2] backdrop-blur-[8px] transition-colors duration-300 hover:border-[#8BC540] hover:bg-[rgba(139,197,64,0.3)]"
+              aria-label="Uitzoomen"
             >
               <span className="text-lg leading-none">-</span>
             </button>
             <button
               type="button"
               onClick={() => updateZoom(zoomLevel + 0.2)}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-[12px] border border-[rgba(247,245,242,0.15)] bg-[rgba(17,17,17,0.72)] text-[#F7F5F2] backdrop-blur-[8px] transition-colors duration-300 hover:border-[#8BC540] hover:bg-[rgba(139,197,64,0.3)]"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-[13px] border border-[rgba(247,245,242,0.15)] bg-[rgba(17,17,17,0.82)] text-[#F7F5F2] backdrop-blur-[8px] transition-colors duration-300 hover:border-[#8BC540] hover:bg-[rgba(139,197,64,0.3)]"
+              aria-label="Inzoomen"
             >
               <span className="text-lg leading-none">+</span>
             </button>
             <button
               type="button"
               onClick={resetZoomView}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-[12px] border border-[rgba(247,245,242,0.15)] bg-[rgba(17,17,17,0.72)] text-[#F7F5F2] backdrop-blur-[8px] transition-colors duration-300 hover:border-[#8BC540] hover:bg-[rgba(139,197,64,0.3)]"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-[13px] border border-[rgba(247,245,242,0.15)] bg-[rgba(17,17,17,0.82)] text-[#F7F5F2] backdrop-blur-[8px] transition-colors duration-300 hover:border-[#8BC540] hover:bg-[rgba(139,197,64,0.3)]"
+              aria-label="Zoom herstellen"
             >
               <Search className="h-4 w-4" />
             </button>
           </div>
 
           {zoomedIn ? (
-            <div className="pointer-events-none absolute bottom-5 left-5 rounded-[12px] border border-[rgba(247,245,242,0.1)] bg-[rgba(17,17,17,0.72)] px-3 py-2 text-[0.65rem] uppercase tracking-[0.16em] text-[rgba(247,245,242,0.6)] backdrop-blur-[8px]">
+            <div className="pointer-events-none absolute bottom-3 left-3 hidden rounded-[12px] border border-[rgba(247,245,242,0.1)] bg-[rgba(17,17,17,0.72)] px-3 py-2 text-[0.65rem] tracking-[0.04em] text-[rgba(247,245,242,0.6)] backdrop-blur-[8px] md:block">
               Sleep om details te bekijken, klik om uit te zoomen
             </div>
           ) : null}
 
-          <div className="absolute left-5 top-5 border border-[rgba(247,245,242,0.1)] bg-[rgba(17,17,17,0.75)] px-2.5 py-1.5 backdrop-blur-[8px]">
-            <p className="block text-[0.6rem] uppercase tracking-[0.2em] text-[#8BC540]">
-              Stap 03 van 05
-            </p>
+          <div className="absolute left-3 top-3 rounded-[10px] border border-[rgba(247,245,242,0.1)] bg-[rgba(17,17,17,0.78)] px-2.5 py-1.5 backdrop-blur-[8px] md:left-5 md:top-5">
+            <p className="block text-[0.6rem] tracking-[0.06em] text-[#8BC540]">Stap 03 van 05</p>
             <p className="text-[0.625rem] text-[rgba(247,245,242,0.6)]">
               {completedCount}/{totalCategories} opties samengesteld
             </p>
           </div>
         </div>
 
-        <div className="flex min-h-[calc(100vh-62px)] flex-1 flex-col overflow-y-auto border-l border-[rgba(255,255,255,0.05)] bg-[#0F0F0F]">
-          <div className="flex flex-wrap gap-1 border-b border-[rgba(255,255,255,0.05)] p-3">
+        <div className="configure-sidebar flex flex-1 flex-col overflow-y-auto border-l border-[rgba(255,255,255,0.05)] bg-[#0F0F0F] md:min-h-[calc(100vh-62px)]">
+          <div className="configure-category-rail flex gap-2 overflow-x-auto border-b border-[rgba(255,255,255,0.05)] p-3">
             {masterCategories.map((category) => {
               const selected = config.selections[category.id];
               const active = activeCategory === category.id;
@@ -679,7 +676,7 @@ function ConfigurePage() {
                   key={category.id}
                   type="button"
                   onClick={() => setActiveCategory(active ? null : category.id)}
-                  className="inline-flex items-center gap-2 border px-2 py-2 transition-all duration-300"
+                  className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-[13px] border px-3 py-2 normal-case transition-all duration-300"
                   style={{
                     borderColor: active
                       ? "#8BC540"
@@ -696,7 +693,7 @@ function ConfigurePage() {
                     />
                   ) : null}
                   <span
-                    className="text-[0.6rem] uppercase tracking-[0.15em]"
+                    className="text-[0.68rem] tracking-[0.02em]"
                     style={{
                       color: active
                         ? "#8BC540"
@@ -712,7 +709,11 @@ function ConfigurePage() {
             })}
           </div>
 
-          <div className="flex-1 p-3">
+          <div
+            className={`configure-options-panel flex-1 p-3 ${
+              activeCategoryData ? "configure-options-panel--open" : ""
+            }`}
+          >
             <AnimatePresence mode="wait">
               {activeCategoryData ? (
                 <motion.div
@@ -724,7 +725,7 @@ function ConfigurePage() {
                 >
                   <div className="mb-3 flex items-center justify-between">
                     <div>
-                      <p className="mb-0.5 block text-[0.6rem] uppercase tracking-[0.2em] text-[#8BC540]">
+                      <p className="mb-0.5 block text-[0.6rem] tracking-[0.04em] text-[#8BC540]">
                         Kies
                       </p>
                       <h2
@@ -737,7 +738,7 @@ function ConfigurePage() {
                     <button
                       type="button"
                       onClick={() => setActiveCategory(null)}
-                      className="text-[rgba(247,245,242,0.35)] transition-colors duration-300 hover:text-[#F7F5F2]"
+                      className="min-h-11 rounded-xl px-3 text-sm normal-case text-[rgba(247,245,242,0.55)] transition-colors duration-300 hover:text-[#F7F5F2]"
                     >
                       Sluiten
                     </button>
@@ -762,7 +763,7 @@ function ConfigurePage() {
                             );
                             if (config.brand) setBudget(budget);
                           }}
-                          className="cursor-pointer p-2 text-left transition-all duration-300"
+                          className="min-h-[118px] cursor-pointer rounded-[14px] p-2.5 text-left normal-case transition-all duration-300 active:scale-[0.98]"
                           style={{
                             border: `1px solid ${selected ? "#8BC540" : "rgba(255,255,255,0.07)"}`,
                             backgroundColor: selected
@@ -798,7 +799,7 @@ function ConfigurePage() {
                   exit={{ opacity: 0 }}
                   className="py-6 text-center"
                 >
-                  <p className="mb-2 block text-[0.6875rem] uppercase tracking-[0.2em] text-[rgba(247,245,242,0.25)]">
+                  <p className="mb-2 block text-[0.6875rem] tracking-[0.04em] text-[rgba(247,245,242,0.25)]">
                     Configuratie
                   </p>
                   <p
@@ -812,8 +813,8 @@ function ConfigurePage() {
             </AnimatePresence>
           </div>
 
-          <div className="border-t border-[rgba(255,255,255,0.05)] bg-[#111111] p-3">
-            <p className="mb-2 block text-[0.6rem] uppercase tracking-[0.2em] text-[#8BC540]">
+          <div className="configure-summary border-t border-[rgba(255,255,255,0.05)] bg-[#111111] p-3">
+            <p className="mb-2 block text-[0.6rem] tracking-[0.04em] text-[#8BC540]">
               Uw configuratie
             </p>
 
@@ -830,7 +831,7 @@ function ConfigurePage() {
               ].map((item) =>
                 item.value ? (
                   <div key={item.label} className="flex items-center justify-between gap-3">
-                    <p className="text-[0.6rem] uppercase tracking-[0.1em] text-[rgba(247,245,242,0.35)]">
+                    <p className="text-[0.6rem] tracking-[0.03em] text-[rgba(247,245,242,0.35)]">
                       {item.label}
                     </p>
                     <div className="flex items-center gap-1">
@@ -851,7 +852,7 @@ function ConfigurePage() {
 
             <div className="mb-3 border-t border-[rgba(255,255,255,0.06)] pt-2">
               <div className="flex items-center justify-between gap-3">
-                <p className="text-[0.6rem] uppercase tracking-[0.1em] text-[rgba(247,245,242,0.35)]">
+                <p className="text-[0.6rem] tracking-[0.03em] text-[rgba(247,245,242,0.35)]">
                   Budgetindicatie
                 </p>
                 <p
@@ -866,7 +867,7 @@ function ConfigurePage() {
             <button
               type="button"
               onClick={() => navigate({ to: "/moodboard" })}
-              className="inline-flex min-h-[3.5rem] w-full items-center justify-center gap-3 rounded-[14px] border border-[#8BC540] bg-[#8BC540] px-4 text-[0.7rem] uppercase tracking-[0.15em] text-[#F7F5F2] transition-colors duration-300 hover:border-[#2F5218] hover:bg-[#2F5218]"
+              className="inline-flex min-h-[3.5rem] w-full items-center justify-center gap-3 rounded-[14px] border border-[#8BC540] bg-[#8BC540] px-4 text-[0.75rem] tracking-[0.03em] text-[#F7F5F2] transition-colors duration-300 hover:border-[#2F5218] hover:bg-[#2F5218]"
             >
               Moodboard genereren
               <ArrowRight className="h-4 w-4" />

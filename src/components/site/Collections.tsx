@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "@/components/ui/icons";
 import { PremiumPillButton } from "@/components/ui/premium-pill-button";
@@ -106,16 +106,25 @@ const CARD_GAP_PX = 24;
 function InfiniteGallery({ reduceMotion }: { reduceMotion: boolean | null }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
   const offsetRef = useRef(0);
   const rafRef = useRef(0);
   const pausedUntil = useRef(0);
   const drag = useRef({ active: false, startX: 0, startOffset: 0, moved: false });
 
-  // Triple the set so the seam is always far from the viewport
-  const items = [...collections, ...collections, ...collections];
+  useEffect(() => {
+    const query = window.matchMedia("(max-width: 767px), (pointer: coarse)");
+    const update = () => setIsMobile(query.matches);
+    update();
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, []);
+
+  // Mobile is a native snap carousel; desktop keeps the continuous gallery.
+  const items = isMobile ? collections : [...collections, ...collections, ...collections];
 
   useEffect(() => {
-    if (reduceMotion) return;
+    if (reduceMotion || isMobile) return;
     let last = performance.now();
 
     const tick = (now: number) => {
@@ -123,7 +132,10 @@ function InfiniteGallery({ reduceMotion }: { reduceMotion: boolean | null }) {
       last = now;
 
       const track = trackRef.current;
-      if (!track) { rafRef.current = requestAnimationFrame(tick); return; }
+      if (!track) {
+        rafRef.current = requestAnimationFrame(tick);
+        return;
+      }
 
       const totalW = track.scrollWidth;
       const oneSetW = totalW / 3; // 3 repetitions
@@ -143,10 +155,15 @@ function InfiniteGallery({ reduceMotion }: { reduceMotion: boolean | null }) {
 
     rafRef.current = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(rafRef.current);
-  }, [reduceMotion]);
+  }, [isMobile, reduceMotion]);
 
   const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
-    drag.current = { active: true, startX: e.clientX, startOffset: offsetRef.current, moved: false };
+    drag.current = {
+      active: true,
+      startX: e.clientX,
+      startOffset: offsetRef.current,
+      moved: false,
+    };
     wrapRef.current?.setPointerCapture(e.pointerId);
   };
   const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
@@ -162,7 +179,7 @@ function InfiniteGallery({ reduceMotion }: { reduceMotion: boolean | null }) {
   };
 
   return (
-    <div className="relative mt-16 pb-8">
+    <div className="collection-gallery relative mt-16 pb-8">
       {/* Edge fades — mask-image approach so they adapt to any background */}
       <div
         className="pointer-events-none absolute inset-y-0 left-0 z-10 w-32 md:w-52"
@@ -175,28 +192,34 @@ function InfiniteGallery({ reduceMotion }: { reduceMotion: boolean | null }) {
 
       <div
         ref={wrapRef}
-        className="overflow-x-hidden overflow-y-visible py-8 pb-14"
+        className={`collection-gallery__viewport overflow-y-visible py-8 pb-14 ${
+          isMobile ? "overflow-x-auto" : "overflow-x-hidden"
+        }`}
         style={{
-          cursor: drag.current.active ? "grabbing" : "grab",
-          touchAction: "pan-y",
+          cursor: isMobile ? "auto" : drag.current.active ? "grabbing" : "grab",
+          touchAction: isMobile ? "pan-x pan-y" : "pan-y",
           userSelect: "none",
         }}
-        onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={onPointerUp}
-        onPointerCancel={onPointerUp}
-        onMouseEnter={() => { pausedUntil.current = Infinity; }}
-        onMouseLeave={() => { pausedUntil.current = 0; }}
+        onPointerDown={isMobile ? undefined : onPointerDown}
+        onPointerMove={isMobile ? undefined : onPointerMove}
+        onPointerUp={isMobile ? undefined : onPointerUp}
+        onPointerCancel={isMobile ? undefined : onPointerUp}
+        onMouseEnter={() => {
+          pausedUntil.current = Infinity;
+        }}
+        onMouseLeave={() => {
+          pausedUntil.current = 0;
+        }}
       >
         <div
           ref={trackRef}
-          className="flex will-change-transform"
+          className={`collection-gallery__track flex ${isMobile ? "" : "will-change-transform"}`}
           style={{ gap: `${CARD_GAP_PX}px`, paddingLeft: "32px", paddingRight: "32px" }}
         >
           {items.map((item, i) => (
             <div
               key={`${item.id}-${i}`}
-              className="shrink-0 pt-2 pb-8"
+              className="collection-gallery__slide shrink-0 pb-8 pt-2"
               style={{ width: `${CARD_W_PX}px`, height: `${CARD_H_PX}px` }}
             >
               <GalleryCard item={item} />
@@ -219,10 +242,20 @@ export function Collections() {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
-        style={{ backgroundImage: `url(${matConcrete})`, backgroundSize: "cover", backgroundPosition: "center" }}
+        style={{
+          backgroundImage: `url(${matConcrete})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
       />
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[rgba(248,246,242,0.88)]" />
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_60%_30%,rgba(139,197,64,0.04),transparent_50%)]" />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[rgba(248,246,242,0.88)]"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_60%_30%,rgba(139,197,64,0.04),transparent_50%)]"
+      />
 
       <div className="relative z-10">
         {/* Header */}
@@ -240,18 +273,16 @@ export function Collections() {
               <span className="eyebrow text-[#C8A96B]">Onze Collecties</span>
             </div>
             <h2 className="heading-2 mt-4">
-              Ontdek uw <em className="italic" style={{ color: "#8BC540" }}>Droomkeuken</em>
+              Ontdek uw{" "}
+              <em className="italic" style={{ color: "#8BC540" }}>
+                Droomkeuken
+              </em>
             </h2>
             <p className="mt-5 max-w-[480px] text-[1.05rem] font-light leading-[1.75] tracking-[0.01em] text-[#5A5A5A]">
-              Vier zorgvuldig samengestelde stijlwerelden, elk met een unieke architectonische
-              taal van materiaal, compositie en sfeer.
+              Vier zorgvuldig samengestelde stijlwerelden, elk met een unieke architectonische taal
+              van materiaal, compositie en sfeer.
             </p>
-            <PremiumPillButton
-              href="#showroom"
-              variant="blue"
-              size="sm"
-              className="mt-7 w-fit"
-            >
+            <PremiumPillButton href="#showroom" variant="blue" size="sm" className="mt-7 w-fit">
               Alle keukens bekijken
             </PremiumPillButton>
           </motion.div>

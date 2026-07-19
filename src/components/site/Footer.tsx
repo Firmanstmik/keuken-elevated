@@ -92,7 +92,9 @@ function TrustBar({ reduceMotion }: { reduceMotion: boolean | null }) {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 top-0 h-px"
-        style={{ background: "linear-gradient(90deg, transparent, rgba(139,197,64,0.28), transparent)" }}
+        style={{
+          background: "linear-gradient(90deg, transparent, rgba(139,197,64,0.28), transparent)",
+        }}
       />
 
       <div className="site-container grid max-w-7xl grid-cols-2 gap-0 py-11 md:grid-cols-4">
@@ -159,7 +161,9 @@ function SocialRow({ links }: { links: SocialLink[] }) {
             className={`relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-[12px] border transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1 group-hover:scale-[1.1] ${socialIconTone[tone]}`}
           >
             <span className="pointer-events-none absolute inset-y-0 -left-1/2 w-1/3 -skew-x-12 bg-white/45 opacity-0 blur-[1px] transition-all duration-700 group-hover:left-[125%] group-hover:opacity-100" />
-            <span className="relative z-10 transition-transform duration-500 group-hover:scale-[1.08]">{icon}</span>
+            <span className="relative z-10 transition-transform duration-500 group-hover:scale-[1.08]">
+              {icon}
+            </span>
           </span>
           <span
             className="relative text-[0.8rem] font-light text-[rgba(255,255,255,0.80)] transition-colors duration-400 group-hover:text-[var(--social-color)]"
@@ -361,7 +365,6 @@ export function Footer() {
       <TrustBar reduceMotion={reduceMotion} />
 
       <div className="site-container relative z-10 max-w-7xl">
-
         {/* ── SECTION 1 — Hero CTA ─────────────────── */}
         <motion.div
           initial={reduceMotion ? false : "hidden"}
@@ -372,7 +375,9 @@ export function Footer() {
         >
           {/* Eyebrow */}
           <motion.div variants={reduceMotion ? undefined : fadeUp} className="mb-7">
-            <KitchenEyebrow light align="center">Persoonlijk ontwerptraject</KitchenEyebrow>
+            <KitchenEyebrow light align="center">
+              Persoonlijk ontwerptraject
+            </KitchenEyebrow>
           </motion.div>
 
           {/* Heading */}
@@ -400,8 +405,8 @@ export function Footer() {
             className="mt-5 max-w-[34rem] text-[0.95rem] font-light leading-[1.85] text-[rgba(255,255,255,0.80)]"
             style={{ fontFamily: "var(--font-body)" }}
           >
-            Bezoek de showroom of start eerst online. Rustig, verfijnd en volledig
-            in lijn met onze premium keukenbeleving.
+            Bezoek de showroom of start eerst online. Rustig, verfijnd en volledig in lijn met onze
+            premium keukenbeleving.
           </motion.p>
 
           {/* CTA pair */}
@@ -422,15 +427,85 @@ export function Footer() {
         {/* Teal divider */}
         <div className="h-px bg-gradient-to-r from-transparent via-[rgba(139,197,64,0.16)] to-transparent" />
 
+        {/* Mobile footer: compact, touch-first accordions */}
+        <div className="py-10 md:hidden">
+          <img
+            src={logoKeuken as unknown as string}
+            alt="KeukenCentrum.nl"
+            className="h-auto w-[min(14rem,78vw)]"
+            width={280}
+            height={48}
+          />
+          <p className="mt-4 max-w-sm text-sm font-light leading-7 text-white/72">
+            Europese designkeukens, persoonlijk advies en compromisloze kwaliteit sinds {kc.founded}
+            .
+          </p>
+          <div className="mt-6">
+            <SocialRow links={socialLinks} />
+          </div>
+
+          <div className="mt-9 divide-y divide-white/[0.09] border-y border-white/[0.09]">
+            {[
+              {
+                title: "Keukens & inspiratie",
+                links: [
+                  ["Alle keukens", "/keukens"],
+                  ["Keukenbladen", "/keukenbladen"],
+                  ["Apparatuur", "/apparatuur"],
+                  ["Showroom keukens", "/showroom-keukens"],
+                ],
+              },
+              {
+                title: "Ontwerptraject",
+                links: [
+                  ["Start configurator", "/brands"],
+                  ["Kies uw stijl", "/style"],
+                  ["Maak een afspraak", "/consultation"],
+                ],
+              },
+              {
+                title: "Contact & showroom",
+                links: [
+                  [kc.contact.phone, kc.contact.phoneHref],
+                  [kc.contact.email, `mailto:${kc.contact.email}`],
+                  ["Route naar de showroom", SHOWROOM_MAPS_URL],
+                ],
+              },
+            ].map((group) => (
+              <details key={group.title} className="group/footer">
+                <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 py-3 text-sm font-semibold text-white">
+                  {group.title}
+                  <IconsaxArrowRight
+                    size={18}
+                    variant="Linear"
+                    className="rotate-90 text-[#A8D95A] transition-transform group-open/footer:-rotate-90"
+                  />
+                </summary>
+                <ul className="space-y-1 pb-4">
+                  {group.links.map(([label, href]) => (
+                    <li key={label}>
+                      <a
+                        href={href}
+                        className="flex min-h-11 items-center rounded-xl px-3 text-sm text-white/72 transition-colors active:bg-white/[0.06] active:text-[#A8D95A]"
+                      >
+                        {label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            ))}
+          </div>
+        </div>
+
         {/* ── SECTION 2 — Information grid ─────────── */}
         <motion.div
           initial={reduceMotion ? false : "hidden"}
           whileInView="visible"
           viewport={motionViewport}
           variants={reduceMotion ? undefined : stagger(0.12)}
-          className="grid grid-cols-1 gap-12 pb-16 pt-20 md:grid-cols-2 lg:grid-cols-[1.3fr_0.9fr_0.9fr_1.4fr] lg:gap-10 xl:gap-14"
+          className="hidden gap-12 pb-16 pt-20 md:grid md:grid-cols-2 lg:grid-cols-[1.3fr_0.9fr_0.9fr_1.4fr] lg:gap-10 xl:gap-14"
         >
-
           {/* ── Col 1: Brand identity ── */}
           <motion.div variants={reduceMotion ? undefined : fadeUp}>
             {/* Logo */}
@@ -454,8 +529,8 @@ export function Footer() {
               className="mb-9 max-w-[18rem] text-[0.88rem] font-light leading-[1.9] text-[rgba(255,255,255,0.80)]"
               style={{ fontFamily: "var(--font-body)" }}
             >
-              Verfijnde Europese designkeukens, exclusieve materialen en
-              compromisloze kwaliteit sinds {kc.founded}.
+              Verfijnde Europese designkeukens, exclusieve materialen en compromisloze kwaliteit
+              sinds {kc.founded}.
             </p>
 
             {/* Social label — teal */}
@@ -568,7 +643,6 @@ export function Footer() {
             {/* Premium showroom card */}
             <ShowroomCard />
           </motion.div>
-
         </motion.div>
 
         {/* Teal divider */}
@@ -613,14 +687,15 @@ export function Footer() {
             ))}
           </div>
         </motion.div>
-
       </div>
 
       {/* Bottom edge teal accent */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 bottom-0 h-px"
-        style={{ background: "linear-gradient(90deg, transparent, rgba(139,197,64,0.28), transparent)" }}
+        style={{
+          background: "linear-gradient(90deg, transparent, rgba(139,197,64,0.28), transparent)",
+        }}
       />
     </footer>
   );
