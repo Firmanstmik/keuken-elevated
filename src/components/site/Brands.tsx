@@ -159,6 +159,75 @@ function logoTreatment(name: string) {
   return { filter: "brightness(0) invert(1)" };
 }
 
+function logoHoverTreatment(name: string) {
+  const treatments = {
+    Leicht: {
+      glow: "rgba(160,166,160,0.28)",
+      surface: "rgba(205,210,204,0.7)",
+      border: "rgba(230,233,228,0.24)",
+      filter: "drop-shadow(0 8px 11px rgba(0,0,0,0.72))",
+    },
+    Zampieri: {
+      glow: "rgba(129,139,125,0.3)",
+      surface: "rgba(190,197,188,0.7)",
+      border: "rgba(221,225,218,0.22)",
+      filter: "drop-shadow(0 8px 11px rgba(0,0,0,0.74))",
+    },
+    Cucinesse: {
+      glow: "rgba(170,151,132,0.3)",
+      surface: "rgba(204,193,181,0.72)",
+      border: "rgba(232,223,213,0.22)",
+      filter: "drop-shadow(0 8px 11px rgba(0,0,0,0.74))",
+    },
+    Bora: {
+      glow: "rgba(100,126,143,0.34)",
+      surface: "rgba(154,169,178,0.7)",
+      border: "rgba(200,211,216,0.22)",
+      filter: "drop-shadow(0 8px 12px rgba(5,12,17,0.78))",
+    },
+    Gaggenau: {
+      glow: "rgba(187,163,118,0.3)",
+      surface: "rgba(203,190,164,0.68)",
+      border: "rgba(232,219,191,0.2)",
+      filter: "drop-shadow(0 8px 11px rgba(0,0,0,0.76))",
+    },
+    Quooker: {
+      glow: "rgba(213,45,36,0.24)",
+      surface: "rgba(213,45,36,0.09)",
+      border: "rgba(213,45,36,0.2)",
+      filter: "drop-shadow(0 10px 14px rgba(0,0,0,0.8)) drop-shadow(0 0 8px rgba(213,45,36,0.3))",
+    },
+    Nobilia: {
+      glow: "rgba(227,6,19,0.24)",
+      surface: "rgba(227,6,19,0.07)",
+      border: "rgba(227,6,19,0.18)",
+      filter: "drop-shadow(0 10px 14px rgba(0,0,0,0.82)) drop-shadow(0 0 9px rgba(227,6,19,0.3))",
+    },
+    Miele: {
+      glow: "rgba(212,33,42,0.24)",
+      surface: "rgba(212,33,42,0.07)",
+      border: "rgba(212,33,42,0.18)",
+      filter: "drop-shadow(0 10px 14px rgba(0,0,0,0.82)) drop-shadow(0 0 9px rgba(212,33,42,0.3))",
+    },
+    "AI Küchen": {
+      glow: "rgba(145,182,192,0.24)",
+      surface: "rgba(145,182,192,0.06)",
+      border: "rgba(145,182,192,0.16)",
+      filter:
+        "drop-shadow(0 12px 16px rgba(0,0,0,0.82)) drop-shadow(0 0 8px rgba(145,182,192,0.3))",
+    },
+  } as const;
+
+  return (
+    treatments[name as keyof typeof treatments] ?? {
+      glow: "rgba(139,197,64,0.16)",
+      surface: "rgba(139,197,64,0.06)",
+      border: "rgba(139,197,64,0.16)",
+      filter: "drop-shadow(0 12px 16px rgba(0,0,0,0.78))",
+    }
+  );
+}
+
 function PartnerLogo({
   name,
   src,
@@ -170,10 +239,24 @@ function PartnerLogo({
   compact?: boolean;
   decorative?: boolean;
 }) {
+  const hoverTreatment = logoHoverTreatment(name);
+
   return (
     <span className="relative inline-grid place-items-center">
       {compact && (
-        <span className="pointer-events-none absolute -inset-x-5 -inset-y-4 rounded-[50%] bg-[rgba(139,197,64,0.16)] opacity-0 blur-[14px] transition-opacity duration-500 group-hover/logo:opacity-100" />
+        <>
+          <span
+            className="pointer-events-none absolute -inset-x-5 -inset-y-4 rounded-[50%] opacity-0 blur-[15px] transition-opacity duration-500 group-hover/logo:opacity-100"
+            style={{ backgroundColor: hoverTreatment.glow }}
+          />
+          <span
+            className="pointer-events-none absolute -inset-x-3 -inset-y-2 rounded-[14px] border opacity-0 shadow-[0_14px_28px_-18px_rgba(0,0,0,0.9)] transition-all duration-500 group-hover/logo:opacity-100"
+            style={{
+              backgroundColor: hoverTreatment.surface,
+              borderColor: hoverTreatment.border,
+            }}
+          />
+        </>
       )}
       <img
         src={src}
@@ -195,7 +278,8 @@ function PartnerLogo({
           alt=""
           loading="lazy"
           draggable={false}
-          className={`absolute z-20 w-auto scale-90 object-contain opacity-0 drop-shadow-[0_12px_16px_rgba(0,0,0,0.78)] transition-all duration-500 group-hover/logo:scale-[1.12] group-hover/logo:opacity-100 ${name === "AI Küchen" ? "h-11 max-w-[64px] sm:h-12" : "h-7 max-w-[120px] sm:h-8"}`}
+          className={`absolute z-20 w-auto scale-90 object-contain opacity-0 transition-all duration-500 group-hover/logo:scale-[1.12] group-hover/logo:opacity-100 ${name === "AI Küchen" ? "h-11 max-w-[64px] sm:h-12" : "h-7 max-w-[120px] sm:h-8"}`}
+          style={{ filter: hoverTreatment.filter }}
         />
       )}
     </span>
