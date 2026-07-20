@@ -2773,6 +2773,51 @@
     white-space: nowrap;
   }
 
+  /* Partner slide chip: keep desktop horizontal dots on mobile (no UA button min-height) */
+  .home-hero__partner {
+    margin-top: 0.85rem;
+  }
+
+  .home-hero__partner-chip {
+    gap: 0.45rem;
+    min-height: 0;
+    padding: 0.28rem 0.55rem;
+  }
+
+  .home-hero__partner-brand {
+    font-size: 0.56rem;
+    letter-spacing: 0.16em;
+    line-height: 1;
+  }
+
+  .home-hero__partner-rule {
+    width: 1rem;
+  }
+
+  .home-hero__partner-dots {
+    gap: 0.3rem;
+    height: 6px;
+    align-items: center;
+  }
+
+  .home-hero__partner-dot {
+    box-sizing: border-box;
+    height: 6px !important;
+    min-height: 0 !important;
+    max-height: 6px !important;
+    padding: 0 !important;
+    margin: 0;
+    border: 0 !important;
+    border-radius: 999px;
+    line-height: 0 !important;
+    font-size: 0 !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+    -webkit-appearance: none;
+    appearance: none;
+    touch-action: manipulation;
+  }
+
   .brand-page-hero,
   .brand-page-hero__content {
     min-height: max(43rem, 100svh) !important;
@@ -2892,13 +2937,47 @@
   }
 
   .brands-marquee {
-    margin-top: 3rem;
+    margin-top: 2.25rem;
     overflow-x: clip;
-    padding-block: 0.9rem;
+    padding-block: 0.65rem;
+  }
+
+  .brands-marquee__item {
+    gap: 1.5rem;
+    padding-inline: 0.85rem;
+  }
+
+  .brands-marquee__item .group\/logo {
+    min-width: 96px;
+    padding-block: 0.2rem;
   }
 
   .brands-marquee__tooltip {
     display: none;
+  }
+
+  .brands-pager-dot,
+  .brands-pager-dot[aria-pressed] {
+    box-sizing: border-box;
+    height: 6px !important;
+    min-height: 0 !important;
+    max-height: 6px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    line-height: 0 !important;
+    font-size: 0 !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .brands-pager-dot[aria-pressed="false"] {
+    width: 8px !important;
+  }
+
+  .brands-pager-dot[aria-pressed="true"] {
+    width: 3rem !important;
   }
 
   footer .site-container > div:first-of-type .premium-pill-button,
@@ -2959,8 +3038,22 @@
     transform: scale(1);
   }
 
-  :is(a, button, summary, [role="button"]) {
+  /* Keep CTA/nav targets tappable, but never inflate compact indicator dots */
+  :is(a, button, summary, [role="button"]):not(.ui-dot):not(.home-hero__partner-dot) {
     min-height: 44px;
+  }
+
+  .ui-dot,
+  .home-hero__partner-dot {
+    position: relative;
+    min-height: 0 !important;
+  }
+
+  .ui-dot::before,
+  .home-hero__partner-dot::before {
+    content: "";
+    position: absolute;
+    inset: -18px -10px;
   }
 }
 

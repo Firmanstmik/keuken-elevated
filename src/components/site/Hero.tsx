@@ -113,9 +113,9 @@ function HeroPartnerBadge({
       initial={reduceMotion ? false : { opacity: 0, y: 14 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: motionDuration.premium, ease: motionEase.premium, delay: 0.82 }}
-      className="mt-5 flex justify-start"
+      className="home-hero__partner mt-5 flex justify-start"
     >
-      <div className="inline-flex items-center gap-2 rounded-full border border-[rgba(255,255,255,0.22)] bg-[rgba(255,255,255,0.10)] px-2.5 py-1.5 shadow-[0_12px_32px_-28px_rgba(23,25,28,0.35)] backdrop-blur-xl">
+      <div className="home-hero__partner-chip inline-flex items-center gap-2 rounded-full border border-[rgba(255,255,255,0.22)] bg-[rgba(255,255,255,0.10)] px-2.5 py-1.5 shadow-[0_12px_32px_-28px_rgba(23,25,28,0.35)] backdrop-blur-xl">
         <AnimatePresence mode="wait">
           <motion.span
             key={activeSlide.brand}
@@ -123,13 +123,16 @@ function HeroPartnerBadge({
             animate={{ opacity: 1, y: 0 }}
             exit={reduceMotion ? undefined : { opacity: 0, y: -6 }}
             transition={{ duration: 0.5, ease: motionEase.premium }}
-            className="text-[0.62rem] tracking-[0.22em] text-[rgba(247,245,242,0.75)]"
+            className="home-hero__partner-brand text-[0.62rem] tracking-[0.22em] text-[rgba(247,245,242,0.75)]"
           >
             {activeSlide.brand}
           </motion.span>
         </AnimatePresence>
-        <span className="h-px w-6 bg-[linear-gradient(90deg,rgba(247,245,242,0),rgba(247,245,242,0.24),rgba(247,245,242,0))]" />
-        <div className="flex items-center gap-1.5">
+        <span
+          aria-hidden="true"
+          className="home-hero__partner-rule h-px w-6 bg-[linear-gradient(90deg,rgba(247,245,242,0),rgba(247,245,242,0.24),rgba(247,245,242,0))]"
+        />
+        <div className="home-hero__partner-dots flex items-center gap-1.5">
           {indicatorIds.map((id, index) => (
             <motion.button
               key={id}
@@ -137,9 +140,11 @@ function HeroPartnerBadge({
               onClick={() => onSelect(index)}
               aria-label={`Toon slide ${id}`}
               aria-pressed={index === activeIndex}
-              className="relative h-1.5 rounded-full bg-[rgba(247,245,242,0.12)]"
+              className="ui-dot home-hero__partner-dot relative h-1.5 min-h-0 shrink-0 appearance-none rounded-full border-0 bg-[rgba(247,245,242,0.12)] p-0 leading-none"
+              initial={false}
               animate={{
                 width: index === activeIndex ? 20 : 8,
+                height: 6,
                 backgroundColor:
                   index === activeIndex ? activeSlide.accent : "rgba(247,245,242,0.12)",
               }}

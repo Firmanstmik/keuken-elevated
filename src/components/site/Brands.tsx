@@ -465,7 +465,7 @@ export function Brands() {
                       onClick={() => selectBrand(index)}
                       aria-label={`Toon ${brand.name}`}
                       aria-pressed={index === activeIndex}
-                      className={`relative h-1.5 overflow-hidden rounded-full transition-all duration-500 ${index === activeIndex ? "w-12 bg-white/12" : "w-2 bg-white/15 hover:bg-white/35"}`}
+                      className={`ui-dot brands-pager-dot relative h-1.5 min-h-0 shrink-0 appearance-none overflow-hidden rounded-full border-0 p-0 leading-none transition-all duration-500 ${index === activeIndex ? "w-12 bg-white/12" : "w-2 bg-white/15 hover:bg-white/35"}`}
                     >
                       {index === activeIndex && (
                         <motion.span
