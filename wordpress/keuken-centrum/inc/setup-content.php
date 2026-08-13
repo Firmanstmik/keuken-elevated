@@ -28,7 +28,7 @@ function kc_seed_theme_mod_defaults(): void {
 		'hero_title_em_default'           => 'Utrecht.',
 		'hero_subtitle_default'           => 'Ontdek Duitse precisie en Italiaanse elegantie onder één dak. Persoonlijk showroomadvies, premium apparatuur en een doordachte configurator voor uw eerste ontwerpkeuze.',
 		'hero_cta_primary_label_default'  => 'Plan Showroombezoek',
-		'hero_cta_primary_url_default'    => home_url('/contact'),
+		'hero_cta_primary_url_default'    => home_url('/#showroom'),
 		'hero_cta_secondary_label_default' => 'Start Configurator',
 		'hero_cta_secondary_url_default'  => 'https://keuken-elevated.vercel.app/brands',
 		'consultation_cta_label'          => 'Plan vrijblijvend advies',

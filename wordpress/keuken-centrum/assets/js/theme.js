@@ -119,11 +119,12 @@
 		if (!event.target.closest("[data-mega-trigger]")) closeAllMegas();
 	});
 
-	/* Hero slideshow */
+	/* Hero slideshow + partner brand + video card */
 	const hero = document.querySelector("[data-home-hero]");
 	if (hero) {
 		const slides = [...hero.querySelectorAll("[data-hero-slide]")];
 		const dots = [...hero.querySelectorAll("[data-hero-dot]")];
+		const brandLabel = hero.querySelector("[data-hero-brand-label]");
 		let index = 0;
 		let timer;
 
@@ -131,12 +132,20 @@
 			if (!slides.length) return;
 			index = (next + slides.length) % slides.length;
 			slides.forEach((slide, i) => slide.classList.toggle("is-active", i === index));
-			dots.forEach((dot, i) => dot.classList.toggle("is-active", i === index));
+			dots.forEach((dot, i) => {
+				const active = i === index;
+				dot.classList.toggle("is-active", active);
+				dot.setAttribute("aria-pressed", active ? "true" : "false");
+			});
+			if (brandLabel) {
+				const brand = slides[index].getAttribute("data-hero-brand") || "";
+				if (brand) brandLabel.textContent = brand;
+			}
 		};
 
 		const start = () => {
 			if (reduceMotion || slides.length < 2) return;
-			timer = window.setInterval(() => setSlide(index + 1), 4000);
+			timer = window.setInterval(() => setSlide(index + 1), 5200);
 		};
 
 		dots.forEach((dot) => {
@@ -148,6 +157,64 @@
 		});
 
 		start();
+
+		const video = hero.querySelector("[data-hero-video]");
+		const videoToggle = hero.querySelector("[data-hero-video-toggle]");
+		const videoToggleLabel = hero.querySelector("[data-hero-video-toggle-label]");
+		const videoCard = hero.querySelector("[data-hero-video-card]");
+
+		const syncVideoUi = () => {
+			if (!video || !videoToggleLabel) return;
+			const paused = video.paused;
+			videoToggleLabel.textContent = paused ? "Klik om af te spelen" : "Klik om te pauzeren";
+			if (videoToggle) {
+				videoToggle.setAttribute(
+					"aria-label",
+					paused ? "Video afspelen" : "Video pauzeren"
+				);
+			}
+		};
+
+		const toggleVideo = () => {
+			if (!video) return;
+			if (video.paused) {
+				video.play().catch(() => {});
+			} else {
+				video.pause();
+			}
+			syncVideoUi();
+		};
+
+		if (video && reduceMotion) {
+			video.removeAttribute("autoplay");
+			video.pause();
+		}
+
+		if (videoToggle) {
+			videoToggle.addEventListener("click", (event) => {
+				event.stopPropagation();
+				toggleVideo();
+			});
+		}
+
+		if (videoCard) {
+			videoCard.addEventListener("click", () => toggleVideo());
+			videoCard.addEventListener("keydown", (event) => {
+				if (event.key === "Enter" || event.key === " ") {
+					event.preventDefault();
+					toggleVideo();
+				}
+			});
+			videoCard.setAttribute("tabindex", "0");
+			videoCard.setAttribute("role", "button");
+			videoCard.setAttribute("aria-label", "Videopreview van de showroom");
+		}
+
+		if (video) {
+			video.addEventListener("play", syncVideoUi);
+			video.addEventListener("pause", syncVideoUi);
+			syncVideoUi();
+		}
 	}
 
 	/* Reveal on scroll */

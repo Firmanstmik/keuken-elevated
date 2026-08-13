@@ -50,14 +50,24 @@ function kc_brand_bundle(string $slug): array {
 /**
  * Default hero slideshow images (React parity).
  *
- * @return string[]
+ * @return array<int, array{url:string,brand:string}>
  */
 function kc_default_hero_slides(): array {
+	$brands = [
+		1 => 'LEICHT',
+		2 => 'NOBILIA',
+		3 => 'AI KÜCHEN',
+		4 => 'ZAMPIERI',
+		5 => 'CUCINESSE',
+	];
 	$slides = [];
-	foreach ([1, 2, 3, 4, 5] as $n) {
+	foreach ($brands as $n => $brand) {
 		$uri = kc_theme_img('hero/hero_img' . $n . '.webp');
 		if ($uri) {
-			$slides[] = $uri;
+			$slides[] = [
+				'url'   => $uri,
+				'brand' => $brand,
+			];
 		}
 	}
 	return $slides;

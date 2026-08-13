@@ -128,13 +128,36 @@ if (! function_exists('kc_render_mega_editorial')) {
 	<div class="nav-topbar" data-nav-topbar>
 		<div class="site-shell nav-topbar__inner">
 			<div class="nav-topbar__meta">
-				<span><?php esc_html_e('Snelle levering', 'keuken-centrum'); ?></span>
-				<span class="nav-topbar__dot" aria-hidden="true"></span>
-				<span><?php esc_html_e('+5 jaar garantie', 'keuken-centrum'); ?></span>
-			</div>
-			<div class="nav-topbar__contact">
-				<a href="<?php echo esc_url('tel:' . preg_replace('/[^0-9+]/', '', $phone)); ?>"><?php echo esc_html($phone); ?></a>
-				<a href="<?php echo esc_url('mailto:' . $email); ?>"><?php echo esc_html($email); ?></a>
+				<a
+					class="nav-topbar__item nav-topbar__google"
+					href="https://www.google.com/maps/search/?api=1&query=Keuken-Centrum+Utrecht+Zonnebaan+8"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					<span class="nav-topbar__rating">4,9</span>
+					<span class="nav-topbar__stars" aria-hidden="true">★★★★★</span>
+					<span><?php esc_html_e('Google Reviews', 'keuken-centrum'); ?></span>
+				</a>
+				<span class="nav-topbar__sep" aria-hidden="true"></span>
+				<span class="nav-topbar__item">
+					<svg class="nav-topbar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 8.5h13.5a4.5 4.5 0 0 1 0 9H14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M3 12.5h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="18.5" cy="17.5" r="1.7" stroke="currentColor" stroke-width="1.5"/><circle cx="8.5" cy="17.5" r="1.7" stroke="currentColor" stroke-width="1.5"/></svg>
+					<?php esc_html_e('Snelle levering', 'keuken-centrum'); ?>
+				</span>
+				<span class="nav-topbar__sep" aria-hidden="true"></span>
+				<span class="nav-topbar__item">
+					<svg class="nav-topbar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-2.8 7.8-7 10-4.2-2.2-7-5.5-7-10V6l7-3z" stroke="currentColor" stroke-width="1.5"/><path d="M9.2 12.1l1.9 1.9 3.7-3.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+					<?php esc_html_e('+5 jaar garantie', 'keuken-centrum'); ?>
+				</span>
+				<span class="nav-topbar__sep" aria-hidden="true"></span>
+				<a class="nav-topbar__item" href="<?php echo esc_url('tel:' . preg_replace('/[^0-9+]/', '', $phone)); ?>">
+					<svg class="nav-topbar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7.2 4.8c.4-.4 1-.5 1.5-.3l2.1.8c.6.2 1 .8.9 1.4l-.3 1.8a1.2 1.2 0 0 1-.7 1l-1.1.5a10.4 10.4 0 0 0 4.7 4.7l.5-1.1c.2-.4.6-.6 1-.7l1.8-.3c.6-.1 1.2.3 1.4.9l.8 2.1c.2.5.1 1.1-.3 1.5l-1.2 1.2c-.4.4-1 .6-1.6.5-3.3-.5-6.4-2.3-8.8-4.7S4.1 9.6 3.6 6.3c-.1-.6.1-1.2.5-1.6l1.1-1z" stroke="currentColor" stroke-width="1.4"/></svg>
+					<?php echo esc_html($phone); ?>
+				</a>
+				<span class="nav-topbar__sep" aria-hidden="true"></span>
+				<a class="nav-topbar__item" href="<?php echo esc_url('mailto:' . $email); ?>">
+					<svg class="nav-topbar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M4.5 7.5L12 13l7.5-5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+					<?php echo esc_html($email); ?>
+				</a>
 			</div>
 		</div>
 	</div>
@@ -153,7 +176,7 @@ if (! function_exists('kc_render_mega_editorial')) {
 
 			<nav class="primary-nav" aria-label="<?php esc_attr_e('Hoofdnavigatie', 'keuken-centrum'); ?>" data-desktop-nav>
 				<ul class="primary-nav__list">
-					<li><a class="nav-link" href="<?php echo esc_url(home_url('/')); ?>"><?php esc_html_e('Home', 'keuken-centrum'); ?></a></li>
+					<li><a class="nav-link" href="<?php echo esc_url(home_url('/')); ?>"<?php echo $is_home ? ' aria-current="page"' : ''; ?>><?php esc_html_e('Home', 'keuken-centrum'); ?></a></li>
 
 					<li class="has-mega" data-mega-trigger>
 						<button class="nav-link nav-link--btn" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="mega-keukens"><?php esc_html_e('Keukens', 'keuken-centrum'); ?></button>
