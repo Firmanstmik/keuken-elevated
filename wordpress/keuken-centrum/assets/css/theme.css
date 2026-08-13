@@ -1420,15 +1420,7 @@ body.admin-bar .site-header {
 }
 
 /* Eyebrow ornaments */
-.section-label-row {
-	display: flex;
-	align-items: center;
-	gap: 0.7rem;
-	margin-bottom: 1rem;
-}
-
-.kitchen-eyebrow-mark,
-.hero-eyebrow-ornament {
+.kitchen-eyebrow-mark {
 	width: 0.85rem;
 	height: 0.85rem;
 	flex: 0 0 auto;
@@ -1438,8 +1430,7 @@ body.admin-bar .site-header {
 	opacity: 0.85;
 }
 
-.kitchen-eyebrow-mark::after,
-.hero-eyebrow-ornament::after {
+.kitchen-eyebrow-mark::after {
 	content: "";
 	position: absolute;
 	left: 50%;
