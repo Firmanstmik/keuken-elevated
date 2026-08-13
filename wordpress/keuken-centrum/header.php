@@ -262,16 +262,16 @@ if (! function_exists('kc_render_mega_editorial')) {
 											'title' => __('Ventilatie', 'keuken-centrum'),
 											'items' => [
 												['label' => __('Afzuigkappen', 'keuken-centrum'), 'href' => home_url('/apparatuur/afzuigkappen/')],
-												['label' => __('Werkblad afzuiging', 'keuken-centrum'), 'href' => home_url('/apparatuur/werkblad-afzuiging/')],
-												['label' => __('Wave afzuigkappen', 'keuken-centrum'), 'href' => home_url('/apparatuur/wave-afzuigkappen/')],
+												['label' => __('Ovens', 'keuken-centrum'), 'href' => home_url('/apparatuur/ovens/')],
+												['label' => __('Alle apparatuur', 'keuken-centrum'), 'href' => $apps],
 											],
 										],
 										[
 											'title' => __('Koelen & vaat', 'keuken-centrum'),
 											'items' => [
-												['label' => __('Koelkasten & Vriezers', 'keuken-centrum'), 'href' => home_url('/apparatuur/koelkasten-vriezers/')],
+												['label' => __('Koelkasten', 'keuken-centrum'), 'href' => home_url('/apparatuur/koelkasten/')],
 												['label' => __('Vaatwassers', 'keuken-centrum'), 'href' => home_url('/apparatuur/vaatwassers/')],
-												['label' => __('Ovens', 'keuken-centrum'), 'href' => home_url('/apparatuur/ovens/')],
+												['label' => __('Wijnklimaat', 'keuken-centrum'), 'href' => home_url('/apparatuur/wijnklimaat/')],
 											],
 										],
 									],
