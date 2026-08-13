@@ -142,7 +142,19 @@ function kc_output_seo_tags(): void {
 add_action('wp_head', 'kc_output_seo_tags', 1);
 
 /**
- * Ensures public indexing defaults for production.
+ * Builds the standard public robots.txt body used by WordPress.
+ */
+function kc_get_robots_txt_body(bool $public): string {
+	if (! $public) {
+		return "User-agent: *\nDisallow: /\n";
+	}
+
+	$sitemap = home_url('/wp-sitemap.xml');
+	return "User-agent: *\nDisallow: /wp-admin/\nAllow: /wp-admin/admin-ajax.php\n\nSitemap: {$sitemap}\n";
+}
+
+/**
+ * Ensures public indexing defaults for production (virtual robots_txt filter).
  */
 function kc_robots_txt(string $output, bool $public): string {
 	if (! $public) {
@@ -156,3 +168,27 @@ function kc_robots_txt(string $output, bool $public): string {
 	return $output;
 }
 add_filter('robots_txt', 'kc_robots_txt', 10, 2);
+
+/**
+ * Some hosts (including this LiteSpeed/hws stack) return 404 for /robots.txt
+ * when no physical file exists, before WordPress can serve the virtual one.
+ * Create a sensible physical robots.txt in the web root when missing.
+ */
+function kc_ensure_physical_robots_txt(): void {
+	$path = trailingslashit(ABSPATH) . 'robots.txt';
+
+	if (file_exists($path)) {
+		return;
+	}
+
+	if (! wp_is_writable(ABSPATH)) {
+		return;
+	}
+
+	$public  = ( '0' !== (string) get_option('blog_public') );
+	$content = kc_get_robots_txt_body($public);
+
+	// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents
+	file_put_contents($path, $content);
+}
+add_action('init', 'kc_ensure_physical_robots_txt', 1);
