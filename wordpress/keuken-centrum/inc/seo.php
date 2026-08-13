@@ -88,6 +88,15 @@ function kc_output_seo_tags(): void {
 	echo '<meta name="description" content="' . esc_attr($description) . '">' . "\n";
 	echo '<link rel="canonical" href="' . esc_url($url) . '">' . "\n";
 
+	// Favicon fallback when no Customizer site icon is set.
+	if (! function_exists('has_site_icon') || ! has_site_icon()) {
+		$icon = kc_theme_img('logo-keuken.webp') ?: kc_theme_img('logo.png');
+		if ($icon) {
+			echo '<link rel="icon" href="' . esc_url($icon) . '">' . "\n";
+			echo '<link rel="apple-touch-icon" href="' . esc_url($icon) . '">' . "\n";
+		}
+	}
+
 	echo '<meta property="og:locale" content="nl_NL">' . "\n";
 	echo '<meta property="og:type" content="' . esc_attr(is_front_page() ? 'website' : 'article') . '">' . "\n";
 	echo '<meta property="og:title" content="' . esc_attr($title) . '">' . "\n";
