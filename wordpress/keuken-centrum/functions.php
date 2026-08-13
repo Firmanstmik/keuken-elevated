@@ -13,6 +13,8 @@ require_once get_template_directory() . '/inc/cpt.php';
 require_once get_template_directory() . '/inc/customizer.php';
 require_once get_template_directory() . '/inc/acf-fields.php';
 require_once get_template_directory() . '/inc/setup-content.php';
+require_once get_template_directory() . '/inc/helpers-media.php';
+
 
 if (! defined('KC_THEME_VERSION')) {
 	$kc_theme       = wp_get_theme();
@@ -62,7 +64,7 @@ add_action('after_setup_theme', 'kc_theme_setup');
  * Enqueues the theme assets.
  */
 function kc_enqueue_assets(): void {
-	$fonts_url = 'https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap';
+	$fonts_url = 'https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap';
 
 	wp_enqueue_style('keuken-centrum-fonts', $fonts_url, [], null);
 
