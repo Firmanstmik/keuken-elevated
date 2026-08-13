@@ -18,6 +18,10 @@ if (is_array($hero_image) && ! empty($hero_image['url'])) {
 }
 
 $default_subtitle = 'Ontdek Duitse precisie en Italiaanse elegantie onder één dak. Persoonlijk showroomadvies, premium apparatuur en een doordachte configurator voor uw eerste ontwerpkeuze.';
+$subtitle         = (string) kc_get_field_value('hero_subtitle', $page_id, '');
+if ('' === $subtitle || str_contains($subtitle, 'curated collectie')) {
+	$subtitle = $default_subtitle;
+}
 
 $hero_args = [
 	'eyebrow'             => kc_get_field_value('hero_eyebrow', $page_id, kc_get_option('hero_eyebrow_default', 'SINDS 1978 • PREMIUM SHOWROOM UTRECHT')),
@@ -25,7 +29,7 @@ $hero_args = [
 	'title_line_2'        => 'Keukenbestemming',
 	'title_line_3_prefix' => 'van',
 	'title_em'            => kc_get_field_value('hero_title_em', $page_id, kc_get_option('hero_title_em_default', 'Utrecht.')),
-	'subtitle'            => kc_get_field_value('hero_subtitle', $page_id, kc_get_option('hero_subtitle_default', $default_subtitle)),
+	'subtitle'            => $subtitle,
 	'cta_primary_label'   => kc_get_field_value('hero_cta_primary_label', $page_id, kc_get_option('hero_cta_primary_label_default', 'Plan Showroombezoek')),
 	'cta_primary_url'     => kc_get_field_value('hero_cta_primary_url', $page_id, kc_get_option('hero_cta_primary_url_default', home_url('/contact'))),
 	'cta_secondary_label' => kc_get_field_value('hero_cta_secondary_label', $page_id, kc_get_option('hero_cta_secondary_label_default', 'Start configurator')),
