@@ -26,7 +26,7 @@ function kc_seed_theme_mod_defaults(): void {
 		'hero_eyebrow_default'            => 'SINDS 1978 · PREMIUM SHOWROOM UTRECHT',
 		'hero_title_default'              => 'De Premium Keukenbestemming van',
 		'hero_title_em_default'           => 'Utrecht.',
-		'hero_subtitle_default'           => 'Ontdek een curated collectie keukens met Duitse precisie, Italiaanse elegantie en begeleiding van adviseurs die luisteren, ontwerpen en leveren.',
+		'hero_subtitle_default'           => 'Ontdek Duitse precisie en Italiaanse elegantie onder één dak. Persoonlijk showroomadvies, premium apparatuur en een doordachte configurator voor uw eerste ontwerpkeuze.',
 		'hero_cta_primary_label_default'  => 'Plan Showroombezoek',
 		'hero_cta_primary_url_default'    => home_url('/contact'),
 		'hero_cta_secondary_label_default' => 'Start Configurator',
@@ -300,14 +300,17 @@ function kc_seed_content(): void {
 	}
 
 	$appliances = [
-		'Quooker'       => 'quooker',
-		'Kookplaten'    => 'kookplaten',
-		'Fornuizen'     => 'fornuizen',
-		'Afzuigkappen'  => 'afzuigkappen',
-		'Ovens'         => 'ovens',
-		'Koelkasten'    => 'koelkasten',
-		'Vaatwassers'   => 'vaatwassers',
-		'Wijnklimaat'   => 'wijnklimaat',
+		'Quooker'              => 'quooker',
+		'Kookplaten'           => 'kookplaten',
+		'Fornuizen'            => 'fornuizen',
+		'Afzuigkappen'         => 'afzuigkappen',
+		'Werkblad afzuiging'   => 'werkblad-afzuiging',
+		'Wave afzuigkappen'    => 'wave-afzuigkappen',
+		'Ovens'                => 'ovens',
+		'Koelkasten'           => 'koelkasten',
+		'Koelkasten & Vriezers'=> 'koelkasten-vriezers',
+		'Vaatwassers'          => 'vaatwassers',
+		'Wijnklimaat'          => 'wijnklimaat',
 	];
 
 	foreach ($appliances as $title => $slug) {

@@ -60,7 +60,7 @@
 			link.addEventListener("click", closeNav);
 		});
 		window.addEventListener("resize", () => {
-			if (window.innerWidth > 1024) closeNav();
+			if (window.innerWidth >= 1280) closeNav();
 		});
 		document.addEventListener("keydown", (event) => {
 			if (event.key === "Escape") {
@@ -85,7 +85,10 @@
 		const panel = item.querySelector("[data-mega-panel]");
 		if (!btn || !panel) return;
 
+		let closeTimer = 0;
+
 		const open = () => {
+			window.clearTimeout(closeTimer);
 			closeAllMegas();
 			item.classList.add("is-open");
 			btn.setAttribute("aria-expanded", "true");
@@ -96,9 +99,13 @@
 			btn.setAttribute("aria-expanded", "false");
 			panel.hidden = true;
 		};
+		const scheduleClose = () => {
+			window.clearTimeout(closeTimer);
+			closeTimer = window.setTimeout(close, 140);
+		};
 
 		item.addEventListener("mouseenter", open);
-		item.addEventListener("mouseleave", close);
+		item.addEventListener("mouseleave", scheduleClose);
 		btn.addEventListener("click", (event) => {
 			event.preventDefault();
 			const openNow = btn.getAttribute("aria-expanded") === "true";

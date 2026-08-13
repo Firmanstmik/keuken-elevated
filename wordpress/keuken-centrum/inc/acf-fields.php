@@ -158,6 +158,25 @@ function kc_register_acf_fields(): void {
 					'name'  => 'consultation_cta_url',
 					'type'  => 'url',
 				],
+				[
+					'key'   => 'field_kc_header_cta_label',
+					'label' => __('Header CTA label', 'keuken-centrum'),
+					'name'  => 'header_cta_label',
+					'type'  => 'text',
+				],
+				[
+					'key'   => 'field_kc_header_cta_url',
+					'label' => __('Header CTA URL', 'keuken-centrum'),
+					'name'  => 'header_cta_url',
+					'type'  => 'url',
+				],
+				[
+					'key'   => 'field_kc_seo_meta_description',
+					'label' => __('Default meta description', 'keuken-centrum'),
+					'name'  => 'seo_meta_description',
+					'type'  => 'textarea',
+					'rows'  => 3,
+				],
 			],
 			'location' => [
 				[

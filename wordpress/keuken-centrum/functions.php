@@ -14,6 +14,7 @@ require_once get_template_directory() . '/inc/customizer.php';
 require_once get_template_directory() . '/inc/acf-fields.php';
 require_once get_template_directory() . '/inc/setup-content.php';
 require_once get_template_directory() . '/inc/helpers-media.php';
+require_once get_template_directory() . '/inc/seo.php';
 
 
 if (! defined('KC_THEME_VERSION')) {
