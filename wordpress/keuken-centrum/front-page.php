@@ -44,6 +44,7 @@ $hero_args = [
 	<?php get_template_part('template-parts/home/why'); ?>
 	<?php get_template_part('template-parts/home/journey-teaser'); ?>
 	<?php get_template_part('template-parts/home/showroom'); ?>
+	<?php get_template_part('template-parts/home/experience'); ?>
 	<?php get_template_part('template-parts/home/collections'); ?>
 	<?php get_template_part('template-parts/home/process'); ?>
 	<?php get_template_part('template-parts/home/final-cta'); ?>
