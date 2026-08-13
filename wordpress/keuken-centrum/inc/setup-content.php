@@ -467,3 +467,34 @@ function kc_seed_content(): void {
 	$locations['footer']   = $footer_menu_id;
 	set_theme_mod('nav_menu_locations', $locations);
 }
+
+/**
+ * One-time upsert for appliance categories added after initial seed.
+ */
+function kc_seed_appliance_gaps(): void {
+	if ('1' === get_option('kc_seed_appliances_v2')) {
+		return;
+	}
+
+	$appliances = [
+		'Werkblad afzuiging'    => 'werkblad-afzuiging',
+		'Wave afzuigkappen'     => 'wave-afzuigkappen',
+		'Koelkasten & Vriezers' => 'koelkasten-vriezers',
+	];
+
+	foreach ($appliances as $title => $slug) {
+		kc_upsert_seed_post(
+			[
+				'post_type'    => 'appliance_category',
+				'post_title'   => $title,
+				'post_name'    => $slug,
+				'post_content' => sprintf('%s in premium uitvoeringen, geselecteerd op prestatie, design en gebruiksgemak.', $title),
+				'post_excerpt' => sprintf('Verken %s voor een hoogwaardige keukenafwerking.', strtolower($title)),
+			]
+		);
+	}
+
+	update_option('kc_seed_appliances_v2', '1');
+	flush_rewrite_rules(false);
+}
+add_action('init', 'kc_seed_appliance_gaps', 30);
