@@ -13,7 +13,7 @@ $header_label = kc_get_option('header_cta_label', 'Plan showroombezoek');
 $header_url   = kc_get_option('header_cta_url', home_url('/contact'));
 $phone        = kc_get_option('contact_phone', '030 241 5122');
 $email        = kc_get_option('contact_email', 'info@keuken-centrum.nl');
-$logo_uri     = kc_theme_img('logo-keuken.webp');
+$logo_uri = kc_theme_img('logo-keuken-1-1.webp') ?: kc_theme_img('logo-keuken.webp');
 if (! $logo_uri) {
 	$logo_path = get_theme_file_path('assets/img/logo.png');
 	$logo_uri  = file_exists($logo_path) ? kc_asset('assets/img/logo.png') : '';
@@ -134,9 +134,16 @@ if (! function_exists('kc_render_mega_editorial')) {
 					target="_blank"
 					rel="noopener noreferrer"
 				>
+					<svg class="nav-topbar__google-logo" viewBox="0 0 24 24" aria-hidden="true">
+						<path fill="#EA4335" d="M12 10.2v3.9h5.5c-.2 1.4-1.7 4.1-5.5 4.1-3.3 0-6-2.7-6-6.1s2.7-6.1 6-6.1c1.9 0 3.2.8 3.9 1.5l2.7-2.6C16.9 3.3 14.7 2.3 12 2.3 6.6 2.3 2.3 6.6 2.3 12S6.6 21.7 12 21.7c6.9 0 9.5-4.9 9.5-9.4 0-.6-.1-1.1-.1-1.5H12z"/>
+					</svg>
 					<span class="nav-topbar__rating">4,9</span>
-					<span class="nav-topbar__stars" aria-hidden="true">★★★★★</span>
-					<span><?php esc_html_e('Google Reviews', 'keuken-centrum'); ?></span>
+					<span class="nav-topbar__stars" aria-hidden="true">
+						<?php for ( $i = 0; $i < 5; $i++ ) : ?>
+							<svg viewBox="0 0 16 16"><path d="M8 1.2l1.76 3.57 3.94.57-2.85 2.78.67 3.92L8 10.47l-3.52 1.85.67-3.92L2.3 5.34l3.94-.57L8 1.2z"/></svg>
+						<?php endfor; ?>
+					</span>
+					<span class="nav-topbar__reviews-label"><?php esc_html_e('Google Reviews', 'keuken-centrum'); ?></span>
 				</a>
 				<span class="nav-topbar__sep" aria-hidden="true"></span>
 				<span class="nav-topbar__item">
@@ -179,7 +186,10 @@ if (! function_exists('kc_render_mega_editorial')) {
 					<li><a class="nav-link" href="<?php echo esc_url(home_url('/')); ?>"<?php echo $is_home ? ' aria-current="page"' : ''; ?>><?php esc_html_e('Home', 'keuken-centrum'); ?></a></li>
 
 					<li class="has-mega" data-mega-trigger>
-						<button class="nav-link nav-link--btn" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="mega-keukens"><?php esc_html_e('Keukens', 'keuken-centrum'); ?></button>
+						<button class="nav-link nav-link--btn" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="mega-keukens">
+							<span><?php esc_html_e('Keukens', 'keuken-centrum'); ?></span>
+							<svg class="nav-chevron" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+						</button>
 						<div class="mega-panel mega-panel--editorial" id="mega-keukens" data-mega-panel hidden role="menu">
 							<?php
 							kc_render_mega_editorial(
@@ -228,7 +238,10 @@ if (! function_exists('kc_render_mega_editorial')) {
 					</li>
 
 					<li class="has-mega" data-mega-trigger>
-						<button class="nav-link nav-link--btn" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="mega-bladen"><?php esc_html_e('Keukenbladen', 'keuken-centrum'); ?></button>
+						<button class="nav-link nav-link--btn" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="mega-bladen">
+							<span><?php esc_html_e('Keukenbladen', 'keuken-centrum'); ?></span>
+							<svg class="nav-chevron" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+						</button>
 						<div class="mega-panel mega-panel--editorial" id="mega-bladen" data-mega-panel hidden role="menu">
 							<?php
 							kc_render_mega_editorial(
@@ -266,7 +279,10 @@ if (! function_exists('kc_render_mega_editorial')) {
 					</li>
 
 					<li class="has-mega" data-mega-trigger>
-						<button class="nav-link nav-link--btn" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="mega-apps"><?php esc_html_e('Apparatuur', 'keuken-centrum'); ?></button>
+						<button class="nav-link nav-link--btn" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="mega-apps">
+							<span><?php esc_html_e('Apparatuur', 'keuken-centrum'); ?></span>
+							<svg class="nav-chevron" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+						</button>
 						<div class="mega-panel mega-panel--editorial" id="mega-apps" data-mega-panel hidden role="menu">
 							<?php
 							kc_render_mega_editorial(
@@ -316,10 +332,13 @@ if (! function_exists('kc_render_mega_editorial')) {
 				</ul>
 			</nav>
 
-			<a class="nav-cta" href="<?php echo esc_url($header_url); ?>">
-				<span><?php echo esc_html($header_label); ?></span>
-				<span class="nav-cta__arrow" aria-hidden="true">→</span>
-			</a>
+			<div class="nav-actions">
+				<span class="nav-divider" aria-hidden="true"></span>
+				<a class="nav-cta" href="<?php echo esc_url($header_url); ?>">
+					<span><?php echo esc_html($header_label); ?></span>
+					<span class="nav-cta__arrow" aria-hidden="true">→</span>
+				</a>
+			</div>
 
 			<button class="nav-mobile-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="mobile-navigation">
 				<span class="nav-mobile-toggle__lines" aria-hidden="true">

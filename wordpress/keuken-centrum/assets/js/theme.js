@@ -165,11 +165,12 @@
 		dots.forEach((dot) => {
 			dot.addEventListener("click", () => {
 				window.clearInterval(timer);
-				setSlide(Number(dot.dataset.heroDot || 0));
+				setSlide(Number(dot.getAttribute("data-hero-dot") || 0));
 				start();
 			});
 		});
 
+		setSlide(0);
 		start();
 
 		const readyHero = () => hero.classList.add("is-ready");

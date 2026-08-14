@@ -24,7 +24,11 @@ if ('' === $subtitle || str_contains($subtitle, 'curated collectie')) {
 }
 
 $hero_args = [
-	'eyebrow'             => kc_get_field_value('hero_eyebrow', $page_id, kc_get_option('hero_eyebrow_default', 'SINDS 1978 • PREMIUM SHOWROOM UTRECHT')),
+	'eyebrow'             => str_replace(
+		'·',
+		'•',
+		(string) kc_get_field_value('hero_eyebrow', $page_id, kc_get_option('hero_eyebrow_default', 'SINDS 1978 • PREMIUM SHOWROOM UTRECHT'))
+	),
 	'title_line_1'        => 'De Premium',
 	'title_line_2'        => 'Keukenbestemming',
 	'title_line_3_prefix' => 'van',
@@ -32,7 +36,7 @@ $hero_args = [
 	'subtitle'            => $subtitle,
 	'cta_primary_label'   => kc_get_field_value('hero_cta_primary_label', $page_id, kc_get_option('hero_cta_primary_label_default', 'Plan Showroombezoek')),
 	'cta_primary_url'     => kc_get_field_value('hero_cta_primary_url', $page_id, kc_get_option('hero_cta_primary_url_default', home_url('/#showroom'))),
-	'cta_secondary_label' => kc_get_field_value('hero_cta_secondary_label', $page_id, kc_get_option('hero_cta_secondary_label_default', 'Start configurator')),
+	'cta_secondary_label' => 'Start configurator',
 	'cta_secondary_url'   => kc_get_field_value('hero_cta_secondary_url', $page_id, kc_get_option('hero_cta_secondary_url_default', 'https://keuken-elevated.vercel.app/brands')),
 	'image_url'           => $hero_image_url,
 	'slides'              => kc_default_hero_slides(),
