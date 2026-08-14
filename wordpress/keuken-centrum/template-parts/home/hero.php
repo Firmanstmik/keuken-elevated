@@ -126,7 +126,7 @@ $first_dot   = $slides[0]['dot'] ?? '#c8a96b';
 				data-hero-slide
 				data-hero-brand="<?php echo esc_attr($slide['brand']); ?>"
 				data-hero-soft="<?php echo esc_attr($slide['soft']); ?>"
-				data-hero-dot="<?php echo esc_attr($slide['dot']); ?>"
+				data-hero-dot-color="<?php echo esc_attr($slide['dot']); ?>"
 				style="background-image:url('<?php echo esc_url($slide['url']); ?>');"
 			></div>
 		<?php endforeach; ?>

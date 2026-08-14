@@ -123,7 +123,7 @@
 	const hero = document.querySelector("[data-home-hero]");
 	if (hero) {
 		const slides = [...hero.querySelectorAll("[data-hero-slide]")];
-		const dots = [...hero.querySelectorAll("[data-hero-dot]")];
+		const dots = [...hero.querySelectorAll("button[data-hero-dot]")];
 		const brandLabel = hero.querySelector("[data-hero-brand-label]");
 		const accentLayer = hero.querySelector("[data-hero-accent]");
 		let index = 0;
@@ -138,7 +138,7 @@
 				const on = i === index;
 				dot.classList.toggle("is-active", on);
 				dot.setAttribute("aria-pressed", on ? "true" : "false");
-				const color = active.getAttribute("data-hero-dot") || "";
+				const color = active.getAttribute("data-hero-dot-color") || "";
 				dot.style.backgroundColor = on && color ? color : "";
 			});
 			if (brandLabel) {
