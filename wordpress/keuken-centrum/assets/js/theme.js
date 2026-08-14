@@ -119,27 +119,41 @@
 		if (!event.target.closest("[data-mega-trigger]")) closeAllMegas();
 	});
 
-	/* Hero slideshow + partner brand + video card */
+	/* Hero slideshow + partner brand + video card + entrance */
 	const hero = document.querySelector("[data-home-hero]");
 	if (hero) {
 		const slides = [...hero.querySelectorAll("[data-hero-slide]")];
 		const dots = [...hero.querySelectorAll("[data-hero-dot]")];
 		const brandLabel = hero.querySelector("[data-hero-brand-label]");
+		const accentLayer = hero.querySelector("[data-hero-accent]");
 		let index = 0;
 		let timer;
 
 		const setSlide = (next) => {
 			if (!slides.length) return;
 			index = (next + slides.length) % slides.length;
+			const active = slides[index];
 			slides.forEach((slide, i) => slide.classList.toggle("is-active", i === index));
 			dots.forEach((dot, i) => {
-				const active = i === index;
-				dot.classList.toggle("is-active", active);
-				dot.setAttribute("aria-pressed", active ? "true" : "false");
+				const on = i === index;
+				dot.classList.toggle("is-active", on);
+				dot.setAttribute("aria-pressed", on ? "true" : "false");
+				const color = active.getAttribute("data-hero-dot") || "";
+				dot.style.backgroundColor = on && color ? color : "";
 			});
 			if (brandLabel) {
-				const brand = slides[index].getAttribute("data-hero-brand") || "";
-				if (brand) brandLabel.textContent = brand;
+				const brand = active.getAttribute("data-hero-brand") || "";
+				if (brand && brandLabel.textContent !== brand) {
+					brandLabel.classList.add("is-swap");
+					window.setTimeout(() => {
+						brandLabel.textContent = brand;
+						brandLabel.classList.remove("is-swap");
+					}, 180);
+				}
+			}
+			if (accentLayer) {
+				const soft = active.getAttribute("data-hero-soft") || "rgba(198,163,107,0.18)";
+				accentLayer.style.background = `radial-gradient(circle at 22% 28%, ${soft}, transparent 30%)`;
 			}
 		};
 
@@ -158,30 +172,31 @@
 
 		start();
 
+		const readyHero = () => hero.classList.add("is-ready");
+		if (reduceMotion) readyHero();
+		else window.requestAnimationFrame(() => window.setTimeout(readyHero, 40));
+
 		const video = hero.querySelector("[data-hero-video]");
 		const videoToggle = hero.querySelector("[data-hero-video-toggle]");
 		const videoToggleLabel = hero.querySelector("[data-hero-video-toggle-label]");
+		const videoIcon = hero.querySelector("[data-hero-video-icon]");
 		const videoCard = hero.querySelector("[data-hero-video-card]");
+		const videoFs = hero.querySelector("[data-hero-video-fs]");
 
 		const syncVideoUi = () => {
 			if (!video || !videoToggleLabel) return;
 			const paused = video.paused;
 			videoToggleLabel.textContent = paused ? "Klik om af te spelen" : "Klik om te pauzeren";
+			if (videoIcon) videoIcon.textContent = paused ? "▶" : "❚❚";
 			if (videoToggle) {
-				videoToggle.setAttribute(
-					"aria-label",
-					paused ? "Video afspelen" : "Video pauzeren"
-				);
+				videoToggle.setAttribute("aria-label", paused ? "Video afspelen" : "Video pauzeren");
 			}
 		};
 
 		const toggleVideo = () => {
 			if (!video) return;
-			if (video.paused) {
-				video.play().catch(() => {});
-			} else {
-				video.pause();
-			}
+			if (video.paused) video.play().catch(() => {});
+			else video.pause();
 			syncVideoUi();
 		};
 
@@ -197,8 +212,18 @@
 			});
 		}
 
+		if (videoFs && video) {
+			videoFs.addEventListener("click", (event) => {
+				event.stopPropagation();
+				if (video.requestFullscreen) video.requestFullscreen().catch(() => {});
+			});
+		}
+
 		if (videoCard) {
-			videoCard.addEventListener("click", () => toggleVideo());
+			videoCard.addEventListener("click", (event) => {
+				if (event.target.closest("[data-hero-video-toggle], [data-hero-video-fs]")) return;
+				toggleVideo();
+			});
 			videoCard.addEventListener("keydown", (event) => {
 				if (event.key === "Enter" || event.key === " ") {
 					event.preventDefault();
