@@ -961,6 +961,49 @@ body.admin-bar .site-header {
 	transform: translateX(-50%) translateY(10px);
 }
 
+.mega-panel--simple {
+	left: auto;
+	right: 0;
+	min-width: 280px;
+	width: max-content;
+	max-width: min(360px, calc(100vw - 2rem));
+	padding: 0.55rem;
+	transform: translateX(0) translateY(10px);
+	border-radius: 16px;
+}
+
+.has-mega.is-open .mega-panel--simple {
+	transform: translateX(0) translateY(0);
+}
+
+.mega-simple__link {
+	display: flex;
+	flex-direction: column;
+	gap: 0.2rem;
+	padding: 0.75rem 0.9rem;
+	border-radius: 12px;
+	color: var(--kc-dark);
+	transition: background-color var(--kc-transition);
+}
+
+.mega-simple__link:hover,
+.mega-simple__link:focus-visible {
+	background: rgba(139, 197, 64, 0.08);
+}
+
+.mega-simple__label {
+	font-size: 0.8125rem;
+	font-weight: 500;
+	letter-spacing: 0.01em;
+}
+
+.mega-simple__desc {
+	font-size: 0.68rem;
+	line-height: 1.45;
+	color: rgba(23, 25, 28, 0.62);
+	max-width: 28ch;
+}
+
 .has-mega.is-open .mega-panel,
 .has-mega.is-open .mega-panel--editorial {
 	opacity: 1;

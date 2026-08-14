@@ -328,7 +328,26 @@ if (! function_exists('kc_render_mega_editorial')) {
 					</li>
 
 					<li><a class="nav-link" href="<?php echo esc_url(home_url('/aanbiedingen/')); ?>"><?php esc_html_e('Aanbiedingen', 'keuken-centrum'); ?></a></li>
-					<li><a class="nav-link" href="<?php echo esc_url(home_url('/contact/')); ?>"><?php esc_html_e('Contact', 'keuken-centrum'); ?></a></li>
+					<li class="has-mega" data-mega-trigger>
+						<button class="nav-link nav-link--btn" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="mega-contact">
+							<span><?php esc_html_e('Contact', 'keuken-centrum'); ?></span>
+							<svg class="nav-chevron" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+						</button>
+						<div class="mega-panel mega-panel--simple" id="mega-contact" data-mega-panel hidden role="menu">
+							<a class="mega-simple__link" href="<?php echo esc_url(home_url('/contact/')); ?>" role="menuitem">
+								<span class="mega-simple__label"><?php esc_html_e('Contact & route', 'keuken-centrum'); ?></span>
+								<span class="mega-simple__desc"><?php esc_html_e('Stuur een bericht, bel ons of plan uw route naar de Zonnebaan.', 'keuken-centrum'); ?></span>
+							</a>
+							<a class="mega-simple__link" href="<?php echo esc_url(home_url('/showroom-keukens/')); ?>" role="menuitem">
+								<span class="mega-simple__label"><?php esc_html_e('Showroom keukens', 'keuken-centrum'); ?></span>
+								<span class="mega-simple__desc"><?php esc_html_e('Kom langs in onze showroom in Utrecht en laat u inspireren.', 'keuken-centrum'); ?></span>
+							</a>
+							<a class="mega-simple__link" href="<?php echo esc_url(home_url('/consultation/')); ?>" role="menuitem">
+								<span class="mega-simple__label"><?php esc_html_e('Offerte op maat', 'keuken-centrum'); ?></span>
+								<span class="mega-simple__desc"><?php esc_html_e('Vraag online een vrijblijvende offerte aan voor uw droomkeuken.', 'keuken-centrum'); ?></span>
+							</a>
+						</div>
+					</li>
 				</ul>
 			</nav>
 
