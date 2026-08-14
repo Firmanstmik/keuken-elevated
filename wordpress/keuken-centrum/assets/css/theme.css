@@ -619,14 +619,14 @@ body.admin-bar .site-header {
 }
 
 .nav-band {
-	/* React: site-container py-4 (1rem) over logo row */
-	padding: 1rem 0;
+	/* React measured logo inset below topbar ≈ 29.6px (py-4 + shell pad + hairline) */
+	padding: 1.85rem 0;
 	transition: padding var(--kc-transition);
 }
 
 .site-header.is-elevated .nav-band {
-	/* React elevated: py-3 */
-	padding: 0.75rem 0;
+	/* React elevated: py-3 + shell */
+	padding: 1.1rem 0;
 }
 
 .nav-shell {
