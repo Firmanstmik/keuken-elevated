@@ -115,6 +115,27 @@
 		btn.addEventListener("focus", open);
 	});
 
+	document.querySelectorAll("[data-kitchens-mega]").forEach((mega) => {
+		const categories = [...mega.querySelectorAll("[data-kitchen-category]")];
+		const panels = [...mega.querySelectorAll("[data-kitchen-panel]")];
+		const activate = (index) => {
+			categories.forEach((category) => {
+				const active = category.dataset.kitchenCategory === index;
+				category.classList.toggle("is-active", active);
+				category.setAttribute("aria-pressed", active ? "true" : "false");
+			});
+			panels.forEach((panel) => {
+				panel.classList.toggle("is-active", panel.dataset.kitchenPanel === index);
+			});
+		};
+		categories.forEach((category) => {
+			const onActivate = () => activate(category.dataset.kitchenCategory);
+			category.addEventListener("mouseenter", onActivate);
+			category.addEventListener("focus", onActivate);
+			category.addEventListener("click", onActivate);
+		});
+	});
+
 	document.addEventListener("click", (event) => {
 		if (!event.target.closest("[data-mega-trigger]")) closeAllMegas();
 	});

@@ -990,6 +990,49 @@ body.admin-bar .site-header {
 	transform: translateX(-50%) translateY(10px);
 }
 
+/* Homepage hero: match React dark glass mega panels while transparent nav is active. */
+.site-header--hero:not(.is-elevated) .mega-panel--editorial,
+.site-header--hero:not(.is-elevated) .mega-panel--simple {
+	border-color: rgba(200, 169, 107, 0.18);
+	background: rgba(14, 17, 10, 0.92);
+	box-shadow: 0 42px 110px -28px rgba(0, 0, 0, 0.82), inset 0 0 0 1px rgba(255, 255, 255, 0.035);
+	color: #f5f2ec;
+	backdrop-filter: blur(24px);
+}
+
+.site-header--hero:not(.is-elevated) .mega-editorial__title,
+.site-header--hero:not(.is-elevated) .mega-editorial__subkicker,
+.site-header--hero:not(.is-elevated) .mega-panel__groups a,
+.site-header--hero:not(.is-elevated) .mega-panel__rail a,
+.site-header--hero:not(.is-elevated) .mega-simple__label,
+.site-header--hero:not(.is-elevated) .mega-featured__title {
+	color: #f5f2ec;
+}
+
+.site-header--hero:not(.is-elevated) .mega-editorial__kicker,
+.site-header--hero:not(.is-elevated) .mega-panel__eyebrow,
+.site-header--hero:not(.is-elevated) .mega-featured__badge {
+	color: #c8a96b;
+}
+
+.site-header--hero:not(.is-elevated) .mega-simple__desc,
+.site-header--hero:not(.is-elevated) .mega-featured__desc,
+.site-header--hero:not(.is-elevated) .mega-editorial__curated {
+	color: rgba(245, 242, 236, 0.45);
+}
+
+.site-header--hero:not(.is-elevated) .mega-simple__link:hover,
+.site-header--hero:not(.is-elevated) .mega-simple__link:focus-visible,
+.site-header--hero:not(.is-elevated) .mega-panel__groups a:hover,
+.site-header--hero:not(.is-elevated) .mega-panel__rail a:hover {
+	background: rgba(255, 255, 255, 0.045);
+}
+
+.site-header--hero:not(.is-elevated) .mega-editorial__rule,
+.site-header--hero:not(.is-elevated) .mega-featured {
+	border-color: rgba(255, 255, 255, 0.08);
+}
+
 .mega-panel--simple {
 	left: auto;
 	right: 0;
@@ -1047,6 +1090,228 @@ body.admin-bar .site-header {
 
 .has-mega.is-open .mega-panel[hidden] {
 	visibility: visible;
+}
+
+.mega-panel--kitchens {
+	width: min(980px, calc(100vw - 3rem));
+	min-width: min(920px, calc(100vw - 3rem));
+	border-color: rgba(200, 169, 107, 0.18);
+	background: rgba(14, 17, 10, 0.92);
+	box-shadow: 0 42px 110px -28px rgba(0, 0, 0, 0.82), inset 0 0 0 1px rgba(255, 255, 255, 0.035);
+	color: #f5f2ec;
+	backdrop-filter: blur(24px);
+}
+
+.mega-panel--kitchens::before {
+	position: absolute;
+	top: 0;
+	right: 2.5rem;
+	left: 2.5rem;
+	height: 1px;
+	content: "";
+	background: linear-gradient(90deg, transparent, rgba(200, 169, 107, 0.82), transparent);
+}
+
+.mega-kitchens {
+	display: grid;
+	grid-template-columns: 290px minmax(0, 1fr);
+	min-height: 412px;
+}
+
+.mega-kitchens__rail {
+	padding: 1.5rem 1.25rem;
+	border-right: 1px solid rgba(255, 255, 255, 0.08);
+	background: rgba(255, 255, 255, 0.025);
+}
+
+.mega-kitchens__rail > p,
+.mega-kitchens__panel header p {
+	margin: 0 0 1rem;
+	color: #c8a96b;
+	font-size: 0.56rem;
+	font-weight: 600;
+	letter-spacing: 0.26em;
+	line-height: 1.2;
+	text-transform: uppercase;
+}
+
+.mega-kitchens__category {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	gap: 0.75rem;
+	margin: 0.375rem 0;
+	padding: 0.75rem;
+	border: 1px solid transparent;
+	border-radius: 12px;
+	background: transparent;
+	color: rgba(245, 242, 236, 0.72);
+	font: inherit;
+	font-size: 0.76rem;
+	font-weight: 500;
+	text-align: left;
+	transition: 300ms var(--kc-ease);
+}
+
+.mega-kitchens__category:hover,
+.mega-kitchens__category.is-active {
+	border-color: rgba(200, 169, 107, 0.22);
+	background: rgba(200, 169, 107, 0.12);
+	color: #e7d2a5;
+}
+
+.mega-kitchens__icon {
+	display: grid;
+	width: 2.25rem;
+	height: 2.25rem;
+	place-items: center;
+	border-radius: 10px;
+	background: rgba(255, 255, 255, 0.05);
+	color: #c8a96b;
+	font-size: 1rem;
+}
+
+.mega-kitchens__category.is-active .mega-kitchens__icon {
+	background: linear-gradient(145deg, #d4b16f, #b48b43);
+	color: #fff;
+	box-shadow: 0 8px 18px -10px rgba(166, 125, 55, 0.9);
+}
+
+.mega-kitchens__category b {
+	margin-left: auto;
+	font-size: 1rem;
+	font-weight: 400;
+	opacity: 0.35;
+}
+
+.mega-kitchens__panels {
+	min-width: 0;
+	padding: 1.75rem 1.75rem 1.25rem;
+}
+
+.mega-kitchens__panel {
+	display: none;
+}
+
+.mega-kitchens__panel.is-active {
+	display: block;
+	animation: kc-mega-panel-in 380ms var(--kc-ease) both;
+}
+
+.mega-kitchens__panel header {
+	display: flex;
+	align-items: end;
+	justify-content: space-between;
+	gap: 1.5rem;
+	margin-bottom: 1.25rem;
+}
+
+.mega-kitchens__panel header p {
+	margin-bottom: 0.5rem;
+}
+
+.mega-kitchens__panel h3 {
+	margin: 0;
+	color: #f5f2ec;
+	font-family: var(--font-display);
+	font-size: 1.35rem;
+	font-weight: 400;
+	letter-spacing: -0.02em;
+	line-height: 1.2;
+}
+
+.mega-kitchens__panel em {
+	color: rgba(255, 255, 255, 0.32);
+	font-family: Georgia, serif;
+	font-size: 0.68rem;
+	white-space: nowrap;
+}
+
+.mega-kitchens__cards {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 1rem;
+}
+
+.mega-kitchens__card {
+	overflow: hidden;
+	border: 1px solid rgba(255, 255, 255, 0.09);
+	border-radius: 15px;
+	background: rgba(255, 255, 255, 0.04);
+	color: #f5f2ec;
+	transition: 500ms var(--kc-ease);
+}
+
+.mega-kitchens__card:hover {
+	border-color: rgba(200, 169, 107, 0.28);
+	transform: translateY(-4px);
+}
+
+.mega-kitchens__card > span {
+	display: block;
+	aspect-ratio: 4 / 3;
+	overflow: hidden;
+	background: #272b21;
+}
+
+.mega-kitchens__card img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform 700ms ease-out;
+}
+
+.mega-kitchens__card:hover img {
+	transform: scale(1.06);
+}
+
+.mega-kitchens__card strong,
+.mega-kitchens__card small {
+	display: block;
+	padding: 0 1rem;
+}
+
+.mega-kitchens__card strong {
+	margin-top: 0.8rem;
+	font-size: 0.78rem;
+	font-weight: 600;
+}
+
+.mega-kitchens__card small {
+	padding-bottom: 0.9rem;
+	margin-top: 0.35rem;
+	color: #a67c3d;
+	font-size: 0.62rem;
+	font-weight: 500;
+}
+
+.mega-kitchens__panel footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	margin-top: 1.25rem;
+	padding-top: 1rem;
+	border-top: 1px solid rgba(255, 255, 255, 0.08);
+	color: rgba(255, 255, 255, 0.45);
+	font-size: 0.65rem;
+}
+
+.mega-kitchens__panel footer strong,
+.mega-kitchens__panel footer a {
+	color: #e8d5ac;
+}
+
+.mega-kitchens__panel footer a {
+	font-size: 0.63rem;
+	font-weight: 600;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+}
+
+@keyframes kc-mega-panel-in {
+	from { opacity: 0; transform: translateY(7px); }
+	to { opacity: 1; transform: translateY(0); }
 }
 
 .mega-editorial {
@@ -2146,9 +2411,13 @@ body.admin-bar .site-header {
 
 .hero-scroll-cue {
 	position: absolute;
-	left: 50%;
+	/* Match React inset-x-0 mx-auto: do not rely on translateX,
+	   because .home-hero__reveal sets transform:none after entrance. */
+	left: 0;
+	right: 0;
 	bottom: 1.5rem;
-	transform: translateX(-50%);
+	width: fit-content;
+	margin-inline: auto;
 	z-index: 30;
 	display: none;
 	flex-direction: column;
