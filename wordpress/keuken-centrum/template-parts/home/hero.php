@@ -204,7 +204,7 @@ $first_dot   = $slides[0]['dot'] ?? '#c8a96b';
 			<?php if ($video_uri) : ?>
 				<div class="home-hero__aside home-hero__reveal" data-hero-reveal="7">
 					<div class="home-hero__video-card" data-hero-video-card>
-						<div class="home-hero__video-stage">
+						<div class="home-hero__video-inner">
 							<video
 								class="home-hero__video"
 								data-hero-video
@@ -216,36 +216,46 @@ $first_dot   = $slides[0]['dot'] ?? '#c8a96b';
 								autoplay
 							></video>
 							<div class="home-hero__video-scrim" aria-hidden="true"></div>
-							<div class="home-hero__video-top">
-								<span class="home-hero__video-chip">
-									<span class="home-hero__video-chip-icon" aria-hidden="true">
-										<svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M4.5 10.5L12 4l7.5 6.5V19a1.5 1.5 0 0 1-1.5 1.5h-3.5V14h-5v6.5H6A1.5 1.5 0 0 1 4.5 19v-8.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
-									</span>
-									<span><?php esc_html_e('SHOWROOM UTRECHT', 'keuken-centrum'); ?></span>
-								</span>
-							</div>
-							<div class="home-hero__video-bottom">
-								<button type="button" class="home-hero__video-toggle" data-hero-video-toggle aria-label="<?php esc_attr_e('Video pauzeren', 'keuken-centrum'); ?>">
-									<span class="home-hero__video-toggle-icon" data-hero-video-icon aria-hidden="true">❚❚</span>
-									<span data-hero-video-toggle-label><?php esc_html_e('Klik om te pauzeren', 'keuken-centrum'); ?></span>
-								</button>
-								<button type="button" class="home-hero__video-fs" data-hero-video-fs aria-label="<?php esc_attr_e('Video vergroten', 'keuken-centrum'); ?>">
-									<svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><path d="M8 4H4v4M16 4h4v4M8 20H4v-4M16 20h4v-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-								</button>
-							</div>
-						</div>
+							<div class="home-hero__video-tint" aria-hidden="true"></div>
+							<div class="home-hero__video-sheen" aria-hidden="true"></div>
 
-						<?php if ($thumbs) : ?>
-							<div class="home-hero__thumbs">
-								<?php foreach ($thumbs as $thumb) : ?>
-									<figure class="home-hero__thumb">
-										<img src="<?php echo esc_url($thumb['src']); ?>" alt="<?php echo esc_attr($thumb['alt']); ?>" loading="lazy" width="240" height="180" />
-										<span class="home-hero__thumb-corner home-hero__thumb-corner--tl" aria-hidden="true"></span>
-										<span class="home-hero__thumb-corner home-hero__thumb-corner--br" aria-hidden="true"></span>
-									</figure>
-								<?php endforeach; ?>
+							<div class="home-hero__video-stage">
+								<div class="home-hero__video-top">
+									<span class="home-hero__video-chip">
+										<span class="home-hero__video-chip-icon" aria-hidden="true">
+											<svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M4.5 10.5L12 4l7.5 6.5V19a1.5 1.5 0 0 1-1.5 1.5h-3.5V14h-5v6.5H6A1.5 1.5 0 0 1 4.5 19v-8.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+										</span>
+										<span><?php esc_html_e('SHOWROOM UTRECHT', 'keuken-centrum'); ?></span>
+									</span>
+								</div>
+								<div class="home-hero__video-bottom">
+									<button type="button" class="home-hero__video-toggle" data-hero-video-toggle aria-label="<?php esc_attr_e('Video pauzeren', 'keuken-centrum'); ?>">
+										<span class="home-hero__video-toggle-icon" data-hero-video-icon aria-hidden="true">
+											<svg class="home-hero__video-toggle-pause" viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M9.5 4.5v15M14.5 4.5v15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+											<svg class="home-hero__video-toggle-play" viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M6.5 4.9c0-.9 1-1.5 1.8-1.05l10 6.1c.75.46.75 1.55 0 2.01l-10 6.1c-.8.46-1.8-.14-1.8-1.04V4.9z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+										</span>
+										<span data-hero-video-toggle-label><?php esc_html_e('Klik om te pauzeren', 'keuken-centrum'); ?></span>
+									</button>
+									<span class="home-hero__video-fs-wrap">
+										<button type="button" class="home-hero__video-fs" data-hero-video-fs aria-label="<?php esc_attr_e('Video vergroten', 'keuken-centrum'); ?>">
+											<svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><path d="M8 4H4v4M16 4h4v4M8 20H4v-4M16 20h4v-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+										</button>
+									</span>
+								</div>
 							</div>
-						<?php endif; ?>
+
+							<?php if ($thumbs) : ?>
+								<div class="home-hero__thumbs">
+									<?php foreach ($thumbs as $thumb) : ?>
+										<figure class="home-hero__thumb">
+											<img src="<?php echo esc_url($thumb['src']); ?>" alt="<?php echo esc_attr($thumb['alt']); ?>" loading="lazy" width="240" height="180" />
+											<span class="home-hero__thumb-corner home-hero__thumb-corner--tl" aria-hidden="true"></span>
+											<span class="home-hero__thumb-corner home-hero__thumb-corner--br" aria-hidden="true"></span>
+										</figure>
+									<?php endforeach; ?>
+								</div>
+							<?php endif; ?>
+						</div>
 					</div>
 				</div>
 			<?php endif; ?>

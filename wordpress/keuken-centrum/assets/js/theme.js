@@ -201,7 +201,6 @@
 		const video = hero.querySelector("[data-hero-video]");
 		const videoToggle = hero.querySelector("[data-hero-video-toggle]");
 		const videoToggleLabel = hero.querySelector("[data-hero-video-toggle-label]");
-		const videoIcon = hero.querySelector("[data-hero-video-icon]");
 		const videoCard = hero.querySelector("[data-hero-video-card]");
 		const videoFs = hero.querySelector("[data-hero-video-fs]");
 
@@ -209,7 +208,7 @@
 			if (!video || !videoToggleLabel) return;
 			const paused = video.paused;
 			videoToggleLabel.textContent = paused ? "Klik om af te spelen" : "Klik om te pauzeren";
-			if (videoIcon) videoIcon.textContent = paused ? "▶" : "❚❚";
+			if (videoCard) videoCard.classList.toggle("is-paused", paused);
 			if (videoToggle) {
 				videoToggle.setAttribute("aria-label", paused ? "Video afspelen" : "Video pauzeren");
 			}
