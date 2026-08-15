@@ -49,6 +49,7 @@ $concrete = kc_theme_img('mat-concrete.jpg');
 	<div class="collections-section__veil" aria-hidden="true"></div>
 
 	<div class="site-shell collections-section__intro" data-reveal>
+		<?php kc_section_chapter('04', __('Collecties', 'keuken-centrum')); ?>
 		<div class="section-label-row">
 			<span class="kitchen-eyebrow-mark" aria-hidden="true"></span>
 			<p class="section-eyebrow section-eyebrow--gold"><?php esc_html_e('Onze Collecties', 'keuken-centrum'); ?></p>
@@ -67,7 +68,7 @@ $concrete = kc_theme_img('mat-concrete.jpg');
 
 	<div class="collections-gallery" data-collections-gallery>
 		<div class="collections-gallery__track">
-			<?php foreach ($collections as $item) : ?>
+			<?php foreach (array_merge($collections, $collections) as $item) : ?>
 				<?php if (empty($item['image'])) { continue; } ?>
 				<article class="style-card">
 					<div class="style-card__media">

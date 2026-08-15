@@ -12,7 +12,7 @@ $cards = [
 		'tag'         => 'Signature collectie',
 		'title'       => 'Design Keukens',
 		'description' => 'Architecturale keukens met verfijnde materialen en tijdloze verhoudingen.',
-		'image'       => kc_theme_img('experience/design.webp'),
+		'image'       => kc_theme_img('experience/Design_keukens.webp') ?: kc_theme_img('experience/design.webp'),
 		'href'        => get_post_type_archive_link('kitchen_brand') ?: home_url('/keukens'),
 	],
 	[
@@ -21,7 +21,7 @@ $cards = [
 		'tag'         => 'Ontdek de collectie',
 		'title'       => 'Moderne Keukens',
 		'description' => 'Hedendaags wonen met slanke lijnen, warme texturen en intelligente indeling.',
-		'image'       => kc_theme_img('experience/modern.webp'),
+		'image'       => kc_theme_img('experience/Modern_keukens.webp') ?: kc_theme_img('experience/modern.webp'),
 		'href'        => home_url('/#collections'),
 	],
 	[
@@ -30,15 +30,18 @@ $cards = [
 		'tag'         => 'Ontdek de collectie',
 		'title'       => 'Keukens voor elke prijs',
 		'description' => 'Topkwaliteit en persoonlijk advies voor elk budget, zonder compromis.',
-		'image'       => kc_theme_img('experience/budget.webp'),
+		'image'       => kc_theme_img('experience/Keukens_voor_elke_prijs.webp') ?: kc_theme_img('experience/budget.webp'),
 		'href'        => home_url('/#consultation'),
 	],
 ];
+$scene = kc_theme_img('brands/brands-dark-bg.webp');
 ?>
-<section class="section-shell section-shell--dark experience-section" id="experience">
+<section class="section-shell section-shell--dark experience-section" id="experience"<?php echo $scene ? ' style="--experience-scene:url(' . esc_url($scene) . ')"' : ''; ?>>
+	<div class="experience-section__scene" aria-hidden="true"></div>
 	<div class="site-shell">
 		<div class="experience-header" data-reveal>
 			<div class="experience-header__copy">
+				<?php kc_section_chapter('03', __('Inspiratie', 'keuken-centrum'), true); ?>
 				<div class="section-label-row">
 					<span class="kitchen-eyebrow-mark" aria-hidden="true"></span>
 					<p class="section-eyebrow section-eyebrow--gold"><?php esc_html_e('Keukeninspiratie', 'keuken-centrum'); ?></p>

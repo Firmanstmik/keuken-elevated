@@ -1,42 +1,22 @@
 <?php
 /**
- * Home premium showroom — React PremiumShowcase parity.
+ * Home showroom — React PremiumShowcase parity.
  *
  * @package Keuken_Centrum
  */
-
-$address = kc_get_option('contact_address', 'Zonnebaan 8');
-$postal  = kc_get_option('contact_postal', '3542 EC Utrecht');
-$hours   = kc_get_option('contact_hours', 'Ma t/m za op afspraak, met uitgebreid showroomadvies.');
-$image   = kc_theme_img('showroom.jpg') ?: kc_theme_img('hero/hero_img2.webp');
+$videos = ['keuken_vid1.webm', 'keuken_vid2.webm', 'keuken_vid3.webm', 'keuken_vid4.webm'];
+$poster = kc_theme_img('showroom.jpg');
 ?>
-<section class="section-shell showroom-section" id="showroom">
-	<div class="site-shell showroom-panel showroom-panel--media">
-		<?php if ($image) : ?>
-			<figure class="showroom-panel__media" data-reveal>
-				<img src="<?php echo esc_url($image); ?>" alt="<?php esc_attr_e('Keuken-Centrum Utrecht showroom', 'keuken-centrum'); ?>" loading="lazy" decoding="async" />
-			</figure>
-		<?php endif; ?>
-
-		<div class="showroom-panel__content" data-reveal>
-			<p class="section-eyebrow"><?php esc_html_e('Showroom Utrecht', 'keuken-centrum'); ?></p>
-			<h2 class="section-title"><?php esc_html_e('Beleef materialen, fronten en opstellingen in een premium setting.', 'keuken-centrum'); ?></h2>
-			<p><?php esc_html_e('Onze showroom helpt keuzes tastbaar te maken: van warme houttinten en verfijnde lakken tot werkbladen, apparatuur en ergonomische routing in de ruimte.', 'keuken-centrum'); ?></p>
-
-			<div class="showroom-panel__meta">
-				<div class="showroom-stat">
-					<span class="showroom-stat__label"><?php esc_html_e('Adres', 'keuken-centrum'); ?></span>
-					<strong><?php echo esc_html($address); ?><br><?php echo esc_html($postal); ?></strong>
-				</div>
-				<div class="showroom-stat">
-					<span class="showroom-stat__label"><?php esc_html_e('Bezoek op afspraak', 'keuken-centrum'); ?></span>
-					<strong><?php echo esc_html($hours); ?></strong>
-				</div>
-			</div>
-
-			<div class="split-panel__actions">
-				<a class="btn btn--primary btn--pill" href="<?php echo esc_url(home_url('/contact')); ?>"><?php esc_html_e('Plan Showroombezoek', 'keuken-centrum'); ?></a>
-			</div>
+<section class="premium-showcase" id="showroom">
+	<div class="site-shell">
+		<div class="premium-showcase-header"><div><p class="section-eyebrow"><?php esc_html_e('Showroom Utrecht', 'keuken-centrum'); ?></p><h2><?php esc_html_e('Niet kijken naar een keuken. Hem beleven.', 'keuken-centrum'); ?></h2></div><p><?php esc_html_e('Een plek voor inspiratie, materiaalgevoel en gesprekken zonder haast.', 'keuken-centrum'); ?></p></div>
+		<div class="premium-showcase-grid">
+			<?php foreach ($videos as $index => $video) : ?><figure class="premium-showcase-media premium-showcase-media--<?php echo esc_attr((string) ($index + 1)); ?>"><video muted loop playsinline preload="metadata" poster="<?php echo esc_url($poster); ?>"<?php echo 0 === $index ? ' autoplay' : ''; ?>><source src="<?php echo esc_url(get_template_directory_uri() . '/assets/video/' . $video); ?>" type="video/webm"></video></figure><?php endforeach; ?>
+			<div class="premium-showcase-overlay"><span><?php esc_html_e('Keuken-Centrum Utrecht', 'keuken-centrum'); ?></span><a href="<?php echo esc_url(home_url('/showroom-keukens')); ?>">↗</a></div>
+		</div>
+		<div class="premium-showcase-bottom">
+			<div class="premium-showcase-stats"><div><strong>45+</strong><span><?php esc_html_e('jaar ervaring', 'keuken-centrum'); ?></span></div><div><strong>1978</strong><span><?php esc_html_e('start van ons verhaal', 'keuken-centrum'); ?></span></div><div><strong>1000+</strong><span><?php esc_html_e('gerealiseerde keukens', 'keuken-centrum'); ?></span></div></div>
+			<div class="premium-showcase-actions"><a class="btn btn--primary" href="<?php echo esc_url(home_url('/contact')); ?>"><?php esc_html_e('Plan showroombezoek', 'keuken-centrum'); ?></a><a class="btn btn--text" href="<?php echo esc_url(home_url('/showroom-keukens')); ?>"><?php esc_html_e('Bekijk de showroom', 'keuken-centrum'); ?> →</a></div>
 		</div>
 	</div>
 </section>

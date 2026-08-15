@@ -1,51 +1,35 @@
 <?php
 /**
- * Home why section — editorial feature cards with imagery.
+ * Home why section — React WhyWithUsSection parity.
  *
  * @package Keuken_Centrum
  */
-
-$features = [
-	[
-		'title' => __('Advies dat echt luistert', 'keuken-centrum'),
-		'text'  => __('We vertalen woonwensen, kookgedrag en architectuur naar een keukenconcept dat logisch voelt en verfijnd oogt.', 'keuken-centrum'),
-		'image' => kc_theme_img('why/why-persoonlijk.webp'),
-	],
-	[
-		'title' => __('Geselecteerde premium merken', 'keuken-centrum'),
-		'text'  => __('Onze collectie combineert Duitse betrouwbaarheid met Italiaanse sfeer, zodat materiaal, maatwerk en techniek in balans zijn.', 'keuken-centrum'),
-		'image' => kc_theme_img('why/why-materialen.webp'),
-	],
-	[
-		'title' => __('Persoonlijke begeleiding tot oplevering', 'keuken-centrum'),
-		'text'  => __('Van eerste routing in de showroom tot afstemming met monteurs en apparatuurpartners: u houdt overzicht en vertrouwen.', 'keuken-centrum'),
-		'image' => kc_theme_img('why/why-service.webp'),
-	],
+$pillars = [
+	['title' => 'Vakmanschap', 'copy' => 'Van eerste schets tot laatste millimeter: onze specialisten bewaken het detail.', 'image' => 'why/why-vakmanschap.webp'],
+	['title' => 'Persoonlijk', 'copy' => 'Uw manier van leven is het vertrekpunt voor ieder ontwerp en elk advies.', 'image' => 'why/why-persoonlijk.webp'],
+	['title' => 'Materialen', 'copy' => 'Voelbare kwaliteit in hout, steen, lak en techniek — zorgvuldig naast elkaar gekozen.', 'image' => 'why/why-materialen.webp'],
+	['title' => 'Service', 'copy' => 'Eén vertrouwd team, van de eerste ontmoeting tot en met de oplevering.', 'image' => 'why/why-service.webp'],
 ];
-
-$texture = kc_theme_img('mat-concrete.jpg');
+$concrete = kc_theme_img('mat-concrete.jpg');
+$oak      = kc_theme_img('mat-oak.jpg');
 ?>
-<section class="section-shell section-shell--textured" id="why-with-us"<?php echo $texture ? ' style="--kc-texture:url(' . esc_url($texture) . ')"' : ''; ?>>
-	<div class="site-shell">
-		<div class="section-heading" data-reveal>
+<section class="why-scene" id="why-with-us"<?php echo $concrete ? ' style="--why-concrete:url(' . esc_url($concrete) . ')"' : ''; ?> data-why-pillars>
+	<div class="site-shell why-scene-grid">
+		<div class="why-scene-copy">
 			<p class="section-eyebrow"><?php esc_html_e('Waarom Keuken-Centrum', 'keuken-centrum'); ?></p>
-			<h2 class="section-title"><?php esc_html_e('Een premium keukenervaring met rust, expertise en aandacht voor detail.', 'keuken-centrum'); ?></h2>
+			<h2><?php esc_html_e('Uw keuken verdient aandacht die verder gaat.', 'keuken-centrum'); ?></h2>
+			<div class="why-pillars-list" role="tablist" aria-label="<?php esc_attr_e('Onze pijlers', 'keuken-centrum'); ?>">
+				<?php foreach ($pillars as $index => $pillar) : ?>
+					<button type="button" class="why-pillar<?php echo 0 === $index ? ' is-active' : ''; ?>" data-why-pillar data-why-title="<?php echo esc_attr($pillar['title']); ?>" data-why-copy="<?php echo esc_attr($pillar['copy']); ?>" data-why-image="<?php echo esc_url(kc_theme_img($pillar['image'])); ?>" aria-selected="<?php echo 0 === $index ? 'true' : 'false'; ?>">
+						<span>0<?php echo esc_html((string) ($index + 1)); ?></span><strong><?php echo esc_html($pillar['title']); ?></strong><i>↗</i>
+					</button>
+				<?php endforeach; ?>
+			</div>
 		</div>
-
-		<div class="feature-grid feature-grid--media">
-			<?php foreach ($features as $feature) : ?>
-				<article class="feature-card feature-card--media" data-reveal>
-					<?php if (! empty($feature['image'])) : ?>
-						<div class="feature-card__media">
-							<img src="<?php echo esc_url($feature['image']); ?>" alt="" loading="lazy" width="640" height="420">
-						</div>
-					<?php endif; ?>
-					<div class="feature-card__body">
-						<h3 class="feature-card__title"><?php echo esc_html($feature['title']); ?></h3>
-						<p><?php echo esc_html($feature['text']); ?></p>
-					</div>
-				</article>
-			<?php endforeach; ?>
-		</div>
+		<aside class="why-scene-preview">
+			<div class="why-preview-image"><img data-why-image src="<?php echo esc_url(kc_theme_img($pillars[0]['image'])); ?>" alt="" loading="lazy" width="800" height="1000"></div>
+			<div class="why-preview-content"><p data-why-title><?php echo esc_html($pillars[0]['title']); ?></p><p data-why-copy><?php echo esc_html($pillars[0]['copy']); ?></p></div>
+			<?php if ($oak) : ?><img class="why-oak-swatch" src="<?php echo esc_url($oak); ?>" alt="" loading="lazy" width="160" height="160"><?php endif; ?>
+		</aside>
 	</div>
 </section>
