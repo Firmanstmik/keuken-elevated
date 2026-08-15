@@ -2165,6 +2165,7 @@ body.admin-bar .site-header {
 .hero-scroll-cue__label {
 	font-size: 0.6rem;
 	font-weight: 300;
+	line-height: 1.2;
 	letter-spacing: 0.28em;
 	text-transform: uppercase;
 	color: rgba(247, 245, 242, 0.55);
@@ -2179,7 +2180,7 @@ body.admin-bar .site-header {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: 0.45rem 0.85rem;
+	padding: 0.625rem 1.25rem;
 	border: 1px solid rgba(247, 245, 242, 0.28);
 	border-bottom: none;
 	border-radius: 5px 5px 0 0;
