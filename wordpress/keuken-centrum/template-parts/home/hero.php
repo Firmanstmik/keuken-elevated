@@ -264,6 +264,12 @@ $first_dot   = $slides[0]['dot'] ?? '#c8a96b';
 				<circle cx="16.8" cy="19.6" r="1.05" fill="currentColor" />
 			</svg>
 		</span>
-		<span class="hero-scroll-cue__drip" aria-hidden="true"></span>
+		<span class="hero-scroll-cue__track" aria-hidden="true">
+			<span class="hero-scroll-cue__track-line"></span>
+			<span class="hero-scroll-cue__drip"></span>
+		</span>
+		<svg class="hero-scroll-cue__chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+			<path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+		</svg>
 	</a>
 </section>
