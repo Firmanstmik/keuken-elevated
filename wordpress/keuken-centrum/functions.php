@@ -92,6 +92,19 @@ function kc_enqueue_assets(): void {
 add_action('wp_enqueue_scripts', 'kc_enqueue_assets');
 
 /**
+ * Keep theme CSS/JS out of LiteSpeed combine/UCSS so homepage parity rules are not stripped.
+ */
+function kc_litespeed_exclude_theme_assets(string $html, string $handle): string {
+	if ('keuken-centrum-theme' !== $handle || str_contains($html, 'data-no-optimize')) {
+		return $html;
+	}
+
+	return str_replace('<link ', '<link data-no-optimize="1" ', str_replace('<script ', '<script data-no-optimize="1" ', $html));
+}
+add_filter('style_loader_tag', 'kc_litespeed_exclude_theme_assets', 10, 2);
+add_filter('script_loader_tag', 'kc_litespeed_exclude_theme_assets', 10, 2);
+
+/**
  * Reads a site setting from ACF options or theme mods.
  *
  * @param string $key     Setting key.
