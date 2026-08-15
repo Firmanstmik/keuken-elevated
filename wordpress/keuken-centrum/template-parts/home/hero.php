@@ -223,7 +223,7 @@ $first_dot   = $slides[0]['dot'] ?? '#c8a96b';
 								<div class="home-hero__video-top">
 									<span class="home-hero__video-chip">
 										<span class="home-hero__video-chip-icon" aria-hidden="true">
-											<svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M4.5 10.5L12 4l7.5 6.5V19a1.5 1.5 0 0 1-1.5 1.5h-3.5V14h-5v6.5H6A1.5 1.5 0 0 1 4.5 19v-8.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+											<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22h20"/><path d="M2.95 22 3 9.97c0-.61.29-1.19.77-1.57l7-5.45a2.01 2.01 0 0 1 2.46 0l7 5.44c.49.38.77.96.77 1.58V22"/><path d="M13 17h-2c-.83 0-1.5.67-1.5 1.5V22h5v-3.5c0-.83-.67-1.5-1.5-1.5ZM9.5 13.75h-2c-.55 0-1-.45-1-1v-1.5c0-.55.45-1 1-1h2c.55 0 1 .45 1 1v1.5c0 .55-.45 1-1 1ZM16.5 13.75h-2c-.55 0-1-.45-1-1v-1.5c0-.55.45-1 1-1h2c.55 0 1 .45 1 1v1.5c0 .55-.45 1-1 1Z"/><path d="m19 7-.03-3h-4.4"/></svg>
 										</span>
 										<span><?php esc_html_e('SHOWROOM UTRECHT', 'keuken-centrum'); ?></span>
 									</span>
@@ -231,14 +231,14 @@ $first_dot   = $slides[0]['dot'] ?? '#c8a96b';
 								<div class="home-hero__video-bottom">
 									<button type="button" class="home-hero__video-toggle" data-hero-video-toggle aria-label="<?php esc_attr_e('Video pauzeren', 'keuken-centrum'); ?>">
 										<span class="home-hero__video-toggle-icon" data-hero-video-icon aria-hidden="true">
-											<svg class="home-hero__video-toggle-pause" viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M9.5 4.5v15M14.5 4.5v15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-											<svg class="home-hero__video-toggle-play" viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M6.5 4.9c0-.9 1-1.5 1.8-1.05l10 6.1c.75.46.75 1.55 0 2.01l-10 6.1c-.8.46-1.8-.14-1.8-1.04V4.9z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+											<svg class="home-hero__video-toggle-pause" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"><path d="M10.65 19.11V4.89c0-1.35-.57-1.89-2.01-1.89H5.01C3.57 3 3 3.54 3 4.89v14.22C3 20.46 3.57 21 5.01 21h3.63c1.44 0 2.01-.54 2.01-1.89ZM21 19.11V4.89C21 3.54 20.43 3 18.99 3h-3.63c-1.43 0-2.01.54-2.01 1.89v14.22c0 1.35.57 1.89 2.01 1.89h3.63c1.44 0 2.01-.54 2.01-1.89Z"/></svg>
+											<svg class="home-hero__video-toggle-play" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12V8.44c0-4.42 3.13-6.23 6.96-4.02l3.09 1.78 3.09 1.78c3.83 2.21 3.83 5.83 0 8.04l-3.09 1.78-3.09 1.78C7.13 21.79 4 19.98 4 15.56V12Z"/></svg>
 										</span>
 										<span data-hero-video-toggle-label><?php esc_html_e('Klik om te pauzeren', 'keuken-centrum'); ?></span>
 									</button>
 									<span class="home-hero__video-fs-wrap">
 										<button type="button" class="home-hero__video-fs" data-hero-video-fs aria-label="<?php esc_attr_e('Video vergroten', 'keuken-centrum'); ?>">
-											<svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><path d="M8 4H4v4M16 4h4v4M8 20H4v-4M16 20h4v-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+											<svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9.98V9c0-5 2-7 7-7h6c5 0 7 2 7 7v6c0 5-2 7-7 7h-1"/><path d="m13 11 5.01-5.02H14M18.01 5.98v4.01M11 16.15v2.7C11 21.1 10.1 22 7.85 22h-2.7C2.9 22 2 21.1 2 18.85v-2.7C2 13.9 2.9 13 5.15 13h2.7c2.25 0 3.15.9 3.15 3.15Z"/></svg>
 										</button>
 									</span>
 								</div>

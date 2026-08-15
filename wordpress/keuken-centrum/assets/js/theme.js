@@ -204,13 +204,16 @@
 		const videoCard = hero.querySelector("[data-hero-video-card]");
 		const videoFs = hero.querySelector("[data-hero-video-fs]");
 
+		// React keeps this state local to the toggle, so the control starts in the
+		// "playing" look even when the browser blocks autoplay.
+		let videoPaused = false;
+
 		const syncVideoUi = () => {
 			if (!video || !videoToggleLabel) return;
-			const paused = video.paused;
-			videoToggleLabel.textContent = paused ? "Klik om af te spelen" : "Klik om te pauzeren";
-			if (videoCard) videoCard.classList.toggle("is-paused", paused);
+			videoToggleLabel.textContent = videoPaused ? "Klik om af te spelen" : "Klik om te pauzeren";
+			if (videoCard) videoCard.classList.toggle("is-paused", videoPaused);
 			if (videoToggle) {
-				videoToggle.setAttribute("aria-label", paused ? "Video afspelen" : "Video pauzeren");
+				videoToggle.setAttribute("aria-label", videoPaused ? "Video afspelen" : "Video pauzeren");
 			}
 		};
 
@@ -218,6 +221,7 @@
 			if (!video) return;
 			if (video.paused) video.play().catch(() => {});
 			else video.pause();
+			videoPaused = !videoPaused;
 			syncVideoUi();
 		};
 
@@ -256,11 +260,7 @@
 			videoCard.setAttribute("aria-label", "Videopreview van de showroom");
 		}
 
-		if (video) {
-			video.addEventListener("play", syncVideoUi);
-			video.addEventListener("pause", syncVideoUi);
-			syncVideoUi();
-		}
+		if (video) syncVideoUi();
 	}
 
 	/* Reveal on scroll */
