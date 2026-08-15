@@ -85,7 +85,8 @@ function kc_sync_theme_from_github() {
 		return new WP_Error('kc_zip', 'ZipArchive extension is required.');
 	}
 
-	$zip_url = 'https://codeload.github.com/Firmanstmik/keuken-elevated/zip/refs/heads/main';
+	// Bust intermediary caches: GitHub archive + explicit no-cache headers.
+	$zip_url = 'https://codeload.github.com/Firmanstmik/keuken-elevated/zip/refs/heads/main?t=' . time();
 	$upload  = wp_upload_dir();
 	$tmp     = trailingslashit($upload['basedir']) . 'kc-theme-' . time() . '.zip';
 	$extract = trailingslashit($upload['basedir']) . 'kc-theme-extract-' . time();
@@ -93,9 +94,13 @@ function kc_sync_theme_from_github() {
 	$response = wp_remote_get(
 		$zip_url,
 		[
-			'timeout'  => 180,
-			'stream'   => true,
-			'filename' => $tmp,
+			'timeout' => 180,
+			'stream'  => true,
+			'filename'=> $tmp,
+			'headers' => [
+				'Cache-Control' => 'no-cache, no-store',
+				'Pragma'        => 'no-cache',
+			],
 		]
 	);
 
@@ -144,6 +149,12 @@ function kc_sync_theme_from_github() {
 		return new WP_Error('kc_missing', 'Theme folder wordpress/keuken-centrum not found in zip.');
 	}
 
+	$header_src = $source . DIRECTORY_SEPARATOR . 'header.php';
+	if (! is_readable($header_src) || false === strpos((string) file_get_contents($header_src), 'kc_render_kitchens_mega')) {
+		kc_sync_rmdir($extract);
+		return new WP_Error('kc_stale', 'Downloaded zip is missing kitchens mega markup. Refusing to overwrite theme.');
+	}
+
 	$dest = trailingslashit(get_theme_root()) . 'keuken-centrum';
 	if (is_dir($dest)) {
 		kc_sync_rmdir($dest);
@@ -156,5 +167,19 @@ function kc_sync_theme_from_github() {
 
 	kc_sync_rmdir($extract);
 	switch_theme('keuken-centrum');
-	return 'Theme synced and activated from GitHub main.';
+
+	$header_live = $dest . DIRECTORY_SEPARATOR . 'header.php';
+	$css_live    = $dest . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'css' . DIRECTORY_SEPARATOR . 'theme.css';
+	$ok_header   = is_readable($header_live) && false !== strpos((string) file_get_contents($header_live), 'kc_render_kitchens_mega');
+	$ok_css      = is_readable($css_live) && false !== strpos((string) file_get_contents($css_live), 'mega-kitchens');
+
+	if (! $ok_header || ! $ok_css) {
+		return new WP_Error('kc_verify', 'Theme copied but verification failed (header/css kitchens mega missing).');
+	}
+
+	if (function_exists('opcache_reset')) {
+		@opcache_reset();
+	}
+
+	return 'Theme synced and activated from GitHub main (kitchens mega verified).';
 }
