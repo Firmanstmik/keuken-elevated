@@ -2342,6 +2342,9 @@ body.admin-bar .site-header {
 	font-size: 0.78rem;
 	font-weight: 500;
 	letter-spacing: -0.01em;
+	/* React buttons inherit uppercase + 1.5 line-height from the base layer. */
+	line-height: 1.5;
+	text-transform: uppercase;
 	backdrop-filter: blur(20px);
 	transition: background-color 300ms ease;
 	cursor: pointer;
