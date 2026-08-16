@@ -15,12 +15,12 @@ $phone   = kc_get_option('contact_phone', '030 241 5122');
 $email   = kc_get_option('contact_email', 'info@keuken-centrum.nl');
 $hours   = kc_get_option('contact_hours', 'Ma t/m za op afspraak, met uitgebreid showroomadvies.');
 $founded = kc_get_option('founded_year', '1978');
-$reviews = kc_get_option('google_reviews_count', '127');
+$reviews = kc_get_option('google_reviews_count', '150');
 $showroom_image = kc_theme_img('showroom.jpg');
 $showroom_logo  = kc_theme_img('logo-keuken-1-1.webp') ?: kc_theme_img('logo-keuken.webp');
 $phone_link = preg_replace('/[^0-9+]/', '', $phone);
 $whatsapp_link = 'https://wa.me/' . preg_replace('/\D+/', '', $phone_link);
-$years_active  = max(1, (int) gmdate('Y') - (int) $founded);
+$years_active  = kc_get_option('experience_years', '45');
 $footer_links  = [
 	[
 		'title' => __('Collecties', 'keuken-centrum'),
@@ -57,8 +57,8 @@ $footer_links  = [
 	<div class="site-shell site-footer__trust-row site-footer__trust-row--react">
 		<div><span><?php echo esc_html($founded); ?></span><p><?php esc_html_e('Opgericht', 'keuken-centrum'); ?></p></div>
 		<div><span>4.9★</span><p><?php esc_html_e('Google Reviews', 'keuken-centrum'); ?></p></div>
-		<div><span><?php echo esc_html($reviews); ?>+</span><p><?php esc_html_e('Beoordelingen', 'keuken-centrum'); ?></p></div>
-		<div><span><?php echo esc_html($years_active); ?>+</span><p><?php esc_html_e('Jaar ervaring', 'keuken-centrum'); ?></p></div>
+		<div><span>150+</span><p><?php esc_html_e('Projecten', 'keuken-centrum'); ?></p></div>
+		<div><span>45+</span><p><?php esc_html_e('Jaar ervaring', 'keuken-centrum'); ?></p></div>
 	</div>
 
 	<div class="site-shell site-footer__hero">
