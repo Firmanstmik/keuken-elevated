@@ -318,27 +318,159 @@
 	}
 
 	document.querySelectorAll("[data-collections-gallery]").forEach((gallery) => {
-		const track = gallery.querySelector(".collections-gallery__track");
-		if (!track || reduceMotion) return;
+		const viewport = gallery.querySelector("[data-collections-viewport]") || gallery;
+		const track = gallery.querySelector("[data-collections-track]") || gallery.querySelector(".collections-gallery__track");
+		if (!viewport || !track) return;
+
+		const mobileQuery = window.matchMedia("(max-width: 767px), (pointer: coarse)");
+		const speed = 26;
+		const drag = { active: false, startX: 0, startOffset: 0, pointerId: null };
+		let isMobile = mobileQuery.matches;
 		let raf = 0;
-		let paused = false;
 		let last = 0;
+		let offset = 0;
+		let pausedUntil = 0;
+
+		const loopWidth = () => track.scrollWidth / 3;
+		const setDragging = (active) => {
+			gallery.classList.toggle("is-dragging", active);
+			viewport.style.cursor = isMobile ? "auto" : active ? "grabbing" : "grab";
+		};
+
+		const render = () => {
+			if (isMobile) {
+				track.style.transform = "";
+				return;
+			}
+			track.style.transform = `translateX(${-offset}px)`;
+		};
+
+		const syncMode = () => {
+			isMobile = mobileQuery.matches;
+			offset = 0;
+			last = 0;
+			viewport.scrollLeft = 0;
+			drag.active = false;
+			drag.pointerId = null;
+			viewport.style.touchAction = isMobile ? "pan-x pan-y" : "pan-y";
+			setDragging(false);
+			render();
+		};
+
 		const animate = (time) => {
 			if (!last) last = time;
-			const elapsed = time - last;
+			const dt = Math.min((time - last) / 1000, 0.05);
 			last = time;
-			if (!paused && gallery.scrollWidth > gallery.clientWidth) {
-				gallery.scrollLeft += elapsed * 0.022;
-				if (gallery.scrollLeft >= (gallery.scrollWidth - gallery.clientWidth) / 2) gallery.scrollLeft = 0;
+
+			if (!isMobile && !reduceMotion && !drag.active && time > pausedUntil) {
+				offset += speed * dt;
 			}
+
+			const width = loopWidth();
+			if (!isMobile && width > 0) {
+				offset = ((offset % width) + width) % width;
+			}
+
+			render();
 			raf = window.requestAnimationFrame(animate);
 		};
+
+		const onPointerDown = (event) => {
+			if (isMobile || event.button !== 0) return;
+			drag.active = true;
+			drag.startX = event.clientX;
+			drag.startOffset = offset;
+			drag.pointerId = event.pointerId;
+			pausedUntil = Number.POSITIVE_INFINITY;
+			viewport.setPointerCapture(event.pointerId);
+			setDragging(true);
+		};
+
+		const onPointerMove = (event) => {
+			if (!drag.active || isMobile) return;
+			offset = drag.startOffset - (event.clientX - drag.startX);
+			render();
+		};
+
+		const finishDrag = (event) => {
+			if (!drag.active) return;
+			drag.active = false;
+			pausedUntil = performance.now() + 1200;
+			if (drag.pointerId !== null && viewport.hasPointerCapture?.(drag.pointerId)) {
+				viewport.releasePointerCapture(drag.pointerId);
+			}
+			drag.pointerId = null;
+			setDragging(false);
+		};
+
+		syncMode();
+		mobileQuery.addEventListener("change", syncMode);
+
+		viewport.addEventListener("pointerdown", onPointerDown);
+		viewport.addEventListener("pointermove", onPointerMove);
+		viewport.addEventListener("pointerup", finishDrag);
+		viewport.addEventListener("pointercancel", finishDrag);
+		viewport.addEventListener("mouseenter", () => {
+			if (!isMobile) pausedUntil = Number.POSITIVE_INFINITY;
+		});
+		viewport.addEventListener("mouseleave", () => {
+			if (!isMobile && !drag.active) pausedUntil = performance.now() + 250;
+		});
+		viewport.addEventListener("focusin", () => {
+			if (!isMobile) pausedUntil = Number.POSITIVE_INFINITY;
+		});
+		viewport.addEventListener("focusout", () => {
+			if (!isMobile && !drag.active) pausedUntil = performance.now() + 250;
+		});
+
+		if (!reduceMotion) {
+			raf = window.requestAnimationFrame(animate);
+		} else {
+			render();
+		}
+
+		window.addEventListener("beforeunload", () => {
+			mobileQuery.removeEventListener("change", syncMode);
+			if (raf) window.cancelAnimationFrame(raf);
+		}, { once: true });
+	});
+
+	document.querySelectorAll("[data-consultation-gallery]").forEach((gallery) => {
+		const track = gallery.querySelector(".consultation-gallery__track");
+		if (!track || reduceMotion) return;
+
+		let paused = false;
+		let raf = 0;
+		let last = 0;
+		let offset = 0;
+		const loopWidth = () => track.scrollWidth / 2;
+
+		const animate = (time) => {
+			if (!last) last = time;
+			const dt = Math.min((time - last) / 1000, 0.05);
+			last = time;
+
+			if (!paused) offset += 26 * dt;
+
+			const width = loopWidth();
+			if (width > 0) {
+				offset = ((offset % width) + width) % width;
+				track.style.transform = `translateX(${-offset}px)`;
+			}
+
+			raf = window.requestAnimationFrame(animate);
+		};
+
 		gallery.addEventListener("mouseenter", () => { paused = true; });
 		gallery.addEventListener("mouseleave", () => { paused = false; });
 		gallery.addEventListener("focusin", () => { paused = true; });
 		gallery.addEventListener("focusout", () => { paused = false; });
+
 		raf = window.requestAnimationFrame(animate);
-		void raf;
+
+		window.addEventListener("beforeunload", () => {
+			if (raf) window.cancelAnimationFrame(raf);
+		}, { once: true });
 	});
 
 	document.querySelectorAll("[data-testimonials-marquee]").forEach((section) => {
@@ -378,85 +510,440 @@
 		const dots = [...carousel.querySelectorAll("[data-brands-dot]")];
 		const previous = carousel.querySelector("[data-brands-prev]");
 		const next = carousel.querySelector("[data-brands-next]");
-		const country = carousel.querySelector("[data-brands-country]");
+		const panel = carousel.querySelector("[data-brands-panel]");
+		const eyebrow = carousel.querySelector("[data-brands-eyebrow]");
+		const origin = carousel.querySelector("[data-brands-origin]");
+		const since = carousel.querySelector("[data-brands-since]");
 		const copy = carousel.querySelector("[data-brands-copy]");
 		const logo = carousel.querySelector("[data-brands-logo]");
 		const count = carousel.querySelector("[data-brands-count]");
+		const cta = carousel.querySelector("[data-brands-cta]");
+		const ctaLabel = carousel.querySelector("[data-brands-cta-label]");
+		const link = carousel.querySelector("[data-brands-link]");
 		let active = 0;
 		let timer;
+
 		const select = (index) => {
 			active = (index + slides.length) % slides.length;
+			const total = slides.length;
 			slides.forEach((slide, i) => {
-				slide.classList.toggle("is-active", i === active);
-				slide.classList.toggle("is-next", i === (active + 1) % slides.length);
-				slide.classList.toggle("is-prev", i === (active - 1 + slides.length) % slides.length);
-				slide.setAttribute("aria-hidden", i === active ? "false" : "true");
+				const offset = (i - active + total) % total;
+				slide.classList.toggle("is-active", offset === 0);
+				slide.classList.toggle("is-next", offset === 1);
+				slide.classList.toggle("is-prev", offset === total - 1);
+				slide.classList.toggle("is-far-next", offset === 2);
+				slide.setAttribute("aria-hidden", offset === 0 ? "false" : "true");
+				const img = slide.querySelector("img");
+				if (img) img.alt = offset === 0 ? `${dots[i]?.dataset.brandName || ""} keuken` : "";
 			});
+
 			dots.forEach((dot, i) => {
 				const selected = i === active;
 				dot.classList.toggle("is-active", selected);
-				dot.setAttribute("aria-selected", selected ? "true" : "false");
+				dot.setAttribute("aria-pressed", selected ? "true" : "false");
+				const progress = dot.querySelector(".brands-pager__progress");
+				if (progress) {
+					progress.style.animation = "none";
+					if (selected && !reduceMotion) {
+						void progress.offsetWidth;
+						progress.style.animation = "";
+					}
+				}
 			});
+
 			const dot = dots[active];
 			if (!dot) return;
-			if (country) country.textContent = dot.dataset.brandCountry || "";
-			if (copy) copy.textContent = dot.dataset.brandCopy || "";
-			if (logo) { logo.src = dot.dataset.brandLogo || ""; logo.alt = dot.dataset.brandName || ""; }
-			if (count) count.textContent = `${String(active + 1).padStart(2, "0")} / ${String(slides.length).padStart(2, "0")}`;
+
+			const applyCopy = () => {
+				if (eyebrow) eyebrow.textContent = dot.dataset.brandEyebrow || "";
+				if (origin) origin.textContent = dot.dataset.brandOrigin || "";
+				if (since) since.textContent = dot.dataset.brandSince || "";
+				if (copy) copy.textContent = dot.dataset.brandCopy || "";
+				if (logo) {
+					logo.src = dot.dataset.brandLogo || "";
+					logo.alt = dot.dataset.brandName || "";
+					logo.setAttribute("data-brand-logo-name", dot.dataset.brandName || "");
+				}
+				if (cta) cta.href = dot.dataset.brandHref || cta.href;
+				if (link) link.href = dot.dataset.brandHref || link.href;
+				if (ctaLabel) ctaLabel.textContent = `Ontdek ${dot.dataset.brandName || ""}`;
+				if (count) count.textContent = `${String(active + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
+			};
+
+			if (panel && !reduceMotion) {
+				panel.classList.add("is-swapping");
+				window.setTimeout(() => {
+					applyCopy();
+					panel.classList.remove("is-swapping");
+				}, 180);
+			} else {
+				applyCopy();
+			}
 		};
-		const start = () => { if (!reduceMotion && slides.length > 1) timer = window.setInterval(() => select(active + 1), 5600); };
-		const restart = () => { window.clearInterval(timer); start(); };
-		dots.forEach((dot, i) => dot.addEventListener("click", () => { select(i); restart(); }));
-		previous?.addEventListener("click", () => { select(active - 1); restart(); });
-		next?.addEventListener("click", () => { select(active + 1); restart(); });
+
+		const start = () => {
+			if (!reduceMotion && slides.length > 1) timer = window.setInterval(() => select(active + 1), 5600);
+		};
+		const restart = () => {
+			window.clearInterval(timer);
+			start();
+		};
+
+		dots.forEach((dot, i) =>
+			dot.addEventListener("click", () => {
+				select(i);
+				restart();
+			})
+		);
+		previous?.addEventListener("click", () => {
+			select(active - 1);
+			restart();
+		});
+		next?.addEventListener("click", () => {
+			select(active + 1);
+			restart();
+		});
 		carousel.addEventListener("mouseenter", () => window.clearInterval(timer));
 		carousel.addEventListener("mouseleave", start);
-		select(0); start();
+		select(0);
+		start();
 	});
 
 	document.querySelectorAll("[data-why-pillars]").forEach((section) => {
+		const buttons = [...section.querySelectorAll("[data-why-pillar]")];
 		const image = section.querySelector("[data-why-image]");
 		const title = section.querySelector("[data-why-title]");
-		const copy = section.querySelector("[data-why-copy]");
-		section.querySelectorAll("[data-why-pillar]").forEach((button) => {
+		const accent = section.querySelector("[data-why-accent]");
+		const number = section.querySelector("[data-why-number]");
+		const featureIndex = section.querySelector("[data-why-feature-index]");
+		const progress = [...section.querySelectorAll("[data-why-progress]")];
+		if (!buttons.length) return;
+
+		let pinnedId = buttons.find((button) => button.classList.contains("is-active"))?.dataset.whyId || buttons[0].dataset.whyId;
+		let hoveredId = null;
+		let imageSwapTimer = 0;
+
+		const syncStage = (button) => {
+			if (!button) return;
+			buttons.forEach((item) => {
+				const selected = item === button;
+				item.classList.toggle("is-active", selected);
+				item.setAttribute("aria-pressed", selected ? "true" : "false");
+			});
+
+			progress.forEach((bar) => {
+				bar.classList.toggle("is-active", bar.dataset.whyProgress === button.dataset.whyId);
+			});
+
+			if (title) title.textContent = button.dataset.whyTitle || "";
+			if (accent) accent.textContent = button.dataset.whyAccent || "";
+			if (number) number.textContent = button.dataset.whyNumber || "";
+			if (featureIndex) featureIndex.textContent = String(buttons.indexOf(button) + 1);
+
+			if (!image) return;
+			const nextSrc = button.dataset.whyImage || image.getAttribute("src") || "";
+			const nextAlt = button.dataset.whyImageAlt || image.getAttribute("alt") || "";
+			if (image.getAttribute("src") === nextSrc) {
+				image.setAttribute("alt", nextAlt);
+				return;
+			}
+
+			window.clearTimeout(imageSwapTimer);
+			image.classList.add("is-swapping");
+			imageSwapTimer = window.setTimeout(() => {
+				image.setAttribute("src", nextSrc);
+				image.setAttribute("alt", nextAlt);
+				image.classList.remove("is-swapping");
+			}, reduceMotion ? 0 : 180);
+		};
+
+		const render = () => {
+			const activeId = hoveredId || pinnedId;
+			syncStage(buttons.find((button) => button.dataset.whyId === activeId) || buttons[0]);
+		};
+
+		buttons.forEach((button) => {
+			button.addEventListener("mouseenter", () => {
+				hoveredId = button.dataset.whyId || null;
+				render();
+			});
+			button.addEventListener("mouseleave", () => {
+				if (hoveredId === button.dataset.whyId) hoveredId = null;
+				render();
+			});
+			button.addEventListener("focus", () => {
+				pinnedId = button.dataset.whyId || pinnedId;
+				render();
+			});
 			button.addEventListener("click", () => {
-				section.querySelectorAll("[data-why-pillar]").forEach((item) => {
-					const selected = item === button;
-					item.classList.toggle("is-active", selected);
-					item.setAttribute("aria-selected", selected ? "true" : "false");
-				});
-				if (image) { image.style.opacity = "0"; window.setTimeout(() => { image.src = button.dataset.whyImage || image.src; image.style.opacity = ""; }, reduceMotion ? 0 : 180); }
-				if (title) title.textContent = button.dataset.whyTitle || "";
-				if (copy) copy.textContent = button.dataset.whyCopy || "";
+				pinnedId = button.dataset.whyId || pinnedId;
+				render();
 			});
 		});
+
+		render();
 	});
 
 	document.querySelectorAll("[data-process-timeline]").forEach((timeline) => {
-		const steps = [...timeline.querySelectorAll(".process-timeline-step")];
-		if (reduceMotion || !("IntersectionObserver" in window)) return;
-		const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
-			if (entry.isIntersecting) entry.target.classList.add("is-active");
-		}), { threshold: .55 });
-		steps.forEach((step) => observer.observe(step));
+		const steps = [...timeline.querySelectorAll("[data-process-step]")];
+		const progress = timeline.querySelector("[data-process-progress]");
+		const dot = timeline.querySelector("[data-process-dot]");
+		if (!steps.length) return;
+
+		const syncState = () => {
+			if (reduceMotion) {
+				steps.forEach((step) => step.classList.add("is-active"));
+				if (progress) progress.style.transform = "scaleX(1)";
+				if (dot) {
+					dot.style.left = "100%";
+					dot.style.opacity = "1";
+				}
+				return;
+			}
+
+			let activeIndex = 0;
+			const isMobile = window.innerWidth < 768;
+
+			if (isMobile) {
+				const timelineRect = timeline.getBoundingClientRect();
+				const focusX = timelineRect.left + (timelineRect.width * 0.42);
+				let bestDistance = Number.POSITIVE_INFINITY;
+				steps.forEach((step, index) => {
+					const rect = step.getBoundingClientRect();
+					const center = rect.left + (rect.width / 2);
+					const distance = Math.abs(center - focusX);
+					if (distance < bestDistance) {
+						bestDistance = distance;
+						activeIndex = index;
+					}
+				});
+			} else {
+				const threshold = window.innerHeight * 0.52;
+				steps.forEach((step, index) => {
+					const rect = step.getBoundingClientRect();
+					if (rect.top <= threshold) activeIndex = index;
+				});
+			}
+
+			steps.forEach((step, index) => {
+				step.classList.toggle("is-active", index <= activeIndex);
+			});
+
+			const ratio = steps.length > 1 ? activeIndex / (steps.length - 1) : 1;
+			if (progress) progress.style.transform = `scaleX(${ratio})`;
+			if (dot) {
+				dot.style.left = `${ratio * 100}%`;
+				dot.style.opacity = ratio > 0 ? "1" : "0";
+			}
+		};
+
+		let tickingProcess = false;
+		const requestSync = () => {
+			if (tickingProcess) return;
+			tickingProcess = true;
+			window.requestAnimationFrame(() => {
+				syncState();
+				tickingProcess = false;
+			});
+		};
+
+		syncState();
+		window.addEventListener("scroll", requestSync, { passive: true });
+		window.addEventListener("resize", requestSync);
+		timeline.addEventListener("scroll", requestSync, { passive: true });
 	});
 
 	document.querySelectorAll("[data-journey-hotspots]").forEach((mockup) => {
 		const url = mockup.dataset.hotspotsUrl;
+		const categories = JSON.parse(mockup.dataset.categories || "[]");
+		const initialSelections = JSON.parse(mockup.dataset.selections || "{}");
 		const layer = mockup.querySelector(".journey-config-hotspots");
-		const label = mockup.querySelector("[data-journey-label]");
-		if (!url || !layer) return;
-		fetch(url).then((response) => response.ok ? response.json() : Promise.reject()).then((hotspots) => {
-			Object.entries(hotspots).forEach(([name, point]) => {
-				const button = document.createElement("button");
-				button.type = "button";
-				button.style.left = point.x;
-				button.style.top = point.y;
-				button.setAttribute("aria-label", `Ontdek ${name}`);
-				button.textContent = "+";
-				button.addEventListener("click", () => { if (label) label.textContent = name.charAt(0).toUpperCase() + name.slice(1); });
-				layer.appendChild(button);
+		const tabs = [...mockup.querySelectorAll("[data-journey-tab]")];
+		const currentLabel = mockup.querySelector("[data-journey-current-label]");
+		const optionsWrap = mockup.querySelector("[data-journey-options]");
+		if (!url || !layer || !categories.length || !optionsWrap) return;
+
+		const keyMap = {
+			front: "front",
+			werkblad: "worktop",
+			spoelbak: "sink",
+			apparatuur: "appliances",
+			quooker: "quooker",
+			bora: "bora",
+			grepen: "handles",
+			verlichting: "lighting",
+		};
+
+		const categoryMap = new Map(categories.map((category) => [category.id, category]));
+		const selections = { ...initialSelections };
+		let hotspotsData = [];
+		let activeCategoryId = categories[0]?.id || null;
+		let hoveredCategoryId = null;
+
+		const escapeHtml = (value) =>
+			String(value ?? "")
+				.replace(/&/g, "&amp;")
+				.replace(/</g, "&lt;")
+				.replace(/>/g, "&gt;")
+				.replace(/"/g, "&quot;")
+				.replace(/'/g, "&#39;");
+
+		const getCategory = (id) => categoryMap.get(id) || null;
+		const getSelection = (id) => {
+			const category = getCategory(id);
+			if (!category) return null;
+			const selected = selections[id];
+			return (
+				category.options.find((option) => option.id === selected?.id) ||
+				category.options[0] ||
+				null
+			);
+		};
+
+		const renderTabs = () => {
+			tabs.forEach((tab) => {
+				const categoryId = tab.dataset.categoryId || "";
+				const active = categoryId === activeCategoryId;
+				const dot = tab.querySelector(".journey-config-sidebar__tab-dot");
+				const selection = getSelection(categoryId);
+				tab.classList.toggle("is-active", active);
+				tab.setAttribute("aria-pressed", active ? "true" : "false");
+				if (dot) {
+					dot.style.setProperty("--journey-swatch", selection?.color || "#F7F5F2");
+				}
 			});
-		}).catch(() => {});
+		};
+
+		const bindOptionEvents = () => {
+			optionsWrap.querySelectorAll("[data-journey-option]").forEach((button) => {
+				button.addEventListener("click", () => {
+					const categoryId = button.dataset.categoryId || "";
+					const optionId = button.dataset.optionId || "";
+					const category = getCategory(categoryId);
+					const option = category?.options.find((item) => item.id === optionId);
+					if (!category || !option) return;
+					selections[categoryId] = { id: option.id, color: option.color, name: option.name };
+					activeCategoryId = categoryId;
+					render();
+				});
+			});
+		};
+
+		const renderOptions = () => {
+			const category = getCategory(activeCategoryId);
+			if (!category) return;
+			if (currentLabel) currentLabel.textContent = category.label || "";
+			optionsWrap.innerHTML = category.options
+				.map((option) => {
+					const selected = getSelection(activeCategoryId)?.id === option.id;
+					return `
+						<button
+							type="button"
+							class="journey-config-option${selected ? " is-selected" : ""}"
+							data-journey-option
+							data-category-id="${escapeHtml(category.id)}"
+							data-option-id="${escapeHtml(option.id)}"
+						>
+							<span class="journey-config-option__swatch" style="background-color:${escapeHtml(option.color)}"></span>
+							<span class="journey-config-option__name">${escapeHtml(option.name)}</span>
+							<span class="journey-config-option__desc">${escapeHtml(option.description || "")}</span>
+						</button>
+					`;
+				})
+				.join("");
+			bindOptionEvents();
+		};
+
+		const renderHotspots = () => {
+			const visibleId = hoveredCategoryId || activeCategoryId;
+			layer.innerHTML = "";
+
+			hotspotsData.forEach((hotspot) => {
+				const category = getCategory(hotspot.id);
+				const selection = getSelection(hotspot.id);
+				if (!category || !selection) return;
+
+				const selectedOption =
+					category.options.find((option) => option.id === selection.id) || category.options[0];
+				const active = hotspot.id === visibleId;
+				const wrapper = document.createElement("div");
+				wrapper.className = `journey-config-hotspot${active ? " is-active" : ""}`;
+				wrapper.style.left = hotspot.x;
+				wrapper.style.top = hotspot.y;
+
+				wrapper.innerHTML = `
+					<button
+						type="button"
+						class="journey-config-hotspot__button"
+						aria-label="Configureer ${escapeHtml(category.label)}"
+					>
+						<span class="journey-config-hotspot__halo"></span>
+						<span class="journey-config-hotspot__ring"></span>
+						<span class="journey-config-hotspot__dot" style="background-color:${escapeHtml(selectedOption.color)}"></span>
+					</button>
+					<div class="journey-config-hotspot__tooltip">
+						<span class="journey-config-hotspot__tooltip-label">Configuratie</span>
+						<strong>${escapeHtml(category.label)}</strong>
+						<p>${escapeHtml(selectedOption.description || selectedOption.name)}</p>
+					</div>
+				`;
+
+				const button = wrapper.querySelector(".journey-config-hotspot__button");
+				button?.addEventListener("mouseenter", () => {
+					hoveredCategoryId = hotspot.id;
+					renderHotspots();
+				});
+				button?.addEventListener("mouseleave", () => {
+					hoveredCategoryId = null;
+					renderHotspots();
+				});
+				button?.addEventListener("focus", () => {
+					hoveredCategoryId = hotspot.id;
+					renderHotspots();
+				});
+				button?.addEventListener("blur", () => {
+					hoveredCategoryId = null;
+					renderHotspots();
+				});
+				button?.addEventListener("click", () => {
+					activeCategoryId = hotspot.id;
+					hoveredCategoryId = null;
+					render();
+				});
+
+				layer.appendChild(wrapper);
+			});
+		};
+
+		const render = () => {
+			renderTabs();
+			renderOptions();
+			renderHotspots();
+		};
+
+		tabs.forEach((tab) => {
+			tab.addEventListener("click", () => {
+				activeCategoryId = tab.dataset.categoryId || activeCategoryId;
+				hoveredCategoryId = null;
+				render();
+			});
+		});
+
+		fetch(url)
+			.then((response) => (response.ok ? response.json() : Promise.reject()))
+			.then((hotspots) => {
+				hotspotsData = Object.entries(hotspots)
+					.map(([key, point]) => ({
+						id: keyMap[key] || key,
+						x: point.x,
+						y: point.y,
+					}))
+					.filter((hotspot) => categoryMap.has(hotspot.id));
+				if (hotspotsData.length && !categoryMap.has(activeCategoryId)) activeCategoryId = hotspotsData[0].id;
+				render();
+			})
+			.catch(() => {
+				render();
+			});
 	});
 })();
