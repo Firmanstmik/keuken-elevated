@@ -15,12 +15,10 @@ $phone   = kc_get_option('contact_phone', '030 241 5122');
 $email   = kc_get_option('contact_email', 'info@keuken-centrum.nl');
 $hours   = kc_get_option('contact_hours', 'Ma t/m za op afspraak, met uitgebreid showroomadvies.');
 $founded = kc_get_option('founded_year', '1978');
-$reviews = kc_get_option('google_reviews_count', '150');
 $showroom_image = kc_theme_img('showroom.jpg');
 $showroom_logo  = kc_theme_img('logo-keuken-1-1.webp') ?: kc_theme_img('logo-keuken.webp');
 $phone_link = preg_replace('/[^0-9+]/', '', $phone);
 $whatsapp_link = 'https://wa.me/' . preg_replace('/\D+/', '', $phone_link);
-$years_active  = kc_get_option('experience_years', '45');
 $footer_links  = [
 	[
 		'title' => __('Collecties', 'keuken-centrum'),
