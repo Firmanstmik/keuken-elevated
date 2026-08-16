@@ -102,12 +102,12 @@ $cbw_logo       = home_url('/wp-content/uploads/cbw.webp');
 							class="why-pillar-card<?php echo 0 === $index ? ' is-active' : ''; ?>"
 							data-why-pillar
 							data-why-id="<?php echo esc_attr($pillar['id']); ?>"
-							data-why-number="<?php echo esc_attr($pillar['number']); ?>"
-							data-why-title="<?php echo esc_attr($pillar['title']); ?>"
-							data-why-copy="<?php echo esc_attr($pillar['description']); ?>"
-							data-why-image="<?php echo esc_url($pillar['image']); ?>"
-							data-why-image-alt="<?php echo esc_attr($pillar['image_alt']); ?>"
-							data-why-accent="<?php echo esc_attr($pillar['accent']); ?>"
+							data-pillar-number="<?php echo esc_attr($pillar['number']); ?>"
+							data-pillar-title="<?php echo esc_attr($pillar['title']); ?>"
+							data-pillar-copy="<?php echo esc_attr($pillar['description']); ?>"
+							data-pillar-image="<?php echo esc_url($pillar['image']); ?>"
+							data-pillar-image-alt="<?php echo esc_attr($pillar['image_alt']); ?>"
+							data-pillar-accent="<?php echo esc_attr($pillar['accent']); ?>"
 							aria-pressed="<?php echo 0 === $index ? 'true' : 'false'; ?>"
 						>
 							<span class="why-pillar-card__strip" aria-hidden="true">

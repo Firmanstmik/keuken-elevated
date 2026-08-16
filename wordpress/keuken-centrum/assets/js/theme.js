@@ -611,12 +611,14 @@
 
 	document.querySelectorAll("[data-why-pillars]").forEach((section) => {
 		const buttons = [...section.querySelectorAll("[data-why-pillar]")];
-		const image = section.querySelector("[data-why-image]");
-		const title = section.querySelector("[data-why-title]");
-		const accent = section.querySelector("[data-why-accent]");
-		const number = section.querySelector("[data-why-number]");
-		const featureIndex = section.querySelector("[data-why-feature-index]");
-		const progress = [...section.querySelectorAll("[data-why-progress]")];
+		const stage = section.querySelector(".why-stage");
+		// Scope to stage — pillar buttons also carry data-why-* attrs for sync payloads.
+		const image = stage?.querySelector("[data-why-image]");
+		const title = stage?.querySelector("[data-why-title]");
+		const accent = stage?.querySelector("[data-why-accent]");
+		const number = stage?.querySelector("[data-why-number]");
+		const featureIndex = stage?.querySelector("[data-why-feature-index]");
+		const progress = [...(stage?.querySelectorAll("[data-why-progress]") || [])];
 		if (!buttons.length) return;
 
 		let pinnedId = buttons.find((button) => button.classList.contains("is-active"))?.dataset.whyId || buttons[0].dataset.whyId;
@@ -635,14 +637,14 @@
 				bar.classList.toggle("is-active", bar.dataset.whyProgress === button.dataset.whyId);
 			});
 
-			if (title) title.textContent = button.dataset.whyTitle || "";
-			if (accent) accent.textContent = button.dataset.whyAccent || "";
-			if (number) number.textContent = button.dataset.whyNumber || "";
+			if (title) title.textContent = button.dataset.pillarTitle || "";
+			if (accent) accent.textContent = button.dataset.pillarAccent || "";
+			if (number) number.textContent = button.dataset.pillarNumber || "";
 			if (featureIndex) featureIndex.textContent = String(buttons.indexOf(button) + 1);
 
 			if (!image) return;
-			const nextSrc = button.dataset.whyImage || image.getAttribute("src") || "";
-			const nextAlt = button.dataset.whyImageAlt || image.getAttribute("alt") || "";
+			const nextSrc = button.dataset.pillarImage || image.getAttribute("src") || "";
+			const nextAlt = button.dataset.pillarImageAlt || image.getAttribute("alt") || "";
 			if (image.getAttribute("src") === nextSrc) {
 				image.setAttribute("alt", nextAlt);
 				return;
