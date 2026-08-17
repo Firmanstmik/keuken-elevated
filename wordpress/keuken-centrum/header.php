@@ -47,7 +47,9 @@ if (! function_exists('kc_render_mega_editorial')) {
 		<div class="mega-editorial__index">
 			<div class="mega-editorial__head">
 				<div class="mega-editorial__brand">
-					<span class="mega-editorial__gem" aria-hidden="true"></span>
+					<span class="mega-editorial__gem" aria-hidden="true">
+						<svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M16.29 2.15H7.7C6 2.15 5.25 3 4.79 4.04L2.23 9.8c-.46 1.04-.21 2.59.56 3.43l6.86 7.54c1.3 1.42 3.42 1.42 4.71 0l6.85-7.55c.77-.85 1.02-2.39.55-3.43L19.2 4.03c-.46-1.03-1.21-1.88-2.91-1.88ZM3.5 8h17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+					</span>
 					<div>
 						<span class="mega-editorial__kicker"><?php esc_html_e('Premium collectie', 'keuken-centrum'); ?></span>
 						<span class="mega-editorial__subkicker"><?php esc_html_e('Met zorg geselecteerd in Utrecht', 'keuken-centrum'); ?></span>
@@ -70,7 +72,7 @@ if (! function_exists('kc_render_mega_editorial')) {
 								<li>
 									<a href="<?php echo esc_url($item['href']); ?>">
 										<span><?php echo esc_html($item['label']); ?></span>
-										<span class="mega-group__arrow" aria-hidden="true">→</span>
+										<span class="mega-group__arrow" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
 									</a>
 								</li>
 							<?php endforeach; ?>
@@ -105,7 +107,7 @@ if (! function_exists('kc_render_mega_editorial')) {
 
 			<a class="mega-featured__cta" href="<?php echo esc_url($feat_href); ?>">
 				<span><?php echo esc_html($feat_btn); ?></span>
-				<span class="mega-featured__cta-icon" aria-hidden="true">↗</span>
+				<span class="mega-featured__cta-icon" aria-hidden="true"><?php echo kc_icon_export(); ?></span>
 			</a>
 		</aside>
 	</div>
@@ -210,7 +212,7 @@ if (! function_exists('kc_render_kitchens_mega')) {
 				<p><?php esc_html_e('Ontdek onze keukens', 'keuken-centrum'); ?></p>
 				<?php foreach ($categories as $index => $category) : ?>
 					<button type="button" class="mega-kitchens__category<?php echo 0 === $index ? ' is-active' : ''; ?>" data-kitchen-category="<?php echo esc_attr((string) $index); ?>" aria-pressed="<?php echo 0 === $index ? 'true' : 'false'; ?>">
-						<span class="mega-kitchens__icon" aria-hidden="true"><?php echo 0 === $index ? '⌂' : '◇'; ?></span><span><?php echo esc_html($category['label']); ?></span><b aria-hidden="true">›</b>
+						<span class="mega-kitchens__icon" aria-hidden="true"><?php echo kc_icon_mega_category($index); ?></span><span><?php echo esc_html($category['label']); ?></span><b aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></b>
 					</button>
 				<?php endforeach; ?>
 			</aside>
@@ -223,7 +225,7 @@ if (! function_exists('kc_render_kitchens_mega')) {
 								<a href="<?php echo esc_url($card[2]); ?>" class="mega-kitchens__card"><span><?php if ($card[3]) : ?><img src="<?php echo esc_url($card[3]); ?>" alt="" loading="lazy"><?php endif; ?></span><strong><?php echo esc_html($card[0]); ?></strong><small><?php echo esc_html($card[1]); ?></small></a>
 							<?php endforeach; ?>
 						</div>
-						<footer><span><strong><?php echo esc_html($category['footer']); ?></strong> · <?php echo esc_html($category['detail']); ?></span><a href="<?php echo esc_url($category['url']); ?>"><?php echo esc_html($category['link']); ?> →</a></footer>
+						<footer><span><strong><?php echo esc_html($category['footer']); ?></strong> · <?php echo esc_html($category['detail']); ?></span><a href="<?php echo esc_url($category['url']); ?>"><?php echo esc_html($category['link']); ?> <?php echo kc_icon_arrow_right(); ?></a></footer>
 					</section>
 				<?php endforeach; ?>
 			</div>
