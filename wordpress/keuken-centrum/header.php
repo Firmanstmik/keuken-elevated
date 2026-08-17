@@ -13,226 +13,13 @@ $header_label = kc_get_option('header_cta_label', 'Plan showroombezoek');
 $header_url   = kc_get_option('header_cta_url', home_url('/contact'));
 $phone        = kc_get_option('contact_phone', '030 241 5122');
 $email        = kc_get_option('contact_email', 'info@keuken-centrum.nl');
-$logo_uri = kc_theme_img('logo-keuken-1-1.webp') ?: kc_theme_img('logo-keuken.webp');
+$logo_uri     = kc_theme_img('logo-keuken-1-1.webp') ?: kc_theme_img('logo-keuken.webp');
 if (! $logo_uri) {
 	$logo_path = get_theme_file_path('assets/img/logo.png');
 	$logo_uri  = file_exists($logo_path) ? kc_asset('assets/img/logo.png') : '';
 }
 
 $is_home = is_front_page();
-$keukens = home_url('/keukens/');
-$bladen  = home_url('/keukenbladen/');
-$apps    = home_url('/apparatuur/');
-$config  = 'https://keuken-elevated.vercel.app/brands';
-$leicht  = home_url('/keukens/leicht/');
-
-/**
- * Renders a React-parity editorial mega panel.
- *
- * @param array $args Panel configuration.
- */
-if (! function_exists('kc_render_mega_editorial')) {
-	function kc_render_mega_editorial(array $args): void {
-		$title      = $args['title'] ?? '';
-		$groups     = $args['groups'] ?? [];
-		$featured   = $args['featured'] ?? [];
-		$cols       = count($groups) >= 3 ? 'mega-groups--3' : 'mega-groups--2';
-		$image      = $featured['image'] ?? '';
-		$feat_title = $featured['title'] ?? '';
-		$feat_desc  = $featured['description'] ?? '';
-		$feat_btn   = $featured['button_text'] ?? '';
-		$feat_href  = $featured['button_href'] ?? '#';
-		?>
-	<div class="mega-editorial">
-		<div class="mega-editorial__index">
-			<div class="mega-editorial__head">
-				<div class="mega-editorial__brand">
-					<span class="mega-editorial__gem" aria-hidden="true">
-						<svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M16.29 2.15H7.7C6 2.15 5.25 3 4.79 4.04L2.23 9.8c-.46 1.04-.21 2.59.56 3.43l6.86 7.54c1.3 1.42 3.42 1.42 4.71 0l6.85-7.55c.77-.85 1.02-2.39.55-3.43L19.2 4.03c-.46-1.03-1.21-1.88-2.91-1.88ZM3.5 8h17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-					</span>
-					<div>
-						<span class="mega-editorial__kicker"><?php esc_html_e('Premium collectie', 'keuken-centrum'); ?></span>
-						<span class="mega-editorial__subkicker"><?php esc_html_e('Met zorg geselecteerd in Utrecht', 'keuken-centrum'); ?></span>
-					</div>
-				</div>
-				<span class="mega-editorial__curated"><?php esc_html_e('Curated by KC', 'keuken-centrum'); ?></span>
-			</div>
-			<p class="mega-editorial__title"><?php echo esc_html($title); ?></p>
-			<div class="mega-editorial__rule" aria-hidden="true"></div>
-
-			<div class="mega-groups <?php echo esc_attr($cols); ?>">
-				<?php foreach ($groups as $index => $group) : ?>
-					<div class="mega-group">
-						<div class="mega-group__head">
-							<span class="mega-group__num">0<?php echo esc_html((string) ($index + 1)); ?></span>
-							<span class="mega-group__label"><?php echo esc_html($group['title']); ?></span>
-						</div>
-						<ul class="mega-group__list">
-							<?php foreach ($group['items'] as $item) : ?>
-								<li>
-									<a href="<?php echo esc_url($item['href']); ?>">
-										<span><?php echo esc_html($item['label']); ?></span>
-										<span class="mega-group__arrow" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
-									</a>
-								</li>
-							<?php endforeach; ?>
-						</ul>
-					</div>
-				<?php endforeach; ?>
-			</div>
-		</div>
-
-		<aside class="mega-featured">
-			<?php if ($image) : ?>
-				<div class="mega-featured__media">
-					<img src="<?php echo esc_url($image); ?>" alt="" loading="lazy" width="480" height="384" />
-					<span class="mega-featured__badge"><?php esc_html_e('Showroom keuze', 'keuken-centrum'); ?></span>
-					<div class="mega-featured__caption">
-						<p class="mega-featured__title"><?php echo esc_html($feat_title); ?></p>
-						<p class="mega-featured__desc"><?php echo esc_html($feat_desc); ?></p>
-					</div>
-				</div>
-			<?php endif; ?>
-
-			<div class="mega-featured__stats">
-				<div>
-					<span class="mega-featured__stat-value">45+</span>
-					<span class="mega-featured__stat-label"><?php esc_html_e('Jaar ervaring', 'keuken-centrum'); ?></span>
-				</div>
-				<div>
-					<span class="mega-featured__stat-value mega-featured__stat-value--place"><?php esc_html_e('Utrecht', 'keuken-centrum'); ?></span>
-					<span class="mega-featured__stat-label"><?php esc_html_e('Eigen showroom', 'keuken-centrum'); ?></span>
-				</div>
-			</div>
-
-			<a class="mega-featured__cta" href="<?php echo esc_url($feat_href); ?>">
-				<span><?php echo esc_html($feat_btn); ?></span>
-				<span class="mega-featured__cta-icon" aria-hidden="true"><?php echo kc_icon_export(); ?></span>
-			</a>
-		</aside>
-	</div>
-		<?php
-	}
-}
-
-/**
- * React-parity Keukens mega menu: dark category rail and brand cards.
- */
-if (! function_exists('kc_render_kitchens_mega')) {
-	function kc_render_kitchens_mega(): void {
-		$categories = [
-			[
-				'label' => __('Keukenmerken', 'keuken-centrum'),
-				'eyebrow' => __('Uitgelichte keukenmerken', 'keuken-centrum'),
-				'title' => __('Europees design, geselecteerd in Utrecht', 'keuken-centrum'),
-				'footer' => __('5 premium merken', 'keuken-centrum'),
-				'detail' => __('Duitse precisie & Italiaanse finesse', 'keuken-centrum'),
-				'url' => home_url('/keukens/'),
-				'link' => __('Alle keukenmerken', 'keuken-centrum'),
-				'cards' => [
-					['AI Küchen', __('Innovatief & modern', 'keuken-centrum'), home_url('/keukens/ai-kuchen/'), kc_theme_img('brands/aikuchen-hero.webp')],
-					['Leicht', __('Architectonisch design', 'keuken-centrum'), home_url('/keukens/leicht/'), kc_theme_img('brands/leicht-hero.webp')],
-					['Zampieri', __('Italiaanse verfijning', 'keuken-centrum'), home_url('/keukens/zampieri/'), kc_theme_img('brands/zampieri-hero.webp')],
-				],
-			],
-			[
-				'label' => __('Leicht collecties', 'keuken-centrum'),
-				'eyebrow' => __('Leicht signature series', 'keuken-centrum'),
-				'title' => __('Architecturale collecties met karakter', 'keuken-centrum'),
-				'footer' => __('4 showroomseries', 'keuken-centrum'),
-				'detail' => __('Van sculpturale Bossa tot serene Kyoto', 'keuken-centrum'),
-				'url' => home_url('/keukens/leicht/'),
-				'link' => __('Alle Leicht collecties', 'keuken-centrum'),
-				'cards' => [
-					['Bossa', __('Verticale structuur', 'keuken-centrum'), home_url('/keukens/leicht/bossa/'), kc_theme_img('brands/leicht-hero.webp')],
-					['Taj Mahal', __('Monumentale elegantie', 'keuken-centrum'), home_url('/keukens/leicht/taj-mahal/'), kc_theme_img('collections/klassiek-base.webp')],
-					['Kyoto', __('Japandi rust', 'keuken-centrum'), home_url('/keukens/leicht/kyoto/'), kc_theme_img('collections/modern-base.webp')],
-				],
-			],
-			[
-				'label' => __('Keukenstijlen', 'keuken-centrum'),
-				'eyebrow' => __('Vind uw eigen stijl', 'keuken-centrum'),
-				'title' => __('Van minimalistisch tot warm en tijdloos', 'keuken-centrum'),
-				'footer' => __('Voor iedere woonstijl', 'keuken-centrum'),
-				'detail' => __('Ontdek materialen, kleuren en vormen', 'keuken-centrum'),
-				'url' => home_url('/#collections'),
-				'link' => __('Alle keukenstijlen', 'keuken-centrum'),
-				'cards' => [
-					[__('Modern', 'keuken-centrum'), __('Strak & greeploos', 'keuken-centrum'), home_url('/#collections'), kc_theme_img('hero/hero_img1.webp')],
-					[__('Japandi', 'keuken-centrum'), __('Warm & sereen', 'keuken-centrum'), home_url('/#collections'), kc_theme_img('hero/hero_img2.webp')],
-					[__('Industrieel', 'keuken-centrum'), __('Krachtig & karaktervol', 'keuken-centrum'), home_url('/#collections'), kc_theme_img('hero/hero_img4.webp')],
-				],
-			],
-			[
-				'label' => __('Keuken op maat', 'keuken-centrum'),
-				'eyebrow' => __('Persoonlijk maatwerk', 'keuken-centrum'),
-				'title' => __('Ontworpen rond uw ruimte en dagelijks leven', 'keuken-centrum'),
-				'footer' => __('Volledig persoonlijk', 'keuken-centrum'),
-				'detail' => __('Van eerste schets tot perfecte montage', 'keuken-centrum'),
-				'url' => home_url('/configure/'),
-				'link' => __('Start uw ontwerp', 'keuken-centrum'),
-				'cards' => [
-					[__('3D ontwerp', 'keuken-centrum'), __('Uw ideeën in beeld', 'keuken-centrum'), home_url('/configure/'), kc_theme_img('hero/hero_img4.webp')],
-					[__('Materiaalkeuze', 'keuken-centrum'), __('Voel het verschil', 'keuken-centrum'), home_url('/configure/'), kc_theme_img('hero/hero_img3.webp')],
-					[__('Montage', 'keuken-centrum'), __('Zorgeloos geplaatst', 'keuken-centrum'), home_url('/configure/'), kc_theme_img('hero/hero_img5.webp')],
-				],
-			],
-			[
-				'label' => __('Showroomkeukens', 'keuken-centrum'),
-				'eyebrow' => __('Direct te ervaren', 'keuken-centrum'),
-				'title' => __('Inspiratie en voordeel in onze showroom', 'keuken-centrum'),
-				'footer' => __('Showroom Utrecht', 'keuken-centrum'),
-				'detail' => __('Bekijk, voel en vergelijk in alle rust', 'keuken-centrum'),
-				'url' => home_url('/showroom-keukens/'),
-				'link' => __('Bekijk showroomkeukens', 'keuken-centrum'),
-				'cards' => [
-					[__('Nieuwe opstellingen', 'keuken-centrum'), __('Live te bekijken', 'keuken-centrum'), home_url('/showroom-keukens/'), kc_theme_img('showroom.jpg')],
-					[__('Showroomdeals', 'keuken-centrum'), __('Direct voordeel', 'keuken-centrum'), home_url('/aanbiedingen/'), kc_theme_img('hero/hero_img2.webp')],
-					[__('Direct leverbaar', 'keuken-centrum'), __('Snel in huis', 'keuken-centrum'), home_url('/aanbiedingen/'), kc_theme_img('hero/hero_img1.webp')],
-				],
-			],
-			[
-				'label' => __('Persoonlijk advies', 'keuken-centrum'),
-				'eyebrow' => __('Advies van onze specialisten', 'keuken-centrum'),
-				'title' => __('Samen maken we van uw wensen een ontwerp', 'keuken-centrum'),
-				'footer' => __('45+ jaar ervaring', 'keuken-centrum'),
-				'detail' => __('Persoonlijk advies zonder verplichtingen', 'keuken-centrum'),
-				'url' => home_url('/consultation/'),
-				'link' => __('Plan een showroombezoek', 'keuken-centrum'),
-				'cards' => [
-					[__('Kennismaken', 'keuken-centrum'), __('Vertel ons uw wensen', 'keuken-centrum'), home_url('/consultation/'), kc_theme_img('hero/hero_img3.webp')],
-					[__('Ontwerpsessie', 'keuken-centrum'), __('Samen aan tafel', 'keuken-centrum'), home_url('/consultation/'), kc_theme_img('showroom.jpg')],
-					[__('Vrijblijvende offerte', 'keuken-centrum'), __('Helder & persoonlijk', 'keuken-centrum'), home_url('/consultation/'), kc_theme_img('hero/hero_img5.webp')],
-				],
-			],
-		];
-		?>
-		<div class="mega-kitchens" data-kitchens-mega>
-			<aside class="mega-kitchens__rail">
-				<p><?php esc_html_e('Ontdek onze keukens', 'keuken-centrum'); ?></p>
-				<?php foreach ($categories as $index => $category) : ?>
-					<button type="button" class="mega-kitchens__category<?php echo 0 === $index ? ' is-active' : ''; ?>" data-kitchen-category="<?php echo esc_attr((string) $index); ?>" aria-pressed="<?php echo 0 === $index ? 'true' : 'false'; ?>">
-						<span class="mega-kitchens__icon" aria-hidden="true"><?php echo kc_icon_mega_category($index); ?></span><span><?php echo esc_html($category['label']); ?></span><b aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></b>
-					</button>
-				<?php endforeach; ?>
-			</aside>
-			<div class="mega-kitchens__panels">
-				<?php foreach ($categories as $index => $category) : ?>
-					<section class="mega-kitchens__panel<?php echo 0 === $index ? ' is-active' : ''; ?>" data-kitchen-panel="<?php echo esc_attr((string) $index); ?>">
-						<header><div><p><?php echo esc_html($category['eyebrow']); ?></p><h3><?php echo esc_html($category['title']); ?></h3></div><em><?php esc_html_e('Curated by KC', 'keuken-centrum'); ?></em></header>
-						<div class="mega-kitchens__cards">
-							<?php foreach ($category['cards'] as $card) : ?>
-								<a href="<?php echo esc_url($card[2]); ?>" class="mega-kitchens__card"><span><?php if ($card[3]) : ?><img src="<?php echo esc_url($card[3]); ?>" alt="" loading="lazy"><?php endif; ?></span><strong><?php echo esc_html($card[0]); ?></strong><small><?php echo esc_html($card[1]); ?></small></a>
-							<?php endforeach; ?>
-						</div>
-						<footer><span><strong><?php echo esc_html($category['footer']); ?></strong> · <?php echo esc_html($category['detail']); ?></span><a href="<?php echo esc_url($category['url']); ?>"><?php echo esc_html($category['link']); ?> <?php echo kc_icon_arrow_right(); ?></a></footer>
-					</section>
-				<?php endforeach; ?>
-			</div>
-		</div>
-		<?php
-	}
-}
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -309,9 +96,9 @@ if (! function_exists('kc_render_kitchens_mega')) {
 					<li class="has-mega" data-mega-trigger>
 						<button class="nav-link nav-link--btn" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="mega-keukens">
 							<span><?php esc_html_e('Keukens', 'keuken-centrum'); ?></span>
-							<svg class="nav-chevron" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+							<?php echo kc_icon_nav_chevron(); ?>
 						</button>
-						<div class="mega-panel mega-panel--kitchens" id="mega-keukens" data-mega-panel hidden role="menu">
+						<div class="mega-panel mega-panel--kitchens" id="mega-keukens" data-mega-panel hidden role="menu" aria-label="<?php esc_attr_e('Keukens', 'keuken-centrum'); ?>">
 							<?php kc_render_kitchens_mega(); ?>
 						</div>
 					</li>
@@ -319,89 +106,20 @@ if (! function_exists('kc_render_kitchens_mega')) {
 					<li class="has-mega" data-mega-trigger>
 						<button class="nav-link nav-link--btn" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="mega-bladen">
 							<span><?php esc_html_e('Keukenbladen', 'keuken-centrum'); ?></span>
-							<svg class="nav-chevron" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+							<?php echo kc_icon_nav_chevron(); ?>
 						</button>
-						<div class="mega-panel mega-panel--editorial" id="mega-bladen" data-mega-panel hidden role="menu">
-							<?php
-							kc_render_mega_editorial(
-								[
-									'title'    => __('Stijlvolle en duurzame keukenbladen', 'keuken-centrum'),
-									'groups'   => [
-										[
-											'title' => __('Materialen', 'keuken-centrum'),
-											'items' => [
-												['label' => 'Silestone', 'href' => home_url('/keukenbladen/silestone/')],
-												['label' => 'Dekton', 'href' => home_url('/keukenbladen/dekton/')],
-												['label' => 'Neolith', 'href' => home_url('/keukenbladen/neolith/')],
-												['label' => 'Sensa', 'href' => home_url('/keukenbladen/sensa/')],
-											],
-										],
-										[
-											'title' => __('Advies', 'keuken-centrum'),
-											'items' => [
-												['label' => __('Alle keukenbladen', 'keuken-centrum'), 'href' => $bladen],
-												['label' => __('Offerte op maat', 'keuken-centrum'), 'href' => home_url('/consultation/')],
-											],
-										],
-									],
-									'featured' => [
-										'title'       => __('Natuursteen & Composiet', 'keuken-centrum'),
-										'description' => __('Kies uit honderden kleuren en afwerkingen. Van hittebestendig Dekton tot luxe marmerlook.', 'keuken-centrum'),
-										'button_text' => __('Ontdek Materialen', 'keuken-centrum'),
-										'button_href' => $bladen,
-										'image'       => kc_theme_img('marmer-img.webp') ?: kc_theme_img('mat-concrete.jpg'),
-									],
-								]
-							);
-							?>
+						<div class="mega-panel mega-panel--editorial" id="mega-bladen" data-mega-panel hidden role="menu" aria-label="<?php esc_attr_e('Keukenbladen', 'keuken-centrum'); ?>">
+							<?php kc_render_mega_editorial('keukenbladen'); ?>
 						</div>
 					</li>
 
 					<li class="has-mega" data-mega-trigger>
 						<button class="nav-link nav-link--btn" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="mega-apps">
 							<span><?php esc_html_e('Apparatuur', 'keuken-centrum'); ?></span>
-							<svg class="nav-chevron" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+							<?php echo kc_icon_nav_chevron(); ?>
 						</button>
-						<div class="mega-panel mega-panel--editorial" id="mega-apps" data-mega-panel hidden role="menu">
-							<?php
-							kc_render_mega_editorial(
-								[
-									'title'    => __('Hoogwaardige inbouwapparatuur', 'keuken-centrum'),
-									'groups'   => [
-										[
-											'title' => __('Koken', 'keuken-centrum'),
-											'items' => [
-												['label' => __('Kookplaten', 'keuken-centrum'), 'href' => home_url('/apparatuur/kookplaten/')],
-												['label' => __('Fornuizen', 'keuken-centrum'), 'href' => home_url('/apparatuur/fornuizen/')],
-												['label' => 'Quooker', 'href' => home_url('/apparatuur/quooker/')],
-											],
-										],
-										[
-											'title' => __('Ventilatie', 'keuken-centrum'),
-											'items' => [
-												['label' => __('Afzuigkappen', 'keuken-centrum'), 'href' => home_url('/apparatuur/afzuigkappen/')],
-												['label' => __('Werkblad afzuiging', 'keuken-centrum'), 'href' => home_url('/apparatuur/werkblad-afzuiging/')],
-												['label' => __('Wave afzuigkappen', 'keuken-centrum'), 'href' => home_url('/apparatuur/wave-afzuigkappen/')],
-											],
-										],
-										[
-											'title' => __('Koelen & vaat', 'keuken-centrum'),
-											'items' => [
-												['label' => __('Koelkasten & Vriezers', 'keuken-centrum'), 'href' => home_url('/apparatuur/koelkasten-vriezers/')],
-												['label' => __('Vaatwassers', 'keuken-centrum'), 'href' => home_url('/apparatuur/vaatwassers/')],
-											],
-										],
-									],
-									'featured' => [
-										'title'       => __('Hoogwaardige Inbouwapparatuur', 'keuken-centrum'),
-										'description' => __('Ontdek de nieuwste systemen van Miele, Bora en Quooker geïntegreerd in onze showroom.', 'keuken-centrum'),
-										'button_text' => __('Bekijk Apparatuur', 'keuken-centrum'),
-										'button_href' => $apps,
-										'image'       => kc_theme_img('bora-img.webp') ?: kc_theme_img('hero/hero_img3.webp'),
-									],
-								]
-							);
-							?>
+						<div class="mega-panel mega-panel--editorial" id="mega-apps" data-mega-panel hidden role="menu" aria-label="<?php esc_attr_e('Apparatuur', 'keuken-centrum'); ?>">
+							<?php kc_render_mega_editorial('apparatuur'); ?>
 						</div>
 					</li>
 
@@ -409,21 +127,10 @@ if (! function_exists('kc_render_kitchens_mega')) {
 					<li class="has-mega" data-mega-trigger>
 						<button class="nav-link nav-link--btn" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="mega-contact">
 							<span><?php esc_html_e('Contact', 'keuken-centrum'); ?></span>
-							<svg class="nav-chevron" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+							<?php echo kc_icon_nav_chevron(); ?>
 						</button>
-						<div class="mega-panel mega-panel--simple" id="mega-contact" data-mega-panel hidden role="menu">
-							<a class="mega-simple__link" href="<?php echo esc_url(home_url('/contact/')); ?>" role="menuitem">
-								<span class="mega-simple__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 13.43a3.12 3.12 0 1 0 0-6.24 3.12 3.12 0 0 0 0 6.24Z"/><path d="M3.62 8.49c1.97-8.66 14.8-8.65 16.76.01 1.15 5.08-2.01 9.38-4.78 12.04a5.193 5.193 0 0 1-7.21 0c-2.76-2.66-5.92-6.97-4.77-12.05Z"/></svg></span>
-								<span class="mega-simple__label"><?php esc_html_e('Contact & route', 'keuken-centrum'); ?></span>
-							</a>
-							<a class="mega-simple__link" href="<?php echo esc_url(home_url('/showroom-keukens/')); ?>" role="menuitem">
-								<span class="mega-simple__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 13.43a3.12 3.12 0 1 0 0-6.24 3.12 3.12 0 0 0 0 6.24Z"/><path d="M3.62 8.49c1.97-8.66 14.8-8.65 16.76.01 1.15 5.08-2.01 9.38-4.78 12.04a5.193 5.193 0 0 1-7.21 0c-2.76-2.66-5.92-6.97-4.77-12.05Z"/></svg></span>
-								<span class="mega-simple__label"><?php esc_html_e('Showroom keukens', 'keuken-centrum'); ?></span>
-							</a>
-							<a class="mega-simple__link" href="<?php echo esc_url(home_url('/consultation/')); ?>" role="menuitem">
-								<span class="mega-simple__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M21 7v10c0 3-1.5 5-5 5H8c-3.5 0-5-2-5-5V7c0-3 1.5-5 5-5h8c3.5 0 5 2 5 5Z"/><path d="M14.5 4.5v2c0 1.1.9 2 2 2h2M8 13h4M8 17h8"/></svg></span>
-								<span class="mega-simple__label"><?php esc_html_e('Offerte op maat', 'keuken-centrum'); ?></span>
-							</a>
+						<div class="mega-panel mega-panel--simple" id="mega-contact" data-mega-panel hidden role="menu" aria-label="<?php esc_attr_e('Contact', 'keuken-centrum'); ?>">
+							<?php kc_render_mega_simple(); ?>
 						</div>
 					</li>
 				</ul>
@@ -452,38 +159,7 @@ if (! function_exists('kc_render_kitchens_mega')) {
 				<span class="nav-mobile__brand"><?php bloginfo('name'); ?></span>
 				<button type="button" class="nav-mobile__close" data-nav-close aria-label="<?php esc_attr_e('Sluit menu', 'keuken-centrum'); ?>">×</button>
 			</div>
-			<nav aria-label="<?php esc_attr_e('Mobiel menu', 'keuken-centrum'); ?>">
-				<a href="<?php echo esc_url(home_url('/')); ?>"><?php esc_html_e('Home', 'keuken-centrum'); ?></a>
-				<details>
-					<summary><?php esc_html_e('Keukens', 'keuken-centrum'); ?></summary>
-					<a href="<?php echo esc_url($keukens); ?>"><?php esc_html_e('Alle merken', 'keuken-centrum'); ?></a>
-					<a href="<?php echo esc_url(home_url('/keukens/leicht/')); ?>">Leicht</a>
-					<a href="<?php echo esc_url(home_url('/keukens/nobilia/')); ?>">Nobilia</a>
-					<a href="<?php echo esc_url(home_url('/keukens/ai-kuchen/')); ?>">AI Küchen</a>
-					<a href="<?php echo esc_url(home_url('/keukens/zampieri/')); ?>">Zampieri</a>
-					<a href="<?php echo esc_url(home_url('/keukens/cucinesse/')); ?>">Cucinesse</a>
-					<a href="<?php echo esc_url(home_url('/#collections')); ?>"><?php esc_html_e('Keukenstijlen', 'keuken-centrum'); ?></a>
-				</details>
-				<details>
-					<summary><?php esc_html_e('Keukenbladen', 'keuken-centrum'); ?></summary>
-					<a href="<?php echo esc_url($bladen); ?>"><?php esc_html_e('Alle keukenbladen', 'keuken-centrum'); ?></a>
-					<a href="<?php echo esc_url(home_url('/keukenbladen/silestone/')); ?>">Silestone</a>
-					<a href="<?php echo esc_url(home_url('/keukenbladen/dekton/')); ?>">Dekton</a>
-					<a href="<?php echo esc_url(home_url('/keukenbladen/neolith/')); ?>">Neolith</a>
-					<a href="<?php echo esc_url(home_url('/keukenbladen/sensa/')); ?>">Sensa</a>
-				</details>
-				<details>
-					<summary><?php esc_html_e('Apparatuur', 'keuken-centrum'); ?></summary>
-					<a href="<?php echo esc_url($apps); ?>"><?php esc_html_e('Alle apparatuur', 'keuken-centrum'); ?></a>
-					<a href="<?php echo esc_url(home_url('/apparatuur/kookplaten/')); ?>"><?php esc_html_e('Kookplaten', 'keuken-centrum'); ?></a>
-					<a href="<?php echo esc_url(home_url('/apparatuur/quooker/')); ?>">Quooker</a>
-					<a href="<?php echo esc_url(home_url('/apparatuur/afzuigkappen/')); ?>"><?php esc_html_e('Afzuigkappen', 'keuken-centrum'); ?></a>
-				</details>
-				<a href="<?php echo esc_url(home_url('/aanbiedingen/')); ?>"><?php esc_html_e('Aanbiedingen', 'keuken-centrum'); ?></a>
-				<a href="<?php echo esc_url(home_url('/contact/')); ?>"><?php esc_html_e('Contact', 'keuken-centrum'); ?></a>
-				<a href="<?php echo esc_url($config); ?>" target="_blank" rel="noreferrer"><?php esc_html_e('Start configurator', 'keuken-centrum'); ?></a>
-			</nav>
-			<a class="nav-mobile__cta" href="<?php echo esc_url($header_url); ?>"><?php echo esc_html($header_label); ?></a>
+			<?php kc_render_mobile_nav($header_url, $header_label); ?>
 		</div>
 	</div>
 </header>

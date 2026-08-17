@@ -24,6 +24,41 @@ function kc_icon_export(): string {
 }
 
 /**
+ * Iconsax Linear Diamonds — editorial gem mark.
+ */
+function kc_icon_gem(): string {
+	return '<svg class="kc-icon-gem" viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden="true"><path d="M16.29 2.15H7.7C6 2.15 5.25 3 4.79 4.04L2.23 9.8c-.46 1.04-.21 2.59.56 3.43l6.86 7.54c1.3 1.42 3.42 1.42 4.71 0l6.85-7.55c.77-.85 1.02-2.39.55-3.43L19.2 4.03c-.46-1.03-1.21-1.88-2.91-1.88ZM3.5 8h17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+}
+
+/**
+ * Iconsax Linear Location — Contact + showroom pin.
+ */
+function kc_icon_map_pin(): string {
+	return '<svg class="kc-icon-map-pin" viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden="true"><path d="M12 13.43a3.12 3.12 0 1 0 0-6.24 3.12 3.12 0 0 0 0 6.24Z" stroke="currentColor" stroke-width="1.5"/><path d="M3.62 8.49c1.97-8.66 14.8-8.65 16.76.01 1.15 5.08-2.01 9.38-4.78 12.04a5.193 5.193 0 0 1-7.21 0c-2.76-2.66-5.92-6.97-4.77-12.05Z" stroke="currentColor" stroke-width="1.5"/></svg>';
+}
+
+/**
+ * Iconsax Linear DocumentText — offerte / consultation.
+ */
+function kc_icon_file_text(): string {
+	return '<svg class="kc-icon-file-text" viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden="true"><path d="M21 7v10c0 3-1.5 5-5 5H8c-3.5 0-5-2-5-5V7c0-3 1.5-5 5-5h8c3.5 0 5 2 5 5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14.5 4.5v2c0 1.1.9 2 2 2h2M8 13h4M8 17h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+}
+
+/**
+ * Iconsax Linear Award — featured “Showroom keuze” badge.
+ */
+function kc_icon_award(): string {
+	return '<svg class="kc-icon-award" viewBox="0 0 24 24" width="10" height="10" fill="none" aria-hidden="true"><path d="M4.26 11.02v4.97c0 1.82 0 1.82 1.72 2.98l4.73 2.73c.71.41 1.87.41 2.58 0l4.73-2.73c1.72-1.16 1.72-1.16 1.72-2.98v-4.97c0-1.82 0-1.82-1.72-2.98l-4.73-2.73c-.71-.41-1.87-.41-2.58 0L5.98 8.04C4.26 9.2 4.26 9.2 4.26 11.02Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M17.5 7.63V5c0-2-1-3-3-3h-5c-2 0-3 1-3 3v2.56M12.63 10.99l.57.89c.09.14.29.28.44.32l1.02.26c.63.16.8.7.39 1.2l-.67.81c-.1.13-.18.36-.17.52l.06 1.05c.04.65-.42.98-1.02.74l-.98-.39a.863.863 0 0 0-.55 0l-.98.39c-.6.24-1.06-.1-1.02-.74l.06-1.05c.01-.16-.07-.4-.17-.52l-.67-.81c-.41-.5-.24-1.04.39-1.2l1.02-.26c.16-.04.36-.19.44-.32l.57-.89c.36-.54.92-.54 1.27 0Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+}
+
+/**
+ * Navbar chevron matching React ChevronDown.
+ */
+function kc_icon_nav_chevron(): string {
+	return '<svg class="nav-chevron" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+}
+
+/**
  * Exact Iconsax Linear menu category glyphs used by the React navigation.
  */
 function kc_icon_mega_category(int $index): string {
