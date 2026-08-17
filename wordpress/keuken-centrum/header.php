@@ -144,9 +144,9 @@ if (! function_exists('kc_render_kitchens_mega')) {
 				'url' => home_url('/keukens/leicht/'),
 				'link' => __('Alle Leicht collecties', 'keuken-centrum'),
 				'cards' => [
-					['Bossa', __('Verticale structuur', 'keuken-centrum'), home_url('/keukens/leicht/bossa/'), 'https://keuken-centrum.nl/wp-content/uploads/Leicht-Bossa-showroom--scaled.webp'],
-					['Taj Mahal', __('Monumentale elegantie', 'keuken-centrum'), home_url('/keukens/leicht/taj-mahal/'), 'https://keuken-centrum.nl/wp-content/uploads/Leicht-keukens.webp'],
-					['Kyoto', __('Japandi rust', 'keuken-centrum'), home_url('/keukens/leicht/kyoto/'), 'https://keuken-centrum.nl/wp-content/uploads/Leicht-Kyoto-showroom.webp'],
+					['Bossa', __('Verticale structuur', 'keuken-centrum'), home_url('/keukens/leicht/bossa/'), kc_theme_img('brands/leicht-hero.webp')],
+					['Taj Mahal', __('Monumentale elegantie', 'keuken-centrum'), home_url('/keukens/leicht/taj-mahal/'), kc_theme_img('collections/klassiek-base.webp')],
+					['Kyoto', __('Japandi rust', 'keuken-centrum'), home_url('/keukens/leicht/kyoto/'), kc_theme_img('collections/modern-base.webp')],
 				],
 			],
 			[
@@ -158,9 +158,9 @@ if (! function_exists('kc_render_kitchens_mega')) {
 				'url' => home_url('/#collections'),
 				'link' => __('Alle keukenstijlen', 'keuken-centrum'),
 				'cards' => [
-					[__('Modern', 'keuken-centrum'), __('Strak & greeploos', 'keuken-centrum'), home_url('/#collections'), 'https://keuken-centrum.nl/wp-content/uploads/IMG_0654-LEICHT-JAPANDI-scaled.webp'],
-					[__('Japandi', 'keuken-centrum'), __('Warm & sereen', 'keuken-centrum'), home_url('/#collections'), 'https://keuken-centrum.nl/wp-content/uploads/WhatsApp-Image-2023-09-20-at-13.53.25.webp'],
-					[__('Industrieel', 'keuken-centrum'), __('Krachtig & karaktervol', 'keuken-centrum'), home_url('/#collections'), 'https://keuken-centrum.nl/wp-content/uploads/WhatsApp-Image-2023-09-20-at-13.53.26-1024x768.webp'],
+					[__('Modern', 'keuken-centrum'), __('Strak & greeploos', 'keuken-centrum'), home_url('/#collections'), kc_theme_img('hero/hero_img1.webp')],
+					[__('Japandi', 'keuken-centrum'), __('Warm & sereen', 'keuken-centrum'), home_url('/#collections'), kc_theme_img('hero/hero_img2.webp')],
+					[__('Industrieel', 'keuken-centrum'), __('Krachtig & karaktervol', 'keuken-centrum'), home_url('/#collections'), kc_theme_img('hero/hero_img4.webp')],
 				],
 			],
 			[
@@ -172,9 +172,9 @@ if (! function_exists('kc_render_kitchens_mega')) {
 				'url' => home_url('/configure/'),
 				'link' => __('Start uw ontwerp', 'keuken-centrum'),
 				'cards' => [
-					[__('3D ontwerp', 'keuken-centrum'), __('Uw ideeën in beeld', 'keuken-centrum'), home_url('/configure/'), 'https://keuken-centrum.nl/wp-content/uploads/WhatsApp-Image-2023-09-20-at-13.53.26-1024x768.webp'],
-					[__('Materiaalkeuze', 'keuken-centrum'), __('Voel het verschil', 'keuken-centrum'), home_url('/configure/'), 'https://keuken-centrum.nl/wp-content/uploads/WhatsApp-Image-2023-09-20-at-13.53.27.webp'],
-					[__('Montage', 'keuken-centrum'), __('Zorgeloos geplaatst', 'keuken-centrum'), home_url('/configure/'), 'https://keuken-centrum.nl/wp-content/uploads/IMG_0642-1024x768.webp'],
+					[__('3D ontwerp', 'keuken-centrum'), __('Uw ideeën in beeld', 'keuken-centrum'), home_url('/configure/'), kc_theme_img('hero/hero_img4.webp')],
+					[__('Materiaalkeuze', 'keuken-centrum'), __('Voel het verschil', 'keuken-centrum'), home_url('/configure/'), kc_theme_img('hero/hero_img3.webp')],
+					[__('Montage', 'keuken-centrum'), __('Zorgeloos geplaatst', 'keuken-centrum'), home_url('/configure/'), kc_theme_img('hero/hero_img5.webp')],
 				],
 			],
 			[
@@ -186,9 +186,9 @@ if (! function_exists('kc_render_kitchens_mega')) {
 				'url' => home_url('/showroom-keukens/'),
 				'link' => __('Bekijk showroomkeukens', 'keuken-centrum'),
 				'cards' => [
-					[__('Nieuwe opstellingen', 'keuken-centrum'), __('Live te bekijken', 'keuken-centrum'), home_url('/showroom-keukens/'), 'https://keuken-centrum.nl/wp-content/uploads/WhatsApp-Image-2023-09-20-at-13.53.26-1024x768.webp'],
-					[__('Showroomdeals', 'keuken-centrum'), __('Direct voordeel', 'keuken-centrum'), home_url('/aanbiedingen/'), 'https://keuken-centrum.nl/wp-content/uploads/keukenshowroom-aanbiedingen-1.webp'],
-					[__('Direct leverbaar', 'keuken-centrum'), __('Snel in huis', 'keuken-centrum'), home_url('/aanbiedingen/'), 'https://keuken-centrum.nl/wp-content/uploads/keukens-uit-showroom-beste-prijs-.webp'],
+					[__('Nieuwe opstellingen', 'keuken-centrum'), __('Live te bekijken', 'keuken-centrum'), home_url('/showroom-keukens/'), kc_theme_img('showroom.jpg')],
+					[__('Showroomdeals', 'keuken-centrum'), __('Direct voordeel', 'keuken-centrum'), home_url('/aanbiedingen/'), kc_theme_img('hero/hero_img2.webp')],
+					[__('Direct leverbaar', 'keuken-centrum'), __('Snel in huis', 'keuken-centrum'), home_url('/aanbiedingen/'), kc_theme_img('hero/hero_img1.webp')],
 				],
 			],
 			[
@@ -200,9 +200,9 @@ if (! function_exists('kc_render_kitchens_mega')) {
 				'url' => home_url('/consultation/'),
 				'link' => __('Plan een showroombezoek', 'keuken-centrum'),
 				'cards' => [
-					[__('Kennismaken', 'keuken-centrum'), __('Vertel ons uw wensen', 'keuken-centrum'), home_url('/consultation/'), 'https://keuken-centrum.nl/wp-content/uploads/WhatsApp-Image-2023-09-20-at-13.53.27.webp'],
+					[__('Kennismaken', 'keuken-centrum'), __('Vertel ons uw wensen', 'keuken-centrum'), home_url('/consultation/'), kc_theme_img('hero/hero_img3.webp')],
 					[__('Ontwerpsessie', 'keuken-centrum'), __('Samen aan tafel', 'keuken-centrum'), home_url('/consultation/'), kc_theme_img('showroom.jpg')],
-					[__('Vrijblijvende offerte', 'keuken-centrum'), __('Helder & persoonlijk', 'keuken-centrum'), home_url('/consultation/'), 'https://keuken-centrum.nl/wp-content/uploads/IMG_0642-1024x768.webp'],
+					[__('Vrijblijvende offerte', 'keuken-centrum'), __('Helder & persoonlijk', 'keuken-centrum'), home_url('/consultation/'), kc_theme_img('hero/hero_img5.webp')],
 				],
 			],
 		];
