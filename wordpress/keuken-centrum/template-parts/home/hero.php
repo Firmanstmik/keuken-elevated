@@ -173,7 +173,7 @@ $first_dot   = $slides[0]['dot'] ?? '#c8a96b';
 						<span class="premium-pill-button__label"><?php echo esc_html($args['cta_primary_label']); ?></span>
 						<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
 					</a>
-					<a class="premium-pill-button premium-pill-button--ghost premium-pill-button--xl premium-pill-button--rounded home-hero__cta home-hero__cta--secondary" href="<?php echo esc_url($args['cta_secondary_url']); ?>" target="_blank" rel="noreferrer">
+					<a class="premium-pill-button premium-pill-button--ghost premium-pill-button--xl premium-pill-button--rounded home-hero__cta home-hero__cta--secondary" href="<?php echo esc_url($args['cta_secondary_url']); ?>">
 						<span class="premium-pill-button__label"><?php echo esc_html($args['cta_secondary_label']); ?></span>
 						<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
 					</a>
@@ -262,25 +262,28 @@ $first_dot   = $slides[0]['dot'] ?? '#c8a96b';
 		</div>
 	</div>
 
-	<a class="hero-scroll-cue home-hero__reveal" data-hero-reveal="8" href="#brands" aria-label="<?php esc_attr_e('Ontdek meer, scroll naar beneden', 'keuken-centrum'); ?>">
+	<a class="hero-scroll-cue hero-scroll-cue--compact home-hero__reveal" data-hero-reveal="8" href="#brands" aria-label="<?php esc_attr_e('Ontdek meer, scroll naar beneden', 'keuken-centrum'); ?>">
 		<span class="hero-scroll-cue__label"><?php esc_html_e('Ontdek meer', 'keuken-centrum'); ?></span>
-		<span class="hero-scroll-cue__frame" aria-hidden="true">
-			<svg class="hero-scroll-cue__icon" viewBox="0 0 32 32" fill="none">
-				<rect x="10.5" y="24.5" width="11" height="2.2" rx="1.1" fill="currentColor" opacity="0.85" />
-				<path d="M15.2 24.5V13.2" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" />
-				<path d="M15.2 13.2H21.2C24.2 13.2 25.8 14.8 25.8 17.2V19" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round" />
-				<path d="M25.8 19V21.2" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" opacity="0.55" />
-				<path d="M16.8 15.2V18.4" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" />
-				<circle cx="16.8" cy="19.6" r="1.05" fill="currentColor" />
-				<path d="M13.2 11.2L15.2 13.2" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" opacity="0.7" />
+		<span class="hero-scroll-cue__stack" aria-hidden="true">
+			<span class="hero-scroll-cue__glow"></span>
+			<span class="hero-scroll-cue__frame">
+				<svg class="hero-scroll-cue__icon" viewBox="0 0 32 32" fill="none">
+					<rect x="10.5" y="24.5" width="11" height="2.2" rx="1.1" fill="currentColor" opacity="0.85" />
+					<path d="M15.2 24.5V13.2" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" />
+					<path d="M15.2 13.2H21.2C24.2 13.2 25.8 14.8 25.8 17.2V19" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round" />
+					<path d="M25.8 19V21.2" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" opacity="0.55" />
+					<path d="M16.8 15.2V18.4" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" />
+					<circle cx="16.8" cy="19.6" r="1.05" fill="currentColor" />
+					<path d="M13.2 11.2L15.2 13.2" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" opacity="0.7" />
+				</svg>
+			</span>
+			<span class="hero-scroll-cue__track">
+				<span class="hero-scroll-cue__track-line"></span>
+				<span class="hero-scroll-cue__drip"></span>
+			</span>
+			<svg class="hero-scroll-cue__chevron" viewBox="0 0 24 24" fill="none">
+				<path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
 			</svg>
 		</span>
-		<span class="hero-scroll-cue__track" aria-hidden="true">
-			<span class="hero-scroll-cue__track-line"></span>
-			<span class="hero-scroll-cue__drip"></span>
-		</span>
-		<svg class="hero-scroll-cue__chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-			<path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-		</svg>
 	</a>
 </section>
