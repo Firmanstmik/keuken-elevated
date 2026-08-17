@@ -73,7 +73,8 @@ function kc_enqueue_assets(): void {
 	wp_enqueue_style('keuken-centrum-fonts', $fonts_url, [], null);
 
 	$style_path = get_theme_file_path('assets/css/theme.css');
-	$style_ver  = file_exists($style_path) ? (string) filemtime($style_path) : KC_THEME_VERSION;
+	$style_mtime = file_exists($style_path) ? (string) filemtime($style_path) : '0';
+	$style_ver  = KC_THEME_VERSION . '.' . $style_mtime;
 	wp_enqueue_style(
 		'keuken-centrum-theme',
 		kc_asset('assets/css/theme.css'),
@@ -82,7 +83,8 @@ function kc_enqueue_assets(): void {
 	);
 
 	$script_path = get_theme_file_path('assets/js/theme.js');
-	$script_ver  = file_exists($script_path) ? (string) filemtime($script_path) : KC_THEME_VERSION;
+	$script_mtime = file_exists($script_path) ? (string) filemtime($script_path) : '0';
+	$script_ver  = KC_THEME_VERSION . '.' . $script_mtime;
 	wp_enqueue_script(
 		'keuken-centrum-theme',
 		kc_asset('assets/js/theme.js'),
