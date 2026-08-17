@@ -124,71 +124,71 @@ if (! function_exists('kc_render_kitchens_mega')) {
 			[
 				'label' => __('Keukenmerken', 'keuken-centrum'),
 				'eyebrow' => __('Uitgelichte keukenmerken', 'keuken-centrum'),
-				'title' => __('Europees design, geselecteerd in Utrecht.', 'keuken-centrum'),
-				'footer' => __('45+ jaar vakmanschap', 'keuken-centrum'),
-				'detail' => __('persoonlijk advies in onze showroom', 'keuken-centrum'),
+				'title' => __('Europees design, geselecteerd in Utrecht', 'keuken-centrum'),
+				'footer' => __('5 premium merken', 'keuken-centrum'),
+				'detail' => __('Duitse precisie & Italiaanse finesse', 'keuken-centrum'),
 				'url' => home_url('/keukens/'),
 				'link' => __('Alle keukenmerken', 'keuken-centrum'),
 				'cards' => [
-					['AI Küchen', __('Innovatief & modern', 'keuken-centrum'), home_url('/keukens/ai-kuchen/'), kc_theme_img('hero/hero_img3.webp')],
-					['Leicht', __('Architectonisch design', 'keuken-centrum'), home_url('/keukens/leicht/'), kc_theme_img('brands/leicht-hero.webp') ?: kc_theme_img('showroom.jpg')],
-					['Zampieri', __('Italiaanse verfijning', 'keuken-centrum'), home_url('/keukens/zampieri/'), kc_theme_img('hero/hero_img4.webp')],
+					['AI Küchen', __('Innovatief & modern', 'keuken-centrum'), home_url('/keukens/ai-kuchen/'), kc_theme_img('brands/aikuchen-hero.webp')],
+					['Leicht', __('Architectonisch design', 'keuken-centrum'), home_url('/keukens/leicht/'), kc_theme_img('brands/leicht-hero.webp')],
+					['Zampieri', __('Italiaanse verfijning', 'keuken-centrum'), home_url('/keukens/zampieri/'), kc_theme_img('brands/zampieri-hero.webp')],
 				],
 			],
 			[
 				'label' => __('Leicht collecties', 'keuken-centrum'),
-				'eyebrow' => __('Leicht collectie', 'keuken-centrum'),
-				'title' => __('Architectuur voor het dagelijks leven.', 'keuken-centrum'),
-				'footer' => __('Duitse precisie', 'keuken-centrum'),
-				'detail' => __('ontdek de Leicht signatuur', 'keuken-centrum'),
+				'eyebrow' => __('Leicht signature series', 'keuken-centrum'),
+				'title' => __('Architecturale collecties met karakter', 'keuken-centrum'),
+				'footer' => __('4 showroomseries', 'keuken-centrum'),
+				'detail' => __('Van sculpturale Bossa tot serene Kyoto', 'keuken-centrum'),
 				'url' => home_url('/keukens/leicht/'),
-				'link' => __('Ontdek Leicht', 'keuken-centrum'),
+				'link' => __('Alle Leicht collecties', 'keuken-centrum'),
 				'cards' => [
-					['Bossa', __('Warme textuur', 'keuken-centrum'), home_url('/keukens/leicht/'), kc_theme_img('brands/leicht-hero.webp')],
-					['Taj Mahal', __('Natuursteen', 'keuken-centrum'), home_url('/keukens/leicht/'), kc_theme_img('marmer-img.webp')],
-					['Kyoto', __('Verfijnde rust', 'keuken-centrum'), home_url('/keukens/leicht/'), kc_theme_img('showroom.jpg')],
+					['Bossa', __('Verticale structuur', 'keuken-centrum'), home_url('/keukens/leicht/bossa/'), 'https://keuken-centrum.nl/wp-content/uploads/Leicht-Bossa-showroom--scaled.webp'],
+					['Taj Mahal', __('Monumentale elegantie', 'keuken-centrum'), home_url('/keukens/leicht/taj-mahal/'), 'https://keuken-centrum.nl/wp-content/uploads/Leicht-keukens.webp'],
+					['Kyoto', __('Japandi rust', 'keuken-centrum'), home_url('/keukens/leicht/kyoto/'), 'https://keuken-centrum.nl/wp-content/uploads/Leicht-Kyoto-showroom.webp'],
 				],
 			],
 			[
 				'label' => __('Keukenstijlen', 'keuken-centrum'),
-				'eyebrow' => __('Stijlen', 'keuken-centrum'),
-				'title' => __('Een stijlwereld die bij u past.', 'keuken-centrum'),
-				'footer' => __('Persoonlijk samengesteld', 'keuken-centrum'),
-				'detail' => __('van materiaal tot indeling', 'keuken-centrum'),
+				'eyebrow' => __('Vind uw eigen stijl', 'keuken-centrum'),
+				'title' => __('Van minimalistisch tot warm en tijdloos', 'keuken-centrum'),
+				'footer' => __('Voor iedere woonstijl', 'keuken-centrum'),
+				'detail' => __('Ontdek materialen, kleuren en vormen', 'keuken-centrum'),
 				'url' => home_url('/#collections'),
-				'link' => __('Bekijk stijlen', 'keuken-centrum'),
+				'link' => __('Alle keukenstijlen', 'keuken-centrum'),
 				'cards' => [
-					[__('Modern wonen', 'keuken-centrum'), __('Slank & tijdloos', 'keuken-centrum'), home_url('/#collections'), kc_theme_img('hero/hero_img1.webp')],
-					[__('Klassieke elegantie', 'keuken-centrum'), __('Warm & verfijnd', 'keuken-centrum'), home_url('/#collections'), kc_theme_img('hero/hero_img2.webp')],
-					[__('Industrieel atelier', 'keuken-centrum'), __('Krachtig & karaktervol', 'keuken-centrum'), home_url('/#collections'), kc_theme_img('hero/hero_img4.webp')],
+					[__('Modern', 'keuken-centrum'), __('Strak & greeploos', 'keuken-centrum'), home_url('/#collections'), kc_theme_img('hero/hero_img1.webp')],
+					[__('Japandi', 'keuken-centrum'), __('Warm & sereen', 'keuken-centrum'), home_url('/#collections'), kc_theme_img('hero/hero_img2.webp')],
+					[__('Industrieel', 'keuken-centrum'), __('Krachtig & karaktervol', 'keuken-centrum'), home_url('/#collections'), kc_theme_img('hero/hero_img4.webp')],
 				],
 			],
 			[
 				'label' => __('Keuken op maat', 'keuken-centrum'),
-				'eyebrow' => __('Uw ontwerp', 'keuken-centrum'),
-				'title' => __('Van eerste idee naar uw eigen keuken.', 'keuken-centrum'),
-				'footer' => __('Ontwerp met aandacht', 'keuken-centrum'),
-				'detail' => __('maak het persoonlijk', 'keuken-centrum'),
-				'url' => 'https://keuken-elevated.vercel.app/brands',
-				'link' => __('Start configurator', 'keuken-centrum'),
+				'eyebrow' => __('Persoonlijk maatwerk', 'keuken-centrum'),
+				'title' => __('Ontworpen rond uw ruimte en dagelijks leven', 'keuken-centrum'),
+				'footer' => __('Volledig persoonlijk', 'keuken-centrum'),
+				'detail' => __('Van eerste schets tot perfecte montage', 'keuken-centrum'),
+				'url' => home_url('/configure/'),
+				'link' => __('Start uw ontwerp', 'keuken-centrum'),
 				'cards' => [
-					[__('Indeling', 'keuken-centrum'), __('Slim ontworpen', 'keuken-centrum'), 'https://keuken-elevated.vercel.app/brands', kc_theme_img('hero/hero_img5.webp')],
-					[__('Materialen', 'keuken-centrum'), __('Voel het verschil', 'keuken-centrum'), 'https://keuken-elevated.vercel.app/brands', kc_theme_img('beton-img.webp')],
-					[__('Apparatuur', 'keuken-centrum'), __('Perfect geïntegreerd', 'keuken-centrum'), 'https://keuken-elevated.vercel.app/brands', kc_theme_img('bora-img.webp')],
+					[__('3D ontwerp', 'keuken-centrum'), __('Uw ideeën in beeld', 'keuken-centrum'), home_url('/configure/'), kc_theme_img('hero/hero_img4.webp')],
+					[__('Materiaalkeuze', 'keuken-centrum'), __('Voel het verschil', 'keuken-centrum'), home_url('/configure/'), kc_theme_img('hero/hero_img3.webp')],
+					[__('Montage', 'keuken-centrum'), __('Zorgeloos geplaatst', 'keuken-centrum'), home_url('/configure/'), kc_theme_img('hero/hero_img5.webp')],
 				],
 			],
 			[
 				'label' => __('Showroomkeukens', 'keuken-centrum'),
-				'eyebrow' => __('Showroom Utrecht', 'keuken-centrum'),
-				'title' => __('Ervaar materialen en verhoudingen in het echt.', 'keuken-centrum'),
-				'footer' => __('Zonnebaan 8, Utrecht', 'keuken-centrum'),
-				'detail' => __('op afspraak, zonder haast', 'keuken-centrum'),
+				'eyebrow' => __('Direct te ervaren', 'keuken-centrum'),
+				'title' => __('Inspiratie en voordeel in onze showroom', 'keuken-centrum'),
+				'footer' => __('Showroom Utrecht', 'keuken-centrum'),
+				'detail' => __('Bekijk, voel en vergelijk in alle rust', 'keuken-centrum'),
 				'url' => home_url('/showroom-keukens/'),
-				'link' => __('Bekijk showroom', 'keuken-centrum'),
+				'link' => __('Bekijk showroomkeukens', 'keuken-centrum'),
 				'cards' => [
-					[__('Showroom', 'keuken-centrum'), __('Kom binnenkijken', 'keuken-centrum'), home_url('/showroom-keukens/'), kc_theme_img('showroom.jpg')],
-					[__('Werkbladen', 'keuken-centrum'), __('Raak materialen aan', 'keuken-centrum'), home_url('/keukenbladen/'), kc_theme_img('marmer-img.webp')],
-					[__('Advies', 'keuken-centrum'), __('Een vaste adviseur', 'keuken-centrum'), home_url('/contact/'), kc_theme_img('hero/hero_img2.webp')],
+					[__('Nieuwe opstellingen', 'keuken-centrum'), __('Live te bekijken', 'keuken-centrum'), home_url('/showroom-keukens/'), kc_theme_img('showroom.jpg')],
+					[__('Showroomdeals', 'keuken-centrum'), __('Direct voordeel', 'keuken-centrum'), home_url('/aanbiedingen/'), kc_theme_img('hero/hero_img2.webp')],
+					[__('Direct leverbaar', 'keuken-centrum'), __('Snel in huis', 'keuken-centrum'), home_url('/aanbiedingen/'), kc_theme_img('hero/hero_img1.webp')],
 				],
 			],
 			[
@@ -200,9 +200,9 @@ if (! function_exists('kc_render_kitchens_mega')) {
 				'url' => home_url('/contact/'),
 				'link' => __('Plan een showroombezoek', 'keuken-centrum'),
 				'cards' => [
-					[__('Kennismaken', 'keuken-centrum'), __('Vertel ons uw wensen', 'keuken-centrum'), home_url('/contact/'), kc_theme_img('hero/hero_img3.webp')],
-					[__('Showroombezoek', 'keuken-centrum'), __('Ervaar materialen', 'keuken-centrum'), home_url('/#showroom'), kc_theme_img('showroom.jpg')],
-					[__('Ontwerptraject', 'keuken-centrum'), __('Van idee tot montage', 'keuken-centrum'), home_url('/contact/'), kc_theme_img('hero/hero_img5.webp')],
+					[__('Kennismaken', 'keuken-centrum'), __('Vertel ons uw wensen', 'keuken-centrum'), home_url('/consultation/'), kc_theme_img('hero/hero_img3.webp')],
+					[__('Ontwerpsessie', 'keuken-centrum'), __('Samen aan tafel', 'keuken-centrum'), home_url('/consultation/'), kc_theme_img('showroom.jpg')],
+					[__('Vrijblijvende offerte', 'keuken-centrum'), __('Helder & persoonlijk', 'keuken-centrum'), home_url('/consultation/'), kc_theme_img('hero/hero_img5.webp')],
 				],
 			],
 		];
@@ -340,7 +340,7 @@ if (! function_exists('kc_render_kitchens_mega')) {
 											'title' => __('Advies', 'keuken-centrum'),
 											'items' => [
 												['label' => __('Alle keukenbladen', 'keuken-centrum'), 'href' => $bladen],
-												['label' => __('Offerte op maat', 'keuken-centrum'), 'href' => home_url('/contact/')],
+												['label' => __('Offerte op maat', 'keuken-centrum'), 'href' => home_url('/consultation/')],
 											],
 										],
 									],
@@ -380,16 +380,15 @@ if (! function_exists('kc_render_kitchens_mega')) {
 											'title' => __('Ventilatie', 'keuken-centrum'),
 											'items' => [
 												['label' => __('Afzuigkappen', 'keuken-centrum'), 'href' => home_url('/apparatuur/afzuigkappen/')],
-												['label' => __('Ovens', 'keuken-centrum'), 'href' => home_url('/apparatuur/ovens/')],
-												['label' => __('Alle apparatuur', 'keuken-centrum'), 'href' => $apps],
+												['label' => __('Werkblad afzuiging', 'keuken-centrum'), 'href' => home_url('/apparatuur/werkblad-afzuiging/')],
+												['label' => __('Wave afzuigkappen', 'keuken-centrum'), 'href' => home_url('/apparatuur/wave-afzuigkappen/')],
 											],
 										],
 										[
 											'title' => __('Koelen & vaat', 'keuken-centrum'),
 											'items' => [
-												['label' => __('Koelkasten', 'keuken-centrum'), 'href' => home_url('/apparatuur/koelkasten/')],
+												['label' => __('Koelkasten & Vriezers', 'keuken-centrum'), 'href' => home_url('/apparatuur/koelkasten-vriezers/')],
 												['label' => __('Vaatwassers', 'keuken-centrum'), 'href' => home_url('/apparatuur/vaatwassers/')],
-												['label' => __('Wijnklimaat', 'keuken-centrum'), 'href' => home_url('/apparatuur/wijnklimaat/')],
 											],
 										],
 									],
@@ -414,16 +413,16 @@ if (! function_exists('kc_render_kitchens_mega')) {
 						</button>
 						<div class="mega-panel mega-panel--simple" id="mega-contact" data-mega-panel hidden role="menu">
 							<a class="mega-simple__link" href="<?php echo esc_url(home_url('/contact/')); ?>" role="menuitem">
+								<span class="mega-simple__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 13.43a3.12 3.12 0 1 0 0-6.24 3.12 3.12 0 0 0 0 6.24Z"/><path d="M3.62 8.49c1.97-8.66 14.8-8.65 16.76.01 1.15 5.08-2.01 9.38-4.78 12.04a5.193 5.193 0 0 1-7.21 0c-2.76-2.66-5.92-6.97-4.77-12.05Z"/></svg></span>
 								<span class="mega-simple__label"><?php esc_html_e('Contact & route', 'keuken-centrum'); ?></span>
-								<span class="mega-simple__desc"><?php esc_html_e('Stuur een bericht, bel ons of plan uw route naar de Zonnebaan.', 'keuken-centrum'); ?></span>
 							</a>
 							<a class="mega-simple__link" href="<?php echo esc_url(home_url('/showroom-keukens/')); ?>" role="menuitem">
+								<span class="mega-simple__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 13.43a3.12 3.12 0 1 0 0-6.24 3.12 3.12 0 0 0 0 6.24Z"/><path d="M3.62 8.49c1.97-8.66 14.8-8.65 16.76.01 1.15 5.08-2.01 9.38-4.78 12.04a5.193 5.193 0 0 1-7.21 0c-2.76-2.66-5.92-6.97-4.77-12.05Z"/></svg></span>
 								<span class="mega-simple__label"><?php esc_html_e('Showroom keukens', 'keuken-centrum'); ?></span>
-								<span class="mega-simple__desc"><?php esc_html_e('Kom langs in onze showroom in Utrecht en laat u inspireren.', 'keuken-centrum'); ?></span>
 							</a>
 							<a class="mega-simple__link" href="<?php echo esc_url(home_url('/consultation/')); ?>" role="menuitem">
+								<span class="mega-simple__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M21 7v10c0 3-1.5 5-5 5H8c-3.5 0-5-2-5-5V7c0-3 1.5-5 5-5h8c3.5 0 5 2 5 5Z"/><path d="M14.5 4.5v2c0 1.1.9 2 2 2h2M8 13h4M8 17h8"/></svg></span>
 								<span class="mega-simple__label"><?php esc_html_e('Offerte op maat', 'keuken-centrum'); ?></span>
-								<span class="mega-simple__desc"><?php esc_html_e('Vraag online een vrijblijvende offerte aan voor uw droomkeuken.', 'keuken-centrum'); ?></span>
 							</a>
 						</div>
 					</li>

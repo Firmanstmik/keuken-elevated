@@ -16,7 +16,8 @@
 		header.classList.toggle("is-scrolled", scrolled);
 		header.classList.toggle("is-elevated", scrolled);
 
-		if (y > 96 && y > lastY + 6) {
+		const navigationIsOpen = document.body.classList.contains("nav-open") || document.querySelector(".has-mega.is-open");
+		if (!navigationIsOpen && y > 96 && y > lastY + 6) {
 			header.classList.add("is-hidden");
 		} else if (y < lastY - 6 || y < 48) {
 			header.classList.remove("is-hidden");
