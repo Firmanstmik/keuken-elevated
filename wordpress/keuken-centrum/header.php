@@ -432,7 +432,7 @@ if (! function_exists('kc_render_kitchens_mega')) {
 				<span class="nav-divider" aria-hidden="true"></span>
 				<a class="nav-cta" href="<?php echo esc_url($header_url); ?>">
 					<span><?php echo esc_html($header_label); ?></span>
-					<span class="nav-cta__arrow" aria-hidden="true">→</span>
+					<span class="nav-cta__arrow" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
 				</a>
 			</div>
 

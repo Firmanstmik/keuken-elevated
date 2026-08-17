@@ -414,11 +414,19 @@ body:not(.kc-home) .site-main {
 		box-shadow var(--kc-motion-premium) var(--kc-ease);
 }
 
-.premium-pill-button__icon {
+.premium-pill-button__icon,
+.kc-icon-arrow-right {
 	display: block;
+	width: 1rem;
+	height: 1rem;
 	font-size: 0.9rem;
 	line-height: 1;
 	transition: transform var(--kc-motion-premium) cubic-bezier(0.35, 0, 0.15, 1);
+}
+
+.premium-pill-button__badge .kc-icon-arrow-right {
+	width: 0.95rem;
+	height: 0.95rem;
 }
 
 .premium-pill-button::after {
@@ -896,6 +904,11 @@ body.admin-bar .site-header {
 	transition:
 		transform var(--kc-motion-premium) var(--kc-ease),
 		background var(--kc-motion-premium) var(--kc-ease);
+}
+
+.nav-cta__arrow .kc-icon-arrow-right {
+	width: 0.85rem;
+	height: 0.85rem;
 }
 
 .nav-cta:hover .nav-cta__arrow {

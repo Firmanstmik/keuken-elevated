@@ -171,11 +171,11 @@ $first_dot   = $slides[0]['dot'] ?? '#c8a96b';
 				<div class="home-hero__actions home-hero__reveal" data-hero-reveal="5">
 					<a class="premium-pill-button premium-pill-button--blue premium-pill-button--xl premium-pill-button--rounded home-hero__cta home-hero__cta--primary" href="<?php echo esc_url($args['cta_primary_url']); ?>">
 						<span class="premium-pill-button__label"><?php echo esc_html($args['cta_primary_label']); ?></span>
-						<span class="premium-pill-button__badge" aria-hidden="true"><span class="premium-pill-button__icon">→</span></span>
+						<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
 					</a>
 					<a class="premium-pill-button premium-pill-button--ghost premium-pill-button--xl premium-pill-button--rounded home-hero__cta home-hero__cta--secondary" href="<?php echo esc_url($args['cta_secondary_url']); ?>" target="_blank" rel="noreferrer">
 						<span class="premium-pill-button__label"><?php echo esc_html($args['cta_secondary_label']); ?></span>
-						<span class="premium-pill-button__badge" aria-hidden="true"><span class="premium-pill-button__icon">→</span></span>
+						<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
 					</a>
 				</div>
 
@@ -272,6 +272,7 @@ $first_dot   = $slides[0]['dot'] ?? '#c8a96b';
 				<path d="M25.8 19V21.2" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" opacity="0.55" />
 				<path d="M16.8 15.2V18.4" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" />
 				<circle cx="16.8" cy="19.6" r="1.05" fill="currentColor" />
+				<path d="M13.2 11.2L15.2 13.2" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" opacity="0.7" />
 			</svg>
 		</span>
 		<span class="hero-scroll-cue__track" aria-hidden="true">
