@@ -198,6 +198,22 @@
 		if (reduceMotion) readyHero();
 		else window.requestAnimationFrame(() => window.setTimeout(readyHero, 40));
 
+		// Mirror React's subtle hero pointer parallax. Keep the values on the
+		// section so the media, active-slide accent, and video card stay in sync.
+		if (!reduceMotion) {
+			hero.addEventListener("mousemove", (event) => {
+				const bounds = hero.getBoundingClientRect();
+				const x = ((event.clientX - bounds.left) / bounds.width - 0.5) * 20;
+				const y = ((event.clientY - bounds.top) / bounds.height - 0.5) * 20;
+				hero.style.setProperty("--hero-pointer-x", x.toFixed(3));
+				hero.style.setProperty("--hero-pointer-y", y.toFixed(3));
+			});
+			hero.addEventListener("mouseleave", () => {
+				hero.style.setProperty("--hero-pointer-x", "0");
+				hero.style.setProperty("--hero-pointer-y", "0");
+			});
+		}
+
 		const video = hero.querySelector("[data-hero-video]");
 		const videoToggle = hero.querySelector("[data-hero-video-toggle]");
 		const videoToggleLabel = hero.querySelector("[data-hero-video-toggle-label]");

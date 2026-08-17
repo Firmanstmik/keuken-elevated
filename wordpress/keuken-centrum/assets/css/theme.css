@@ -1807,6 +1807,17 @@ body.admin-bar .site-header {
 .home-hero__media {
 	position: absolute;
 	inset: 0;
+	transform: translate3d(
+			calc(var(--hero-pointer-x, 0) * 0.55px),
+			calc(var(--hero-pointer-y, 0) * 0.55px),
+			0
+		)
+		rotateX(calc(var(--hero-pointer-y, 0) * -0.14deg))
+		rotateY(calc(var(--hero-pointer-x, 0) * 0.14deg))
+		scale(1.008);
+	transform-origin: center;
+	transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+	will-change: transform;
 }
 
 .home-hero__slide {
@@ -1871,6 +1882,11 @@ body.admin-bar .site-header {
 }
 
 .home-hero__overlay--accent {
+	transform: translate3d(
+		calc(var(--hero-pointer-x, 0) * 0.75px),
+		calc(var(--hero-pointer-y, 0) * 0.75px),
+		0
+	);
 	transition: background 0.8s var(--kc-ease);
 }
 
@@ -2151,6 +2167,13 @@ body.admin-bar .site-header {
 	min-height: 24rem;
 	align-items: center;
 	justify-content: flex-end;
+	transform: translate3d(
+		calc(var(--hero-pointer-x, 0) * 0.08px),
+		calc(var(--hero-pointer-y, 0) * 0.08px),
+		0
+	);
+	transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+	will-change: transform;
 }
 
 .home-hero__video-card {
