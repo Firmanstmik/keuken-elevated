@@ -4343,7 +4343,9 @@ body.admin-bar .site-header {
 .brands-marquee__surface{inset:-.5rem -.75rem;border-radius:14px;border:1px solid rgba(139,197,64,.16);background:rgba(139,197,64,.06);box-shadow:0 14px 28px -18px rgba(0,0,0,.9)}
 .brands-marquee__logo:hover .brands-marquee__glow,.brands-marquee__logo:hover .brands-marquee__surface{opacity:1}
 .brands-marquee__logo img{position:relative;z-index:10;width:auto;height:1.75rem;max-width:120px;object-fit:contain;opacity:.7;filter:brightness(0) invert(1);transition:opacity .5s ease,transform .5s ease,filter .5s ease}
+@media (min-width:640px){.brands-marquee__logo img{height:2rem}}
 .brands-marquee__item[data-brand-logo-name="AI Küchen"] img{height:2.75rem;max-width:64px;filter:none}
+@media (min-width:640px){.brands-marquee__item[data-brand-logo-name="AI Küchen"] img{height:3rem}}
 .brands-marquee__item[data-brand-logo-name="Miele"] .brands-marquee__base{filter:grayscale(1) brightness(.55) contrast(16);mix-blend-mode:screen}
 .brands-marquee__hover{position:absolute;z-index:20;opacity:0;transform:scale(.9);filter:drop-shadow(0 12px 16px rgba(0,0,0,.78))}
 .brands-marquee__logo:hover .brands-marquee__base{opacity:0;transform:scale(1.08)}
