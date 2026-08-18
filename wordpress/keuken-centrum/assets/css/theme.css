@@ -4461,7 +4461,7 @@ body.admin-bar .site-header {
 }
 .why-scene.why-scene--react h2.why-scene__title em{font-style:italic;font-weight:500;color:#43701f}
 .why-scene--react .why-scene__grid{display:grid;gap:2.5rem;align-items:start}
-.why-scene--react .why-scene__list-label{margin:0 0 1rem;font-family:var(--font-body);font-size:.62rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#8a8a8a}
+.why-scene--react .why-scene__list-label{margin:0 0 1rem;font-family:var(--font-body);font-size:.62rem;font-weight:600;line-height:1.7;letter-spacing:.22em;text-transform:uppercase;color:#8a8a8a}
 .why-scene--react .why-pillars-list{display:flex;flex-direction:column;gap:.75rem;border:0;margin:0;padding:0}
 .why-scene--react .why-pillar-card{
 	display:grid;
@@ -4487,8 +4487,7 @@ body.admin-bar .site-header {
 .why-scene--react .why-pillar-card.is-active{
 	border-color:rgba(139,197,64,.35);
 	background:linear-gradient(135deg,#fff 0%,#f7faf1 100%);
-	box-shadow:0 22px 50px -20px rgba(47,82,24,.18),0 0 0 1px rgba(139,197,64,.08);
-	transform:translateY(-2px)
+	box-shadow:0 22px 50px -20px rgba(47,82,24,.18),0 0 0 1px rgba(139,197,64,.08)
 }
 .why-scene--react .why-pillar-card__strip{position:relative;display:none;flex:0 0 72px;width:72px;overflow:hidden;opacity:.55;transition:opacity .45s ease}
 .why-scene--react .why-pillar-card.is-active .why-pillar-card__strip{opacity:1}
@@ -4508,7 +4507,7 @@ body.admin-bar .site-header {
 .why-scene--react .why-pillar-card.is-active .why-pillar-card__icon{border-color:rgba(139,197,64,.45);background:rgba(139,197,64,.12);transform:scale(1.05)}
 .why-scene--react .why-pillar-card__accent{display:block;font-family:var(--font-body);font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:rgba(138,115,72,.55);transition:color .45s ease}
 .why-scene--react .why-pillar-card.is-active .why-pillar-card__accent{color:#8a7348}
-.why-scene--react .why-pillar-card__title{display:block;margin-top:.125rem;font-family:var(--font-display);font-size:.98rem;font-weight:600;line-height:1.25;letter-spacing:-.01em;color:#2f5218}
+.why-scene--react .why-pillar-card__title{display:block;margin-top:.125rem;font-family:var(--font-display);font-size:.98rem;font-weight:600;line-height:1.5;letter-spacing:-.01em;color:#2f5218}
 .why-scene--react .why-pillar-card__desc{display:block;margin-top:.625rem;font-family:var(--font-body);font-size:.82rem;font-weight:300;line-height:1.65;color:#666}
 .why-scene--react .why-pillar-card__mobile-media{display:grid;width:100%;grid-template-rows:0fr;opacity:0;overflow:hidden;transition:grid-template-rows .5s cubic-bezier(.22,1,.36,1),opacity .5s cubic-bezier(.22,1,.36,1)}
 .why-scene--react .why-pillar-card__mobile-media-inner{min-height:0;overflow:hidden;padding:0 1rem}
@@ -4599,7 +4598,6 @@ body.admin-bar .site-header {
 .why-scene--react [data-why-motion=swatches]{transform:translateY(16px);transition:opacity .55s cubic-bezier(.22,1,.36,1) .35s,transform .55s cubic-bezier(.22,1,.36,1) .35s}
 .why-scene--react [data-why-motion].is-visible{opacity:1;transform:none}
 .why-scene--react .why-pillar-card.is-visible[data-why-motion=card]{transition:opacity .45s ease,transform .45s cubic-bezier(.22,1,.36,1),border-color .45s ease,box-shadow .45s ease,background .45s ease;transition-delay:0s}
-.why-scene--react .why-pillar-card.is-active[data-why-motion].is-visible{transform:translateY(-2px)}
 @keyframes whySealFloat{
 	0%,100%{transform:translateY(0)}
 	50%{transform:translateY(-6px)}
