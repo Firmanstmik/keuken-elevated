@@ -4705,6 +4705,13 @@ body.admin-bar .site-header {
 	.why-scene--react .why-scene__eyebrow,
 	.why-scene--react .why-scene__list-label{letter-spacing:.12em}
 	.why-scene--react .why-scene__proofs{align-items:flex-start}
+	.why-scene--react .premium-pill-button{
+		min-height:48px;
+		padding-left:1rem;
+		font-size:.7rem;
+		letter-spacing:.08em
+	}
+	.why-scene--react .premium-pill-button__badge{width:2.35rem;height:2.35rem}
 	.journey-config-scene--react .journey-config-stage__badge{left:1rem}
 	.journey-config-scene--react .journey-config-mockup__body{flex-direction:column;aspect-ratio:auto}
 	.journey-config-scene--react .journey-config-mockup__viewport{min-height:16rem}
