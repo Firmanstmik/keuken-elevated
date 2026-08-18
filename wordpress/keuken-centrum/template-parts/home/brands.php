@@ -136,7 +136,7 @@ $active = $brands[0];
 					<p class="brands-copy__body" data-brands-copy><?php echo esc_html($active['description']); ?></p>
 
 					<div class="brands-copy__actions">
-						<a class="premium-pill-button premium-pill-button--blue" data-brands-cta href="<?php echo esc_url($active['href']); ?>">
+						<a class="premium-pill-button premium-pill-button--blue premium-pill-button--lg" data-brands-cta href="<?php echo esc_url($active['href']); ?>">
 							<span class="premium-pill-button__label" data-brands-cta-label><?php echo esc_html(sprintf(__('Ontdek %s', 'keuken-centrum'), $active['name'])); ?></span>
 							<span class="premium-pill-button__badge" aria-hidden="true"><span class="premium-pill-button__icon">→</span></span>
 						</a>
@@ -190,7 +190,10 @@ $active = $brands[0];
 							<strong><?php echo esc_html($item['name']); ?></strong>
 							<span><?php echo esc_html($item['description']); ?></span>
 						</span>
-						<img src="<?php echo esc_url(kc_theme_img($item['logo'])); ?>" alt="" loading="lazy" width="130" height="48" />
+						<span class="brands-marquee__glow" aria-hidden="true"></span>
+						<span class="brands-marquee__surface" aria-hidden="true"></span>
+						<img class="brands-marquee__base" src="<?php echo esc_url(kc_theme_img($item['logo'])); ?>" alt="" loading="lazy" width="130" height="48" />
+						<img class="brands-marquee__hover" src="<?php echo esc_url(kc_theme_img($item['logo'])); ?>" alt="" loading="lazy" width="130" height="48" />
 					</span>
 					<span class="brands-marquee__dot"></span>
 				</span>

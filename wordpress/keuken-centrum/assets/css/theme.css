@@ -383,6 +383,22 @@ body:not(.kc-home) .site-main {
 	padding: 0.28rem 0.32rem 0.28rem 1rem;
 }
 
+.premium-pill-button--lg {
+	padding: 0.26rem 0.32rem 0.26rem 1.05rem;
+	font-size: 0.6875rem;
+	letter-spacing: 0.15em;
+}
+
+.premium-pill-button--lg .premium-pill-button__badge {
+	width: 2rem;
+	height: 2rem;
+}
+
+.premium-pill-button--lg .premium-pill-button__icon {
+	width: 0.85rem;
+	height: 0.85rem;
+}
+
 .premium-pill-button--xl {
 	padding: 0.34rem 0.38rem 0.34rem 1.15rem;
 	font-size: 0.72rem;
@@ -4239,22 +4255,25 @@ body.admin-bar .site-header {
 .brands-scene{
 	position:relative;
 	overflow:hidden;
-	padding:clamp(4.5rem,9vw,5rem) 0 0;
+	padding-block:clamp(4.5rem,9vw,5rem);
+	padding-inline:0;
 	color:#fff;
 	background:linear-gradient(180deg,#0d0f0a 0%,#12140e 52%,#0c0e09 100%);
 	background-image:none;
 }
-@media (min-width:768px){.brands-scene{padding:8rem 0 0}}
+@media (min-width:768px){.brands-scene{padding-block:8rem}}
+@media (max-width:767px){.brands-scene{padding-block:clamp(3.75rem,16vw,5rem)}}
 .brands-scene__photo{position:absolute;inset:0;background-position:center 60%;background-size:cover;background-repeat:no-repeat;pointer-events:none}
 .brands-scene__photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,15,10,.94) 0%,rgba(13,15,10,.66) 42%,rgba(13,15,10,.9) 100%),radial-gradient(75% 60% at 50% 42%,transparent 30%,rgba(13,15,10,.55) 100%)}
 .brands-scene__aurora{position:absolute;inset:-10%;background:radial-gradient(720px 420px at 50% 10%,rgba(139,197,64,.08),transparent 68%),radial-gradient(640px 420px at 82% 85%,rgba(200,169,107,.05),transparent 70%);filter:blur(40px);pointer-events:none}
 .brands-scene__veil{position:absolute;inset:0;background:radial-gradient(circle at 18% 45%,rgba(139,197,64,.07),transparent 36%),linear-gradient(180deg,rgba(6,9,6,.28),rgba(5,7,5,.68));pointer-events:none}
-.brands-scene__inner{position:relative;z-index:10}
+.brands-scene__inner{position:relative;z-index:10;max-width:80rem}
 .brands-carousel-grid{display:grid;gap:3rem;align-items:center;margin-top:1rem}
+.brands-carousel-grid[data-reveal]{transform:translateY(28px);transition-duration:.9s}
 @media (min-width:1024px){.brands-carousel-grid{grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr);gap:4rem}}
 .brands-stack{position:relative;width:100%;max-width:530px;height:470px;margin-inline:auto}
 @media (min-width:640px){.brands-stack{height:560px}}
-.brands-stack__card{position:absolute;inset:2% 5% 2% 10%;overflow:hidden;border-radius:32px;background:#10140e;border:1px solid rgba(255,255,255,.12);box-shadow:0 36px 80px -42px rgba(0,0,0,.88);opacity:.38;transform:translate(-60px,34px) rotate(-7.5deg) scale(.895);z-index:22;transition:transform .75s cubic-bezier(.22,1,.36,1),opacity .75s cubic-bezier(.22,1,.36,1),box-shadow .75s cubic-bezier(.22,1,.36,1),border-color .75s cubic-bezier(.22,1,.36,1),filter .7s ease}
+.brands-stack__card{position:absolute;inset:2% 5% 2% 10%;overflow:hidden;border-radius:32px;background:#10140e;border:1px solid rgba(255,255,255,.12);box-shadow:0 36px 80px -42px rgba(0,0,0,.88);opacity:.38;transform:translate(-60px,34px) rotate(-7.5deg) scale(.895);z-index:22;transition:transform .9s cubic-bezier(.22,1,.36,1),opacity .9s cubic-bezier(.22,1,.36,1),box-shadow .9s cubic-bezier(.22,1,.36,1),border-color .9s cubic-bezier(.22,1,.36,1),filter .7s ease}
 .brands-stack__card.is-next{opacity:.92;transform:translate(44px,18px) rotate(5.5deg) scale(.945);z-index:40}
 .brands-stack__card.is-prev{opacity:.9;transform:translate(-44px,22px) rotate(-5.5deg) scale(.94);z-index:38}
 .brands-stack__card.is-far-next{opacity:.42;transform:translate(60px,31px) rotate(7.5deg) scale(.9);z-index:24}
@@ -4281,7 +4300,8 @@ body.admin-bar .site-header {
 .brands-stack__meta h3{margin:.75rem 0 0;color:#fff;font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);font-weight:400;line-height:1;letter-spacing:-.03em}
 .brands-copy{min-width:0}
 .brands-copy__panel{transition:opacity .62s var(--kc-ease),transform .62s var(--kc-ease)}
-.brands-copy__panel.is-swapping{opacity:0;transform:translateY(14px)}
+.brands-copy__panel.is-exiting{opacity:0;transform:translateY(-16px)}
+.brands-copy__panel.is-entering{opacity:0;transform:translateY(22px);transition:none}
 .brands-copy__pills{display:flex;flex-wrap:wrap;gap:.625rem}
 .brands-copy__pill{display:inline-flex;align-items:center;gap:.375rem;padding:.375rem .75rem;border:1px solid rgba(255,255,255,.07);border-radius:999px;background:rgba(255,255,255,.025);color:rgba(255,255,255,.42);font-size:.52rem;letter-spacing:.16em;text-transform:uppercase}
 .brands-copy__pill--gold{border-color:rgba(200,169,107,.2);background:rgba(255,255,255,.035);color:#d8be87;font-weight:600;letter-spacing:.2em}
@@ -4309,7 +4329,7 @@ body.admin-bar .site-header {
 .brands-pager__nav:hover{border-color:rgba(200,169,107,.45);background:rgba(255,255,255,.06);color:#d8be87}
 .brands-pager__nav[data-brands-prev]:hover{transform:translateX(-2px)}
 .brands-pager__nav[data-brands-next]:hover{transform:translateX(2px)}
-.brands-marquee{position:relative;z-index:30;overflow:hidden;margin-top:4rem;padding:1.25rem 0;border-block:1px solid rgba(255,255,255,.055);background:rgba(0,0,0,.1);backdrop-filter:blur(8px)}
+.brands-marquee{position:relative;z-index:30;overflow:visible;margin-top:4rem;padding:1.25rem 0;border-block:1px solid rgba(255,255,255,.055);background:rgba(0,0,0,.1);backdrop-filter:blur(8px)}
 .brands-marquee::before,.brands-marquee::after{content:"";position:absolute;z-index:20;inset-block:0;width:12%;pointer-events:none}
 .brands-marquee::before{left:0;background:linear-gradient(90deg,#0d0f0a,transparent)}
 .brands-marquee::after{right:0;background:linear-gradient(270deg,#0d0f0a,transparent)}
@@ -4318,10 +4338,28 @@ body.admin-bar .site-header {
 .brands-marquee__item{display:inline-flex;align-items:center;gap:2.75rem;padding-inline:1.4rem}
 .brands-marquee__logo{position:relative;z-index:10;display:inline-flex;min-width:125px;align-items:center;justify-content:center;padding-block:.5rem;transition:transform .5s ease,filter .5s ease}
 .brands-marquee__logo:hover{z-index:30;transform:scale(1.16);filter:drop-shadow(0 18px 24px rgba(0,0,0,.55))}
-.brands-marquee__logo img{width:auto;height:1.75rem;max-width:120px;object-fit:contain;opacity:.7;filter:brightness(0) invert(1);transition:opacity .5s ease,transform .5s ease}
+.brands-marquee__glow,.brands-marquee__surface{position:absolute;pointer-events:none;opacity:0;transition:opacity .5s ease}
+.brands-marquee__glow{inset:-1rem -1.25rem;border-radius:50%;filter:blur(15px);background:rgba(139,197,64,.16)}
+.brands-marquee__surface{inset:-.5rem -.75rem;border-radius:14px;border:1px solid rgba(139,197,64,.16);background:rgba(139,197,64,.06);box-shadow:0 14px 28px -18px rgba(0,0,0,.9)}
+.brands-marquee__logo:hover .brands-marquee__glow,.brands-marquee__logo:hover .brands-marquee__surface{opacity:1}
+.brands-marquee__logo img{position:relative;z-index:10;width:auto;height:1.75rem;max-width:120px;object-fit:contain;opacity:.7;filter:brightness(0) invert(1);transition:opacity .5s ease,transform .5s ease,filter .5s ease}
 .brands-marquee__item[data-brand-logo-name="AI Küchen"] img{height:2.75rem;max-width:64px;filter:none}
-.brands-marquee__item[data-brand-logo-name="Miele"] img{filter:grayscale(1) brightness(.55) contrast(16);mix-blend-mode:screen}
-.brands-marquee__logo:hover img{opacity:1;transform:scale(1.08)}
+.brands-marquee__item[data-brand-logo-name="Miele"] .brands-marquee__base{filter:grayscale(1) brightness(.55) contrast(16);mix-blend-mode:screen}
+.brands-marquee__hover{position:absolute;z-index:20;opacity:0;transform:scale(.9);filter:drop-shadow(0 12px 16px rgba(0,0,0,.78))}
+.brands-marquee__logo:hover .brands-marquee__base{opacity:0;transform:scale(1.08)}
+.brands-marquee__logo:hover .brands-marquee__hover{opacity:1;transform:scale(1.12)}
+.brands-marquee__item[data-brand-logo-name="Leicht"]{--logo-glow:rgba(160,166,160,.28);--logo-surface:rgba(205,210,204,.7);--logo-border:rgba(230,233,228,.24);--logo-hover-filter:drop-shadow(0 8px 11px rgba(0,0,0,.72))}
+.brands-marquee__item[data-brand-logo-name="Zampieri"]{--logo-glow:rgba(129,139,125,.3);--logo-surface:rgba(190,197,188,.7);--logo-border:rgba(221,225,218,.22);--logo-hover-filter:drop-shadow(0 8px 11px rgba(0,0,0,.74))}
+.brands-marquee__item[data-brand-logo-name="Cucinesse"]{--logo-glow:rgba(170,151,132,.3);--logo-surface:rgba(204,193,181,.72);--logo-border:rgba(232,223,213,.22);--logo-hover-filter:drop-shadow(0 8px 11px rgba(0,0,0,.74))}
+.brands-marquee__item[data-brand-logo-name="Bora"]{--logo-glow:rgba(100,126,143,.34);--logo-surface:rgba(154,169,178,.7);--logo-border:rgba(200,211,216,.22);--logo-hover-filter:drop-shadow(0 8px 12px rgba(5,12,17,.78))}
+.brands-marquee__item[data-brand-logo-name="Gaggenau"]{--logo-glow:rgba(187,163,118,.3);--logo-surface:rgba(203,190,164,.68);--logo-border:rgba(232,219,191,.2);--logo-hover-filter:drop-shadow(0 8px 11px rgba(0,0,0,.76))}
+.brands-marquee__item[data-brand-logo-name="Quooker"]{--logo-glow:rgba(213,45,36,.24);--logo-surface:rgba(213,45,36,.09);--logo-border:rgba(213,45,36,.2);--logo-hover-filter:drop-shadow(0 10px 14px rgba(0,0,0,.8)) drop-shadow(0 0 8px rgba(213,45,36,.3))}
+.brands-marquee__item[data-brand-logo-name="Nobilia"]{--logo-glow:rgba(227,6,19,.24);--logo-surface:rgba(227,6,19,.07);--logo-border:rgba(227,6,19,.18);--logo-hover-filter:drop-shadow(0 10px 14px rgba(0,0,0,.82)) drop-shadow(0 0 9px rgba(227,6,19,.3))}
+.brands-marquee__item[data-brand-logo-name="Miele"]{--logo-glow:rgba(212,33,42,.24);--logo-surface:rgba(212,33,42,.07);--logo-border:rgba(212,33,42,.18);--logo-hover-filter:drop-shadow(0 10px 14px rgba(0,0,0,.82)) drop-shadow(0 0 9px rgba(212,33,42,.3))}
+.brands-marquee__item[data-brand-logo-name="AI Küchen"]{--logo-glow:rgba(145,182,192,.24);--logo-surface:rgba(145,182,192,.06);--logo-border:rgba(145,182,192,.16);--logo-hover-filter:drop-shadow(0 12px 16px rgba(0,0,0,.82)) drop-shadow(0 0 8px rgba(145,182,192,.3))}
+.brands-marquee__item .brands-marquee__glow{background:var(--logo-glow,rgba(139,197,64,.16))}
+.brands-marquee__item .brands-marquee__surface{background:var(--logo-surface,rgba(139,197,64,.06));border-color:var(--logo-border,rgba(139,197,64,.16))}
+.brands-marquee__item .brands-marquee__hover{filter:var(--logo-hover-filter,drop-shadow(0 12px 16px rgba(0,0,0,.78)))}
 .brands-marquee__tooltip{position:absolute;bottom:calc(100% + .7rem);left:50%;z-index:40;width:max-content;max-width:230px;padding:.75rem 1rem;border:1px solid rgba(200,169,107,.32);border-radius:14px;background:rgba(13,17,11,.98);color:rgba(255,255,255,.62);text-align:center;opacity:0;transform:translate(-50%,.5rem);pointer-events:none;box-shadow:0 22px 52px -18px rgba(0,0,0,.95);backdrop-filter:blur(20px);transition:opacity .4s ease,transform .4s ease}
 .brands-marquee__tooltip strong{display:block;color:#d8be87;font-size:.55rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase}
 .brands-marquee__tooltip span{display:block;margin-top:.375rem;font-size:.68rem;font-weight:300;line-height:1.45}
@@ -4331,6 +4369,16 @@ body.admin-bar .site-header {
 @keyframes kc-brands-progress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @keyframes kc-brands-marquee{to{transform:translateX(-50%)}}
 @media (max-width:1023px){.brands-stack{margin-bottom:.5rem}}
+@media (max-width:767px){
+	.brands-carousel-grid{gap:1.75rem}
+	.brands-stack{height:390px;max-width:min(92vw,380px)}
+	.brands-stack__card{inset:2% 7%;border-radius:26px}
+	.brands-carousel-grid .premium-pill-button{width:100%;justify-content:space-between}
+	.brands-marquee{margin-top:2.25rem;overflow-x:clip;padding-block:.65rem}
+	.brands-marquee__item{gap:1.5rem;padding-inline:.85rem}
+	.brands-marquee__logo{min-width:96px;padding-block:.2rem}
+	.brands-marquee__tooltip{display:none}
+}
 @media (prefers-reduced-motion:reduce){
 	.brands-stack__card,.brands-copy__panel{transition:none}
 	.brands-pager__dot.is-active .brands-pager__progress,.brands-marquee__track{animation:none}

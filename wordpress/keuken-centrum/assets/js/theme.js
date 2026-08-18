@@ -612,11 +612,14 @@
 			};
 
 			if (panel && !reduceMotion) {
-				panel.classList.add("is-swapping");
+				panel.classList.add("is-exiting");
 				window.setTimeout(() => {
 					applyCopy();
-					panel.classList.remove("is-swapping");
-				}, 180);
+					panel.classList.remove("is-exiting");
+					panel.classList.add("is-entering");
+					void panel.offsetWidth;
+					panel.classList.remove("is-entering");
+				}, 310);
 			} else {
 				applyCopy();
 			}
