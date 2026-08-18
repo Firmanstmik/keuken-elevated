@@ -4372,7 +4372,6 @@ body.admin-bar .site-header {
 .brands-marquee__dot{width:.28rem;height:.28rem;border-radius:999px;background:rgba(200,169,107,.45)}
 @keyframes kc-brands-progress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @keyframes kc-brands-marquee{to{transform:translateX(-50%)}}
-@media (max-width:1023px){.brands-stack{margin-bottom:.5rem}}
 @media (max-width:767px){
 	.brands-carousel-grid{gap:1.75rem}
 	.brands-stack{height:390px;max-width:min(92vw,380px)}
