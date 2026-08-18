@@ -4310,7 +4310,7 @@ body.admin-bar .site-header {
 .brands-copy__logo-wrap{display:flex;align-items:center;min-height:3rem;margin-top:2rem}
 .brands-copy__logo{width:auto;max-width:170px;max-height:3rem;object-fit:contain;opacity:.9;filter:brightness(0) invert(1)}
 .brands-copy__logo[data-brand-logo-name="AI Küchen"]{max-width:5rem;max-height:5rem;filter:none;opacity:.95}
-.brands-copy__since{margin:.75rem 0 0;color:rgba(255,255,255,.35);font-size:.64rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase}
+.brands-copy__since{margin:.75rem 0 0;color:rgba(255,255,255,.35);font-size:.64rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;line-height:1.7}
 .brands-copy h2{margin:1.75rem 0 0;color:#f5f2ec;font-family:var(--font-display);font-size:clamp(2.5rem,5vw,4.4rem);font-weight:300;line-height:.98;letter-spacing:-.045em}
 .brands-copy h2 em{font-style:italic;color:#d8be87}
 .brands-copy__body{margin:1.5rem 0 0;max-width:35rem;color:rgba(255,255,255,.62);font-size:1rem;font-weight:300;line-height:1.8}
@@ -4378,6 +4378,7 @@ body.admin-bar .site-header {
 	.brands-stack{height:390px;max-width:min(92vw,380px)}
 	.brands-stack__card{inset:2% 7%;border-radius:26px}
 	.brands-carousel-grid .premium-pill-button{width:100%;justify-content:space-between;min-height:48px;padding-left:1rem;font-size:.7rem;letter-spacing:.08em}
+	.brands-copy__since,.brands-copy__pill--gold,.brands-stack__meta p{letter-spacing:.12em}
 	.brands-marquee{margin-top:2.25rem;overflow-x:clip;padding-block:.65rem}
 	.brands-marquee__item{gap:1.5rem;padding-inline:.85rem}
 	.brands-marquee__logo{min-width:96px;padding-block:.2rem}
