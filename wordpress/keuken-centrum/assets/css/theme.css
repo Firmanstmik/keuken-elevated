@@ -4258,6 +4258,7 @@ body.admin-bar .site-header {
 	padding-block:clamp(4.5rem,9vw,5rem);
 	padding-inline:0;
 	color:#fff;
+	line-height:1.5;
 	background:linear-gradient(180deg,#0d0f0a 0%,#12140e 52%,#0c0e09 100%);
 	background-image:none;
 }
