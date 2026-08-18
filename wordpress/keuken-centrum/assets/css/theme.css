@@ -4376,7 +4376,7 @@ body.admin-bar .site-header {
 	.brands-carousel-grid{gap:1.75rem}
 	.brands-stack{height:390px;max-width:min(92vw,380px)}
 	.brands-stack__card{inset:2% 7%;border-radius:26px}
-	.brands-carousel-grid .premium-pill-button{width:100%;justify-content:space-between}
+	.brands-carousel-grid .premium-pill-button{width:100%;justify-content:space-between;min-height:48px;padding-left:1rem;font-size:.7rem;letter-spacing:.08em}
 	.brands-marquee{margin-top:2.25rem;overflow-x:clip;padding-block:.65rem}
 	.brands-marquee__item{gap:1.5rem;padding-inline:.85rem}
 	.brands-marquee__logo{min-width:96px;padding-block:.2rem}
