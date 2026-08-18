@@ -81,18 +81,18 @@ $cbw_logo       = home_url('/wp-content/uploads/cbw.webp');
 	<div class="site-shell why-scene__inner">
 		<?php kc_section_chapter('02', __('Waarom wij', 'keuken-centrum')); ?>
 
-		<div class="why-scene__header" data-reveal>
-			<div class="section-label-row">
+		<div class="why-scene__header">
+			<div class="why-scene__eyebrow-row" data-reveal data-why-motion="eyebrow">
 				<span class="kitchen-eyebrow-mark" aria-hidden="true"></span>
-				<p class="section-eyebrow"><?php esc_html_e('Onze belofte', 'keuken-centrum'); ?></p>
+				<p class="why-scene__eyebrow"><?php esc_html_e('Onze belofte', 'keuken-centrum'); ?></p>
 			</div>
-			<h2 class="section-title why-scene__title">
+			<h2 class="why-scene__title" data-reveal data-why-motion="title">
 				<?php echo wp_kses(__('Waarom Kiest U <em>Voor Ons?</em>', 'keuken-centrum'), ['em' => []]); ?>
 			</h2>
 		</div>
 
 		<div class="why-scene__grid">
-			<div class="why-scene__content" data-reveal>
+			<div class="why-scene__content">
 				<p class="why-scene__list-label"><?php esc_html_e('Wat wij bieden', 'keuken-centrum'); ?></p>
 
 				<div class="why-pillars-list" role="tablist" aria-label="<?php esc_attr_e('Onze pijlers', 'keuken-centrum'); ?>">
@@ -100,6 +100,8 @@ $cbw_logo       = home_url('/wp-content/uploads/cbw.webp');
 						<button
 							type="button"
 							class="why-pillar-card<?php echo 0 === $index ? ' is-active' : ''; ?>"
+							data-reveal
+							data-why-motion="card"
 							data-why-pillar
 							data-why-id="<?php echo esc_attr($pillar['id']); ?>"
 							data-pillar-number="<?php echo esc_attr($pillar['number']); ?>"
@@ -137,15 +139,17 @@ $cbw_logo       = home_url('/wp-content/uploads/cbw.webp');
 							</span>
 
 							<span class="why-pillar-card__mobile-media" aria-hidden="true">
-								<?php if (! empty($pillar['image'])) : ?>
-									<img src="<?php echo esc_url($pillar['image']); ?>" alt="" loading="lazy" width="720" height="520" />
-								<?php endif; ?>
+								<span class="why-pillar-card__mobile-media-inner">
+									<?php if (! empty($pillar['image'])) : ?>
+										<img src="<?php echo esc_url($pillar['image']); ?>" alt="" loading="lazy" width="720" height="520" />
+									<?php endif; ?>
+								</span>
 							</span>
 						</button>
 					<?php endforeach; ?>
 				</div>
 
-				<div class="why-scene__actions" data-reveal>
+				<div class="why-scene__actions" data-reveal data-why-motion="cta">
 					<a class="premium-pill-button premium-pill-button--blue premium-pill-button--xl premium-pill-button--rounded" href="<?php echo esc_url($consultation); ?>">
 						<span class="premium-pill-button__label"><?php esc_html_e('Plan uw showroombezoek', 'keuken-centrum'); ?></span>
 						<span class="premium-pill-button__badge" aria-hidden="true"><span class="premium-pill-button__icon">→</span></span>
@@ -167,61 +171,67 @@ $cbw_logo       = home_url('/wp-content/uploads/cbw.webp');
 				</div>
 			</div>
 
-			<aside class="why-stage" data-reveal>
-				<div class="why-stage__glow" aria-hidden="true"></div>
-				<div class="why-stage__frame">
-					<div class="why-stage__viewport">
-						<?php if (! empty($active['image'])) : ?>
-							<img class="why-stage__image" data-why-image src="<?php echo esc_url($active['image']); ?>" alt="<?php echo esc_attr($active['image_alt']); ?>" loading="lazy" width="900" height="1000" />
-						<?php endif; ?>
-						<div class="why-stage__scrim" aria-hidden="true"></div>
-						<div class="why-stage__wash" aria-hidden="true"></div>
+			<aside class="why-stage">
+				<div class="why-stage__sticky">
+					<div class="why-stage__glow" aria-hidden="true"></div>
+					<div class="why-stage__frame" data-reveal data-why-motion="frame">
+						<div class="why-stage__viewport">
+							<?php if (! empty($active['image'])) : ?>
+								<img class="why-stage__image is-active" data-why-image src="<?php echo esc_url($active['image']); ?>" alt="<?php echo esc_attr($active['image_alt']); ?>" width="900" height="810" />
+							<?php endif; ?>
+							<div class="why-stage__scrim" aria-hidden="true"></div>
+							<div class="why-stage__wash" aria-hidden="true"></div>
 
-						<span class="why-stage__corner why-stage__corner--tl" aria-hidden="true"></span>
-						<span class="why-stage__corner why-stage__corner--tr" aria-hidden="true"></span>
-						<span class="why-stage__corner why-stage__corner--bl" aria-hidden="true"></span>
-						<span class="why-stage__corner why-stage__corner--br" aria-hidden="true"></span>
+							<span class="why-stage__corner why-stage__corner--tl" aria-hidden="true"></span>
+							<span class="why-stage__corner why-stage__corner--tr" aria-hidden="true"></span>
+							<span class="why-stage__corner why-stage__corner--bl" aria-hidden="true"></span>
+							<span class="why-stage__corner why-stage__corner--br" aria-hidden="true"></span>
 
-						<div class="why-stage__meta">
-							<span class="why-stage__accent" data-why-accent><?php echo esc_html($active['accent']); ?></span>
-							<p class="why-stage__count">
-								<span data-why-number><?php echo esc_html($active['number']); ?></span>
-								<span>/ 04</span>
-							</p>
-						</div>
+							<div class="why-stage__meta">
+								<span class="why-stage__accent" data-why-accent><?php echo esc_html($active['accent']); ?></span>
+								<p class="why-stage__count">
+									<span data-why-number><?php echo esc_html($active['number']); ?></span>
+									<span>/ 04</span>
+								</p>
+							</div>
 
-						<div class="why-stage__caption">
-							<p class="why-stage__eyebrow">
-								<?php esc_html_e('Kenmerk', 'keuken-centrum'); ?>
-								<span data-why-feature-index>1</span>
-							</p>
-							<p class="why-stage__title" data-why-title><?php echo esc_html($active['title']); ?></p>
+							<div class="why-stage__caption">
+								<div class="why-stage__caption-copy" data-why-caption>
+									<p class="why-stage__eyebrow">
+										<?php esc_html_e('Kenmerk', 'keuken-centrum'); ?>
+										<span data-why-feature-index>1</span>
+									</p>
+									<p class="why-stage__title" data-why-title><?php echo esc_html($active['title']); ?></p>
+								</div>
 
-							<div class="why-stage__progress" aria-hidden="true">
-								<?php foreach ($pillars as $index => $pillar) : ?>
-									<span class="why-stage__progress-track">
-										<span class="why-stage__progress-fill<?php echo 0 === $index ? ' is-active' : ''; ?>" data-why-progress="<?php echo esc_attr($pillar['id']); ?>"></span>
-									</span>
-								<?php endforeach; ?>
+								<div class="why-stage__progress" aria-hidden="true">
+									<?php foreach ($pillars as $index => $pillar) : ?>
+										<span class="why-stage__progress-track">
+											<span class="why-stage__progress-fill<?php echo 0 === $index ? ' is-active' : ''; ?>" data-why-progress="<?php echo esc_attr($pillar['id']); ?>"></span>
+										</span>
+									<?php endforeach; ?>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
 
-				<div class="why-stage__seal" aria-label="<?php esc_attr_e('45 plus jaar ervaring', 'keuken-centrum'); ?>">
-					<span class="why-stage__seal-value">45+</span>
-					<span class="why-stage__seal-label"><?php esc_html_e('Jaar Ervaring', 'keuken-centrum'); ?></span>
-				</div>
-
-				<div class="why-stage__swatches" aria-label="<?php esc_attr_e('Materiaalvoorbeelden', 'keuken-centrum'); ?>">
-					<?php foreach ($swatches as $swatch) : ?>
-						<div class="why-stage__swatch">
-							<?php if (! empty($swatch['image'])) : ?>
-								<img src="<?php echo esc_url($swatch['image']); ?>" alt="" loading="lazy" width="260" height="160" />
-							<?php endif; ?>
-							<span><?php echo esc_html($swatch['label']); ?></span>
+					<div class="why-stage__seal" data-reveal data-why-motion="seal" aria-label="<?php esc_attr_e('45 plus jaar ervaring', 'keuken-centrum'); ?>">
+						<div class="why-stage__seal-float">
+							<span class="why-stage__seal-value">45+</span>
+							<span class="why-stage__seal-label"><?php esc_html_e('Jaar Ervaring', 'keuken-centrum'); ?></span>
 						</div>
-					<?php endforeach; ?>
+					</div>
+
+					<div class="why-stage__swatches" data-reveal data-why-motion="swatches" aria-label="<?php esc_attr_e('Materiaalvoorbeelden', 'keuken-centrum'); ?>">
+						<?php foreach ($swatches as $swatch) : ?>
+							<div class="why-stage__swatch">
+								<?php if (! empty($swatch['image'])) : ?>
+									<img src="<?php echo esc_url($swatch['image']); ?>" alt="" loading="lazy" width="260" height="160" />
+								<?php endif; ?>
+								<span><?php echo esc_html($swatch['label']); ?></span>
+							</div>
+						<?php endforeach; ?>
+					</div>
 				</div>
 			</aside>
 		</div>

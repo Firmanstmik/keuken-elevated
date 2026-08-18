@@ -656,18 +656,99 @@
 	document.querySelectorAll("[data-why-pillars]").forEach((section) => {
 		const buttons = [...section.querySelectorAll("[data-why-pillar]")];
 		const stage = section.querySelector(".why-stage");
-		// Scope to stage — pillar buttons also carry data-why-* attrs for sync payloads.
-		const image = stage?.querySelector("[data-why-image]");
+		const viewport = stage?.querySelector(".why-stage__viewport");
 		const title = stage?.querySelector("[data-why-title]");
 		const accent = stage?.querySelector("[data-why-accent]");
 		const number = stage?.querySelector("[data-why-number]");
 		const featureIndex = stage?.querySelector("[data-why-feature-index]");
+		const caption = stage?.querySelector("[data-why-caption]");
 		const progress = [...(stage?.querySelectorAll("[data-why-progress]") || [])];
 		if (!buttons.length) return;
 
 		let pinnedId = buttons.find((button) => button.classList.contains("is-active"))?.dataset.whyId || buttons[0].dataset.whyId;
 		let hoveredId = null;
-		let imageSwapTimer = 0;
+		let captionTimer = 0;
+		let activeImageSrc = viewport?.querySelector(".why-stage__image.is-active")?.getAttribute("src") || "";
+
+		const warmImages = () => {
+			buttons.forEach((button) => {
+				if (!button.dataset.pillarImage) return;
+				const img = new Image();
+				img.src = button.dataset.pillarImage;
+			});
+		};
+
+		if ("IntersectionObserver" in window) {
+			const warmer = new IntersectionObserver((entries) => {
+				if (!entries.some((entry) => entry.isIntersecting)) return;
+				warmImages();
+				warmer.disconnect();
+			}, { rootMargin: "400px" });
+			warmer.observe(section);
+		} else {
+			warmImages();
+		}
+
+		const swapImage = (nextSrc, nextAlt) => {
+			if (!viewport || !nextSrc || nextSrc === activeImageSrc) return;
+			const current = viewport.querySelector(".why-stage__image.is-active");
+			const incoming = document.createElement("img");
+			incoming.className = "why-stage__image";
+			incoming.src = nextSrc;
+			incoming.alt = nextAlt || "";
+			incoming.width = 900;
+			incoming.height = 810;
+			incoming.setAttribute("data-why-image", "");
+			viewport.insertBefore(incoming, viewport.firstChild);
+			activeImageSrc = nextSrc;
+			void incoming.offsetWidth;
+
+			const activate = () => {
+				incoming.classList.add("is-active");
+				if (current) {
+					current.classList.remove("is-active");
+					current.classList.add("is-exiting");
+					window.setTimeout(() => current.remove(), reduceMotion ? 0 : 780);
+				}
+			};
+
+			if (reduceMotion || incoming.complete) {
+				activate();
+				return;
+			}
+			incoming.addEventListener("load", activate, { once: true });
+		};
+
+		const syncCaption = (button) => {
+			if (!button) return;
+			const nextTitle = button.dataset.pillarTitle || "";
+			const nextAccent = button.dataset.pillarAccent || "";
+			const nextNumber = button.dataset.pillarNumber || "";
+			const nextIndex = String(buttons.indexOf(button) + 1);
+			const apply = () => {
+				if (title) title.textContent = nextTitle;
+				if (accent) accent.textContent = nextAccent;
+				if (number) number.textContent = nextNumber;
+				if (featureIndex) featureIndex.textContent = nextIndex;
+			};
+
+			if (!caption || reduceMotion || (title && title.textContent === nextTitle)) {
+				apply();
+				return;
+			}
+
+			window.clearTimeout(captionTimer);
+			caption.classList.remove("is-entering");
+			caption.classList.add("is-leaving");
+			captionTimer = window.setTimeout(() => {
+				apply();
+				caption.classList.remove("is-leaving");
+				caption.classList.add("is-entering");
+				requestAnimationFrame(() => {
+					requestAnimationFrame(() => caption.classList.remove("is-entering"));
+				});
+			}, 450);
+		};
 
 		const syncStage = (button) => {
 			if (!button) return;
@@ -681,26 +762,8 @@
 				bar.classList.toggle("is-active", bar.dataset.whyProgress === button.dataset.whyId);
 			});
 
-			if (title) title.textContent = button.dataset.pillarTitle || "";
-			if (accent) accent.textContent = button.dataset.pillarAccent || "";
-			if (number) number.textContent = button.dataset.pillarNumber || "";
-			if (featureIndex) featureIndex.textContent = String(buttons.indexOf(button) + 1);
-
-			if (!image) return;
-			const nextSrc = button.dataset.pillarImage || image.getAttribute("src") || "";
-			const nextAlt = button.dataset.pillarImageAlt || image.getAttribute("alt") || "";
-			if (image.getAttribute("src") === nextSrc) {
-				image.setAttribute("alt", nextAlt);
-				return;
-			}
-
-			window.clearTimeout(imageSwapTimer);
-			image.classList.add("is-swapping");
-			imageSwapTimer = window.setTimeout(() => {
-				image.setAttribute("src", nextSrc);
-				image.setAttribute("alt", nextAlt);
-				image.classList.remove("is-swapping");
-			}, reduceMotion ? 0 : 180);
+			syncCaption(button);
+			swapImage(button.dataset.pillarImage || "", button.dataset.pillarImageAlt || "");
 		};
 
 		const render = () => {
