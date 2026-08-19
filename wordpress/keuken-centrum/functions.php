@@ -114,22 +114,27 @@ add_filter('wp_resource_hints', 'kc_resource_hints', 10, 2);
  * Keep theme CSS/JS out of LiteSpeed combine/UCSS so homepage parity rules are not stripped.
  */
 function kc_litespeed_exclude_theme_assets(string $html, string $handle): string {
-	if ('keuken-centrum-theme' !== $handle) {
+	if ('keuken-centrum-theme' !== $handle || str_contains($html, 'data-no-optimize')) {
 		return $html;
 	}
 
-	if (str_starts_with($html, '<script') && ! str_contains($html, ' defer')) {
-		$html = str_replace('<script ', '<script defer ', $html);
-	}
-
-	if (! str_contains($html, 'data-no-optimize')) {
-		$html = str_replace('<link ', '<link data-no-optimize="1" ', str_replace('<script ', '<script data-no-optimize="1" ', $html));
-	}
-
-	return $html;
+	return str_replace('<link ', '<link data-no-optimize="1" ', str_replace('<script ', '<script data-no-optimize="1" ', $html));
 }
 add_filter('style_loader_tag', 'kc_litespeed_exclude_theme_assets', 10, 2);
 add_filter('script_loader_tag', 'kc_litespeed_exclude_theme_assets', 10, 2);
+
+/**
+ * Recovery: LiteSpeed full-page cache was hanging anonymous homepage requests.
+ * Origin PHP renders in ~2s; bypass cache for the front page until revalidated.
+ */
+function kc_litespeed_front_page_nocache(): void {
+	if (is_admin() || ! is_front_page()) {
+		return;
+	}
+
+	do_action('litespeed_control_set_nocache', 'kc_front_page_recovery');
+}
+add_action('wp', 'kc_litespeed_front_page_nocache', 1);
 
 /**
  * Reads a site setting from ACF options or theme mods.
