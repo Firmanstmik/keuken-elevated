@@ -727,7 +727,7 @@
 			return visible || layers.find((node) => node.classList.contains("is-active")) || layers[0] || null;
 		};
 
-		const runImageActivate = (incoming, current, token) => {
+		const runImageActivate = (incoming, current, token, nextSrc) => {
 			if (token !== swapToken || !incoming.isConnected) {
 				incoming.remove();
 				return;
@@ -740,6 +740,7 @@
 				}
 
 				incoming.classList.add("is-active");
+				activeImageSrc = nextSrc;
 				if (current && current.isConnected) {
 					current.classList.remove("is-active");
 					current.classList.add("is-exiting");
@@ -760,7 +761,10 @@
 		};
 
 		const swapImage = (nextSrc, nextAlt) => {
-			if (!viewport || !nextSrc || nextSrc === activeImageSrc) return;
+			if (!viewport || !nextSrc) return;
+
+			const currentSrc = getCurrentImage()?.getAttribute("src") || activeImageSrc || "";
+			if (nextSrc === currentSrc) return;
 
 			swapToken += 1;
 			const token = swapToken;
@@ -776,17 +780,20 @@
 			incoming.decoding = "async";
 			viewport.insertBefore(incoming, viewport.firstChild);
 
-			const activate = () => runImageActivate(incoming, current, token);
+			let activated = false;
+			const activate = () => {
+				if (activated || token !== swapToken) return;
+				activated = true;
+				runImageActivate(incoming, current, token, nextSrc);
+			};
 
 			incoming.addEventListener("load", activate, { once: true });
 			incoming.addEventListener("error", () => {
 				if (token !== swapToken) return;
 				incoming.remove();
-				activeImageSrc = current?.getAttribute("src") || activeImageSrc;
 			}, { once: true });
 
 			incoming.src = nextSrc;
-			activeImageSrc = nextSrc;
 			void incoming.offsetWidth;
 
 			if (incoming.complete) {
