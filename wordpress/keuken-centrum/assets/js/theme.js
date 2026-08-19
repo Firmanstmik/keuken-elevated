@@ -710,22 +710,16 @@
 			warmImages();
 		}
 
-		const cleanupStaleImages = (keep) => {
-			if (!viewport) return;
-			viewport.querySelectorAll(".why-stage__image").forEach((node) => {
-				if (node !== keep) node.remove();
-			});
+		const normalizeSrc = (src) => {
+			if (!src) return "";
+			try {
+				return new URL(src, window.location.href).href;
+			} catch (error) {
+				return src;
+			}
 		};
 
-		const getCurrentImage = () => {
-			if (!viewport) return null;
-			const layers = [...viewport.querySelectorAll(".why-stage__image")];
-			const visible = layers.find((node) => {
-				const opacity = Number.parseFloat(getComputedStyle(node).opacity || "0");
-				return opacity > 0.05;
-			});
-			return visible || layers.find((node) => node.classList.contains("is-active")) || layers[0] || null;
-		};
+		const getActiveImage = () => viewport?.querySelector(".why-stage__image.is-active") || null;
 
 		const runImageActivate = (incoming, current, token, nextSrc) => {
 			if (token !== swapToken || !incoming.isConnected) {
@@ -763,13 +757,14 @@
 		const swapImage = (nextSrc, nextAlt) => {
 			if (!viewport || !nextSrc) return;
 
-			const currentSrc = getCurrentImage()?.getAttribute("src") || activeImageSrc || "";
-			if (nextSrc === currentSrc) return;
+			const current = getActiveImage();
+			const currentSrc = current?.getAttribute("src") || activeImageSrc || "";
+			if (normalizeSrc(nextSrc) === normalizeSrc(currentSrc)) return;
 
 			swapToken += 1;
 			const token = swapToken;
-			const current = getCurrentImage();
-			cleanupStaleImages(current);
+
+			viewport.querySelectorAll(".why-stage__image:not(.is-active):not(.is-exiting)").forEach((node) => node.remove());
 
 			const incoming = document.createElement("img");
 			incoming.className = "why-stage__image";
