@@ -52,23 +52,25 @@ $concrete = kc_theme_img('mat-concrete.jpg');
 	<div class="collections-section__veil" aria-hidden="true"></div>
 	<div class="collections-section__ambient" aria-hidden="true"></div>
 
-	<div class="site-shell collections-section__intro" data-reveal>
-		<?php kc_section_chapter('06', __('Collecties', 'keuken-centrum')); ?>
-		<div class="section-label-row">
-			<span class="kitchen-eyebrow-mark" aria-hidden="true"></span>
-			<p class="section-eyebrow section-eyebrow--gold"><?php esc_html_e('Onze Collecties', 'keuken-centrum'); ?></p>
+	<div class="site-shell">
+		<div class="collections-section__intro" data-reveal>
+			<?php kc_section_chapter('06', __('Collecties', 'keuken-centrum')); ?>
+			<div class="section-label-row">
+				<span class="kitchen-eyebrow-mark" aria-hidden="true"></span>
+				<p class="section-eyebrow section-eyebrow--gold"><?php esc_html_e('Onze Collecties', 'keuken-centrum'); ?></p>
+			</div>
+			<h2 class="section-title">
+				<?php esc_html_e('Ontdek uw', 'keuken-centrum'); ?>
+				<em class="text-accent"><?php esc_html_e('Droomkeuken', 'keuken-centrum'); ?></em>
+			</h2>
+			<p class="collections-section__lede">
+				<?php esc_html_e('Vier zorgvuldig samengestelde stijlwerelden, elk met een unieke architectonische taal van materiaal, compositie en sfeer.', 'keuken-centrum'); ?>
+			</p>
+			<a class="premium-pill-button premium-pill-button--blue premium-pill-button--sm" href="<?php echo esc_url($archive_url); ?>">
+				<span class="premium-pill-button__label"><?php esc_html_e('Alle keukens bekijken', 'keuken-centrum'); ?></span>
+				<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
+			</a>
 		</div>
-		<h2 class="section-title">
-			<?php esc_html_e('Ontdek uw', 'keuken-centrum'); ?>
-			<em class="text-accent"><?php esc_html_e('Droomkeuken', 'keuken-centrum'); ?></em>
-		</h2>
-		<p class="collections-section__lede">
-			<?php esc_html_e('Vier zorgvuldig samengestelde stijlwerelden, elk met een unieke architectonische taal van materiaal, compositie en sfeer.', 'keuken-centrum'); ?>
-		</p>
-		<a class="premium-pill-button premium-pill-button--blue" href="<?php echo esc_url($archive_url); ?>">
-			<span class="premium-pill-button__label"><?php esc_html_e('Alle keukens bekijken', 'keuken-centrum'); ?></span>
-			<span class="premium-pill-button__badge" aria-hidden="true"><span class="premium-pill-button__icon">→</span></span>
-		</a>
 	</div>
 
 	<div class="collections-gallery" data-collections-gallery>
