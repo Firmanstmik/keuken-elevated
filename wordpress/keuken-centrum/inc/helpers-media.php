@@ -14,7 +14,13 @@ if (! defined('ABSPATH')) {
  */
 function kc_theme_img(string $relative): string {
 	$relative = ltrim($relative, '/');
-	$path     = get_theme_file_path('assets/img/' . $relative);
+	if (preg_match('/\.(jpe?g|png)$/i', $relative)) {
+		$webp_rel = preg_replace('/\.(jpe?g|png)$/i', '.webp', $relative);
+		if (is_string($webp_rel) && file_exists(get_theme_file_path('assets/img/' . $webp_rel))) {
+			$relative = $webp_rel;
+		}
+	}
+	$path = get_theme_file_path('assets/img/' . $relative);
 	if (! file_exists($path)) {
 		return '';
 	}

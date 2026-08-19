@@ -863,14 +863,14 @@
 	});
 
 	document.querySelectorAll("[data-journey-hotspots]").forEach((mockup) => {
-		const url = mockup.dataset.hotspotsUrl;
 		const categories = JSON.parse(mockup.dataset.categories || "[]");
 		const initialSelections = JSON.parse(mockup.dataset.selections || "{}");
+		const inlineHotspots = JSON.parse(mockup.dataset.hotspots || "[]");
 		const layer = mockup.querySelector(".journey-config-hotspots");
 		const tabs = [...mockup.querySelectorAll("[data-journey-tab]")];
 		const currentLabel = mockup.querySelector("[data-journey-current-label]");
 		const optionsWrap = mockup.querySelector("[data-journey-options]");
-		if (!url || !layer || !categories.length || !optionsWrap) return;
+		if (!layer || !categories.length || !optionsWrap) return;
 
 		const keyMap = {
 			front: "front",
@@ -885,7 +885,9 @@
 
 		const categoryMap = new Map(categories.map((category) => [category.id, category]));
 		const selections = { ...initialSelections };
-		let hotspotsData = [];
+		let hotspotsData = Array.isArray(inlineHotspots)
+			? inlineHotspots.filter((hotspot) => categoryMap.has(hotspot.id))
+			: [];
 		let activeCategoryId = categories[0]?.id || null;
 		let hoveredCategoryId = null;
 
@@ -896,6 +898,19 @@
 				.replace(/>/g, "&gt;")
 				.replace(/"/g, "&quot;")
 				.replace(/'/g, "&#39;");
+
+		const tooltipPlacement = (x, y) => {
+			const px = parseFloat(x) || 50;
+			const py = parseFloat(y) || 50;
+			const sides = [
+				["top", py],
+				["bottom", 100 - py],
+				["left", px],
+				["right", 100 - px],
+			];
+			sides.sort((a, b) => b[1] - a[1]);
+			return sides[0][0];
+		};
 
 		const getCategory = (id) => categoryMap.get(id) || null;
 		const getSelection = (id) => {
@@ -923,32 +938,18 @@
 			});
 		};
 
-		const bindOptionEvents = () => {
-			optionsWrap.querySelectorAll("[data-journey-option]").forEach((button) => {
-				button.addEventListener("click", () => {
-					const categoryId = button.dataset.categoryId || "";
-					const optionId = button.dataset.optionId || "";
-					const category = getCategory(categoryId);
-					const option = category?.options.find((item) => item.id === optionId);
-					if (!category || !option) return;
-					selections[categoryId] = { id: option.id, color: option.color, name: option.name };
-					activeCategoryId = categoryId;
-					render();
-				});
-			});
-		};
-
 		const renderOptions = () => {
 			const category = getCategory(activeCategoryId);
 			if (!category) return;
 			if (currentLabel) currentLabel.textContent = category.label || "";
 			optionsWrap.innerHTML = category.options
+				.slice(0, 4)
 				.map((option) => {
 					const selected = getSelection(activeCategoryId)?.id === option.id;
 					return `
 						<button
 							type="button"
-							class="journey-config-option${selected ? " is-selected" : ""}"
+							class="journey-config-option is-entering${selected ? " is-selected" : ""}"
 							data-journey-option
 							data-category-id="${escapeHtml(category.id)}"
 							data-option-id="${escapeHtml(option.id)}"
@@ -960,75 +961,107 @@
 					`;
 				})
 				.join("");
-			bindOptionEvents();
 		};
 
-		const renderHotspots = () => {
-			const visibleId = hoveredCategoryId || activeCategoryId;
-			layer.innerHTML = "";
+		const syncHotspotState = () => {
+			const anyHovered = hoveredCategoryId !== null;
+			layer.classList.toggle("is-hovering", anyHovered);
+			layer.querySelectorAll(".journey-config-hotspot").forEach((wrapper) => {
+				const id = wrapper.dataset.hotspotId || "";
+				const hovered = id === hoveredCategoryId;
+				const active = id === activeCategoryId;
+				wrapper.classList.toggle("is-hovered", hovered);
+				wrapper.classList.toggle("is-active", active && !anyHovered);
+				const selection = getSelection(id);
+				const dot = wrapper.querySelector(".journey-config-hotspot__dot");
+				const desc = wrapper.querySelector("[data-hotspot-desc]");
+				if (dot && selection) dot.style.backgroundColor = selection.color;
+				if (desc && selection) desc.textContent = selection.description || selection.name || "";
+			});
+		};
 
+		const buildHotspots = () => {
+			layer.replaceChildren();
 			hotspotsData.forEach((hotspot) => {
 				const category = getCategory(hotspot.id);
 				const selection = getSelection(hotspot.id);
 				if (!category || !selection) return;
-
-				const selectedOption =
-					category.options.find((option) => option.id === selection.id) || category.options[0];
-				const active = hotspot.id === visibleId;
 				const wrapper = document.createElement("div");
-				wrapper.className = `journey-config-hotspot${active ? " is-active" : ""}`;
+				wrapper.className = "journey-config-hotspot";
+				wrapper.dataset.hotspotId = hotspot.id;
 				wrapper.style.left = hotspot.x;
 				wrapper.style.top = hotspot.y;
-
+				const place = tooltipPlacement(hotspot.x, hotspot.y);
 				wrapper.innerHTML = `
-					<button
-						type="button"
-						class="journey-config-hotspot__button"
-						aria-label="Configureer ${escapeHtml(category.label)}"
-					>
-						<span class="journey-config-hotspot__halo"></span>
-						<span class="journey-config-hotspot__ring"></span>
-						<span class="journey-config-hotspot__dot" style="background-color:${escapeHtml(selectedOption.color)}"></span>
+					<button type="button" class="journey-config-hotspot__button" aria-label="Configureer ${escapeHtml(category.label)}">
+						<span class="journey-config-hotspot__mark">
+							<span class="journey-config-hotspot__halo"></span>
+							<span class="journey-config-hotspot__ring"></span>
+							<span class="journey-config-hotspot__dot" style="background-color:${escapeHtml(selection.color)}"></span>
+						</span>
 					</button>
-					<div class="journey-config-hotspot__tooltip">
+					<div class="journey-config-hotspot__tooltip is-${place}">
 						<span class="journey-config-hotspot__tooltip-label">Configuratie</span>
 						<strong>${escapeHtml(category.label)}</strong>
-						<p>${escapeHtml(selectedOption.description || selectedOption.name)}</p>
+						<div class="journey-config-hotspot__tooltip-rule"></div>
+						<p data-hotspot-desc>${escapeHtml(selection.description || selection.name)}</p>
 					</div>
 				`;
-
-				const button = wrapper.querySelector(".journey-config-hotspot__button");
-				button?.addEventListener("mouseenter", () => {
-					hoveredCategoryId = hotspot.id;
-					renderHotspots();
-				});
-				button?.addEventListener("mouseleave", () => {
-					hoveredCategoryId = null;
-					renderHotspots();
-				});
-				button?.addEventListener("focus", () => {
-					hoveredCategoryId = hotspot.id;
-					renderHotspots();
-				});
-				button?.addEventListener("blur", () => {
-					hoveredCategoryId = null;
-					renderHotspots();
-				});
-				button?.addEventListener("click", () => {
-					activeCategoryId = hotspot.id;
-					hoveredCategoryId = null;
-					render();
-				});
-
 				layer.appendChild(wrapper);
 			});
+			syncHotspotState();
 		};
 
 		const render = () => {
 			renderTabs();
 			renderOptions();
-			renderHotspots();
+			syncHotspotState();
 		};
+
+		layer.addEventListener("mouseover", (event) => {
+			const hotspot = event.target.closest(".journey-config-hotspot");
+			if (!hotspot || !layer.contains(hotspot)) return;
+			hoveredCategoryId = hotspot.dataset.hotspotId || null;
+			syncHotspotState();
+		});
+		layer.addEventListener("mouseout", (event) => {
+			const next = event.relatedTarget;
+			if (next && layer.contains(next)) return;
+			hoveredCategoryId = null;
+			syncHotspotState();
+		});
+		layer.addEventListener("click", (event) => {
+			const hotspot = event.target.closest(".journey-config-hotspot");
+			if (!hotspot) return;
+			activeCategoryId = hotspot.dataset.hotspotId || activeCategoryId;
+			hoveredCategoryId = null;
+			render();
+		});
+		layer.addEventListener("focusin", (event) => {
+			const hotspot = event.target.closest(".journey-config-hotspot");
+			if (!hotspot) return;
+			hoveredCategoryId = hotspot.dataset.hotspotId || null;
+			syncHotspotState();
+		});
+		layer.addEventListener("focusout", (event) => {
+			const next = event.relatedTarget;
+			if (next && layer.contains(next)) return;
+			hoveredCategoryId = null;
+			syncHotspotState();
+		});
+
+		optionsWrap.addEventListener("click", (event) => {
+			const button = event.target.closest("[data-journey-option]");
+			if (!button) return;
+			const categoryId = button.dataset.categoryId || "";
+			const optionId = button.dataset.optionId || "";
+			const category = getCategory(categoryId);
+			const option = category?.options.find((item) => item.id === optionId);
+			if (!category || !option) return;
+			selections[categoryId] = { id: option.id, color: option.color, name: option.name };
+			activeCategoryId = categoryId;
+			render();
+		});
 
 		tabs.forEach((tab) => {
 			tab.addEventListener("click", () => {
@@ -1037,6 +1070,25 @@
 				render();
 			});
 		});
+
+		const boot = () => {
+			if (hotspotsData.length && !categoryMap.has(activeCategoryId)) {
+				activeCategoryId = hotspotsData[0].id;
+			}
+			buildHotspots();
+			render();
+		};
+
+		if (hotspotsData.length) {
+			boot();
+			return;
+		}
+
+		const url = mockup.dataset.hotspotsUrl;
+		if (!url) {
+			boot();
+			return;
+		}
 
 		fetch(url)
 			.then((response) => (response.ok ? response.json() : Promise.reject()))
@@ -1048,11 +1100,10 @@
 						y: point.y,
 					}))
 					.filter((hotspot) => categoryMap.has(hotspot.id));
-				if (hotspotsData.length && !categoryMap.has(activeCategoryId)) activeCategoryId = hotspotsData[0].id;
-				render();
+				boot();
 			})
 			.catch(() => {
-				render();
+				boot();
 			});
 	});
 })();

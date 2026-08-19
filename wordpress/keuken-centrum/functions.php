@@ -68,7 +68,7 @@ add_action('after_setup_theme', 'kc_theme_setup');
  * Enqueues the theme assets.
  */
 function kc_enqueue_assets(): void {
-	$fonts_url = 'https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap';
+	$fonts_url = 'https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap';
 
 	wp_enqueue_style('keuken-centrum-fonts', $fonts_url, [], null);
 
@@ -96,14 +96,37 @@ function kc_enqueue_assets(): void {
 add_action('wp_enqueue_scripts', 'kc_enqueue_assets');
 
 /**
+ * Preconnect to Google Fonts and keep theme CSS/JS out of LiteSpeed combine/UCSS.
+ */
+function kc_resource_hints(array $urls, string $relation_type): array {
+	if ('preconnect' === $relation_type) {
+		$urls[] = 'https://fonts.googleapis.com';
+		$urls[] = [
+			'href'        => 'https://fonts.gstatic.com',
+			'crossorigin' => 'anonymous',
+		];
+	}
+	return $urls;
+}
+add_filter('wp_resource_hints', 'kc_resource_hints', 10, 2);
+
+/**
  * Keep theme CSS/JS out of LiteSpeed combine/UCSS so homepage parity rules are not stripped.
  */
 function kc_litespeed_exclude_theme_assets(string $html, string $handle): string {
-	if ('keuken-centrum-theme' !== $handle || str_contains($html, 'data-no-optimize')) {
+	if ('keuken-centrum-theme' !== $handle) {
 		return $html;
 	}
 
-	return str_replace('<link ', '<link data-no-optimize="1" ', str_replace('<script ', '<script data-no-optimize="1" ', $html));
+	if (str_starts_with($html, '<script') && ! str_contains($html, ' defer')) {
+		$html = str_replace('<script ', '<script defer ', $html);
+	}
+
+	if (! str_contains($html, 'data-no-optimize')) {
+		$html = str_replace('<link ', '<link data-no-optimize="1" ', str_replace('<script ', '<script data-no-optimize="1" ', $html));
+	}
+
+	return $html;
 }
 add_filter('style_loader_tag', 'kc_litespeed_exclude_theme_assets', 10, 2);
 add_filter('script_loader_tag', 'kc_litespeed_exclude_theme_assets', 10, 2);

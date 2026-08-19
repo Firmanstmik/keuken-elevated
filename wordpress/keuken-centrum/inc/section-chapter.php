@@ -14,8 +14,8 @@ if (! defined('ABSPATH')) {
 /**
  * Outputs an editorial chapter marker.
  */
-function kc_section_chapter(string $index, string $label, bool $light = false, int $total = 10): void {
-	$classes = 'chapter-mark' . ($light ? ' chapter-mark--light' : '');
+function kc_section_chapter(string $index, string $label, bool $light = false, int $total = 10, string $extra_class = ''): void {
+	$classes = trim('chapter-mark' . ($light ? ' chapter-mark--light' : '') . ' ' . $extra_class);
 	$num     = str_pad(preg_replace('/\D+/', '', $index) ?: $index, 2, '0', STR_PAD_LEFT);
 	$total_s = str_pad((string) $total, 2, '0', STR_PAD_LEFT);
 	?>

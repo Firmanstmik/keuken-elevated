@@ -6,8 +6,20 @@
  */
 
 $base     = kc_theme_img('configurator/klassiek-base.webp');
+$base_sm  = kc_theme_img('configurator/klassiek-base-768.webp');
 $scene    = kc_theme_img('brands/brands-dark-bg.webp');
-$hotspots = get_template_directory_uri() . '/assets/data/hotspots/klassiek.json';
+$start_url = get_post_type_archive_link('kitchen_brand') ?: home_url('/keukens');
+
+$hotspot_positions = [
+	['id' => 'front', 'x' => '63%', 'y' => '75%'],
+	['id' => 'worktop', 'x' => '38%', 'y' => '60%'],
+	['id' => 'sink', 'x' => '53%', 'y' => '59%'],
+	['id' => 'appliances', 'x' => '88%', 'y' => '51%'],
+	['id' => 'quooker', 'x' => '52%', 'y' => '50%'],
+	['id' => 'bora', 'x' => '46%', 'y' => '54%'],
+	['id' => 'handles', 'x' => '11%', 'y' => '60%'],
+	['id' => 'lighting', 'x' => '49%', 'y' => '22%'],
+];
 
 $categories = [
 	[
@@ -104,33 +116,56 @@ $initial_selections = [
 ];
 
 $active_category = $categories[0];
-$start_url       = home_url('/configurator');
+$kses_icon       = [
+	'svg'    => ['viewBox' => true, 'fill' => true, 'aria-hidden' => true, 'width' => true, 'height' => true],
+	'path'   => ['d' => true, 'stroke' => true, 'stroke-width' => true, 'stroke-linecap' => true, 'stroke-linejoin' => true],
+	'circle' => ['cx' => true, 'cy' => true, 'r' => true, 'stroke' => true, 'stroke-width' => true, 'fill' => true],
+	'rect'   => ['x' => true, 'y' => true, 'width' => true, 'height' => true, 'rx' => true, 'stroke' => true, 'stroke-width' => true, 'fill' => true],
+];
+$icon_tune = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M3 7.5h9.25M16.75 7.5H21M3 16.5h4.25M8.75 16.5H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="14.75" cy="7.5" r="2.25" stroke="currentColor" stroke-width="1.5"/><circle cx="6.5" cy="16.5" r="2.25" stroke="currentColor" stroke-width="1.5"/></svg>';
+$icon_swatch = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><rect x="2.75" y="3.25" width="12.5" height="12.5" rx="2.4" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 15.75V18.4A2.6 2.6 0 0 0 13.1 21h6.15A2.6 2.6 0 0 0 21.85 18.4v-6.15A2.6 2.6 0 0 0 19.25 9.65H15.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
+$icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M4.75 13.25v3.1A2.4 2.4 0 0 0 7.15 18.75h.6v-5.5h-3ZM19.25 13.25v3.1a2.4 2.4 0 0 1-2.4 2.4h-.6v-5.5h3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M4.75 13.25a7.25 7.25 0 0 1 14.5 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
 ?>
-<section class="journey-config-scene journey-config-scene--react section-shell"<?php echo $scene ? ' style="--journey-scene:url(' . esc_url($scene) . ')"' : ''; ?>>
+<section class="journey-config-scene journey-config-scene--react section-shell" id="showroom-journey">
+	<div class="journey-config-scene__photo"<?php echo $scene ? ' style="background-image:url(' . esc_url($scene) . ')"' : ''; ?> aria-hidden="true"></div>
+	<div class="journey-config-scene__veil" aria-hidden="true"></div>
+	<div class="journey-config-scene__ambient" aria-hidden="true"></div>
+
 	<div class="site-shell journey-config-scene__inner">
-		<?php kc_section_chapter('04', __('Digitale beleving', 'keuken-centrum'), true); ?>
+		<?php kc_section_chapter('04', __('Digitale beleving', 'keuken-centrum'), true, 10, 'chapter-mark--sentence'); ?>
 
 		<div class="journey-config-grid">
 			<div
 				class="journey-config-stage"
 				data-journey-hotspots
-				data-hotspots-url="<?php echo esc_url($hotspots); ?>"
+				data-hotspots="<?php echo esc_attr(wp_json_encode($hotspot_positions)); ?>"
 				data-categories="<?php echo esc_attr(wp_json_encode($categories)); ?>"
 				data-selections="<?php echo esc_attr(wp_json_encode($initial_selections)); ?>"
-				data-reveal
 			>
-				<div class="journey-config-stage__badge"><?php esc_html_e('Premium configurator', 'keuken-centrum'); ?></div>
+				<div class="journey-config-stage__badge" data-reveal data-journey-motion="badge"><?php esc_html_e('Premium configurator', 'keuken-centrum'); ?></div>
 
-				<div class="journey-config-mockup">
+				<div class="journey-config-mockup" data-reveal data-journey-motion="mockup">
 					<div class="journey-config-topbar">
-						<span></span><span></span><span></span>
-						<b><?php esc_html_e('Keuken Centrum', 'keuken-centrum'); ?></b>
+						<div class="journey-config-topbar__dots" aria-hidden="true"><span></span><span></span><span></span></div>
+						<div class="journey-config-topbar__title"><?php esc_html_e('Keuken Centrum', 'keuken-centrum'); ?></div>
+						<div class="journey-config-topbar__spacer" aria-hidden="true"></div>
 					</div>
 
 					<div class="journey-config-mockup__body">
 						<div class="journey-config-mockup__viewport">
 							<?php if ($base) : ?>
-								<img src="<?php echo esc_url($base); ?>" alt="<?php esc_attr_e('Klassieke keuken configurator', 'keuken-centrum'); ?>" loading="lazy" width="1200" height="900" />
+								<img
+									src="<?php echo esc_url($base); ?>"
+									<?php if ($base_sm) : ?>
+										srcset="<?php echo esc_url($base_sm); ?> 768w, <?php echo esc_url($base); ?> 1536w"
+										sizes="(min-width: 1024px) 32vw, 92vw"
+									<?php endif; ?>
+									alt="<?php esc_attr_e('Klassieke keuken configurator', 'keuken-centrum'); ?>"
+									loading="lazy"
+									decoding="async"
+									width="1536"
+									height="1024"
+								/>
 							<?php endif; ?>
 							<div class="journey-config-hotspots" aria-live="polite"></div>
 						</div>
@@ -154,7 +189,7 @@ $start_url       = home_url('/configurator');
 
 							<div class="journey-config-sidebar__head">
 								<p><?php esc_html_e('Kies', 'keuken-centrum'); ?></p>
-								<h3 data-journey-current-label><?php echo esc_html($active_category['label']); ?></h3>
+								<p class="journey-config-sidebar__label" data-journey-current-label><?php echo esc_html($active_category['label']); ?></p>
 							</div>
 
 							<div class="journey-config-sidebar__options" data-journey-options>
@@ -173,14 +208,16 @@ $start_url       = home_url('/configurator');
 									</button>
 								<?php endforeach; ?>
 							</div>
+
+							<div class="journey-config-sidebar__footer">
+								<a href="<?php echo esc_url($start_url); ?>"><?php esc_html_e('Volledig ontwerp', 'keuken-centrum'); ?></a>
+							</div>
 						</div>
 					</div>
 				</div>
 
-				<div class="journey-config-caption">
-					<span class="journey-config-caption__icon" aria-hidden="true">
-						<svg viewBox="0 0 24 24" fill="none"><path d="M5 7.75h14M7 12h10M9 16.25h6" stroke="currentColor" stroke-width="1.45" stroke-linecap="round"/></svg>
-					</span>
+				<div class="journey-config-caption" data-reveal data-journey-motion="caption">
+					<span class="journey-config-caption__icon" aria-hidden="true"><?php echo wp_kses($icon_tune, $kses_icon); ?></span>
 					<div>
 						<p><?php esc_html_e('Digitale Showroom', 'keuken-centrum'); ?></p>
 						<p><?php esc_html_e('Configureer materialen, apparatuur en afwerkingen voordat u de showroom bezoekt.', 'keuken-centrum'); ?></p>
@@ -188,40 +225,27 @@ $start_url       = home_url('/configurator');
 				</div>
 			</div>
 
-			<div class="journey-config-copy" data-reveal>
-				<div class="section-label-row">
-					<span class="kitchen-eyebrow-mark" aria-hidden="true"></span>
-					<p class="section-eyebrow section-eyebrow--gold"><?php esc_html_e('De beleving', 'keuken-centrum'); ?></p>
-				</div>
-
-				<h2 class="section-title section-title--light"><?php esc_html_e('Een showroom die naar u toe komt', 'keuken-centrum'); ?></h2>
+			<div class="journey-config-copy" data-reveal data-journey-motion="copy">
+				<p class="journey-config-copy__eyebrow"><?php esc_html_e('De beleving', 'keuken-centrum'); ?></p>
+				<h2 class="journey-config-copy__title"><?php esc_html_e('Een showroom die naar u toe komt', 'keuken-centrum'); ?></h2>
 				<p class="journey-config-copy__lede"><?php esc_html_e('Onze digitale configurator brengt de volledige luxe showroomervaring naar uw scherm. Ontdek materialen, bekijk combinaties en ontvang een compleet ontwerpvoorstel nog voordat u onze showroom bezoekt.', 'keuken-centrum'); ?></p>
-
 				<div class="journey-config-copy__divider" aria-hidden="true"></div>
-
 				<div class="journey-config-copy__features">
 					<div class="journey-config-copy__feature">
-						<span aria-hidden="true">
-							<svg viewBox="0 0 24 24" fill="none"><path d="M7 7.5h10M7 12h7M7 16.5h5M17 16.5l2.5-2.5M17 16.5 14.5 14" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/></svg>
-						</span>
+						<span aria-hidden="true"><?php echo wp_kses($icon_tune, $kses_icon); ?></span>
 						<p><?php esc_html_e('Interactieve materiaalconfigurator', 'keuken-centrum'); ?></p>
 					</div>
 					<div class="journey-config-copy__feature">
-						<span aria-hidden="true">
-							<svg viewBox="0 0 24 24" fill="none"><path d="M7 16.25c0-2.9 2.35-5.25 5.25-5.25S17.5 13.35 17.5 16.25M8.75 8.5a3.5 3.5 0 1 0 7 0 3.5 3.5 0 0 0-7 0Z" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/></svg>
-						</span>
+						<span aria-hidden="true"><?php echo wp_kses($icon_swatch, $kses_icon); ?></span>
 						<p><?php esc_html_e('Persoonlijke moodboard generatie', 'keuken-centrum'); ?></p>
 					</div>
 					<div class="journey-config-copy__feature">
-						<span aria-hidden="true">
-							<svg viewBox="0 0 24 24" fill="none"><path d="M7 8.5h10M7 12h10M7 15.5h6" stroke="currentColor" stroke-width="1.45" stroke-linecap="round"/><path d="M17 16.25h2.75A1.25 1.25 0 0 0 21 15V7a1.25 1.25 0 0 0-1.25-1.25h-15A1.25 1.25 0 0 0 3.5 7v8A1.25 1.25 0 0 0 4.75 16.25H7l2.2 2.5" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/></svg>
-						</span>
+						<span aria-hidden="true"><?php echo wp_kses($icon_headphone, $kses_icon); ?></span>
 						<p><?php esc_html_e('Persoonlijke ontwerpconsultatie', 'keuken-centrum'); ?></p>
 					</div>
 				</div>
-
 				<div class="journey-config-actions">
-					<a class="premium-pill-button premium-pill-button--blue premium-pill-button--rounded" href="<?php echo esc_url($start_url); ?>">
+					<a class="premium-pill-button premium-pill-button--blue" href="<?php echo esc_url($start_url); ?>">
 						<span class="premium-pill-button__label"><?php esc_html_e('Start uw ontwerp', 'keuken-centrum'); ?></span>
 						<span class="premium-pill-button__badge" aria-hidden="true"><span class="premium-pill-button__icon">→</span></span>
 					</a>
