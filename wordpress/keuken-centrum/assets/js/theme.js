@@ -735,7 +735,7 @@
 
 				incoming.classList.add("is-active");
 				activeImageSrc = nextSrc;
-				if (current && current.isConnected) {
+				if (current && current.isConnected && current !== incoming) {
 					current.classList.remove("is-active");
 					current.classList.add("is-exiting");
 					window.setTimeout(() => {
@@ -749,9 +749,7 @@
 				return;
 			}
 
-			requestAnimationFrame(() => {
-				requestAnimationFrame(commit);
-			});
+			commit();
 		};
 
 		const swapImage = (nextSrc, nextAlt) => {
