@@ -9,7 +9,7 @@ $poster       = kc_theme_img('showroom.jpg');
 $concrete     = kc_theme_img('mat-concrete.jpg');
 $showroom_url = home_url('/showroom-keukens/');
 $brands_url   = home_url('/#brands');
-$visit_url    = home_url('/contact/');
+$visit_url    = home_url('/#consultation');
 $main         = get_template_directory_uri() . '/assets/video/keuken_vid1.webm';
 $stack        = [
 	get_template_directory_uri() . '/assets/video/keuken_vid3.webm',
@@ -65,7 +65,7 @@ $stats        = [
 
 						<a class="premium-showcase__overlay" href="<?php echo esc_url($showroom_url); ?>">
 							<span><?php esc_html_e('Bekijk showroom', 'keuken-centrum'); ?></span>
-							<span class="premium-showcase__overlay-icon" aria-hidden="true">→</span>
+							<span class="premium-showcase__overlay-icon" aria-hidden="true"><?php echo kc_icon_arrow_right(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 						</a>
 					</div>
 
@@ -77,7 +77,7 @@ $stats        = [
 								</video>
 								<span class="premium-showcase__thumb-overlay">
 									<span><?php esc_html_e('Bekijk', 'keuken-centrum'); ?></span>
-									<span aria-hidden="true">→</span>
+									<span class="premium-showcase__thumb-overlay-icon" aria-hidden="true"><?php echo kc_icon_arrow_right(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 								</span>
 							</a>
 						<?php endforeach; ?>
@@ -119,14 +119,14 @@ $stats        = [
 				</p>
 
 				<div class="premium-showcase__actions">
-					<a class="premium-pill-button premium-pill-button--blue premium-pill-button--rounded premium-pill-button--xl" href="<?php echo esc_url($visit_url); ?>">
+					<a class="premium-pill-button premium-pill-button--blue premium-pill-button--rounded premium-pill-button--lg" href="<?php echo esc_url($visit_url); ?>">
 						<span class="premium-pill-button__label"><?php esc_html_e('Plan showroombezoek', 'keuken-centrum'); ?></span>
-						<span class="premium-pill-button__badge" aria-hidden="true"><span class="premium-pill-button__icon">→</span></span>
+						<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 					</a>
 
 					<a class="premium-showcase__text-link" href="<?php echo esc_url($brands_url); ?>">
 						<span><?php esc_html_e('Bekijk merken', 'keuken-centrum'); ?></span>
-						<span aria-hidden="true">→</span>
+						<span class="premium-showcase__text-link-icon" aria-hidden="true"><?php echo kc_icon_arrow_right(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 					</a>
 				</div>
 			</div>
