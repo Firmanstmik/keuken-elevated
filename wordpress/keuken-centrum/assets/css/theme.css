@@ -4568,6 +4568,33 @@ body.admin-bar .site-header {
 	mask:url("data:image/svg+xml,%3Csvg viewBox='0 0 28 20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='14' cy='3.1' r='1.5' fill='none' stroke='black' stroke-width='1.6'/%3E%3Cpath d='M4.6 14.2C4.6 9 8.8 5.6 14 5.6s9.4 3.4 9.4 8.6M2.2 16.6h23.6' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat;
 	filter:drop-shadow(0 2px 5px rgba(200,169,107,.28))
 }
+.premium-showcase--react .kitchen-eyebrow-mark{
+	position:relative;
+	display:inline-grid;
+	width:1.85rem;
+	height:1.6rem;
+	flex:0 0 auto;
+	place-items:center;
+	overflow:hidden;
+	border:1px solid rgba(200,169,107,.28);
+	border-radius:8px;
+	opacity:1;
+	color:#c8a96b;
+	background:
+		radial-gradient(circle at 28% 18%,rgba(255,255,255,.18),transparent 42%),
+		linear-gradient(145deg,rgba(200,169,107,.1),rgba(139,197,64,.06));
+	box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 8px 18px -14px rgba(200,169,107,.72)
+}
+.premium-showcase--react .kitchen-eyebrow-mark::after{display:none}
+.premium-showcase--react .kitchen-eyebrow-mark::before{
+	content:"";
+	width:1.15rem;
+	height:.86rem;
+	background:currentColor;
+	-webkit-mask:url("data:image/svg+xml,%3Csvg viewBox='0 0 28 20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='14' cy='3.1' r='1.5' fill='none' stroke='black' stroke-width='1.6'/%3E%3Cpath d='M4.6 14.2C4.6 9 8.8 5.6 14 5.6s9.4 3.4 9.4 8.6M2.2 16.6h23.6' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat;
+	mask:url("data:image/svg+xml,%3Csvg viewBox='0 0 28 20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='14' cy='3.1' r='1.5' fill='none' stroke='black' stroke-width='1.6'/%3E%3Cpath d='M4.6 14.2C4.6 9 8.8 5.6 14 5.6s9.4 3.4 9.4 8.6M2.2 16.6h23.6' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat;
+	filter:drop-shadow(0 2px 5px rgba(200,169,107,.28))
+}
 .why-scene.why-scene--react h2.why-scene__title{
 	margin:0;
 	max-width:640px;
