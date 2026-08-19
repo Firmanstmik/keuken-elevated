@@ -4412,7 +4412,7 @@ body.admin-bar .site-header {
 	overflow:hidden;
 	line-height:1.5;
 	color:#2f5218;
-	padding-block:clamp(3.75rem,16vw,5rem);
+	padding-block:8rem;
 	background:
 		radial-gradient(70% 50% at 12% 20%,rgba(139,197,64,.08),transparent 60%),
 		radial-gradient(55% 45% at 88% 70%,rgba(200,169,107,.07),transparent 65%),
@@ -4524,7 +4524,7 @@ body.admin-bar .site-header {
 .why-scene--react .why-pillar-card.is-active .why-pillar-card__icon{border-color:rgba(139,197,64,.45);background:rgba(139,197,64,.12);transform:scale(1.05)}
 .why-scene--react .why-pillar-card__accent{display:block;font-family:var(--font-body);font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:rgba(138,115,72,.55);transition:color .45s ease}
 .why-scene--react .why-pillar-card.is-active .why-pillar-card__accent{color:#8a7348}
-.why-scene--react .why-pillar-card__title{display:block;margin-top:.125rem;font-family:var(--font-display);font-size:.98rem;font-weight:600;line-height:1.25;letter-spacing:-.01em;color:#2f5218}
+.why-scene--react .why-pillar-card__title{display:block;margin-top:.125rem;font-family:var(--font-display);font-size:.98rem;font-weight:600;line-height:1.5;letter-spacing:-.01em;color:#2f5218}
 .why-scene--react .why-pillar-card__desc{display:block;margin-top:.625rem;font-family:var(--font-body);font-size:.82rem;font-weight:300;line-height:1.65;color:#666}
 .why-scene--react .why-pillar-card__mobile-media{display:grid;width:100%;grid-template-rows:0fr;opacity:0;overflow:hidden;transition:grid-template-rows .5s cubic-bezier(.22,1,.36,1),opacity .5s cubic-bezier(.22,1,.36,1)}
 .why-scene--react .why-pillar-card__mobile-media-inner{min-height:0;overflow:hidden;padding:0 1rem}
@@ -4783,11 +4783,16 @@ body.admin-bar .site-header {
 }
 
 @media (min-width:1024px){
+	.why-scene--react .why-scene__grid{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:3rem}
 	.why-scene--react .why-stage{display:block}
 	.why-scene--react .why-pillar-card__mobile-media{display:none}
-	.why-scene--react .why-scene__header{margin-bottom:3.5rem}
 	.journey-config-scene--react .journey-config-grid{grid-template-columns:minmax(0,1fr) minmax(0,.92fr)}
 	.journey-config-scene--react .journey-config-copy{margin-top:0;padding-left:2.5rem}
+}
+
+@media (min-width:1280px){
+	.why-scene--react .why-scene__header{margin-bottom:4rem}
+	.why-scene--react .why-scene__grid{gap:4rem}
 }
 
 @media (max-width:1023px){
@@ -4796,6 +4801,7 @@ body.admin-bar .site-header {
 }
 
 @media (max-width:767px){
+	.why-scene.why-scene--react{padding-block:clamp(3.75rem,16vw,5rem)}
 	.why-scene--react .why-stage__swatches{grid-template-columns:1fr}
 	.why-scene--react .why-scene__proofs{align-items:flex-start}
 	.journey-config-scene.journey-config-scene--react{padding-block:clamp(3.75rem,16vw,5rem)}
