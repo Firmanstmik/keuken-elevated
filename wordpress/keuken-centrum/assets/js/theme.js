@@ -663,11 +663,13 @@
 		const featureIndex = stage?.querySelector("[data-why-feature-index]");
 		const caption = stage?.querySelector("[data-why-caption]");
 		const progress = [...(stage?.querySelectorAll("[data-why-progress]") || [])];
+		const motionNodes = [...section.querySelectorAll("[data-why-motion]")];
 		if (!buttons.length) return;
 
 		let pinnedId = buttons.find((button) => button.classList.contains("is-active"))?.dataset.whyId || buttons[0].dataset.whyId;
 		let hoveredId = null;
 		let captionTimer = 0;
+		let swapToken = 0;
 		let activeImageSrc = viewport?.querySelector(".why-stage__image.is-active")?.getAttribute("src") || "";
 
 		const warmImages = () => {
@@ -677,6 +679,24 @@
 				img.src = button.dataset.pillarImage;
 			});
 		};
+
+		if (motionNodes.length) {
+			if (reduceMotion || !("IntersectionObserver" in window)) {
+				motionNodes.forEach((node) => node.classList.add("is-visible"));
+			} else {
+				const motionObserver = new IntersectionObserver(
+					(entries) => {
+						entries.forEach((entry) => {
+							if (!entry.isIntersecting) return;
+							entry.target.classList.add("is-visible");
+							motionObserver.unobserve(entry.target);
+						});
+					},
+					{ threshold: 0.16, rootMargin: "0px 0px -4% 0px" }
+				);
+				motionNodes.forEach((node) => motionObserver.observe(node));
+			}
+		}
 
 		if ("IntersectionObserver" in window) {
 			const warmer = new IntersectionObserver((entries) => {
@@ -689,34 +709,77 @@
 			warmImages();
 		}
 
+		const cleanupStaleImages = () => {
+			if (!viewport) return;
+			viewport.querySelectorAll(".why-stage__image:not(.is-active):not(.is-exiting)").forEach((node) => node.remove());
+		};
+
+		const runImageActivate = (incoming, current, token) => {
+			if (token !== swapToken || !incoming.isConnected) {
+				incoming.remove();
+				return;
+			}
+
+			const commit = () => {
+				if (token !== swapToken || !incoming.isConnected) {
+					incoming.remove();
+					return;
+				}
+
+				incoming.classList.add("is-active");
+				if (current && current.isConnected) {
+					current.classList.remove("is-active");
+					current.classList.add("is-exiting");
+					window.setTimeout(() => {
+						if (current.isConnected) current.remove();
+					}, reduceMotion ? 0 : 780);
+				}
+				cleanupStaleImages();
+			};
+
+			if (reduceMotion) {
+				commit();
+				return;
+			}
+
+			requestAnimationFrame(() => {
+				requestAnimationFrame(commit);
+			});
+		};
+
 		const swapImage = (nextSrc, nextAlt) => {
 			if (!viewport || !nextSrc || nextSrc === activeImageSrc) return;
+
+			swapToken += 1;
+			const token = swapToken;
+			cleanupStaleImages();
+
 			const current = viewport.querySelector(".why-stage__image.is-active");
 			const incoming = document.createElement("img");
 			incoming.className = "why-stage__image";
-			incoming.src = nextSrc;
 			incoming.alt = nextAlt || "";
 			incoming.width = 900;
 			incoming.height = 810;
 			incoming.setAttribute("data-why-image", "");
+			incoming.decoding = "async";
 			viewport.insertBefore(incoming, viewport.firstChild);
-			activeImageSrc = nextSrc;
 			void incoming.offsetWidth;
+			incoming.src = nextSrc;
+			activeImageSrc = nextSrc;
 
-			const activate = () => {
-				incoming.classList.add("is-active");
-				if (current) {
-					current.classList.remove("is-active");
-					current.classList.add("is-exiting");
-					window.setTimeout(() => current.remove(), reduceMotion ? 0 : 780);
-				}
-			};
+			const activate = () => runImageActivate(incoming, current, token);
 
-			if (reduceMotion || incoming.complete) {
+			if (incoming.complete) {
 				activate();
 				return;
 			}
+
 			incoming.addEventListener("load", activate, { once: true });
+			incoming.addEventListener("error", () => {
+				if (token !== swapToken) return;
+				incoming.remove();
+				activeImageSrc = current?.getAttribute("src") || activeImageSrc;
+			}, { once: true });
 		};
 
 		const syncCaption = (button) => {

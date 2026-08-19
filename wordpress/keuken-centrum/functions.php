@@ -85,14 +85,17 @@ function kc_enqueue_assets(): void {
 		$style_ver . '.' . $style_mtime
 	);
 
-	$script_path = get_theme_file_path('assets/js/theme.js');
-	$script_mtime = file_exists($script_path) ? (string) filemtime($script_path) : '0';
-	$script_ver  = KC_THEME_VERSION . '.' . $script_mtime;
+	$script_ver     = KC_THEME_VERSION;
+	$live_js_rel    = 'assets/js/kc-live-' . $script_ver . '.js';
+	$live_js_path   = get_theme_file_path($live_js_rel);
+	$theme_js_rel   = file_exists($live_js_path) ? $live_js_rel : 'assets/js/theme.js';
+	$script_path    = get_theme_file_path($theme_js_rel);
+	$script_mtime   = file_exists($script_path) ? (string) filemtime($script_path) : '0';
 	wp_enqueue_script(
 		'keuken-centrum-theme',
-		kc_asset('assets/js/theme.js'),
+		kc_asset($theme_js_rel),
 		[],
-		$script_ver,
+		$script_ver . '.' . $script_mtime,
 		true
 	);
 }
