@@ -4793,6 +4793,9 @@ body.admin-bar .site-header {
 @media (min-width:1280px){
 	.why-scene--react .why-scene__header{margin-bottom:4rem}
 	.why-scene--react .why-scene__grid{gap:4rem}
+	.why-scene--react .why-stage__seal{width:128px;height:128px;right:-2rem;top:-2.25rem}
+	.why-scene--react .why-stage__seal-value{font-size:2.75rem}
+	.why-scene--react .why-stage__caption{padding:1.75rem}
 }
 
 @media (max-width:1023px){
@@ -4802,8 +4805,8 @@ body.admin-bar .site-header {
 
 @media (max-width:767px){
 	.why-scene.why-scene--react{padding-block:clamp(3.75rem,16vw,5rem)}
-	.why-scene--react .why-stage__swatches{grid-template-columns:1fr}
-	.why-scene--react .why-scene__proofs{align-items:flex-start}
+	.why-scene--react .premium-pill-button{min-height:48px;padding-left:1rem;font-size:.7rem;letter-spacing:.08em}
+	.why-scene--react .premium-pill-button__badge{width:2.35rem;height:2.35rem}
 	.journey-config-scene.journey-config-scene--react{padding-block:clamp(3.75rem,16vw,5rem)}
 	.journey-config-scene--react .journey-config-stage__badge{left:1rem}
 	.journey-config-scene--react .journey-config-mockup{aspect-ratio:5/4}
@@ -4813,8 +4816,6 @@ body.admin-bar .site-header {
 }
 
 @media (max-width:520px){
-	.why-scene--react .why-pillar-card__body{padding:1rem}
-	.why-scene--react .why-pillar-card.is-active .why-pillar-card__mobile-media{height:11.5rem}
 	.journey-config-scene--react .journey-config-hotspot__tooltip{width:10.5rem}
 }
 
