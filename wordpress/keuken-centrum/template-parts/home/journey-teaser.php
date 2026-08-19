@@ -226,32 +226,32 @@ $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" a
 				</div>
 			</div>
 
-			<div class="journey-config-copy" data-reveal data-journey-motion="copy">
-				<p class="journey-config-copy__eyebrow"><?php esc_html_e('De beleving', 'keuken-centrum'); ?></p>
-				<h2 class="journey-config-copy__title"><?php esc_html_e('Een showroom die naar u toe komt', 'keuken-centrum'); ?></h2>
-				<p class="journey-config-copy__lede"><?php esc_html_e('Onze digitale configurator brengt de volledige luxe showroomervaring naar uw scherm. Ontdek materialen, bekijk combinaties en ontvang een compleet ontwerpvoorstel nog voordat u onze showroom bezoekt.', 'keuken-centrum'); ?></p>
-				<div class="journey-config-copy__divider" aria-hidden="true"></div>
-				<div class="journey-config-copy__features">
-					<div class="journey-config-copy__feature">
-						<span aria-hidden="true"><?php echo wp_kses($icon_tune, $kses_icon); ?></span>
-						<p><?php esc_html_e('Interactieve materiaalconfigurator', 'keuken-centrum'); ?></p>
-					</div>
-					<div class="journey-config-copy__feature">
-						<span aria-hidden="true"><?php echo wp_kses($icon_swatch, $kses_icon); ?></span>
-						<p><?php esc_html_e('Persoonlijke moodboard generatie', 'keuken-centrum'); ?></p>
-					</div>
-					<div class="journey-config-copy__feature">
-						<span aria-hidden="true"><?php echo wp_kses($icon_headphone, $kses_icon); ?></span>
-						<p><?php esc_html_e('Persoonlijke ontwerpconsultatie', 'keuken-centrum'); ?></p>
-					</div>
+		<div class="journey-config-copy" data-reveal data-journey-motion="copy">
+			<p class="journey-config-copy__eyebrow" data-journey-motion="copy-el" data-stagger="0"><?php esc_html_e('De beleving', 'keuken-centrum'); ?></p>
+			<h2 class="journey-config-copy__title" data-journey-motion="copy-el" data-stagger="1"><?php esc_html_e('Een showroom die naar u toe komt', 'keuken-centrum'); ?></h2>
+			<p class="journey-config-copy__lede" data-journey-motion="copy-el" data-stagger="2"><?php esc_html_e('Onze digitale configurator brengt de volledige luxe showroomervaring naar uw scherm. Ontdek materialen, bekijk combinaties en ontvang een compleet ontwerpvoorstel nog voordat u onze showroom bezoekt.', 'keuken-centrum'); ?></p>
+			<div class="journey-config-copy__divider" data-journey-motion="copy-el" data-stagger="3" aria-hidden="true"></div>
+			<div class="journey-config-copy__features">
+				<div class="journey-config-copy__feature" data-journey-motion="copy-feature" data-stagger="0">
+					<span aria-hidden="true"><?php echo wp_kses($icon_tune, $kses_icon); ?></span>
+					<p><?php esc_html_e('Interactieve materiaalconfigurator', 'keuken-centrum'); ?></p>
 				</div>
-				<div class="journey-config-actions">
-					<a class="premium-pill-button premium-pill-button--blue premium-pill-button--md" href="<?php echo esc_url($start_url); ?>">
-						<span class="premium-pill-button__label"><?php esc_html_e('Start uw ontwerp', 'keuken-centrum'); ?></span>
-						<span class="premium-pill-button__badge" aria-hidden="true"><span class="premium-pill-button__icon">→</span></span>
-					</a>
+				<div class="journey-config-copy__feature" data-journey-motion="copy-feature" data-stagger="1">
+					<span aria-hidden="true"><?php echo wp_kses($icon_swatch, $kses_icon); ?></span>
+					<p><?php esc_html_e('Persoonlijke moodboard generatie', 'keuken-centrum'); ?></p>
+				</div>
+				<div class="journey-config-copy__feature" data-journey-motion="copy-feature" data-stagger="2">
+					<span aria-hidden="true"><?php echo wp_kses($icon_headphone, $kses_icon); ?></span>
+					<p><?php esc_html_e('Persoonlijke ontwerpconsultatie', 'keuken-centrum'); ?></p>
 				</div>
 			</div>
+			<div class="journey-config-actions" data-journey-motion="copy-el" data-stagger="4">
+				<a class="premium-pill-button premium-pill-button--blue premium-pill-button--md" href="<?php echo esc_url($start_url); ?>">
+					<span class="premium-pill-button__label"><?php esc_html_e('Start uw ontwerp', 'keuken-centrum'); ?></span>
+					<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
+				</a>
+			</div>
+		</div>
 		</div>
 	</div>
 </section>

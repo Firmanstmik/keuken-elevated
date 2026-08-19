@@ -4907,8 +4907,26 @@ body.admin-bar .site-header {
 .journey-config-scene--react [data-journey-motion=badge]{transform:translateY(10px);transition:opacity .6s ease,transform .6s ease}
 .journey-config-scene--react [data-journey-motion=mockup]{transform:translateY(40px) scale(.96);transition:opacity 1.2s cubic-bezier(.22,1,.36,1),transform 1.2s cubic-bezier(.22,1,.36,1)}
 .journey-config-scene--react [data-journey-motion=caption]{transform:translateY(16px);transition:opacity .8s cubic-bezier(.22,1,.36,1) .3s,transform .8s cubic-bezier(.22,1,.36,1) .3s}
-.journey-config-scene--react [data-journey-motion=copy]{transform:translateY(18px);transition:opacity .5s cubic-bezier(.22,1,.36,1) .04s,transform .5s cubic-bezier(.22,1,.36,1) .04s}
+.journey-config-scene--react [data-journey-motion=copy]{opacity:1;transform:none}
+.journey-config-scene--react [data-journey-motion=copy-el]{
+	opacity:0;transform:translateY(18px);
+	transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1)
+}
+.journey-config-scene--react [data-journey-motion=copy-el][data-stagger="0"]{transition-delay:calc(.04s + 0*.12s)}
+.journey-config-scene--react [data-journey-motion=copy-el][data-stagger="1"]{transition-delay:calc(.04s + 1*.12s)}
+.journey-config-scene--react [data-journey-motion=copy-el][data-stagger="2"]{transition-delay:calc(.04s + 2*.12s)}
+.journey-config-scene--react [data-journey-motion=copy-el][data-stagger="3"]{transition-delay:calc(.04s + 3*.12s)}
+.journey-config-scene--react [data-journey-motion=copy-el][data-stagger="4"]{transition-delay:calc(.04s + 4*.12s)}
+.journey-config-scene--react [data-journey-motion=copy-feature]{
+	opacity:0;transform:translateY(18px);
+	transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1)
+}
+.journey-config-scene--react [data-journey-motion=copy-feature][data-stagger="0"]{transition-delay:calc(.05s + 0*.09s)}
+.journey-config-scene--react [data-journey-motion=copy-feature][data-stagger="1"]{transition-delay:calc(.05s + 1*.09s)}
+.journey-config-scene--react [data-journey-motion=copy-feature][data-stagger="2"]{transition-delay:calc(.05s + 2*.09s)}
 .journey-config-scene--react [data-journey-motion].is-visible{opacity:1;transform:none}
+.journey-config-scene--react .is-visible [data-journey-motion=copy-el],
+.journey-config-scene--react .is-visible [data-journey-motion=copy-feature]{opacity:1;transform:none}
 
 @keyframes journeyHotspotBreathe{
 	0%,100%{transform:scale(1);opacity:.9}
