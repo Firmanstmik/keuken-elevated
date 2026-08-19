@@ -383,6 +383,21 @@ body:not(.kc-home) .site-main {
 	padding: 0.28rem 0.32rem 0.28rem 1rem;
 }
 
+.premium-pill-button--md {
+	padding: 0.22rem 0.28rem 0.22rem 0.95rem;
+	font-size: 0.625rem;
+}
+
+.premium-pill-button--md .premium-pill-button__badge {
+	width: 1.85rem;
+	height: 1.85rem;
+}
+
+.premium-pill-button--md .premium-pill-button__icon {
+	width: 0.78rem;
+	height: 0.78rem;
+}
+
 .premium-pill-button--lg {
 	padding: 0.26rem 0.32rem 0.26rem 1.05rem;
 	font-size: 0.6875rem;
@@ -4715,13 +4730,17 @@ body.admin-bar .site-header {
 	box-shadow:0 10px 24px -14px rgba(200,169,107,.8);transition:transform .3s ease,filter .3s ease
 }
 .journey-config-scene--react .journey-config-sidebar__footer a:hover{transform:translateY(-1px);filter:brightness(1.05)}
-.journey-config-scene--react .journey-config-caption{display:flex;align-items:center;gap:1rem;margin-top:1.25rem;padding:1rem 1.25rem;border:1px solid rgba(200,169,107,.2);border-radius:16px;background:rgba(255,255,255,.04);backdrop-filter:blur(12px)}
+.journey-config-scene--react .journey-config-caption{
+	position:relative;inset:auto;z-index:auto;display:flex;align-items:center;gap:1rem;
+	margin-top:1.25rem;padding:1rem 1.25rem;border:1px solid rgba(200,169,107,.2);border-radius:16px;
+	background:rgba(255,255,255,.04);color:inherit;backdrop-filter:blur(12px)
+}
 .journey-config-scene--react .journey-config-caption__icon{display:grid;place-items:center;flex:0 0 auto;width:2.5rem;height:2.5rem;border:1px solid rgba(200,169,107,.4);border-radius:999px;background:rgba(200,169,107,.1);color:#c8a96b}
 .journey-config-scene--react .journey-config-caption__icon svg{width:18px;height:18px}
 .journey-config-scene--react .journey-config-caption p:first-child{margin:0;font-size:.62rem;font-weight:600;letter-spacing:.08em;color:#c8a96b}
 .journey-config-scene--react .journey-config-caption p:last-child{margin:.25rem 0 0;font-size:.8rem;font-weight:300;line-height:1.55;color:rgba(245,242,236,.7)}
 .journey-config-scene--react .journey-config-copy{padding-left:0;margin-top:3rem}
-.journey-config-scene.journey-config-scene--react .journey-config-copy__eyebrow{margin:0;font-size:.72rem;font-weight:300;letter-spacing:.08em;text-transform:none;color:#c8a96b;line-height:1.7}
+.journey-config-scene.journey-config-scene--react .journey-config-copy__eyebrow{margin:0;max-width:none;font-size:.72rem;font-weight:300;letter-spacing:.08em;text-transform:none;color:#c8a96b;line-height:1.7}
 .journey-config-scene.journey-config-scene--react .journey-config-copy h2.journey-config-copy__title{
 	margin:1.5rem 0 0;max-width:34rem;font-family:var(--font-display);font-size:clamp(2.35rem,3.9vw,3rem);
 	font-weight:400;line-height:1.15;letter-spacing:-.01em;color:#f5f2ec

@@ -245,7 +245,7 @@ $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" a
 					</div>
 				</div>
 				<div class="journey-config-actions">
-					<a class="premium-pill-button premium-pill-button--blue" href="<?php echo esc_url($start_url); ?>">
+					<a class="premium-pill-button premium-pill-button--blue premium-pill-button--md" href="<?php echo esc_url($start_url); ?>">
 						<span class="premium-pill-button__label"><?php esc_html_e('Start uw ontwerp', 'keuken-centrum'); ?></span>
 						<span class="premium-pill-button__badge" aria-hidden="true"><span class="premium-pill-button__icon">→</span></span>
 					</a>
