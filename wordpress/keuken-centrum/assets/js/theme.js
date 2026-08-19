@@ -775,16 +775,8 @@
 			incoming.setAttribute("data-why-image", "");
 			incoming.decoding = "async";
 			viewport.insertBefore(incoming, viewport.firstChild);
-			void incoming.offsetWidth;
-			incoming.src = nextSrc;
-			activeImageSrc = nextSrc;
 
 			const activate = () => runImageActivate(incoming, current, token);
-
-			if (incoming.complete) {
-				activate();
-				return;
-			}
 
 			incoming.addEventListener("load", activate, { once: true });
 			incoming.addEventListener("error", () => {
@@ -792,6 +784,14 @@
 				incoming.remove();
 				activeImageSrc = current?.getAttribute("src") || activeImageSrc;
 			}, { once: true });
+
+			incoming.src = nextSrc;
+			activeImageSrc = nextSrc;
+			void incoming.offsetWidth;
+
+			if (incoming.complete) {
+				activate();
+			}
 		};
 
 		const syncCaption = (button) => {
