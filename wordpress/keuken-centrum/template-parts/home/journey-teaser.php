@@ -26,10 +26,10 @@ $categories = [
 		'id'      => 'front',
 		'label'   => __('Frontpaneel', 'keuken-centrum'),
 		'options' => [
-			['id' => 'cashmere', 'name' => __('Cashmere', 'keuken-centrum'), 'color' => '#C4B49A', 'description' => __('Warme greige met zachte matte afwerking', 'keuken-centrum')],
 			['id' => 'matte-black', 'name' => __('Mat zwart', 'keuken-centrum'), 'color' => '#1A1A1A', 'description' => __('Ultramat gelakt in diep zwart', 'keuken-centrum')],
+			['id' => 'cashmere', 'name' => __('Cashmere', 'keuken-centrum'), 'color' => '#C4B49A', 'description' => __('Warme greige met zachte matte afwerking', 'keuken-centrum')],
 			['id' => 'taupe', 'name' => __('Taupe', 'keuken-centrum'), 'color' => '#8B7D6B', 'description' => __('Verfijnde aardetint in middentoon', 'keuken-centrum')],
-			['id' => 'cream', 'name' => __('Creme', 'keuken-centrum'), 'color' => '#E8E0D0', 'description' => __('Zuivere zijdewitte afwerking', 'keuken-centrum')],
+			['id' => 'olive', 'name' => __('Olijf', 'keuken-centrum'), 'color' => '#6B6B4A', 'description' => __('Gedempt botanisch groen', 'keuken-centrum')],
 		],
 	],
 	[
@@ -37,9 +37,9 @@ $categories = [
 		'label'   => __('Werkblad', 'keuken-centrum'),
 		'options' => [
 			['id' => 'marble-white', 'name' => __('Wit marmer', 'keuken-centrum'), 'color' => '#F2EFE8', 'description' => __('Calacatta Oro marmerplaat', 'keuken-centrum')],
+			['id' => 'marble-grey', 'name' => __('Grijs marmer', 'keuken-centrum'), 'color' => '#B8B4AE', 'description' => __('Bardiglio Imperiale marmer', 'keuken-centrum')],
 			['id' => 'travertine', 'name' => __('Travertin', 'keuken-centrum'), 'color' => '#C8B898', 'description' => __('Klassiek Romeins travertin', 'keuken-centrum')],
 			['id' => 'concrete', 'name' => __('Beton', 'keuken-centrum'), 'color' => '#9A9690', 'description' => __('Gepolijst betonoppervlak', 'keuken-centrum')],
-			['id' => 'black-stone', 'name' => __('Zwarte steen', 'keuken-centrum'), 'color' => '#2A2A2A', 'description' => __('Absolute Black graniet', 'keuken-centrum')],
 		],
 	],
 	[
@@ -66,9 +66,9 @@ $categories = [
 		'id'      => 'quooker',
 		'label'   => __('Quooker', 'keuken-centrum'),
 		'options' => [
-			['id' => 'quooker-gold', 'name' => __('Goud', 'keuken-centrum'), 'color' => '#B08D57', 'description' => __('Quooker Fusion Goud', 'keuken-centrum')],
 			['id' => 'quooker-chrome', 'name' => __('Chroom', 'keuken-centrum'), 'color' => '#D0D0D0', 'description' => __('Quooker Fusion Classic Chroom', 'keuken-centrum')],
 			['id' => 'quooker-black', 'name' => __('Mat zwart', 'keuken-centrum'), 'color' => '#1A1A1A', 'description' => __('Quooker Fusion Classic Zwart', 'keuken-centrum')],
+			['id' => 'quooker-gold', 'name' => __('Goud', 'keuken-centrum'), 'color' => '#B08D57', 'description' => __('Quooker Fusion Goud', 'keuken-centrum')],
 			['id' => 'quooker-none', 'name' => __('Geen', 'keuken-centrum'), 'color' => '#F7F5F2', 'description' => __('Zonder Quooker-kraan', 'keuken-centrum')],
 		],
 	],
@@ -122,9 +122,10 @@ $kses_icon       = [
 	'circle' => ['cx' => true, 'cy' => true, 'r' => true, 'stroke' => true, 'stroke-width' => true, 'fill' => true],
 	'rect'   => ['x' => true, 'y' => true, 'width' => true, 'height' => true, 'rx' => true, 'stroke' => true, 'stroke-width' => true, 'fill' => true],
 ];
-$icon_tune = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M3 7.5h9.25M16.75 7.5H21M3 16.5h4.25M8.75 16.5H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="14.75" cy="7.5" r="2.25" stroke="currentColor" stroke-width="1.5"/><circle cx="6.5" cy="16.5" r="2.25" stroke="currentColor" stroke-width="1.5"/></svg>';
-$icon_swatch = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><rect x="2.75" y="3.25" width="12.5" height="12.5" rx="2.4" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 15.75V18.4A2.6 2.6 0 0 0 13.1 21h6.15A2.6 2.6 0 0 0 21.85 18.4v-6.15A2.6 2.6 0 0 0 19.25 9.65H15.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
-$icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M4.75 13.25v3.1A2.4 2.4 0 0 0 7.15 18.75h.6v-5.5h-3ZM19.25 13.25v3.1a2.4 2.4 0 0 1-2.4 2.4h-.6v-5.5h3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M4.75 13.25a7.25 7.25 0 0 1 14.5 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
+/* Iconsax Setting4 / ColorSwatch / Headphone linear marks — React experienceItems parity */
+$icon_tune = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M3 7h10M17 7h4M3 17h4M9 17h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M14.5 4.5v5M6.5 14.5v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="14.5" cy="7" r="2.25" stroke="currentColor" stroke-width="1.5"/><circle cx="6.5" cy="17" r="2.25" stroke="currentColor" stroke-width="1.5"/></svg>';
+$icon_swatch = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M8.5 3.75h7A2.75 2.75 0 0 1 18.25 6.5v7A2.75 2.75 0 0 1 15.5 16.25h-7A2.75 2.75 0 0 1 5.75 13.5v-7A2.75 2.75 0 0 1 8.5 3.75Z" stroke="currentColor" stroke-width="1.5"/><path d="M8.5 16.25v1.85A2.4 2.4 0 0 0 10.9 20.5h6.35A2.4 2.4 0 0 0 19.65 18.1v-6.35A2.4 2.4 0 0 0 17.25 9.35H15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
+$icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M4.5 13.5v2.85A2.65 2.65 0 0 0 7.15 19h.85v-5.5H4.5ZM19.5 13.5v2.85A2.65 2.65 0 0 1 16.85 19H16v-5.5h3.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M4.5 13.5a7.5 7.5 0 0 1 15 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
 ?>
 <section class="journey-config-scene journey-config-scene--react section-shell" id="showroom-journey">
 	<div class="journey-config-scene__photo"<?php echo $scene ? ' style="background-image:url(' . esc_url($scene) . ')"' : ''; ?> aria-hidden="true"></div>
@@ -158,7 +159,7 @@ $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" a
 									src="<?php echo esc_url($base); ?>"
 									<?php if ($base_sm) : ?>
 										srcset="<?php echo esc_url($base_sm); ?> 768w, <?php echo esc_url($base); ?> 1536w"
-										sizes="(min-width: 1024px) 32vw, 92vw"
+										sizes="(min-width: 768px) min(56vw, 900px), 94vw"
 									<?php endif; ?>
 									alt="<?php esc_attr_e('Klassieke keuken configurator', 'keuken-centrum'); ?>"
 									loading="lazy"
@@ -176,7 +177,7 @@ $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" a
 									<?php $selection = $initial_selections[$category['id']] ?? null; ?>
 									<button
 										type="button"
-										class="journey-config-sidebar__tab<?php echo 0 === $index ? ' is-active' : ''; ?>"
+										class="journey-config-sidebar__tab has-selection<?php echo 0 === $index ? ' is-active' : ''; ?>"
 										data-journey-tab
 										data-category-id="<?php echo esc_attr($category['id']); ?>"
 										aria-pressed="<?php echo 0 === $index ? 'true' : 'false'; ?>"

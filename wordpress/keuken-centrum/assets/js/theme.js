@@ -1009,9 +1009,11 @@
 				const dot = tab.querySelector(".journey-config-sidebar__tab-dot");
 				const selection = getSelection(categoryId);
 				tab.classList.toggle("is-active", active);
+				tab.classList.toggle("has-selection", Boolean(selection));
 				tab.setAttribute("aria-pressed", active ? "true" : "false");
 				if (dot) {
 					dot.style.setProperty("--journey-swatch", selection?.color || "#F7F5F2");
+					dot.hidden = !selection;
 				}
 			});
 		};
@@ -1049,13 +1051,30 @@
 				const hovered = id === hoveredCategoryId;
 				const active = id === activeCategoryId;
 				wrapper.classList.toggle("is-hovered", hovered);
-				wrapper.classList.toggle("is-active", active && !anyHovered);
+				wrapper.classList.toggle("is-active", active);
 				const selection = getSelection(id);
 				const dot = wrapper.querySelector(".journey-config-hotspot__dot");
 				const desc = wrapper.querySelector("[data-hotspot-desc]");
 				if (dot && selection) dot.style.backgroundColor = selection.color;
 				if (desc && selection) desc.textContent = selection.description || selection.name || "";
 			});
+		};
+
+		const connectorPath = (place) => {
+			const offset = 36;
+			const mid = 20;
+			if (place === "top") return `M 0 0 V -${offset}`;
+			if (place === "bottom") return `M 0 0 V ${offset}`;
+			if (place === "left") return `M 0 0 H -${offset}`;
+			return `M 0 0 H ${offset}`;
+		};
+
+		const connectorDot = (place) => {
+			const offset = 36;
+			if (place === "top") return { cx: 0, cy: -offset };
+			if (place === "bottom") return { cx: 0, cy: offset };
+			if (place === "left") return { cx: -offset, cy: 0 };
+			return { cx: offset, cy: 0 };
 		};
 
 		const buildHotspots = () => {
@@ -1070,6 +1089,7 @@
 				wrapper.style.left = hotspot.x;
 				wrapper.style.top = hotspot.y;
 				const place = tooltipPlacement(hotspot.x, hotspot.y);
+				const tip = connectorDot(place);
 				wrapper.innerHTML = `
 					<button type="button" class="journey-config-hotspot__button" aria-label="Configureer ${escapeHtml(category.label)}">
 						<span class="journey-config-hotspot__mark">
@@ -1078,6 +1098,10 @@
 							<span class="journey-config-hotspot__dot" style="background-color:${escapeHtml(selection.color)}"></span>
 						</span>
 					</button>
+					<svg class="journey-config-hotspot__connector" aria-hidden="true" overflow="visible">
+						<path pathLength="1" d="${connectorPath(place)}"></path>
+						<circle cx="${tip.cx}" cy="${tip.cy}" r="1.5"></circle>
+					</svg>
 					<div class="journey-config-hotspot__tooltip is-${place}">
 						<span class="journey-config-hotspot__tooltip-label">Configuratie</span>
 						<strong>${escapeHtml(category.label)}</strong>
