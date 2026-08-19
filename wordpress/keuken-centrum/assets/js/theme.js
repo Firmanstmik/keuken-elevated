@@ -684,17 +684,18 @@
 			if (reduceMotion || !("IntersectionObserver" in window)) {
 				motionNodes.forEach((node) => node.classList.add("is-visible"));
 			} else {
+				const revealSection = () => {
+					motionNodes.forEach((node) => node.classList.add("is-visible"));
+				};
 				const motionObserver = new IntersectionObserver(
 					(entries) => {
-						entries.forEach((entry) => {
-							if (!entry.isIntersecting) return;
-							entry.target.classList.add("is-visible");
-							motionObserver.unobserve(entry.target);
-						});
+						if (!entries.some((entry) => entry.isIntersecting)) return;
+						revealSection();
+						motionObserver.disconnect();
 					},
 					{ threshold: 0.16, rootMargin: "0px 0px -4% 0px" }
 				);
-				motionNodes.forEach((node) => motionObserver.observe(node));
+				motionObserver.observe(section);
 			}
 		}
 
@@ -709,9 +710,21 @@
 			warmImages();
 		}
 
-		const cleanupStaleImages = () => {
+		const cleanupStaleImages = (keep) => {
 			if (!viewport) return;
-			viewport.querySelectorAll(".why-stage__image:not(.is-active):not(.is-exiting)").forEach((node) => node.remove());
+			viewport.querySelectorAll(".why-stage__image").forEach((node) => {
+				if (node !== keep) node.remove();
+			});
+		};
+
+		const getCurrentImage = () => {
+			if (!viewport) return null;
+			const layers = [...viewport.querySelectorAll(".why-stage__image")];
+			const visible = layers.find((node) => {
+				const opacity = Number.parseFloat(getComputedStyle(node).opacity || "0");
+				return opacity > 0.05;
+			});
+			return visible || layers.find((node) => node.classList.contains("is-active")) || layers[0] || null;
 		};
 
 		const runImageActivate = (incoming, current, token) => {
@@ -734,7 +747,6 @@
 						if (current.isConnected) current.remove();
 					}, reduceMotion ? 0 : 780);
 				}
-				cleanupStaleImages();
 			};
 
 			if (reduceMotion) {
@@ -752,9 +764,9 @@
 
 			swapToken += 1;
 			const token = swapToken;
-			cleanupStaleImages();
+			const current = getCurrentImage();
+			cleanupStaleImages(current);
 
-			const current = viewport.querySelector(".why-stage__image.is-active");
 			const incoming = document.createElement("img");
 			incoming.className = "why-stage__image";
 			incoming.alt = nextAlt || "";
