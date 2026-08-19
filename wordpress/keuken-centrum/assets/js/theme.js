@@ -733,6 +733,7 @@
 					return;
 				}
 
+				void incoming.offsetWidth;
 				incoming.classList.add("is-active");
 				activeImageSrc = nextSrc;
 				if (current && current.isConnected && current !== incoming) {
@@ -749,7 +750,9 @@
 				return;
 			}
 
-			commit();
+			requestAnimationFrame(() => {
+				requestAnimationFrame(commit);
+			});
 		};
 
 		const swapImage = (nextSrc, nextAlt) => {
@@ -790,7 +793,7 @@
 			void incoming.offsetWidth;
 
 			if (incoming.complete) {
-				activate();
+				requestAnimationFrame(activate);
 			}
 		};
 
