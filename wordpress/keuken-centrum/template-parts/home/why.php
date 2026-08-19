@@ -127,7 +127,7 @@ $cbw_logo       = home_url('/wp-content/uploads/cbw.webp');
 								<span class="why-pillar-card__copy">
 									<span class="why-pillar-card__heading">
 										<span class="why-pillar-card__icon" aria-hidden="true">
-											<?php echo wp_kses($icon_map[$pillar['icon']] ?? '', ['svg' => ['viewBox' => true, 'fill' => true, 'aria-hidden' => true, 'width' => true, 'height' => true], 'path' => ['d' => true, 'stroke' => true, 'stroke-width' => true, 'stroke-linecap' => true, 'stroke-linejoin' => true, 'stroke-miterlimit' => true], 'circle' => ['cx' => true, 'cy' => true, 'r' => true, 'fill' => true, 'stroke' => true, 'stroke-width' => true]]); ?>
+											<?php echo wp_kses($icon_map[$pillar['icon']] ?? '', ['svg' => ['xmlns' => true, 'viewbox' => true, 'viewBox' => true, 'fill' => true, 'aria-hidden' => true, 'width' => true, 'height' => true], 'path' => ['d' => true, 'stroke' => true, 'stroke-width' => true, 'stroke-linecap' => true, 'stroke-linejoin' => true, 'stroke-miterlimit' => true], 'circle' => ['cx' => true, 'cy' => true, 'r' => true, 'fill' => true, 'stroke' => true, 'stroke-width' => true]]); ?>
 										</span>
 										<span class="why-pillar-card__title-wrap">
 											<span class="why-pillar-card__accent"><?php echo esc_html($pillar['accent']); ?></span>

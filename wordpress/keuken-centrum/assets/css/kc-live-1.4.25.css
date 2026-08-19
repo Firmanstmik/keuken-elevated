@@ -1,0 +1,7 @@
+/**
+ * Guest/public cache-bust for theme.css.
+ * LiteSpeed strips ?ver= from logged-out HTML, and Hostinger caches
+ * /assets/css/theme.css for 1 year. This uniquely named file is a new URL.
+ * The @import query is inside CSS, so HTML query-string removal cannot strip it.
+ */
+@import url("theme.css?kc=1.4.25");
