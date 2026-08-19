@@ -4622,7 +4622,7 @@ body.admin-bar .site-header {
 .journey-config-scene.journey-config-scene--react{
 	position:relative;
 	overflow:hidden;
-	padding:clamp(4.5rem,9vw,8rem) 0;
+	padding:8rem 0;
 	color:#f5f2ec;
 	background:linear-gradient(180deg,#0d0f0a 0%,#12140e 52%,#0c0e09 100%)
 }
