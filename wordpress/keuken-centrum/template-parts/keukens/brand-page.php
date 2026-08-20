@@ -26,7 +26,7 @@ $intro  = $data['intro'] ?? [];
 	<section class="brand-page-hero" data-brand-hero>
 		<div class="brand-page-hero__media" data-brand-hero-parallax aria-hidden="true">
 			<?php if (! empty($hero['image'])) : ?>
-				<img src="<?php echo esc_url($hero['image']); ?>" alt="<?php echo esc_attr($name . ' keuken in showroom Utrecht'); ?>" width="1920" height="1080" decoding="async" fetchpriority="high">
+				<img src="<?php echo esc_url($hero['image']); ?>" alt="<?php echo esc_attr($name . ' keuken in showroom Utrecht'); ?>" width="1920" height="1440" decoding="async" fetchpriority="high">
 			<?php endif; ?>
 			<div class="brand-page-hero__gradient"></div>
 			<div class="brand-page-hero__radial"></div>
@@ -172,7 +172,7 @@ $intro  = $data['intro'] ?? [];
 				</div>
 				<div class="brand-pillars-grid">
 					<?php foreach (($pillars['items'] ?? []) as $pi => $pillar) : ?>
-						<article class="brand-pillar-card" data-reveal>
+						<article class="brand-pillar-card" data-reveal data-reveal-delay="<?php echo esc_attr((string) ($pi * 0.12)); ?>">
 							<div class="brand-pillar-card__media">
 								<img class="brand-pillar-card__photo" src="<?php echo esc_url((string) ($pillar['image'] ?? $hero['image'] ?? '')); ?>" alt="<?php echo esc_attr((string) $pillar['title']); ?>" loading="lazy" decoding="async" width="640" height="400">
 								<span class="brand-pillar-card__num" aria-hidden="true"><?php echo esc_html(str_pad((string) ($pi + 1), 2, '0', STR_PAD_LEFT)); ?></span>
@@ -334,7 +334,7 @@ $intro  = $data['intro'] ?? [];
 				</div>
 				<div class="brand-gallery">
 					<?php foreach (($gallery['items'] ?? []) as $gi => $item) : ?>
-						<figure class="brand-gallery__item brand-gallery__item--<?php echo esc_attr((string) ($item['span'] ?? 'medium')); ?>" data-reveal>
+						<figure class="brand-gallery__item brand-gallery__item--<?php echo esc_attr((string) ($item['span'] ?? 'medium')); ?>" data-reveal data-reveal-delay="<?php echo esc_attr((string) ($gi * 0.1)); ?>">
 							<img class="brand-gallery__image" src="<?php echo esc_url((string) $item['src']); ?>" alt="<?php echo esc_attr((string) $item['title']); ?>" loading="lazy" decoding="async" width="800" height="600">
 							<span class="brand-gallery__index" aria-hidden="true"><?php echo esc_html(str_pad((string) ($gi + 1), 2, '0', STR_PAD_LEFT)); ?></span>
 							<figcaption class="brand-gallery__caption">
@@ -345,7 +345,7 @@ $intro  = $data['intro'] ?? [];
 						</figure>
 					<?php endforeach; ?>
 					<?php if (! empty($gallery['cta'])) : ?>
-						<a class="brand-gallery__cta-tile" href="<?php echo esc_url((string) $gallery['cta']['href']); ?>" data-reveal>
+						<a class="brand-gallery__cta-tile" href="<?php echo esc_url((string) $gallery['cta']['href']); ?>" data-reveal data-reveal-delay="0.4">
 							<span class="brand-gallery__cta-ghost" aria-hidden="true">Live</span>
 							<div class="brand-gallery__cta-copy">
 								<?php kc_brand_eyebrow(__('Showroom Utrecht', 'keuken-centrum'), true); ?>

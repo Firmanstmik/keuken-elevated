@@ -135,9 +135,17 @@ html:has(body.kc-keukens-route) {
   position: absolute; bottom: 2rem; right: 2rem; z-index: 2; display: none;
   width: 2.75rem; height: 2.75rem; place-items: center; border-radius: 999px;
   border: 1px solid rgba(255,255,255,0.22); color: rgba(255,255,255,0.7);
-  animation: kc-hero-bob 2.2s ease-in-out infinite;
+  /* React: opacity fade delay 1.4s / 0.8s, then bob y:[0,6,0] 2.2s easeInOut */
+  opacity: 0;
+  animation:
+    kc-hero-scroll-in 0.8s ease 1.4s both,
+    kc-hero-bob 2.2s ease-in-out 2.2s infinite;
 }
 @media (min-width: 768px) { .brand-page-hero__scroll { display: grid; } }
+@keyframes kc-hero-scroll-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 @keyframes kc-hero-bob {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(6px); }
@@ -278,6 +286,37 @@ html:has(body.kc-keukens-route) {
     transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* React imageReveal: opacity 0→1, scale 1.05→1, blur 10→0, duration 1.2s */
+.brand-page .brand-page-intro__frame[data-reveal] {
+  transform: scale(1.05);
+  filter: blur(10px);
+  transition:
+    opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.brand-page .brand-page-intro__frame[data-reveal].is-visible {
+  transform: none;
+  filter: blur(0);
+}
+
+/* React pillars: y:28, duration 0.7, delay index*0.12 */
+.brand-page .brand-pillar-card[data-reveal] {
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* React gallery items + CTA tile: y:28, duration 0.8, delay index*0.1 / 0.4 */
+.brand-page .brand-gallery__item[data-reveal],
+.brand-page .brand-gallery__cta-tile[data-reveal] {
+  transform: translateY(28px);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 /* React heroStagger: delayChildren 0.2s, staggerChildren 0.11s, fadeUp y:18 duration 0.5s */
 @keyframes kc-brand-hero-fade-up {
   from { opacity: 0; transform: translateY(18px); }
@@ -296,11 +335,18 @@ html:has(body.kc-keukens-route) {
 .brand-page-hero [data-hero-stagger]:nth-child(7) { animation-delay: 0.86s; }
 
 @media (prefers-reduced-motion: reduce) {
-  [data-reveal] { opacity: 1; transform: none; transition: none; }
-  .brand-page-hero__scroll { animation: none; }
+  [data-reveal] { opacity: 1; transform: none; transition: none; filter: none; }
+  .brand-page-hero__scroll { animation: none; opacity: 1; }
   .brand-page-hero [data-hero-stagger] {
     opacity: 1;
     animation: none;
+  }
+  .brand-page .brand-page-intro__frame[data-reveal],
+  .brand-page .brand-pillar-card[data-reveal],
+  .brand-page .brand-gallery__item[data-reveal],
+  .brand-page .brand-gallery__cta-tile[data-reveal] {
+    filter: none;
+    transform: none;
   }
 }
 
@@ -1069,9 +1115,10 @@ html:has(body.kc-keukens-route) {
   position: relative;
   overflow: hidden;
   padding: 6.5rem 0;
+  /* Original React remote 404 — verified local showroom equivalent */
   background:
     linear-gradient(125deg, rgba(10, 20, 12, 0.96) 0%, rgba(47, 82, 24, 0.9) 100%),
-    url("https://keuken-centrum.nl/wp-content/uploads/AI-KUCHEN-Hacker-keukens-utrecht-L-scaled.webp")
+    url("../img/brands/aikuchen-showroom-1.webp")
       center / cover no-repeat;
   background-blend-mode: multiply;
   background-attachment: fixed;
