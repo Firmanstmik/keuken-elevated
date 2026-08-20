@@ -34,8 +34,9 @@ function kc_theme_img(string $relative): string {
  */
 function kc_brand_bundle(string $slug): array {
 	$map = [
-		'ai-kuchen'  => ['hero' => 'brands/aikuchen-hero.webp', 'logo' => 'logos/aiKuchen_Logo.webp'],
-		'aikuchen'   => ['hero' => 'brands/aikuchen-hero.webp', 'logo' => 'logos/aiKuchen_Logo.webp'],
+		/* Original remotes 404; showroom-1 = recovered AI-KUCHEN-…utrecht2-scaled.webp */
+		'ai-kuchen'  => ['hero' => 'brands/aikuchen-showroom-1.webp', 'logo' => 'logos/aiKuchen_Logo.webp'],
+		'aikuchen'   => ['hero' => 'brands/aikuchen-showroom-1.webp', 'logo' => 'logos/aiKuchen_Logo.webp'],
 		'leicht'     => ['hero' => 'brands/leicht-hero.webp', 'logo' => 'logos/Leicht_Logo.webp'],
 		'nobilia'    => ['hero' => 'brands/nobilia-hero.webp', 'logo' => 'logos/Nobilia_Logo.webp'],
 		'zampieri'   => ['hero' => 'brands/zampieri-hero.webp', 'logo' => 'logos/Zampieri_Logo.webp'],

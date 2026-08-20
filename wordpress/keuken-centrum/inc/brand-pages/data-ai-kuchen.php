@@ -38,7 +38,7 @@ function kc_ai_kuchen_pool_img(int $index): string {
  * @return array<string, mixed>
  */
 function kc_ai_kuchen_page_data(): array {
-	$hero = kc_brand_hero('ai-kuchen');
+	$hero = kc_theme_img('brands/aikuchen-showroom-1.webp') ?: kc_brand_hero('ai-kuchen');
 	$logo = kc_brand_logo('ai-kuchen');
 
 	return [
