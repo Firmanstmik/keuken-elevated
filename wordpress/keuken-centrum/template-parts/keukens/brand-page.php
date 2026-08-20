@@ -58,7 +58,7 @@ $intro  = $data['intro'] ?? [];
 					</div>
 				<?php endif; ?>
 
-				<div data-hero-stagger><?php kc_brand_eyebrow((string) ($hero['eyebrow'] ?? ''), true); ?></div>
+				<?php kc_brand_eyebrow((string) ($hero['eyebrow'] ?? ''), true, true); ?>
 				<h1 class="brand-page-hero__title" data-hero-stagger>
 					<?php echo esc_html((string) ($hero['title'] ?? $name)); ?>
 					<br>

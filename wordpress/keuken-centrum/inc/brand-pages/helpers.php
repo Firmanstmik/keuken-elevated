@@ -113,10 +113,11 @@ function kc_brand_shared_advisors(): array {
 /**
  * Kitchen eyebrow mark (React KitchenEyebrow).
  */
-function kc_brand_eyebrow(string $label, bool $light = false): void {
+function kc_brand_eyebrow(string $label, bool $light = false, bool $hero_stagger = false): void {
 	$class = 'brand-eyebrow' . ($light ? ' brand-eyebrow--light' : '');
+	$attrs = $hero_stagger ? ' data-hero-stagger' : '';
 	?>
-	<span class="<?php echo esc_attr($class); ?>">
+	<span class="<?php echo esc_attr($class); ?>"<?php echo $attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static attr only ?>>
 		<span class="kitchen-eyebrow-mark" aria-hidden="true"></span>
 		<span><?php echo esc_html($label); ?></span>
 	</span>
