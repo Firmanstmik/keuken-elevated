@@ -116,10 +116,10 @@ function kc_brand_shared_advisors(): array {
 function kc_brand_eyebrow(string $label, bool $light = false): void {
 	$class = 'brand-eyebrow' . ($light ? ' brand-eyebrow--light' : '');
 	?>
-	<p class="<?php echo esc_attr($class); ?>">
+	<span class="<?php echo esc_attr($class); ?>">
 		<span class="kitchen-eyebrow-mark" aria-hidden="true"></span>
 		<span><?php echo esc_html($label); ?></span>
-	</p>
+	</span>
 	<?php
 }
 
