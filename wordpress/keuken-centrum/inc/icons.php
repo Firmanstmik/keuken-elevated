@@ -75,6 +75,7 @@ function kc_icon_brand(string $name): string {
 		'check'    => '<path d="M5 12.5 9.5 17 19 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>',
 		'phone'    => '<path d="M8.5 4.5h-2A2.5 2.5 0 0 0 4 7v.5C4 15 9 20 16.5 20H17a2.5 2.5 0 0 0 2.5-2.5v-2l-3.2-1.2-1.6 1.6a12 12 0 0 1-4.6-4.6l1.6-1.6L10.5 6.5 8.5 4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>',
 		'arrow-down' => '<path d="M12 5v14M6 13l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>',
+		'arrow-left' => '<path d="M19 12H5M11 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>',
 	];
 	$path = $map[ $name ] ?? $map['sparkles'];
 	return '<svg class="kc-icon-' . esc_attr($name) . '" viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true">' . $path . '</svg>';

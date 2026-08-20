@@ -21,6 +21,7 @@ require_once get_template_directory() . '/inc/seo.php';
 require_once get_template_directory() . '/inc/brand-pages/helpers.php';
 require_once get_template_directory() . '/inc/brand-pages/data-keukens-overview.php';
 require_once get_template_directory() . '/inc/brand-pages/data-leicht.php';
+require_once get_template_directory() . '/inc/brand-pages/data-leicht-series.php';
 require_once get_template_directory() . '/inc/brand-pages/routing.php';
 
 

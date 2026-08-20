@@ -57,10 +57,10 @@ add_filter('template_include', 'kc_brand_pages_template_include', 99);
  * Flush rewrite rules once after brand routing is added.
  */
 function kc_brand_pages_maybe_flush_rewrites(): void {
-	if ('1' === get_option('kc_brand_pages_routing_v1')) {
+	if ('1' === get_option('kc_brand_pages_routing_v2')) {
 		return;
 	}
 	flush_rewrite_rules(false);
-	update_option('kc_brand_pages_routing_v1', '1');
+	update_option('kc_brand_pages_routing_v2', '1');
 }
 add_action('init', 'kc_brand_pages_maybe_flush_rewrites', 99);

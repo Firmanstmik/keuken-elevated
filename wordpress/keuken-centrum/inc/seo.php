@@ -26,6 +26,15 @@ function kc_document_title_parts(array $parts): array {
 		}
 	}
 
+	$series_slug = get_query_var('kc_leicht_series');
+	if (is_string($series_slug) && '' !== $series_slug && function_exists('kc_leicht_series_data')) {
+		$series = kc_leicht_series_data($series_slug);
+		if ($series) {
+			$parts['title'] = $series['name'] . ' · Keuken-Centrum Utrecht';
+			unset($parts['tagline'], $parts['site']);
+		}
+	}
+
 	return $parts;
 }
 add_filter('document_title_parts', 'kc_document_title_parts');
@@ -53,6 +62,14 @@ function kc_get_meta_description(): string {
 		$data = kc_keukens_overview_data();
 		if (! empty($data['meta']['description'])) {
 			return $data['meta']['description'];
+		}
+	}
+
+	$series_slug = get_query_var('kc_leicht_series');
+	if (is_string($series_slug) && '' !== $series_slug && function_exists('kc_leicht_series_data')) {
+		$series = kc_leicht_series_data($series_slug);
+		if ($series && ! empty($series['description'][0])) {
+			return (string) $series['description'][0];
 		}
 	}
 
@@ -89,8 +106,19 @@ function kc_output_seo_tags(): void {
 		$url = home_url('/');
 	}
 
+	$series_slug = get_query_var('kc_leicht_series');
+	if (is_string($series_slug) && '' !== $series_slug) {
+		$url = home_url('/keukens/leicht/' . rawurlencode($series_slug) . '/');
+	}
+
 	$image = '';
-	if (is_singular() && has_post_thumbnail()) {
+	if (is_string($series_slug) && '' !== $series_slug && function_exists('kc_leicht_series_data')) {
+		$series = kc_leicht_series_data($series_slug);
+		if ($series && ! empty($series['heroImage'])) {
+			$image = (string) $series['heroImage'];
+		}
+	}
+	if ('' === $image && is_singular() && has_post_thumbnail()) {
 		$image = (string) get_the_post_thumbnail_url(null, 'full');
 	}
 	if ('' === $image) {
