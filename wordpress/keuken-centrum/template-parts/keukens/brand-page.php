@@ -34,10 +34,10 @@ $intro  = $data['intro'] ?? [];
 		</div>
 		<div class="brand-page-hero__fade" aria-hidden="true"></div>
 
-		<div class="site-container">
-			<div class="brand-page-hero__content" data-reveal>
+		<div class="brand-page-hero__content site-container">
+			<div class="brand-page-hero__inner">
 				<?php if ($logo || ! empty($data['legacyName']) || ! empty($data['country'])) : ?>
-					<div class="brand-page-hero__identity">
+					<div class="brand-page-hero__identity" data-hero-stagger>
 						<?php if ($logo) : ?>
 							<div class="brand-page-hero__logo-wrap">
 								<img src="<?php echo esc_url($logo); ?>" alt="<?php echo esc_attr($name . ' logo'); ?>" class="brand-page-hero__logo" width="140" height="36" decoding="async">
@@ -58,14 +58,14 @@ $intro  = $data['intro'] ?? [];
 					</div>
 				<?php endif; ?>
 
-				<?php kc_brand_eyebrow((string) ($hero['eyebrow'] ?? ''), true); ?>
-				<h1 class="brand-page-hero__title">
+				<div data-hero-stagger><?php kc_brand_eyebrow((string) ($hero['eyebrow'] ?? ''), true); ?></div>
+				<h1 class="brand-page-hero__title" data-hero-stagger>
 					<?php echo esc_html((string) ($hero['title'] ?? $name)); ?>
 					<br>
 					<em><?php echo esc_html((string) ($hero['highlight'] ?? '')); ?></em>
 				</h1>
-				<p class="brand-page-hero__lede"><?php echo esc_html((string) ($hero['subtitle'] ?? '')); ?></p>
-				<div class="brand-page-hero__actions">
+				<p class="brand-page-hero__lede" data-hero-stagger><?php echo esc_html((string) ($hero['subtitle'] ?? '')); ?></p>
+				<div class="brand-page-hero__actions" data-hero-stagger>
 					<a class="premium-pill-button premium-pill-button--lg" href="<?php echo esc_url((string) ($hero['cta']['primaryHref'] ?? home_url('/#consultation'))); ?>">
 						<span class="premium-pill-button__label"><?php echo esc_html((string) ($hero['cta']['primary'] ?? '')); ?></span>
 						<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
@@ -76,16 +76,18 @@ $intro  = $data['intro'] ?? [];
 					</a>
 				</div>
 				<?php if (! empty($hero['badges'])) : ?>
-					<div class="brand-page-hero__badge-strip">
-						<?php foreach ($hero['badges'] as $bi => $badge) : ?>
-							<?php if ($bi > 0) : ?>
-								<span class="brand-page-hero__badge-divider" aria-hidden="true"></span>
-							<?php endif; ?>
-							<div class="brand-page-hero__badge">
-								<span class="brand-page-hero__badge-value"><?php echo esc_html((string) $badge['value']); ?></span>
-								<span class="brand-page-hero__badge-label"><?php echo esc_html((string) $badge['label']); ?></span>
-							</div>
-						<?php endforeach; ?>
+					<div class="brand-page-hero__badge-strip-wrap" data-hero-stagger>
+						<div class="brand-page-hero__badge-strip">
+							<?php foreach ($hero['badges'] as $bi => $badge) : ?>
+								<div class="brand-page-hero__badge">
+									<?php if ($bi > 0) : ?>
+										<span class="brand-page-hero__badge-divider" aria-hidden="true"></span>
+									<?php endif; ?>
+									<span class="brand-page-hero__badge-value"><?php echo esc_html((string) $badge['value']); ?></span>
+									<span class="brand-page-hero__badge-label"><?php echo esc_html((string) $badge['label']); ?></span>
+								</div>
+							<?php endforeach; ?>
+						</div>
 					</div>
 				<?php endif; ?>
 			</div>
