@@ -7,36 +7,41 @@
  * @package Keuken_Centrum
  */
 
+$slug = get_query_var('name');
+if (! is_string($slug) || '' === $slug) {
+	$slug = get_post_field('post_name', get_queried_object_id());
+}
+$slug = is_string($slug) ? $slug : '';
+$data = null;
+
+if ('leicht' === $slug && function_exists('kc_leicht_page_data')) {
+	$data = kc_leicht_page_data();
+} elseif ('nobilia' === $slug && function_exists('kc_nobilia_page_data')) {
+	$data = kc_nobilia_page_data();
+} elseif ('ai-kuchen' === $slug && function_exists('kc_ai_kuchen_page_data')) {
+	$data = kc_ai_kuchen_page_data();
+} elseif ('zampieri' === $slug && function_exists('kc_zampieri_page_data')) {
+	$data = kc_zampieri_page_data();
+} elseif ('cucinesse' === $slug && function_exists('kc_cucinesse_page_data')) {
+	$data = kc_cucinesse_page_data();
+}
+
+if (is_array($data) && $data && ! empty($data['meta']['title'])) {
+	add_filter(
+		'pre_get_document_title',
+		static function () use ($data) {
+			return (string) $data['meta']['title'];
+		},
+		99
+	);
+}
+
 get_header();
 
 while (have_posts()) :
 	the_post();
 
-	$slug = get_post_field('post_name', get_the_ID());
-	$data = null;
-
-	if ('leicht' === $slug && function_exists('kc_leicht_page_data')) {
-		$data = kc_leicht_page_data();
-	} elseif ('nobilia' === $slug && function_exists('kc_nobilia_page_data')) {
-		$data = kc_nobilia_page_data();
-	} elseif ('ai-kuchen' === $slug && function_exists('kc_ai_kuchen_page_data')) {
-		$data = kc_ai_kuchen_page_data();
-	} elseif ('zampieri' === $slug && function_exists('kc_zampieri_page_data')) {
-		$data = kc_zampieri_page_data();
-	} elseif ('cucinesse' === $slug && function_exists('kc_cucinesse_page_data')) {
-		$data = kc_cucinesse_page_data();
-	}
-
 	if (is_array($data) && $data) {
-		if (! empty($data['meta']['title'])) {
-			add_filter(
-				'pre_get_document_title',
-				static function () use ($data) {
-					return (string) $data['meta']['title'];
-				},
-				20
-			);
-		}
 		?>
 		<main id="main-content" class="site-main">
 			<?php get_template_part('template-parts/keukens/brand-page', null, [ 'data' => $data ]); ?>

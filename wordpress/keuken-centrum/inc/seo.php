@@ -26,6 +26,24 @@ function kc_document_title_parts(array $parts): array {
 		}
 	}
 
+	if (is_singular('kitchen_brand')) {
+		$slug = get_post_field('post_name', get_queried_object_id());
+		$map  = [
+			'leicht'    => 'kc_leicht_page_data',
+			'nobilia'   => 'kc_nobilia_page_data',
+			'ai-kuchen' => 'kc_ai_kuchen_page_data',
+			'zampieri'  => 'kc_zampieri_page_data',
+			'cucinesse' => 'kc_cucinesse_page_data',
+		];
+		if (is_string($slug) && isset($map[ $slug ]) && function_exists($map[ $slug ])) {
+			$data = call_user_func($map[ $slug ]);
+			if (is_array($data) && ! empty($data['meta']['title'])) {
+				$parts['title'] = (string) $data['meta']['title'];
+				unset($parts['tagline'], $parts['site']);
+			}
+		}
+	}
+
 	$series_slug = get_query_var('kc_leicht_series');
 	if (is_string($series_slug) && '' !== $series_slug && function_exists('kc_leicht_series_data')) {
 		$series = kc_leicht_series_data($series_slug);
