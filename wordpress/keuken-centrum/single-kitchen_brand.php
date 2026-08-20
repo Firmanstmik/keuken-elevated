@@ -19,6 +19,12 @@ while (have_posts()) :
 		$data = kc_leicht_page_data();
 	} elseif ('nobilia' === $slug && function_exists('kc_nobilia_page_data')) {
 		$data = kc_nobilia_page_data();
+	} elseif ('ai-kuchen' === $slug && function_exists('kc_ai_kuchen_page_data')) {
+		$data = kc_ai_kuchen_page_data();
+	} elseif ('zampieri' === $slug && function_exists('kc_zampieri_page_data')) {
+		$data = kc_zampieri_page_data();
+	} elseif ('cucinesse' === $slug && function_exists('kc_cucinesse_page_data')) {
+		$data = kc_cucinesse_page_data();
 	}
 
 	if (is_array($data) && $data) {

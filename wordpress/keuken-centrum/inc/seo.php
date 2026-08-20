@@ -51,6 +51,23 @@ function kc_get_meta_description(): string {
 		return 'Premium Duitse en Italiaanse keukenshowroom in Utrecht sinds 1978. Persoonlijk showroomadvies, geselecteerde topmerken en een verfijnde keukenervaring.';
 	}
 
+	if (is_singular('kitchen_brand')) {
+		$slug = get_post_field('post_name', get_queried_object_id());
+		$map  = [
+			'leicht'    => 'kc_leicht_page_data',
+			'nobilia'   => 'kc_nobilia_page_data',
+			'ai-kuchen' => 'kc_ai_kuchen_page_data',
+			'zampieri'  => 'kc_zampieri_page_data',
+			'cucinesse' => 'kc_cucinesse_page_data',
+		];
+		if (is_string($slug) && isset($map[ $slug ]) && function_exists($map[ $slug ])) {
+			$data = call_user_func($map[ $slug ]);
+			if (is_array($data) && ! empty($data['meta']['description'])) {
+				return (string) $data['meta']['description'];
+			}
+		}
+	}
+
 	if (is_singular()) {
 		$excerpt = get_the_excerpt();
 		if (is_string($excerpt) && '' !== trim(wp_strip_all_tags($excerpt))) {

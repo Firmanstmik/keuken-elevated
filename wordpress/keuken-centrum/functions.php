@@ -23,6 +23,9 @@ require_once get_template_directory() . '/inc/brand-pages/data-keukens-overview.
 require_once get_template_directory() . '/inc/brand-pages/data-leicht.php';
 require_once get_template_directory() . '/inc/brand-pages/data-leicht-series.php';
 require_once get_template_directory() . '/inc/brand-pages/data-nobilia.php';
+require_once get_template_directory() . '/inc/brand-pages/data-ai-kuchen.php';
+require_once get_template_directory() . '/inc/brand-pages/data-zampieri.php';
+require_once get_template_directory() . '/inc/brand-pages/data-cucinesse.php';
 require_once get_template_directory() . '/inc/brand-pages/routing.php';
 
 
