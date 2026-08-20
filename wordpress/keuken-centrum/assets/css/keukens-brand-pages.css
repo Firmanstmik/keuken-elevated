@@ -92,6 +92,20 @@ body.kc-keukens-route .site-main--keukens { min-height: 60vh; }
     min-width: max-content;
     scroll-snap-align: start;
   }
+
+  /* React styles.pcss @media (max-width:767px) — touch CTA sizing */
+  .brand-page .premium-pill-button {
+    min-height: 48px;
+    padding-left: 1rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+  }
+  .brand-page .premium-pill-button__badge,
+  .brand-page .premium-pill-button--sm .premium-pill-button__badge,
+  .brand-page .premium-pill-button--md .premium-pill-button__badge {
+    width: 2.35rem;
+    height: 2.35rem;
+  }
 }
 /* Decorative ghosts/glows can extend past the viewport; match React clip */
 body.kc-keukens-route,

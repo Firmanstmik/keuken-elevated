@@ -1,6 +1,12 @@
 import aiKuchenLogo from "@/assets/aiKuchen_Logo.webp";
-
-const wp = "https://keuken-centrum.nl/wp-content/uploads";
+/**
+ * Original remotes under keuken-centrum.nl/wp-content/uploads/AI-KUCHEN-… return HTTP 404.
+ * Recovered authentic showroom photos from the live keuken-centrum.nl SPA (__l5e assets):
+ * - AI-KUCHEN-Hacker-keukens-utrecht2-scaled.webp
+ * - AI-KUCHEN-Hacker-keukens-utrecht-Keuken-scaled.webp
+ */
+import aiKuchenShowroom1 from "@/assets/brands/aikuchen-showroom-1.webp";
+import aiKuchenShowroom2 from "@/assets/brands/aikuchen-showroom-2.webp";
 
 export const aiKuchenPage = {
   id: "ai-kuchen",
@@ -14,7 +20,7 @@ export const aiKuchenPage = {
   },
   logo: aiKuchenLogo,
   hero: {
-    image: `${wp}/AI-KUCHEN-Hacker-keukens-utrecht0-scaled.webp`,
+    image: aiKuchenShowroom1,
     eyebrow: "Duitse systeemkeukens",
     title: "AI Küchen",
     highlight: "Design dat leeft.",
@@ -40,7 +46,7 @@ export const aiKuchenPage = {
       "Door de speciale indeling van vormen die AI Küchen toepast, krijgen alle vormen de vrijheid om geproduceerd te worden. Daardoor kunnen ze gemakkelijk belast worden en bevatten de meeste ook uittrekbare elementen of bijzondere schap- en kastoplossingen, zodat u alles uit uw opbergruimte haalt.",
       "De AI Küchen keukens voldoen aan de hoogste eisen. Een bijzondere combinatie van moderne architectuur die rekening houdt met innovatie, duurzaamheid en functionaliteit.",
     ],
-    image: `${wp}/AI-KUCHEN-Hacker-keukens-utrecht-L-scaled.webp`,
+    image: aiKuchenShowroom2,
   },
   pillars: [
     {
@@ -75,25 +81,25 @@ export const aiKuchenPage = {
   },
   gallery: [
     {
-      src: `${wp}/AI-KUCHEN-Hacker-keukens-utrecht0-scaled.webp`,
+      src: aiKuchenShowroom1,
       title: "Moderne lijnvoering",
       tag: "Showroom Utrecht",
       span: "large" as const,
     },
     {
-      src: `${wp}/AI-KUCHEN-Hacker-keukens-utrecht-L-scaled.webp`,
+      src: aiKuchenShowroom2,
       title: "Op maat samengesteld",
       tag: "Maatwerk",
       span: "medium" as const,
     },
     {
-      src: `${wp}/AI-KUCHEN-Hacker-keukens-utrecht-nll-1024x768.webp`,
+      src: aiKuchenShowroom2,
       title: "Detail & afwerking",
       tag: "Kwaliteit",
       span: "medium" as const,
     },
     {
-      src: `${wp}/AI-KUCHEN-Hacker-keukens-utrecht-nll.webp`,
+      src: aiKuchenShowroom1,
       title: "Systeemoplossingen",
       tag: "Functionaliteit",
       span: "wide" as const,

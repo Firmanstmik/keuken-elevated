@@ -13,17 +13,18 @@ if (! defined('ABSPATH')) {
  * @param int $index Pool index.
  */
 function kc_ai_kuchen_pool_img(int $index): string {
+	/*
+	 * Original React remotes (…/AI-KUCHEN-…utrecht0|L|nll…) return HTTP 404.
+	 * Recovered authentic showroom photos from keuken-centrum.nl (__l5e) live site.
+	 */
 	$pool = array_values(
 		array_filter(
 			[
-				kc_brand_hero('ai-kuchen'),
-				kc_theme_img('hero/hero_img3.webp'),
-				kc_theme_img('collections/modern-base.webp'),
-				kc_theme_img('experience/Modern_keukens.webp'),
-				kc_theme_img('experience/Design_keukens.webp'),
-				kc_theme_img('showroom.webp'),
-				kc_theme_img('craftsmanship.webp'),
-				kc_theme_img('collection-modern.webp'),
+				kc_theme_img('brands/aikuchen-showroom-1.webp') ?: kc_brand_hero('ai-kuchen'),
+				kc_theme_img('brands/aikuchen-showroom-2.webp'),
+				kc_theme_img('brands/aikuchen-showroom-1.webp'),
+				kc_theme_img('brands/aikuchen-showroom-2.webp'),
+				kc_theme_img('brands/aikuchen-showroom-1.webp'),
 			]
 		)
 	);
