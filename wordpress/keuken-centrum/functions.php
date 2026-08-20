@@ -18,6 +18,9 @@ require_once get_template_directory() . '/inc/icons.php';
 require_once get_template_directory() . '/inc/nav-mega.php';
 require_once get_template_directory() . '/inc/section-chapter.php';
 require_once get_template_directory() . '/inc/seo.php';
+require_once get_template_directory() . '/inc/brand-pages/helpers.php';
+require_once get_template_directory() . '/inc/brand-pages/data-keukens-overview.php';
+require_once get_template_directory() . '/inc/brand-pages/routing.php';
 
 
 if (! defined('KC_THEME_VERSION')) {
@@ -98,6 +101,18 @@ function kc_enqueue_assets(): void {
 		$script_ver . '.' . $script_mtime,
 		true
 	);
+
+	if (function_exists('kc_is_keukens_route') && kc_is_keukens_route()) {
+		$brand_css_rel  = 'assets/css/keukens-brand-pages.css';
+		$brand_css_path = get_theme_file_path($brand_css_rel);
+		$brand_mtime    = file_exists($brand_css_path) ? (string) filemtime($brand_css_path) : '0';
+		wp_enqueue_style(
+			'keuken-centrum-keukens-brand',
+			kc_asset($brand_css_rel),
+			['keuken-centrum-theme'],
+			$style_ver . '.' . $brand_mtime
+		);
+	}
 }
 add_action('wp_enqueue_scripts', 'kc_enqueue_assets');
 
@@ -120,7 +135,7 @@ add_filter('wp_resource_hints', 'kc_resource_hints', 10, 2);
  * Keep theme CSS/JS out of LiteSpeed combine/UCSS so homepage parity rules are not stripped.
  */
 function kc_litespeed_exclude_theme_assets(string $html, string $handle): string {
-	if ('keuken-centrum-theme' !== $handle || str_contains($html, 'data-no-optimize')) {
+	if (! in_array($handle, ['keuken-centrum-theme', 'keuken-centrum-keukens-brand'], true) || str_contains($html, 'data-no-optimize')) {
 		return $html;
 	}
 
@@ -128,6 +143,20 @@ function kc_litespeed_exclude_theme_assets(string $html, string $handle): string
 }
 add_filter('style_loader_tag', 'kc_litespeed_exclude_theme_assets', 10, 2);
 add_filter('script_loader_tag', 'kc_litespeed_exclude_theme_assets', 10, 2);
+
+/**
+ * Body class for keukens routes (layout + cache hints).
+ *
+ * @param array<int, string> $classes Body classes.
+ * @return array<int, string>
+ */
+function kc_keukens_body_class(array $classes): array {
+	if (function_exists('kc_is_keukens_route') && kc_is_keukens_route()) {
+		$classes[] = 'kc-keukens-route';
+	}
+	return $classes;
+}
+add_filter('body_class', 'kc_keukens_body_class');
 
 /**
  * Recovery: LiteSpeed full-page cache was hanging anonymous homepage requests.

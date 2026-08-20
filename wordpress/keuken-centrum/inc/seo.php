@@ -17,6 +17,15 @@ function kc_document_title_parts(array $parts): array {
 		$parts['title']   = 'Keuken-Centrum Utrecht';
 		$parts['tagline'] = 'De Premium Keukenbestemming van Utrecht';
 	}
+
+	if (is_post_type_archive('kitchen_brand') && function_exists('kc_keukens_overview_data')) {
+		$data = kc_keukens_overview_data();
+		if (! empty($data['meta']['title'])) {
+			$parts['title'] = $data['meta']['title'];
+			unset($parts['tagline'], $parts['site']);
+		}
+	}
+
 	return $parts;
 }
 add_filter('document_title_parts', 'kc_document_title_parts');
@@ -40,8 +49,11 @@ function kc_get_meta_description(): string {
 		}
 	}
 
-	if (is_post_type_archive('kitchen_brand')) {
-		return 'Ontdek Duitse en Italiaanse keukenmerken bij Keuken-Centrum Utrecht: Leicht, Nobilia, AI Küchen, Zampieri en Cucinesse.';
+	if (is_post_type_archive('kitchen_brand') && function_exists('kc_keukens_overview_data')) {
+		$data = kc_keukens_overview_data();
+		if (! empty($data['meta']['description'])) {
+			return $data['meta']['description'];
+		}
 	}
 
 	if (is_post_type_archive('worktop')) {
