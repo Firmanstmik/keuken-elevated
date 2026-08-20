@@ -69,6 +69,38 @@ body.kc-keukens-route .site-main--keukens { min-height: 60vh; }
 @media (min-width: 768px) {
   .brand-page-hero__content { padding: 11rem 0 7rem; }
 }
+/* React styles.pcss mobile brand hero (max-width: 767px) */
+@media (max-width: 767px) {
+  .brand-page-hero,
+  .brand-page-hero__content {
+    min-height: max(43rem, 100svh) !important;
+  }
+  .brand-page-hero__content {
+    justify-content: flex-end;
+    padding-top: calc(var(--app-safe-top, 0px) + 7rem) !important;
+    padding-bottom: 4.5rem !important;
+  }
+  .brand-page-hero__badge-strip {
+    max-width: calc(100vw - 2rem);
+    justify-content: flex-start;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+  .brand-page-hero__badge-strip::-webkit-scrollbar { display: none; }
+  .brand-page-hero__badge {
+    min-width: max-content;
+    scroll-snap-align: start;
+  }
+}
+/* Decorative ghosts/glows can extend past the viewport; match React clip */
+body.kc-keukens-route,
+body.kc-keukens-route .brand-page {
+  overflow-x: clip;
+}
+html:has(body.kc-keukens-route) {
+  overflow-x: hidden;
+}
 .brand-page-hero--tall .brand-page-hero__content { min-height: 96vh; }
 .brand-page-hero__inner { max-width: 54rem; width: 100%; }
 .brand-page-hero__title {
