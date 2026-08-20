@@ -10,10 +10,42 @@ if (! defined('ABSPATH')) {
 }
 
 /**
- * Remote uploads base used by React brand pages.
+ * Remote uploads base used by React brand pages (may 404 on some hosts).
  */
 function kc_brand_upload(string $filename): string {
 	return 'https://keuken-centrum.nl/wp-content/uploads/' . ltrim($filename, '/');
+}
+
+/**
+ * Prefer a theme-bundled image; fall back to remote upload URL only if needed.
+ * Production currently cannot load many keuken-centrum.nl upload paths (HTTP 404),
+ * so theme assets are the reliable source of truth for visual parity.
+ */
+function kc_brand_img(string $theme_relative, string $remote_filename = ''): string {
+	$local = kc_theme_img($theme_relative);
+	if ($local) {
+		return $local;
+	}
+	if ('' !== $remote_filename) {
+		return kc_brand_upload($remote_filename);
+	}
+	return '';
+}
+
+/**
+ * Brand logo URI with theme fallback.
+ */
+function kc_brand_logo(string $slug): string {
+	$bundle = kc_brand_bundle($slug);
+	return $bundle['logo'] ?: '';
+}
+
+/**
+ * Brand hero URI with theme fallback.
+ */
+function kc_brand_hero(string $slug): string {
+	$bundle = kc_brand_bundle($slug);
+	return $bundle['hero'] ?: kc_theme_img('hero/hero_img1.webp');
 }
 
 /**

@@ -2,6 +2,8 @@
 /**
  * Kitchen brand single template.
  *
+ * Known brand slugs use React BrandPage parity templates.
+ *
  * @package Keuken_Centrum
  */
 
@@ -9,6 +11,31 @@ get_header();
 
 while (have_posts()) :
 	the_post();
+
+	$slug = get_post_field('post_name', get_the_ID());
+	$data = null;
+
+	if ('leicht' === $slug && function_exists('kc_leicht_page_data')) {
+		$data = kc_leicht_page_data();
+	}
+
+	if (is_array($data) && $data) {
+		if (! empty($data['meta']['title'])) {
+			add_filter(
+				'pre_get_document_title',
+				static function () use ($data) {
+					return (string) $data['meta']['title'];
+				},
+				20
+			);
+		}
+		?>
+		<main id="main-content" class="site-main">
+			<?php get_template_part('template-parts/keukens/brand-page', null, [ 'data' => $data ]); ?>
+		</main>
+		<?php
+		continue;
+	}
 
 	$country   = kc_get_field_value('country', get_the_ID(), 'Premium collectie');
 	$story     = kc_get_field_value('short_story', get_the_ID(), get_the_excerpt());

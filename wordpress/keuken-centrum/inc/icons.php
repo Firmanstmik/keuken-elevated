@@ -60,6 +60,27 @@ function kc_icon_nav_chevron(): string {
 }
 
 /**
+ * Brand pillar / partnership icons (Iconsax Linear approximations).
+ */
+function kc_icon_brand(string $name): string {
+	$map = [
+		'sparkles' => '<path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/>',
+		'shield'   => '<path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9.5 12.2l1.7 1.7 3.3-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>',
+		'grid'     => '<path d="M9 3H4.5A1.5 1.5 0 0 0 3 4.5V9M15 3h4.5A1.5 1.5 0 0 1 21 4.5V9M9 21H4.5A1.5 1.5 0 0 1 3 19.5V15M15 21h4.5a1.5 1.5 0 0 0 1.5-1.5V15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M9 12h6M12 9v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>',
+		'layers'   => '<path d="M12 3l8.5 4.5L12 12 3.5 7.5 12 3ZM3.5 12.5 12 17l8.5-4.5M3.5 16.5 12 21l8.5-4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>',
+		'award'    => '<circle cx="12" cy="9" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M8.5 13.5 7 21l5-2.5L17 21l-1.5-7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>',
+		'heart'    => '<path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>',
+		'factory'  => '<path d="M3 21h18M5 21V10l5 3V10l5 3V7h4v14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>',
+		'clock'    => '<circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>',
+		'check'    => '<path d="M5 12.5 9.5 17 19 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>',
+		'phone'    => '<path d="M8.5 4.5h-2A2.5 2.5 0 0 0 4 7v.5C4 15 9 20 16.5 20H17a2.5 2.5 0 0 0 2.5-2.5v-2l-3.2-1.2-1.6 1.6a12 12 0 0 1-4.6-4.6l1.6-1.6L10.5 6.5 8.5 4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>',
+		'arrow-down' => '<path d="M12 5v14M6 13l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>',
+	];
+	$path = $map[ $name ] ?? $map['sparkles'];
+	return '<svg class="kc-icon-' . esc_attr($name) . '" viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true">' . $path . '</svg>';
+}
+
+/**
  * Exact Iconsax Linear menu category glyphs used by the React navigation.
  */
 function kc_icon_mega_category(int $index): string {

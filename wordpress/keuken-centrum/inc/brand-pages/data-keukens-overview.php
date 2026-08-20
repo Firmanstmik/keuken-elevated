@@ -13,10 +13,12 @@ if (! defined('ABSPATH')) {
  * @return array<string, mixed>
  */
 function kc_keukens_overview_data(): array {
-	$bundle = static function (string $slug): string {
-		$assets = kc_brand_bundle($slug);
-		return $assets['hero'] ?: '';
-	};
+	$hero_slides = [
+		kc_theme_img('hero/hero_img1.webp'),
+		kc_theme_img('hero/hero_img2.webp'),
+		kc_theme_img('hero/hero_img3.webp'),
+	];
+	$hero_slides = array_values(array_filter($hero_slides));
 
 	return [
 		'meta' => [
@@ -24,12 +26,8 @@ function kc_keukens_overview_data(): array {
 			'description' => __('Breed assortiment A-merk keukens van Leicht, Nobilia, AI Küchen, Zampieri en Cucinesse, met betaalbare prijzen, 3D-ontwerp en gegarandeerd de scherpste prijs in Utrecht.', 'keuken-centrum'),
 		],
 		'hero' => [
-			'image'     => kc_brand_upload('Schermafbeelding-2021-05-19-om-10.29.17.webp'),
-			'images'    => [
-				kc_brand_upload('Schermafbeelding-2021-05-19-om-10.29.17.webp'),
-				kc_brand_upload('713-269-M02-103-316-j19.webp'),
-				kc_brand_upload('Schermafbeelding-2021-05-17-om-21.06.15.webp'),
-			],
+			'image'     => $hero_slides[0] ?? kc_brand_hero('leicht'),
+			'images'    => $hero_slides,
 			'eyebrow'   => __('A-merk keukens', 'keuken-centrum'),
 			'title'     => __('Keukens', 'keuken-centrum'),
 			'highlight' => __('Kom langs.', 'keuken-centrum'),
@@ -51,7 +49,7 @@ function kc_keukens_overview_data(): array {
 				'country'     => __('Duitsland', 'keuken-centrum'),
 				'tagline'     => __('Häcker · modern inbouwkeuken', 'keuken-centrum'),
 				'description' => __('Häcker produceert moderne inbouwkeukens die voldoen aan de hoogste eisen op het gebied van kwaliteit, functionaliteit, duurzaamheid en design.', 'keuken-centrum'),
-				'image'       => kc_brand_upload('AI-KUCHEN-Hacker-keukens-utrecht0-scaled.webp') ?: $bundle('ai-kuchen'),
+				'image'       => kc_brand_hero('ai-kuchen'),
 				'href'        => home_url('/keukens/ai-kuchen/'),
 			],
 			[
@@ -60,7 +58,7 @@ function kc_keukens_overview_data(): array {
 				'country'     => __('Duitsland', 'keuken-centrum'),
 				'tagline'     => __('Ruimten van hoogste individualiteit', 'keuken-centrum'),
 				'description' => __('LEICHT keukens creëren ruimten van hoogste individualiteit, waarin het waarlijk een genoegen is om bij het koken en een goed gesprek veel tijd met het gezin, familie en vrienden door te brengen.', 'keuken-centrum'),
-				'image'       => kc_brand_upload('CM-1697-095-final_Koje-03.webp') ?: $bundle('leicht'),
+				'image'       => kc_brand_hero('leicht'),
 				'href'        => home_url('/keukens/leicht/'),
 			],
 			[
@@ -69,7 +67,7 @@ function kc_keukens_overview_data(): array {
 				'country'     => __('Duitsland', 'keuken-centrum'),
 				'tagline'     => __('Trendy decors & Duitse degelijkheid', 'keuken-centrum'),
 				'description' => __('Met name op trendy decors, een grote variatie aan ontwerpen, een unieke en doorlopende lijnvoering en innovatieve kwaliteitsverbeteringen tot in detail.', 'keuken-centrum'),
-				'image'       => kc_brand_upload('453_flash.webp') ?: $bundle('nobilia'),
+				'image'       => kc_brand_hero('nobilia'),
 				'href'        => home_url('/keukens/nobilia/'),
 			],
 			[
@@ -78,7 +76,7 @@ function kc_keukens_overview_data(): array {
 				'country'     => __('Italië', 'keuken-centrum'),
 				'tagline'     => __('Made in Italy · keukens & kasten', 'keuken-centrum'),
 				'description' => __('Zelfs de kleinste details kunnen worden aangepast om aan de smaak en behoeften van elke klant te voldoen.', 'keuken-centrum'),
-				'image'       => kc_brand_upload('cucina3.webp') ?: $bundle('zampieri'),
+				'image'       => kc_brand_hero('zampieri'),
 				'href'        => home_url('/keukens/zampieri/'),
 			],
 			[
@@ -87,7 +85,7 @@ function kc_keukens_overview_data(): array {
 				'country'     => __('Italië', 'keuken-centrum'),
 				'tagline'     => __('Modulaire keukens sinds 1979', 'keuken-centrum'),
 				'description' => __('Modulaire keukens met oneindig veel oplossingen: handgrepen, werkbladen en fronts in vele vormen en afwerkingen, aangevuld met bijpassende livingmeubels op maat.', 'keuken-centrum'),
-				'image'       => kc_brand_upload('cucinesse-cucina-LAB-3-3.webp') ?: $bundle('cucinesse'),
+				'image'       => kc_brand_hero('cucinesse'),
 				'href'        => home_url('/keukens/cucinesse/'),
 			],
 		],
@@ -106,7 +104,7 @@ function kc_keukens_overview_data(): array {
 			__('Een keuken kan in vele verschillende stijlen worden uitgevoerd. We kennen keukens met een landelijke of klassieke uitstraling, maar ook in een moderne stijl of luxe uitvoering met kookeiland. Sommige trends zijn blijvend. Zo zien we steeds vaker een combinatie van stijlen, zoals een \'moderne, landelijke keuken\' of \'strakke, stoere keuken\'. Bij deze keukens is de grens tussen twee stijlen vervaagd.', 'keuken-centrum'),
 			__('Wat uw stijl ook is, bij Keuken-Centrum hebben wij altijd de oplossing. Wij kunnen uw keuken geheel op maat maken en met onze vakkennis adviseren wij u over de combinaties en materialen die mogelijk zijn. Ook de keukenapparatuur en de plaatsing ervan is geheel afhankelijk van uw wensen, van een luxe stoomoven of wijnkoeler tot een combi-oven of extra breed gasfornuis.', 'keuken-centrum'),
 		],
-		'faq'       => kc_brand_shared_faq(),
-		'advisors'  => kc_brand_shared_advisors(),
+		'faq'      => kc_brand_shared_faq(),
+		'advisors' => kc_brand_shared_advisors(),
 	];
 }
