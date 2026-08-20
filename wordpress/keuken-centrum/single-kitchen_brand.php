@@ -17,6 +17,8 @@ while (have_posts()) :
 
 	if ('leicht' === $slug && function_exists('kc_leicht_page_data')) {
 		$data = kc_leicht_page_data();
+	} elseif ('nobilia' === $slug && function_exists('kc_nobilia_page_data')) {
+		$data = kc_nobilia_page_data();
 	}
 
 	if (is_array($data) && $data) {
