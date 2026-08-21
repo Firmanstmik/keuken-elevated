@@ -30,6 +30,9 @@ require_once get_template_directory() . '/inc/brand-pages/routing.php';
 require_once get_template_directory() . '/inc/worktop-pages/helpers.php';
 require_once get_template_directory() . '/inc/worktop-pages/data-overview.php';
 require_once get_template_directory() . '/inc/worktop-pages/data-silestone.php';
+require_once get_template_directory() . '/inc/worktop-pages/data-dekton.php';
+require_once get_template_directory() . '/inc/worktop-pages/data-neolith.php';
+require_once get_template_directory() . '/inc/worktop-pages/data-sensa.php';
 
 
 if (! defined('KC_THEME_VERSION')) {
