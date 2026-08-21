@@ -522,6 +522,47 @@ function kc_cms_register_field_groups(): void {
 					'type'  => 'text',
 					'default_value' => '4,9',
 				],
+				[
+					'key'           => 'field_kc_cms_founded',
+					'label'         => 'Opgericht (jaar)',
+					'name'          => 'founded_year',
+					'type'          => 'text',
+					'default_value' => '1978',
+				],
+				[
+					'key'           => 'field_kc_cms_hours_rows',
+					'label'         => 'Openingstijden (rijen)',
+					'name'          => 'contact_hours_rows',
+					'type'          => 'textarea',
+					'rows'          => 4,
+					'instructions'  => 'Eén regel per rij: Dag|Tijden',
+					'default_value' => "Maandag tot Vrijdag|09:00 tot 18:00\nZaterdag|09:00 tot 17:00\nZondag|Gesloten",
+				],
+				[
+					'key'   => 'field_kc_cms_maps',
+					'label' => 'Google Maps URL',
+					'name'  => 'contact_maps_url',
+					'type'  => 'url',
+				],
+				[
+					'key'   => 'field_kc_cms_facebook',
+					'label' => 'Facebook URL',
+					'name'  => 'social_facebook',
+					'type'  => 'url',
+				],
+				[
+					'key'   => 'field_kc_cms_instagram',
+					'label' => 'Instagram URL',
+					'name'  => 'social_instagram',
+					'type'  => 'url',
+				],
+				[
+					'key'          => 'field_kc_cms_configurator',
+					'label'        => 'Configurator URL',
+					'name'         => 'configurator_url',
+					'type'         => 'url',
+					'instructions' => 'Tot WP funnel bestaat: homepage #brands of externe React /brands URL.',
+				],
 			],
 			'location' => [
 				[
@@ -650,6 +691,129 @@ function kc_cms_register_field_groups(): void {
 						'param'    => 'options_page',
 						'operator' => '==',
 						'value'    => 'kc-cms-sticky',
+					],
+				],
+			],
+		]
+	);
+
+	acf_add_local_field_group(
+		[
+			'key'      => 'group_kc_cms_footer',
+			'title'    => 'Footer',
+			'fields'   => [
+				[
+					'key'   => 'field_kc_footer_hero_eyebrow',
+					'label' => 'Hero eyebrow',
+					'name'  => 'footer_hero_eyebrow',
+					'type'  => 'text',
+				],
+				[
+					'key'   => 'field_kc_footer_hero_title',
+					'label' => 'Hero titel',
+					'name'  => 'footer_hero_title',
+					'type'  => 'text',
+				],
+				[
+					'key'   => 'field_kc_footer_hero_em',
+					'label' => 'Hero titel (accent)',
+					'name'  => 'footer_hero_title_em',
+					'type'  => 'text',
+				],
+				[
+					'key'   => 'field_kc_footer_hero_copy',
+					'label' => 'Hero tekst',
+					'name'  => 'footer_hero_copy',
+					'type'  => 'textarea',
+					'rows'  => 3,
+				],
+				[
+					'key'   => 'field_kc_footer_cta1_label',
+					'label' => 'Primary CTA label',
+					'name'  => 'footer_cta_primary_label',
+					'type'  => 'text',
+				],
+				[
+					'key'   => 'field_kc_footer_cta1_url',
+					'label' => 'Primary CTA URL',
+					'name'  => 'footer_cta_primary_url',
+					'type'  => 'url',
+				],
+				[
+					'key'   => 'field_kc_footer_cta2_label',
+					'label' => 'Secondary CTA label',
+					'name'  => 'footer_cta_secondary_label',
+					'type'  => 'text',
+				],
+				[
+					'key'   => 'field_kc_footer_cta2_url',
+					'label' => 'Secondary CTA URL',
+					'name'  => 'footer_cta_secondary_url',
+					'type'  => 'url',
+				],
+				[
+					'key'   => 'field_kc_footer_brand_eyebrow',
+					'label' => 'Brand eyebrow',
+					'name'  => 'footer_brand_eyebrow',
+					'type'  => 'text',
+				],
+				[
+					'key'   => 'field_kc_footer_brand_copy',
+					'label' => 'Brand beschrijving',
+					'name'  => 'footer_brand_copy',
+					'type'  => 'textarea',
+					'rows'  => 3,
+				],
+				[
+					'key'           => 'field_kc_footer_stat_projects',
+					'label'         => 'Stat: Projecten',
+					'name'          => 'footer_stat_projects',
+					'type'          => 'text',
+					'default_value' => '150+',
+				],
+				[
+					'key'           => 'field_kc_footer_stat_exp',
+					'label'         => 'Stat: Ervaring',
+					'name'          => 'footer_stat_experience',
+					'type'          => 'text',
+					'default_value' => '45+',
+				],
+				[
+					'key'          => 'field_kc_footer_col_collections',
+					'label'        => 'Kolom Collecties (Label|URL per regel)',
+					'name'         => 'footer_col_collections',
+					'type'         => 'textarea',
+					'rows'         => 5,
+					'instructions' => 'React Collecties links',
+				],
+				[
+					'key'   => 'field_kc_footer_col_digital',
+					'label' => 'Kolom Digitaal Ontwerp (Label|URL per regel)',
+					'name'  => 'footer_col_digital',
+					'type'  => 'textarea',
+					'rows'  => 5,
+				],
+				[
+					'key'   => 'field_kc_footer_col_about',
+					'label' => 'Kolom Over ons (Label|URL per regel)',
+					'name'  => 'footer_col_about',
+					'type'  => 'textarea',
+					'rows'  => 6,
+				],
+				[
+					'key'   => 'field_kc_footer_col_service',
+					'label' => 'Kolom Klantenservice (Label|URL per regel)',
+					'name'  => 'footer_col_service',
+					'type'  => 'textarea',
+					'rows'  => 4,
+				],
+			],
+			'location' => [
+				[
+					[
+						'param'    => 'options_page',
+						'operator' => '==',
+						'value'    => 'kc-cms-footer',
 					],
 				],
 			],

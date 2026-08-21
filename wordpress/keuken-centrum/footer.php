@@ -1,140 +1,222 @@
 <?php
 /**
- * Footer template.
+ * Footer template — React Footer.tsx parity + CMS data.
  *
  * @package Keuken_Centrum
  */
 
-if (! defined('ABSPATH')) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$address = kc_get_option('contact_address', 'Zonnebaan 8');
-$postal  = kc_get_option('contact_postal', '3542 EC Utrecht');
-$phone   = kc_get_option('contact_phone', '030 241 5122');
-$email   = kc_get_option('contact_email', 'info@keuken-centrum.nl');
-$hours   = kc_get_option('contact_hours', 'Ma t/m za op afspraak, met uitgebreid showroomadvies.');
-$founded = kc_get_option('founded_year', '1978');
-$showroom_image = kc_theme_img('showroom.jpg');
-$showroom_logo  = kc_theme_img('logo-keuken-1-1.webp') ?: kc_theme_img('logo-keuken.webp');
-$phone_link = preg_replace('/[^0-9+]/', '', $phone);
-$whatsapp_link = 'https://wa.me/' . preg_replace('/\D+/', '', $phone_link);
-$footer_links  = [
-	[
-		'title' => __('Collecties', 'keuken-centrum'),
-		'links' => [
-			[__('Moderne Keukens', 'keuken-centrum'), home_url('/#collections')],
-			[__('Landelijke Keukens', 'keuken-centrum'), home_url('/#collections')],
-			[__('Klassieke Keukens', 'keuken-centrum'), home_url('/#collections')],
-			[__('Industriële Keukens', 'keuken-centrum'), home_url('/#collections')],
-		],
-	],
-	[
-		'title' => __('Ontwerptraject', 'keuken-centrum'),
-		'links' => [
-			[__('Start configurator', 'keuken-centrum'), home_url('/#brands')],
-			[__('Kies uw stijl', 'keuken-centrum'), home_url('/#collections')],
-			[__('Plan consultatie', 'keuken-centrum'), home_url('/consultation/')],
-			[__('Bekijk showroom', 'keuken-centrum'), home_url('/#showroom')],
-		],
-	],
-	[
-		'title' => __('Meer informatie', 'keuken-centrum'),
-		'links' => [
-			[__('Ons verhaal', 'keuken-centrum'), home_url('/')],
-			[__('Onze merken', 'keuken-centrum'), home_url('/#brands')],
-			[__('Projecten', 'keuken-centrum'), home_url('/#reviews')],
-			[__('Contact', 'keuken-centrum'), home_url('/contact')],
-		],
-	],
-];
+$f = function_exists( 'kc_footer_data' ) ? kc_footer_data() : [];
+if ( ! $f ) {
+	return;
+}
+
+$logo = $f['logo'] ?? '';
 ?>
 <footer class="site-footer site-footer--react">
 	<div class="site-footer__wash" aria-hidden="true"></div>
 
 	<div class="site-shell site-footer__trust-row site-footer__trust-row--react">
-		<div><span><?php echo esc_html($founded); ?></span><p><?php esc_html_e('Opgericht', 'keuken-centrum'); ?></p></div>
-		<div><span>4.9★</span><p><?php esc_html_e('Google Reviews', 'keuken-centrum'); ?></p></div>
-		<div><span>150+</span><p><?php esc_html_e('Projecten', 'keuken-centrum'); ?></p></div>
-		<div><span>45+</span><p><?php esc_html_e('Jaar ervaring', 'keuken-centrum'); ?></p></div>
+		<div><span><?php echo esc_html( (string) ( $f['founded'] ?? '1978' ) ); ?></span><p><?php esc_html_e( 'Opgericht', 'keuken-centrum' ); ?></p></div>
+		<div><span><?php echo esc_html( (string) ( $f['rating'] ?? '4.9★' ) ); ?></span><p><?php esc_html_e( 'Google Reviews', 'keuken-centrum' ); ?></p></div>
+		<div><span><?php echo esc_html( (string) ( $f['projects'] ?? '150+' ) ); ?></span><p><?php esc_html_e( 'Projecten', 'keuken-centrum' ); ?></p></div>
+		<div><span><?php echo esc_html( (string) ( $f['experience'] ?? '45+' ) ); ?></span><p><?php esc_html_e( 'Jaar ervaring', 'keuken-centrum' ); ?></p></div>
 	</div>
 
 	<div class="site-shell site-footer__hero">
-		<p class="site-footer__hero-eyebrow"><?php esc_html_e('Persoonlijk ontwerptraject', 'keuken-centrum'); ?></p>
-		<h2 class="site-footer__hero-title"><?php esc_html_e('Klaar voor een keuken die echt bij uw', 'keuken-centrum'); ?> <em><?php esc_html_e('woning past?', 'keuken-centrum'); ?></em></h2>
-		<p class="site-footer__hero-copy"><?php esc_html_e('Bezoek de showroom of start eerst online. Rustig, verfijnd en volledig in lijn met onze premium keukenbeleving.', 'keuken-centrum'); ?></p>
+		<p class="site-footer__hero-eyebrow"><?php echo esc_html( (string) ( $f['hero_eyebrow'] ?? '' ) ); ?></p>
+		<h2 class="site-footer__hero-title">
+			<?php echo esc_html( (string) ( $f['hero_title'] ?? '' ) ); ?>
+			<em><?php echo esc_html( (string) ( $f['hero_title_em'] ?? '' ) ); ?></em>
+		</h2>
+		<p class="site-footer__hero-copy"><?php echo esc_html( (string) ( $f['hero_copy'] ?? '' ) ); ?></p>
 		<div class="site-footer__hero-actions">
-			<a class="btn btn--primary btn--pill" href="<?php echo esc_url(home_url('/#brands')); ?>"><?php esc_html_e('Start configurator', 'keuken-centrum'); ?></a>
-			<a class="btn btn--secondary btn--pill" href="<?php echo esc_url(home_url('/#contact')); ?>"><?php esc_html_e('Plan showroombezoek', 'keuken-centrum'); ?></a>
+			<a class="btn btn--primary btn--pill" href="<?php echo esc_url( (string) ( $f['cta_primary']['url'] ?? '#' ) ); ?>">
+				<?php echo esc_html( (string) ( $f['cta_primary']['label'] ?? '' ) ); ?>
+			</a>
+			<a class="btn btn--secondary btn--pill" href="<?php echo esc_url( (string) ( $f['cta_secondary']['url'] ?? '#' ) ); ?>">
+				<?php echo esc_html( (string) ( $f['cta_secondary']['label'] ?? '' ) ); ?>
+			</a>
 		</div>
 	</div>
 
+	<?php /* Mobile accordion — React md:hidden */ ?>
+	<div class="site-shell site-footer__mobile">
+		<?php if ( $logo ) : ?>
+			<img class="site-footer__mobile-logo" src="<?php echo esc_url( $logo ); ?>" alt="<?php esc_attr_e( 'Keuken-Centrum Utrecht', 'keuken-centrum' ); ?>" width="280" height="48" loading="lazy" decoding="async">
+		<?php endif; ?>
+		<p class="site-footer__mobile-copy"><?php echo esc_html( (string) ( $f['brand_copy'] ?? '' ) ); ?></p>
+		<div class="site-footer__socials site-footer__socials--react">
+			<?php foreach ( (array) ( $f['socials'] ?? [] ) as $social ) : ?>
+				<?php
+				$tone = (string) ( $social['tone'] ?? '' );
+				$href = (string) ( $social['href'] ?? '#' );
+				?>
+				<a
+					class="site-footer__social site-footer__social--<?php echo esc_attr( $tone ); ?>"
+					href="<?php echo esc_url( $href ); ?>"
+					<?php echo str_starts_with( $href, 'mailto:' ) ? '' : 'target="_blank" rel="noopener noreferrer"'; ?>
+					aria-label="<?php echo esc_attr( (string) ( $social['label'] ?? '' ) ); ?>"
+				>
+					<span class="site-footer__social-icon" aria-hidden="true">
+						<?php if ( 'facebook' === $tone ) : ?>
+							<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+						<?php elseif ( 'instagram' === $tone ) : ?>
+							<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+						<?php else : ?>
+							<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6.5h16a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1zm.8 1.6 7.2 5.4 7.2-5.4"/></svg>
+						<?php endif; ?>
+					</span>
+					<span><?php echo esc_html( (string) ( $social['handle'] ?? '' ) ); ?></span>
+				</a>
+			<?php endforeach; ?>
+		</div>
+		<div class="site-footer__mobile-accordions">
+			<?php foreach ( (array) ( $f['mobile_groups'] ?? [] ) as $group ) : ?>
+				<details class="site-footer__accordion">
+					<summary><?php echo esc_html( (string) ( $group['title'] ?? '' ) ); ?></summary>
+					<ul>
+						<?php foreach ( (array) ( $group['links'] ?? [] ) as $link ) : ?>
+							<li><a href="<?php echo esc_url( (string) ( $link[1] ?? '#' ) ); ?>"><?php echo esc_html( (string) ( $link[0] ?? '' ) ); ?></a></li>
+						<?php endforeach; ?>
+					</ul>
+				</details>
+			<?php endforeach; ?>
+		</div>
+	</div>
+
+	<?php /* Desktop grid — React hidden md:grid */ ?>
 	<div class="site-shell site-footer__grid site-footer__grid--react">
 		<div class="site-footer__column site-footer__brand">
 			<div class="site-footer__logo site-footer__logo--react">
-				<?php if (has_custom_logo()) : ?>
+				<?php if ( has_custom_logo() ) : ?>
 					<?php the_custom_logo(); ?>
-				<?php elseif ($showroom_logo) : ?>
-					<img src="<?php echo esc_url($showroom_logo); ?>" alt="<?php esc_attr_e('Keuken-Centrum Utrecht', 'keuken-centrum'); ?>" loading="lazy" decoding="async">
+				<?php elseif ( $logo ) : ?>
+					<img src="<?php echo esc_url( $logo ); ?>" alt="<?php esc_attr_e( 'Keuken-Centrum Utrecht', 'keuken-centrum' ); ?>" loading="lazy" decoding="async">
 				<?php else : ?>
 					<span>KEUKEN-CENTRUM</span>
 				<?php endif; ?>
 			</div>
-			<p class="site-footer__eyebrow"><?php esc_html_e('Duitse precisie · Italiaanse elegantie', 'keuken-centrum'); ?></p>
-			<h2 class="site-footer__title"><?php printf(esc_html__('Verfijnde Europese designkeukens en compromisloze kwaliteit sinds %s.', 'keuken-centrum'), esc_html($founded)); ?></h2>
-			<div class="site-footer__socials">
-				<a href="https://www.facebook.com/keukencentrumutrecht" target="_blank" rel="noopener noreferrer" aria-label="<?php esc_attr_e('Facebook', 'keuken-centrum'); ?>">
-					<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07c0 6.03 4.39 11.03 10.13 11.93v-8.43H7.08v-3.5h3.05V9.41c0-3.03 1.79-4.71 4.54-4.71 1.31 0 2.68.24 2.68.24v2.99h-1.52c-1.5 0-1.97.93-1.97 1.89v2.27h3.35l-.54 3.5h-2.81V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
-					<span><?php esc_html_e('Facebook', 'keuken-centrum'); ?></span>
-				</a>
-				<a href="https://www.instagram.com/keukencentrum_utrecht/" target="_blank" rel="noopener noreferrer" aria-label="<?php esc_attr_e('Instagram', 'keuken-centrum'); ?>">
-					<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.7 4.92 4.92.06 1.27.07 1.65.07 4.85 0 3.2-.01 3.58-.07 4.85-.15 3.24-1.68 4.77-4.92 4.92-1.27.06-1.65.07-4.85.07-3.2 0-3.58-.01-4.85-.07-3.25-.15-4.77-1.69-4.92-4.92C2.17 15.58 2.16 15.2 2.16 12c0-3.2.01-3.58.07-4.85.15-3.24 1.69-4.77 4.92-4.92 1.27-.06 1.65-.07 4.85-.07zm0 5.67A4.17 4.17 0 1 0 12 16.17a4.17 4.17 0 0 0 0-8.34zm0 6.84A2.67 2.67 0 1 1 12 9.33a2.67 2.67 0 0 1 0 5.34zm5.31-7.01a.97.97 0 1 0 0-1.94.97.97 0 0 0 0 1.94z"/></svg>
-					<span><?php esc_html_e('Instagram', 'keuken-centrum'); ?></span>
-				</a>
-				<a href="<?php echo esc_url('mailto:' . $email); ?>" aria-label="<?php esc_attr_e('E-mail', 'keuken-centrum'); ?>">
-					<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5h16a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1zm.8 1.6l7.2 5.4 7.2-5.4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"/></svg>
-					<span><?php echo esc_html(antispambot($email)); ?></span>
-				</a>
+			<p class="site-footer__eyebrow"><?php echo esc_html( (string) ( $f['eyebrow'] ?? '' ) ); ?></p>
+			<p class="site-footer__title"><?php echo esc_html( (string) ( $f['brand_copy'] ?? '' ) ); ?></p>
+			<p class="site-footer__social-label"><?php echo esc_html( (string) ( $f['social_label'] ?? '' ) ); ?></p>
+			<div class="site-footer__socials site-footer__socials--react">
+				<?php foreach ( (array) ( $f['socials'] ?? [] ) as $social ) : ?>
+					<?php
+					$tone = (string) ( $social['tone'] ?? '' );
+					$href = (string) ( $social['href'] ?? '#' );
+					?>
+					<a
+						class="site-footer__social site-footer__social--<?php echo esc_attr( $tone ); ?>"
+						href="<?php echo esc_url( $href ); ?>"
+						<?php echo str_starts_with( $href, 'mailto:' ) ? '' : 'target="_blank" rel="noopener noreferrer"'; ?>
+						aria-label="<?php echo esc_attr( (string) ( $social['label'] ?? '' ) ); ?>"
+					>
+						<span class="site-footer__social-icon" aria-hidden="true">
+							<?php if ( 'facebook' === $tone ) : ?>
+								<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+							<?php elseif ( 'instagram' === $tone ) : ?>
+								<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+							<?php else : ?>
+								<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6.5h16a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1zm.8 1.6 7.2 5.4 7.2-5.4"/></svg>
+							<?php endif; ?>
+						</span>
+						<span><?php echo esc_html( (string) ( $social['handle'] ?? '' ) ); ?></span>
+					</a>
+				<?php endforeach; ?>
 			</div>
 		</div>
 
-		<?php foreach ($footer_links as $group) : ?>
-			<div class="site-footer__column">
-				<h3 class="site-footer__heading"><?php echo esc_html($group['title']); ?></h3>
+		<div class="site-footer__column">
+			<?php
+			$g0 = $f['nav_groups'][0] ?? null;
+			$g1 = $f['nav_groups'][1] ?? null;
+			?>
+			<?php if ( $g0 ) : ?>
+				<h3 class="site-footer__heading"><?php echo esc_html( (string) $g0['title'] ); ?></h3>
 				<ul class="site-footer__nav-list">
-					<?php foreach ($group['links'] as $link) : ?>
-						<li><a href="<?php echo esc_url($link[1]); ?>"><?php echo esc_html($link[0]); ?></a></li>
+					<?php foreach ( (array) $g0['links'] as $link ) : ?>
+						<li><a href="<?php echo esc_url( (string) $link[1] ); ?>"><?php echo esc_html( (string) $link[0] ); ?></a></li>
 					<?php endforeach; ?>
 				</ul>
-			</div>
-		<?php endforeach; ?>
+			<?php endif; ?>
+			<?php if ( $g1 ) : ?>
+				<h3 class="site-footer__heading site-footer__heading--spaced"><?php echo esc_html( (string) $g1['title'] ); ?></h3>
+				<ul class="site-footer__nav-list">
+					<?php foreach ( (array) $g1['links'] as $link ) : ?>
+						<li><a href="<?php echo esc_url( (string) $link[1] ); ?>"><?php echo esc_html( (string) $link[0] ); ?></a></li>
+					<?php endforeach; ?>
+				</ul>
+			<?php endif; ?>
+		</div>
+
+		<div class="site-footer__column">
+			<?php
+			$g2 = $f['nav_groups'][2] ?? null;
+			$g3 = $f['nav_groups'][3] ?? null;
+			?>
+			<?php if ( $g2 ) : ?>
+				<h3 class="site-footer__heading"><?php echo esc_html( (string) $g2['title'] ); ?></h3>
+				<ul class="site-footer__nav-list">
+					<?php foreach ( (array) $g2['links'] as $link ) : ?>
+						<li><a href="<?php echo esc_url( (string) $link[1] ); ?>"><?php echo esc_html( (string) $link[0] ); ?></a></li>
+					<?php endforeach; ?>
+				</ul>
+			<?php endif; ?>
+			<?php if ( $g3 ) : ?>
+				<h3 class="site-footer__heading site-footer__heading--spaced"><?php echo esc_html( (string) $g3['title'] ); ?></h3>
+				<ul class="site-footer__nav-list">
+					<?php foreach ( (array) $g3['links'] as $link ) : ?>
+						<li><a href="<?php echo esc_url( (string) $link[1] ); ?>"><?php echo esc_html( (string) $link[0] ); ?></a></li>
+					<?php endforeach; ?>
+				</ul>
+			<?php endif; ?>
+		</div>
 
 		<div class="site-footer__column site-footer__column--contact">
-			<h3 class="site-footer__heading"><?php esc_html_e('Contact & showroom', 'keuken-centrum'); ?></h3>
+			<h3 class="site-footer__heading"><?php esc_html_e( 'Contact & Showroom', 'keuken-centrum' ); ?></h3>
 			<ul class="site-footer__contact-list site-footer__contact-list--react">
-				<li><?php echo esc_html($address); ?></li>
-				<li><?php echo esc_html($postal); ?></li>
-				<li><a href="<?php echo esc_url('tel:' . $phone_link); ?>"><?php echo esc_html($phone); ?></a></li>
-				<li><a href="<?php echo esc_url('mailto:' . $email); ?>"><?php echo esc_html(antispambot($email)); ?></a></li>
-				<li><?php echo esc_html($hours); ?></li>
+				<li class="site-footer__contact-address">
+					<strong><?php echo esc_html( (string) ( $f['address'] ?? '' ) ); ?></strong>
+					<span><?php echo esc_html( (string) ( $f['postal'] ?? '' ) ); ?></span>
+				</li>
+				<li>
+					<a href="<?php echo esc_url( (string) ( $f['phone_href'] ?? '#' ) ); ?>"><?php echo esc_html( (string) ( $f['phone'] ?? '' ) ); ?></a>
+				</li>
 			</ul>
+			<div class="site-footer__hours">
+				<?php foreach ( (array) ( $f['hours'] ?? [] ) as $row ) : ?>
+					<div class="site-footer__hours-row<?php echo ( ( $row['h'] ?? '' ) === 'Gesloten' ) ? ' is-closed' : ''; ?>">
+						<span><?php echo esc_html( (string) ( $row['d'] ?? '' ) ); ?></span>
+						<span><?php echo esc_html( (string) ( $row['h'] ?? '' ) ); ?></span>
+					</div>
+				<?php endforeach; ?>
+			</div>
 
-			<?php if ($showroom_image) : ?>
-				<a class="site-footer__showroom site-footer__showroom--react" href="<?php echo esc_url(home_url('/#showroom')); ?>">
-					<img src="<?php echo esc_url($showroom_image); ?>" alt="<?php esc_attr_e('Showroom Keuken-Centrum Utrecht', 'keuken-centrum'); ?>" loading="lazy" decoding="async">
-					<span><small><?php esc_html_e('Premium showroom', 'keuken-centrum'); ?></small><?php esc_html_e('Zonnebaan 8, Utrecht', 'keuken-centrum'); ?> <b aria-hidden="true">→</b></span>
+			<?php if ( ! empty( $f['showroom_image'] ) ) : ?>
+				<a class="site-footer__showroom site-footer__showroom--react" href="<?php echo esc_url( (string) ( $f['maps_url'] ?? '#' ) ); ?>" target="_blank" rel="noopener noreferrer">
+					<img src="<?php echo esc_url( (string) $f['showroom_image'] ); ?>" alt="<?php esc_attr_e( 'Showroom Keuken-Centrum Utrecht', 'keuken-centrum' ); ?>" loading="lazy" decoding="async">
+					<span>
+						<small><?php echo esc_html( (string) ( $f['showroom_label'] ?? '' ) ); ?></small>
+						<?php echo esc_html( (string) ( $f['showroom_caption'] ?? '' ) ); ?>
+						<b aria-hidden="true">→</b>
+					</span>
 				</a>
 			<?php endif; ?>
 		</div>
 	</div>
 
 	<div class="site-shell site-footer__bottom site-footer__bottom--react">
-		<p>&copy; <?php echo esc_html(date_i18n('Y')); ?> <?php esc_html_e('Keuken-Centrum Utrecht. Alle rechten voorbehouden.', 'keuken-centrum'); ?></p>
-		<p><?php esc_html_e('Ontworpen voor generaties', 'keuken-centrum'); ?></p>
+		<p>&copy; <?php echo esc_html( date_i18n( 'Y' ) ); ?> <?php esc_html_e( 'Keuken-Centrum Utrecht. Alle rechten voorbehouden.', 'keuken-centrum' ); ?></p>
+		<p><?php echo esc_html( (string) ( $f['copyright_tag'] ?? '' ) ); ?></p>
 		<div class="site-footer__legal">
-			<a href="<?php echo esc_url(home_url('/privacybeleid')); ?>"><?php esc_html_e('Privacybeleid', 'keuken-centrum'); ?></a>
-			<a href="<?php echo esc_url(home_url('/cookiebeleid')); ?>"><?php esc_html_e('Cookiebeleid', 'keuken-centrum'); ?></a>
-			<a href="<?php echo esc_url(home_url('/algemene-voorwaarden')); ?>"><?php esc_html_e('Algemene voorwaarden', 'keuken-centrum'); ?></a>
+			<?php foreach ( (array) ( $f['legal'] ?? [] ) as $i => $legal ) : ?>
+				<?php if ( $i > 0 ) : ?><span class="site-footer__legal-sep" aria-hidden="true"></span><?php endif; ?>
+				<a href="<?php echo esc_url( (string) ( $legal[1] ?? '#' ) ); ?>"><?php echo esc_html( (string) ( $legal[0] ?? '' ) ); ?></a>
+			<?php endforeach; ?>
 		</div>
 	</div>
 </footer>

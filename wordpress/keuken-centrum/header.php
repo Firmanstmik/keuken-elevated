@@ -24,6 +24,7 @@ if ( function_exists( 'kc_consultation_url' ) && false !== stripos( (string) $he
 }
 $phone        = kc_get_option('contact_phone', '030 241 5122');
 $email        = kc_get_option('contact_email', 'info@keuken-centrum.nl');
+$google_rating = kc_get_option('google_rating', '4,9');
 $logo_uri     = kc_theme_img('logo-keuken-1-1.webp') ?: kc_theme_img('logo-keuken.webp');
 if (! $logo_uri) {
 	$logo_path = get_theme_file_path('assets/img/logo.png');
