@@ -274,8 +274,9 @@ html:has(body.kc-keukens-route) {
 	box-sizing: border-box;
 	list-style: none;
 	cursor: pointer;
-	/* React global button { letter-spacing: 0.15em } — drives FAQ wrap */
+	/* React global button { letter-spacing: 0.15em; text-transform: uppercase } */
 	letter-spacing: 0.15em;
+	text-transform: uppercase;
 }
 .brand-faq__item > summary {
 	list-style: none;
@@ -1281,6 +1282,7 @@ html:has(body.kc-keukens-route) {
   border: 1px solid rgba(139, 197, 64, 0.28);
   background: rgba(139, 197, 64, 0.07);
   color: var(--green) !important;
+  flex-shrink: 0 !important;
   transition:
     transform 0.4s var(--ease-premium),
     background-color 0.4s var(--ease-premium),
