@@ -2011,16 +2011,45 @@ html:has(body.kc-keukens-route) {
   .brand-showroom-cta__meta-divider { display: block; }
 }
 
+/* ─── Keukens overview (KeukensOverviewPage.tsx) ─────────────── */
+/* React: min-h-[88vh], max-w-[52rem], clamp(3rem,6.5vw,5rem), pt-36 pb-24 (no md bump) */
+.brand-page--overview .brand-page-hero,
+.brand-page--overview .brand-page-hero__content--overview {
+  min-height: 88vh;
+}
+.brand-page--overview .brand-page-hero__content--overview {
+  padding: 9rem 0 6rem;
+}
+@media (min-width: 768px) {
+  .brand-page--overview .brand-page-hero__content--overview {
+    padding: 9rem 0 6rem;
+  }
+}
+.brand-page-hero__inner--overview {
+  max-width: 52rem;
+  width: 100%;
+}
+.brand-page-hero__title--overview {
+  font-size: clamp(3rem, 6.5vw, 5rem);
+}
+.brand-page-hero__lede--overview {
+  letter-spacing: normal;
+}
+
 /* ─── Leicht series pages (LeichtSeriesPage.tsx) ─────────────── */
 .brand-page-hero--series,
 .brand-page-hero__content--series {
   min-height: 82vh;
 }
 .brand-page-hero__content--series {
-  max-width: 48rem;
+  /* React: site-container + left-aligned max-w-[48rem] (not centered) */
   padding-top: 8rem;
   padding-bottom: 5rem;
   justify-content: flex-end;
+}
+.brand-page-hero__inner--series {
+  max-width: 48rem;
+  width: 100%;
 }
 .brand-page-hero__gradient--series {
   background: linear-gradient(118deg, rgba(10,20,12,0.9) 0%, rgba(10,20,12,0.48) 50%, rgba(10,20,12,0.72) 100%);

@@ -39,8 +39,8 @@ $name    = (string) $series['name'];
 		</div>
 		<div class="brand-page-hero__fade brand-page-hero__fade--series" aria-hidden="true"></div>
 
-		<div class="site-container">
-			<div class="brand-page-hero__content brand-page-hero__content--series" data-reveal data-reveal-hero>
+		<div class="brand-page-hero__content site-container brand-page-hero__content--series">
+			<div class="brand-page-hero__inner brand-page-hero__inner--series" data-reveal data-reveal-hero>
 				<nav class="brand-series-breadcrumb" aria-label="<?php esc_attr_e('Breadcrumb', 'keuken-centrum'); ?>">
 					<a href="<?php echo esc_url(home_url('/keukens/')); ?>"><?php esc_html_e('Keukens', 'keuken-centrum'); ?></a>
 					<span aria-hidden="true">/</span>

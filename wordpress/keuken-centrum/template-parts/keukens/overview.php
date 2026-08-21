@@ -22,15 +22,15 @@ $hero_primary = $data['hero']['image'] ?: ($hero_images[0] ?? '');
 		</div>
 		<div class="brand-page-hero__fade" aria-hidden="true"></div>
 
-		<div class="site-container">
-			<div class="brand-page-hero__content" data-reveal>
+		<div class="brand-page-hero__content site-container brand-page-hero__content--overview">
+			<div class="brand-page-hero__inner brand-page-hero__inner--overview" data-reveal>
 				<?php kc_brand_eyebrow($data['hero']['eyebrow'], true); ?>
-				<h1 class="brand-page-hero__title">
+				<h1 class="brand-page-hero__title brand-page-hero__title--overview">
 					<?php echo esc_html($data['hero']['title']); ?>
 					<br>
 					<em><?php echo esc_html($data['hero']['highlight']); ?></em>
 				</h1>
-				<p class="brand-page-hero__lede"><?php echo esc_html($data['hero']['subtitle']); ?></p>
+				<p class="brand-page-hero__lede brand-page-hero__lede--overview"><?php echo esc_html($data['hero']['subtitle']); ?></p>
 				<div class="brand-page-hero__actions">
 					<a class="premium-pill-button premium-pill-button--lg" href="<?php echo esc_url(home_url('/#consultation')); ?>">
 						<span class="premium-pill-button__label"><?php esc_html_e('Plan showroombezoek', 'keuken-centrum'); ?></span>
