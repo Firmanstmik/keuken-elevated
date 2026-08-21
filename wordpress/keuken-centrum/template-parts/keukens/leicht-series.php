@@ -52,7 +52,7 @@ $name    = (string) $series['name'];
 				<h1 class="brand-page-hero__title brand-page-hero__title--series"><?php echo esc_html($name); ?></h1>
 				<p class="brand-page-hero__lede brand-page-hero__lede--series"><?php echo esc_html((string) $series['tagline']); ?></p>
 				<div class="brand-page-hero__actions">
-					<a class="premium-pill-button premium-pill-button--lg" href="<?php echo esc_url(home_url('/#consultation')); ?>">
+					<a class="premium-pill-button premium-pill-button--lg" href="<?php echo esc_url(home_url('/consultation/')); ?>">
 						<span class="premium-pill-button__label"><?php esc_html_e('Plan showroombezoek', 'keuken-centrum'); ?></span>
 						<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
 					</a>
@@ -170,7 +170,7 @@ $name    = (string) $series['name'];
 						<?php esc_html_e('Kom langs in Utrecht of plan een adviesgesprek. Wij ontwerpen deze serie volledig op maat.', 'keuken-centrum'); ?>
 					</p>
 				</div>
-				<a class="premium-pill-button premium-pill-button--xl" href="<?php echo esc_url(home_url('/#consultation')); ?>" data-reveal>
+				<a class="premium-pill-button premium-pill-button--xl" href="<?php echo esc_url(home_url('/consultation/')); ?>" data-reveal>
 					<span class="premium-pill-button__label"><?php esc_html_e('Boek een afspraak', 'keuken-centrum'); ?></span>
 					<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
 				</a>

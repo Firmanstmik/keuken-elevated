@@ -124,7 +124,7 @@ function kc_leicht_page_data(): array {
 			'subtitle'  => __('Duits vakmanschap, tijdloze vormgeving en ongeëvenaarde kwaliteit. Als erkende Leicht-dealer in Utrecht werken wij rechtstreeks met de fabrikant. Beleef de collectie live in onze showroom aan de Zonnebaan.', 'keuken-centrum'),
 			'cta'       => [
 				'primary'        => __('Bezoek showroom', 'keuken-centrum'),
-				'primaryHref'    => home_url('/#consultation'),
+				'primaryHref'    => home_url('/consultation/'),
 				'secondary'      => __('Bel direct', 'keuken-centrum'),
 				'secondaryHref'  => 'tel:+31302415122',
 			],
@@ -263,7 +263,7 @@ function kc_leicht_page_data(): array {
 					'title' => __('Showroom Utrecht', 'keuken-centrum'),
 					'tag'   => __('Live te ervaren', 'keuken-centrum'),
 					'span'  => 'wide',
-					'href'  => home_url('/#consultation'),
+					'href'  => home_url('/consultation/'),
 				],
 			],
 			'cta' => [
@@ -271,7 +271,7 @@ function kc_leicht_page_data(): array {
 				'titleHighlight' => __('live', 'keuken-centrum'),
 				'body'           => __('Meerdere series staan opgesteld in onze showroom aan de Zonnebaan. Plan een vrijblijvend bezoek en ervaar materialen en afwerking in het echt.', 'keuken-centrum'),
 				'label'          => __('Boek een afspraak', 'keuken-centrum'),
-				'href'           => home_url('/#consultation'),
+				'href'           => home_url('/consultation/'),
 			],
 		],
 		'custom' => [
@@ -295,7 +295,7 @@ function kc_leicht_page_data(): array {
 			'titleAfter'     => __(' bekijken?', 'keuken-centrum'),
 			'subtitle'       => __('Kyoto, Ronde Wangen, Bossa Concrete en Taj Mahal staan live opgesteld. Kom langs in Utrecht.', 'keuken-centrum'),
 			'button'         => __('Boek een afspraak', 'keuken-centrum'),
-			'href'           => home_url('/#consultation'),
+			'href'           => home_url('/consultation/'),
 		],
 	];
 }

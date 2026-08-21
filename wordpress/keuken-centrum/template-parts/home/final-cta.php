@@ -63,7 +63,7 @@ $cta_icon = static function (string $icon): string {
 			<p><?php esc_html_e('Van eerste inspiratie tot installatie: wij begeleiden u persoonlijk naar een keuken die klopt in stijl, functie en afwerking.', 'keuken-centrum'); ?></p>
 			<div class="final-cta-react-heading__actions">
 				<a class="btn btn--primary btn--pill" href="<?php echo esc_url(home_url('/#brands')); ?>"><?php esc_html_e('Start configurator', 'keuken-centrum'); ?></a>
-				<a class="btn btn--secondary btn--pill" href="<?php echo esc_url(home_url('/#consultation')); ?>"><?php esc_html_e('Boek consultatie', 'keuken-centrum'); ?></a>
+				<a class="btn btn--secondary btn--pill" href="<?php echo esc_url(home_url('/consultation/')); ?>"><?php esc_html_e('Boek consultatie', 'keuken-centrum'); ?></a>
 			</div>
 		</header>
 

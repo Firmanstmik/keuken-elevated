@@ -72,7 +72,7 @@ function kc_cucinesse_page_data(): array {
 			'subtitle'  => __('Modulaire keukens met oneindig veel oplossingen: handgrepen, werkbladen en fronts in vele vormen en afwerkingen, aangevuld met bijpassende livingmeubels op maat.', 'keuken-centrum'),
 			'cta'       => [
 				'primary'       => __('Bezoek showroom', 'keuken-centrum'),
-				'primaryHref'   => home_url('/#consultation'),
+				'primaryHref'   => home_url('/consultation/'),
 				'secondary'     => __('Bel direct', 'keuken-centrum'),
 				'secondaryHref' => 'tel:+31302415122',
 			],
@@ -195,7 +195,7 @@ function kc_cucinesse_page_data(): array {
 				'titleHighlight' => __('in het echt', 'keuken-centrum'),
 				'body'           => __('Cucinesse opstellingen en 3D-ontwerpen staan voor u klaar. Kom langs op de Zonnebaan.', 'keuken-centrum'),
 				'label'          => __('Boek een afspraak', 'keuken-centrum'),
-				'href'           => home_url('/#consultation'),
+				'href'           => home_url('/consultation/'),
 			],
 		],
 		'custom' => [
@@ -219,7 +219,7 @@ function kc_cucinesse_page_data(): array {
 			'titleAfter'     => __(' bekijken?', 'keuken-centrum'),
 			'subtitle'       => __('Modulaire Italiaanse keukens en 3D-ontwerp in onze showroom. Kom langs in Utrecht.', 'keuken-centrum'),
 			'button'         => __('Boek een afspraak', 'keuken-centrum'),
-			'href'           => home_url('/#consultation'),
+			'href'           => home_url('/consultation/'),
 		],
 	];
 }

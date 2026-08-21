@@ -56,7 +56,7 @@ function kc_silestone_page_data(): array {
 			'subtitle'  => __('Een vrijwel niet-poreus oppervlak dat bestand is tegen dagelijkse vlekkenmakers zoals koffie, wijn en citroensap, met de kracht en krasbestendigheid van natuurlijk kwarts.', 'keuken-centrum'),
 			'cta'       => [
 				'primary'       => __('Bezoek showroom', 'keuken-centrum'),
-				'primaryHref'   => home_url('/#consultation'),
+				'primaryHref'   => home_url('/consultation/'),
 				'secondary'     => __('Bel direct', 'keuken-centrum'),
 				'secondaryHref' => 'tel:+31302415122',
 			],
@@ -146,7 +146,7 @@ function kc_silestone_page_data(): array {
 				'titleHighlight' => __('ervaren?', 'keuken-centrum'),
 				'body'           => __('Bekijk kleuren en afwerkingen in onze showroom.', 'keuken-centrum'),
 				'label'          => __('Boek een afspraak', 'keuken-centrum'),
-				'href'           => home_url('/#consultation'),
+				'href'           => home_url('/consultation/'),
 			],
 		],
 		'custom'   => kc_worktop_custom_block(),
@@ -163,7 +163,7 @@ function kc_silestone_page_data(): array {
 			'titleAfter'     => __(' bekijken?', 'keuken-centrum'),
 			'subtitle'       => __('Neem uw wensen mee. Wij adviseren over kleur, dikte, rand en prijs.', 'keuken-centrum'),
 			'button'         => __('Boek een afspraak', 'keuken-centrum'),
-			'href'           => home_url('/#consultation'),
+			'href'           => home_url('/consultation/'),
 		],
 	];
 }

@@ -9,7 +9,7 @@ $poster       = kc_theme_img('showroom.jpg');
 $concrete     = kc_theme_img('mat-concrete.jpg');
 $showroom_url = home_url('/showroom-keukens/');
 $brands_url   = home_url('/#brands');
-$visit_url    = home_url('/#consultation');
+$visit_url    = home_url('/consultation/');
 $main         = get_template_directory_uri() . '/assets/video/keuken_vid1.webm';
 $stack        = [
 	get_template_directory_uri() . '/assets/video/keuken_vid3.webm',

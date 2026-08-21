@@ -34,7 +34,7 @@ $footer_links  = [
 		'links' => [
 			[__('Start configurator', 'keuken-centrum'), home_url('/#brands')],
 			[__('Kies uw stijl', 'keuken-centrum'), home_url('/#collections')],
-			[__('Plan consultatie', 'keuken-centrum'), home_url('/#consultation')],
+			[__('Plan consultatie', 'keuken-centrum'), home_url('/consultation/')],
 			[__('Bekijk showroom', 'keuken-centrum'), home_url('/#showroom')],
 		],
 	],

@@ -57,7 +57,7 @@ function kc_nobilia_page_data(): array {
 			'subtitle'  => __('Europa\'s meest verkochte keukenmerk biedt trendy decors, eindeloze variatie en betrouwbare Duitse degelijkheid, snel geleverd en professioneel gemonteerd.', 'keuken-centrum'),
 			'cta'       => [
 				'primary'       => __('Bezoek showroom', 'keuken-centrum'),
-				'primaryHref'   => home_url('/#consultation'),
+				'primaryHref'   => home_url('/consultation/'),
 				'secondary'     => __('Bel direct', 'keuken-centrum'),
 				'secondaryHref' => 'tel:+31302415122',
 			],
@@ -168,7 +168,7 @@ function kc_nobilia_page_data(): array {
 				'titleHighlight' => __('in het echt', 'keuken-centrum'),
 				'body'           => __('Nobilia opstellingen staan voor u klaar op de Zonnebaan. Kom langs en ontdek het volledige assortiment.', 'keuken-centrum'),
 				'label'          => __('Boek een afspraak', 'keuken-centrum'),
-				'href'           => home_url('/#consultation'),
+				'href'           => home_url('/consultation/'),
 			],
 		],
 		'custom' => [
@@ -192,7 +192,7 @@ function kc_nobilia_page_data(): array {
 			'titleAfter'     => __(' bekijken?', 'keuken-centrum'),
 			'subtitle'       => __('Uitermate breed assortiment in onze showroom. Kom langs in Utrecht.', 'keuken-centrum'),
 			'button'         => __('Boek een afspraak', 'keuken-centrum'),
-			'href'           => home_url('/#consultation'),
+			'href'           => home_url('/consultation/'),
 		],
 	];
 }

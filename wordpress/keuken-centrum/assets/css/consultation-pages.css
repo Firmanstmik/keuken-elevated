@@ -1,0 +1,612 @@
+/* Consultation page — React /consultation scoped */
+
+body.kc-consultation-route {
+  background: #f7f5f2;
+}
+body.kc-consultation-route .site-main {
+  padding-top: 0;
+}
+body.kc-consultation-route .site-footer,
+body.kc-consultation-route .mobile-quick-cta {
+  display: none !important;
+}
+
+.consultation-page {
+  min-height: 100vh;
+  background: #f7f5f2;
+}
+.consultation-layout {
+  position: relative;
+  min-height: 100vh;
+}
+@media (min-width: 768px) {
+  .consultation-layout {
+    height: 100vh;
+    overflow: hidden;
+  }
+}
+
+.consultation-layout__grid {
+  display: grid;
+  min-height: 100vh;
+}
+@media (min-width: 768px) {
+  .consultation-layout__grid {
+    height: 100vh;
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  }
+}
+
+.consultation-hero.is-submitted {
+  display: none;
+}
+@media (min-width: 768px) {
+  .consultation-hero.is-submitted {
+    display: block;
+  }
+}
+.consultation-hero__media {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+}
+@media (min-width: 768px) {
+  .consultation-hero__media {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+  }
+}
+.consultation-hero__bg {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+.consultation-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(7, 17, 27, 0.28) 0%, rgba(7, 17, 27, 0.14) 18%, rgba(7, 17, 27, 0.44) 100%);
+}
+.consultation-hero__top-fade {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 10rem;
+  background: linear-gradient(180deg, rgba(7, 17, 27, 0.52) 0%, rgba(7, 17, 27, 0.22) 42%, rgba(7, 17, 27, 0) 100%);
+}
+.consultation-hero__bottom-fade {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 12rem;
+  background: linear-gradient(180deg, rgba(7, 17, 27, 0) 0%, rgba(7, 17, 27, 0.18) 26%, rgba(7, 17, 27, 0.62) 100%);
+}
+.consultation-hero__content {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  padding: 1.25rem;
+}
+@media (min-width: 768px) {
+  .consultation-hero__content {
+    padding: 2.5rem;
+  }
+}
+.consultation-hero__inner {
+  max-width: 36rem;
+}
+.consultation-hero__eyebrow {
+  margin: 0 0 0.75rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #d1af78;
+}
+.consultation-hero__title {
+  margin: 0;
+  max-width: 26rem;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  color: #f7f5f2;
+}
+@media (min-width: 768px) {
+  .consultation-hero__title {
+    font-size: 3rem;
+  }
+}
+.consultation-hero__lede {
+  display: none;
+  margin: 1rem 0 0;
+  max-width: 31rem;
+  font-size: 0.98rem;
+  line-height: 1.8;
+  color: rgba(247, 245, 242, 0.76);
+}
+.consultation-hero__features {
+  display: none;
+  margin-top: 1.5rem;
+  max-width: 34rem;
+  gap: 0.75rem 2rem;
+}
+@media (min-width: 640px) {
+  .consultation-hero__lede {
+    display: block;
+  }
+  .consultation-hero__features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.consultation-hero__feature {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(247, 245, 242, 0.12);
+  font-size: 0.88rem;
+  color: rgba(247, 245, 242, 0.82);
+}
+.consultation-hero__feature-icon {
+  color: #d1af78;
+  display: grid;
+  place-items: center;
+}
+.consultation-hero__feature-icon svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.consultation-panel {
+  background: #f7f5f2;
+}
+@media (min-width: 768px) {
+  .consultation-panel {
+    height: 100vh;
+    overflow-y: auto;
+  }
+}
+.consultation-panel__inner {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 2rem 1rem 7rem;
+}
+@media (min-width: 768px) {
+  .consultation-panel__inner {
+    padding: 8rem 2rem 4rem;
+  }
+}
+@media (min-width: 1024px) {
+  .consultation-panel__inner {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+.md-only-hidden {
+  display: flex;
+}
+@media (min-width: 768px) {
+  .md-only-hidden {
+    display: none !important;
+  }
+}
+
+.consultation-proposal-toggle {
+  width: 100%;
+  min-height: 3.5rem;
+  margin-bottom: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 18px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.75);
+  padding: 0 1rem;
+  text-align: left;
+  cursor: pointer;
+}
+.consultation-proposal-toggle__eyebrow {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #789d48;
+}
+.consultation-proposal-toggle__title {
+  display: block;
+  margin-top: 0.125rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #171917;
+}
+.consultation-proposal-toggle__chevron {
+  transition: transform 0.3s ease;
+}
+.consultation-proposal-toggle.is-open .consultation-proposal-toggle__chevron {
+  transform: rotate(180deg);
+}
+
+.consultation-preview-wrap {
+  display: none;
+}
+.consultation-preview-wrap.is-open {
+  display: block;
+}
+@media (min-width: 768px) {
+  .consultation-preview-wrap {
+    display: block !important;
+  }
+}
+
+.consultation-preview {
+  margin-top: 2rem;
+  overflow: hidden;
+  border-radius: 22px;
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(247, 245, 242, 0.94));
+  box-shadow: 0 24px 70px -46px rgba(17, 17, 17, 0.18);
+}
+@media (min-width: 768px) {
+  .consultation-preview {
+    margin-top: 2.5rem;
+  }
+}
+@media (min-width: 1024px) {
+  .consultation-preview {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(24rem, 0.92fr);
+  }
+}
+.consultation-preview__media {
+  position: relative;
+  min-height: 280px;
+  overflow: hidden;
+}
+@media (min-width: 768px) {
+  .consultation-preview__media {
+    min-height: 340px;
+  }
+}
+.consultation-preview__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+.consultation-preview__media-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10, 10, 10, 0.06) 0%, rgba(10, 10, 10, 0.18) 32%, rgba(10, 10, 10, 0.48) 100%);
+}
+.consultation-preview__media-copy {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  padding: 1.25rem;
+}
+@media (min-width: 768px) {
+  .consultation-preview__media-copy {
+    padding: 1.75rem;
+  }
+}
+.consultation-preview__overline {
+  margin: 0 0 0.75rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #d1af78;
+}
+.consultation-preview__media-title {
+  margin: 0;
+  max-width: 13rem;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.18rem, 3.3vw, 2rem);
+  line-height: 1.04;
+  letter-spacing: -0.026em;
+  color: #f7f5f2;
+}
+.consultation-preview__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.25rem;
+}
+@media (min-width: 768px) {
+  .consultation-preview__body {
+    padding: 1.75rem;
+  }
+}
+.consultation-preview__kicker {
+  margin: 0 0 0.5rem;
+  font-size: 0.6875rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #b08d57;
+}
+.consultation-preview__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.75rem;
+  line-height: 1.15;
+  color: #111;
+}
+.consultation-preview__desc {
+  margin: 0.75rem 0 0;
+  max-width: 34rem;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: #666;
+}
+.consultation-preview__details {
+  margin-top: 1.5rem;
+  display: grid;
+  gap: 0.75rem;
+}
+@media (min-width: 640px) {
+  .consultation-preview__details {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.consultation-preview__detail {
+  border-radius: 16px;
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  background: rgba(255, 255, 255, 0.7);
+  padding: 0.75rem 1rem;
+}
+.consultation-preview__detail-label {
+  margin: 0 0 0.25rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #b08d57;
+}
+.consultation-preview__detail-value {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.45;
+  color: #111;
+}
+.consultation-preview__footer {
+  margin-top: 1.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(17, 17, 17, 0.08);
+}
+.consultation-preview__footer p {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: #777;
+}
+
+.consultation-form-head {
+  margin: 2rem 0 1.5rem;
+}
+@media (min-width: 768px) {
+  .consultation-form-head {
+    margin: 2.5rem 0 2rem;
+  }
+}
+.consultation-form-head__eyebrow {
+  margin: 0 0 0.5rem;
+  font-size: 0.6875rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #b08d57;
+}
+.consultation-form-head__title {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 1.2;
+  color: #111;
+}
+@media (min-width: 768px) {
+  .consultation-form-head__title {
+    font-size: 2.35rem;
+  }
+}
+.consultation-form-head__lede {
+  margin: 0;
+  max-width: 42rem;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #666;
+}
+
+.consultation-form-card {
+  border-radius: 24px;
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  background: rgba(255, 255, 255, 0.72);
+  padding: 1rem;
+  box-shadow: 0 26px 70px -52px rgba(17, 17, 17, 0.18);
+  backdrop-filter: blur(14px);
+}
+@media (min-width: 768px) {
+  .consultation-form-card {
+    padding: 1.5rem;
+  }
+}
+
+.consultation-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.consultation-field label {
+  display: block;
+  margin-bottom: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #30342d;
+}
+.consultation-field__req {
+  color: #789d48;
+}
+.consultation-field__opt {
+  font-weight: 400;
+  color: #73786e;
+}
+.consultation-input,
+.consultation-select,
+.consultation-textarea {
+  display: flex;
+  width: 100%;
+  min-height: 3rem;
+  border-radius: 16px;
+  border: 1px solid rgba(32, 32, 32, 0.18);
+  background: rgba(255, 255, 255, 0.82);
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: #111;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.consultation-textarea {
+  min-height: 132px;
+  padding-top: 0.75rem;
+  resize: vertical;
+}
+.consultation-input:focus-visible,
+.consultation-select:focus-visible,
+.consultation-textarea:focus-visible {
+  border-color: #c8a96b;
+  box-shadow: 0 0 0 1px rgba(200, 169, 107, 0.2);
+}
+.consultation-field__error {
+  margin: 0.375rem 0 0;
+  font-size: 0.75rem;
+  color: #b91c1c;
+}
+.consultation-field.is-invalid .consultation-input,
+.consultation-field.is-invalid .consultation-select {
+  border-color: #b91c1c;
+}
+
+.consultation-submit {
+  display: inline-flex;
+  min-height: 3.5rem;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.3);
+  font-size: 0.8125rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: not-allowed;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+.consultation-submit.is-ready {
+  background: #b08d57;
+  border-color: #b08d57;
+  color: #f7f5f2;
+  cursor: pointer;
+}
+.consultation-form__privacy {
+  margin: 0.25rem 0 0;
+  text-align: center;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: #aaa;
+}
+
+.consultation-success {
+  display: flex;
+  min-height: 70vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .consultation-success {
+    min-height: calc(100vh - 9rem);
+  }
+}
+.consultation-success[hidden] {
+  display: none !important;
+}
+.consultation-success__icon {
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  margin-bottom: 1.25rem;
+  border-radius: 20px;
+  border: 1.5px solid #b08d57;
+  background: rgba(255, 255, 255, 0.7);
+  color: #b08d57;
+}
+.consultation-success__icon svg {
+  width: 2rem;
+  height: 2rem;
+}
+.consultation-success__eyebrow {
+  margin: 0 0 0.75rem;
+  font-size: 0.6875rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #b08d57;
+}
+.consultation-success__title {
+  margin: 0 auto 0.75rem;
+  max-width: 420px;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 2.1rem;
+  line-height: 1.2;
+  color: #111;
+}
+@media (min-width: 768px) {
+  .consultation-success__title {
+    font-size: 2.35rem;
+  }
+}
+.consultation-success__lede {
+  margin: 0 auto;
+  max-width: 380px;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #666;
+}
+.consultation-success__rule {
+  width: 120px;
+  height: 1px;
+  margin: 1.25rem auto;
+  background: #b08d57;
+}
+.consultation-success__meta {
+  margin: 0 0 0.25rem;
+  font-size: 0.875rem;
+  color: #999;
+}
+.consultation-success__meta span {
+  color: #555;
+}
+.consultation-success__brand {
+  margin: 1.25rem 0 0;
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #b08d57;
+}
+
+/* Mobile preview panel open state */
+@media (max-width: 767px) {
+  .consultation-preview-wrap.is-open {
+    display: block;
+  }
+}

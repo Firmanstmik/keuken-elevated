@@ -60,7 +60,7 @@ function kc_ai_kuchen_page_data(): array {
 			'subtitle'  => __('Een ambitieus, designgericht systeemkeukenconcept dat creatief doordacht, technisch verfijnd en volledig op maat samen te stellen is.', 'keuken-centrum'),
 			'cta'       => [
 				'primary'       => __('Bezoek showroom', 'keuken-centrum'),
-				'primaryHref'   => home_url('/#consultation'),
+				'primaryHref'   => home_url('/consultation/'),
 				'secondary'     => __('Bel direct', 'keuken-centrum'),
 				'secondaryHref' => 'tel:+31302415122',
 			],
@@ -177,7 +177,7 @@ function kc_ai_kuchen_page_data(): array {
 				'titleAfter'     => __(' ervaren?', 'keuken-centrum'),
 				'body'           => __('Meerdere AI Küchen opstellingen staan voor u klaar op de Zonnebaan.', 'keuken-centrum'),
 				'label'          => __('Boek een afspraak', 'keuken-centrum'),
-				'href'           => home_url('/#consultation'),
+				'href'           => home_url('/consultation/'),
 			],
 		],
 		'custom' => [
@@ -214,7 +214,7 @@ function kc_ai_kuchen_page_data(): array {
 			'titleAfter'     => __(' bekijken?', 'keuken-centrum'),
 			'subtitle'       => __('Meerdere modellen in onze showroom. Kom langs in Utrecht.', 'keuken-centrum'),
 			'button'         => __('Boek een afspraak', 'keuken-centrum'),
-			'href'           => home_url('/#consultation'),
+			'href'           => home_url('/consultation/'),
 		],
 	];
 }

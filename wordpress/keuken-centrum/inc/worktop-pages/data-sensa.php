@@ -50,7 +50,7 @@ function kc_sensa_page_data(): array {
 			'subtitle'  => __('Vlekbestendige natuurlijke schoonheid: Sensa by Cosentino kwartsiet en graniet zijn behandeld met een anti-vlekbehandeling zodat uw werkblad er altijd als nieuw uit blijft zien.', 'keuken-centrum'),
 			'cta'       => [
 				'primary'       => __('Bezoek showroom', 'keuken-centrum'),
-				'primaryHref'   => home_url('/#consultation'),
+				'primaryHref'   => home_url('/consultation/'),
 				'secondary'     => __('Bel direct', 'keuken-centrum'),
 				'secondaryHref' => 'tel:+31302415122',
 			],
@@ -138,7 +138,7 @@ function kc_sensa_page_data(): array {
 				'titleHighlight' => __('voelen?', 'keuken-centrum'),
 				'body'           => __('Bekijk de afwerkingen en natuursteenstructuren in onze showroom.', 'keuken-centrum'),
 				'label'          => __('Boek een afspraak', 'keuken-centrum'),
-				'href'           => home_url('/#consultation'),
+				'href'           => home_url('/consultation/'),
 			],
 		],
 		'custom'   => kc_worktop_custom_block(),
@@ -155,7 +155,7 @@ function kc_sensa_page_data(): array {
 			'titleAfter'     => __(' bekijken?', 'keuken-centrum'),
 			'subtitle'       => __('Ervaar natuursteen met anti-vlekbescherming en 15 jaar garantie.', 'keuken-centrum'),
 			'button'         => __('Boek een afspraak', 'keuken-centrum'),
-			'href'           => home_url('/#consultation'),
+			'href'           => home_url('/consultation/'),
 		],
 	];
 }

@@ -16,7 +16,7 @@ function kc_seed_theme_mod_defaults(): void {
 	$defaults = [
 		'header_badge'                    => 'Premium showroom Utrecht',
 		'header_cta_label'                => 'Plan showroombezoek',
-		'header_cta_url'                  => home_url('/contact'),
+		'header_cta_url'                  => home_url('/consultation/'),
 		'contact_address'                 => 'Zonnebaan 8',
 		'contact_postal'                  => '3542 EC Utrecht',
 		'contact_phone'                   => '030 241 5122',
@@ -32,7 +32,7 @@ function kc_seed_theme_mod_defaults(): void {
 		'hero_cta_secondary_label_default' => 'Start configurator',
 		'hero_cta_secondary_url_default'  => 'https://keuken-elevated.vercel.app/brands',
 		'consultation_cta_label'          => 'Plan vrijblijvend advies',
-		'consultation_cta_url'            => home_url('/contact'),
+		'consultation_cta_url'            => home_url('/consultation/'),
 	];
 
 	foreach ($defaults as $key => $value) {
@@ -167,6 +167,14 @@ function kc_seed_content(): void {
 			'post_title'   => 'Showroom Keukens',
 			'post_name'    => 'showroom-keukens',
 			'post_content' => 'Bezoek onze premium showroom in Utrecht en ontdek keukenmerken, materialen en apparatuur in complete opstellingen.',
+		]
+	);
+
+	$consultation_id = kc_upsert_page(
+		[
+			'post_title'   => 'Consultatie',
+			'post_name'    => 'consultation',
+			'post_content' => 'Plan een vrijblijvende showroom- of online consultatie bij Keuken-Centrum Utrecht.',
 		]
 	);
 
@@ -498,3 +506,36 @@ function kc_seed_appliance_gaps(): void {
 	flush_rewrite_rules(false);
 }
 add_action('init', 'kc_seed_appliance_gaps', 30);
+
+/**
+ * Ensure consultation + showroom pages exist after theme sync (without full reseed).
+ */
+function kc_ensure_migration_pages(): void {
+	if ( '1' === get_option( 'kc_ensure_pages_v166' ) ) {
+		return;
+	}
+	if ( ! function_exists( 'kc_upsert_page' ) ) {
+		return;
+	}
+	kc_upsert_page(
+		[
+			'post_title'   => 'Showroom Keukens',
+			'post_name'    => 'showroom-keukens',
+			'post_content' => 'Bezoek onze premium showroom in Utrecht en ontdek keukenmerken, materialen en apparatuur in complete opstellingen.',
+		]
+	);
+	kc_upsert_page(
+		[
+			'post_title'   => 'Consultatie',
+			'post_name'    => 'consultation',
+			'post_content' => 'Plan een vrijblijvende showroom- of online consultatie bij Keuken-Centrum Utrecht.',
+		]
+	);
+	// Point header CTA at consultation when still on legacy contact URL.
+	$cta = (string) get_theme_mod( 'header_cta_url', '' );
+	if ( '' === $cta || str_contains( $cta, '#consultation' ) || str_ends_with( untrailingslashit( $cta ), '/contact' ) ) {
+		set_theme_mod( 'header_cta_url', home_url( '/consultation/' ) );
+	}
+	update_option( 'kc_ensure_pages_v166', '1' );
+}
+add_action( 'init', 'kc_ensure_migration_pages', 31 );

@@ -50,7 +50,7 @@ function kc_neolith_page_data(): array {
 			'subtitle'  => __('NEOLITH Kitchen Lounge ziet de keuken als een omgeving waar design en functionaliteit, elegantie en robuustheid, esthetiek en techniek samenkomen.', 'keuken-centrum'),
 			'cta'       => [
 				'primary'       => __('Bezoek showroom', 'keuken-centrum'),
-				'primaryHref'   => home_url('/#consultation'),
+				'primaryHref'   => home_url('/consultation/'),
 				'secondary'     => __('Bel direct', 'keuken-centrum'),
 				'secondaryHref' => 'tel:+31302415122',
 			],
@@ -139,7 +139,7 @@ function kc_neolith_page_data(): array {
 				'titleHighlight' => __('ontdekken?', 'keuken-centrum'),
 				'body'           => __('Laat u adviseren over de juiste afwerking en toepassing.', 'keuken-centrum'),
 				'label'          => __('Boek een afspraak', 'keuken-centrum'),
-				'href'           => home_url('/#consultation'),
+				'href'           => home_url('/consultation/'),
 			],
 		],
 		'custom'   => kc_worktop_custom_block(),
@@ -156,7 +156,7 @@ function kc_neolith_page_data(): array {
 			'titleAfter'     => __(' bekijken?', 'keuken-centrum'),
 			'subtitle'       => __('Ontdek de combinatie van elegantie, robuustheid en minimaal onderhoud.', 'keuken-centrum'),
 			'button'         => __('Boek een afspraak', 'keuken-centrum'),
-			'href'           => home_url('/#consultation'),
+			'href'           => home_url('/consultation/'),
 		],
 	];
 }

@@ -50,7 +50,7 @@ function kc_dekton_page_data(): array {
 			'subtitle'  => __('Een sterk materiaal van Cosentino, verwant aan keramiek en geproduceerd met technieken uit de glas- en composietindustrie onder hoge druk en temperatuur.', 'keuken-centrum'),
 			'cta'       => [
 				'primary'       => __('Bezoek showroom', 'keuken-centrum'),
-				'primaryHref'   => home_url('/#consultation'),
+				'primaryHref'   => home_url('/consultation/'),
 				'secondary'     => __('Bel direct', 'keuken-centrum'),
 				'secondaryHref' => 'tel:+31302415122',
 			],
@@ -140,7 +140,7 @@ function kc_dekton_page_data(): array {
 				'titleHighlight' => __('kiezen?', 'keuken-centrum'),
 				'body'           => __('Bekijk de mogelijkheden in kleur, dikte en randafwerking.', 'keuken-centrum'),
 				'label'          => __('Boek een afspraak', 'keuken-centrum'),
-				'href'           => home_url('/#consultation'),
+				'href'           => home_url('/consultation/'),
 			],
 		],
 		'custom'   => kc_worktop_custom_block(),
@@ -157,7 +157,7 @@ function kc_dekton_page_data(): array {
 			'titleAfter'     => __(' bekijken?', 'keuken-centrum'),
 			'subtitle'       => __('Ontdek welke Dekton-look past bij uw keukenstijl en dagelijks gebruik.', 'keuken-centrum'),
 			'button'         => __('Boek een afspraak', 'keuken-centrum'),
-			'href'           => home_url('/#consultation'),
+			'href'           => home_url('/consultation/'),
 		],
 	];
 }

@@ -66,7 +66,7 @@ function kc_zampieri_page_data(): array {
 			'subtitle'  => __('Het Italiaanse merk Zampieri verrast met stijlvolle, functionele meubels, made in Italy en in vele kleuren, maten en configuraties volledig naar uw smaak samen te stellen.', 'keuken-centrum'),
 			'cta'       => [
 				'primary'       => __('Bezoek showroom', 'keuken-centrum'),
-				'primaryHref'   => home_url('/#consultation'),
+				'primaryHref'   => home_url('/consultation/'),
 				'secondary'     => __('Bel direct', 'keuken-centrum'),
 				'secondaryHref' => 'tel:+31302415122',
 			],
@@ -177,7 +177,7 @@ function kc_zampieri_page_data(): array {
 				'titleHighlight' => __('in het echt', 'keuken-centrum'),
 				'body'           => __('Zampieri opstellingen staan voor u klaar op de Zonnebaan. Ontdek het assortiment in onze showroom.', 'keuken-centrum'),
 				'label'          => __('Boek een afspraak', 'keuken-centrum'),
-				'href'           => home_url('/#consultation'),
+				'href'           => home_url('/consultation/'),
 			],
 		],
 		'custom' => [
@@ -201,7 +201,7 @@ function kc_zampieri_page_data(): array {
 			'titleAfter'     => __(' bekijken?', 'keuken-centrum'),
 			'subtitle'       => __('Italiaanse keukens en kasten in onze showroom. Kom langs in Utrecht.', 'keuken-centrum'),
 			'button'         => __('Boek een afspraak', 'keuken-centrum'),
-			'href'           => home_url('/#consultation'),
+			'href'           => home_url('/consultation/'),
 		],
 	];
 }

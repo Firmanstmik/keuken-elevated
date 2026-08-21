@@ -38,7 +38,7 @@ $hero       = (string) ( $data['hero']['image'] ?? '' );
 				</h1>
 				<p class="brand-page-hero__lede brand-page-hero__lede--worktops"><?php echo esc_html( $data['hero']['subtitle'] ); ?></p>
 				<div class="brand-page-hero__actions">
-					<a class="premium-pill-button premium-pill-button--lg" href="<?php echo esc_url( home_url( '/#consultation' ) ); ?>">
+					<a class="premium-pill-button premium-pill-button--lg" href="<?php echo esc_url( home_url( '/consultation/' ) ); ?>">
 						<span class="premium-pill-button__label"><?php esc_html_e( 'Plan showroombezoek', 'keuken-centrum' ); ?></span>
 						<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
 					</a>
@@ -217,7 +217,7 @@ $hero       = (string) ( $data['hero']['image'] ?? '' );
 					</h2>
 					<p class="keukens-body-copy keukens-body-copy--light"><?php esc_html_e( 'Bekijk materialen, kleuren en afwerkingen in onze showroom. Wij helpen u graag met persoonlijk advies.', 'keuken-centrum' ); ?></p>
 				</div>
-				<a class="premium-pill-button premium-pill-button--xl" href="<?php echo esc_url( home_url( '/#consultation' ) ); ?>" data-reveal>
+				<a class="premium-pill-button premium-pill-button--xl" href="<?php echo esc_url( home_url( '/consultation/' ) ); ?>" data-reveal>
 					<span class="premium-pill-button__label"><?php esc_html_e( 'Boek een afspraak', 'keuken-centrum' ); ?></span>
 					<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
 				</a>

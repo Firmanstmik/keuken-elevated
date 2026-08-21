@@ -54,7 +54,7 @@ $scope      = 'brand-page--apparatuur brand-page--apparatuur-' . sanitize_html_c
 				</h1>
 				<p class="brand-page-hero__lede brand-page-hero__lede--apparatuur"><?php echo esc_html( (string) ( $data['hero']['subtitle'] ?? '' ) ); ?></p>
 				<div class="brand-page-hero__actions">
-					<a class="premium-pill-button premium-pill-button--lg" href="<?php echo esc_url( home_url( '/#consultation' ) ); ?>">
+					<a class="premium-pill-button premium-pill-button--lg" href="<?php echo esc_url( home_url( '/consultation/' ) ); ?>">
 						<span class="premium-pill-button__label"><?php esc_html_e( 'Meer informatie', 'keuken-centrum' ); ?></span>
 						<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
 					</a>
@@ -290,7 +290,7 @@ $scope      = 'brand-page--apparatuur brand-page--apparatuur-' . sanitize_html_c
 					<p class="keukens-body-copy keukens-body-copy--light"><?php echo esc_html( (string) ( $data['showroomCta']['body'] ?? '' ) ); ?></p>
 				</div>
 				<div class="brand-showroom-cta__actions">
-					<a class="premium-pill-button premium-pill-button--xl" href="<?php echo esc_url( home_url( '/#consultation' ) ); ?>" data-reveal>
+					<a class="premium-pill-button premium-pill-button--xl" href="<?php echo esc_url( home_url( '/consultation/' ) ); ?>" data-reveal>
 						<span class="premium-pill-button__label"><?php echo esc_html( (string) ( $data['showroomCta']['primaryLabel'] ?? __( 'Boek een afspraak', 'keuken-centrum' ) ) ); ?></span>
 						<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
 					</a>

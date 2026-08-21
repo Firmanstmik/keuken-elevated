@@ -284,7 +284,7 @@ $testimonial_initials = static function (string $name): string {
 		<div class="testimonials-footer-cta">
 			<div class="testimonials-footer-cta__rule" aria-hidden="true"></div>
 			<p><?php esc_html_e('Ontdek wat dit voor uw woning betekent.', 'keuken-centrum'); ?></p>
-			<a href="<?php echo esc_url(home_url('/#consultation')); ?>">
+			<a href="<?php echo esc_url(home_url('/consultation/')); ?>">
 				<?php esc_html_e('Maak kennis met ons team', 'keuken-centrum'); ?>
 				<span aria-hidden="true">→</span>
 			</a>

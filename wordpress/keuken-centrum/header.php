@@ -10,7 +10,18 @@ if (! defined('ABSPATH')) {
 }
 
 $header_label = kc_get_option('header_cta_label', 'Plan showroombezoek');
-$header_url   = kc_get_option('header_cta_url', home_url('/contact'));
+$header_url   = kc_get_option('header_cta_url', function_exists('kc_consultation_url') ? kc_consultation_url() : home_url('/consultation/'));
+// Canonical consultation destination for Plan showroombezoek (React /consultation).
+if ( function_exists( 'kc_consultation_url' ) && false !== stripos( (string) $header_label, 'showroombezoek' ) ) {
+	$normalized = untrailingslashit( (string) $header_url );
+	if (
+		str_contains( $normalized, '#consultation' )
+		|| str_ends_with( $normalized, '/contact' )
+		|| '' === $normalized
+	) {
+		$header_url = kc_consultation_url();
+	}
+}
 $phone        = kc_get_option('contact_phone', '030 241 5122');
 $email        = kc_get_option('contact_email', 'info@keuken-centrum.nl');
 $logo_uri     = kc_theme_img('logo-keuken-1-1.webp') ?: kc_theme_img('logo-keuken.webp');

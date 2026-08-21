@@ -66,7 +66,7 @@ $intro  = $data['intro'] ?? [];
 				</h1>
 				<p class="brand-page-hero__lede" data-hero-stagger><?php echo esc_html((string) ($hero['subtitle'] ?? '')); ?></p>
 				<div class="brand-page-hero__actions" data-hero-stagger>
-					<a class="premium-pill-button premium-pill-button--lg" href="<?php echo esc_url((string) ($hero['cta']['primaryHref'] ?? home_url('/#consultation'))); ?>">
+					<a class="premium-pill-button premium-pill-button--lg" href="<?php echo esc_url((string) ($hero['cta']['primaryHref'] ?? home_url('/consultation/'))); ?>">
 						<span class="premium-pill-button__label"><?php echo esc_html((string) ($hero['cta']['primary'] ?? '')); ?></span>
 						<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
 					</a>
@@ -483,7 +483,7 @@ $intro  = $data['intro'] ?? [];
 							<span><?php echo esc_html($phone); ?></span>
 						</p>
 					</div>
-					<a class="premium-pill-button premium-pill-button--xl" href="<?php echo esc_url((string) ($cta['href'] ?? home_url('/#consultation'))); ?>" data-reveal>
+					<a class="premium-pill-button premium-pill-button--xl" href="<?php echo esc_url((string) ($cta['href'] ?? home_url('/consultation/'))); ?>" data-reveal>
 						<span class="premium-pill-button__label"><?php echo esc_html((string) ($cta['button'] ?? '')); ?></span>
 						<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
 					</a>

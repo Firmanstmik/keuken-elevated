@@ -34,7 +34,7 @@ $cards = [
 		'title'       => 'Keukens voor elke prijs',
 		'description' => 'Topkwaliteit en persoonlijk advies voor elk budget, zonder compromis.',
 		'image'       => kc_theme_img('experience/Keukens_voor_elke_prijs.webp') ?: kc_theme_img('experience/budget.webp'),
-		'href'        => home_url('/#consultation'),
+		'href'        => home_url('/consultation/'),
 	],
 ];
 $scene       = kc_theme_img('brands/brands-dark-bg.webp');

@@ -196,7 +196,7 @@ $hero_img   = (string) ( $data['hero']['image'] ?? '' );
 					<p class="keukens-body-copy keukens-body-copy--light"><?php esc_html_e( 'Bezoek onze showroom op de Zonnebaan voor persoonlijk advies bij een goede kop koffie.', 'keuken-centrum' ); ?></p>
 				</div>
 				<div class="brand-showroom-cta__actions">
-					<a class="premium-pill-button premium-pill-button--xl" href="<?php echo esc_url( home_url( '/#consultation' ) ); ?>" data-reveal>
+					<a class="premium-pill-button premium-pill-button--xl" href="<?php echo esc_url( home_url( '/consultation/' ) ); ?>" data-reveal>
 						<span class="premium-pill-button__label"><?php esc_html_e( 'Plan showroombezoek', 'keuken-centrum' ); ?></span>
 						<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
 					</a>
