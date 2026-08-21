@@ -49,7 +49,7 @@ function kc_zampieri_page_data(): array {
 	$hero = kc_brand_hero('zampieri');
 	$logo = kc_brand_logo('zampieri');
 
-	return [
+	$data = [
 		'id'      => 'zampieri',
 		'name'    => 'Zampieri',
 		'country' => __('Italië', 'keuken-centrum'),
@@ -204,4 +204,6 @@ function kc_zampieri_page_data(): array {
 			'href'           => home_url('/consultation/'),
 		],
 	];
+
+	return function_exists('kc_cms_apply_brand_page') ? kc_cms_apply_brand_page($data, 'zampieri') : $data;
 }

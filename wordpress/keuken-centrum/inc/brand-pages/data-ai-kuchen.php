@@ -41,7 +41,7 @@ function kc_ai_kuchen_page_data(): array {
 	$hero = kc_theme_img('brands/aikuchen-showroom-1.webp') ?: kc_brand_hero('ai-kuchen');
 	$logo = kc_brand_logo('ai-kuchen');
 
-	return [
+	$data = [
 		'id'         => 'ai-kuchen',
 		'name'       => 'AI Küchen',
 		'legacyName' => 'Häcker',
@@ -217,4 +217,6 @@ function kc_ai_kuchen_page_data(): array {
 			'href'           => home_url('/consultation/'),
 		],
 	];
+
+	return function_exists('kc_cms_apply_brand_page') ? kc_cms_apply_brand_page($data, 'ai-kuchen') : $data;
 }

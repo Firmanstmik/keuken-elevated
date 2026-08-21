@@ -105,7 +105,7 @@ function kc_leicht_page_data(): array {
 		$series_items[] = $item;
 	}
 
-	return [
+	$data = [
 		'id'         => 'leicht',
 		'name'       => 'Leicht',
 		'country'    => __('Duitsland', 'keuken-centrum'),
@@ -298,4 +298,6 @@ function kc_leicht_page_data(): array {
 			'href'           => home_url('/consultation/'),
 		],
 	];
+
+	return function_exists('kc_cms_apply_brand_page') ? kc_cms_apply_brand_page($data, 'leicht') : $data;
 }

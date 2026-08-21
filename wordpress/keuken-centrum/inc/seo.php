@@ -119,7 +119,9 @@ function kc_document_title_parts(array $parts): array {
 	if (is_string($series_slug) && '' !== $series_slug && function_exists('kc_leicht_series_data')) {
 		$series = kc_leicht_series_data($series_slug);
 		if ($series) {
-			$parts['title'] = $series['name'] . ' · Keuken-Centrum Utrecht';
+			$parts['title'] = ! empty( $series['seo_title'] )
+				? (string) $series['seo_title']
+				: ( $series['name'] . ' · Keuken-Centrum Utrecht' );
 			unset($parts['tagline'], $parts['site']);
 		}
 	}
@@ -231,6 +233,9 @@ function kc_get_meta_description(): string {
 	$series_slug = get_query_var('kc_leicht_series');
 	if (is_string($series_slug) && '' !== $series_slug && function_exists('kc_leicht_series_data')) {
 		$series = kc_leicht_series_data($series_slug);
+		if ($series && ! empty( $series['seo_description'] )) {
+			return (string) $series['seo_description'];
+		}
 		if ($series && ! empty($series['description'][0])) {
 			return (string) $series['description'][0];
 		}

@@ -54,7 +54,7 @@ function kc_cucinesse_page_data(): array {
 	$hero = kc_brand_hero('cucinesse');
 	$logo = kc_brand_logo('cucinesse');
 
-	return [
+	$data = [
 		'id'      => 'cucinesse',
 		'name'    => 'Cucinesse',
 		'country' => __('Italië', 'keuken-centrum'),
@@ -222,4 +222,6 @@ function kc_cucinesse_page_data(): array {
 			'href'           => home_url('/consultation/'),
 		],
 	];
+
+	return function_exists('kc_cms_apply_brand_page') ? kc_cms_apply_brand_page($data, 'cucinesse') : $data;
 }

@@ -115,6 +115,8 @@ function kc_cms_register_options_pages(): void {
 		[ 'kc-cms-header', 'Header & navigatie', 'Header' ],
 		[ 'kc-cms-nav', 'Mega menu & mobiel menu', 'Navigatie' ],
 		[ 'kc-cms-homepage', 'Homepage secties', 'Homepage' ],
+		[ 'kc-cms-keukens', 'Keukens overzicht', 'Keukens' ],
+		[ 'kc-cms-leicht-series', 'Leicht series', 'Leicht series' ],
 		[ 'kc-cms-footer', 'Footer', 'Footer' ],
 		[ 'kc-cms-sticky', 'Secondary CTA / Concierge', 'Secondary CTA' ],
 		[ 'kc-cms-consultation', 'Consultatie defaults', 'Consultatie' ],

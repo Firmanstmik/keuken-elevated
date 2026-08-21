@@ -32,12 +32,12 @@ $hero_primary = $data['hero']['image'] ?: ($hero_images[0] ?? '');
 				</h1>
 				<p class="brand-page-hero__lede brand-page-hero__lede--overview"><?php echo esc_html($data['hero']['subtitle']); ?></p>
 				<div class="brand-page-hero__actions">
-					<a class="premium-pill-button premium-pill-button--lg" href="<?php echo esc_url(home_url('/consultation/')); ?>">
-						<span class="premium-pill-button__label"><?php esc_html_e('Plan showroombezoek', 'keuken-centrum'); ?></span>
+					<a class="premium-pill-button premium-pill-button--lg" href="<?php echo esc_url( (string) ( $data['hero']['cta_primary_url'] ?? home_url( '/consultation/' ) ) ); ?>">
+						<span class="premium-pill-button__label"><?php echo esc_html( (string) ( $data['hero']['cta_primary_label'] ?? __( 'Plan showroombezoek', 'keuken-centrum' ) ) ); ?></span>
 						<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
 					</a>
-					<a class="premium-pill-button premium-pill-button--ghost premium-pill-button--lg" href="<?php echo esc_url(home_url('/keukens/leicht/')); ?>">
-						<span class="premium-pill-button__label"><?php esc_html_e('Ontdek Leicht', 'keuken-centrum'); ?></span>
+					<a class="premium-pill-button premium-pill-button--ghost premium-pill-button--lg" href="<?php echo esc_url( (string) ( $data['hero']['cta_secondary_url'] ?? home_url( '/keukens/leicht/' ) ) ); ?>">
+						<span class="premium-pill-button__label"><?php echo esc_html( (string) ( $data['hero']['cta_secondary_label'] ?? __( 'Ontdek Leicht', 'keuken-centrum' ) ) ); ?></span>
 						<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
 					</a>
 				</div>
@@ -208,15 +208,14 @@ $hero_primary = $data['hero']['image'] ?: ($hero_images[0] ?? '');
 		<div class="site-container">
 			<div class="brand-showroom-cta__inner">
 				<div data-reveal>
-					<?php kc_brand_eyebrow(__('Showroom Utrecht', 'keuken-centrum'), true); ?>
+					<?php kc_brand_eyebrow( (string) ( $data['bottom_cta']['eyebrow'] ?? __( 'Showroom Utrecht', 'keuken-centrum' ) ), true ); ?>
 					<h2 class="keukens-section-title keukens-section-title--light">
-						<?php esc_html_e('Klaar voor uw', 'keuken-centrum'); ?>
-						<em><?php esc_html_e('droomkeuken', 'keuken-centrum'); ?></em>?
+						<?php echo esc_html( (string) ( $data['bottom_cta']['title'] ?? __( 'Plan uw showroombezoek', 'keuken-centrum' ) ) ); ?>
 					</h2>
-					<p class="keukens-body-copy keukens-body-copy--light"><?php esc_html_e('Boek een afspraak. Wij helpen u graag verder, van het eerste idee tot de professionele installatie.', 'keuken-centrum'); ?></p>
+					<p class="keukens-body-copy keukens-body-copy--light"><?php echo esc_html( (string) ( $data['bottom_cta']['body'] ?? '' ) ); ?></p>
 				</div>
-				<a class="premium-pill-button premium-pill-button--xl" href="<?php echo esc_url(home_url('/consultation/')); ?>" data-reveal>
-					<span class="premium-pill-button__label"><?php esc_html_e('Boek een afspraak', 'keuken-centrum'); ?></span>
+				<a class="premium-pill-button premium-pill-button--xl" href="<?php echo esc_url( (string) ( $data['bottom_cta']['url'] ?? home_url( '/consultation/' ) ) ); ?>" data-reveal>
+					<span class="premium-pill-button__label"><?php echo esc_html( (string) ( $data['bottom_cta']['label'] ?? __( 'Boek een afspraak', 'keuken-centrum' ) ) ); ?></span>
 					<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
 				</a>
 			</div>

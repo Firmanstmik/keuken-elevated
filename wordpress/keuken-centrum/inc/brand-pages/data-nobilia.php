@@ -40,7 +40,7 @@ function kc_nobilia_page_data(): array {
 	$hero = kc_brand_hero('nobilia');
 	$logo = kc_brand_logo('nobilia');
 
-	return [
+	$data = [
 		'id'      => 'nobilia',
 		'name'    => 'Nobilia',
 		'country' => __('Duitsland', 'keuken-centrum'),
@@ -195,4 +195,6 @@ function kc_nobilia_page_data(): array {
 			'href'           => home_url('/consultation/'),
 		],
 	];
+
+	return function_exists('kc_cms_apply_brand_page') ? kc_cms_apply_brand_page($data, 'nobilia') : $data;
 }

@@ -20,7 +20,7 @@ function kc_keukens_overview_data(): array {
 	];
 	$hero_slides = array_values(array_filter($hero_slides));
 
-	return [
+	$data = [
 		'meta' => [
 			'title'       => __('Keukens · A-merk keukens bij Keuken-Centrum Utrecht', 'keuken-centrum'),
 			'description' => __('Breed assortiment A-merk keukens van Leicht, Nobilia, AI Küchen, Zampieri en Cucinesse, met betaalbare prijzen, 3D-ontwerp en gegarandeerd de scherpste prijs in Utrecht.', 'keuken-centrum'),
@@ -106,5 +106,19 @@ function kc_keukens_overview_data(): array {
 		],
 		'faq'      => kc_brand_shared_faq(),
 		'advisors' => kc_brand_shared_advisors(),
+		'bottom_cta' => [
+			'eyebrow' => __('Persoonlijk advies', 'keuken-centrum'),
+			'title'   => __('Plan uw showroombezoek', 'keuken-centrum'),
+			'body'    => __('Ontdek alle A-merken in Utrecht en ontvang vrijblijvend advies.', 'keuken-centrum'),
+			'label'   => __('Plan showroombezoek', 'keuken-centrum'),
+			'url'     => home_url('/consultation/'),
+		],
 	];
+
+	$data['hero']['cta_primary_label']   = __('Plan showroombezoek', 'keuken-centrum');
+	$data['hero']['cta_primary_url']     = home_url('/consultation/');
+	$data['hero']['cta_secondary_label'] = __('Ontdek Leicht', 'keuken-centrum');
+	$data['hero']['cta_secondary_url']   = home_url('/keukens/leicht/');
+
+	return function_exists('kc_cms_apply_keukens_overview') ? kc_cms_apply_keukens_overview($data) : $data;
 }

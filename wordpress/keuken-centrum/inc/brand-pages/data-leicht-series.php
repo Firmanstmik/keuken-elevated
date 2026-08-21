@@ -101,7 +101,11 @@ function kc_leicht_series_catalog(): array {
  */
 function kc_leicht_series_data(string $slug): ?array {
 	$catalog = kc_leicht_series_catalog();
-	return $catalog[ $slug ] ?? null;
+	$data    = $catalog[ $slug ] ?? null;
+	if (! is_array($data)) {
+		return null;
+	}
+	return function_exists('kc_cms_apply_leicht_series') ? kc_cms_apply_leicht_series($data, $slug) : $data;
 }
 
 /**
