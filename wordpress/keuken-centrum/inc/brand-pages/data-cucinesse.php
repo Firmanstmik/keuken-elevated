@@ -12,18 +12,32 @@ if (! defined('ABSPATH')) {
 /**
  * @param int $index Pool index.
  */
+/**
+ * Cucinesse image pool.
+ *
+ * React remotes (all HTTP 404 / not in live SPA / not in theme uploads):
+ * - cucinesse-cucina-LAB-3-3.webp
+ * - cucinesse-cucina-lab-4-5.webp
+ * - 3d-ontwerp-1.3.webp
+ * - 3d-ontwerp-2.3.webp
+ * - 10-1.webp
+ *
+ * Verified Cucinesse-specific locals from the React repo only:
+ * - brands/cucinesse-hero.webp       (src/assets/brands/cucinesse-hero.webp)
+ * - brands/cucinesse-brand-card.webp (public/brand-cucinesse.webp)
+ *
+ * Original React assets unavailable; verified Cucinesse local equivalents used.
+ * No unrelated kitchen/collection imagery.
+ */
 function kc_cucinesse_pool_img(int $index): string {
 	$pool = array_values(
 		array_filter(
 			[
 				kc_brand_hero('cucinesse'),
-				kc_theme_img('hero/hero_img5.webp'),
-				kc_theme_img('collections/landelijk-base.webp'),
-				kc_theme_img('collection-scandi.webp'),
-				kc_theme_img('experience/Design_keukens.webp'),
-				kc_theme_img('configurator/modern-base.webp'),
-				kc_theme_img('showroom.webp'),
-				kc_theme_img('craftsmanship.webp'),
+				kc_theme_img('brands/cucinesse-brand-card.webp'),
+				kc_brand_hero('cucinesse'),
+				kc_theme_img('brands/cucinesse-brand-card.webp'),
+				kc_brand_hero('cucinesse'),
 			]
 		)
 	);
@@ -113,7 +127,7 @@ function kc_cucinesse_page_data(): array {
 					'title'       => __('Vakmanschap & service', 'keuken-centrum'),
 					'description' => __('Creativiteit om het ideale ontwerp te maken en vakmanschap om een prachtig plan om te zetten in resultaat. Van A tot Z wordt u op uw wenken bediend, binnen budget en volgens planning.', 'keuken-centrum'),
 					'icon'        => 'award',
-					'image'       => kc_cucinesse_pool_img(4),
+					'image'       => kc_cucinesse_pool_img(2),
 				],
 			],
 		],
@@ -158,19 +172,19 @@ function kc_cucinesse_page_data(): array {
 					'span'  => 'medium',
 				],
 				[
-					'src'   => kc_cucinesse_pool_img(4),
+					'src'   => kc_cucinesse_pool_img(2),
 					'title' => __('3D-ontwerp', 'keuken-centrum'),
 					'tag'   => __('Maatwerk', 'keuken-centrum'),
 					'span'  => 'medium',
 				],
 				[
-					'src'   => kc_cucinesse_pool_img(5),
+					'src'   => kc_cucinesse_pool_img(3),
 					'title' => __('Stap voor stap ontwerpen', 'keuken-centrum'),
 					'tag'   => __('3D-software', 'keuken-centrum'),
 					'span'  => 'wide',
 				],
 				[
-					'src'   => kc_cucinesse_pool_img(6),
+					'src'   => kc_cucinesse_pool_img(4),
 					'title' => __('Detail & afwerking', 'keuken-centrum'),
 					'tag'   => __('Kwaliteit', 'keuken-centrum'),
 					'span'  => 'medium',
@@ -186,9 +200,9 @@ function kc_cucinesse_page_data(): array {
 		],
 		'custom' => [
 			'eyebrow'        => __('Op maat', 'keuken-centrum'),
-			'titleBefore'    => __('Écht', 'keuken-centrum'),
+			'titleBefore'    => __('Écht ', 'keuken-centrum'),
 			'titleHighlight' => __('alles', 'keuken-centrum'),
-			'titleAfter'     => __('is mogelijk', 'keuken-centrum'),
+			'titleAfter'     => __(' is mogelijk', 'keuken-centrum'),
 			'body'           => __('Een uitdagende moderne designkeuken, een robuuste industrielook of de nostalgische intimiteit van een landelijk klassieke keuken: bij Keuken-Centrum Utrecht koopt u de keuken van uw dromen voor een verrassend betaalbare prijs.', 'keuken-centrum'),
 			'secondary'      => __('Wij leveren de kwaliteitskeuken van uw dromen die naadloos past bij uw portemonnee. Compleet met topmerk-apparatuur, zorgeloze garantie en uitstekende service, zonder opdringerig gedoe.', 'keuken-centrum'),
 		],
