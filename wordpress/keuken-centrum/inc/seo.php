@@ -69,6 +69,20 @@ function kc_document_title_parts(array $parts): array {
 		}
 	}
 
+	if (is_singular('appliance_category')) {
+		$slug = get_post_field('post_name', get_queried_object_id());
+		$map  = [
+			'kookplaten' => 'kc_kookplaten_page_data',
+		];
+		if (is_string($slug) && isset($map[ $slug ]) && function_exists($map[ $slug ])) {
+			$data = call_user_func($map[ $slug ]);
+			if (is_array($data) && ! empty($data['meta']['title'])) {
+				$parts['title'] = (string) $data['meta']['title'];
+				unset($parts['tagline'], $parts['site']);
+			}
+		}
+	}
+
 	$series_slug = get_query_var('kc_leicht_series');
 	if (is_string($series_slug) && '' !== $series_slug && function_exists('kc_leicht_series_data')) {
 		$series = kc_leicht_series_data($series_slug);
@@ -118,6 +132,19 @@ function kc_get_meta_description(): string {
 			'dekton'    => 'kc_dekton_page_data',
 			'neolith'   => 'kc_neolith_page_data',
 			'sensa'     => 'kc_sensa_page_data',
+		];
+		if (is_string($slug) && isset($map[ $slug ]) && function_exists($map[ $slug ])) {
+			$data = call_user_func($map[ $slug ]);
+			if (is_array($data) && ! empty($data['meta']['description'])) {
+				return (string) $data['meta']['description'];
+			}
+		}
+	}
+
+	if (is_singular('appliance_category')) {
+		$slug = get_post_field('post_name', get_queried_object_id());
+		$map  = [
+			'kookplaten' => 'kc_kookplaten_page_data',
 		];
 		if (is_string($slug) && isset($map[ $slug ]) && function_exists($map[ $slug ])) {
 			$data = call_user_func($map[ $slug ]);
@@ -230,6 +257,18 @@ function kc_output_seo_tags(): void {
 			'dekton'    => 'kc_dekton_page_data',
 			'neolith'   => 'kc_neolith_page_data',
 			'sensa'     => 'kc_sensa_page_data',
+		];
+		if (is_string($slug) && isset($map[ $slug ]) && function_exists($map[ $slug ])) {
+			$data = call_user_func($map[ $slug ]);
+			if (is_array($data) && ! empty($data['hero']['image'])) {
+				$image = (string) $data['hero']['image'];
+			}
+		}
+	}
+	if ('' === $image && is_singular('appliance_category')) {
+		$slug = get_post_field('post_name', get_queried_object_id());
+		$map  = [
+			'kookplaten' => 'kc_kookplaten_page_data',
 		];
 		if (is_string($slug) && isset($map[ $slug ]) && function_exists($map[ $slug ])) {
 			$data = call_user_func($map[ $slug ]);

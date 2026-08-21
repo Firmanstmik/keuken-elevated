@@ -33,6 +33,8 @@ require_once get_template_directory() . '/inc/worktop-pages/data-silestone.php';
 require_once get_template_directory() . '/inc/worktop-pages/data-dekton.php';
 require_once get_template_directory() . '/inc/worktop-pages/data-neolith.php';
 require_once get_template_directory() . '/inc/worktop-pages/data-sensa.php';
+require_once get_template_directory() . '/inc/apparatuur-pages/helpers.php';
+require_once get_template_directory() . '/inc/apparatuur-pages/data-kookplaten.php';
 
 
 if (! defined('KC_THEME_VERSION')) {
@@ -115,7 +117,8 @@ function kc_enqueue_assets(): void {
 	);
 
 	$needs_brand_css = ( function_exists( 'kc_is_keukens_route' ) && kc_is_keukens_route() )
-		|| ( function_exists( 'kc_is_worktops_route' ) && kc_is_worktops_route() );
+		|| ( function_exists( 'kc_is_worktops_route' ) && kc_is_worktops_route() )
+		|| ( function_exists( 'kc_is_apparatuur_route' ) && kc_is_apparatuur_route() );
 
 	if ( $needs_brand_css ) {
 		$brand_css_rel  = 'assets/css/keukens-brand-pages.css';
@@ -140,6 +143,18 @@ function kc_enqueue_assets(): void {
 			$style_ver . '.' . $wb_mtime
 		);
 	}
+
+	if ( function_exists( 'kc_is_apparatuur_route' ) && kc_is_apparatuur_route() ) {
+		$app_css_rel  = 'assets/css/apparatuur-pages.css';
+		$app_css_path = get_theme_file_path( $app_css_rel );
+		$app_mtime    = file_exists( $app_css_path ) ? (string) filemtime( $app_css_path ) : '0';
+		wp_enqueue_style(
+			'keuken-centrum-apparatuur',
+			kc_asset( $app_css_rel ),
+			[ 'keuken-centrum-keukens-brand' ],
+			$style_ver . '.' . $app_mtime
+		);
+	}
 }
 add_action('wp_enqueue_scripts', 'kc_enqueue_assets');
 
@@ -162,7 +177,7 @@ add_filter('wp_resource_hints', 'kc_resource_hints', 10, 2);
  * Keep theme CSS/JS out of LiteSpeed combine/UCSS so homepage parity rules are not stripped.
  */
 function kc_litespeed_exclude_theme_assets(string $html, string $handle): string {
-	if ( ! in_array( $handle, [ 'keuken-centrum-theme', 'keuken-centrum-keukens-brand', 'keuken-centrum-keukenbladen' ], true ) || str_contains( $html, 'data-no-optimize' ) ) {
+	if ( ! in_array( $handle, [ 'keuken-centrum-theme', 'keuken-centrum-keukens-brand', 'keuken-centrum-keukenbladen', 'keuken-centrum-apparatuur' ], true ) || str_contains( $html, 'data-no-optimize' ) ) {
 		return $html;
 	}
 
@@ -183,6 +198,9 @@ function kc_keukens_body_class(array $classes): array {
 	}
 	if (function_exists('kc_is_worktops_route') && kc_is_worktops_route()) {
 		$classes[] = 'kc-keukenbladen-route';
+	}
+	if (function_exists('kc_is_apparatuur_route') && kc_is_apparatuur_route()) {
+		$classes[] = 'kc-apparatuur-route';
 	}
 	return $classes;
 }
