@@ -170,11 +170,12 @@ function kc_cms_apply_keukens_overview( array $data ): array {
 	}
 
 	$data['bottom_cta'] = [
-		'eyebrow' => kc_cms_text( 'keukens_ov_bottom_eyebrow', $pid, (string) ( $data['bottom_cta']['eyebrow'] ?? __( 'Persoonlijk advies', 'keuken-centrum' ) ) ),
-		'title'   => kc_cms_text( 'keukens_ov_bottom_title', $pid, (string) ( $data['bottom_cta']['title'] ?? __( 'Plan uw showroombezoek', 'keuken-centrum' ) ) ),
-		'body'    => kc_cms_text( 'keukens_ov_bottom_body', $pid, (string) ( $data['bottom_cta']['body'] ?? __( 'Ontdek alle A-merken in Utrecht en ontvang vrijblijvend advies.', 'keuken-centrum' ) ) ),
-		'label'   => kc_cms_text( 'keukens_ov_bottom_cta_label', $pid, (string) ( $data['bottom_cta']['label'] ?? __( 'Plan showroombezoek', 'keuken-centrum' ) ) ),
-		'url'     => kc_cms_text( 'keukens_ov_bottom_cta_url', $pid, (string) ( $data['bottom_cta']['url'] ?? home_url( '/consultation/' ) ) ),
+		'eyebrow'  => kc_cms_text( 'keukens_ov_bottom_eyebrow', $pid, (string) ( $data['bottom_cta']['eyebrow'] ?? __( 'Showroom Utrecht', 'keuken-centrum' ) ) ),
+		'title'    => kc_cms_text( 'keukens_ov_bottom_title', $pid, (string) ( $data['bottom_cta']['title'] ?? __( 'Klaar voor uw', 'keuken-centrum' ) ) ),
+		'title_em' => kc_cms_text( 'keukens_ov_bottom_title_em', $pid, (string) ( $data['bottom_cta']['title_em'] ?? __( 'droomkeuken', 'keuken-centrum' ) ) ),
+		'body'     => kc_cms_text( 'keukens_ov_bottom_body', $pid, (string) ( $data['bottom_cta']['body'] ?? __( 'Boek een afspraak. Wij helpen u graag verder, van het eerste idee tot de professionele installatie.', 'keuken-centrum' ) ) ),
+		'label'    => kc_cms_text( 'keukens_ov_bottom_cta_label', $pid, (string) ( $data['bottom_cta']['label'] ?? __( 'Boek een afspraak', 'keuken-centrum' ) ) ),
+		'url'      => kc_cms_text( 'keukens_ov_bottom_cta_url', $pid, (string) ( $data['bottom_cta']['url'] ?? home_url( '/consultation/' ) ) ),
 	];
 
 	return $data;

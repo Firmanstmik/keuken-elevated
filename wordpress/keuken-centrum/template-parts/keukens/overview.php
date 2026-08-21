@@ -210,7 +210,8 @@ $hero_primary = $data['hero']['image'] ?: ($hero_images[0] ?? '');
 				<div data-reveal>
 					<?php kc_brand_eyebrow( (string) ( $data['bottom_cta']['eyebrow'] ?? __( 'Showroom Utrecht', 'keuken-centrum' ) ), true ); ?>
 					<h2 class="keukens-section-title keukens-section-title--light">
-						<?php echo esc_html( (string) ( $data['bottom_cta']['title'] ?? __( 'Plan uw showroombezoek', 'keuken-centrum' ) ) ); ?>
+						<?php echo esc_html( (string) ( $data['bottom_cta']['title'] ?? __( 'Klaar voor uw', 'keuken-centrum' ) ) ); ?>
+						<em><?php echo esc_html( (string) ( $data['bottom_cta']['title_em'] ?? __( 'droomkeuken', 'keuken-centrum' ) ) ); ?></em>?
 					</h2>
 					<p class="keukens-body-copy keukens-body-copy--light"><?php echo esc_html( (string) ( $data['bottom_cta']['body'] ?? '' ) ); ?></p>
 				</div>

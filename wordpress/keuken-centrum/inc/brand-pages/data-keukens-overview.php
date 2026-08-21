@@ -107,11 +107,12 @@ function kc_keukens_overview_data(): array {
 		'faq'      => kc_brand_shared_faq(),
 		'advisors' => kc_brand_shared_advisors(),
 		'bottom_cta' => [
-			'eyebrow' => __('Persoonlijk advies', 'keuken-centrum'),
-			'title'   => __('Plan uw showroombezoek', 'keuken-centrum'),
-			'body'    => __('Ontdek alle A-merken in Utrecht en ontvang vrijblijvend advies.', 'keuken-centrum'),
-			'label'   => __('Plan showroombezoek', 'keuken-centrum'),
-			'url'     => home_url('/consultation/'),
+			'eyebrow'   => __('Showroom Utrecht', 'keuken-centrum'),
+			'title'     => __('Klaar voor uw', 'keuken-centrum'),
+			'title_em'  => __('droomkeuken', 'keuken-centrum'),
+			'body'      => __('Boek een afspraak. Wij helpen u graag verder, van het eerste idee tot de professionele installatie.', 'keuken-centrum'),
+			'label'     => __('Boek een afspraak', 'keuken-centrum'),
+			'url'       => home_url('/consultation/'),
 		],
 	];
 
