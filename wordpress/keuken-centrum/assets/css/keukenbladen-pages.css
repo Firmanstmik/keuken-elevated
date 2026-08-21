@@ -16,12 +16,10 @@ html:has(body.kc-keukenbladen-route) {
   min-height: 88vh;
 }
 .brand-page--keukenbladen .brand-page-hero__content--worktops {
-  padding: 9rem 0 6rem;
-}
-@media (min-width: 768px) {
-  .brand-page--keukenbladen .brand-page-hero__content--worktops {
-    padding: 9rem 0 6rem;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 9rem 0 6rem; /* pt-36 pb-24 */
 }
 .brand-page-hero__inner--worktops {
   max-width: 54rem;
@@ -29,23 +27,56 @@ html:has(body.kc-keukenbladen-route) {
 }
 .brand-page-hero__title--worktops {
   font-size: clamp(3rem, 6.5vw, 5rem);
+  line-height: 0.98;
+  letter-spacing: -0.025em;
 }
 .brand-page-hero__lede--worktops {
   max-width: 38rem;
   letter-spacing: normal;
 }
+
+/* React mt-10 / mt-12 — not brand-page defaults 2.75rem / 3.5rem */
+.brand-page--keukenbladen .brand-page-hero__actions {
+  margin-top: 2.5rem;
+}
+.brand-page--keukenbladen .brand-page-hero__badge-strip-wrap {
+  margin-top: 3rem;
+}
+
 .brand-page-hero__gradient--worktops {
   background: linear-gradient(118deg, rgba(10, 20, 12, 0.92) 0%, rgba(10, 20, 12, 0.48) 46%, rgba(10, 20, 12, 0.72) 100%);
 }
 
+/* Materials cards: React opacity 0→1, y:24→0, duration 0.7, delay index*0.08 */
+.brand-page--keukenbladen .keukens-brand-grid > [data-reveal] {
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.brand-page--keukenbladen .keukens-brand-grid > [data-reveal].is-visible {
+  transform: none;
+}
+
 .keukenbladen-styles-grid {
   display: grid;
-  gap: 1.25rem;
+  gap: 1.25rem; /* React gap-5 */
 }
 @media (min-width: 768px) {
   .keukenbladen-styles-grid {
     grid-template-columns: repeat(3, 1fr);
   }
+}
+
+/* Styles pillars: React y:22, duration 0.65, delay index*0.1 */
+.brand-page--keukenbladen .keukenbladen-styles-grid .brand-pillar-card[data-reveal] {
+  transform: translateY(22px);
+  transition:
+    opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.brand-page--keukenbladen .keukenbladen-styles-grid .brand-pillar-card[data-reveal].is-visible {
+  transform: none;
 }
 
 .keukens-section-title--worktops-styles {
@@ -77,9 +108,28 @@ html:has(body.kc-keukenbladen-route) {
   max-width: 34rem;
 }
 
+/* Style card body typography (React h3 1.5rem / p mt-3.5 0.95rem) */
+.brand-page--keukenbladen .keukenbladen-styles-grid .brand-pillar-card__body h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  line-height: 1.2;
+  color: var(--secondary);
+}
+.brand-page--keukenbladen .keukenbladen-styles-grid .brand-pillar-card__body p {
+  margin-top: 0.875rem;
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--text-soft);
+}
+
+/* React uses min-h-[88vh] on all breakpoints — override shared brand-hero 100svh mobile rule */
 @media (max-width: 767px) {
   .brand-page--keukenbladen .brand-page-hero--worktops,
   .brand-page--keukenbladen .brand-page-hero__content--worktops {
-    min-height: max(43rem, 100svh) !important;
+    min-height: 88vh !important;
+  }
+  .brand-page--keukenbladen .brand-page-hero__content--worktops {
+    padding: 8rem 0 4.5rem;
   }
 }
