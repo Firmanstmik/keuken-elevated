@@ -148,6 +148,17 @@ function kc_enqueue_assets(): void {
 		$style_ver . '.' . $mobile_shell_mtime
 	);
 
+	$home_w3_rel  = 'assets/css/home-mobile-parity-w3.css';
+	$home_w3_path = get_theme_file_path( $home_w3_rel );
+	if ( file_exists( $home_w3_path ) ) {
+		wp_enqueue_style(
+			'keuken-centrum-home-w3',
+			kc_asset( $home_w3_rel ),
+			[ 'keuken-centrum-theme', 'keuken-centrum-footer-cms', 'keuken-centrum-mobile-shell' ],
+			$style_ver . '.' . (string) filemtime( $home_w3_path )
+		);
+	}
+
 	$script_ver     = KC_THEME_VERSION;
 	$live_js_rel    = 'assets/js/kc-live-' . $script_ver . '.js';
 	$live_js_path   = get_theme_file_path($live_js_rel);
@@ -318,7 +329,7 @@ add_filter('wp_resource_hints', 'kc_resource_hints', 10, 2);
  * Keep theme CSS/JS out of LiteSpeed combine/UCSS so homepage parity rules are not stripped.
  */
 function kc_litespeed_exclude_theme_assets(string $html, string $handle): string {
-	if ( ! in_array( $handle, [ 'keuken-centrum-theme', 'keuken-centrum-sticky-conversion', 'keuken-centrum-footer-cms', 'keuken-centrum-mobile-shell', 'keuken-centrum-legal', 'keuken-centrum-keukens-brand', 'keuken-centrum-keukenbladen', 'keuken-centrum-apparatuur', 'keuken-centrum-aanbiedingen', 'keuken-centrum-contact', 'keuken-centrum-showroom', 'keuken-centrum-consultation' ], true ) || str_contains( $html, 'data-no-optimize' ) ) {
+	if ( ! in_array( $handle, [ 'keuken-centrum-theme', 'keuken-centrum-sticky-conversion', 'keuken-centrum-footer-cms', 'keuken-centrum-mobile-shell', 'keuken-centrum-home-w3', 'keuken-centrum-legal', 'keuken-centrum-keukens-brand', 'keuken-centrum-keukenbladen', 'keuken-centrum-apparatuur', 'keuken-centrum-aanbiedingen', 'keuken-centrum-contact', 'keuken-centrum-showroom', 'keuken-centrum-consultation' ], true ) || str_contains( $html, 'data-no-optimize' ) ) {
 		return $html;
 	}
 

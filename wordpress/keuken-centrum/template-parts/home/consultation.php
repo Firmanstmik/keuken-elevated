@@ -35,11 +35,12 @@ $next_steps = [
 	['number' => '04', 'title' => __('Ontwerpvoorstel', 'keuken-centrum'), 'copy' => __('Ontvang uw persoonlijk ontwerpvoorstel', 'keuken-centrum')],
 ];
 ?>
-<section class="section-shell consultation-section consultation-section--react" id="consultation">
+<section class="consultation-section consultation-section--react" id="consultation">
 	<div class="consultation-section__texture" aria-hidden="true"></div>
 	<div class="consultation-section__glow" aria-hidden="true"></div>
 
-	<div class="site-shell consultation-section__inner">
+	<?php /* React: section-shell padding lives on the inner shell, not the section. */ ?>
+	<div class="site-shell section-shell consultation-section__inner">
 		<header class="consultation-section__header">
 			<?php kc_section_chapter('10', __('Consultatie', 'keuken-centrum')); ?>
 			<div class="consultation-section__badge">
