@@ -104,7 +104,7 @@ add_action('after_setup_theme', 'kc_theme_setup');
  * Enqueues the theme assets.
  */
 function kc_enqueue_assets(): void {
-	$fonts_url = 'https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap';
+	$fonts_url = 'https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap';
 
 	wp_enqueue_style('keuken-centrum-fonts', $fonts_url, [], null);
 
