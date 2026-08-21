@@ -42,3 +42,33 @@ function kc_worktop_faq(): array {
 
 	return array_merge(kc_brand_shared_faq(), $extra);
 }
+
+/**
+ * Shared worktop custom band (React worktopCustomBlock).
+ *
+ * @return array<string, string>
+ */
+function kc_worktop_custom_block(): array {
+	return [
+		'eyebrow'        => __('Op maat', 'keuken-centrum'),
+		'titleBefore'    => __('Écht', 'keuken-centrum'),
+		'titleHighlight' => __('alles', 'keuken-centrum'),
+		'titleAfter'     => __('is mogelijk', 'keuken-centrum'),
+		'body'           => __('Een uitdagende moderne designkeuken, een robuuste industrielook of de nostalgische intimiteit van een landelijk klassiek werkblad: bij Keuken-Centrum Utrecht koopt u het keukenwerkblad van uw dromen voor een verrassend betaalbare prijs.', 'keuken-centrum'),
+		'secondary'      => __('Graniet, composiet, hardsteen, keramiek, betonlook of marmerlook: wij adviseren over materiaal, kleur, dikte, formaat, randafwerking en praktische eigenschappen zodat het blad perfect past bij uw keukenstijl.', 'keuken-centrum'),
+	];
+}
+
+/**
+ * Shared worktop partnership stats (React baseWorktopStats).
+ *
+ * @return array<int, array{icon:string,label:string,value:string}>
+ */
+function kc_worktop_partnership_stats(): array {
+	return [
+		[ 'icon' => 'factory', 'label' => __('Materiaaladvies', 'keuken-centrum'), 'value' => __('Op maat', 'keuken-centrum') ],
+		[ 'icon' => 'shield', 'label' => __('CBW zekerheid', 'keuken-centrum'), 'value' => __('Garantie', 'keuken-centrum') ],
+		[ 'icon' => 'clock', 'label' => __('Heldere planning', 'keuken-centrum'), 'value' => __('Advies', 'keuken-centrum') ],
+		[ 'icon' => 'award', 'label' => __('Geselecteerde merken', 'keuken-centrum'), 'value' => __('Kwaliteit', 'keuken-centrum') ],
+	];
+}

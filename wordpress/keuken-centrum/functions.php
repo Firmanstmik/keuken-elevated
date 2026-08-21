@@ -29,6 +29,7 @@ require_once get_template_directory() . '/inc/brand-pages/data-cucinesse.php';
 require_once get_template_directory() . '/inc/brand-pages/routing.php';
 require_once get_template_directory() . '/inc/worktop-pages/helpers.php';
 require_once get_template_directory() . '/inc/worktop-pages/data-overview.php';
+require_once get_template_directory() . '/inc/worktop-pages/data-silestone.php';
 
 
 if (! defined('KC_THEME_VERSION')) {
