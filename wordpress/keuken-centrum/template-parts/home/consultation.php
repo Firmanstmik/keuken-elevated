@@ -146,7 +146,7 @@ $next_steps = [
 
 						<label>
 							<span><?php esc_html_e('Uw bericht', 'keuken-centrum'); ?></span>
-							<textarea name="bericht" rows="5" placeholder="<?php esc_attr_e('Vertel iets over uw woning, stijlvoorkeur, planning of budgetrichting.', 'keuken-centrum'); ?>"></textarea>
+							<textarea name="bericht" rows="4" placeholder="<?php esc_attr_e('Vertel iets over uw woning, stijlvoorkeur, planning of budgetrichting.', 'keuken-centrum'); ?>"></textarea>
 						</label>
 
 						<div class="consultation-lead-form__stats">

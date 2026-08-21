@@ -36,18 +36,55 @@
 		padding: 1.75rem;
 	}
 
+	.consultation-section--react .consultation-form-card--react > h3 {
+		margin-top: 0.75rem;
+		font-size: clamp(1.5rem, 2.4vw, 2rem);
+		line-height: 1.1;
+	}
+
 	.consultation-section--react .consultation-lead-form--react {
 		gap: 1rem;
-		margin-top: 1.25rem;
+		margin-top: 1.75rem;
+	}
+
+	/* React Textarea min-h-[100px]; WP rows=5 was taller */
+	.consultation-section--react .consultation-lead-form--react textarea {
+		min-height: 100px;
+		height: 100px;
+	}
+
+	.consultation-section--react .consultation-lead-form--react input,
+	.consultation-section--react .consultation-lead-form--react select {
+		min-height: 50px;
+		padding: 0.65rem 1rem;
+	}
+
+	.consultation-section--react .consultation-lead-form__stats {
+		padding-top: 1.25rem;
+		gap: 0.75rem;
+	}
+
+	.consultation-section--react .consultation-lead-form__submit {
+		padding-top: 1.25rem;
+		gap: 0.75rem;
+	}
+
+	/* React default form has no footer contact strip (only success state) */
+	.consultation-section--react .consultation-form-card__contact {
+		display: none;
 	}
 
 	.consultation-section--react .consultation-next {
 		margin-top: 2.5rem;
 	}
 
-	/* Gallery slides — React h-64 (16rem) × ~280px */
+	/* Gallery slides — React h-64 (16rem) × 280px; track pad → ~328 strip */
+	.consultation-section--react .consultation-gallery--react .consultation-gallery__track {
+		padding: 1rem 0.5rem 0.5rem;
+	}
+
 	.consultation-section--react .consultation-gallery__slide {
-		width: min(78vw, 17.5rem);
+		width: 280px;
 		height: 16rem;
 	}
 }
@@ -118,9 +155,27 @@
 	}
 }
 
-/* ── Collections: React CARD 300×450 ───────────────────────────────────── */
+/* ── Collections: React CARD 300×450 + heading-2 mobile metrics ────────── */
 @media (max-width: 767px) {
 	.collections-section--react .collections-section__intro {
+		margin-bottom: 0;
+	}
+
+	/* React .heading-2 @≤767: clamp(2rem, 8vw, 2.65rem) — one line @390 */
+	.collections-section--react .collections-section__intro .section-title {
+		margin-top: 1rem;
+		font-size: clamp(2rem, 8vw, 2.65rem);
+		line-height: 1.05;
+		letter-spacing: -0.03em;
+		white-space: nowrap;
+	}
+
+	.collections-section--react .collections-section__intro .section-title em {
+		display: inline;
+		font-style: italic;
+	}
+
+	.collections-section--react .collections-section__intro .section-label-row {
 		margin-bottom: 0;
 	}
 
