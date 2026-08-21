@@ -1,0 +1,415 @@
+/* Contact page — React ContactPage scoped.
+   Reuses keukens-brand-pages; no floating hero card (React source has none). */
+
+body.kc-contact-route .site-main { padding-top: 0; }
+body.kc-contact-route,
+body.kc-contact-route .brand-page {
+  overflow-x: clip;
+}
+html:has(body.kc-contact-route) {
+  overflow-x: hidden;
+}
+
+.kc-contact-route .visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* React: min-h-[62vh] only — override shared brand hero 96vh / mobile 100svh */
+body.kc-contact-route .brand-page--contact .brand-page-hero--contact,
+body.kc-contact-route .brand-page--contact .brand-page-hero__content--contact {
+  min-height: 62vh !important;
+}
+.brand-page--contact .brand-page-hero__content--contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 10rem 0 5rem; /* pt-40 pb-20 */
+  width: var(--kc-shell);
+  max-width: none;
+  margin: 0 auto;
+}
+@media (max-width: 767px) {
+  body.kc-contact-route .brand-page--contact .brand-page-hero--contact,
+  body.kc-contact-route .brand-page--contact .brand-page-hero__content--contact {
+    min-height: 62vh !important;
+  }
+}
+
+.brand-page-hero__inner--contact {
+  max-width: 50rem;
+  width: 100%;
+}
+
+.brand-page-hero__title--contact {
+  margin-top: 1.5rem;
+  font-size: clamp(2.8rem, 6vw, 4.6rem);
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+}
+.brand-page-hero__title--contact em {
+  font-style: italic;
+  color: var(--green-highlight);
+}
+
+.brand-page-hero__lede--contact {
+  margin-top: 1.5rem;
+  max-width: 36rem;
+  font-size: 1.08rem;
+  font-weight: 300;
+  line-height: 1.8;
+  letter-spacing: normal;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.brand-page-hero__gradient--contact {
+  background: linear-gradient(118deg, rgba(10, 20, 12, 0.92) 0%, rgba(10, 20, 12, 0.55) 46%, rgba(10, 20, 12, 0.75) 100%);
+}
+.brand-page-hero__radial--contact {
+  background: radial-gradient(ellipse at 18% 85%, rgba(139, 197, 64, 0.16) 0%, transparent 52%);
+}
+.brand-page-hero__fade--contact {
+  height: 7rem; /* h-28 */
+}
+
+.contact-grid {
+  display: grid;
+  gap: 3rem;
+}
+@media (min-width: 1024px) {
+  .contact-grid {
+    grid-template-columns: 1.05fr 0.95fr;
+  }
+}
+
+.keukens-section-title--contact-form {
+  margin-top: 1.25rem;
+  font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+  line-height: 1.12;
+}
+.contact-form-lede {
+  margin-top: 1rem;
+  font-size: 0.98rem;
+  font-weight: 300;
+  line-height: 1.75;
+}
+
+.contact-form {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.contact-form__row {
+  display: grid;
+  gap: 0.75rem;
+}
+@media (min-width: 640px) {
+  .contact-form__row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.contact-form__input,
+.contact-form__textarea {
+  display: flex;
+  width: 100%;
+  border-radius: 0;
+  border: 1px solid rgba(32, 32, 32, 0.18);
+  background: rgba(255, 255, 255, 0.7);
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--foreground, #1a1a1a);
+  box-shadow: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.contact-form__input {
+  height: 3rem;
+  align-items: center;
+}
+.contact-form__textarea {
+  min-height: 132px;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  resize: vertical;
+}
+.contact-form__input::placeholder,
+.contact-form__textarea::placeholder {
+  color: rgba(32, 32, 32, 0.55);
+}
+.contact-form__input:focus-visible,
+.contact-form__textarea:focus-visible {
+  outline: none;
+  border-color: #c8a96b;
+  box-shadow: 0 0 0 1px rgba(200, 169, 107, 0.2);
+}
+
+.contact-form__actions {
+  margin-top: 0.5rem;
+}
+.contact-form__submit.is-disabled,
+.contact-form__submit:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.contact-aside {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-info-card {
+  border-radius: 26px;
+  border: 1px solid rgba(139, 197, 64, 0.16);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0%, rgba(252, 251, 248, 0.86) 100%);
+  padding: 1.75rem;
+  box-shadow: 0 22px 60px -44px rgba(20, 40, 18, 0.4);
+}
+.contact-info-card__title {
+  margin: 1rem 0 0;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  line-height: 1.15;
+  color: var(--secondary);
+}
+
+.contact-channels {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.contact-channel {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 18px;
+  border: 1px solid rgba(139, 197, 64, 0.14);
+  background: rgba(255, 255, 255, 0.8);
+  padding: 1rem;
+  text-decoration: none;
+  color: inherit;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.contact-channel:hover {
+  transform: translateY(-2px);
+  border-color: rgba(139, 197, 64, 0.35);
+  box-shadow: 0 18px 38px -28px rgba(20, 40, 18, 0.45);
+}
+
+.contact-channel__icon {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex-shrink: 0;
+  border-radius: 14px;
+  border: 1px solid rgba(139, 197, 64, 0.22);
+  background: #fff;
+  color: var(--green);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.contact-channel__icon svg {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+.contact-channel:hover .contact-channel__icon {
+  background: var(--green);
+  color: #fff;
+}
+
+.contact-channel__body {
+  min-width: 0;
+  flex: 1;
+}
+.contact-channel__label {
+  display: block;
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-soft, rgba(32, 40, 28, 0.62));
+}
+.contact-channel__value {
+  display: block;
+  margin-top: 0.125rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.98rem;
+  font-weight: 500;
+  color: var(--secondary);
+}
+
+.contact-channel__arrow {
+  flex-shrink: 0;
+  color: var(--text-soft, rgba(32, 40, 28, 0.62));
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+.contact-channel__arrow svg {
+  width: 1rem;
+  height: 1rem;
+}
+.contact-channel:hover .contact-channel__arrow {
+  color: var(--green);
+  transform: translate(2px, -2px);
+}
+
+/* React channels: y:12, duration 0.5, delay index*0.08 */
+.brand-page--contact .contact-channels > [data-reveal] {
+  transform: translateY(12px);
+  transition:
+    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.brand-page--contact .contact-channels > [data-reveal].is-visible {
+  transform: none;
+}
+
+.contact-hours-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 26px;
+  border: 1px solid rgba(168, 217, 90, 0.2);
+  background: linear-gradient(145deg, #142010 0%, #2a4718 100%);
+  padding: 1.75rem;
+}
+.contact-hours-card__ghost {
+  position: absolute;
+  right: -0.75rem;
+  bottom: -1.5rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 5.5rem;
+  line-height: 1;
+  color: rgba(139, 197, 64, 0.14);
+  pointer-events: none;
+}
+.contact-hours-card__inner {
+  position: relative;
+  z-index: 1;
+}
+.contact-hours-card__head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.contact-hours-card__icon {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--green-highlight);
+}
+.contact-hours-card__icon svg {
+  width: 1.05rem;
+  height: 1.05rem;
+}
+.contact-hours-card__head h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: #fff;
+}
+
+.contact-hours-list {
+  margin: 1.25rem 0 0;
+}
+.contact-hours-list__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.625rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.contact-hours-list__row + .contact-hours-list__row {
+  margin-top: 0.625rem;
+}
+.contact-hours-list dt {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.72);
+}
+.contact-hours-list dd {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+.contact-map-section {
+  padding-top: 0;
+}
+.contact-map-section__head {
+  margin-bottom: 2rem;
+}
+.keukens-section-title--contact-map {
+  margin-top: 1.25rem;
+  font-size: clamp(1.9rem, 3vw, 2.5rem);
+}
+
+.contact-map {
+  overflow: hidden;
+  border-radius: 26px;
+  border: 1px solid rgba(139, 197, 64, 0.16);
+  box-shadow: 0 28px 70px -48px rgba(20, 40, 18, 0.5);
+}
+.contact-map iframe {
+  display: block;
+  width: 100%;
+  height: 26rem;
+  border: 0;
+  filter: grayscale(0.25);
+  transition: filter 0.5s ease;
+}
+.contact-map:hover iframe {
+  filter: grayscale(0);
+}
+
+/* React map: y:22, duration 0.75 */
+.brand-page--contact .contact-map[data-reveal] {
+  transform: translateY(22px);
+  transition:
+    opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.brand-page--contact .contact-map[data-reveal].is-visible {
+  transform: none;
+}
+
+.keukens-section-title--contact-cta {
+  font-size: clamp(2.1rem, 4vw, 3.1rem);
+}
+.brand-showroom-cta__copy--contact {
+  max-width: 34rem;
+}
+.brand-page--contact .brand-showroom-cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+@media (max-width: 767px) {
+  .brand-page--contact .brand-page-hero__content--contact {
+    padding: 8.5rem 0 4rem;
+  }
+}

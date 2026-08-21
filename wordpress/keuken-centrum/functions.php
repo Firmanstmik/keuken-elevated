@@ -37,6 +37,8 @@ require_once get_template_directory() . '/inc/apparatuur-pages/helpers.php';
 require_once get_template_directory() . '/inc/apparatuur-pages/data-kookplaten.php';
 require_once get_template_directory() . '/inc/aanbiedingen/helpers.php';
 require_once get_template_directory() . '/inc/aanbiedingen/data.php';
+require_once get_template_directory() . '/inc/contact/helpers.php';
+require_once get_template_directory() . '/inc/contact/data.php';
 
 
 if (! defined('KC_THEME_VERSION')) {
@@ -121,7 +123,8 @@ function kc_enqueue_assets(): void {
 	$needs_brand_css = ( function_exists( 'kc_is_keukens_route' ) && kc_is_keukens_route() )
 		|| ( function_exists( 'kc_is_worktops_route' ) && kc_is_worktops_route() )
 		|| ( function_exists( 'kc_is_apparatuur_route' ) && kc_is_apparatuur_route() )
-		|| ( function_exists( 'kc_is_aanbiedingen_route' ) && kc_is_aanbiedingen_route() );
+		|| ( function_exists( 'kc_is_aanbiedingen_route' ) && kc_is_aanbiedingen_route() )
+		|| ( function_exists( 'kc_is_contact_route' ) && kc_is_contact_route() );
 
 	if ( $needs_brand_css ) {
 		$brand_css_rel  = 'assets/css/keukens-brand-pages.css';
@@ -180,6 +183,29 @@ function kc_enqueue_assets(): void {
 			$style_ver . '.' . $aan_mtime
 		);
 	}
+
+	if ( function_exists( 'kc_is_contact_route' ) && kc_is_contact_route() ) {
+		$contact_css_rel  = 'assets/css/contact-pages.css';
+		$contact_css_path = get_theme_file_path( $contact_css_rel );
+		$contact_mtime    = file_exists( $contact_css_path ) ? (string) filemtime( $contact_css_path ) : '0';
+		wp_enqueue_style(
+			'keuken-centrum-contact',
+			kc_asset( $contact_css_rel ),
+			[ 'keuken-centrum-keukens-brand' ],
+			$style_ver . '.' . $contact_mtime
+		);
+
+		$contact_js_rel  = 'assets/js/contact-pages.js';
+		$contact_js_path = get_theme_file_path( $contact_js_rel );
+		$contact_js_mtime = file_exists( $contact_js_path ) ? (string) filemtime( $contact_js_path ) : '0';
+		wp_enqueue_script(
+			'keuken-centrum-contact',
+			kc_asset( $contact_js_rel ),
+			[ 'keuken-centrum-theme' ],
+			$style_ver . '.' . $contact_js_mtime,
+			true
+		);
+	}
 }
 add_action('wp_enqueue_scripts', 'kc_enqueue_assets');
 
@@ -202,7 +228,7 @@ add_filter('wp_resource_hints', 'kc_resource_hints', 10, 2);
  * Keep theme CSS/JS out of LiteSpeed combine/UCSS so homepage parity rules are not stripped.
  */
 function kc_litespeed_exclude_theme_assets(string $html, string $handle): string {
-	if ( ! in_array( $handle, [ 'keuken-centrum-theme', 'keuken-centrum-keukens-brand', 'keuken-centrum-keukenbladen', 'keuken-centrum-apparatuur', 'keuken-centrum-aanbiedingen' ], true ) || str_contains( $html, 'data-no-optimize' ) ) {
+	if ( ! in_array( $handle, [ 'keuken-centrum-theme', 'keuken-centrum-keukens-brand', 'keuken-centrum-keukenbladen', 'keuken-centrum-apparatuur', 'keuken-centrum-aanbiedingen', 'keuken-centrum-contact' ], true ) || str_contains( $html, 'data-no-optimize' ) ) {
 		return $html;
 	}
 
@@ -229,6 +255,9 @@ function kc_keukens_body_class(array $classes): array {
 	}
 	if (function_exists('kc_is_aanbiedingen_route') && kc_is_aanbiedingen_route()) {
 		$classes[] = 'kc-aanbiedingen-route';
+	}
+	if (function_exists('kc_is_contact_route') && kc_is_contact_route()) {
+		$classes[] = 'kc-contact-route';
 	}
 	return $classes;
 }

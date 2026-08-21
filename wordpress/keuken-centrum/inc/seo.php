@@ -91,6 +91,14 @@ function kc_document_title_parts(array $parts): array {
 		}
 	}
 
+	if (is_page('contact') && function_exists('kc_contact_page_data')) {
+		$data = kc_contact_page_data();
+		if (is_array($data) && ! empty($data['meta']['title'])) {
+			$parts['title'] = (string) $data['meta']['title'];
+			unset($parts['tagline'], $parts['site']);
+		}
+	}
+
 	$series_slug = get_query_var('kc_leicht_series');
 	if (is_string($series_slug) && '' !== $series_slug && function_exists('kc_leicht_series_data')) {
 		$series = kc_leicht_series_data($series_slug);
@@ -169,6 +177,13 @@ function kc_get_meta_description(): string {
 		}
 	}
 
+	if (is_page('contact') && function_exists('kc_contact_page_data')) {
+		$data = kc_contact_page_data();
+		if (is_array($data) && ! empty($data['meta']['description'])) {
+			return (string) $data['meta']['description'];
+		}
+	}
+
 	if (is_singular()) {
 		$excerpt = get_the_excerpt();
 		if (is_string($excerpt) && '' !== trim(wp_strip_all_tags($excerpt))) {
@@ -204,10 +219,6 @@ function kc_get_meta_description(): string {
 
 	if (is_post_type_archive('appliance_category')) {
 		return 'Hoogwaardige inbouwapparatuur: kookplaten, afzuiging, Quooker, ovens en meer bij Keuken-Centrum Utrecht.';
-	}
-
-	if (is_page('contact')) {
-		return 'Plan een showroombezoek of adviesgesprek bij Keuken-Centrum Utrecht — Zonnebaan 8, 3542 EC Utrecht.';
 	}
 
 	$tagline = get_bloginfo('description', 'display');
@@ -294,6 +305,12 @@ function kc_output_seo_tags(): void {
 	}
 	if ('' === $image && is_page('aanbiedingen') && function_exists('kc_aanbiedingen_page_data')) {
 		$data = kc_aanbiedingen_page_data();
+		if (is_array($data) && ! empty($data['hero']['image'])) {
+			$image = (string) $data['hero']['image'];
+		}
+	}
+	if ('' === $image && is_page('contact') && function_exists('kc_contact_page_data')) {
+		$data = kc_contact_page_data();
 		if (is_array($data) && ! empty($data['hero']['image'])) {
 			$image = (string) $data['hero']['image'];
 		}
