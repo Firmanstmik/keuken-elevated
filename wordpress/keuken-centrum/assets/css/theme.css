@@ -1,3 +1,5 @@
+/* React SoT variable Fraunces — via theme CSS so LiteSpeed cannot strip the fonts <link>. */
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap");
 :root {
 	--kc-green: #8bc540;
 	--kc-green-soft: #73a832;
