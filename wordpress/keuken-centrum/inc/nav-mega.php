@@ -21,11 +21,12 @@ function kc_mega_img(string $primary, string $fallback = ''): string {
 }
 
 /**
- * Shared navigation data mirrored from src/components/site/Nav.tsx.
+ * Shared navigation defaults mirrored from src/components/site/Nav.tsx.
+ * Overrides: Keuken-Centrum → Navigatie (ACF) via kc_nav_resolved_data().
  *
  * @return array<string, mixed>
  */
-function kc_nav_mega_data(): array {
+function kc_nav_mega_defaults(): array {
 	$keukens = home_url('/keukens/');
 	$bladen  = home_url('/keukenbladen/');
 	$apps    = home_url('/apparatuur/');
@@ -351,6 +352,18 @@ function kc_nav_mega_data(): array {
 			],
 		],
 	];
+}
+
+/**
+ * Resolved navigation (React defaults + CMS). Single source for desktop + mobile.
+ *
+ * @return array<string, mixed>
+ */
+function kc_nav_mega_data(): array {
+	if ( function_exists( 'kc_nav_resolved_data' ) ) {
+		return kc_nav_resolved_data();
+	}
+	return kc_nav_mega_defaults();
 }
 
 /**

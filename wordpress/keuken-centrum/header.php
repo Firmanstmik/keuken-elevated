@@ -25,6 +25,15 @@ if ( function_exists( 'kc_consultation_url' ) && false !== stripos( (string) $he
 $phone        = kc_get_option('contact_phone', '030 241 5122');
 $email        = kc_get_option('contact_email', 'info@keuken-centrum.nl');
 $google_rating = kc_get_option('google_rating', '4,9');
+$nav_data     = function_exists( 'kc_nav_mega_data' ) ? kc_nav_mega_data() : [];
+$nav_labels   = is_array( $nav_data['labels'] ?? null ) ? $nav_data['labels'] : [];
+$nav_home     = (string) ( $nav_labels['home'] ?? __( 'Home', 'keuken-centrum' ) );
+$nav_keukens  = (string) ( $nav_labels['keukens'] ?? __( 'Keukens', 'keuken-centrum' ) );
+$nav_bladen   = (string) ( $nav_labels['keukenbladen'] ?? __( 'Keukenbladen', 'keuken-centrum' ) );
+$nav_apps     = (string) ( $nav_labels['apparatuur'] ?? __( 'Apparatuur', 'keuken-centrum' ) );
+$nav_offers   = (string) ( $nav_labels['aanbiedingen'] ?? __( 'Aanbiedingen', 'keuken-centrum' ) );
+$nav_contact  = (string) ( $nav_labels['contact'] ?? __( 'Contact', 'keuken-centrum' ) );
+$nav_offers_url = (string) ( $nav_data['aanbiedingen_url'] ?? home_url( '/aanbiedingen/' ) );
 $logo_uri     = kc_theme_img('logo-keuken-1-1.webp') ?: kc_theme_img('logo-keuken.webp');
 if (! $logo_uri) {
 	$logo_path = get_theme_file_path('assets/img/logo.png');
@@ -57,7 +66,7 @@ $is_home = is_front_page();
 					<svg class="nav-topbar__google-logo" viewBox="0 0 24 24" aria-hidden="true">
 						<path fill="#EA4335" d="M12 10.2v3.9h5.5c-.2 1.4-1.7 4.1-5.5 4.1-3.3 0-6-2.7-6-6.1s2.7-6.1 6-6.1c1.9 0 3.2.8 3.9 1.5l2.7-2.6C16.9 3.3 14.7 2.3 12 2.3 6.6 2.3 2.3 6.6 2.3 12S6.6 21.7 12 21.7c6.9 0 9.5-4.9 9.5-9.4 0-.6-.1-1.1-.1-1.5H12z"/>
 					</svg>
-					<span class="nav-topbar__rating">4,9</span>
+					<span class="nav-topbar__rating"><?php echo esc_html( (string) $google_rating ); ?></span>
 					<span class="nav-topbar__stars" aria-hidden="true">
 						<?php for ( $i = 0; $i < 5; $i++ ) : ?>
 							<svg viewBox="0 0 16 16"><path d="M8 1.2l1.76 3.57 3.94.57-2.85 2.78.67 3.92L8 10.47l-3.52 1.85.67-3.92L2.3 5.34l3.94-.57L8 1.2z"/></svg>
@@ -103,45 +112,45 @@ $is_home = is_front_page();
 
 			<nav class="primary-nav" aria-label="<?php esc_attr_e('Hoofdnavigatie', 'keuken-centrum'); ?>" data-desktop-nav>
 				<ul class="primary-nav__list">
-					<li><a class="nav-link" href="<?php echo esc_url(home_url('/')); ?>"<?php echo $is_home ? ' aria-current="page"' : ''; ?>><?php esc_html_e('Home', 'keuken-centrum'); ?></a></li>
+					<li><a class="nav-link" href="<?php echo esc_url(home_url('/')); ?>"<?php echo $is_home ? ' aria-current="page"' : ''; ?>><?php echo esc_html( $nav_home ); ?></a></li>
 
 					<li class="has-mega" data-mega-trigger>
 						<button class="nav-link nav-link--btn" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="mega-keukens">
-							<span><?php esc_html_e('Keukens', 'keuken-centrum'); ?></span>
+							<span><?php echo esc_html( $nav_keukens ); ?></span>
 							<?php echo kc_icon_nav_chevron(); ?>
 						</button>
-						<div class="mega-panel mega-panel--kitchens" id="mega-keukens" data-mega-panel hidden role="menu" aria-label="<?php esc_attr_e('Keukens', 'keuken-centrum'); ?>">
+						<div class="mega-panel mega-panel--kitchens" id="mega-keukens" data-mega-panel hidden role="menu" aria-label="<?php echo esc_attr( $nav_keukens ); ?>">
 							<?php kc_render_kitchens_mega(); ?>
 						</div>
 					</li>
 
 					<li class="has-mega" data-mega-trigger>
 						<button class="nav-link nav-link--btn" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="mega-bladen">
-							<span><?php esc_html_e('Keukenbladen', 'keuken-centrum'); ?></span>
+							<span><?php echo esc_html( $nav_bladen ); ?></span>
 							<?php echo kc_icon_nav_chevron(); ?>
 						</button>
-						<div class="mega-panel mega-panel--editorial" id="mega-bladen" data-mega-panel hidden role="menu" aria-label="<?php esc_attr_e('Keukenbladen', 'keuken-centrum'); ?>">
+						<div class="mega-panel mega-panel--editorial" id="mega-bladen" data-mega-panel hidden role="menu" aria-label="<?php echo esc_attr( $nav_bladen ); ?>">
 							<?php kc_render_mega_editorial('keukenbladen'); ?>
 						</div>
 					</li>
 
 					<li class="has-mega" data-mega-trigger>
 						<button class="nav-link nav-link--btn" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="mega-apps">
-							<span><?php esc_html_e('Apparatuur', 'keuken-centrum'); ?></span>
+							<span><?php echo esc_html( $nav_apps ); ?></span>
 							<?php echo kc_icon_nav_chevron(); ?>
 						</button>
-						<div class="mega-panel mega-panel--editorial" id="mega-apps" data-mega-panel hidden role="menu" aria-label="<?php esc_attr_e('Apparatuur', 'keuken-centrum'); ?>">
+						<div class="mega-panel mega-panel--editorial" id="mega-apps" data-mega-panel hidden role="menu" aria-label="<?php echo esc_attr( $nav_apps ); ?>">
 							<?php kc_render_mega_editorial('apparatuur'); ?>
 						</div>
 					</li>
 
-					<li><a class="nav-link" href="<?php echo esc_url(home_url('/aanbiedingen/')); ?>"><?php esc_html_e('Aanbiedingen', 'keuken-centrum'); ?></a></li>
+					<li><a class="nav-link" href="<?php echo esc_url( $nav_offers_url ); ?>"><?php echo esc_html( $nav_offers ); ?></a></li>
 					<li class="has-mega" data-mega-trigger>
 						<button class="nav-link nav-link--btn" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="mega-contact">
-							<span><?php esc_html_e('Contact', 'keuken-centrum'); ?></span>
+							<span><?php echo esc_html( $nav_contact ); ?></span>
 							<?php echo kc_icon_nav_chevron(); ?>
 						</button>
-						<div class="mega-panel mega-panel--simple" id="mega-contact" data-mega-panel hidden role="menu" aria-label="<?php esc_attr_e('Contact', 'keuken-centrum'); ?>">
+						<div class="mega-panel mega-panel--simple" id="mega-contact" data-mega-panel hidden role="menu" aria-label="<?php echo esc_attr( $nav_contact ); ?>">
 							<?php kc_render_mega_simple(); ?>
 						</div>
 					</li>

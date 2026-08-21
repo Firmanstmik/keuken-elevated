@@ -86,6 +86,7 @@ function kc_cms_register_options_pages(): void {
 	$pages = [
 		[ 'kc-cms-general', 'Algemene instellingen', 'Algemeen' ],
 		[ 'kc-cms-header', 'Header & navigatie', 'Header' ],
+		[ 'kc-cms-nav', 'Mega menu & mobiel menu', 'Navigatie' ],
 		[ 'kc-cms-footer', 'Footer', 'Footer' ],
 		[ 'kc-cms-sticky', 'Secondary CTA / Concierge', 'Secondary CTA' ],
 		[ 'kc-cms-consultation', 'Consultatie defaults', 'Consultatie' ],

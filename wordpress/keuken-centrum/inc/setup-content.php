@@ -539,3 +539,118 @@ function kc_ensure_migration_pages(): void {
 	update_option( 'kc_ensure_pages_v166', '1' );
 }
 add_action( 'init', 'kc_ensure_migration_pages', 31 );
+
+/**
+ * Seed legal pages (React footer links; no React routes — WP CMS pages).
+ */
+function kc_ensure_legal_pages(): void {
+	if ( '1' === get_option( 'kc_ensure_legal_v171' ) ) {
+		return;
+	}
+	if ( ! function_exists( 'kc_upsert_page' ) ) {
+		return;
+	}
+
+	$ids = [];
+	$ids[] = kc_upsert_page(
+		[
+			'post_title'   => 'Privacybeleid',
+			'post_name'    => 'privacybeleid',
+			'post_content' => <<<'HTML'
+<!-- wp:paragraph -->
+<p>Keuken-Centrum Utrecht (Zonnebaan 8, 3542 EC Utrecht) respecteert uw privacy. In dit privacybeleid leggen wij uit welke persoonsgegevens wij verwerken, waarom wij dat doen en welke rechten u heeft.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading {"level":2} -->
+<h2>Welke gegevens verwerken wij?</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Wij kunnen onder meer uw naam, e-mailadres, telefoonnummer, adresgegevens en projectinformatie verwerken wanneer u contact opneemt, een consultatie plant of een offerte aanvraagt.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading {"level":2} -->
+<h2>Doeleinden</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Gegevens worden gebruikt voor klantcontact, showroomafspraken, offertes, service en — alleen met toestemming — marketingcommunicatie.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading {"level":2} -->
+<h2>Bewaartermijn &amp; rechten</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Wij bewaren gegevens niet langer dan nodig. U heeft recht op inzage, correctie, verwijdering en bezwaar. Neem contact op via info@keuken-centrum.nl of 030 241 5122.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p><em>Pas deze tekst aan via Pagina’s → Privacybeleid. Dit is een startversie voor CMS-beheer.</em></p>
+<!-- /wp:paragraph -->
+HTML
+		]
+	);
+
+	$ids[] = kc_upsert_page(
+		[
+			'post_title'   => 'Cookiebeleid',
+			'post_name'    => 'cookiebeleid',
+			'post_content' => <<<'HTML'
+<!-- wp:paragraph -->
+<p>Deze website kan functionele, analytische en (indien van toepassing) marketingcookies gebruiken om de site goed te laten werken en de gebruikerservaring te verbeteren.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading {"level":2} -->
+<h2>Soorten cookies</h2>
+<!-- /wp:heading -->
+<!-- wp:list -->
+<ul><li>Functionele cookies — noodzakelijk voor navigatie en formulieren</li><li>Analytische cookies — inzicht in bezoekgedrag (geanonimiseerd waar mogelijk)</li><li>Marketingcookies — alleen met toestemming</li></ul>
+<!-- /wp:list -->
+<!-- wp:heading {"level":2} -->
+<h2>Beheer</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>U kunt cookies beheren via uw browsersettings. Meer informatie over privacy: zie ons Privacybeleid.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p><em>Bewerk deze pagina in WordPress Admin. Starttekst voor CMS.</em></p>
+<!-- /wp:paragraph -->
+HTML
+		]
+	);
+
+	$ids[] = kc_upsert_page(
+		[
+			'post_title'   => 'Algemene voorwaarden',
+			'post_name'    => 'algemene-voorwaarden',
+			'post_content' => <<<'HTML'
+<!-- wp:paragraph -->
+<p>Op overeenkomsten met Keuken-Centrum Utrecht zijn onze algemene voorwaarden van toepassing, inclusief relevante CBW-regels waar van toepassing.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading {"level":2} -->
+<h2>Toepasselijkheid</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Deze voorwaarden gelden op alle aanbiedingen, offertes en overeenkomsten betreffende keukens, materialen, apparatuur en gerelateerde diensten, tenzij schriftelijk anders overeengekomen.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading {"level":2} -->
+<h2>Offertes &amp; overeenkomsten</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Offertes zijn vrijblijvend tenzij anders vermeld. Een overeenkomst komt tot stand na schriftelijke bevestiging.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading {"level":2} -->
+<h2>Contact</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Vragen over deze voorwaarden: info@keuken-centrum.nl · 030 241 5122 · Zonnebaan 8, Utrecht.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p><em>Vervang of vul aan via Pagina’s → Algemene voorwaarden.</em></p>
+<!-- /wp:paragraph -->
+HTML
+		]
+	);
+
+	foreach ( $ids as $pid ) {
+		if ( $pid > 0 ) {
+			update_post_meta( $pid, '_wp_page_template', 'page-legal.php' );
+		}
+	}
+
+	update_option( 'kc_ensure_legal_v171', '1' );
+}
+add_action( 'init', 'kc_ensure_legal_pages', 32 );

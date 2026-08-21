@@ -16,6 +16,7 @@ require_once get_template_directory() . '/inc/setup-content.php';
 require_once get_template_directory() . '/inc/helpers-media.php';
 require_once get_template_directory() . '/inc/icons.php';
 require_once get_template_directory() . '/inc/nav-mega.php';
+require_once get_template_directory() . '/inc/nav/cms.php';
 require_once get_template_directory() . '/inc/section-chapter.php';
 require_once get_template_directory() . '/inc/seo.php';
 require_once get_template_directory() . '/inc/brand-pages/helpers.php';
@@ -271,6 +272,18 @@ function kc_enqueue_assets(): void {
 			true
 		);
 	}
+
+	if ( is_page_template( 'page-legal.php' ) || is_page( [ 'privacybeleid', 'cookiebeleid', 'algemene-voorwaarden' ] ) ) {
+		$legal_css_rel  = 'assets/css/legal-pages.css';
+		$legal_css_path = get_theme_file_path( $legal_css_rel );
+		$legal_mtime    = file_exists( $legal_css_path ) ? (string) filemtime( $legal_css_path ) : '0';
+		wp_enqueue_style(
+			'keuken-centrum-legal',
+			kc_asset( $legal_css_rel ),
+			[ 'keuken-centrum-theme' ],
+			$style_ver . '.' . $legal_mtime
+		);
+	}
 }
 add_action('wp_enqueue_scripts', 'kc_enqueue_assets');
 
@@ -293,7 +306,7 @@ add_filter('wp_resource_hints', 'kc_resource_hints', 10, 2);
  * Keep theme CSS/JS out of LiteSpeed combine/UCSS so homepage parity rules are not stripped.
  */
 function kc_litespeed_exclude_theme_assets(string $html, string $handle): string {
-	if ( ! in_array( $handle, [ 'keuken-centrum-theme', 'keuken-centrum-sticky-conversion', 'keuken-centrum-footer-cms', 'keuken-centrum-keukens-brand', 'keuken-centrum-keukenbladen', 'keuken-centrum-apparatuur', 'keuken-centrum-aanbiedingen', 'keuken-centrum-contact', 'keuken-centrum-showroom', 'keuken-centrum-consultation' ], true ) || str_contains( $html, 'data-no-optimize' ) ) {
+	if ( ! in_array( $handle, [ 'keuken-centrum-theme', 'keuken-centrum-sticky-conversion', 'keuken-centrum-footer-cms', 'keuken-centrum-legal', 'keuken-centrum-keukens-brand', 'keuken-centrum-keukenbladen', 'keuken-centrum-apparatuur', 'keuken-centrum-aanbiedingen', 'keuken-centrum-contact', 'keuken-centrum-showroom', 'keuken-centrum-consultation' ], true ) || str_contains( $html, 'data-no-optimize' ) ) {
 		return $html;
 	}
 
@@ -329,6 +342,9 @@ function kc_keukens_body_class(array $classes): array {
 	}
 	if (function_exists('kc_is_consultation_route') && kc_is_consultation_route()) {
 		$classes[] = 'kc-consultation-route';
+	}
+	if ( is_page_template( 'page-legal.php' ) || is_page( [ 'privacybeleid', 'cookiebeleid', 'algemene-voorwaarden' ] ) ) {
+		$classes[] = 'kc-legal-page';
 	}
 	return $classes;
 }
