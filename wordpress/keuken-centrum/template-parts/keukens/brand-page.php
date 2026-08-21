@@ -352,6 +352,7 @@ $intro  = $data['intro'] ?? [];
 								<h3>
 									<?php echo esc_html((string) $gallery['cta']['titleBefore']); ?>
 									<em><?php echo esc_html((string) $gallery['cta']['titleHighlight']); ?></em>
+									<?php echo esc_html((string) ($gallery['cta']['titleAfter'] ?? '')); ?>
 								</h3>
 								<p><?php echo esc_html((string) $gallery['cta']['body']); ?></p>
 							</div>

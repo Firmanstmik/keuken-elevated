@@ -174,6 +174,7 @@ function kc_ai_kuchen_page_data(): array {
 			'cta' => [
 				'titleBefore'    => __('Liever ', 'keuken-centrum'),
 				'titleHighlight' => __('in het echt', 'keuken-centrum'),
+				'titleAfter'     => __(' ervaren?', 'keuken-centrum'),
 				'body'           => __('Meerdere AI Küchen opstellingen staan voor u klaar op de Zonnebaan.', 'keuken-centrum'),
 				'label'          => __('Boek een afspraak', 'keuken-centrum'),
 				'href'           => home_url('/#consultation'),
@@ -181,9 +182,9 @@ function kc_ai_kuchen_page_data(): array {
 		],
 		'custom' => [
 			'eyebrow'        => __('Op maat', 'keuken-centrum'),
-			'titleBefore'    => __('Écht', 'keuken-centrum'),
+			'titleBefore'    => __('Écht ', 'keuken-centrum'),
 			'titleHighlight' => __('alles', 'keuken-centrum'),
-			'titleAfter'     => __('is mogelijk', 'keuken-centrum'),
+			'titleAfter'     => __(' is mogelijk', 'keuken-centrum'),
 			'body'           => __('Een uitdagende moderne designkeuken, een robuuste industrielook of de nostalgische intimiteit van een landelijk klassieke keuken: bij Keuken-Centrum Utrecht koopt u de keuken van uw dromen voor een verrassend betaalbare prijs.', 'keuken-centrum'),
 			'secondary'      => __('Wij leveren de kwaliteitskeuken van uw dromen die naadloos past bij uw portemonnee. Compleet met topmerk-apparatuur, zorgeloze garantie en uitstekende service, zonder opdringerig gedoe.', 'keuken-centrum'),
 		],
