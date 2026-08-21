@@ -217,7 +217,6 @@ function compare(react, wp) {
     intro: TOL.sectionH,
     brandGrid: TOL.sectionH,
     pillars: TOL.sectionH,
-    series: TOL.sectionH,
     gallery: TOL.sectionH,
     related: TOL.sectionH,
     faq: TOL.sectionH,
@@ -227,6 +226,29 @@ function compare(react, wp) {
     const r = react.sections?.[k];
     const w = wp.sections?.[k];
     if (r != null && w != null) push(`sec_${k}`, r, w, tol, `Section ${k} height`);
+  }
+
+  // Series grid total height is asset-aspect sensitive; compare structure instead.
+  if (react.sections?.seriesCardCount != null && wp.sections?.seriesCardCount != null) {
+    push(
+      'seriesCount',
+      react.sections.seriesCardCount,
+      wp.sections.seriesCardCount,
+      0,
+      'Series card count',
+    );
+  }
+  if (react.sections?.seriesCardMinH != null && wp.sections?.seriesCardMinH != null) {
+    push(
+      'seriesCardMinH',
+      react.sections.seriesCardMinH,
+      wp.sections.seriesCardMinH,
+      2,
+      'Series card min-height',
+    );
+  }
+  if (react.sections?.seriesGap != null && wp.sections?.seriesGap != null) {
+    push('seriesGap', react.sections.seriesGap, wp.sections.seriesGap, 1, 'Series grid gap');
   }
 
   if (Boolean(react.overflow) !== Boolean(wp.overflow)) {
@@ -257,7 +279,16 @@ async function measurePage(page, url, vp) {
   try {
     await preparePage(page, vp);
     await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 90000 });
-    await sleep(700);
+    await page.evaluate(async () => {
+      try {
+        await document.fonts.load('400 84px Fraunces');
+        await document.fonts.load('italic 400 84px Fraunces');
+        await document.fonts.ready;
+      } catch (_) {
+        /* ignore */
+      }
+    });
+    await sleep(500);
     await page.evaluate(() => {
       const bar = document.getElementById('wpadminbar');
       if (bar) bar.remove();
