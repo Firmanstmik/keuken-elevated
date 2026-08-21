@@ -106,6 +106,10 @@ const MEASURE_FN = () => {
   const related = q('.brand-series-related');
   const faq = q('.brand-faq');
   const faqGrid = q('.keukens-faq-grid');
+  const faqItem = q('.brand-faq__item');
+  const fontsOk =
+    document.fonts.check('400 80px Fraunces') || document.fonts.check('80px Fraunces');
+  const features = getComputedStyle(document.body).fontFeatureSettings;
   const advisors = q('.keukens-advisor-grid, .brand-advisor-grid');
   const bottom = q('.brand-showroom-cta');
   const footer = q('footer.site-footer, footer');
@@ -155,6 +159,9 @@ const MEASURE_FN = () => {
       related: related ? Math.round(related.getBoundingClientRect().height) : null,
       faq: faq ? Math.round(faq.getBoundingClientRect().height) : null,
       faqGrid: faqGrid ? Math.round(faqGrid.getBoundingClientRect().height) : null,
+      faqItem: faqItem ? Math.round(faqItem.getBoundingClientRect().height) : null,
+      fontsOk,
+      features,
       advisors: advisors
         ? Math.round(advisors.getBoundingClientRect().height)
         : null,
@@ -251,6 +258,10 @@ function compare(react, wp) {
     push('seriesGap', react.sections.seriesGap, wp.sections.seriesGap, 1, 'Series grid gap');
   }
 
+  if (react.sections?.faqItem != null && wp.sections?.faqItem != null) {
+    push('faqItem', react.sections.faqItem, wp.sections.faqItem, 4, 'FAQ item height');
+  }
+
   if (Boolean(react.overflow) !== Boolean(wp.overflow)) {
     issues.push({
       key: 'overflow',
@@ -275,40 +286,60 @@ async function preparePage(page, vp) {
   });
 }
 
-async function measurePage(page, url, vp) {
-  try {
-    await preparePage(page, vp);
-    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 90000 });
-    await page.evaluate(async () => {
+async function measurePageOnce(page, url, vp) {
+  await preparePage(page, vp);
+  await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 90000 });
+  await page.evaluate(async () => {
+    const load = async (spec) => {
       try {
-        await document.fonts.load('400 84px Fraunces');
-        await document.fonts.load('italic 400 84px Fraunces');
-        await document.fonts.ready;
+        await document.fonts.load(spec);
       } catch (_) {
         /* ignore */
       }
-    });
-    await sleep(500);
-    await page.evaluate(() => {
-      const bar = document.getElementById('wpadminbar');
-      if (bar) bar.remove();
-      document.documentElement.classList.remove('admin-bar');
-      if (document.body) {
-        document.body.classList.remove('admin-bar');
-        document.body.style.marginTop = '0';
-        document.body.style.paddingTop = '0';
+    };
+    await load('400 80px Fraunces');
+    await load('400 48px Fraunces');
+    await load('italic 400 80px Fraunces');
+    await document.fonts.ready;
+    // Poll until Fraunces resolves (LiteSpeed / @import can lag).
+    for (let i = 0; i < 40; i += 1) {
+      if (
+        document.fonts.check('400 80px Fraunces') ||
+        document.fonts.check('80px Fraunces')
+      ) {
+        break;
       }
-      const html = document.documentElement;
-      if (html.style) html.style.marginTop = '0';
-    });
-    await sleep(150);
-    // wait for hero
-    await page.waitForSelector('.brand-page-hero, h1', { timeout: 15000 }).catch(() => {});
-    const metrics = await page.evaluate(MEASURE_FN);
-    return { ok: true, url, metrics };
-  } catch (err) {
-    return { ok: false, url, error: String(err?.message || err) };
+      await new Promise((r) => setTimeout(r, 100));
+    }
+  });
+  await sleep(400);
+  await page.evaluate(() => {
+    const bar = document.getElementById('wpadminbar');
+    if (bar) bar.remove();
+    document.documentElement.classList.remove('admin-bar');
+    if (document.body) {
+      document.body.classList.remove('admin-bar');
+      document.body.style.marginTop = '0';
+      document.body.style.paddingTop = '0';
+    }
+  });
+  await page.waitForSelector('.brand-page-hero, h1', { timeout: 15000 }).catch(() => {});
+  await sleep(200);
+  const metrics = await page.evaluate(MEASURE_FN);
+  return { ok: true, url, metrics };
+}
+
+async function measurePage(page, url, vp) {
+  let lastErr = null;
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    try {
+      return await measurePageOnce(page, url, vp);
+    } catch (err) {
+      lastErr = err;
+      await sleep(700 * attempt);
+    }
   }
+  return { ok: false, url, error: String(lastErr?.message || lastErr) };
 }
 
 async function measureSeo(page, url) {

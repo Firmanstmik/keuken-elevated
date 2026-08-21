@@ -418,14 +418,33 @@ $intro  = $data['intro'] ?? [];
 			</div>
 			<div class="brand-faq" data-brand-faq data-reveal>
 				<?php foreach (($data['faq']['items'] ?? []) as $index => $item) : ?>
-					<details class="brand-faq__item">
-						<summary class="brand-faq__trigger">
-							<span class="brand-faq__num"><?php echo esc_html(str_pad((string) ($index + 1), 2, '0', STR_PAD_LEFT)); ?></span>
-							<span class="brand-faq__question"><?php echo esc_html((string) $item['q']); ?></span>
-							<svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-						</summary>
-						<div class="brand-faq__content"><?php echo esc_html((string) $item['a']); ?></div>
-					</details>
+					<?php
+					$faq_id      = 'brand-faq-' . sanitize_html_class((string) ($data['id'] ?? 'brand')) . '-' . (string) $index;
+					$faq_panel   = $faq_id . '-panel';
+					$faq_trigger = $faq_id . '-trigger';
+					?>
+					<div class="brand-faq__item" data-state="closed">
+						<h3 class="brand-faq__heading">
+							<button
+								type="button"
+								class="brand-faq__trigger"
+								id="<?php echo esc_attr($faq_trigger); ?>"
+								aria-expanded="false"
+								aria-controls="<?php echo esc_attr($faq_panel); ?>"
+							>
+								<span class="brand-faq__num"><?php echo esc_html(str_pad((string) ($index + 1), 2, '0', STR_PAD_LEFT)); ?></span>
+								<span class="brand-faq__question"><?php echo esc_html((string) $item['q']); ?></span>
+								<svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+							</button>
+						</h3>
+						<div
+							class="brand-faq__content brand-faq__panel"
+							id="<?php echo esc_attr($faq_panel); ?>"
+							role="region"
+							aria-labelledby="<?php echo esc_attr($faq_trigger); ?>"
+							hidden
+						><?php echo esc_html((string) $item['a']); ?></div>
+					</div>
 				<?php endforeach; ?>
 			</div>
 		</div>
