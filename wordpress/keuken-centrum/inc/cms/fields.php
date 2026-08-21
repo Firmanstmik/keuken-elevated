@@ -566,6 +566,95 @@ function kc_cms_register_field_groups(): void {
 			],
 		]
 	);
+
+	acf_add_local_field_group(
+		[
+			'key'      => 'group_kc_cms_sticky',
+			'title'    => 'Secondary CTA / KC Concierge',
+			'fields'   => [
+				[
+					'key'           => 'field_kc_sticky_enabled',
+					'label'         => 'Toon secondary CTA',
+					'name'          => 'sticky_cta_enabled',
+					'type'          => 'true_false',
+					'default_value' => 1,
+					'ui'            => 1,
+				],
+				[
+					'key'   => 'field_kc_sticky_badge',
+					'label' => 'Badge label',
+					'name'  => 'sticky_cta_badge',
+					'type'  => 'text',
+					'default_value' => 'KC Concierge',
+				],
+				[
+					'key'   => 'field_kc_sticky_primary_label',
+					'label' => 'Primaire knop tekst',
+					'name'  => 'sticky_cta_primary_label',
+					'type'  => 'text',
+					'default_value' => 'Plan showroombezoek',
+				],
+				[
+					'key'   => 'field_kc_sticky_primary_meta',
+					'label' => 'Primaire knop ondertitel',
+					'name'  => 'sticky_cta_primary_meta',
+					'type'  => 'text',
+					'default_value' => 'Vrijblijvend advies in Utrecht',
+				],
+				[
+					'key'   => 'field_kc_sticky_primary_url',
+					'label' => 'Primaire knop link',
+					'name'  => 'sticky_cta_primary_url',
+					'type'  => 'url',
+					'instructions' => 'Standaard: /consultation/',
+				],
+				[
+					'key'   => 'field_kc_sticky_phone_label',
+					'label' => 'Telefoon knop tekst',
+					'name'  => 'sticky_cta_phone_label',
+					'type'  => 'text',
+					'default_value' => 'Bel een adviseur',
+				],
+				[
+					'key'   => 'field_kc_sticky_phone_meta',
+					'label' => 'Telefoon knop ondertitel',
+					'name'  => 'sticky_cta_phone_meta',
+					'type'  => 'text',
+					'instructions' => 'Leeg = site telefoonnummer',
+				],
+				[
+					'key'   => 'field_kc_sticky_wa_label',
+					'label' => 'WhatsApp knop tekst',
+					'name'  => 'sticky_cta_whatsapp_label',
+					'type'  => 'text',
+					'default_value' => 'WhatsApp',
+				],
+				[
+					'key'   => 'field_kc_sticky_wa_meta',
+					'label' => 'WhatsApp knop ondertitel',
+					'name'  => 'sticky_cta_whatsapp_meta',
+					'type'  => 'text',
+					'default_value' => 'Persoonlijk & snel antwoord',
+				],
+				[
+					'key'   => 'field_kc_sticky_wa_url',
+					'label' => 'WhatsApp URL',
+					'name'  => 'sticky_cta_whatsapp_url',
+					'type'  => 'url',
+					'instructions' => 'React default: https://wa.me/31302415122?text=...',
+				],
+			],
+			'location' => [
+				[
+					[
+						'param'    => 'options_page',
+						'operator' => '==',
+						'value'    => 'kc-cms-sticky',
+					],
+				],
+			],
+		]
+	);
 }
 add_action( 'acf/init', 'kc_cms_register_field_groups', 20 );
 

@@ -138,14 +138,9 @@ $footer_links  = [
 		</div>
 	</div>
 </footer>
-<aside class="kc-sticky-bar" data-sticky-conversion hidden aria-label="<?php esc_attr_e('Snelle contactmogelijkheden', 'keuken-centrum'); ?>">
-	<p><span><?php esc_html_e('Klaar voor uw keuken?', 'keuken-centrum'); ?></span><strong><?php esc_html_e('Plan uw showroombezoek', 'keuken-centrum'); ?></strong></p>
-	<div class="kc-sticky-bar__actions">
-		<a class="kc-sticky-bar__primary" href="<?php echo esc_url(home_url('/#showroom')); ?>"><?php esc_html_e('Plan showroom', 'keuken-centrum'); ?> <span aria-hidden="true">→</span></a>
-		<a href="<?php echo esc_url('tel:' . $phone_link); ?>"><?php esc_html_e('Bel', 'keuken-centrum'); ?></a>
-		<a href="<?php echo esc_url($whatsapp_link); ?>" target="_blank" rel="noopener"><?php esc_html_e('WhatsApp', 'keuken-centrum'); ?></a>
-	</div>
-</aside>
-<?php wp_footer(); ?>
+<?php
+get_template_part( 'template-parts/global/sticky-conversion-bar' );
+wp_footer();
+?>
 </body>
 </html>

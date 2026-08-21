@@ -1,0 +1,293 @@
+/* StickyConversionBar — React parity (desktop md+ only) */
+
+.kc-concierge {
+  pointer-events: none;
+  position: fixed;
+  inset-inline: 0;
+  bottom: 1.25rem; /* bottom-5 */
+  z-index: 80;
+  display: none;
+  padding-inline: 1.25rem; /* px-5 */
+}
+@media (min-width: 768px) {
+  .kc-concierge {
+    display: block;
+  }
+}
+
+.kc-concierge[hidden] {
+  display: none !important;
+}
+
+.kc-concierge__shell {
+  pointer-events: auto;
+  position: relative;
+  margin: 0 auto;
+  width: min(880px, calc(100vw - 2.5rem));
+  opacity: 0;
+  transform: translateY(26px) scale(0.975);
+  transition:
+    opacity 0.48s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.48s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
+}
+
+.kc-concierge.is-visible .kc-concierge__shell {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.kc-concierge.is-leaving .kc-concierge__shell {
+  opacity: 0;
+  transform: translateY(22px) scale(0.982);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kc-concierge__shell {
+    transition-duration: 0.01s;
+    transform: none;
+  }
+  .kc-concierge.is-visible .kc-concierge__shell,
+  .kc-concierge.is-leaving .kc-concierge__shell {
+    transform: none;
+  }
+}
+
+.kc-concierge__badge {
+  position: absolute;
+  top: -0.75rem;
+  left: 1.5rem;
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(200, 169, 107, 0.26);
+  background: #11170f;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.48rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #d8be87;
+  box-shadow: 0 10px 26px -15px rgba(0, 0, 0, 0.8);
+}
+
+.kc-concierge__badge-dot {
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 9999px;
+  background: #8bc540;
+  box-shadow: 0 0 8px rgba(139, 197, 64, 0.9);
+}
+
+.kc-concierge__close {
+  position: absolute;
+  right: -0.5rem;
+  top: -1rem;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  width: 2.25rem; /* h-9 */
+  height: 2.25rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #171b16;
+  color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 12px 28px -12px rgba(0, 0, 0, 0.85);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+.kc-concierge__close:hover,
+.kc-concierge__close:focus-visible {
+  transform: rotate(6deg);
+  border-color: rgba(200, 169, 107, 0.5);
+  color: #d8be87;
+  outline: none;
+}
+.kc-concierge__close svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.kc-concierge__card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 26px;
+  border: 1px solid rgba(200, 169, 107, 0.3);
+  background: linear-gradient(145deg, rgba(17, 22, 15, 0.97), rgba(8, 13, 10, 0.97));
+  padding: 0.5rem; /* p-2 */
+  box-shadow:
+    0 34px 90px -35px rgba(0, 0, 0, 0.92),
+    0 0 0 1px rgba(255, 255, 255, 0.035) inset;
+  backdrop-filter: blur(40px);
+}
+
+.kc-concierge__shine {
+  pointer-events: none;
+  position: absolute;
+  inset-inline: 5rem;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(216, 190, 135, 0.7), transparent);
+}
+
+.kc-concierge__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.kc-concierge__action {
+  position: relative;
+  display: flex;
+  min-height: 82px;
+  align-items: center;
+  gap: 0.75rem;
+  overflow: hidden;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.035);
+  padding-inline: 1rem;
+  color: #fff;
+  text-decoration: none;
+  transition: transform 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+}
+.kc-concierge__action:hover,
+.kc-concierge__action:focus-visible {
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.kc-concierge__action--primary {
+  border-color: rgba(168, 217, 90, 0.38);
+  background: linear-gradient(135deg, #8bc540, #659b2c);
+  box-shadow: 0 22px 42px -24px rgba(139, 197, 64, 0.68);
+}
+.kc-concierge__action--chat {
+  border-color: rgba(139, 197, 64, 0.16);
+  background: linear-gradient(145deg, rgba(139, 197, 64, 0.095), rgba(255, 255, 255, 0.025));
+}
+
+.kc-concierge__action-wash {
+  position: absolute;
+  inset: 0;
+  transform: translateY(102%);
+  background: linear-gradient(180deg, #ffffff, #f1efe7);
+  transition: transform 0.58s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.kc-concierge__action:hover .kc-concierge__action-wash,
+.kc-concierge__action:focus-visible .kc-concierge__action-wash {
+  transform: translateY(0);
+}
+
+.kc-concierge__action-icon {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex-shrink: 0;
+  border-radius: 13px;
+  border: 1px solid rgba(200, 169, 107, 0.18);
+  background: rgba(200, 169, 107, 0.08);
+  color: #d8be87;
+  transition: all 0.5s ease;
+}
+.kc-concierge__action--primary .kc-concierge__action-icon {
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+.kc-concierge__action--chat .kc-concierge__action-icon {
+  border-color: rgba(139, 197, 64, 0.24);
+  background: rgba(139, 197, 64, 0.12);
+  color: #a8d95a;
+}
+.kc-concierge__action:hover .kc-concierge__action-icon,
+.kc-concierge__action:focus-visible .kc-concierge__action-icon {
+  transform: rotate(-6deg);
+  border-color: rgba(25, 32, 18, 0.1);
+  background: #192f0d;
+  color: #fff;
+}
+.kc-concierge__action-icon svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.kc-concierge__action-copy {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  flex: 1;
+  transition: color 0.5s ease;
+}
+.kc-concierge__action:hover .kc-concierge__action-copy,
+.kc-concierge__action:focus-visible .kc-concierge__action-copy {
+  color: #192012;
+}
+
+.kc-concierge__action-label {
+  display: block;
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+}
+
+.kc-concierge__action-meta {
+  display: block;
+  margin-top: 0.25rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.66rem;
+  color: rgba(255, 255, 255, 0.42);
+  transition: color 0.5s ease;
+}
+.kc-concierge__action--primary .kc-concierge__action-meta {
+  color: rgba(255, 255, 255, 0.72);
+}
+.kc-concierge__action:hover .kc-concierge__action-meta,
+.kc-concierge__action:focus-visible .kc-concierge__action-meta {
+  color: rgba(25, 32, 18, 0.58);
+}
+
+.kc-concierge__action-arrow {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  flex-shrink: 0;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.4);
+  transition: all 0.5s ease;
+}
+.kc-concierge__action:hover .kc-concierge__action-arrow,
+.kc-concierge__action:focus-visible .kc-concierge__action-arrow {
+  transform: translateX(2px);
+  border-color: rgba(25, 32, 18, 0.1);
+  background: rgba(25, 32, 18, 0.06);
+  color: #192012;
+}
+.kc-concierge__action-arrow svg {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+/* Hide legacy sticky bar if still present */
+.kc-sticky-bar {
+  display: none !important;
+}
+
+/* Consultation page: React still shows StickyConversionBar on /consultation (not configurator).
+   Keep visible on desktop; no mobile bar in React. */
+body.kc-consultation-route .kc-concierge {
+  /* same rules */
+}
