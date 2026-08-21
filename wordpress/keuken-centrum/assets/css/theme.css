@@ -67,7 +67,10 @@ body {
 	color: var(--kc-text);
 	background: linear-gradient(180deg, #ffffff 0%, var(--kc-ivory) 42%, #f3f9eb 100%);
 	line-height: 1.7;
+	/* React styles.pcss body — OpenType features affect Fraunces metrics/wrap */
+	font-feature-settings: "ss01", "cv11", "salt";
 	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 	text-rendering: optimizeLegibility;
 	padding-bottom: env(safe-area-inset-bottom, 0);
 }
