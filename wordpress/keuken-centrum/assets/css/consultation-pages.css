@@ -22,13 +22,15 @@ body.kc-consultation-route .mobile-quick-cta {
 @media (min-width: 768px) {
   .consultation-layout {
     height: 100vh;
-    overflow: hidden;
+    overflow-x: clip;
+    overflow-y: hidden;
   }
 }
 
 .consultation-layout__grid {
   display: grid;
   min-height: 100vh;
+  min-width: 0;
 }
 @media (min-width: 768px) {
   .consultation-layout__grid {
@@ -160,28 +162,40 @@ body.kc-consultation-route .mobile-quick-cta {
   height: 1rem;
 }
 
-.consultation-panel {
+/*
+ * IMPORTANT: class is kc-consult-panel — NOT .consultation-panel.
+ * theme.css maps .consultation-panel to a homepage 2-col card grid and would
+ * collapse this route's form column to ~half width.
+ */
+.kc-consult-panel {
+  display: block;
+  min-width: 0;
   background: #f7f5f2;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
 }
 @media (min-width: 768px) {
-  .consultation-panel {
+  .kc-consult-panel {
     height: 100vh;
+    overflow-x: hidden;
     overflow-y: auto;
   }
 }
-.consultation-panel__inner {
+.kc-consult-panel__inner {
+  box-sizing: border-box;
   width: 100%;
   max-width: 760px;
   margin: 0 auto;
   padding: 2rem 1rem 7rem;
 }
 @media (min-width: 768px) {
-  .consultation-panel__inner {
+  .kc-consult-panel__inner {
     padding: 8rem 2rem 4rem;
   }
 }
 @media (min-width: 1024px) {
-  .consultation-panel__inner {
+  .kc-consult-panel__inner {
     padding-left: 2.5rem;
     padding-right: 2.5rem;
   }
@@ -254,10 +268,11 @@ body.kc-consultation-route .mobile-quick-cta {
     margin-top: 2.5rem;
   }
 }
+/* React: lg grid inside max-w 760 panel — keep minmax(0,…) so columns can shrink. */
 @media (min-width: 1024px) {
   .consultation-preview {
     display: grid;
-    grid-template-columns: minmax(0, 1.08fr) minmax(24rem, 0.92fr);
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
   }
 }
 .consultation-preview__media {

@@ -14,12 +14,15 @@ if ( ! $data ) {
 
 $hero     = is_array( $data['hero'] ?? null ) ? $data['hero'] : [];
 $preview  = is_array( $data['preview'] ?? null ) ? $data['preview'] : [];
+$form     = is_array( $data['form'] ?? null ) ? $data['form'] : [];
+$success  = is_array( $data['success'] ?? null ) ? $data['success'] : [];
 $showrooms = is_array( $data['showrooms'] ?? null ) ? $data['showrooms'] : [];
 $budgets  = is_array( $data['budgets'] ?? null ) ? $data['budgets'] : [];
 $features = is_array( $hero['features'] ?? null ) ? $hero['features'] : [];
 $feature_icons = [ 'user', 'calendar', 'phone', 'tick-circle' ];
 $ajax_url = admin_url( 'admin-ajax.php' );
 $nonce    = wp_create_nonce( 'kc_consultation_submit' );
+$success_lede_tpl = (string) ( $success['lede'] ?? 'Dank u, {name}. Uw persoonlijke ontwerpadviseur neemt binnen 24 uur contact met u op om de afspraak te bevestigen.' );
 ?>
 <div class="consultation-page" data-consultation-page>
 	<section class="consultation-layout">
@@ -55,8 +58,8 @@ $nonce    = wp_create_nonce( 'kc_consultation_submit' );
 				</div>
 			</aside>
 
-			<div class="consultation-panel">
-				<div class="consultation-panel__inner">
+			<div class="kc-consult-panel">
+				<div class="kc-consult-panel__inner">
 					<div class="consultation-form-view" data-consultation-form-view>
 						<button
 							type="button"
@@ -108,10 +111,10 @@ $nonce    = wp_create_nonce( 'kc_consultation_submit' );
 						</div>
 
 						<div class="consultation-form-head">
-							<p class="consultation-form-head__eyebrow"><?php esc_html_e( 'Stap 05 van 05', 'keuken-centrum' ); ?></p>
-							<h2 class="consultation-form-head__title"><?php esc_html_e( 'Plan een consultatie', 'keuken-centrum' ); ?></h2>
+							<p class="consultation-form-head__eyebrow"><?php echo esc_html( (string) ( $form['eyebrow'] ?? __( 'Stap 05 van 05', 'keuken-centrum' ) ) ); ?></p>
+							<h2 class="consultation-form-head__title"><?php echo esc_html( (string) ( $form['title'] ?? __( 'Plan een consultatie', 'keuken-centrum' ) ) ); ?></h2>
 							<p class="consultation-form-head__lede">
-								<?php esc_html_e( 'Vul het formulier in en uw persoonlijke ontwerpadviseur neemt binnen 24 uur contact met u op om uw project verder uit te werken.', 'keuken-centrum' ); ?>
+								<?php echo esc_html( (string) ( $form['lede'] ?? '' ) ); ?>
 							</p>
 						</div>
 
@@ -185,20 +188,25 @@ $nonce    = wp_create_nonce( 'kc_consultation_submit' );
 
 								<div class="consultation-form__actions">
 									<button type="submit" class="consultation-submit" data-consultation-submit disabled>
-										<?php esc_html_e( 'Consultatie plannen', 'keuken-centrum' ); ?>
+										<?php echo esc_html( (string) ( $form['submit_label'] ?? __( 'Consultatie plannen', 'keuken-centrum' ) ) ); ?>
 									</button>
 								</div>
 								<p class="consultation-form__privacy">
-									<?php esc_html_e( 'Uw gegevens worden volledig discreet behandeld. Wij delen uw informatie nooit met derden.', 'keuken-centrum' ); ?>
+									<?php echo esc_html( (string) ( $form['privacy'] ?? '' ) ); ?>
 								</p>
 							</form>
 						</div>
 					</div>
 
-					<div class="consultation-success" data-consultation-success hidden>
+					<div
+						class="consultation-success"
+						data-consultation-success
+						data-success-template="<?php echo esc_attr( $success_lede_tpl ); ?>"
+						hidden
+					>
 						<div class="consultation-success__icon" aria-hidden="true"><?php echo kc_icon_brand( 'tick-circle' ); ?></div>
-						<p class="consultation-success__eyebrow"><?php esc_html_e( 'Consultatie aangevraagd', 'keuken-centrum' ); ?></p>
-						<h2 class="consultation-success__title"><?php esc_html_e( 'Wij kijken ernaar uit uw droomkeuken te ontwerpen', 'keuken-centrum' ); ?></h2>
+						<p class="consultation-success__eyebrow"><?php echo esc_html( (string) ( $success['eyebrow'] ?? __( 'Consultatie aangevraagd', 'keuken-centrum' ) ) ); ?></p>
+						<h2 class="consultation-success__title"><?php echo esc_html( (string) ( $success['title'] ?? '' ) ); ?></h2>
 						<p class="consultation-success__lede" data-success-lede></p>
 						<div class="consultation-success__rule" aria-hidden="true"></div>
 						<p class="consultation-success__meta"><?php esc_html_e( 'Showroom:', 'keuken-centrum' ); ?> <span data-success-showroom></span></p>

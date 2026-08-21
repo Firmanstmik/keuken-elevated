@@ -37,6 +37,8 @@ require_once get_template_directory() . '/inc/apparatuur-pages/helpers.php';
 require_once get_template_directory() . '/inc/apparatuur-pages/data-kookplaten.php';
 require_once get_template_directory() . '/inc/aanbiedingen/helpers.php';
 require_once get_template_directory() . '/inc/aanbiedingen/data.php';
+require_once get_template_directory() . '/inc/cms/helpers.php';
+require_once get_template_directory() . '/inc/cms/fields.php';
 require_once get_template_directory() . '/inc/contact/helpers.php';
 require_once get_template_directory() . '/inc/contact/data.php';
 require_once get_template_directory() . '/inc/showroom/helpers.php';

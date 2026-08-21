@@ -110,9 +110,10 @@
 		const showroomOut = page.querySelector("[data-success-showroom]");
 		const dateWrap = page.querySelector("[data-success-date-wrap]");
 		const dateOut = page.querySelector("[data-success-date]");
+		const tpl = success?.getAttribute("data-success-template") || "Dank u, {name}. Uw persoonlijke ontwerpadviseur neemt binnen 24 uur contact met u op om de afspraak te bevestigen.";
 
 		if (lede) {
-			lede.textContent = `Dank u, ${firstName}. Uw persoonlijke ontwerpadviseur neemt binnen 24 uur contact met u op om de afspraak te bevestigen.`;
+			lede.textContent = tpl.replace(/\{name\}/g, firstName);
 		}
 		if (showroomOut) showroomOut.textContent = showroomEl?.value || "";
 		if (dateEl?.value && dateWrap && dateOut) {
