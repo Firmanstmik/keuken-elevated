@@ -15,6 +15,10 @@ if (! defined('ABSPATH')) {
 function kc_brand_pages_rewrite_rules(): void {
 	add_rewrite_rule('keukens/hacker/?$', 'index.php?kc_brand_redirect=ai-kuchen', 'top');
 	add_rewrite_rule('keukens/leicht/([^/]+)/?$', 'index.php?kc_leicht_series=$matches[1]', 'top');
+	add_rewrite_rule('silestone/?$', 'index.php?kc_worktop_redirect=silestone', 'top');
+	add_rewrite_rule('dekton/?$', 'index.php?kc_worktop_redirect=dekton', 'top');
+	add_rewrite_rule('neolith/?$', 'index.php?kc_worktop_redirect=neolith', 'top');
+	add_rewrite_rule('sensa/?$', 'index.php?kc_worktop_redirect=sensa', 'top');
 }
 add_action('init', 'kc_brand_pages_rewrite_rules');
 
@@ -25,6 +29,7 @@ add_action('init', 'kc_brand_pages_rewrite_rules');
 function kc_brand_pages_query_vars(array $vars): array {
 	$vars[] = 'kc_leicht_series';
 	$vars[] = 'kc_brand_redirect';
+	$vars[] = 'kc_worktop_redirect';
 	return $vars;
 }
 add_filter('query_vars', 'kc_brand_pages_query_vars');
@@ -36,6 +41,13 @@ function kc_brand_pages_redirects(): void {
 	$redirect = get_query_var('kc_brand_redirect');
 	if ('ai-kuchen' === $redirect) {
 		wp_safe_redirect(home_url('/keukens/ai-kuchen/'), 301);
+		exit;
+	}
+
+	$worktop = get_query_var('kc_worktop_redirect');
+	$allowed = [ 'silestone', 'dekton', 'neolith', 'sensa' ];
+	if (is_string($worktop) && in_array($worktop, $allowed, true)) {
+		wp_safe_redirect(home_url('/keukenbladen/' . $worktop . '/'), 301);
 		exit;
 	}
 }
@@ -57,10 +69,10 @@ add_filter('template_include', 'kc_brand_pages_template_include', 99);
  * Flush rewrite rules once after brand routing is added.
  */
 function kc_brand_pages_maybe_flush_rewrites(): void {
-	if ('1' === get_option('kc_brand_pages_routing_v2')) {
+	if ('1' === get_option('kc_brand_pages_routing_v3')) {
 		return;
 	}
 	flush_rewrite_rules(false);
-	update_option('kc_brand_pages_routing_v2', '1');
+	update_option('kc_brand_pages_routing_v3', '1');
 }
 add_action('init', 'kc_brand_pages_maybe_flush_rewrites', 99);

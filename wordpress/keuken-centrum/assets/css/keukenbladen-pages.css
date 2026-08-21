@@ -1,0 +1,85 @@
+/* Keukenbladen overview — React KeukenbladenOverviewPage scoped overrides.
+   Reuses keukens-brand-pages.css primitives; does not alter locked Keukens selectors. */
+
+body.kc-keukenbladen-route .site-main { padding-top: 0; }
+body.kc-keukenbladen-route,
+body.kc-keukenbladen-route .brand-page {
+  overflow-x: clip;
+}
+html:has(body.kc-keukenbladen-route) {
+  overflow-x: hidden;
+}
+
+/* React: min-h-[88vh], max-w-[54rem], clamp(3rem,6.5vw,5rem), pt-36 pb-24, lede max-w-[38rem] */
+.brand-page--keukenbladen .brand-page-hero--worktops,
+.brand-page--keukenbladen .brand-page-hero__content--worktops {
+  min-height: 88vh;
+}
+.brand-page--keukenbladen .brand-page-hero__content--worktops {
+  padding: 9rem 0 6rem;
+}
+@media (min-width: 768px) {
+  .brand-page--keukenbladen .brand-page-hero__content--worktops {
+    padding: 9rem 0 6rem;
+  }
+}
+.brand-page-hero__inner--worktops {
+  max-width: 54rem;
+  width: 100%;
+}
+.brand-page-hero__title--worktops {
+  font-size: clamp(3rem, 6.5vw, 5rem);
+}
+.brand-page-hero__lede--worktops {
+  max-width: 38rem;
+  letter-spacing: normal;
+}
+.brand-page-hero__gradient--worktops {
+  background: linear-gradient(118deg, rgba(10, 20, 12, 0.92) 0%, rgba(10, 20, 12, 0.48) 46%, rgba(10, 20, 12, 0.72) 100%);
+}
+
+.keukenbladen-styles-grid {
+  display: grid;
+  gap: 1.25rem;
+}
+@media (min-width: 768px) {
+  .keukenbladen-styles-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.keukens-section-title--worktops-styles {
+  font-size: clamp(2rem, 3.2vw, 2.7rem);
+}
+.keukens-section-title--worktops-custom {
+  font-size: clamp(2.2rem, 4.4vw, 3.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-top: 1.25rem;
+}
+.keukens-section-title--worktops-cta {
+  font-size: clamp(2.1rem, 4vw, 3.1rem);
+}
+
+.brand-custom-band__inner--worktops {
+  max-width: 56rem;
+  position: relative;
+  z-index: 1;
+}
+.keukenbladen-custom-copy {
+  margin-top: 1.75rem;
+}
+.keukenbladen-custom-copy .keukens-body-copy + .keukens-body-copy {
+  margin-top: 1rem;
+}
+
+.brand-showroom-cta__copy {
+  max-width: 34rem;
+}
+
+@media (max-width: 767px) {
+  .brand-page--keukenbladen .brand-page-hero--worktops,
+  .brand-page--keukenbladen .brand-page-hero__content--worktops {
+    min-height: max(43rem, 100svh) !important;
+  }
+}

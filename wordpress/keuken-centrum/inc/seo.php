@@ -26,6 +26,14 @@ function kc_document_title_parts(array $parts): array {
 		}
 	}
 
+	if (is_post_type_archive('worktop') && function_exists('kc_keukenbladen_overview_data')) {
+		$data = kc_keukenbladen_overview_data();
+		if (! empty($data['meta']['title'])) {
+			$parts['title'] = $data['meta']['title'];
+			unset($parts['tagline'], $parts['site']);
+		}
+	}
+
 	if (is_singular('kitchen_brand')) {
 		$slug = get_post_field('post_name', get_queried_object_id());
 		$map  = [
@@ -108,6 +116,13 @@ function kc_get_meta_description(): string {
 		}
 	}
 
+	if (is_post_type_archive('worktop') && function_exists('kc_keukenbladen_overview_data')) {
+		$data = kc_keukenbladen_overview_data();
+		if (! empty($data['meta']['description'])) {
+			return (string) $data['meta']['description'];
+		}
+	}
+
 	if (is_post_type_archive('worktop')) {
 		return 'Keukenbladen van Silestone, Dekton, Neolith en Sensa — materiaaladvies in onze showroom in Utrecht.';
 	}
@@ -140,6 +155,12 @@ function kc_output_seo_tags(): void {
 	if (is_front_page()) {
 		$url = home_url('/');
 	}
+	if (is_post_type_archive('worktop')) {
+		$url = home_url('/keukenbladen/');
+	}
+	if (is_post_type_archive('kitchen_brand')) {
+		$url = home_url('/keukens/');
+	}
 
 	$series_slug = get_query_var('kc_leicht_series');
 	if (is_string($series_slug) && '' !== $series_slug) {
@@ -167,6 +188,12 @@ function kc_output_seo_tags(): void {
 			if (is_array($data) && ! empty($data['hero']['image'])) {
 				$image = (string) $data['hero']['image'];
 			}
+		}
+	}
+	if ('' === $image && is_post_type_archive('worktop') && function_exists('kc_keukenbladen_overview_data')) {
+		$data = kc_keukenbladen_overview_data();
+		if (is_array($data) && ! empty($data['hero']['image'])) {
+			$image = (string) $data['hero']['image'];
 		}
 	}
 	if ('' === $image && is_singular() && has_post_thumbnail()) {

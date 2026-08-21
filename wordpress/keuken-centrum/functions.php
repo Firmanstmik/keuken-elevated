@@ -27,6 +27,8 @@ require_once get_template_directory() . '/inc/brand-pages/data-ai-kuchen.php';
 require_once get_template_directory() . '/inc/brand-pages/data-zampieri.php';
 require_once get_template_directory() . '/inc/brand-pages/data-cucinesse.php';
 require_once get_template_directory() . '/inc/brand-pages/routing.php';
+require_once get_template_directory() . '/inc/worktop-pages/helpers.php';
+require_once get_template_directory() . '/inc/worktop-pages/data-overview.php';
 
 
 if (! defined('KC_THEME_VERSION')) {
@@ -108,15 +110,30 @@ function kc_enqueue_assets(): void {
 		true
 	);
 
-	if (function_exists('kc_is_keukens_route') && kc_is_keukens_route()) {
+	$needs_brand_css = ( function_exists( 'kc_is_keukens_route' ) && kc_is_keukens_route() )
+		|| ( function_exists( 'kc_is_worktops_route' ) && kc_is_worktops_route() );
+
+	if ( $needs_brand_css ) {
 		$brand_css_rel  = 'assets/css/keukens-brand-pages.css';
-		$brand_css_path = get_theme_file_path($brand_css_rel);
-		$brand_mtime    = file_exists($brand_css_path) ? (string) filemtime($brand_css_path) : '0';
+		$brand_css_path = get_theme_file_path( $brand_css_rel );
+		$brand_mtime    = file_exists( $brand_css_path ) ? (string) filemtime( $brand_css_path ) : '0';
 		wp_enqueue_style(
 			'keuken-centrum-keukens-brand',
-			kc_asset($brand_css_rel),
-			['keuken-centrum-theme'],
+			kc_asset( $brand_css_rel ),
+			[ 'keuken-centrum-theme' ],
 			$style_ver . '.' . $brand_mtime
+		);
+	}
+
+	if ( function_exists( 'kc_is_worktops_route' ) && kc_is_worktops_route() ) {
+		$wb_css_rel  = 'assets/css/keukenbladen-pages.css';
+		$wb_css_path = get_theme_file_path( $wb_css_rel );
+		$wb_mtime    = file_exists( $wb_css_path ) ? (string) filemtime( $wb_css_path ) : '0';
+		wp_enqueue_style(
+			'keuken-centrum-keukenbladen',
+			kc_asset( $wb_css_rel ),
+			[ 'keuken-centrum-keukens-brand' ],
+			$style_ver . '.' . $wb_mtime
 		);
 	}
 }
@@ -141,7 +158,7 @@ add_filter('wp_resource_hints', 'kc_resource_hints', 10, 2);
  * Keep theme CSS/JS out of LiteSpeed combine/UCSS so homepage parity rules are not stripped.
  */
 function kc_litespeed_exclude_theme_assets(string $html, string $handle): string {
-	if (! in_array($handle, ['keuken-centrum-theme', 'keuken-centrum-keukens-brand'], true) || str_contains($html, 'data-no-optimize')) {
+	if ( ! in_array( $handle, [ 'keuken-centrum-theme', 'keuken-centrum-keukens-brand', 'keuken-centrum-keukenbladen' ], true ) || str_contains( $html, 'data-no-optimize' ) ) {
 		return $html;
 	}
 
@@ -159,6 +176,9 @@ add_filter('script_loader_tag', 'kc_litespeed_exclude_theme_assets', 10, 2);
 function kc_keukens_body_class(array $classes): array {
 	if (function_exists('kc_is_keukens_route') && kc_is_keukens_route()) {
 		$classes[] = 'kc-keukens-route';
+	}
+	if (function_exists('kc_is_worktops_route') && kc_is_worktops_route()) {
+		$classes[] = 'kc-keukenbladen-route';
 	}
 	return $classes;
 }
