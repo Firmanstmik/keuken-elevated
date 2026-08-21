@@ -160,9 +160,9 @@ $name    = (string) $series['name'];
 	<section class="brand-showroom-cta">
 		<div class="site-container">
 			<div class="brand-showroom-cta__inner">
-				<div data-reveal>
+				<div class="brand-showroom-cta__copy" data-reveal>
 					<?php kc_brand_eyebrow(__('Showroom', 'keuken-centrum'), true); ?>
-					<h2 class="keukens-section-title keukens-section-title--light">
+					<h2 class="brand-showroom-cta__title brand-showroom-cta__title--series">
 						<?php echo esc_html($name); ?>
 						<em><?php esc_html_e('ervaren', 'keuken-centrum'); ?></em>?
 					</h2>

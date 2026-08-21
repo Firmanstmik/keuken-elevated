@@ -75,10 +75,25 @@ body.kc-keukens-route .site-main--keukens { min-height: 60vh; }
   .brand-page-hero__content {
     min-height: max(43rem, 100svh) !important;
   }
-  .brand-page-hero__content {
+  /*
+   * BrandPage.tsx uses .brand-page-hero__content → mobile pad calc(safe+7rem)/4.5rem.
+   * KeukensOverviewPage / LeichtSeriesPage use plain site-container with Tailwind
+   * pt-36 pb-24 / pt-32 pb-20 — they do NOT get the __content mobile pad override.
+   */
+  .brand-page-hero__content:not(.brand-page-hero__content--overview):not(.brand-page-hero__content--series) {
     justify-content: flex-end;
     padding-top: calc(var(--app-safe-top, 0px) + 7rem) !important;
     padding-bottom: 4.5rem !important;
+  }
+  .brand-page--overview .brand-page-hero__content--overview {
+    justify-content: flex-end;
+    padding-top: 9rem !important; /* React pt-36 */
+    padding-bottom: 6rem !important; /* React pb-24 */
+  }
+  .brand-page-hero__content--series {
+    justify-content: flex-end;
+    padding-top: 8rem !important; /* React pt-32 */
+    padding-bottom: 5rem !important; /* React pb-20 */
   }
   .brand-page-hero__badge-strip {
     max-width: calc(100vw - 2rem);
@@ -1185,14 +1200,16 @@ html:has(body.kc-keukens-route) {
   background: rgba(255, 255, 255, 0.9);
 }
 
-.brand-faq__item[data-state="open"] {
+.brand-faq__item[data-state="open"],
+.brand-faq__item[open] {
   border-color: rgba(139, 197, 64, 0.34) !important;
   background: #fff;
   box-shadow: 0 24px 60px -32px rgba(47, 82, 24, 0.32);
   transform: translateY(-1px);
 }
 
-.brand-faq__item[data-state="open"]::before {
+.brand-faq__item[data-state="open"]::before,
+.brand-faq__item[open]::before {
   opacity: 1;
 }
 
@@ -1229,7 +1246,8 @@ html:has(body.kc-keukens-route) {
     border-color 0.4s var(--ease-premium) !important;
 }
 
-.brand-faq__item[data-state="open"] .brand-faq__trigger > svg {
+.brand-faq__item[data-state="open"] .brand-faq__trigger > svg,
+.brand-faq__item[open] .brand-faq__trigger > svg {
   background: var(--green);
   border-color: var(--green);
   color: #fff !important;
@@ -1245,7 +1263,8 @@ html:has(body.kc-keukens-route) {
   transition: opacity 0.4s var(--ease-premium);
 }
 
-.brand-faq__item[data-state="open"] .brand-faq__num {
+.brand-faq__item[data-state="open"] .brand-faq__num,
+.brand-faq__item[open] .brand-faq__num {
   opacity: 1;
 }
 
@@ -1989,6 +2008,31 @@ html:has(body.kc-keukens-route) {
 }
 @media (min-width: 768px) {
   .keukens-advisor-grid--2 { grid-template-columns: repeat(2, 1fr); }
+}
+/* React BrandPage / Overview / Series showroom H2 */
+.brand-showroom-cta__copy {
+  max-width: 34rem;
+  width: 100%;
+}
+.brand-showroom-cta__title {
+  margin-top: 1.25rem;
+  font-family: var(--font-display);
+  font-size: clamp(2.1rem, 4vw, 3.1rem);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+.brand-showroom-cta__title em {
+  font-style: italic;
+  color: var(--green-highlight);
+}
+.brand-showroom-cta__title--series {
+  font-size: clamp(2rem, 3.8vw, 2.9rem);
+  letter-spacing: -0.015em;
+}
+.brand-showroom-cta .keukens-body-copy {
+  margin-top: 1.25rem;
 }
 .brand-showroom-cta__meta {
   display: flex;

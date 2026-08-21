@@ -207,9 +207,9 @@ $hero_primary = $data['hero']['image'] ?: ($hero_images[0] ?? '');
 	<section class="brand-showroom-cta">
 		<div class="site-container">
 			<div class="brand-showroom-cta__inner">
-				<div data-reveal>
+				<div class="brand-showroom-cta__copy" data-reveal>
 					<?php kc_brand_eyebrow( (string) ( $data['bottom_cta']['eyebrow'] ?? __( 'Showroom Utrecht', 'keuken-centrum' ) ), true ); ?>
-					<h2 class="keukens-section-title keukens-section-title--light">
+					<h2 class="brand-showroom-cta__title">
 						<?php echo esc_html( (string) ( $data['bottom_cta']['title'] ?? __( 'Klaar voor uw', 'keuken-centrum' ) ) ); ?>
 						<em><?php echo esc_html( (string) ( $data['bottom_cta']['title_em'] ?? __( 'droomkeuken', 'keuken-centrum' ) ) ); ?></em>?
 					</h2>

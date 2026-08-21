@@ -469,9 +469,9 @@ $intro  = $data['intro'] ?? [];
 		<section class="brand-showroom-cta">
 			<div class="site-container">
 				<div class="brand-showroom-cta__inner">
-					<div data-reveal>
+					<div class="brand-showroom-cta__copy" data-reveal>
 						<?php kc_brand_eyebrow((string) ($cta['eyebrow'] ?? ''), true); ?>
-						<h2 class="keukens-section-title keukens-section-title--light">
+						<h2 class="brand-showroom-cta__title">
 							<?php echo esc_html((string) ($cta['titleBefore'] ?? '')); ?>
 							<em><?php echo esc_html((string) ($cta['titleHighlight'] ?? '')); ?></em>
 							<?php echo esc_html((string) ($cta['titleAfter'] ?? '')); ?>
