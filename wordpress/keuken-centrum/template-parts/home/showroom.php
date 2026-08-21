@@ -8,21 +8,22 @@
 $poster       = kc_theme_img('showroom.jpg');
 $concrete     = kc_theme_img('mat-concrete.jpg');
 $showroom_url = home_url('/showroom-keukens/');
-$brands_url   = home_url('/#brands');
-$visit_url    = home_url('/consultation/');
+$showcase     = function_exists( 'kc_home_showcase_data' ) ? kc_home_showcase_data() : null;
+$brands_url   = $showcase['cta_secondary_url'] ?? home_url('/#brands');
+$visit_url    = $showcase['cta_url'] ?? home_url('/consultation/');
 $main         = get_template_directory_uri() . '/assets/video/keuken_vid1.webm';
 $stack        = [
 	get_template_directory_uri() . '/assets/video/keuken_vid3.webm',
 	get_template_directory_uri() . '/assets/video/keuken_vid4.webm',
 	get_template_directory_uri() . '/assets/video/keuken_vid2.webm',
 ];
-$highlights   = [
+$highlights   = $showcase['highlights'] ?? [
 	__('A-merken inbouwapparatuur', 'keuken-centrum'),
 	__('werkbladen', 'keuken-centrum'),
 	__('keukenkranen', 'keuken-centrum'),
 	__('keukenaccessoires', 'keuken-centrum'),
 ];
-$stats        = [
+$stats        = $showcase['stats'] ?? [
 	[
 		'number' => '45+',
 		'label'  => __('Jaar ervaring', 'keuken-centrum'),
@@ -39,6 +40,13 @@ $stats        = [
 		'sub'    => __('Materiaal & afwerking', 'keuken-centrum'),
 	],
 ];
+$showcase_eyebrow = $showcase['eyebrow'] ?? 'Sinds 1978 · Utrecht Showroom';
+$showcase_title_1 = $showcase['title_1'] ?? 'Keuken-Centrum';
+$showcase_title_2 = $showcase['title_2'] ?? 'Utrecht';
+$showcase_copy = $showcase['copy'] ?? 'De talloze keukenopstellingen in onze showroom geven u genoeg inspiratie. Doordat we met meerdere keukenfabrikanten werken, bieden we een groot en breed assortiment aan. Zo is er voor elk budget een droomkeuken.';
+$showcase_copy_secondary = $showcase['copy_secondary'] ?? 'tot verlichting: alles wat met keukens te maken heeft, is bij ons verkrijgbaar.';
+$showcase_cta_label = $showcase['cta_label'] ?? 'Plan showroombezoek';
+$showcase_cta_secondary_label = $showcase['cta_secondary_label'] ?? 'Bekijk merken';
 ?>
 <section class="section-shell premium-showcase premium-showcase--react" id="showroom">
 	<?php if ($concrete) : ?>
@@ -98,16 +106,16 @@ $stats        = [
 			<div class="premium-showcase__content" data-reveal>
 				<div class="section-label-row premium-showcase__label-row">
 					<span class="kitchen-eyebrow-mark" aria-hidden="true"></span>
-					<p class="section-eyebrow section-eyebrow--gold"><?php esc_html_e('Sinds 1978 · Utrecht Showroom', 'keuken-centrum'); ?></p>
+					<p class="section-eyebrow section-eyebrow--gold"><?php echo esc_html( $showcase_eyebrow ); ?></p>
 				</div>
 
 				<h2 class="premium-showcase__title">
-					<span><?php esc_html_e('Keuken-Centrum', 'keuken-centrum'); ?></span>
-					<em><?php esc_html_e('Utrecht', 'keuken-centrum'); ?></em>
+					<span><?php echo esc_html( $showcase_title_1 ); ?></span>
+					<em><?php echo esc_html( $showcase_title_2 ); ?></em>
 				</h2>
 
 				<p class="premium-showcase__copy">
-					<?php esc_html_e('De talloze keukenopstellingen in onze showroom geven u genoeg inspiratie. Doordat we met meerdere keukenfabrikanten werken, bieden we een groot en breed assortiment aan. Zo is er voor elk budget een droomkeuken.', 'keuken-centrum'); ?>
+					<?php echo esc_html( $showcase_copy ); ?>
 				</p>
 
 				<p class="premium-showcase__copy premium-showcase__copy--secondary">
@@ -115,17 +123,17 @@ $stats        = [
 					<?php foreach ($highlights as $index => $item) : ?>
 						<span class="premium-showcase__highlight"><?php echo esc_html($item); ?></span><?php echo $index < count($highlights) - 1 ? ', ' : ' '; ?>
 					<?php endforeach; ?>
-					<?php esc_html_e('tot verlichting: alles wat met keukens te maken heeft, is bij ons verkrijgbaar.', 'keuken-centrum'); ?>
+					<?php echo esc_html( $showcase_copy_secondary ); ?>
 				</p>
 
 				<div class="premium-showcase__actions">
 					<a class="premium-pill-button premium-pill-button--blue premium-pill-button--rounded premium-pill-button--lg" href="<?php echo esc_url($visit_url); ?>">
-						<span class="premium-pill-button__label"><?php esc_html_e('Plan showroombezoek', 'keuken-centrum'); ?></span>
+						<span class="premium-pill-button__label"><?php echo esc_html( $showcase_cta_label ); ?></span>
 						<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 					</a>
 
 					<a class="premium-showcase__text-link" href="<?php echo esc_url($brands_url); ?>">
-						<span><?php esc_html_e('Bekijk merken', 'keuken-centrum'); ?></span>
+						<span><?php echo esc_html( $showcase_cta_secondary_label ); ?></span>
 						<span class="premium-showcase__text-link-icon" aria-hidden="true"><?php echo kc_icon_arrow_right(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 					</a>
 				</div>

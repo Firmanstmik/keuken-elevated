@@ -64,6 +64,33 @@ function kc_cms_lines( string $raw, array $default = [] ): array {
 }
 
 /**
+ * Non-empty repeater rows from ACF option, else empty array.
+ *
+ * @param string $key Field name.
+ * @return list<array<string,mixed>>
+ */
+function kc_cms_repeater( string $key ): array {
+	if ( ! function_exists( 'get_field' ) ) {
+		return [];
+	}
+	$rows = get_field( $key, 'option' );
+	if ( ! is_array( $rows ) || empty( $rows ) ) {
+		return [];
+	}
+	return array_values( $rows );
+}
+
+/**
+ * Configurator URL — React SoT is `/brands` (SPA). WP route currently 404 until funnel exists.
+ * Default: homepage partners anchor (working). Override via Algemeen → Configurator URL.
+ */
+function kc_cms_configurator_url(): string {
+	$default = home_url( '/#brands' );
+	$url     = kc_cms_text( 'configurator_url', 'option', $default );
+	return $url !== '' ? $url : $default;
+}
+
+/**
  * Register Keuken-Centrum ACF options pages (admin UX).
  */
 function kc_cms_register_options_pages(): void {
@@ -87,6 +114,7 @@ function kc_cms_register_options_pages(): void {
 		[ 'kc-cms-general', 'Algemene instellingen', 'Algemeen' ],
 		[ 'kc-cms-header', 'Header & navigatie', 'Header' ],
 		[ 'kc-cms-nav', 'Mega menu & mobiel menu', 'Navigatie' ],
+		[ 'kc-cms-homepage', 'Homepage secties', 'Homepage' ],
 		[ 'kc-cms-footer', 'Footer', 'Footer' ],
 		[ 'kc-cms-sticky', 'Secondary CTA / Concierge', 'Secondary CTA' ],
 		[ 'kc-cms-consultation', 'Consultatie defaults', 'Consultatie' ],

@@ -5,7 +5,8 @@
  * @package Keuken_Centrum
  */
 
-$pillars = [
+$why     = function_exists( 'kc_home_why_data' ) ? kc_home_why_data() : null;
+$pillars = $why['pillars'] ?? [
 	[
 		'id'          => 'vakmanschap',
 		'number'      => '01',
@@ -48,6 +49,11 @@ $pillars = [
 	],
 ];
 
+$why_eyebrow    = $why['eyebrow'] ?? 'Waarom Keuken-Centrum';
+$why_heading    = $why['heading'] ?? 'Waarom kiezen voor';
+$why_heading_em = $why['heading_em'] ?? 'Keuken-Centrum';
+$why_lede       = $why['lede'] ?? 'Vier beloftes die elke ontmoeting, elk ontwerp en elke montage dragen.';
+
 $swatches = [
 	[
 		'label' => __('Carrara', 'keuken-centrum'),
@@ -72,7 +78,7 @@ $icon_map = [
 
 $active         = $pillars[0];
 $concrete       = kc_theme_img('mat-concrete.jpg');
-$consultation   = kc_get_option('consultation_cta_url', home_url('/contact'));
+$consultation   = kc_get_option('consultation_cta_url', home_url('/consultation/'));
 $reviews_count  = kc_get_option('google_reviews_count', '150');
 $founded_year   = kc_get_option('founded_year', '1978');
 $cbw_logo       = home_url('/wp-content/uploads/cbw.webp');
@@ -84,10 +90,10 @@ $cbw_logo       = home_url('/wp-content/uploads/cbw.webp');
 		<div class="why-scene__header">
 			<div class="why-scene__eyebrow-row" data-reveal data-why-motion="eyebrow">
 				<span class="kitchen-eyebrow-mark" aria-hidden="true"></span>
-				<p class="why-scene__eyebrow"><?php esc_html_e('Onze belofte', 'keuken-centrum'); ?></p>
+				<p class="why-scene__eyebrow"><?php echo esc_html( $why_eyebrow ); ?></p>
 			</div>
 			<h2 class="why-scene__title" data-reveal data-why-motion="title">
-				<?php echo wp_kses(__('Waarom Kiest U <em>Voor Ons?</em>', 'keuken-centrum'), ['em' => []]); ?>
+				<?php echo esc_html( $why_heading ); ?> <em><?php echo esc_html( $why_heading_em ); ?></em>
 			</h2>
 		</div>
 

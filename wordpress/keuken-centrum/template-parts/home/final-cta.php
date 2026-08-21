@@ -9,12 +9,13 @@ $concrete = kc_theme_img('mat-concrete.jpg');
 $phone    = (string) kc_get_option('contact_phone', '030 241 5122');
 $email    = (string) kc_get_option('contact_email', 'info@keuken-centrum.nl');
 $founded  = (string) kc_get_option('founded_year', '1978');
-$actions  = [
+$final    = function_exists( 'kc_home_final_cta_data' ) ? kc_home_final_cta_data() : null;
+$actions  = $final['actions'] ?? [
 	[
 		'number'      => '01',
 		'title'       => __('Plan showroombezoek', 'keuken-centrum'),
 		'description' => __('Bezoek onze showroom in Utrecht en bespreek uw keukenwensen met een specialist die met u meedenkt.', 'keuken-centrum'),
-		'href'        => home_url('/#showroom'),
+		'href'        => home_url('/consultation/'),
 		'pill'        => __('Maak afspraak', 'keuken-centrum'),
 		'icon'        => 'house',
 	],
@@ -35,6 +36,13 @@ $actions  = [
 		'icon'        => 'mail',
 	],
 ];
+$final_eyebrow = $final['eyebrow'] ?? 'Begin uw reis';
+$final_heading = $final['heading'] ?? 'Klaar voor uw';
+$final_heading_em = $final['heading_em'] ?? 'droomkeuken?';
+$final_primary_label = $final['primary_label'] ?? 'Plan showroombezoek';
+$final_primary_url = $final['primary_url'] ?? home_url( '/consultation/' );
+$final_secondary_label = $final['secondary_label'] ?? 'Start configurator';
+$final_secondary_url = $final['secondary_url'] ?? ( function_exists( 'kc_cms_configurator_url' ) ? kc_cms_configurator_url() : home_url( '/#brands' ) );
 
 $cta_icon = static function (string $icon): string {
 	switch ($icon) {
@@ -53,17 +61,17 @@ $cta_icon = static function (string $icon): string {
 
 		<header class="final-cta-react-heading final-cta-react-heading--v2">
 			<div class="final-cta-react-heading__pills">
-				<span><?php esc_html_e('Begin uw reis', 'keuken-centrum'); ?></span>
+				<span><?php echo esc_html( $final_eyebrow ); ?></span>
 				<span><?php esc_html_e('Persoonlijk ontwerp', 'keuken-centrum'); ?></span>
 			</div>
 			<h2>
-				<?php esc_html_e('Klaar voor uw', 'keuken-centrum'); ?>
-				<em><?php esc_html_e('droomkeuken?', 'keuken-centrum'); ?></em>
+				<?php echo esc_html( $final_heading ); ?>
+				<em><?php echo esc_html( $final_heading_em ); ?></em>
 			</h2>
-			<p><?php esc_html_e('Van eerste inspiratie tot installatie: wij begeleiden u persoonlijk naar een keuken die klopt in stijl, functie en afwerking.', 'keuken-centrum'); ?></p>
+			<p><?php echo esc_html( $final['lede'] ?? __( 'Van eerste inspiratie tot installatie: wij begeleiden u persoonlijk naar een keuken die klopt in stijl, functie en afwerking.', 'keuken-centrum' ) ); ?></p>
 			<div class="final-cta-react-heading__actions">
-				<a class="btn btn--primary btn--pill" href="<?php echo esc_url(home_url('/#brands')); ?>"><?php esc_html_e('Start configurator', 'keuken-centrum'); ?></a>
-				<a class="btn btn--secondary btn--pill" href="<?php echo esc_url(home_url('/consultation/')); ?>"><?php esc_html_e('Boek consultatie', 'keuken-centrum'); ?></a>
+				<a class="btn btn--primary btn--pill" href="<?php echo esc_url( $final_secondary_url ); ?>"><?php echo esc_html( $final_secondary_label ); ?></a>
+				<a class="btn btn--secondary btn--pill" href="<?php echo esc_url( $final_primary_url ); ?>"><?php echo esc_html( $final_primary_label ); ?></a>
 			</div>
 		</header>
 

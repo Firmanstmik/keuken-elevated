@@ -5,9 +5,15 @@
  * @package Keuken_Centrum
  */
 
-$scene = kc_theme_img('brands/brands-dark-bg.webp');
-
-$brands = [
+$scene = '';
+$partners_data = function_exists( 'kc_home_partners_data' ) ? kc_home_partners_data() : null;
+if ( $partners_data ) {
+	$brands  = $partners_data['brands'];
+	$marquee = $partners_data['marquee'];
+	$scene   = $partners_data['scene'];
+} else {
+	$scene = kc_theme_img('brands/brands-dark-bg.webp');
+	$brands = [
 	[
 		'name'        => 'Leicht',
 		'logo'        => 'Leicht_Logo.webp',
@@ -76,8 +82,21 @@ $marquee = [
 	['name' => 'Quooker', 'logo' => 'Quooker_Logo.webp', 'description' => 'Kokend, gekoeld en bruisend water uit één kraan.'],
 	['name' => 'Gaggenau', 'logo' => 'Gaggenau_Logo.webp', 'description' => 'Professionele keukenapparatuur sinds 1683.'],
 ];
+}
 
 $active = $brands[0];
+$brand_img = static function ( array $brand ): string {
+	if ( ! empty( $brand['image_url'] ) ) {
+		return (string) $brand['image_url'];
+	}
+	return (string) ( kc_theme_img( (string) ( $brand['image'] ?? '' ) ) ?: '' );
+};
+$brand_logo = static function ( array $brand ): string {
+	if ( ! empty( $brand['logo_url'] ) ) {
+		return (string) $brand['logo_url'];
+	}
+	return (string) ( kc_theme_img( (string) ( $brand['logo'] ?? '' ) ) ?: '' );
+};
 ?>
 <section class="brands-scene section-shell" id="brands" data-brands-carousel>
 	<div class="brands-scene__photo" aria-hidden="true"<?php echo $scene ? ' style="background-image:url(' . esc_url($scene) . ')"' : ''; ?>></div>
@@ -96,7 +115,7 @@ $active = $brands[0];
 						data-brand-index="<?php echo esc_attr((string) $index); ?>"
 						aria-hidden="<?php echo 0 === $index ? 'false' : 'true'; ?>"
 					>
-						<img src="<?php echo esc_url(kc_theme_img($brand['image'])); ?>" alt="<?php echo 0 === $index ? esc_attr($brand['name'] . ' keuken') : ''; ?>" loading="<?php echo 0 === $index ? 'eager' : 'lazy'; ?>" width="900" height="1200" />
+						<img src="<?php echo esc_url($brand_img($brand)); ?>" alt="<?php echo 0 === $index ? esc_attr($brand['name'] . ' keuken') : ''; ?>" loading="<?php echo 0 === $index ? 'eager' : 'lazy'; ?>" width="900" height="1200" />
 						<span class="brands-stack__scrim" aria-hidden="true"></span>
 						<span class="brands-stack__frame" aria-hidden="true">
 							<span class="brands-stack__corner brands-stack__corner--tl"></span>
@@ -161,7 +180,7 @@ $active = $brands[0];
 								data-brand-copy="<?php echo esc_attr($brand['description']); ?>"
 								data-brand-signature="<?php echo esc_attr($brand['signature']); ?>"
 								data-brand-href="<?php echo esc_url($brand['href']); ?>"
-								data-brand-logo="<?php echo esc_url(kc_theme_img($brand['logo'])); ?>"
+								data-brand-logo="<?php echo esc_url($brand_logo($brand)); ?>"
 								aria-label="<?php echo esc_attr(sprintf(__('Toon %s', 'keuken-centrum'), $brand['name'])); ?>"
 								aria-pressed="<?php echo 0 === $index ? 'true' : 'false'; ?>"
 							><span class="brands-pager__progress" aria-hidden="true"></span></button>
@@ -192,8 +211,8 @@ $active = $brands[0];
 						</span>
 						<span class="brands-marquee__glow" aria-hidden="true"></span>
 						<span class="brands-marquee__surface" aria-hidden="true"></span>
-						<img class="brands-marquee__base" src="<?php echo esc_url(kc_theme_img($item['logo'])); ?>" alt="" loading="lazy" width="130" height="48" />
-						<img class="brands-marquee__hover" src="<?php echo esc_url(kc_theme_img($item['logo'])); ?>" alt="" loading="lazy" width="130" height="48" />
+						<img class="brands-marquee__base" src="<?php echo esc_url(! empty($item['logo_url']) ? $item['logo_url'] : kc_theme_img($item['logo'])); ?>" alt="" loading="lazy" width="130" height="48" />
+						<img class="brands-marquee__hover" src="<?php echo esc_url(! empty($item['logo_url']) ? $item['logo_url'] : kc_theme_img($item['logo'])); ?>" alt="" loading="lazy" width="130" height="48" />
 					</span>
 					<span class="brands-marquee__dot"></span>
 				</span>

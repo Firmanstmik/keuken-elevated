@@ -7,8 +7,9 @@
 
 $uploads_base = 'https://keuken-centrum.nl/wp-content/uploads';
 $showroom_url = home_url('/#showroom');
-$archive_url  = get_post_type_archive_link('kitchen_brand') ?: home_url('/keukens');
-$collections = [
+$collections_data = function_exists( 'kc_home_collections_data' ) ? kc_home_collections_data() : null;
+$archive_url  = $collections_data['cta_url'] ?? ( get_post_type_archive_link('kitchen_brand') ?: home_url('/keukens') );
+$collections  = $collections_data['items'] ?? [
 	[
 		'number'      => '01',
 		'label'       => 'MODERNE COLLECTIE',
@@ -42,6 +43,11 @@ $collections = [
 		'image'       => $uploads_base . '/WhatsApp-Image-2023-09-20-at-13.53.25.webp',
 	],
 ];
+$col_eyebrow    = $collections_data['eyebrow'] ?? 'Onze Collecties';
+$col_heading    = $collections_data['heading'] ?? 'Ontdek uw';
+$col_heading_em = $collections_data['heading_em'] ?? 'Droomkeuken';
+$col_lede       = $collections_data['lede'] ?? 'Vier zorgvuldig samengestelde stijlwerelden, elk met een unieke architectonische taal van materiaal, compositie en sfeer.';
+$col_cta        = $collections_data['cta_label'] ?? 'Alle keukens bekijken';
 
 $concrete = kc_theme_img('mat-concrete.jpg');
 ?>
@@ -57,17 +63,17 @@ $concrete = kc_theme_img('mat-concrete.jpg');
 			<?php kc_section_chapter('06', __('Collecties', 'keuken-centrum')); ?>
 			<div class="section-label-row">
 				<span class="kitchen-eyebrow-mark" aria-hidden="true"></span>
-				<p class="section-eyebrow section-eyebrow--gold"><?php esc_html_e('Onze Collecties', 'keuken-centrum'); ?></p>
+				<p class="section-eyebrow section-eyebrow--gold"><?php echo esc_html( $col_eyebrow ); ?></p>
 			</div>
 			<h2 class="section-title">
-				<?php esc_html_e('Ontdek uw', 'keuken-centrum'); ?>
-				<em class="text-accent"><?php esc_html_e('Droomkeuken', 'keuken-centrum'); ?></em>
+				<?php echo esc_html( $col_heading ); ?>
+				<em class="text-accent"><?php echo esc_html( $col_heading_em ); ?></em>
 			</h2>
 			<p class="collections-section__lede">
-				<?php esc_html_e('Vier zorgvuldig samengestelde stijlwerelden, elk met een unieke architectonische taal van materiaal, compositie en sfeer.', 'keuken-centrum'); ?>
+				<?php echo esc_html( $col_lede ); ?>
 			</p>
 			<a class="premium-pill-button premium-pill-button--blue premium-pill-button--sm" href="<?php echo esc_url($archive_url); ?>">
-				<span class="premium-pill-button__label"><?php esc_html_e('Alle keukens bekijken', 'keuken-centrum'); ?></span>
+				<span class="premium-pill-button__label"><?php echo esc_html( $col_cta ); ?></span>
 				<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
 			</a>
 		</div>

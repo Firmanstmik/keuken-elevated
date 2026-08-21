@@ -5,8 +5,9 @@
  * @package Keuken_Centrum
  */
 
-$design_url = (string) kc_get_option('hero_cta_secondary_url_default', 'https://keuken-elevated.vercel.app/brands');
-$steps      = [
+$process   = function_exists( 'kc_home_process_data' ) ? kc_home_process_data() : null;
+$design_url = $process['cta_url'] ?? ( function_exists( 'kc_cms_configurator_url' ) ? kc_cms_configurator_url() : home_url( '/#brands' ) );
+$steps      = $process['steps'] ?? [
 	[
 		'number' => '01',
 		'title'  => __('Kies merk', 'keuken-centrum'),
@@ -38,6 +39,11 @@ $steps      = [
 		'icon'   => 'people',
 	],
 ];
+$proc_eyebrow = $process['eyebrow'] ?? 'Het proces';
+$proc_heading = $process['heading'] ?? 'Van concept tot';
+$proc_heading_em = $process['heading_em'] ?? 'creatie';
+$proc_lede = $process['lede'] ?? 'Vijf zorgvuldig uitgedachte stappen naar uw droomkeuken.';
+$proc_cta = $process['cta_label'] ?? 'Start configurator';
 
 $process_icon = static function (string $icon): string {
 	switch ($icon) {
@@ -66,13 +72,13 @@ $process_icon = static function (string $icon): string {
 		<header class="process-timeline-heading process-timeline-heading--react">
 			<div class="section-label-row section-label-row--center">
 				<span class="kitchen-eyebrow-mark" aria-hidden="true"></span>
-				<p class="section-eyebrow section-eyebrow--gold"><?php esc_html_e('Het proces', 'keuken-centrum'); ?></p>
+				<p class="section-eyebrow section-eyebrow--gold"><?php echo esc_html( $proc_eyebrow ); ?></p>
 			</div>
 			<h2>
-				<?php esc_html_e('Van concept tot', 'keuken-centrum'); ?>
-				<em><?php esc_html_e('creatie', 'keuken-centrum'); ?></em>
+				<?php echo esc_html( $proc_heading ); ?>
+				<em><?php echo esc_html( $proc_heading_em ); ?></em>
 			</h2>
-			<p><?php esc_html_e('Vijf zorgvuldig uitgedachte stappen naar uw droomkeuken.', 'keuken-centrum'); ?></p>
+			<p><?php echo esc_html( $proc_lede ); ?></p>
 		</header>
 
 		<div class="process-timeline-shell" data-process-timeline>
@@ -105,7 +111,7 @@ $process_icon = static function (string $icon): string {
 		<div class="process-timeline-cta">
 			<span class="process-timeline-cta__line" aria-hidden="true"></span>
 			<a class="btn btn--primary btn--pill" href="<?php echo esc_url($design_url); ?>">
-				<?php esc_html_e('Begin uw ontwerptraject', 'keuken-centrum'); ?>
+				<?php echo esc_html( $proc_cta ); ?>
 			</a>
 		</div>
 	</div>

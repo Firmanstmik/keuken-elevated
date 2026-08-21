@@ -8,9 +8,16 @@
 $phone     = (string) kc_get_option('contact_phone', '030 241 5122');
 $email     = (string) kc_get_option('contact_email', 'info@keuken-centrum.nl');
 $hours     = (string) kc_get_option('contact_hours', 'Ma t/m za op afspraak, met uitgebreid showroomadvies.');
-$cta_label = (string) kc_get_option('consultation_cta_label', 'Plan vrijblijvend advies');
-$cta_url   = (string) kc_get_option('consultation_cta_url', home_url('/contact'));
+$home_cons = function_exists( 'kc_home_consultation_data' ) ? kc_home_consultation_data() : null;
+$cta_label = $home_cons['cta_label'] ?? (string) kc_get_option('consultation_cta_label', 'Plan consultatie');
+$cta_url   = (string) kc_get_option('consultation_cta_url', home_url('/consultation/'));
 $form_shortcode = (string) kc_get_option('consultation_form_shortcode', '');
+$cons_eyebrow = $home_cons['eyebrow'] ?? 'Persoonlijk Ontwerpgesprek';
+$cons_heading = $home_cons['heading'] ?? 'Boek uw persoonlijk';
+$cons_heading_em = $home_cons['heading_em'] ?? 'ontwerpconsult.';
+$cons_lede = $home_cons['lede'] ?? 'Neem uw eerste keuzes mee naar de showroom in Utrecht en bespreek ze met een adviseur die materiaal, routing, apparatuur en budget zorgvuldig met u doorneemt.';
+$cons_form_eyebrow = $home_cons['form_eyebrow'] ?? 'Consultatie aanvraag';
+$cons_form_title = $home_cons['form_title'] ?? 'Vertel ons kort wat u wilt bespreken.';
 $gallery_images = array_filter(
 	[
 		kc_theme_img('collection-modern.jpg'),
@@ -45,13 +52,13 @@ $next_steps = [
 			<?php kc_section_chapter('10', __('Consultatie', 'keuken-centrum')); ?>
 			<div class="consultation-section__badge">
 				<span></span>
-				<?php esc_html_e('Persoonlijk ontwerpgesprek', 'keuken-centrum'); ?>
+				<?php echo esc_html( $cons_eyebrow ); ?>
 			</div>
 			<h2 class="section-title">
-				<?php esc_html_e('Boek uw persoonlijk', 'keuken-centrum'); ?>
-				<em class="text-accent"><?php esc_html_e('ontwerpconsult.', 'keuken-centrum'); ?></em>
+				<?php echo esc_html( $cons_heading ); ?>
+				<em class="text-accent"><?php echo esc_html( $cons_heading_em ); ?></em>
 			</h2>
-			<p class="consultation-section__lede"><?php esc_html_e('Neem uw eerste keuzes mee naar de showroom in Utrecht en bespreek ze met een adviseur die materiaal, routing, apparatuur en budget zorgvuldig met u doorneemt.', 'keuken-centrum'); ?></p>
+			<p class="consultation-section__lede"><?php echo esc_html( $cons_lede ); ?></p>
 		</header>
 
 		<?php if ($gallery_images) : ?>
@@ -97,8 +104,8 @@ $next_steps = [
 			</aside>
 
 			<div class="consultation-form-card consultation-form-card--react">
-				<p class="consultation-form-card__eyebrow"><?php esc_html_e('Consultatie aanvraag', 'keuken-centrum'); ?></p>
-				<h3><?php esc_html_e('Vertel ons kort wat u wilt bespreken.', 'keuken-centrum'); ?></h3>
+				<p class="consultation-form-card__eyebrow"><?php echo esc_html( $cons_form_eyebrow ); ?></p>
+				<h3><?php echo esc_html( $cons_form_title ); ?></h3>
 
 				<?php if ($form_shortcode) : ?>
 					<div class="consultation-form-card__cf7 consultation-form-card__cf7--react"><?php echo do_shortcode($form_shortcode); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>

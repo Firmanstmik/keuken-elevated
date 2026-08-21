@@ -5,7 +5,8 @@
  * @package Keuken_Centrum
  */
 
-$cards = [
+$experience = function_exists( 'kc_home_experience_data' ) ? kc_home_experience_data() : null;
+$cards      = $experience['cards'] ?? [
 	[
 		'number'      => '01',
 		'featured'    => true,
@@ -37,6 +38,10 @@ $cards = [
 		'href'        => home_url('/consultation/'),
 	],
 ];
+$exp_eyebrow = $experience['eyebrow'] ?? 'Keukeninspiratie';
+$exp_heading = $experience['heading'] ?? 'Eén plaats voor';
+$exp_heading_em = $experience['heading_em'] ?? 'al uw wensen';
+$exp_lede = $experience['lede'] ?? 'Van architecturaal design tot slimme luxe: ontdek een keukenwereld die zorgvuldig wordt afgestemd op uw ruimte, smaak en manier van leven.';
 $scene       = kc_theme_img('brands/brands-dark-bg.webp');
 $scene_layer = kc_theme_img('experience/Modern_keukens.webp') ?: kc_theme_img('experience/modern.webp');
 $cbw_logo    = kc_theme_img('cbw.webp');
@@ -65,14 +70,14 @@ if (! $cbw_logo) {
 				<?php kc_section_chapter('05', __('Inspiratie', 'keuken-centrum'), true); ?>
 				<div class="section-label-row">
 					<span class="kitchen-eyebrow-mark" aria-hidden="true"></span>
-					<p class="section-eyebrow section-eyebrow--gold"><?php esc_html_e('Keukeninspiratie', 'keuken-centrum'); ?></p>
+					<p class="section-eyebrow section-eyebrow--gold"><?php echo esc_html( $exp_eyebrow ); ?></p>
 				</div>
 				<h2 class="section-title section-title--light experience-title">
-					<?php esc_html_e('Eén plaats voor', 'keuken-centrum'); ?>
-					<em><?php esc_html_e('al uw wensen', 'keuken-centrum'); ?></em>
+					<?php echo esc_html( $exp_heading ); ?>
+					<em><?php echo esc_html( $exp_heading_em ); ?></em>
 				</h2>
 				<p class="experience-lede">
-					<?php esc_html_e('Van architecturaal design tot slimme luxe: ontdek een keukenwereld die zorgvuldig wordt afgestemd op uw ruimte, smaak en manier van leven.', 'keuken-centrum'); ?>
+					<?php echo esc_html( $exp_lede ); ?>
 				</p>
 			</div>
 			<aside class="experience-trust" aria-label="<?php esc_attr_e('Persoonlijk samengesteld', 'keuken-centrum'); ?>">

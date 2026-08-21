@@ -15,9 +15,9 @@ $args = wp_parse_args(
 		'title_em'            => 'Utrecht.',
 		'subtitle'            => 'Ontdek Duitse precisie en Italiaanse elegantie onder één dak. Persoonlijk showroomadvies, premium apparatuur en een doordachte configurator voor uw eerste ontwerpkeuze.',
 		'cta_primary_label'   => 'Plan Showroombezoek',
-		'cta_primary_url'     => home_url('/#showroom'),
+		'cta_primary_url'     => home_url('/consultation/'),
 		'cta_secondary_label' => 'Start configurator',
-		'cta_secondary_url'   => 'https://keuken-elevated.vercel.app/brands',
+		'cta_secondary_url'   => function_exists('kc_cms_configurator_url') ? kc_cms_configurator_url() : home_url('/#brands'),
 		'image_url'           => '',
 		'slides'              => [],
 	]

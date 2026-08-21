@@ -41,6 +41,7 @@ require_once get_template_directory() . '/inc/apparatuur-pages/data-kookplaten.p
 require_once get_template_directory() . '/inc/aanbiedingen/helpers.php';
 require_once get_template_directory() . '/inc/aanbiedingen/data.php';
 require_once get_template_directory() . '/inc/cms/helpers.php';
+require_once get_template_directory() . '/inc/cms/home-data.php';
 require_once get_template_directory() . '/inc/cms/fields.php';
 require_once get_template_directory() . '/inc/sticky-conversion/data.php';
 require_once get_template_directory() . '/inc/footer/data.php';

@@ -8,7 +8,13 @@
 $base     = kc_theme_img('configurator/klassiek-base.webp');
 $base_sm  = kc_theme_img('configurator/klassiek-base-768.webp');
 $scene    = kc_theme_img('brands/brands-dark-bg.webp');
-$start_url = get_post_type_archive_link('kitchen_brand') ?: home_url('/keukens');
+$journey  = function_exists( 'kc_home_journey_data' ) ? kc_home_journey_data() : null;
+$start_url = $journey['cta_url'] ?? ( function_exists( 'kc_cms_configurator_url' ) ? kc_cms_configurator_url() : ( get_post_type_archive_link( 'kitchen_brand' ) ?: home_url( '/keukens' ) ) );
+$journey_eyebrow = $journey['eyebrow'] ?? 'De beleving';
+$journey_heading = $journey['heading'] ?? 'Een showroom die naar u toe komt';
+$journey_heading_em = $journey['heading_em'] ?? '';
+$journey_lede = $journey['lede'] ?? 'Onze digitale configurator brengt de volledige luxe showroomervaring naar uw scherm. Ontdek materialen, bekijk combinaties en ontvang een compleet ontwerpvoorstel nog voordat u onze showroom bezoekt.';
+$journey_cta = $journey['cta_label'] ?? 'Start uw ontwerp';
 
 $hotspot_positions = [
 	['id' => 'front', 'x' => '63%', 'y' => '75%'],
@@ -227,9 +233,14 @@ $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" a
 			</div>
 
 		<div class="journey-config-copy" data-reveal data-journey-motion="copy">
-			<p class="journey-config-copy__eyebrow" data-journey-motion="copy-el" data-stagger="0"><?php esc_html_e('De beleving', 'keuken-centrum'); ?></p>
-			<h2 class="journey-config-copy__title" data-journey-motion="copy-el" data-stagger="1"><?php esc_html_e('Een showroom die naar u toe komt', 'keuken-centrum'); ?></h2>
-			<p class="journey-config-copy__lede" data-journey-motion="copy-el" data-stagger="2"><?php esc_html_e('Onze digitale configurator brengt de volledige luxe showroomervaring naar uw scherm. Ontdek materialen, bekijk combinaties en ontvang een compleet ontwerpvoorstel nog voordat u onze showroom bezoekt.', 'keuken-centrum'); ?></p>
+			<p class="journey-config-copy__eyebrow" data-journey-motion="copy-el" data-stagger="0"><?php echo esc_html( $journey_eyebrow ); ?></p>
+			<h2 class="journey-config-copy__title" data-journey-motion="copy-el" data-stagger="1"><?php
+				echo esc_html( $journey_heading );
+				if ( $journey_heading_em ) {
+					echo ' <em>' . esc_html( $journey_heading_em ) . '</em>';
+				}
+			?></h2>
+			<p class="journey-config-copy__lede" data-journey-motion="copy-el" data-stagger="2"><?php echo esc_html( $journey_lede ); ?></p>
 			<div class="journey-config-copy__divider" data-journey-motion="copy-el" data-stagger="3" aria-hidden="true"></div>
 			<div class="journey-config-copy__features">
 				<div class="journey-config-copy__feature" data-journey-motion="copy-feature" data-stagger="0">
@@ -247,7 +258,7 @@ $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" a
 			</div>
 			<div class="journey-config-actions" data-journey-motion="copy-el" data-stagger="4">
 				<a class="premium-pill-button premium-pill-button--blue premium-pill-button--md" href="<?php echo esc_url($start_url); ?>">
-					<span class="premium-pill-button__label"><?php esc_html_e('Start uw ontwerp', 'keuken-centrum'); ?></span>
+					<span class="premium-pill-button__label"><?php echo esc_html( $journey_cta ); ?></span>
 					<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
 				</a>
 			</div>
