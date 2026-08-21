@@ -5480,7 +5480,7 @@ body.admin-bar .site-header {
 }
 
 @media (max-width:900px){
-	.final-cta-react-cards--v2,.consultation-panel--react,.consultation-lead-form__grid,.consultation-lead-form__stats,.consultation-next__grid,.site-footer__grid--react{grid-template-columns:1fr}
+	.final-cta-react-cards--v2,.consultation-lead-form__grid,.site-footer__grid--react{grid-template-columns:1fr}
 	.consultation-panel__atelier{padding:1.5rem}
 	.consultation-form-card--react{padding:1.5rem}
 	.consultation-lead-form__submit{flex-direction:column;align-items:flex-start}
@@ -5490,12 +5490,92 @@ body.admin-bar .site-header {
 }
 
 @media (max-width:767px){
-	.process-timeline-heading--react,.final-cta-react-heading--v2,.testimonials-heading--react,.consultation-section__header{margin-bottom:3rem}
+	.process-timeline-heading--react{margin-bottom:5rem}
+	.final-cta-react-heading--v2,.testimonials-heading--react,.consultation-section__header{margin-bottom:3rem}
 	.consultation-gallery--react::before,.consultation-gallery--react::after{width:3rem}
-	.consultation-gallery__slide{width:min(78vw,17.5rem);height:14rem}
+	.consultation-gallery__slide{width:min(78vw,17.5rem);height:16rem}
 	.site-footer__hero{padding:4.5rem 0 3.5rem}
 	.site-footer__bottom--react{flex-direction:column;text-align:center}
 	.site-footer__legal{justify-content:center}
+
+	/* Consultation — React: atelier is hidden md:flex (desktop only) */
+	.consultation-panel--react{
+		grid-template-columns:1fr;
+	}
+	.consultation-panel--react .consultation-panel__atelier{
+		display:none;
+	}
+	.consultation-lead-form__stats{
+		grid-template-columns:repeat(2,minmax(0,1fr));
+	}
+	.consultation-next__grid{
+		grid-template-columns:repeat(2,minmax(0,1fr));
+	}
+
+	/* Process — neutralize legacy vertical timeline; keep React horizontal snap cards */
+	.process-timeline-scene.process-timeline-scene--react{
+		padding-block:clamp(3.75rem,16vw,5rem);
+		color:#f7f4ee;
+		background:linear-gradient(180deg,#0d0f0a 0%,#12140e 50%,#0c0e09 100%);
+	}
+	.process-timeline-scene--react .process-timeline.process-timeline--react{
+		display:flex;
+		grid-template-columns:none;
+		gap:1rem;
+		padding:0 0 .5rem;
+		overflow-x:auto;
+		scroll-snap-type:x proximity;
+	}
+	.process-timeline-scene--react .process-timeline.process-timeline--react::before{
+		content:none;
+		display:none;
+	}
+	.process-timeline-scene--react .process-timeline-step.process-timeline-step--react{
+		display:block;
+		flex:0 0 min(82vw,20rem);
+		grid-template-columns:none;
+		padding:0;
+		scroll-snap-align:start;
+	}
+	.process-timeline-scene--react .process-timeline-step__card{
+		display:flex;
+		gap:1.25rem;
+		min-height:10.5rem;
+		padding:1.25rem;
+		border:1px solid rgba(255,255,255,.08);
+		border-radius:1.45rem;
+		background:rgba(255,255,255,.035);
+		backdrop-filter:blur(12px);
+		text-align:left;
+	}
+	.process-timeline-scene--react .process-timeline-step__copy h3{
+		margin:0;
+	}
+	.process-timeline-scene--react .process-timeline-step__copy p{
+		margin:.7rem 0 0;
+	}
+
+	/* Showcase — section-shell rhythm over legacy premium-showcase padding */
+	.premium-showcase.premium-showcase--react{
+		padding-block:clamp(3.75rem,16vw,5rem);
+	}
+	.premium-showcase--react .premium-showcase__main video{
+		max-height:min(62vh,520px);
+	}
+	.premium-showcase--react .premium-showcase__grid{
+		gap:2.5rem;
+	}
+
+	/* Collections — React slide geometry */
+	.collections-section--react .collections-gallery__slide{
+		width:min(330px,84vw);
+		height:420px;
+	}
+
+	/* Final CTA cards — React md:grid-cols-3 → 1 col on mobile */
+	.final-cta-react-cards--v2{
+		grid-template-columns:1fr;
+	}
 }
 
 @media (prefers-reduced-motion:reduce){

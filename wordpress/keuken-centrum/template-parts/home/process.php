@@ -10,31 +10,31 @@ $steps      = [
 	[
 		'number' => '01',
 		'title'  => __('Kies merk', 'keuken-centrum'),
-		'copy'   => __('Selecteer uit de mooiste keukenmerken van Europa.', 'keuken-centrum'),
+		'copy'   => __('Selecteer uit de mooiste keukenmerken van Europa', 'keuken-centrum'),
 		'icon'   => 'shop',
 	],
 	[
 		'number' => '02',
 		'title'  => __('Kies stijl', 'keuken-centrum'),
-		'copy'   => __('Bepaal de architectonische uitstraling die bij uw woning past.', 'keuken-centrum'),
+		'copy'   => __('Bepaal de architectonische uitstraling', 'keuken-centrum'),
 		'icon'   => 'brush',
 	],
 	[
 		'number' => '03',
 		'title'  => __('Samenstellen', 'keuken-centrum'),
-		'copy'   => __('Personaliseer materialen, werkbladen, apparatuur en afwerking.', 'keuken-centrum'),
+		'copy'   => __('Personaliseer elk materiaal en iedere afwerking', 'keuken-centrum'),
 		'icon'   => 'layers',
 	],
 	[
 		'number' => '04',
 		'title'  => __('Moodboard', 'keuken-centrum'),
-		'copy'   => __('Ontvang een persoonlijk voorstel waarin sfeer en details samenkomen.', 'keuken-centrum'),
+		'copy'   => __('Ontvang uw persoonlijk ontwerpvoorstel', 'keuken-centrum'),
 		'icon'   => 'gallery',
 	],
 	[
 		'number' => '05',
 		'title'  => __('Consultatie', 'keuken-centrum'),
-		'copy'   => __('Bespreek alles met uw vaste ontwerpadviseur in de showroom.', 'keuken-centrum'),
+		'copy'   => __('Bespreek alles met uw persoonlijke ontwerpadviseur', 'keuken-centrum'),
 		'icon'   => 'people',
 	],
 ];

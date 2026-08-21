@@ -29,10 +29,10 @@ $budgets = [
 	'€ 55.000+',
 ];
 $next_steps = [
-	['number' => '01', 'title' => __('Aanvraag ontvangen', 'keuken-centrum'), 'copy' => __('Uw aanvraag wordt persoonlijk beoordeeld.', 'keuken-centrum')],
-	['number' => '02', 'title' => __('Persoonlijk contact', 'keuken-centrum'), 'copy' => __('Een adviseur belt u binnen 24 uur.', 'keuken-centrum')],
-	['number' => '03', 'title' => __('Showroomafspraak', 'keuken-centrum'), 'copy' => __('We stemmen een passend moment met u af.', 'keuken-centrum')],
-	['number' => '04', 'title' => __('Ontwerpvoorstel', 'keuken-centrum'), 'copy' => __('U ontvangt een voorstel dat aansluit op uw ruimte en stijl.', 'keuken-centrum')],
+	['number' => '01', 'title' => __('Aanvraag ontvangen', 'keuken-centrum'), 'copy' => __('Uw aanvraag wordt persoonlijk beoordeeld', 'keuken-centrum')],
+	['number' => '02', 'title' => __('Persoonlijk contact', 'keuken-centrum'), 'copy' => __('Een adviseur belt u binnen 24 uur', 'keuken-centrum')],
+	['number' => '03', 'title' => __('Showroomafspraak', 'keuken-centrum'), 'copy' => __('Bezoek op een moment dat u uitkomt', 'keuken-centrum')],
+	['number' => '04', 'title' => __('Ontwerpvoorstel', 'keuken-centrum'), 'copy' => __('Ontvang uw persoonlijk ontwerpvoorstel', 'keuken-centrum')],
 ];
 ?>
 <section class="section-shell consultation-section consultation-section--react" id="consultation">
