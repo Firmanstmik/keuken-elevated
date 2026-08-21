@@ -4203,7 +4203,7 @@ body.admin-bar .site-header {
 	.home-hero__layout {
 		min-height: auto !important;
 		align-content: start;
-		padding-bottom: 4.5rem;
+		padding-bottom: calc(var(--app-mobile-nav, 72px) + env(safe-area-inset-bottom, 0px) + 1.25rem);
 	}
 
 	.home-hero .hero-display {

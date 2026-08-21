@@ -30,6 +30,7 @@ get_header();
 </main>
 <?php
 get_template_part( 'template-parts/global/sticky-conversion-bar' );
+get_template_part( 'template-parts/global/mobile-bottom-nav' );
 wp_footer();
 ?>
 </body>

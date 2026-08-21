@@ -1076,6 +1076,44 @@ function kc_cms_register_field_groups(): void {
 						],
 					],
 				],
+				[
+					'key'   => 'field_kc_nav_tab_bottom',
+					'label' => 'Mobiele bottom nav',
+					'type'  => 'tab',
+				],
+				[
+					'key'          => 'field_kc_mobile_bottom_nav',
+					'label'        => 'Bottom navigation items',
+					'name'         => 'mobile_bottom_nav_items',
+					'type'         => 'repeater',
+					'layout'       => 'table',
+					'button_label' => 'Item toevoegen',
+					'instructions' => 'React: Home / Keukens / Showroom / Afspraak. Leeg = defaults.',
+					'sub_fields'   => [
+						[ 'key' => 'field_kc_mbn_label', 'label' => 'Label', 'name' => 'label', 'type' => 'text' ],
+						[ 'key' => 'field_kc_mbn_url', 'label' => 'URL', 'name' => 'url', 'type' => 'url' ],
+						[
+							'key'           => 'field_kc_mbn_icon',
+							'label'         => 'Icon',
+							'name'          => 'icon',
+							'type'          => 'select',
+							'choices'       => [
+								'home'          => 'Home',
+								'shop'          => 'Shop',
+								'gallery'       => 'Gallery',
+								'calendar-tick' => 'Calendar',
+							],
+							'default_value' => 'home',
+						],
+						[
+							'key'   => 'field_kc_mbn_primary',
+							'label' => 'Primary',
+							'name'  => 'primary',
+							'type'  => 'true_false',
+							'ui'    => 1,
+						],
+					],
+				],
 			],
 			'location' => [
 				[
