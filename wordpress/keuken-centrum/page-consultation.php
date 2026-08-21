@@ -29,6 +29,7 @@ get_header();
 	?>
 </main>
 <?php
+get_template_part( 'template-parts/global/sticky-conversion-bar' );
 wp_footer();
 ?>
 </body>
