@@ -22,10 +22,10 @@ html:has(body.kc-contact-route) {
   border: 0;
 }
 
-/* React: min-h-[62vh] only — override shared brand hero 96vh / mobile 100svh */
+/* React: min-h-[62vh] desktop; mobile brand-page-hero uses max(43rem,100svh) from shared CSS */
 body.kc-contact-route .brand-page--contact .brand-page-hero--contact,
 body.kc-contact-route .brand-page--contact .brand-page-hero__content--contact {
-  min-height: 62vh !important;
+  min-height: 62vh;
 }
 .brand-page--contact .brand-page-hero__content--contact {
   display: flex;
@@ -36,7 +36,7 @@ body.kc-contact-route .brand-page--contact .brand-page-hero__content--contact {
   max-width: none;
   margin: 0 auto;
 }
-@media (max-width: 767px) {
+@media (min-width: 768px) {
   body.kc-contact-route .brand-page--contact .brand-page-hero--contact,
   body.kc-contact-route .brand-page--contact .brand-page-hero__content--contact {
     min-height: 62vh !important;
