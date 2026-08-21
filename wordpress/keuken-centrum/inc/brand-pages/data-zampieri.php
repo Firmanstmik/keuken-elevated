@@ -12,17 +12,27 @@ if (! defined('ABSPATH')) {
 /**
  * @param int $index Pool index.
  */
+/**
+ * Zampieri image pool.
+ *
+ * React remotes (all HTTP 404 / not in live SPA / not in Wayback / not in WP media):
+ * - cucina3.webp
+ * - fbef50e…-grey-kitchens-contemporary-kitchens.webp
+ * - unnamed.webp
+ *
+ * Verified local substitutes from the React repo (brand-scoped only — not dimension-matched guesses):
+ * - brands/zampieri-hero.webp      (src/assets/brands/zampieri-hero.webp)
+ * - brands/zampieri-brand-card.webp (public/brand-zampieri.webp)
+ *
+ * These are authentic Keuken-Centrum Zampieri brand stills, but NOT proven byte-equal to the missing remotes.
+ */
 function kc_zampieri_pool_img(int $index): string {
 	$pool = array_values(
 		array_filter(
 			[
 				kc_brand_hero('zampieri'),
-				kc_theme_img('hero/hero_img4.webp'),
-				kc_theme_img('collections/klassiek-base.webp'),
-				kc_theme_img('collection-warm.webp'),
-				kc_theme_img('experience/design.webp'),
-				kc_theme_img('showroom.webp'),
-				kc_theme_img('marmer-img.webp'),
+				kc_theme_img('brands/zampieri-brand-card.webp'),
+				kc_brand_hero('zampieri'),
 			]
 		)
 	);
@@ -156,7 +166,7 @@ function kc_zampieri_page_data(): array {
 					'span'  => 'medium',
 				],
 				[
-					'src'   => kc_zampieri_pool_img(3),
+					'src'   => kc_zampieri_pool_img(2),
 					'title' => __('Detail & afwerking', 'keuken-centrum'),
 					'tag'   => __('Maatwerk', 'keuken-centrum'),
 					'span'  => 'medium',
@@ -172,9 +182,9 @@ function kc_zampieri_page_data(): array {
 		],
 		'custom' => [
 			'eyebrow'        => __('Op maat', 'keuken-centrum'),
-			'titleBefore'    => __('Écht', 'keuken-centrum'),
+			'titleBefore'    => __('Écht ', 'keuken-centrum'),
 			'titleHighlight' => __('alles', 'keuken-centrum'),
-			'titleAfter'     => __('is mogelijk', 'keuken-centrum'),
+			'titleAfter'     => __(' is mogelijk', 'keuken-centrum'),
 			'body'           => __('Een uitdagende moderne designkeuken, een robuuste industrielook of de nostalgische intimiteit van een landelijk klassieke keuken: bij Keuken-Centrum Utrecht koopt u de keuken van uw dromen voor een verrassend betaalbare prijs.', 'keuken-centrum'),
 			'secondary'      => __('Wij leveren de kwaliteitskeuken van uw dromen die naadloos past bij uw portemonnee. Compleet met topmerk-apparatuur, zorgeloze garantie en uitstekende service, zonder opdringerig gedoe.', 'keuken-centrum'),
 		],

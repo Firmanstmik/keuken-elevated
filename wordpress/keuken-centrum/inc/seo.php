@@ -153,6 +153,22 @@ function kc_output_seo_tags(): void {
 			$image = (string) $series['heroImage'];
 		}
 	}
+	if ('' === $image && is_singular('kitchen_brand')) {
+		$slug = get_post_field('post_name', get_queried_object_id());
+		$map  = [
+			'leicht'    => 'kc_leicht_page_data',
+			'nobilia'   => 'kc_nobilia_page_data',
+			'ai-kuchen' => 'kc_ai_kuchen_page_data',
+			'zampieri'  => 'kc_zampieri_page_data',
+			'cucinesse' => 'kc_cucinesse_page_data',
+		];
+		if (is_string($slug) && isset($map[ $slug ]) && function_exists($map[ $slug ])) {
+			$data = call_user_func($map[ $slug ]);
+			if (is_array($data) && ! empty($data['hero']['image'])) {
+				$image = (string) $data['hero']['image'];
+			}
+		}
+	}
 	if ('' === $image && is_singular() && has_post_thumbnail()) {
 		$image = (string) get_the_post_thumbnail_url(null, 'full');
 	}
