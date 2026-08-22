@@ -502,10 +502,12 @@ $intro  = $data['intro'] ?? [];
 							<span><?php echo esc_html($phone); ?></span>
 						</p>
 					</div>
-					<a class="premium-pill-button premium-pill-button--xl" href="<?php echo esc_url((string) ($cta['href'] ?? home_url('/consultation/'))); ?>" data-reveal>
-						<span class="premium-pill-button__label"><?php echo esc_html((string) ($cta['button'] ?? '')); ?></span>
-						<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
-					</a>
+					<div class="brand-showroom-cta__action">
+						<a class="premium-pill-button premium-pill-button--xl" href="<?php echo esc_url((string) ($cta['href'] ?? home_url('/consultation/'))); ?>" data-reveal>
+							<span class="premium-pill-button__label"><?php echo esc_html((string) ($cta['button'] ?? '')); ?></span>
+							<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
+						</a>
+					</div>
 				</div>
 			</div>
 		</section>

@@ -2098,6 +2098,14 @@ html:has(body.kc-keukens-route) {
 @media (min-width: 640px) {
   .brand-showroom-cta__meta-divider { display: block; }
 }
+/* React BrandPage: shrink-0 pill + uppercase tracking → narrower copy wrap @768 */
+.brand-page:not(.brand-page--overview):not(.brand-page--leicht-series) .brand-showroom-cta__action {
+  flex-shrink: 0;
+}
+.brand-page:not(.brand-page--overview):not(.brand-page--leicht-series) .brand-showroom-cta .premium-pill-button {
+  flex-shrink: 0;
+  text-transform: uppercase;
+}
 
 /* ─── Keukens overview (KeukensOverviewPage.tsx) ─────────────── */
 /* React: min-h-[88vh], max-w-[52rem], clamp(3rem,6.5vw,5rem), pt-36 pb-24 (no md bump) */

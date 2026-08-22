@@ -11,7 +11,7 @@ import { fileURLToPath } from 'node:url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-const REACT = process.env.REACT_BASE || 'http://localhost:8086';
+const REACT = process.env.REACT_BASE || 'http://localhost:8080';
 const WP = process.env.WP_BASE || 'https://keuken-centrum.localclicks.nl';
 const CHROME =
   process.env.CHROME_PATH ||
@@ -32,7 +32,7 @@ const ALL_ROUTES = [
 
 const ALL_VIEWPORTS = [
   { name: '390', width: 390, height: 844, mobile: true },
-  { name: '430', width: 430, height: 932, mobile: true },
+  { name: '430', width: 430, height: 844, mobile: true },
   { name: '768', width: 768, height: 1024, mobile: true },
   { name: '1024', width: 1024, height: 768, mobile: false },
   { name: '1280', width: 1280, height: 800, mobile: false },
@@ -324,8 +324,34 @@ async function measurePageOnce(page, url, vp) {
     }
   });
   await page.waitForSelector('.brand-page-hero, h1', { timeout: 15000 }).catch(() => {});
+  // Reject mid-layout / pre-paint hero heights (classic false heroH:~80).
+  for (let i = 0; i < 25; i += 1) {
+    const heroH = await page.evaluate(() => {
+      const hero = document.querySelector('.brand-page-hero');
+      return hero ? hero.getBoundingClientRect().height : 0;
+    });
+    const fontsOk = await page.evaluate(
+      () =>
+        document.fonts.check('400 80px Fraunces') ||
+        document.fonts.check('80px Fraunces'),
+    );
+    if (fontsOk && heroH > 200) break;
+    await sleep(120);
+  }
   await sleep(200);
   const metrics = await page.evaluate(MEASURE_FN);
+  // One hard retry if hero still collapsed after settle.
+  if ((metrics?.hero?.h || 0) > 0 && (metrics?.hero?.h || 0) < 200) {
+    await page.reload({ waitUntil: 'domcontentloaded', timeout: 90000 });
+    await page.evaluate(async () => {
+      await document.fonts.load('400 80px Fraunces');
+      await document.fonts.load('italic 400 80px Fraunces');
+      await document.fonts.ready;
+    });
+    await sleep(800);
+    await page.evaluate(() => document.getElementById('wpadminbar')?.remove());
+    return { ok: true, url, metrics: await page.evaluate(MEASURE_FN) };
+  }
   return { ok: true, url, metrics };
 }
 
@@ -369,6 +395,7 @@ async function main() {
   const browser = await puppeteer.launch({
     executablePath: CHROME,
     headless: true,
+    protocolTimeout: 180000,
     args: [
       '--no-sandbox',
       '--disable-dev-shm-usage',
