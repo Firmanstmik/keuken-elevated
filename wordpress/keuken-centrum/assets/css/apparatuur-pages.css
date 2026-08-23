@@ -10,10 +10,16 @@ html:has(body.kc-apparatuur-route) {
   overflow-x: hidden;
 }
 
-/* React: min-h-[92vh], pt-36 pb-24 / md:pt-44 md:pb-28, max-w-[54rem] */
+/* React category: min-h-[92vh], pt-36 pb-24 / md:pt-44 md:pb-28.
+   Overview: min-h-[88vh], pt-36 pb-24 at all breakpoints (no md bump).
+   Must beat keukens-brand-pages.css mobile !important on .brand-page-hero__content. */
 .brand-page--apparatuur .brand-page-hero--apparatuur,
 .brand-page--apparatuur .brand-page-hero__content--apparatuur {
   min-height: 92vh;
+}
+.brand-page--apparatuur-overview .brand-page-hero--apparatuur-overview,
+.brand-page--apparatuur-overview .brand-page-hero__content--apparatuur-overview {
+  min-height: 88vh;
 }
 .brand-page--apparatuur .brand-page-hero__content--apparatuur {
   display: flex;
@@ -22,8 +28,12 @@ html:has(body.kc-apparatuur-route) {
   padding: 9rem 0 6rem;
 }
 @media (min-width: 768px) {
-  .brand-page--apparatuur .brand-page-hero__content--apparatuur {
+  .brand-page--apparatuur:not(.brand-page--apparatuur-overview) .brand-page-hero__content--apparatuur {
     padding: 11rem 0 7rem;
+  }
+  .brand-page--apparatuur-overview .brand-page-hero__content--apparatuur,
+  .brand-page--apparatuur-overview .brand-page-hero__content--apparatuur-overview {
+    padding: 9rem 0 6rem;
   }
 }
 
@@ -630,8 +640,17 @@ html:has(body.kc-apparatuur-route) {
 }
 
 @media (max-width: 767px) {
+  .brand-page--apparatuur .brand-page-hero,
+  .brand-page--apparatuur .brand-page-hero__content {
+    min-height: 92vh !important;
+  }
+  .brand-page--apparatuur-overview .brand-page-hero,
+  .brand-page--apparatuur-overview .brand-page-hero__content {
+    min-height: 88vh !important;
+  }
   .brand-page--apparatuur .brand-page-hero__content--apparatuur {
-    padding: 8rem 0 5rem;
+    padding-top: 9rem !important;
+    padding-bottom: 6rem !important;
   }
 }
 
