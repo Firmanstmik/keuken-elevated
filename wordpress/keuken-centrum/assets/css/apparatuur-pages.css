@@ -648,24 +648,18 @@ html:has(body.kc-apparatuur-route) {
 }
 
 /*
- * 390px category heroes: React wraps the "Apparatuur" crumb link onto two
- * lines (~44px / pill ~60px, Tailwind line-height 1.5). WP keeps a single
- * 18px line, so inner stack is ~25px short. Do NOT change the shared
- * Keukens min-height: max(43rem, 100svh) !important — a 92vh override
- * shrank heroes and increased deltas. Scope: failing 390 cells only
- * (430+ already PASS). em is vs .app-crumb 0.68rem → ~83px, matching React.
+ * React src/styles.pcss (hover:none and pointer:coarse):
+ *   :is(a, button, …) { min-height: 44px; }
+ * Puppeteer audits (and real phones) match that, so the crumb <a> is 44px
+ * and the pill is ~60px. WP theme.css never applies that global rule
+ * (Keukens-safe). Do NOT touch Keukens min-height: max(43rem, 100svh).
+ * Scope: 390px cells that still fail; 430+ already PASS.
  */
 @media (max-width: 429px) {
-  .brand-page--apparatuur-afzuigkappen .app-crumb,
-  .brand-page--apparatuur-fornuizen .app-crumb,
-  .brand-page--apparatuur-quooker .app-crumb {
-    line-height: 1.5;
-  }
   .brand-page--apparatuur-afzuigkappen .app-crumb a,
   .brand-page--apparatuur-fornuizen .app-crumb a,
   .brand-page--apparatuur-quooker .app-crumb a {
-    line-height: 1.5;
-    max-width: 7.6em;
+    min-height: 44px;
   }
 }
 
