@@ -37,6 +37,7 @@ require_once get_template_directory() . '/inc/worktop-pages/data-dekton.php';
 require_once get_template_directory() . '/inc/worktop-pages/data-neolith.php';
 require_once get_template_directory() . '/inc/worktop-pages/data-sensa.php';
 require_once get_template_directory() . '/inc/apparatuur-pages/helpers.php';
+require_once get_template_directory() . '/inc/apparatuur-pages/data.php';
 require_once get_template_directory() . '/inc/apparatuur-pages/data-kookplaten.php';
 require_once get_template_directory() . '/inc/aanbiedingen/helpers.php';
 require_once get_template_directory() . '/inc/aanbiedingen/data.php';

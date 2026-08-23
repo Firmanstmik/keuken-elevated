@@ -1,34 +1,26 @@
 <?php
 /**
- * Appliance archive template.
+ * Appliance archive — Apparatuur overview (React /apparatuur parity).
  *
  * @package Keuken_Centrum
  */
 
+$data = function_exists( 'kc_apparatuur_overview_data' ) ? kc_apparatuur_overview_data() : null;
+
+if ( is_array( $data ) && ! empty( $data['meta']['title'] ) ) {
+	add_filter(
+		'pre_get_document_title',
+		static function () use ( $data ) {
+			return (string) $data['meta']['title'];
+		},
+		99
+	);
+}
+
 get_header();
 ?>
-<main id="main-content" class="site-main">
-	<section class="page-hero">
-		<div class="site-shell">
-			<p class="section-eyebrow section-eyebrow--gold"><?php esc_html_e('Apparatuur', 'keuken-centrum'); ?></p>
-			<h1 class="page-title page-title--light"><?php post_type_archive_title(); ?></h1>
-			<p class="page-intro page-intro--light"><?php esc_html_e('Kies apparatuur die design, kookplezier en dagelijkse prestaties op hoog niveau samenbrengt.', 'keuken-centrum'); ?></p>
-		</div>
-	</section>
-
-	<section class="section-shell">
-		<div class="site-shell card-grid">
-			<?php if (have_posts()) : ?>
-				<?php while (have_posts()) : the_post(); ?>
-					<article class="resource-card">
-						<h2 class="resource-card__title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-						<p><?php echo esc_html(get_the_excerpt()); ?></p>
-						<a class="resource-card__link" href="<?php the_permalink(); ?>"><?php esc_html_e('Bekijk categorie', 'keuken-centrum'); ?></a>
-					</article>
-				<?php endwhile; ?>
-			<?php endif; ?>
-		</div>
-	</section>
+<main id="main-content" class="site-main site-main--apparatuur">
+	<?php get_template_part( 'template-parts/apparatuur/overview' ); ?>
 </main>
 <?php
 get_footer();
