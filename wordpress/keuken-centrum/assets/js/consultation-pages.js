@@ -75,6 +75,12 @@
 		showErrors();
 		if (!isValid()) return;
 
+		const errorBox = page.querySelector("[data-consultation-error]");
+		if (errorBox) {
+			errorBox.classList.remove("is-visible");
+			errorBox.textContent = "";
+		}
+
 		const payload = new FormData();
 		payload.append("action", "kc_consultation_submit");
 		payload.append("nonce", form.getAttribute("data-nonce") || "");
@@ -85,9 +91,28 @@
 		payload.append("budget", budgetSelect?.value || "");
 		payload.append("date", dateEl?.value || "");
 		payload.append("notes", (notesEl?.value || "").trim());
+		payload.append("company_website", form.querySelector('[name="company_website"]')?.value || "");
+
+		const storageKey = (window.kcConfigurator && window.kcConfigurator.storageKey) || "kc-master-config";
+		try {
+			payload.append("config_json", window.localStorage.getItem(storageKey) || "{}");
+		} catch (_e) {
+			payload.append("config_json", "{}");
+		}
 
 		submitBtn.disabled = true;
 		submitBtn.classList.remove("is-ready");
+
+		const fail = (message) => {
+			if (errorBox) {
+				errorBox.textContent =
+					message ||
+					"Uw aanvraag kon niet worden verzonden. Probeer het later opnieuw of bel de showroom.";
+				errorBox.classList.add("is-visible");
+			}
+			submitBtn.disabled = false;
+			syncSubmit();
+		};
 
 		try {
 			const res = await fetch(form.getAttribute("data-ajax-url") || "/wp-admin/admin-ajax.php", {
@@ -96,13 +121,13 @@
 				credentials: "same-origin",
 			});
 			const json = await res.json().catch(() => ({ success: false }));
-			if (!json?.success) {
-				submitBtn.disabled = false;
-				syncSubmit();
+			if (!json?.success || !json.data?.delivered) {
+				fail(json?.data?.message || "");
 				return;
 			}
 		} catch (_err) {
-			// Still show success UX if mail transport fails client-side — React also local-only.
+			fail("");
+			return;
 		}
 
 		const firstName = ((nameEl?.value || "").trim().split(/\s+/)[0]) || "";

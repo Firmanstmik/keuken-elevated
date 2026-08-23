@@ -1,0 +1,262 @@
+<?php
+/**
+ * Configurator catalog — port of src/lib/master-config-data.ts.
+ * Schema compatible with React localStorage key `kc-master-config`.
+ *
+ * @package Keuken_Centrum
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+/**
+ * @return array<string, mixed>
+ */
+function kc_configurator_catalog(): array {
+	$img = static function ( string $rel ): string {
+		return function_exists( 'kc_theme_img' ) ? (string) kc_theme_img( $rel ) : '';
+	};
+
+	return [
+		'brands'     => [
+			[
+				'id'          => 'leicht',
+				'name'        => 'LEICHT',
+				'tagline'     => 'Duitse precisie',
+				'description' => 'Sinds 1928 staat LEICHT voor Duits keukenambacht met compromisloze precisie en een tijdloos ontwerp.',
+				'origin'      => 'Duitsland',
+				'image'       => $img( 'brands/leicht-hero.webp' ),
+				'logo'        => $img( 'Leicht_Logo.webp' ) ?: $img( 'logos/Leicht_Logo.webp' ),
+				'accentColor' => '#8A7560',
+			],
+			[
+				'id'          => 'ai-kuchen',
+				'name'        => 'AI Küchen',
+				'tagline'     => 'Hedendaagse innovatie',
+				'description' => 'Waar intelligent ontwerp en modern wonen samenkomen. AI Küchen verkent de toekomst van keukenarchitectuur met vooruitstrevende innovatie.',
+				'origin'      => 'Duitsland',
+				'image'       => $img( 'brands/aikuchen-hero.webp' ),
+				'logo'        => $img( 'aiKuchen_Logo.webp' ) ?: $img( 'logos/aiKuchen_Logo.webp' ),
+				'accentColor' => '#6A7A6A',
+			],
+			[
+				'id'          => 'nobilia',
+				'name'        => 'Nobilia',
+				'tagline'     => 'Moderne functionaliteit',
+				'description' => "Een van Europa's sterkste namen in functioneel keukendesign. Nobilia verbindt Duitse precisie met eigentijds wonen voor ruimtes met blijvende kwaliteit.",
+				'origin'      => 'Duitsland',
+				'image'       => $img( 'brands/nobilia-hero.webp' ),
+				'logo'        => $img( 'Nobilia_Logo.webp' ) ?: $img( 'logos/Nobilia_Logo.webp' ),
+				'accentColor' => '#7A8090',
+			],
+			[
+				'id'          => 'zampieri',
+				'name'        => 'Zampieri',
+				'tagline'     => 'Italiaans design',
+				'description' => 'Ontstaan in de Venetoregio in Italie, transformeert Zampieri keukens tot ware designobjecten met uitzonderlijk Italiaans vakmanschap.',
+				'origin'      => 'Italie',
+				'image'       => $img( 'brands/zampieri-hero.webp' ),
+				'logo'        => $img( 'Zampieri_Logo.webp' ) ?: $img( 'logos/Zampieri_Logo.webp' ),
+				'accentColor' => '#8A6050',
+			],
+			[
+				'id'          => 'cucinesse',
+				'name'        => 'Cucinesse',
+				'tagline'     => 'Luxe leefconcepten',
+				'description' => 'Cucinesse ontwerpt zeer persoonlijke keukenomgevingen. Elk project is een verfijnd luxeconcept dat volledig op het leven van de klant is afgestemd.',
+				'origin'      => 'Belgie',
+				'image'       => $img( 'brands/cucinesse-hero.webp' ),
+				'logo'        => $img( 'Cucinesse_Logo_Official.png' ) ?: $img( 'logos/Cucinesse_Logo_Official.png' ),
+				'accentColor' => '#B08D57',
+			],
+		],
+		'styles'     => [
+			[
+				'id'          => 'modern',
+				'name'        => 'Modern',
+				'description' => 'Strakke lijnen, geintegreerde apparatuur en een monochroom palet bepalen deze architectonische benadering van keukendesign.',
+				'image'       => $img( 'configurator/style-modern.webp' ),
+				'base'        => $img( 'configurator/modern-base.webp' ),
+				'keywords'    => [ 'Minimalistisch', 'Greeploos', 'Architectonisch' ],
+			],
+			[
+				'id'          => 'klassiek',
+				'name'        => 'Klassiek',
+				'description' => 'Tijdloze elegantie door klassieke verhoudingen, verfijnde details en materialen die met de jaren alleen maar mooier worden.',
+				'image'       => $img( 'configurator/style-klassiek.webp' ),
+				'base'        => $img( 'configurator/klassiek-base.webp' ),
+				'keywords'    => [ 'Shaker', 'Traditioneel', 'Tijdloos' ],
+			],
+			[
+				'id'          => 'landelijk',
+				'name'        => 'Landelijk',
+				'description' => 'De warmte van natuurlijke materialen en ambachtelijke details uit het buitenleven, vertaald naar een verfijnde eigentijdse keuken.',
+				'image'       => $img( 'configurator/style-landelijk.webp' ),
+				'base'        => $img( 'configurator/landelijk-base.webp' ),
+				'keywords'    => [ 'Natuurlijk', 'Warm', 'Ambachtelijk' ],
+			],
+			[
+				'id'          => 'industrieel',
+				'name'        => 'Industrieel',
+				'description' => 'Ruwe stedelijke materialen krijgen een hoogwaardig designkarakter. Staal, beton en zichtbare structuren zorgen voor een krachtige uitstraling.',
+				'image'       => $img( 'configurator/style-industrieel.webp' ),
+				'base'        => $img( 'configurator/industrieel-base.webp' ),
+				'keywords'    => [ 'Rauw', 'Stedelijk', 'Krachtig' ],
+			],
+		],
+		'categories' => [
+			[
+				'id'      => 'front',
+				'label'   => 'Frontpaneel',
+				'options' => [
+					[ 'id' => 'matte-black', 'name' => 'Mat zwart', 'color' => '#1A1A1A', 'description' => 'Ultramat gelakt in diep zwart' ],
+					[ 'id' => 'cashmere', 'name' => 'Cashmere', 'color' => '#C4B49A', 'description' => 'Warme greige met zachte matte afwerking' ],
+					[ 'id' => 'taupe', 'name' => 'Taupe', 'color' => '#8B7D6B', 'description' => 'Verfijnde aardetint in middentoon' ],
+					[ 'id' => 'olive', 'name' => 'Olijf', 'color' => '#6B6B4A', 'description' => 'Gedempt botanisch groen' ],
+					[ 'id' => 'anthracite', 'name' => 'Antraciet', 'color' => '#3D3D3D', 'description' => 'Diep leigrijs in matte afwerking' ],
+					[ 'id' => 'cream', 'name' => 'Creme', 'color' => '#E8E0D0', 'description' => 'Zuivere zijdewitte afwerking' ],
+				],
+			],
+			[
+				'id'      => 'worktop',
+				'label'   => 'Werkblad',
+				'options' => [
+					[ 'id' => 'marble-white', 'name' => 'Wit marmer', 'color' => '#F2EFE8', 'description' => 'Calacatta Oro marmerplaat' ],
+					[ 'id' => 'marble-grey', 'name' => 'Grijs marmer', 'color' => '#B8B4AE', 'description' => 'Bardiglio Imperiale marmer' ],
+					[ 'id' => 'travertine', 'name' => 'Travertin', 'color' => '#C8B898', 'description' => 'Klassiek Romeins travertin' ],
+					[ 'id' => 'concrete', 'name' => 'Beton', 'color' => '#9A9690', 'description' => 'Gepolijst betonoppervlak' ],
+					[ 'id' => 'black-stone', 'name' => 'Zwarte steen', 'color' => '#2A2A2A', 'description' => 'Absolute Black graniet' ],
+					[ 'id' => 'oak', 'name' => 'Massief eiken', 'color' => '#B08050', 'description' => 'Frans eiken massief hout' ],
+				],
+			],
+			[
+				'id'      => 'sink',
+				'label'   => 'Spoelbak',
+				'options' => [
+					[ 'id' => 'sink-stainless', 'name' => 'RVS', 'color' => '#C8C8C8', 'description' => 'Blanco Andano in geborsteld staal' ],
+					[ 'id' => 'sink-white', 'name' => 'Keramisch wit', 'color' => '#F5F3EE', 'description' => 'Villeroy & Boch keramiek' ],
+					[ 'id' => 'sink-anthracite', 'name' => 'Antraciet', 'color' => '#3D3D3D', 'description' => 'Blanco Silgranit graniet' ],
+					[ 'id' => 'sink-copper', 'name' => 'Koper', 'color' => '#B87333', 'description' => 'Handgemaakte koperen kom' ],
+				],
+			],
+			[
+				'id'      => 'appliances',
+				'label'   => 'Apparatuur',
+				'options' => [
+					[ 'id' => 'miele', 'name' => 'Miele', 'color' => '#F0F0F0', 'description' => 'Miele Generation 7000 serie' ],
+					[ 'id' => 'gaggenau', 'name' => 'Gaggenau', 'color' => '#E0E0E0', 'description' => 'Gaggenau 400 serie' ],
+					[ 'id' => 'siemens', 'name' => 'Siemens', 'color' => '#D8D8D8', 'description' => 'Siemens iQ700 serie' ],
+					[ 'id' => 'neff', 'name' => 'NEFF', 'color' => '#D0D0D0', 'description' => 'NEFF Slide & Hide serie' ],
+				],
+			],
+			[
+				'id'      => 'quooker',
+				'label'   => 'Quooker',
+				'options' => [
+					[ 'id' => 'quooker-chrome', 'name' => 'Chroom', 'color' => '#D0D0D0', 'description' => 'Quooker Fusion Classic Chroom' ],
+					[ 'id' => 'quooker-black', 'name' => 'Mat zwart', 'color' => '#1A1A1A', 'description' => 'Quooker Fusion Classic Zwart' ],
+					[ 'id' => 'quooker-gold', 'name' => 'Goud', 'color' => '#B08D57', 'description' => 'Quooker Fusion Goud' ],
+					[ 'id' => 'quooker-none', 'name' => 'Geen', 'color' => '#F7F5F2', 'description' => 'Zonder Quooker-kraan' ],
+				],
+			],
+			[
+				'id'      => 'bora',
+				'label'   => 'BORA',
+				'options' => [
+					[ 'id' => 'bora-pro', 'name' => 'BORA Pro', 'color' => '#D0D0D0', 'description' => 'BORA Pro 3.0 integrated cooktop' ],
+					[ 'id' => 'bora-x', 'name' => 'BORA X BO', 'color' => '#1A1A1A', 'description' => 'BORA X BO pure induction' ],
+					[ 'id' => 'bora-basic', 'name' => 'BORA Basic', 'color' => '#C0C0C0', 'description' => 'BORA Basic extraction system' ],
+					[ 'id' => 'bora-none', 'name' => 'None', 'color' => '#F7F5F2', 'description' => 'Standard extraction hood' ],
+				],
+			],
+			[
+				'id'      => 'handles',
+				'label'   => 'Grepen',
+				'options' => [
+					[ 'id' => 'handle-none', 'name' => 'Greeploos', 'color' => '#E0E0E0', 'description' => 'Geintegreerd J-profiel' ],
+					[ 'id' => 'handle-brass', 'name' => 'Geborsteld messing', 'color' => '#B08D57', 'description' => 'Massieve messing staafgreep' ],
+					[ 'id' => 'handle-chrome', 'name' => 'Chroom', 'color' => '#D0D0D0', 'description' => 'Gepolijste chromen staafgreep' ],
+					[ 'id' => 'handle-black', 'name' => 'Mat zwart', 'color' => '#1A1A1A', 'description' => 'Zwart gepoedercoate greep' ],
+				],
+			],
+			[
+				'id'      => 'lighting',
+				'label'   => 'Verlichting',
+				'options' => [
+					[ 'id' => 'light-recessed', 'name' => 'Inbouw led', 'color' => '#F5F0E8', 'description' => 'Geintegreerde plafondspots' ],
+					[ 'id' => 'light-pendant', 'name' => 'Hanglamp', 'color' => '#C0A060', 'description' => 'Design hangverlichting' ],
+					[ 'id' => 'light-under', 'name' => 'Onderkast', 'color' => '#F0EAD8', 'description' => 'Warmwitte ledstrip' ],
+					[ 'id' => 'light-all', 'name' => 'Compleet systeem', 'color' => '#B08D57', 'description' => 'Volledig lichtconcept' ],
+				],
+			],
+		],
+		'budgetRanges' => [
+			'leicht'     => '€45,000 tot €85,000',
+			'ai-kuchen'  => '€35,000 tot €65,000',
+			'nobilia'    => '€25,000 tot €50,000',
+			'zampieri'   => '€55,000 tot €110,000',
+			'cucinesse'  => '€65,000 tot €150,000',
+		],
+		'hotspots'   => [
+			'modern'       => [
+				'front' => [ 'x' => '50%', 'y' => '78%' ],
+				'worktop' => [ 'x' => '58%', 'y' => '61%' ],
+				'sink' => [ 'x' => '31%', 'y' => '59%' ],
+				'appliances' => [ 'x' => '20%', 'y' => '48%' ],
+				'quooker' => [ 'x' => '33%', 'y' => '50%' ],
+				'bora' => [ 'x' => '49%', 'y' => '54%' ],
+				'handles' => [ 'x' => '83%', 'y' => '46%' ],
+				'lighting' => [ 'x' => '50%', 'y' => '7%' ],
+			],
+			'klassiek'     => [
+				'front' => [ 'x' => '48%', 'y' => '72%' ],
+				'worktop' => [ 'x' => '55%', 'y' => '60%' ],
+				'sink' => [ 'x' => '32%', 'y' => '58%' ],
+				'appliances' => [ 'x' => '18%', 'y' => '46%' ],
+				'quooker' => [ 'x' => '34%', 'y' => '50%' ],
+				'bora' => [ 'x' => '50%', 'y' => '54%' ],
+				'handles' => [ 'x' => '80%', 'y' => '48%' ],
+				'lighting' => [ 'x' => '50%', 'y' => '8%' ],
+			],
+			'landelijk'    => [
+				'front' => [ 'x' => '50%', 'y' => '74%' ],
+				'worktop' => [ 'x' => '56%', 'y' => '60%' ],
+				'sink' => [ 'x' => '30%', 'y' => '58%' ],
+				'appliances' => [ 'x' => '19%', 'y' => '47%' ],
+				'quooker' => [ 'x' => '33%', 'y' => '51%' ],
+				'bora' => [ 'x' => '48%', 'y' => '54%' ],
+				'handles' => [ 'x' => '82%', 'y' => '47%' ],
+				'lighting' => [ 'x' => '50%', 'y' => '8%' ],
+			],
+			'industrieel'  => [
+				'front' => [ 'x' => '50%', 'y' => '76%' ],
+				'worktop' => [ 'x' => '57%', 'y' => '61%' ],
+				'sink' => [ 'x' => '31%', 'y' => '59%' ],
+				'appliances' => [ 'x' => '20%', 'y' => '48%' ],
+				'quooker' => [ 'x' => '33%', 'y' => '50%' ],
+				'bora' => [ 'x' => '49%', 'y' => '54%' ],
+				'handles' => [ 'x' => '83%', 'y' => '46%' ],
+				'lighting' => [ 'x' => '50%', 'y' => '7%' ],
+			],
+		],
+		'seo'        => [
+			'brands'     => [
+				'title'       => 'Kies uw merk · Configurator | Keuken-Centrum Utrecht',
+				'description' => 'Start de keukenconfigurator: kies LEICHT, AI Küchen, Nobilia, Zampieri of Cucinesse en stel uw ontwerp samen.',
+			],
+			'style'      => [
+				'title'       => 'Kies uw stijl · Configurator | Keuken-Centrum Utrecht',
+				'description' => 'Kies Modern, Klassiek, Landelijk of Industrieel als architectonische taal voor uw keukenontwerp.',
+			],
+			'configure'  => [
+				'title'       => 'Stel uw keuken samen · Configurator | Keuken-Centrum Utrecht',
+				'description' => 'Kies fronten, werkblad, spoelbak, apparatuur en afwerking voor uw persoonlijke keukenvoorstel.',
+			],
+			'moodboard'  => [
+				'title'       => 'Uw keukenvoorstel · Configurator | Keuken-Centrum Utrecht',
+				'description' => 'Bekijk uw samengestelde keukenvoorstel en plan een ontwerpconsultatie in Utrecht.',
+			],
+		],
+	];
+}

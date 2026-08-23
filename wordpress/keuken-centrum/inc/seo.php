@@ -115,6 +115,14 @@ function kc_document_title_parts(array $parts): array {
 		}
 	}
 
+	if ( function_exists( 'kc_is_configurator_route' ) && kc_is_configurator_route() && function_exists( 'kc_configurator_seo_for_step' ) ) {
+		$seo = kc_configurator_seo_for_step( kc_configurator_current_step() );
+		if ( ! empty( $seo['title'] ) ) {
+			$parts['title'] = (string) $seo['title'];
+			unset( $parts['tagline'], $parts['site'] );
+		}
+	}
+
 	$series_slug = get_query_var('kc_leicht_series');
 	if (is_string($series_slug) && '' !== $series_slug && function_exists('kc_leicht_series_data')) {
 		$series = kc_leicht_series_data($series_slug);
@@ -213,6 +221,13 @@ function kc_get_meta_description(): string {
 		$data = kc_consultation_page_data();
 		if (is_array($data) && ! empty($data['meta']['description'])) {
 			return (string) $data['meta']['description'];
+		}
+	}
+
+	if ( function_exists( 'kc_is_configurator_route' ) && kc_is_configurator_route() && function_exists( 'kc_configurator_seo_for_step' ) ) {
+		$seo = kc_configurator_seo_for_step( kc_configurator_current_step() );
+		if ( ! empty( $seo['description'] ) ) {
+			return (string) $seo['description'];
 		}
 	}
 

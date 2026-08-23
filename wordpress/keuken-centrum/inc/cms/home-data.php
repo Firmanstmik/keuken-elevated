@@ -276,7 +276,7 @@ function kc_home_journey_data(): array {
 		'heading_em'  => kc_cms_text( 'home_journey_heading_em', 'option', '' ),
 		'lede'        => kc_cms_text( 'home_journey_lede', 'option', 'Onze digitale configurator brengt de volledige luxe showroomervaring naar uw scherm. Ontdek materialen, bekijk combinaties en ontvang een compleet ontwerpvoorstel nog voordat u onze showroom bezoekt.' ),
 		'cta_label'   => kc_cms_text( 'home_journey_cta_label', 'option', 'Start uw ontwerp' ),
-		'cta_url'     => kc_cms_text( 'home_journey_cta_url', 'option', kc_cms_configurator_url() ),
+		'cta_url'     => kc_cms_normalize_configurator_cta_url( kc_cms_text( 'home_journey_cta_url', 'option', '' ) ),
 	];
 }
 
@@ -319,7 +319,7 @@ function kc_home_showcase_data(): array {
 		'cta_label'           => kc_cms_text( 'home_showcase_cta_label', 'option', 'Plan showroombezoek' ),
 		'cta_url'             => kc_cms_text( 'home_showcase_cta_url', 'option', home_url( '/consultation/' ) ),
 		'cta_secondary_label' => kc_cms_text( 'home_showcase_cta_secondary_label', 'option', 'Bekijk merken' ),
-		'cta_secondary_url'   => kc_cms_text( 'home_showcase_cta_secondary_url', 'option', home_url( '/#brands' ) ),
+		'cta_secondary_url'   => kc_cms_normalize_configurator_cta_url( kc_cms_text( 'home_showcase_cta_secondary_url', 'option', '' ) ),
 		'highlights'          => $highlights,
 		'stats'               => $stats ?: $stats_default,
 	];
@@ -510,7 +510,7 @@ function kc_home_process_data(): array {
 		'heading_em' => kc_cms_text( 'home_process_heading_em', 'option', 'creatie' ),
 		'lede'       => kc_cms_text( 'home_process_lede', 'option', 'Vijf zorgvuldig uitgedachte stappen naar uw droomkeuken.' ),
 		'cta_label'  => kc_cms_text( 'home_process_cta_label', 'option', 'Start configurator' ),
-		'cta_url'    => kc_cms_text( 'home_process_cta_url', 'option', kc_cms_configurator_url() ),
+		'cta_url'    => kc_cms_normalize_configurator_cta_url( kc_cms_text( 'home_process_cta_url', 'option', '' ) ),
 		'steps'      => $steps ?: $steps_default,
 	];
 }
@@ -579,7 +579,7 @@ function kc_home_final_cta_data(): array {
 		'primary_label'    => kc_cms_text( 'home_final_cta_primary_label', 'option', 'Boek consultatie' ),
 		'primary_url'      => kc_cms_text( 'home_final_cta_primary_url', 'option', home_url( '/consultation/' ) ),
 		'secondary_label'  => kc_cms_text( 'home_final_cta_secondary_label', 'option', 'Start configurator' ),
-		'secondary_url'    => kc_cms_text( 'home_final_cta_secondary_url', 'option', kc_cms_configurator_url() ),
+		'secondary_url'    => kc_cms_normalize_configurator_cta_url( kc_cms_text( 'home_final_cta_secondary_url', 'option', '' ) ),
 		'actions'          => $actions ?: $actions_default,
 	];
 }

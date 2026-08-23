@@ -35,7 +35,7 @@ function kc_footer_data(): array {
 	);
 
 	$consultation = function_exists( 'kc_consultation_url' ) ? kc_consultation_url() : home_url( '/consultation/' );
-	$brands_url   = (string) kc_get_option( 'configurator_url', home_url( '/#brands' ) );
+	$brands_url   = function_exists( 'kc_cms_configurator_url' ) ? kc_cms_configurator_url() : home_url( '/brands/' );
 
 	$hours = kc_footer_hours_rows();
 

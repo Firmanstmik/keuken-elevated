@@ -81,13 +81,30 @@ function kc_cms_repeater( string $key ): array {
 }
 
 /**
- * Configurator URL — React SoT is `/brands` (SPA). WP route currently 404 until funnel exists.
- * Default: homepage partners anchor (working). Override via Algemeen → Configurator URL.
+ * Configurator entry — React SoT `/brands`. Canonical WP funnel: `/brands/`.
+ * Legacy `#brands` / Vercel URLs stored in ACF are remapped so CTAs are not fake funnel substitutes.
  */
+function kc_cms_normalize_configurator_cta_url( string $url ): string {
+	$canonical = home_url( '/brands/' );
+	if ( '' === $url ) {
+		return $canonical;
+	}
+
+	$fragment = (string) wp_parse_url( $url, PHP_URL_FRAGMENT );
+	$path     = (string) wp_parse_url( $url, PHP_URL_PATH );
+	$host     = (string) wp_parse_url( $url, PHP_URL_HOST );
+	if ( 'brands' === $fragment || false !== strpos( $url, '/#brands' ) ) {
+		return $canonical;
+	}
+	if ( ( '/brands' === $path || '/brands/' === $path ) && false !== strpos( $host, 'vercel' ) ) {
+		return $canonical;
+	}
+
+	return $url;
+}
+
 function kc_cms_configurator_url(): string {
-	$default = home_url( '/#brands' );
-	$url     = kc_cms_text( 'configurator_url', 'option', $default );
-	return $url !== '' ? $url : $default;
+	return kc_cms_normalize_configurator_cta_url( kc_cms_text( 'configurator_url', 'option', '' ) );
 }
 
 /**

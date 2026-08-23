@@ -126,6 +126,11 @@ $success_lede_tpl = (string) ( $success['lede'] ?? 'Dank u, {name}. Uw persoonli
 								data-nonce="<?php echo esc_attr( $nonce ); ?>"
 								novalidate
 							>
+								<p class="consultation-form__error" data-consultation-error role="alert"></p>
+								<div class="consultation-hp" aria-hidden="true">
+									<label for="consultation-company"><?php esc_html_e( 'Website', 'keuken-centrum' ); ?></label>
+									<input id="consultation-company" type="text" name="company_website" value="" tabindex="-1" autocomplete="off">
+								</div>
 								<div class="consultation-field">
 									<label for="consultation-name">
 										<?php esc_html_e( 'Volledige naam', 'keuken-centrum' ); ?>

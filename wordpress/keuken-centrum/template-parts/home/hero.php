@@ -17,7 +17,7 @@ $args = wp_parse_args(
 		'cta_primary_label'   => 'Plan Showroombezoek',
 		'cta_primary_url'     => home_url('/consultation/'),
 		'cta_secondary_label' => 'Start configurator',
-		'cta_secondary_url'   => function_exists('kc_cms_configurator_url') ? kc_cms_configurator_url() : home_url('/#brands'),
+		'cta_secondary_url'   => function_exists('kc_cms_configurator_url') ? kc_cms_configurator_url() : home_url('/brands/'),
 		'image_url'           => '',
 		'slides'              => [],
 	]

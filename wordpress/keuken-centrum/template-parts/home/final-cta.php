@@ -42,7 +42,7 @@ $final_heading_em = $final['heading_em'] ?? 'droomkeuken?';
 $final_primary_label = $final['primary_label'] ?? 'Plan showroombezoek';
 $final_primary_url = $final['primary_url'] ?? home_url( '/consultation/' );
 $final_secondary_label = $final['secondary_label'] ?? 'Start configurator';
-$final_secondary_url = $final['secondary_url'] ?? ( function_exists( 'kc_cms_configurator_url' ) ? kc_cms_configurator_url() : home_url( '/#brands' ) );
+$final_secondary_url = $final['secondary_url'] ?? ( function_exists( 'kc_cms_configurator_url' ) ? kc_cms_configurator_url() : home_url( '/brands/' ) );
 
 $cta_icon = static function (string $icon): string {
 	switch ($icon) {

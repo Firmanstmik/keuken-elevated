@@ -37,7 +37,9 @@ $hero_args = [
 	'cta_primary_label'   => kc_get_field_value('hero_cta_primary_label', $page_id, kc_get_option('hero_cta_primary_label_default', 'Plan Showroombezoek')),
 	'cta_primary_url'     => kc_get_field_value('hero_cta_primary_url', $page_id, kc_get_option('hero_cta_primary_url_default', home_url('/consultation/'))),
 	'cta_secondary_label' => kc_get_field_value('hero_cta_secondary_label', $page_id, 'Start configurator'),
-	'cta_secondary_url'   => kc_get_field_value('hero_cta_secondary_url', $page_id, function_exists('kc_cms_configurator_url') ? kc_cms_configurator_url() : home_url('/#brands')),
+	'cta_secondary_url'   => function_exists( 'kc_cms_normalize_configurator_cta_url' )
+		? kc_cms_normalize_configurator_cta_url( (string) kc_get_field_value( 'hero_cta_secondary_url', $page_id, '' ) )
+		: home_url( '/brands/' ),
 	'image_url'           => $hero_image_url,
 	'slides'              => kc_default_hero_slides(),
 ];

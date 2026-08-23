@@ -54,6 +54,8 @@ require_once get_template_directory() . '/inc/showroom/data.php';
 require_once get_template_directory() . '/inc/consultation/helpers.php';
 require_once get_template_directory() . '/inc/consultation/data.php';
 require_once get_template_directory() . '/inc/consultation/form.php';
+require_once get_template_directory() . '/inc/configurator/data.php';
+require_once get_template_directory() . '/inc/configurator/helpers.php';
 
 
 if (! defined('KC_THEME_VERSION')) {
@@ -276,6 +278,35 @@ function kc_enqueue_assets(): void {
 		);
 	}
 
+	$needs_configurator = ( function_exists( 'kc_is_configurator_route' ) && kc_is_configurator_route() )
+		|| ( function_exists( 'kc_is_consultation_route' ) && kc_is_consultation_route() );
+
+	if ( $needs_configurator ) {
+		$cfg_css_rel  = 'assets/css/configurator-funnel.css';
+		$cfg_css_path = get_theme_file_path( $cfg_css_rel );
+		$cfg_css_mtime = file_exists( $cfg_css_path ) ? (string) filemtime( $cfg_css_path ) : '0';
+		wp_enqueue_style(
+			'keuken-centrum-configurator',
+			kc_asset( $cfg_css_rel ),
+			[ 'keuken-centrum-theme' ],
+			$style_ver . '.' . $cfg_css_mtime
+		);
+
+		$cfg_js_rel  = 'assets/js/configurator-funnel.js';
+		$cfg_js_path = get_theme_file_path( $cfg_js_rel );
+		$cfg_js_mtime = file_exists( $cfg_js_path ) ? (string) filemtime( $cfg_js_path ) : '0';
+		wp_enqueue_script(
+			'keuken-centrum-configurator',
+			kc_asset( $cfg_js_rel ),
+			[ 'keuken-centrum-theme' ],
+			$style_ver . '.' . $cfg_js_mtime,
+			true
+		);
+		if ( function_exists( 'kc_configurator_js_payload' ) ) {
+			wp_localize_script( 'keuken-centrum-configurator', 'kcConfigurator', kc_configurator_js_payload() );
+		}
+	}
+
 	if ( function_exists( 'kc_is_consultation_route' ) && kc_is_consultation_route() ) {
 		$consult_css_rel  = 'assets/css/consultation-pages.css';
 		$consult_css_path = get_theme_file_path( $consult_css_rel );
@@ -293,7 +324,7 @@ function kc_enqueue_assets(): void {
 		wp_enqueue_script(
 			'keuken-centrum-consultation',
 			kc_asset( $consult_js_rel ),
-			[ 'keuken-centrum-theme' ],
+			[ 'keuken-centrum-theme', 'keuken-centrum-configurator' ],
 			$style_ver . '.' . $consult_js_mtime,
 			true
 		);
@@ -332,7 +363,7 @@ add_filter('wp_resource_hints', 'kc_resource_hints', 10, 2);
  * Keep theme CSS/JS out of LiteSpeed combine/UCSS so homepage parity rules are not stripped.
  */
 function kc_litespeed_exclude_theme_assets(string $html, string $handle): string {
-	if ( ! in_array( $handle, [ 'keuken-centrum-fonts', 'keuken-centrum-theme', 'keuken-centrum-sticky-conversion', 'keuken-centrum-footer-cms', 'keuken-centrum-mobile-shell', 'keuken-centrum-home-w3', 'keuken-centrum-legal', 'keuken-centrum-keukens-brand', 'keuken-centrum-keukenbladen', 'keuken-centrum-apparatuur', 'keuken-centrum-aanbiedingen', 'keuken-centrum-contact', 'keuken-centrum-showroom', 'keuken-centrum-consultation' ], true ) || str_contains( $html, 'data-no-optimize' ) ) {
+	if ( ! in_array( $handle, [ 'keuken-centrum-fonts', 'keuken-centrum-theme', 'keuken-centrum-sticky-conversion', 'keuken-centrum-footer-cms', 'keuken-centrum-mobile-shell', 'keuken-centrum-home-w3', 'keuken-centrum-legal', 'keuken-centrum-keukens-brand', 'keuken-centrum-keukenbladen', 'keuken-centrum-apparatuur', 'keuken-centrum-aanbiedingen', 'keuken-centrum-contact', 'keuken-centrum-showroom', 'keuken-centrum-consultation', 'keuken-centrum-configurator' ], true ) || str_contains( $html, 'data-no-optimize' ) ) {
 		return $html;
 	}
 
@@ -368,6 +399,9 @@ function kc_keukens_body_class(array $classes): array {
 	}
 	if (function_exists('kc_is_consultation_route') && kc_is_consultation_route()) {
 		$classes[] = 'kc-consultation-route';
+	}
+	if ( function_exists( 'kc_is_configurator_route' ) && kc_is_configurator_route() ) {
+		$classes[] = 'kc-configurator-route';
 	}
 	if ( is_page_template( 'page-legal.php' ) || is_page( [ 'privacybeleid', 'cookiebeleid', 'algemene-voorwaarden' ] ) ) {
 		$classes[] = 'kc-legal-page';

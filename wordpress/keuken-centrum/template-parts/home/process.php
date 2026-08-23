@@ -6,7 +6,7 @@
  */
 
 $process   = function_exists( 'kc_home_process_data' ) ? kc_home_process_data() : null;
-$design_url = $process['cta_url'] ?? ( function_exists( 'kc_cms_configurator_url' ) ? kc_cms_configurator_url() : home_url( '/#brands' ) );
+$design_url = $process['cta_url'] ?? ( function_exists( 'kc_cms_configurator_url' ) ? kc_cms_configurator_url() : home_url( '/brands/' ) );
 $steps      = $process['steps'] ?? [
 	[
 		'number' => '01',
