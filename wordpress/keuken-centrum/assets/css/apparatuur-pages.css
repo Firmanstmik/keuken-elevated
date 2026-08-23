@@ -645,14 +645,6 @@ html:has(body.kc-apparatuur-route) {
     padding-top: 9rem !important;
     padding-bottom: 6rem !important;
   }
-  /*
-   * Keukens locks min-height to 100svh. React category heroes grow with crumb + copy
-   * (~860px @390). Overview stays on the shared 100svh lock (already 8/8 PASS).
-   */
-  .brand-page--apparatuur:not(.brand-page--apparatuur-overview) .brand-page-hero,
-  .brand-page--apparatuur:not(.brand-page--apparatuur-overview) .brand-page-hero__content {
-    min-height: 92vh !important;
-  }
 }
 
 /* Overview — React min-h-[88vh] */
