@@ -640,15 +640,8 @@ html:has(body.kc-apparatuur-route) {
 }
 
 @media (max-width: 767px) {
-  .brand-page--apparatuur .brand-page-hero,
-  .brand-page--apparatuur .brand-page-hero__content {
-    min-height: 92vh !important;
-  }
-  .brand-page--apparatuur-overview .brand-page-hero,
-  .brand-page--apparatuur-overview .brand-page-hero__content {
-    min-height: 88vh !important;
-  }
-  .brand-page--apparatuur .brand-page-hero__content--apparatuur {
+  /* 4 classes + !important beats keukens 3-class mobile pad (7rem / 4.5rem). */
+  .brand-page.brand-page--apparatuur .brand-page-hero__content.brand-page-hero__content--apparatuur {
     padding-top: 9rem !important;
     padding-bottom: 6rem !important;
   }
