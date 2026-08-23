@@ -647,6 +647,28 @@ html:has(body.kc-apparatuur-route) {
   }
 }
 
+/*
+ * 390px category heroes: React wraps the "Apparatuur" crumb link onto two
+ * lines (~44px / pill ~60px, Tailwind line-height 1.5). WP keeps a single
+ * 18px line, so inner stack is ~25px short. Do NOT change the shared
+ * Keukens min-height: max(43rem, 100svh) !important — a 92vh override
+ * shrank heroes and increased deltas. Scope: failing 390 cells only
+ * (430+ already PASS). em is vs .app-crumb 0.68rem → ~83px, matching React.
+ */
+@media (max-width: 429px) {
+  .brand-page--apparatuur-afzuigkappen .app-crumb,
+  .brand-page--apparatuur-fornuizen .app-crumb,
+  .brand-page--apparatuur-quooker .app-crumb {
+    line-height: 1.5;
+  }
+  .brand-page--apparatuur-afzuigkappen .app-crumb a,
+  .brand-page--apparatuur-fornuizen .app-crumb a,
+  .brand-page--apparatuur-quooker .app-crumb a {
+    line-height: 1.5;
+    max-width: 7.6em;
+  }
+}
+
 /* Overview — React min-h-[88vh] */
 .brand-page--apparatuur-overview .brand-page-hero--apparatuur-overview,
 .brand-page--apparatuur-overview .brand-page-hero__content--apparatuur-overview {
