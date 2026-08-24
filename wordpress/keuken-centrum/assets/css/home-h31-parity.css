@@ -76,34 +76,40 @@ body.kc-home .premium-showcase--react .premium-showcase__main video {
 	object-fit: cover;
 }
 
+/*
+ * Mobile accent strip: React SmallVideo is absolute-inset with no intrinsic
+ * height below sm — the row collapses to ~0. W3 already collapses the stack;
+ * do NOT re-inflate with min-height (that caused showroom +121 @390).
+ */
 @media (max-width: 639px) {
 	body.kc-home .premium-showcase--react .premium-showcase__stack {
 		display: flex;
 		flex-direction: row;
 		width: 100%;
 		max-width: none;
-		min-height: 8rem;
-		height: auto;
-		overflow: visible;
+		min-height: 0;
+		height: 0;
+		overflow: hidden;
 		margin: 0;
 		padding: 0;
-		gap: 0.65rem;
+		gap: 0;
 		border: 0;
-		opacity: 1;
+		opacity: 0;
+		pointer-events: none;
 	}
 
 	body.kc-home .premium-showcase--react .premium-showcase__thumb {
 		flex: 1 1 0;
-		min-height: 8rem;
-		height: auto;
-		opacity: 0.88;
-		pointer-events: auto;
-		border: 1px solid rgba(23, 25, 28, 0.08);
+		min-height: 0;
+		height: 0;
+		opacity: 0;
+		pointer-events: none;
+		border: 0;
 	}
 
 	body.kc-home .premium-showcase--react .premium-showcase__gallery-frame {
 		flex-direction: column;
-		gap: 0.75rem;
+		gap: 0;
 	}
 }
 
@@ -404,6 +410,24 @@ body.kc-home .site-footer--react .site-footer__showroom--react {
 		grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
 		gap: 2rem;
 		align-items: start;
+		margin-bottom: 2.5rem; /* React mb-10 */
+	}
+
+	/*
+	 * Experience cards: React lg:grid-rows-[245px_295px] gap-5.
+	 * Theme used 1fr 1fr + min-height 520 → section ~−44 desktop.
+	 */
+	body.kc-home .experience-section--react .experience-grid {
+		grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
+		grid-template-rows: 245px 295px;
+		gap: 1.25rem;
+		min-height: 0;
+	}
+
+	body.kc-home .experience-section--react .experience-card,
+	body.kc-home .experience-section--react .experience-card--featured {
+		min-height: 0;
+		height: 100%;
 	}
 }
 
@@ -466,4 +490,73 @@ body.kc-home .process-timeline-scene--react .process-timeline-cta {
 /* Footer bottom: React pt-7 pb-8 — close remaining −33 desktop delta */
 body.kc-home .site-footer--react .site-footer__bottom--react {
 	padding: 1.75rem 0 2rem;
+}
+
+/*
+ * Consultation form: React md:grid-cols-2 / md:p-9 from 768.
+ * Theme collapses lead-form grid + shrinks card pad at max-width 900
+ * → consultation @768 was ~+290 (stacked fields).
+ */
+@media (min-width: 768px) {
+	body.kc-home #consultation .consultation-lead-form__grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	body.kc-home #consultation .consultation-form-card--react {
+		padding: 2.25rem; /* React md:p-9 */
+	}
+
+	body.kc-home #consultation .consultation-panel__atelier {
+		padding: 2rem; /* React p-8 — theme shrinks to 1.5rem ≤900 */
+	}
+
+	body.kc-home #consultation .consultation-lead-form__submit {
+		flex-direction: row;
+		align-items: center;
+	}
+
+	body.kc-home #consultation .consultation-lead-form__stats {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+}
+
+@media (max-width: 767px) {
+	body.kc-home #consultation .consultation-lead-form__grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* Process @768: React md:mb-28 overshoots when applied fully; keep 5rem (mb-20).
+ * Residual +70 comes from step cards — leave for next probe pass. */
+
+/* Reviews desktop: trim slight +36 overshoot (tol 28) */
+@media (min-width: 1024px) {
+	body.kc-home #reviews .testimonials-section__inner {
+		padding-top: 7.5rem; /* was 8rem / React md:pt-32 — −8px */
+	}
+}
+
+/* Reviews mobile marquees: React taller — restore breathing room */
+@media (max-width: 1023px) {
+	body.kc-home #reviews .testimonials-mobile-marquees {
+		margin-top: 3.5rem; /* theme 3rem */
+	}
+
+	body.kc-home #reviews .testimonials-mobile-marquee-row + .testimonials-mobile-marquee-row {
+		margin-top: 1.25rem;
+	}
+}
+
+/* Final CTA @1024: React heading mb-20 — theme sometimes tighter/looser */
+@media (min-width: 1024px) {
+	body.kc-home .final-cta-react--v2 .final-cta-react-heading--v2 {
+		margin-bottom: 5rem;
+	}
+}
+
+/* Footer grid gap: React md:gap-12 (3rem), not 2.5rem */
+@media (min-width: 768px) and (max-width: 1023px) {
+	body.kc-home .site-footer--react .site-footer__grid--react {
+		gap: 3rem;
+	}
 }
