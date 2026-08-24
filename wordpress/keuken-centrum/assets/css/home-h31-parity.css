@@ -423,8 +423,22 @@ body.kc-home .collections-section--react .collections-gallery__viewport {
 body.kc-home .collections-section--react .collections-gallery__slide {
 	padding-top: 0.5rem; /* React pt-2 */
 	padding-bottom: 2rem; /* React pb-8 */
-	height: auto;
-	min-height: 450px;
+}
+
+@media (max-width: 767px) {
+	body.kc-home .collections-section--react .collections-gallery {
+		margin-top: 2rem;
+	}
+
+	body.kc-home .collections-section--react .collections-gallery__viewport {
+		padding-top: 0.5rem;
+		padding-bottom: 2.75rem;
+	}
+
+	body.kc-home .collections-section--react .collections-gallery__slide {
+		padding: 0.2rem 0 0.8rem;
+		height: 420px;
+	}
 }
 
 /*
@@ -439,28 +453,13 @@ body.kc-home .process-timeline-scene--react .process-timeline-cta {
 	margin-top: 5rem; /* React mt-20 */
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
 	body.kc-home .process-timeline-scene--react .process-timeline-heading--react {
-		margin-bottom: 7rem; /* React md:mb-28 */
+		margin-bottom: 7rem;
 	}
 
 	body.kc-home .process-timeline-scene--react .process-timeline-cta {
-		margin-top: 7rem; /* React md:mt-28 */
-	}
-}
-
-/* Consultation panel: React mt-14; form card md:p-9 */
-body.kc-home #consultation .consultation-panel--react {
-	margin-top: 3.5rem; /* React mt-14 */
-}
-
-body.kc-home #consultation .consultation-form-card--react {
-	padding: 2.25rem; /* React md:p-9 */
-}
-
-@media (max-width: 767px) {
-	body.kc-home #consultation .consultation-form-card--react {
-		padding: 1.75rem; /* React p-7 */
+		margin-top: 7rem;
 	}
 }
 
