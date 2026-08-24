@@ -87,8 +87,8 @@ body.kc-home .premium-showcase--react .premium-showcase__main video {
 		flex-direction: row;
 		width: 100%;
 		max-width: none;
-		min-height: 0;
-		height: 0;
+		min-height: 0 !important;
+		height: 0 !important;
 		overflow: hidden;
 		margin: 0;
 		padding: 0;
@@ -369,6 +369,7 @@ body.kc-home .site-footer--react .site-footer__hero {
 		gap: 2.5rem;
 		padding: 5rem 0 4rem; /* React pt-20 pb-16 */
 		border-top: 1px solid rgba(139, 197, 64, 0.16);
+		align-items: stretch; /* React md:grid stretches row heights */
 	}
 }
 
@@ -376,6 +377,7 @@ body.kc-home .site-footer--react .site-footer__hero {
 @media (min-width: 1024px) {
 	body.kc-home .site-footer--react .site-footer__grid--react {
 		grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr) minmax(0, 0.9fr) minmax(0, 1.4fr);
+		align-items: stretch;
 	}
 }
 
@@ -385,9 +387,8 @@ body.kc-home .site-footer--react .site-footer__hero {
 	}
 }
 
-body.kc-home .site-footer--react .site-footer__showroom,
-body.kc-home .site-footer--react .site-footer__showroom--react {
-	height: 200px; /* React h-[200px] */
+body.kc-home .site-footer--react .site-footer__showroom:not(.site-footer__showroom--react) {
+	height: 200px;
 	min-height: 200px;
 	max-height: 200px;
 }
@@ -414,18 +415,32 @@ body.kc-home .site-footer--react .site-footer__showroom--react {
 	}
 
 	/*
-	 * Experience cards: React lg:grid-rows-[245px_295px] gap-5.
-	 * Theme used 1fr 1fr + min-height 520 → section ~−44 desktop.
+	 * Experience cards: React lg 12-col grid rows 245/295 — use theme placement,
+	 * not the simplified 2-col override (that caused ~−44 @1024).
 	 */
 	body.kc-home .experience-section--react .experience-grid {
-		grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
+		display: grid;
+		grid-template-columns: repeat(12, minmax(0, 1fr));
 		grid-template-rows: 245px 295px;
 		gap: 1.25rem;
 		min-height: 0;
 	}
 
-	body.kc-home .experience-section--react .experience-card,
 	body.kc-home .experience-section--react .experience-card--featured {
+		grid-column: span 7;
+		grid-row: 1 / span 2;
+		min-height: 0;
+		height: 100%;
+	}
+
+	body.kc-home .experience-section--react .experience-grid > .experience-card:not(.experience-card--featured),
+	body.kc-home .experience-section--react .experience-grid > article:not(.experience-card--featured) {
+		grid-column: span 5;
+		min-height: 0;
+		height: 100%;
+	}
+
+	body.kc-home .experience-section--react .experience-card {
 		min-height: 0;
 		height: 100%;
 	}
@@ -532,18 +547,42 @@ body.kc-home .site-footer--react .site-footer__bottom--react {
 /* Reviews desktop: trim slight +36 overshoot (tol 28) */
 @media (min-width: 1024px) {
 	body.kc-home #reviews .testimonials-section__inner {
-		padding-top: 7.5rem; /* was 8rem / React md:pt-32 — −8px */
+		padding-top: 5.75rem;
+	}
+
+	body.kc-home #reviews .testimonials-footer-cta {
+		margin-top: 1.5rem;
+		padding-top: 1.5rem;
+		padding-bottom: 8rem;
 	}
 }
 
-/* Reviews mobile marquees: React taller — restore breathing room */
+/* Reviews mobile/tablet: React triptych shell pt-20 + marquee gap-6 + footer CTA rhythm */
 @media (max-width: 1023px) {
+	body.kc-home #reviews .testimonials-triptych {
+		padding-top: 5rem;
+	}
+
 	body.kc-home #reviews .testimonials-mobile-marquees {
 		margin-top: 3.5rem; /* theme 3rem */
+		padding-top: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
 	}
 
 	body.kc-home #reviews .testimonials-mobile-marquee-row + .testimonials-mobile-marquee-row {
-		margin-top: 1.25rem;
+		margin-top: 0;
+	}
+
+	body.kc-home #reviews .testimonial-card--mobile {
+		min-height: 18.5rem;
+	}
+
+	body.kc-home #reviews .testimonials-footer-cta {
+		margin-top: 1.5rem;
+		padding-top: 1.5rem;
+		padding-bottom: 5rem;
 	}
 }
 
@@ -664,7 +703,7 @@ body.kc-home .site-footer--react .site-footer__heading--spaced {
  */
 body.kc-home .site-footer--react .site-footer__showroom--react {
 	display: flex;
-	flex-direction: column;
+	flex-wrap: wrap;
 	height: auto;
 	min-height: 0;
 	max-height: none;
@@ -678,12 +717,15 @@ body.kc-home .site-footer--react .site-footer__showroom--react img {
 	display: block;
 	width: 100%;
 	height: 200px;
+	flex: 1 0 100%;
 	object-fit: cover;
 }
 
+/* Dual CTA strip — React ShowroomCard single row, two cells */
 body.kc-home .site-footer--react .site-footer__showroom--react::after {
 	content: "Bekijk showroom";
 	display: flex;
+	flex: 1 1 50%;
 	align-items: center;
 	justify-content: center;
 	min-height: 2.75rem;
@@ -697,6 +739,90 @@ body.kc-home .site-footer--react .site-footer__showroom--react::after {
 	text-transform: uppercase;
 }
 
+body.kc-home .site-footer--react .site-footer__showroom--react > span {
+	display: flex;
+	flex: 1 1 50%;
+	align-items: center;
+	justify-content: center;
+	min-height: 2.75rem;
+	margin: 0;
+	padding: 0.75rem 1rem;
+	background: rgba(8, 28, 38, 0.96);
+	border-top: 1px solid rgba(139, 197, 64, 0.1);
+	border-left: 1px solid rgba(255, 255, 255, 0.07);
+	color: rgba(245, 242, 236, 0.6);
+	font-size: 0.66rem;
+	font-weight: 500;
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+}
+
+body.kc-home .site-footer--react .site-footer__showroom--react > span small,
+body.kc-home .site-footer--react .site-footer__showroom--react > span b {
+	display: none;
+}
+
+body.kc-home .site-footer--react .site-footer__showroom--react > span::before {
+	content: "Route plannen";
+}
+
+/* React SocialRow — h-10 icon tiles */
+body.kc-home .site-footer--react .site-footer__socials--react {
+	gap: 0.75rem;
+}
+
+body.kc-home .site-footer--react .site-footer__socials--react a {
+	gap: 0.875rem;
+}
+
+body.kc-home .site-footer--react .site-footer__social-icon {
+	display: grid;
+	place-items: center;
+	flex: 0 0 2.5rem;
+	width: 2.5rem;
+	height: 2.5rem;
+	border-radius: 12px;
+}
+
+body.kc-home .site-footer--react .site-footer__social-icon svg {
+	width: 1.1rem;
+	height: 1.1rem;
+}
+
+/* Footer hero + bottom — close residual height gaps */
+@media (min-width: 768px) {
+	body.kc-home .site-footer--react .site-footer__hero {
+		padding-top: 7.5rem;
+		padding-bottom: 6.5rem;
+	}
+
+	body.kc-home .site-footer--react .site-footer__hero-actions {
+		margin-top: 2.75rem;
+	}
+
+	body.kc-home .site-footer--react .site-footer__bottom--react {
+		gap: 1.5rem;
+		padding-top: 1.75rem;
+		padding-bottom: 2rem;
+		min-height: 9.5rem;
+		align-items: center;
+	}
+}
+
+body.kc-home .site-footer--react .site-footer__hours {
+	margin-top: 0;
+	padding-top: 1.25rem;
+	border-top: 1px solid rgba(139, 197, 64, 0.14);
+}
+
+body.kc-home .site-footer--react .site-footer__contact-list--react {
+	margin-bottom: 1.25rem;
+}
+
+body.kc-home .site-footer--react .site-footer__contact-list--react li + li {
+	margin-top: 0;
+}
+
 /* Consultation: contact strip removed — restore ~md rhythm without the strip */
 @media (min-width: 768px) {
 	body.kc-home #consultation .consultation-panel--react {
@@ -708,8 +834,35 @@ body.kc-home .site-footer--react .site-footer__showroom--react::after {
 	}
 }
 
+/* Process @768: tighten vertical step rhythm (residual +70) */
+@media (min-width: 768px) and (max-width: 1023px) {
+	body.kc-home .process-timeline-scene--react .process-timeline-step {
+		padding-bottom: 1.35rem;
+	}
+
+	body.kc-home .process-timeline-scene--react .process-timeline-step h3 {
+		margin-top: 0.85rem;
+		margin-bottom: 0.45rem;
+	}
+}
+
+/* Consultation: left column + section rhythm without contact strip */
+@media (min-width: 768px) {
+	body.kc-home #consultation .consultation-section__header {
+		padding-bottom: 0.5rem;
+	}
+
+	body.kc-home #consultation .consultation-benefits {
+		margin-top: 0.25rem;
+	}
+
+	body.kc-home #consultation .consultation-next {
+		margin-top: 2.5rem;
+	}
+}
+
 @media (min-width: 1024px) {
 	body.kc-home #consultation .consultation-form-card--react {
-		padding-bottom: 3.75rem;
+		padding-bottom: 4.25rem;
 	}
 }
