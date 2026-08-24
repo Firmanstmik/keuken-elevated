@@ -63,12 +63,15 @@ body.kc-home .premium-showcase--react .premium-showcase__gallery-col {
 	width: 100%;
 }
 
-/* React: h-auto w-full max-h-[min(62vh,520px)] object-cover — no aspect-ratio */
+/*
+ * React: h-auto w-full max-h-[min(62vh,520px)] object-cover.
+ * Lock 9/16 (source 720×1280) so unloaded metadata still matches React loaded height.
+ */
 body.kc-home .premium-showcase--react .premium-showcase__main video {
 	display: block;
 	width: 100%;
 	height: auto;
-	aspect-ratio: auto;
+	aspect-ratio: 9 / 16;
 	max-height: min(62vh, 520px);
 	object-fit: cover;
 }
@@ -296,6 +299,41 @@ body.kc-home .site-footer.site-footer--react {
 body.kc-home .site-footer--react .site-footer__trust-row,
 body.kc-home .site-footer--react .site-footer__trust-row--react {
 	margin-bottom: 0; /* kill legacy trust-row margin-bottom: 3.2rem */
+}
+
+/*
+ * CRITICAL: theme .site-footer__title is a display heading (clamp 2–2.75rem).
+ * React brand copy is body text: text-[0.88rem] font-light leading-[1.9] max-w-[18rem].
+ * Mis-styled copy alone inflated the brand column ~+500px → footer DELTA.
+ */
+body.kc-home .site-footer--react .site-footer__brand .site-footer__eyebrow {
+	margin: 0 0 1.75rem; /* React mb-7 */
+	font-family: var(--font-body);
+	font-size: 0.65rem;
+	font-weight: 500;
+	letter-spacing: 0.28em;
+	text-transform: uppercase;
+	color: rgba(139, 197, 64, 0.45);
+}
+
+body.kc-home .site-footer--react .site-footer__brand .site-footer__title {
+	max-width: 18rem;
+	margin: 0 0 2.25rem; /* React mb-9 */
+	font-family: var(--font-body);
+	font-size: 0.88rem;
+	font-weight: 300;
+	line-height: 1.9;
+	letter-spacing: normal;
+	color: rgba(255, 255, 255, 0.8);
+}
+
+body.kc-home .site-footer--react .site-footer__brand .site-footer__social-label {
+	margin: 0 0 1rem; /* React mb-4 */
+}
+
+body.kc-home .site-footer--react .site-footer__brand .site-footer__socials {
+	margin-top: 0;
+	gap: 0.75rem; /* React gap-3 */
 }
 
 body.kc-home .site-footer--react .site-footer__hero {
