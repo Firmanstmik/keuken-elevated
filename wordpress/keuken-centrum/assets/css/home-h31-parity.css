@@ -1,13 +1,21 @@
 /**
- * Wave H3.1 — Homepage container, nav contrast, showroom gallery.
+ * Wave H3.1 / H3.2 — Homepage container, nav contrast, showroom, why.
  * Scoped to body.kc-home. Does not touch Keukens / Apparatuur CSS.
  */
 
-/* ── P0: inner content track = React max-w-7xl (80rem / 1280px) ───────── */
+/* ── P0: content track = React max-w-7xl (80rem)
+   Nav + Hero use React `.site-container` WITHOUT max-w-7xl (up to 1536). ─ */
 body.kc-home .site-shell {
 	width: min(var(--kc-shell), 80rem);
 	max-width: 80rem;
 	margin-inline: auto;
+}
+
+body.kc-home .site-header .site-shell,
+body.kc-home .home-hero .site-shell,
+body.kc-home .home-hero__inner {
+	width: var(--kc-shell);
+	max-width: none;
 }
 
 /* ── P0: elevated header — ink links on cream glass (React .nav-hero off) */
@@ -49,24 +57,23 @@ body.kc-home .site-header--hero.is-scrolled .nav-topbar {
 	color: rgba(27, 27, 27, 0.72);
 }
 
-/* ── P0: showroom gallery — React PremiumShowcase, not W3 thumb collapse ─ */
-body.kc-home .premium-showcase--react .premium-showcase__gallery-col,
+/* ── P0: showroom gallery — React PremiumShowcase ─────────────────────── */
 body.kc-home .premium-showcase--react .premium-showcase__gallery-col {
 	max-width: 620px;
 	width: 100%;
 }
 
-body.kc-home .premium-showcase--react .premium-showcase__main video,
+/* React keuken_vid1 is 720×1280; height locks to max-h when metadata is late. */
 body.kc-home .premium-showcase--react .premium-showcase__main video {
 	display: block;
 	width: 100%;
 	height: auto;
+	aspect-ratio: 9 / 16;
 	max-height: min(62vh, 520px);
 	object-fit: cover;
 }
 
 @media (max-width: 639px) {
-	body.kc-home .premium-showcase--react .premium-showcase__stack,
 	body.kc-home .premium-showcase--react .premium-showcase__stack {
 		display: flex;
 		flex-direction: row;
@@ -82,7 +89,6 @@ body.kc-home .premium-showcase--react .premium-showcase__main video {
 		opacity: 1;
 	}
 
-	body.kc-home .premium-showcase--react .premium-showcase__thumb,
 	body.kc-home .premium-showcase--react .premium-showcase__thumb {
 		flex: 1 1 0;
 		min-height: 8rem;
@@ -92,7 +98,6 @@ body.kc-home .premium-showcase--react .premium-showcase__main video {
 		border: 1px solid rgba(23, 25, 28, 0.08);
 	}
 
-	body.kc-home .premium-showcase--react .premium-showcase__gallery-frame,
 	body.kc-home .premium-showcase--react .premium-showcase__gallery-frame {
 		flex-direction: column;
 		gap: 0.75rem;
@@ -100,29 +105,52 @@ body.kc-home .premium-showcase--react .premium-showcase__main video {
 }
 
 @media (min-width: 1024px) {
-	body.kc-home .premium-showcase--react .premium-showcase__gallery-col,
 	body.kc-home .premium-showcase--react .premium-showcase__gallery-col {
 		max-width: none;
 	}
 }
 
-/* ── P1: Why — React hides cinematic stage below lg (1024) ─────────────── */
+/* React: lg:gap-12 xl:gap-16 */
+@media (min-width: 1280px) {
+	body.kc-home .premium-showcase--react .premium-showcase__grid {
+		gap: 4rem;
+	}
+}
+
+/* ── P1: Why — React stacks mobile media BELOW strip+body until lg ─────── */
 @media (max-width: 1023px) {
 	body.kc-home .why-scene--react .why-stage,
 	body.kc-home .why-scene--react .why-scene-preview {
 		display: none !important;
 	}
 
+	/* Keep strip + body on one row (sm+), force mobile media onto next line */
+	body.kc-home .why-scene--react .why-pillar-card {
+		flex-wrap: wrap;
+	}
+
 	body.kc-home .why-scene--react .why-pillar-card__mobile-media {
-		display: block;
-		max-height: 0;
+		flex: 1 0 100%;
+		width: 100%;
+		min-height: 0;
+		/* Restore theme grid collapse — do NOT use max-height (flex min-height:auto fights it) */
+		display: grid;
+		grid-template-rows: 0fr;
 		opacity: 0;
 		overflow: hidden;
 	}
 
 	body.kc-home .why-scene--react .why-pillar-card.is-active .why-pillar-card__mobile-media {
-		max-height: 14rem;
+		grid-template-rows: 1fr;
 		opacity: 1;
+		max-height: none;
+	}
+}
+
+@media (max-width: 639px) {
+	body.kc-home .why-scene--react .why-pillar-card {
+		flex-direction: column;
+		flex-wrap: nowrap;
 	}
 }
 
