@@ -560,3 +560,60 @@ body.kc-home .site-footer--react .site-footer__bottom--react {
 		gap: 3rem;
 	}
 }
+
+/* React form has no contact strip in default state — always hide on homepage */
+body.kc-home #consultation .consultation-form-card__contact {
+	display: none !important;
+}
+
+/* Neutralize legacy .consultation-panel chrome (pad/bg/align) on React twin */
+body.kc-home #consultation .consultation-panel--react {
+	padding: 0;
+	align-items: stretch;
+	background: none;
+	box-shadow: none;
+	border-radius: 1.6rem;
+	margin-top: 2.5rem; /* React mt-10 on form card wrapper */
+}
+
+body.kc-home #consultation .consultation-lead-form--react {
+	gap: 1rem;
+}
+
+body.kc-home #consultation .consultation-lead-form--react input,
+body.kc-home #consultation .consultation-lead-form--react select {
+	padding: 0.75rem 1rem;
+	min-height: 0;
+}
+
+body.kc-home #consultation .consultation-lead-form--react textarea {
+	min-height: 100px;
+	height: 100px;
+	padding: 0.75rem 1rem;
+}
+
+@media (min-width: 768px) {
+	body.kc-home #consultation .consultation-lead-form__submit {
+		flex-direction: row !important;
+		flex-wrap: nowrap;
+		align-items: center !important;
+		justify-content: space-between;
+	}
+
+	body.kc-home #consultation .consultation-lead-form__submit p {
+		flex: 1 1 auto;
+		max-width: 16rem;
+	}
+}
+
+/* Showroom @430: keep React gap-3 on frame even when stack is collapsed */
+@media (min-width: 400px) and (max-width: 639px) {
+	body.kc-home .premium-showcase--react .premium-showcase__gallery-frame {
+		gap: 0.75rem;
+	}
+}
+
+/* Footer bottom: React has no extra margin-top on bottom bar */
+body.kc-home .site-footer--react .site-footer__bottom--react {
+	margin-top: 0;
+}
