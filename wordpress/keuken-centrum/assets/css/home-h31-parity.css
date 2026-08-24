@@ -63,12 +63,12 @@ body.kc-home .premium-showcase--react .premium-showcase__gallery-col {
 	width: 100%;
 }
 
-/* React keuken_vid1 is 720×1280; height locks to max-h when metadata is late. */
+/* React: h-auto w-full max-h-[min(62vh,520px)] object-cover — no aspect-ratio */
 body.kc-home .premium-showcase--react .premium-showcase__main video {
 	display: block;
 	width: 100%;
 	height: auto;
-	aspect-ratio: 9 / 16;
+	aspect-ratio: auto;
 	max-height: min(62vh, 520px);
 	object-fit: cover;
 }
@@ -239,9 +239,63 @@ body.kc-home #reviews .testimonials-section__inner {
 	}
 }
 
+/*
+ * Reviews layout breakpoint = React lg (1024), NOT theme 1100.
+ * ≥1024: desktop triptych; ≤1023: mobile marquees.
+ */
+@media (min-width: 1024px) {
+	body.kc-home #reviews .testimonials-triptych {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(18rem, 26rem) minmax(0, 1fr);
+		gap: 2rem;
+		align-items: center;
+	}
+
+	body.kc-home #reviews .testimonials-column {
+		display: block;
+	}
+
+	body.kc-home #reviews .testimonials-mobile-marquees {
+		display: none;
+	}
+}
+
+@media (max-width: 1023px) {
+	body.kc-home #reviews .testimonials-triptych {
+		grid-template-columns: 1fr;
+		gap: 2.5rem;
+	}
+
+	body.kc-home #reviews .testimonials-column {
+		display: none;
+	}
+
+	body.kc-home #reviews .testimonials-mobile-marquees {
+		display: block;
+	}
+}
+
+/* Consultation next: React grid-cols-2 md:grid-cols-4 (theme uses 1100) */
+@media (min-width: 768px) {
+	body.kc-home #consultation .consultation-next__grid {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+}
+
+@media (max-width: 767px) {
+	body.kc-home #consultation .consultation-next__grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
 /* Footer: neutralize legacy .site-footer pad; match React hero/grid rhythm */
 body.kc-home .site-footer.site-footer--react {
 	padding-block: 0;
+}
+
+body.kc-home .site-footer--react .site-footer__trust-row,
+body.kc-home .site-footer--react .site-footer__trust-row--react {
+	margin-bottom: 0; /* kill legacy trust-row margin-bottom: 3.2rem */
 }
 
 body.kc-home .site-footer--react .site-footer__hero {
@@ -253,14 +307,43 @@ body.kc-home .site-footer--react .site-footer__hero {
 		padding: 7rem 0 6rem; /* React md:pt-28 md:pb-24 */
 	}
 
+	/* React trust: grid-cols-2 md:grid-cols-4 — keep 4-col from 768 (theme collapses at 900) */
+	body.kc-home .site-footer--react .site-footer__trust-row--react {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+
+	body.kc-home .site-footer--react .site-footer__trust-row--react div:nth-child(3),
+	body.kc-home .site-footer--react .site-footer__trust-row--react div:nth-child(4) {
+		border-top: 0;
+	}
+
+	body.kc-home .site-footer--react .site-footer__trust-row--react div + div {
+		border-left: 1px solid rgba(255, 255, 255, 0.07);
+	}
+
 	body.kc-home .site-footer--react .site-footer__grid--react {
-		grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr) minmax(0, 0.9fr) minmax(0, 1.4fr);
 		gap: 2.5rem;
 		padding: 5rem 0 4rem; /* React pt-20 pb-16 */
+		border-top: 1px solid rgba(139, 197, 64, 0.16);
+	}
+}
+
+/* React footer grid: md:grid-cols-2 · lg: 1.3 / 0.9 / 0.9 / 1.4 (not theme 1100) */
+@media (min-width: 1024px) {
+	body.kc-home .site-footer--react .site-footer__grid--react {
+		grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr) minmax(0, 0.9fr) minmax(0, 1.4fr);
+	}
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+	body.kc-home .site-footer--react .site-footer__grid--react {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
 }
 
 body.kc-home .site-footer--react .site-footer__showroom,
 body.kc-home .site-footer--react .site-footer__showroom--react {
-	min-height: 200px; /* React h-[200px] */
+	height: 200px; /* React h-[200px] */
+	min-height: 200px;
+	max-height: 200px;
 }
