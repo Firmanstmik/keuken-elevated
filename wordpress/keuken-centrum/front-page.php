@@ -35,7 +35,14 @@ $hero_args = [
 	'title_em'            => kc_get_field_value('hero_title_em', $page_id, kc_get_option('hero_title_em_default', 'Utrecht.')),
 	'subtitle'            => $subtitle,
 	'cta_primary_label'   => kc_get_field_value('hero_cta_primary_label', $page_id, kc_get_option('hero_cta_primary_label_default', 'Plan Showroombezoek')),
-	'cta_primary_url'     => kc_get_field_value('hero_cta_primary_url', $page_id, kc_get_option('hero_cta_primary_url_default', home_url('/consultation/'))),
+	'cta_primary_url'     => ( static function ( $page_id ) {
+		$raw = (string) kc_get_field_value( 'hero_cta_primary_url', $page_id, kc_get_option( 'hero_cta_primary_url_default', home_url( '/consultation/' ) ) );
+		$path = (string) wp_parse_url( $raw, PHP_URL_PATH );
+		if ( '/contact' === untrailingslashit( $path ) || '' === trim( $raw ) ) {
+			return home_url( '/consultation/' );
+		}
+		return $raw;
+	} )( $page_id ),
 	'cta_secondary_label' => kc_get_field_value('hero_cta_secondary_label', $page_id, 'Start configurator'),
 	'cta_secondary_url'   => function_exists( 'kc_cms_normalize_configurator_cta_url' )
 		? kc_cms_normalize_configurator_cta_url( (string) kc_get_field_value( 'hero_cta_secondary_url', $page_id, '' ) )

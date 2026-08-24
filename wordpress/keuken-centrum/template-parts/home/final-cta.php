@@ -15,7 +15,7 @@ $actions  = $final['actions'] ?? [
 		'number'      => '01',
 		'title'       => __('Plan showroombezoek', 'keuken-centrum'),
 		'description' => __('Bezoek onze showroom in Utrecht en bespreek uw keukenwensen met een specialist die met u meedenkt.', 'keuken-centrum'),
-		'href'        => home_url('/consultation/'),
+		'href'        => home_url('/#showroom'),
 		'pill'        => __('Maak afspraak', 'keuken-centrum'),
 		'icon'        => 'house',
 	],

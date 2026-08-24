@@ -165,6 +165,23 @@ function kc_enqueue_assets(): void {
 		);
 	}
 
+	if ( is_front_page() ) {
+		$home_h31_rel  = 'assets/css/home-h31-parity.css';
+		$home_h31_path = get_theme_file_path( $home_h31_rel );
+		if ( file_exists( $home_h31_path ) ) {
+			$h31_deps = [ 'keuken-centrum-theme', 'keuken-centrum-footer-cms', 'keuken-centrum-mobile-shell' ];
+			if ( file_exists( $home_w3_path ) ) {
+				$h31_deps[] = 'keuken-centrum-home-w3';
+			}
+			wp_enqueue_style(
+				'keuken-centrum-home-h31',
+				kc_asset( $home_h31_rel ),
+				$h31_deps,
+				$style_ver . '.' . (string) filemtime( $home_h31_path )
+			);
+		}
+	}
+
 	$script_ver     = KC_THEME_VERSION;
 	$live_js_rel    = 'assets/js/kc-live-' . $script_ver . '.js';
 	$live_js_path   = get_theme_file_path($live_js_rel);

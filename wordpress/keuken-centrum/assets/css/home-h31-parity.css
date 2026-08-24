@@ -1,0 +1,144 @@
+/**
+ * Wave H3.1 — Homepage container, nav contrast, showroom gallery.
+ * Scoped to body.kc-home. Does not touch Keukens / Apparatuur CSS.
+ */
+
+/* ── P0: inner content track = React max-w-7xl (80rem / 1280px) ───────── */
+body.kc-home .site-shell {
+	width: min(var(--kc-shell), 80rem);
+	max-width: 80rem;
+	margin-inline: auto;
+}
+
+/* ── P0: elevated header — ink links on cream glass (React .nav-hero off) */
+body.kc-home .site-header.is-elevated .nav-link,
+body.kc-home .site-header.is-scrolled .nav-link,
+body.kc-home .site-header.is-elevated .nav-link--btn,
+body.kc-home .site-header.is-scrolled .nav-link--btn,
+body.kc-home .site-header--hero.is-elevated .nav-link,
+body.kc-home .site-header--hero.is-scrolled .nav-link,
+body.kc-home .site-header--hero.is-elevated .nav-link--btn,
+body.kc-home .site-header--hero.is-scrolled .nav-link--btn {
+	color: rgba(27, 27, 27, 0.96);
+	text-shadow: none;
+}
+
+body.kc-home .site-header.is-elevated .nav-link:hover,
+body.kc-home .site-header.is-scrolled .nav-link:hover,
+body.kc-home .site-header.is-elevated .nav-link[aria-current="page"],
+body.kc-home .site-header.is-scrolled .nav-link[aria-current="page"],
+body.kc-home .site-header--hero.is-elevated .nav-link:hover,
+body.kc-home .site-header--hero.is-scrolled .nav-link:hover,
+body.kc-home .site-header--hero.is-elevated .nav-link[aria-current="page"],
+body.kc-home .site-header--hero.is-scrolled .nav-link[aria-current="page"] {
+	color: rgba(27, 27, 27, 0.96);
+	text-shadow: none;
+}
+
+body.kc-home .site-header.is-elevated .nav-link::after,
+body.kc-home .site-header.is-scrolled .nav-link::after,
+body.kc-home .site-header--hero.is-elevated .nav-link::after,
+body.kc-home .site-header--hero.is-scrolled .nav-link::after {
+	background: linear-gradient(90deg, transparent, rgba(201, 164, 106, 0.92), transparent);
+}
+
+body.kc-home .site-header.is-elevated .nav-topbar,
+body.kc-home .site-header.is-scrolled .nav-topbar,
+body.kc-home .site-header--hero.is-elevated .nav-topbar,
+body.kc-home .site-header--hero.is-scrolled .nav-topbar {
+	color: rgba(27, 27, 27, 0.72);
+}
+
+/* ── P0: showroom gallery — React PremiumShowcase, not W3 thumb collapse ─ */
+body.kc-home .premium-showcase--react .premium-showcase__gallery-col,
+body.kc-home .premium-showcase--react .premium-showcase__gallery-col {
+	max-width: 620px;
+	width: 100%;
+}
+
+body.kc-home .premium-showcase--react .premium-showcase__main video,
+body.kc-home .premium-showcase--react .premium-showcase__main video {
+	display: block;
+	width: 100%;
+	height: auto;
+	max-height: min(62vh, 520px);
+	object-fit: cover;
+}
+
+@media (max-width: 639px) {
+	body.kc-home .premium-showcase--react .premium-showcase__stack,
+	body.kc-home .premium-showcase--react .premium-showcase__stack {
+		display: flex;
+		flex-direction: row;
+		width: 100%;
+		max-width: none;
+		min-height: 8rem;
+		height: auto;
+		overflow: visible;
+		margin: 0;
+		padding: 0;
+		gap: 0.65rem;
+		border: 0;
+		opacity: 1;
+	}
+
+	body.kc-home .premium-showcase--react .premium-showcase__thumb,
+	body.kc-home .premium-showcase--react .premium-showcase__thumb {
+		flex: 1 1 0;
+		min-height: 8rem;
+		height: auto;
+		opacity: 0.88;
+		pointer-events: auto;
+		border: 1px solid rgba(23, 25, 28, 0.08);
+	}
+
+	body.kc-home .premium-showcase--react .premium-showcase__gallery-frame,
+	body.kc-home .premium-showcase--react .premium-showcase__gallery-frame {
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+}
+
+@media (min-width: 1024px) {
+	body.kc-home .premium-showcase--react .premium-showcase__gallery-col,
+	body.kc-home .premium-showcase--react .premium-showcase__gallery-col {
+		max-width: none;
+	}
+}
+
+/* ── P1: Why — React hides cinematic stage below lg (1024) ─────────────── */
+@media (max-width: 1023px) {
+	body.kc-home .why-scene--react .why-stage,
+	body.kc-home .why-scene--react .why-scene-preview {
+		display: none !important;
+	}
+
+	body.kc-home .why-scene--react .why-pillar-card__mobile-media {
+		display: block;
+		max-height: 0;
+		opacity: 0;
+		overflow: hidden;
+	}
+
+	body.kc-home .why-scene--react .why-pillar-card.is-active .why-pillar-card__mobile-media {
+		max-height: 14rem;
+		opacity: 1;
+	}
+}
+
+/* ── P1: Experience — React minHeights apply until lg grid at 1024 ─────── */
+@media (max-width: 1023px) {
+	body.kc-home .experience-section--react .experience-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1.25rem;
+	}
+
+	body.kc-home .experience-section--react .experience-card {
+		min-height: 210px;
+	}
+
+	body.kc-home .experience-section--react .experience-card--featured {
+		min-height: 440px;
+	}
+}
