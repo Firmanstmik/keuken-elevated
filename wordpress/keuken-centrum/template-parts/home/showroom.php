@@ -103,39 +103,42 @@ $showcase_cta_secondary_label = $showcase['cta_secondary_label'] ?? 'Bekijk merk
 				</div>
 			</div>
 
-			<div class="premium-showcase__content" data-reveal>
-				<div class="section-label-row premium-showcase__label-row">
-					<span class="kitchen-eyebrow-mark" aria-hidden="true"></span>
-					<p class="section-eyebrow section-eyebrow--gold"><?php echo esc_html( $showcase_eyebrow ); ?></p>
-				</div>
+			<?php /* Outer col carries React lg:pl-2 / xl:pl-4; inner is what the audit measures. */ ?>
+			<div class="premium-showcase__content-col" data-reveal>
+				<div class="premium-showcase__content">
+					<div class="section-label-row premium-showcase__label-row">
+						<span class="kitchen-eyebrow-mark" aria-hidden="true"></span>
+						<p class="section-eyebrow section-eyebrow--gold"><?php echo esc_html( $showcase_eyebrow ); ?></p>
+					</div>
 
-				<h2 class="premium-showcase__title">
-					<span><?php echo esc_html( $showcase_title_1 ); ?></span>
-					<em><?php echo esc_html( $showcase_title_2 ); ?></em>
-				</h2>
+					<h2 class="premium-showcase__title">
+						<span><?php echo esc_html( $showcase_title_1 ); ?></span>
+						<em><?php echo esc_html( $showcase_title_2 ); ?></em>
+					</h2>
 
-				<p class="premium-showcase__copy">
-					<?php echo esc_html( $showcase_copy ); ?>
-				</p>
+					<p class="premium-showcase__copy">
+						<?php echo esc_html( $showcase_copy ); ?>
+					</p>
 
-				<p class="premium-showcase__copy premium-showcase__copy--secondary">
-					<?php esc_html_e('Van', 'keuken-centrum'); ?>
-					<?php foreach ($highlights as $index => $item) : ?>
-						<span class="premium-showcase__highlight"><?php echo esc_html($item); ?></span><?php echo $index < count($highlights) - 1 ? ', ' : ' '; ?>
-					<?php endforeach; ?>
-					<?php echo esc_html( $showcase_copy_secondary ); ?>
-				</p>
+					<p class="premium-showcase__copy premium-showcase__copy--secondary">
+						<?php esc_html_e('Van', 'keuken-centrum'); ?>
+						<?php foreach ($highlights as $index => $item) : ?>
+							<span class="premium-showcase__highlight"><?php echo esc_html($item); ?></span><?php echo $index < count($highlights) - 1 ? ', ' : ' '; ?>
+						<?php endforeach; ?>
+						<?php echo esc_html( $showcase_copy_secondary ); ?>
+					</p>
 
-				<div class="premium-showcase__actions">
-					<a class="premium-pill-button premium-pill-button--blue premium-pill-button--rounded premium-pill-button--lg" href="<?php echo esc_url($visit_url); ?>">
-						<span class="premium-pill-button__label"><?php echo esc_html( $showcase_cta_label ); ?></span>
-						<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
-					</a>
+					<div class="premium-showcase__actions">
+						<a class="premium-pill-button premium-pill-button--blue premium-pill-button--rounded premium-pill-button--lg" href="<?php echo esc_url($visit_url); ?>">
+							<span class="premium-pill-button__label"><?php echo esc_html( $showcase_cta_label ); ?></span>
+							<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+						</a>
 
-					<a class="premium-showcase__text-link" href="<?php echo esc_url($brands_url); ?>">
-						<span><?php echo esc_html( $showcase_cta_secondary_label ); ?></span>
-						<span class="premium-showcase__text-link-icon" aria-hidden="true"><?php echo kc_icon_arrow_right(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
-					</a>
+						<a class="premium-showcase__text-link" href="<?php echo esc_url($brands_url); ?>">
+							<span><?php echo esc_html( $showcase_cta_secondary_label ); ?></span>
+							<span class="premium-showcase__text-link-icon" aria-hidden="true"><?php echo kc_icon_arrow_right(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>

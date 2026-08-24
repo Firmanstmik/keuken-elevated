@@ -160,6 +160,8 @@ body.kc-home .premium-showcase--react .premium-showcase__main video {
 		display: grid;
 		grid-template-columns: 1fr;
 		gap: 1.25rem;
+		min-height: 0;
+		grid-template-rows: none;
 	}
 
 	body.kc-home .experience-section--react .experience-card {
@@ -169,4 +171,96 @@ body.kc-home .premium-showcase--react .premium-showcase__main video {
 	body.kc-home .experience-section--react .experience-card--featured {
 		min-height: 440px;
 	}
+}
+
+/* ── H3.2: section rhythm = React .section-shell (≥768 → 8rem) ─────────── */
+@media (min-width: 768px) {
+	body.kc-home .section-shell,
+	body.kc-home .premium-showcase.premium-showcase--react,
+	body.kc-home .process-timeline-scene.process-timeline-scene--react,
+	body.kc-home .final-cta-react.final-cta-react--v2,
+	body.kc-home .consultation-section--react .consultation-section__inner.section-shell {
+		padding-block: 8rem;
+	}
+}
+
+@media (max-width: 767px) {
+	body.kc-home .section-shell,
+	body.kc-home .premium-showcase.premium-showcase--react,
+	body.kc-home .process-timeline-scene.process-timeline-scene--react,
+	body.kc-home .final-cta-react.final-cta-react--v2 {
+		padding-block: clamp(3.75rem, 16vw, 5rem);
+	}
+}
+
+/* Showroom copy: React lg:pl-2 / xl:pl-4 on the grid column */
+@media (min-width: 1024px) {
+	body.kc-home .premium-showcase--react .premium-showcase__content-col {
+		padding-left: 0.5rem;
+	}
+}
+
+@media (min-width: 1280px) {
+	body.kc-home .premium-showcase--react .premium-showcase__content-col {
+		padding-left: 1rem;
+	}
+}
+
+/* Final CTA cards: React md:grid-cols-3 (not 2-col until 1100) */
+@media (min-width: 768px) {
+	body.kc-home .final-cta-react-cards--v2 {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+}
+
+@media (max-width: 767px) {
+	body.kc-home .final-cta-react-cards--v2 {
+		grid-template-columns: 1fr;
+	}
+}
+
+body.kc-home .final-cta-react-card--v2 {
+	min-height: 18.125rem; /* React min-h-[290px] */
+}
+
+/* Reviews: React has NO section-shell — top pad lives on inner shells */
+body.kc-home #reviews.testimonials-section--react {
+	padding-block: 0;
+}
+
+body.kc-home #reviews .testimonials-section__inner {
+	padding-top: 5rem; /* React pt-20 */
+	padding-bottom: 0;
+}
+
+@media (min-width: 768px) {
+	body.kc-home #reviews .testimonials-section__inner {
+		padding-top: 8rem; /* React md:pt-32 */
+	}
+}
+
+/* Footer: neutralize legacy .site-footer pad; match React hero/grid rhythm */
+body.kc-home .site-footer.site-footer--react {
+	padding-block: 0;
+}
+
+body.kc-home .site-footer--react .site-footer__hero {
+	padding: 6rem 0 5rem; /* React pt-24 pb-20 */
+}
+
+@media (min-width: 768px) {
+	body.kc-home .site-footer--react .site-footer__hero {
+		padding: 7rem 0 6rem; /* React md:pt-28 md:pb-24 */
+	}
+
+	body.kc-home .site-footer--react .site-footer__grid--react {
+		grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr) minmax(0, 0.9fr) minmax(0, 1.4fr);
+		gap: 2.5rem;
+		padding: 5rem 0 4rem; /* React pt-20 pb-16 */
+	}
+}
+
+body.kc-home .site-footer--react .site-footer__showroom,
+body.kc-home .site-footer--react .site-footer__showroom--react {
+	min-height: 200px; /* React h-[200px] */
 }
