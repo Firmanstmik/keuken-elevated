@@ -669,11 +669,17 @@ body.kc-home .site-footer--react .site-footer__bottom--react {
 }
 
 /*
- * Footer @768+: React FooterLink uses h-6 icon discs + space-y-[1.1rem].
- * Theme nav-list gap .85rem without icons → grid ~350px short.
+ * Footer @768+: React FooterLink = h-6 discs + space-y-[1.1rem].
+ * On coarse/touch (audit mobile VPs) React styles.pcss forces a { min-height:44px }.
  */
 body.kc-home .site-footer--react .site-footer__nav-list {
 	gap: 1.1rem;
+}
+
+body.kc-home .site-footer--react .site-footer__nav-list li {
+	margin: 0;
+	padding: 0;
+	line-height: 0;
 }
 
 body.kc-home .site-footer--react .site-footer__nav-list a {
@@ -683,6 +689,12 @@ body.kc-home .site-footer--react .site-footer__nav-list a {
 	min-height: 1.5rem;
 	font-weight: 300;
 	line-height: 1.45;
+}
+
+@media (hover: none) and (pointer: coarse) {
+	body.kc-home .site-footer--react .site-footer__nav-list a {
+		min-height: 44px;
+	}
 }
 
 body.kc-home .site-footer--react .site-footer__nav-list a::before {
@@ -695,13 +707,67 @@ body.kc-home .site-footer--react .site-footer__nav-list a::before {
 	background: rgba(139, 197, 64, 0.07);
 }
 
+/*
+ * ColTitle = KitchenEyebrow (mark 1.85×1.6rem) — not tiny 0.62rem text.
+ * brand-pages.css is not enqueued on homepage; scope styles here.
+ */
 body.kc-home .site-footer--react .site-footer__heading {
+	display: block;
 	margin: 0 0 1.75rem; /* React ColTitle mb-7 */
-	font-size: 0.62rem;
-	font-weight: 600;
-	letter-spacing: 0.32em;
+	padding: 0;
+	font-size: inherit;
+	font-weight: inherit;
+	letter-spacing: normal;
+	text-transform: none;
+	color: inherit;
+	line-height: 1;
+}
+
+body.kc-home .site-footer--react .site-footer__heading .brand-eyebrow {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.85rem;
+	margin: 0;
+	font-family: var(--font-body);
+	font-size: 0.68rem;
+	font-weight: 500;
+	letter-spacing: 0.3em;
+	line-height: 1.5;
 	text-transform: uppercase;
-	color: rgba(139, 197, 64, 0.38);
+	color: rgba(168, 217, 90, 0.92);
+}
+
+body.kc-home .site-footer--react .site-footer__heading .kitchen-eyebrow-mark {
+	position: relative;
+	display: inline-grid;
+	width: 1.85rem;
+	height: 1.6rem;
+	flex: 0 0 auto;
+	place-items: center;
+	overflow: hidden;
+	border: 1px solid rgba(200, 169, 107, 0.42);
+	border-radius: 8px;
+	opacity: 1;
+	color: #c8a96b;
+	background:
+		radial-gradient(circle at 28% 18%, rgba(255, 255, 255, 0.22), transparent 42%),
+		linear-gradient(145deg, rgba(200, 169, 107, 0.15), rgba(139, 197, 64, 0.1));
+	box-shadow:
+		inset 0 1px 0 rgba(255, 255, 255, 0.1),
+		0 8px 18px -14px rgba(200, 169, 107, 0.72);
+}
+
+body.kc-home .site-footer--react .site-footer__heading .kitchen-eyebrow-mark::after {
+	display: none;
+}
+
+body.kc-home .site-footer--react .site-footer__heading .kitchen-eyebrow-mark::before {
+	content: "";
+	width: 1.15rem;
+	height: 0.86rem;
+	background: currentColor;
+	-webkit-mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 28 20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='14' cy='3.1' r='1.5' fill='none' stroke='black' stroke-width='1.6'/%3E%3Cpath d='M4.6 14.2C4.6 9 8.8 5.6 14 5.6s9.4 3.4 9.4 8.6M2.2 16.6h23.6' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat;
+	mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 28 20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='14' cy='3.1' r='1.5' fill='none' stroke='black' stroke-width='1.6'/%3E%3Cpath d='M4.6 14.2C4.6 9 8.8 5.6 14 5.6s9.4 3.4 9.4 8.6M2.2 16.6h23.6' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat;
 }
 
 body.kc-home .site-footer--react .site-footer__heading--spaced {
@@ -750,8 +816,11 @@ body.kc-home .site-footer--react .site-footer__showroom--react::after {
 	flex: 1 1 50%;
 	align-items: center;
 	justify-content: center;
-	min-height: 2.75rem;
-	padding: 0.75rem 1rem;
+	box-sizing: border-box;
+	min-height: 0;
+	height: 3.625rem; /* React dual CTA row ≈ 58.7 */
+	max-height: 3.625rem;
+	padding: 0 0.75rem;
 	background: rgba(8, 28, 38, 0.96) !important;
 	border-top: 1px solid rgba(139, 197, 64, 0.1);
 	color: rgba(245, 242, 236, 0.6);
@@ -760,6 +829,7 @@ body.kc-home .site-footer--react .site-footer__showroom--react::after {
 	font-weight: 500;
 	letter-spacing: 0.18em;
 	text-transform: uppercase;
+	white-space: nowrap;
 }
 
 body.kc-home .site-footer--react .site-footer__showroom--react > span {
@@ -770,9 +840,12 @@ body.kc-home .site-footer--react .site-footer__showroom--react > span {
 	flex: 1 1 50%;
 	align-items: center;
 	justify-content: center;
-	min-height: 2.75rem;
+	box-sizing: border-box;
+	min-height: 0;
+	height: 3.625rem;
+	max-height: 3.625rem;
 	margin: 0;
-	padding: 0.75rem 1rem;
+	padding: 0 0.75rem;
 	background: rgba(8, 28, 38, 0.96);
 	border-top: 1px solid rgba(139, 197, 64, 0.1);
 	border-left: 1px solid rgba(255, 255, 255, 0.07);
@@ -782,6 +855,7 @@ body.kc-home .site-footer--react .site-footer__showroom--react > span {
 	font-weight: 500;
 	letter-spacing: 0.18em;
 	text-transform: uppercase;
+	white-space: nowrap;
 }
 
 body.kc-home .site-footer--react .site-footer__showroom--react > span small,
@@ -831,7 +905,7 @@ body.kc-home .site-footer--react .site-footer__social-icon svg {
 		gap: 1.5rem;
 		padding-top: 1.75rem;
 		padding-bottom: 2rem;
-		min-height: 9.5rem;
+		min-height: 0; /* was 9.5rem — inflated WP +65 vs React ~87 */
 		align-items: center;
 	}
 }
@@ -958,7 +1032,7 @@ body.kc-home .site-footer--react .site-footer__contact-list--react li + li {
 @media (max-width: 767px) {
 	body.kc-home #brands.brands-scene--react .brands-carousel-stage,
 	body.kc-home .brands-scene--react .brands-carousel-stage {
-		min-height: 34.5rem;
+		min-height: 36.6rem; /* was 34.5 — close remaining −33 */
 	}
 }
 
@@ -966,5 +1040,126 @@ body.kc-home .site-footer--react .site-footer__contact-list--react li + li {
 @media (max-width: 767px) {
 	body.kc-home .experience-section--react .experience-card--featured {
 		min-height: 460px;
+	}
+}
+
+/*
+ * Showroom @430: home-mobile-parity-w3 shrinks copy/actions vs React
+ * (1.02rem / leading-1.75, mt-6 / mt-4 / mt-9) → section −71.
+ */
+@media (max-width: 767px) {
+	body.kc-home .premium-showcase--react .premium-showcase__label-row {
+		margin-bottom: 1.25rem; /* React outer mb-5 */
+	}
+
+	body.kc-home .premium-showcase--react .premium-showcase__copy {
+		margin-top: 1.5rem; /* React mt-6 */
+		font-size: 1.02rem;
+		line-height: 1.75;
+	}
+
+	body.kc-home .premium-showcase--react .premium-showcase__copy--secondary {
+		margin-top: 1rem; /* React mt-4 — override w3 0.85rem */
+	}
+
+	body.kc-home .premium-showcase--react .premium-showcase__actions {
+		margin-top: 2.25rem; /* React mt-9 — override w3 1.75rem */
+	}
+
+	body.kc-home .premium-showcase--react .premium-showcase__content {
+		padding-bottom: 0.5rem;
+	}
+}
+
+/* Process mobile: trim residual +37 @430 */
+@media (max-width: 767px) {
+	body.kc-home .process-timeline-scene--react .process-timeline-heading--react {
+		margin-bottom: 4.15rem;
+	}
+
+	body.kc-home .process-timeline-scene--react .process-timeline-cta {
+		margin-top: 4.15rem;
+	}
+}
+
+/* Process @768: residual +56 from step cards */
+@media (min-width: 768px) and (max-width: 1023px) {
+	body.kc-home .process-timeline-scene--react .process-timeline-heading--react {
+		margin-bottom: 4.25rem;
+	}
+
+	body.kc-home .process-timeline-scene--react .process-timeline-cta {
+		margin-top: 4.25rem;
+	}
+
+	body.kc-home .process-timeline-scene--react .process-timeline-step {
+		padding-bottom: 0.65rem;
+	}
+
+	body.kc-home .process-timeline-scene--react .process-timeline-step p {
+		margin-top: 0.15rem;
+	}
+}
+
+/* Process @1024: barely +29 over tol */
+@media (min-width: 1024px) {
+	body.kc-home .process-timeline-scene--react .process-timeline-heading--react {
+		margin-bottom: 6.75rem;
+	}
+
+	body.kc-home .process-timeline-scene--react .process-timeline-cta {
+		margin-top: 6.75rem;
+	}
+}
+
+/* Final CTA @430: −30 — nudge heading + card rhythm */
+@media (max-width: 767px) {
+	body.kc-home .final-cta-react--v2 .final-cta-react-heading--v2 {
+		margin-bottom: 5.5rem;
+	}
+
+	body.kc-home .final-cta-react-card--v2 {
+		min-height: 18.5rem;
+	}
+}
+
+/* Final CTA @1024: +52 — trim cards/heading */
+@media (min-width: 1024px) {
+	body.kc-home .final-cta-react--v2 .final-cta-react-heading--v2 {
+		margin-bottom: 4.25rem;
+	}
+
+	body.kc-home .final-cta-react-card--v2 {
+		min-height: 16.75rem;
+		padding-block: 1.5rem;
+	}
+}
+
+/* Consultation @768: −36 without contact strip */
+@media (min-width: 768px) and (max-width: 1023px) {
+	body.kc-home #consultation .consultation-form-card--react {
+		padding-bottom: 4rem;
+	}
+
+	body.kc-home #consultation .consultation-next {
+		margin-top: 3rem;
+	}
+}
+
+/* Footer @1024: trim residual +49 after eyebrow/heading restore */
+@media (min-width: 1024px) {
+	body.kc-home .site-footer--react .site-footer__hero {
+		padding-top: 6.5rem;
+		padding-bottom: 5.5rem;
+	}
+
+	body.kc-home .site-footer--react .site-footer__grid--react {
+		padding-top: 4.5rem;
+		padding-bottom: 3.5rem;
+	}
+
+	body.kc-home .site-footer--react .site-footer__bottom--react {
+		padding-top: 1.5rem;
+		padding-bottom: 1.75rem;
 	}
 }

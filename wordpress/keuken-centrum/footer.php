@@ -136,7 +136,7 @@ $logo = $f['logo'] ?? '';
 			$g1 = $f['nav_groups'][1] ?? null;
 			?>
 			<?php if ( $g0 ) : ?>
-				<h3 class="site-footer__heading"><?php echo esc_html( (string) $g0['title'] ); ?></h3>
+				<h3 class="site-footer__heading"><?php kc_brand_eyebrow( (string) $g0['title'], true ); ?></h3>
 				<ul class="site-footer__nav-list">
 					<?php foreach ( (array) $g0['links'] as $link ) : ?>
 						<li><a href="<?php echo esc_url( (string) $link[1] ); ?>"><?php echo esc_html( (string) $link[0] ); ?></a></li>
@@ -144,7 +144,7 @@ $logo = $f['logo'] ?? '';
 				</ul>
 			<?php endif; ?>
 			<?php if ( $g1 ) : ?>
-				<h3 class="site-footer__heading site-footer__heading--spaced"><?php echo esc_html( (string) $g1['title'] ); ?></h3>
+				<h3 class="site-footer__heading site-footer__heading--spaced"><?php kc_brand_eyebrow( (string) $g1['title'], true ); ?></h3>
 				<ul class="site-footer__nav-list">
 					<?php foreach ( (array) $g1['links'] as $link ) : ?>
 						<li><a href="<?php echo esc_url( (string) $link[1] ); ?>"><?php echo esc_html( (string) $link[0] ); ?></a></li>
@@ -159,7 +159,7 @@ $logo = $f['logo'] ?? '';
 			$g3 = $f['nav_groups'][3] ?? null;
 			?>
 			<?php if ( $g2 ) : ?>
-				<h3 class="site-footer__heading"><?php echo esc_html( (string) $g2['title'] ); ?></h3>
+				<h3 class="site-footer__heading"><?php kc_brand_eyebrow( (string) $g2['title'], true ); ?></h3>
 				<ul class="site-footer__nav-list">
 					<?php foreach ( (array) $g2['links'] as $link ) : ?>
 						<li><a href="<?php echo esc_url( (string) $link[1] ); ?>"><?php echo esc_html( (string) $link[0] ); ?></a></li>
@@ -167,7 +167,7 @@ $logo = $f['logo'] ?? '';
 				</ul>
 			<?php endif; ?>
 			<?php if ( $g3 ) : ?>
-				<h3 class="site-footer__heading site-footer__heading--spaced"><?php echo esc_html( (string) $g3['title'] ); ?></h3>
+				<h3 class="site-footer__heading site-footer__heading--spaced"><?php kc_brand_eyebrow( (string) $g3['title'], true ); ?></h3>
 				<ul class="site-footer__nav-list">
 					<?php foreach ( (array) $g3['links'] as $link ) : ?>
 						<li><a href="<?php echo esc_url( (string) $link[1] ); ?>"><?php echo esc_html( (string) $link[0] ); ?></a></li>
@@ -177,7 +177,7 @@ $logo = $f['logo'] ?? '';
 		</div>
 
 		<div class="site-footer__column site-footer__column--contact">
-			<h3 class="site-footer__heading"><?php esc_html_e( 'Contact & Showroom', 'keuken-centrum' ); ?></h3>
+			<h3 class="site-footer__heading"><?php kc_brand_eyebrow( __( 'Contact & Showroom', 'keuken-centrum' ), true ); ?></h3>
 			<ul class="site-footer__contact-list site-footer__contact-list--react">
 				<li class="site-footer__contact-address">
 					<strong><?php echo esc_html( (string) ( $f['address'] ?? '' ) ); ?></strong>
