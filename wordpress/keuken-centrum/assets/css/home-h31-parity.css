@@ -1028,16 +1028,18 @@ body.kc-home .site-footer--react .site-footer__contact-list--react li + li {
 	}
 }
 
-/* Brands mobile: recover ~33px (React carousel stage taller) */
+/* Brands mobile: close persistent −33 (no brands-scene--react / carousel-stage on WP) */
 @media (max-width: 767px) {
-	body.kc-home #brands.brands-scene--react .brands-carousel-stage,
-	body.kc-home .brands-scene--react .brands-carousel-stage {
-		min-height: 38.75rem; /* close remaining −33 @430 */
+	body.kc-home #brands.brands-scene {
+		padding-bottom: calc(clamp(3.75rem, 16vw, 5rem) + 2.15rem);
 	}
 
-	body.kc-home #brands.brands-scene--react,
-	body.kc-home .brands-scene--react {
-		padding-bottom: 0.5rem;
+	body.kc-home #brands .brands-carousel-grid {
+		margin-top: 1rem;
+	}
+
+	body.kc-home #brands .brands-stack {
+		min-height: 470px;
 	}
 }
 
@@ -1079,7 +1081,6 @@ body.kc-home .site-footer--react .site-footer__contact-list--react li + li {
 }
 
 @media (max-width: 399px) {
-	/* Undo residual +37 showroom @390 from prior font/pad inflate */
 	body.kc-home .premium-showcase--react .premium-showcase__actions {
 		margin-top: 1.9rem;
 	}
@@ -1089,25 +1090,25 @@ body.kc-home .site-footer--react .site-footer__contact-list--react li + li {
 	}
 }
 
-/* Process mobile: trim residual +37 @430 — keep mild; 430 now PASS */
+/* Process mobile: trim +32 @430 */
 @media (max-width: 767px) {
 	body.kc-home .process-timeline-scene--react .process-timeline-heading--react {
-		margin-bottom: 4.35rem;
+		margin-bottom: 3.75rem;
 	}
 
 	body.kc-home .process-timeline-scene--react .process-timeline-cta {
-		margin-top: 4.35rem;
+		margin-top: 3.75rem;
 	}
 }
 
-/* Process @768: residual was +56 — keep mild trim (now PASS) */
+/* Process @768: trim +36 */
 @media (min-width: 768px) and (max-width: 1023px) {
 	body.kc-home .process-timeline-scene--react .process-timeline-heading--react {
-		margin-bottom: 4.5rem;
+		margin-bottom: 3.85rem;
 	}
 
 	body.kc-home .process-timeline-scene--react .process-timeline-cta {
-		margin-top: 4.5rem;
+		margin-top: 3.85rem;
 	}
 
 	body.kc-home .process-timeline-scene--react .process-timeline-step {
@@ -1115,8 +1116,18 @@ body.kc-home .site-footer--react .site-footer__contact-list--react li + li {
 	}
 }
 
-/* Process ≥1024: restore React 7rem (1.5.3 under-trimmed @1280 −28) */
-@media (min-width: 1024px) {
+/* Process @1024 only (+29); ≥1280 keep React 7rem (already PASS) */
+@media (min-width: 1024px) and (max-width: 1279px) {
+	body.kc-home .process-timeline-scene--react .process-timeline-heading--react {
+		margin-bottom: 6.5rem;
+	}
+
+	body.kc-home .process-timeline-scene--react .process-timeline-cta {
+		margin-top: 6.5rem;
+	}
+}
+
+@media (min-width: 1280px) {
 	body.kc-home .process-timeline-scene--react .process-timeline-heading--react {
 		margin-bottom: 7rem;
 	}
@@ -1126,14 +1137,14 @@ body.kc-home .site-footer--react .site-footer__contact-list--react li + li {
 	}
 }
 
-/* Final CTA @430: mild nudge (now PASS) */
+/* Final CTA @430: mild nudge (PASS) */
 @media (max-width: 767px) {
 	body.kc-home .final-cta-react--v2 .final-cta-react-heading--v2 {
 		margin-bottom: 5.25rem;
 	}
 }
 
-/* Final CTA @1024 only: +32 — trim; ≥1280 restore React rhythm (−35 overshoot) */
+/* Final CTA @1024 only; ≥1280 restore React rhythm */
 @media (min-width: 1024px) and (max-width: 1279px) {
 	body.kc-home .final-cta-react--v2 .final-cta-react-heading--v2 {
 		margin-bottom: 4rem;
@@ -1156,7 +1167,7 @@ body.kc-home .site-footer--react .site-footer__contact-list--react li + li {
 	}
 }
 
-/* Consultation @768: −36 — keep (now PASS) */
+/* Consultation @768: keep (PASS) */
 @media (min-width: 768px) and (max-width: 1023px) {
 	body.kc-home #consultation .consultation-form-card--react {
 		padding-bottom: 4rem;
@@ -1167,7 +1178,7 @@ body.kc-home .site-footer--react .site-footer__contact-list--react li + li {
 	}
 }
 
-/* Footer @768: residual −51 after ColTitle/44px — nudge grid pad */
+/* Footer @768: residual closed in 1.5.4 — keep pad nudge */
 @media (min-width: 768px) and (max-width: 1023px) {
 	body.kc-home .site-footer--react .site-footer__grid--react {
 		padding-top: 5.75rem;
@@ -1179,7 +1190,7 @@ body.kc-home .site-footer--react .site-footer__contact-list--react li + li {
 	}
 }
 
-/* Footer ≥1024: eyebrow restore made +29 — shave pads under tol */
+/* Footer ≥1024: keep under tol */
 @media (min-width: 1024px) {
 	body.kc-home .site-footer--react .site-footer__hero {
 		padding-top: 6.35rem;
