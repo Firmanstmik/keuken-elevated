@@ -44,11 +44,7 @@ $exp_heading_em = $experience['heading_em'] ?? 'al uw wensen';
 $exp_lede = $experience['lede'] ?? 'Van architecturaal design tot slimme luxe: ontdek een keukenwereld die zorgvuldig wordt afgestemd op uw ruimte, smaak en manier van leven.';
 $scene       = kc_theme_img('brands/brands-dark-bg.webp');
 $scene_layer = kc_theme_img('experience/Modern_keukens.webp') ?: kc_theme_img('experience/modern.webp');
-$cbw_logo    = kc_theme_img('cbw.webp');
-
-if (! $cbw_logo) {
-	$cbw_logo = 'https://keuken-centrum.nl/wp-content/uploads/cbw.webp';
-}
+$cbw_logo    = kc_theme_img( 'cbw.svg' ) ?: kc_theme_img( 'cbw.webp' );
 ?>
 <section class="section-shell section-shell--dark experience-section experience-section--react" id="experience"<?php echo $scene ? ' style="--experience-scene:url(' . esc_url($scene) . ')"' : ''; ?>>
 	<div class="experience-section__scene" aria-hidden="true"></div>

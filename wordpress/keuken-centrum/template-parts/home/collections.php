@@ -5,7 +5,6 @@
  * @package Keuken_Centrum
  */
 
-$uploads_base = 'https://keuken-centrum.nl/wp-content/uploads';
 $showroom_url = home_url('/#showroom');
 $collections_data = function_exists( 'kc_home_collections_data' ) ? kc_home_collections_data() : null;
 $archive_url  = $collections_data['cta_url'] ?? ( get_post_type_archive_link('kitchen_brand') ?: home_url('/keukens') );
@@ -16,7 +15,7 @@ $collections  = $collections_data['items'] ?? [
 		'title'       => 'Modern Wonen',
 		'descriptor'  => 'Architecturaal · Minimaal · Tijdloos',
 		'description' => 'Slanke lijnen en functionele elegantie voor het hedendaagse leven.',
-		'image'       => $uploads_base . '/IMG_0642-1024x768.webp',
+		'image'       => kc_theme_img( 'collections/modern-base.webp' ) ?: kc_theme_img( 'collections/modern.jpg' ),
 	],
 	[
 		'number'      => '02',
@@ -24,7 +23,7 @@ $collections  = $collections_data['items'] ?? [
 		'title'       => 'Klassieke Elegantie',
 		'descriptor'  => 'Warm · Elegant · Verfijnd',
 		'description' => 'Tijdloze proporties en rijke materialen die generaties meegaan.',
-		'image'       => $uploads_base . '/WhatsApp-Image-2023-09-20-at-13.53.27.webp',
+		'image'       => kc_theme_img( 'collections/klassiek-base.webp' ) ?: kc_theme_img( 'collections/klassiek.jpg' ),
 	],
 	[
 		'number'      => '03',
@@ -32,7 +31,7 @@ $collections  = $collections_data['items'] ?? [
 		'title'       => 'Landelijk Erfgoed',
 		'descriptor'  => 'Natuurlijk · Authentiek · Uitnodigend',
 		'description' => 'Warme texturen en ambachtelijke details voor een thuis gevoel.',
-		'image'       => $uploads_base . '/WhatsApp-Image-2023-09-20-at-13.53.27.webp',
+		'image'       => kc_theme_img( 'collections/landelijk-base.webp' ) ?: kc_theme_img( 'collections/landelijk.jpg' ),
 	],
 	[
 		'number'      => '04',
@@ -40,7 +39,7 @@ $collections  = $collections_data['items'] ?? [
 		'title'       => 'Industrieel Atelier',
 		'descriptor'  => 'Krachtig · Karaktervol · Hedendaags',
 		'description' => 'Rauwe materialen en grafische vormen met een eigenzinnig karakter.',
-		'image'       => $uploads_base . '/WhatsApp-Image-2023-09-20-at-13.53.25.webp',
+		'image'       => kc_theme_img( 'collections/industrieel-base.webp' ) ?: kc_theme_img( 'collections/industrieel.jpg' ),
 	],
 ];
 $col_eyebrow    = $collections_data['eyebrow'] ?? 'Onze Collecties';

@@ -81,7 +81,7 @@ $concrete       = kc_theme_img('mat-concrete.jpg');
 $consultation   = kc_get_option('consultation_cta_url', home_url('/consultation/'));
 $reviews_count  = kc_get_option('google_reviews_count', '150');
 $founded_year   = kc_get_option('founded_year', '1978');
-$cbw_logo       = home_url('/wp-content/uploads/cbw.webp');
+$cbw_logo       = kc_theme_img( 'cbw.svg' ) ?: kc_theme_img( 'cbw.webp' );
 ?>
 <section class="why-scene why-scene--react section-shell" id="why-with-us"<?php echo $concrete ? ' style="--why-concrete:url(' . esc_url($concrete) . ')"' : ''; ?> data-why-pillars>
 	<div class="site-shell why-scene__inner">

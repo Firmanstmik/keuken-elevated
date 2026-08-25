@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="36" viewBox="0 0 120 36" role="img" aria-label="CBW erkend">
+  <rect width="120" height="36" rx="3" fill="#111111"/>
+  <rect x="1" y="1" width="118" height="34" rx="2.5" fill="none" stroke="#c8a96b" stroke-width="1"/>
+  <text x="60" y="16" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" letter-spacing="0.12em" fill="#c8a96b">CBW</text>
+  <text x="60" y="28" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="8" font-weight="600" letter-spacing="0.18em" fill="#F7F5F2">ERKEND</text>
+</svg>

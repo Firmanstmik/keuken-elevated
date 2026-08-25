@@ -401,7 +401,7 @@ function kc_home_experience_data(): array {
  * @return array{eyebrow:string,heading:string,heading_em:string,lede:string,cta_label:string,cta_url:string,items:list<array<string,mixed>>}
  */
 function kc_home_collections_data(): array {
-	$uploads = 'https://keuken-centrum.nl/wp-content/uploads';
+	// Prefer bundled theme assets — remote keuken-centrum.nl/uploads URLs 404.
 	$defaults = [
 		[
 			'number'      => '01',
@@ -409,7 +409,7 @@ function kc_home_collections_data(): array {
 			'title'       => 'Modern Wonen',
 			'descriptor'  => 'Architecturaal · Minimaal · Tijdloos',
 			'description' => 'Slanke lijnen en functionele elegantie voor het hedendaagse leven.',
-			'image'       => $uploads . '/IMG_0642-1024x768.webp',
+			'image'       => kc_theme_img( 'collections/modern-base.webp' ) ?: kc_theme_img( 'collections/modern.jpg' ),
 		],
 		[
 			'number'      => '02',
@@ -417,7 +417,7 @@ function kc_home_collections_data(): array {
 			'title'       => 'Klassieke Elegantie',
 			'descriptor'  => 'Warm · Elegant · Verfijnd',
 			'description' => 'Tijdloze proporties en rijke materialen die generaties meegaan.',
-			'image'       => $uploads . '/WhatsApp-Image-2023-09-20-at-13.53.27.webp',
+			'image'       => kc_theme_img( 'collections/klassiek-base.webp' ) ?: kc_theme_img( 'collections/klassiek.jpg' ),
 		],
 		[
 			'number'      => '03',
@@ -425,7 +425,7 @@ function kc_home_collections_data(): array {
 			'title'       => 'Landelijk Erfgoed',
 			'descriptor'  => 'Natuurlijk · Authentiek · Uitnodigend',
 			'description' => 'Warme texturen en ambachtelijke details voor een thuis gevoel.',
-			'image'       => $uploads . '/WhatsApp-Image-2023-09-20-at-13.53.27.webp',
+			'image'       => kc_theme_img( 'collections/landelijk-base.webp' ) ?: kc_theme_img( 'collections/landelijk.jpg' ),
 		],
 		[
 			'number'      => '04',
@@ -433,7 +433,7 @@ function kc_home_collections_data(): array {
 			'title'       => 'Industrieel Atelier',
 			'descriptor'  => 'Krachtig · Karaktervol · Hedendaags',
 			'description' => 'Rauwe materialen en grafische vormen met een eigenzinnig karakter.',
-			'image'       => $uploads . '/IMG_0642-1024x768.webp',
+			'image'       => kc_theme_img( 'collections/industrieel-base.webp' ) ?: kc_theme_img( 'collections/industrieel.jpg' ),
 		],
 	];
 
@@ -449,13 +449,18 @@ function kc_home_collections_data(): array {
 			continue;
 		}
 		$def     = $defaults[ $i - 1 ] ?? null;
+		$cms_img = kc_cms_image_url( $row['image'] ?? null, '' );
+		// Ignore dead remote uploads host; keep Media Library / theme URLs.
+		if ( $cms_img && preg_match( '#keuken-centrum\.nl/wp-content/uploads#i', $cms_img ) ) {
+			$cms_img = '';
+		}
 		$items[] = [
 			'number'      => kc_home_row_text( $row, 'number', sprintf( '%02d', $i ) ),
 			'label'       => kc_home_row_text( $row, 'label', $def['label'] ?? '' ),
 			'title'       => $title,
 			'descriptor'  => kc_home_row_text( $row, 'descriptor', $def['descriptor'] ?? '' ),
 			'description' => kc_home_row_text( $row, 'description', $def['description'] ?? '' ),
-			'image'       => kc_cms_image_url( $row['image'] ?? null, $def['image'] ?? '' ),
+			'image'       => $cms_img ?: ( $def['image'] ?? '' ),
 			'url'         => kc_home_row_text( $row, 'url', home_url( '/#showroom' ) ),
 		];
 		++$i;
