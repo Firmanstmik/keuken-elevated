@@ -158,12 +158,7 @@ $first_dot   = $slides[0]['dot'] ?? '#c8a96b';
 				<h1 class="hero-display">
 					<span class="hero-display__line home-hero__reveal" data-hero-reveal="1"><span class="hero-display__inner"><?php echo esc_html($args['title_line_1']); ?></span></span>
 					<span class="hero-display__line hero-display__line--mid home-hero__reveal" data-hero-reveal="2"><span class="hero-display__inner"><?php echo esc_html($args['title_line_2']); ?></span></span>
-					<span class="hero-display__line home-hero__reveal" data-hero-reveal="3">
-						<span class="hero-display__inner">
-							<?php echo esc_html($args['title_line_3_prefix']); ?>
-							<span class="hero-accent"><?php echo esc_html($args['title_em']); ?></span>
-						</span>
-					</span>
+					<span class="hero-display__line home-hero__reveal" data-hero-reveal="3"><span class="hero-display__inner"><?php echo esc_html($args['title_line_3_prefix']); ?> <span class="hero-accent"><?php echo esc_html($args['title_em']); ?></span></span></span>
 				</h1>
 
 				<p class="home-hero__subtitle home-hero__reveal" data-hero-reveal="4"><?php echo esc_html($args['subtitle']); ?></p>
