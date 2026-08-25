@@ -76,15 +76,10 @@ body.kc-home .premium-showcase--react .premium-showcase__main video {
 	object-fit: cover;
 }
 
-/* Mobile: match React h-auto (no aspect lock) — aspect-ratio clipped ~20px short @430 */
+/* Mobile: keep aspect-ratio (auto caused −300+ showroom collapse). Frame gap = React gap-3. */
 @media (max-width: 639px) {
-	body.kc-home .premium-showcase--react .premium-showcase__main video {
-		aspect-ratio: auto;
-		max-height: min(62vh, 520px);
-	}
-
 	body.kc-home .premium-showcase--react .premium-showcase__gallery-frame {
-		gap: 0.75rem; /* React gap-3 even when stack is ~0 */
+		gap: 0.75rem;
 	}
 }
 
@@ -901,31 +896,32 @@ body.kc-home .site-footer--react .site-footer__contact-list--react li + li {
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
+	/* Keep mb-20/mt-20 — applying full md:mb-28 overshoots WP steps */
 	body.kc-home .process-timeline-scene--react .process-timeline-heading--react {
-		margin-bottom: 6.25rem; /* was 5rem; React md:mb-28 — keep under +28 after step trim */
+		margin-bottom: 5rem;
 	}
 
 	body.kc-home .process-timeline-scene--react .process-timeline-cta {
-		margin-top: 6.25rem;
+		margin-top: 5rem;
 	}
 
 	body.kc-home .process-timeline-scene--react .process-timeline-step {
-		padding-bottom: 1.1rem;
+		padding-bottom: 1rem;
 	}
 
 	body.kc-home .process-timeline-scene--react .process-timeline-step h3 {
-		margin-top: 0.75rem;
-		margin-bottom: 0.4rem;
+		margin-top: 0.65rem;
+		margin-bottom: 0.35rem;
 	}
 }
 
 @media (min-width: 1024px) {
 	body.kc-home .process-timeline-scene--react .process-timeline-heading--react {
-		margin-bottom: 6.5rem; /* was 7rem — clear +29 */
+		margin-bottom: 7rem;
 	}
 
 	body.kc-home .process-timeline-scene--react .process-timeline-cta {
-		margin-top: 6.5rem;
+		margin-top: 7rem;
 	}
 }
 
