@@ -1028,18 +1028,30 @@ body.kc-home .site-footer--react .site-footer__contact-list--react li + li {
 	}
 }
 
-/* Brands mobile: close persistent −33 (no brands-scene--react / carousel-stage on WP) */
+/* Brands mobile: close −33. Match React mobile stack (390) + small bottom pad. */
 @media (max-width: 767px) {
 	body.kc-home #brands.brands-scene {
-		padding-bottom: calc(clamp(3.75rem, 16vw, 5rem) + 2.15rem);
+		padding-bottom: calc(clamp(3.75rem, 16vw, 5rem) + 0.35rem);
 	}
 
 	body.kc-home #brands .brands-carousel-grid {
 		margin-top: 1rem;
+		gap: 1.75rem;
 	}
 
 	body.kc-home #brands .brands-stack {
-		min-height: 470px;
+		height: 390px;
+		max-width: min(92vw, 380px);
+	}
+
+	body.kc-home #brands .brands-stack__card {
+		inset: 2% 7%;
+		border-radius: 26px;
+	}
+
+	body.kc-home #brands .brands-marquee {
+		margin-top: 2.25rem;
+		padding-block: 0.65rem;
 	}
 }
 
