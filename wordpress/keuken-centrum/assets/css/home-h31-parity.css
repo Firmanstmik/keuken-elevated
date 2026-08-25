@@ -76,6 +76,18 @@ body.kc-home .premium-showcase--react .premium-showcase__main video {
 	object-fit: cover;
 }
 
+/* Mobile: match React h-auto (no aspect lock) — aspect-ratio clipped ~20px short @430 */
+@media (max-width: 639px) {
+	body.kc-home .premium-showcase--react .premium-showcase__main video {
+		aspect-ratio: auto;
+		max-height: min(62vh, 520px);
+	}
+
+	body.kc-home .premium-showcase--react .premium-showcase__gallery-frame {
+		gap: 0.75rem; /* React gap-3 even when stack is ~0 */
+	}
+}
+
 /*
  * Mobile accent strip: React SmallVideo is absolute-inset with no intrinsic
  * height below sm — the row collapses to ~0. W3 already collapses the stack;
@@ -109,7 +121,7 @@ body.kc-home .premium-showcase--react .premium-showcase__main video {
 
 	body.kc-home .premium-showcase--react .premium-showcase__gallery-frame {
 		flex-direction: column;
-		gap: 0;
+		gap: 0.75rem; /* React gap-3 */
 	}
 }
 
@@ -586,10 +598,20 @@ body.kc-home .site-footer--react .site-footer__bottom--react {
 	}
 }
 
-/* Final CTA @1024: React heading mb-20 — theme sometimes tighter/looser */
+/* Final CTA: React header wrapper mb-20 always (not only desktop) */
+body.kc-home .final-cta-react--v2 .final-cta-react-heading--v2 {
+	margin-bottom: 5rem;
+}
+
 @media (min-width: 1024px) {
 	body.kc-home .final-cta-react--v2 .final-cta-react-heading--v2 {
 		margin-bottom: 5rem;
+	}
+
+	/* Cards slightly tall vs React — trim chrome */
+	body.kc-home .final-cta-react-card--v2 {
+		min-height: 17.5rem;
+		padding-block: 1.75rem;
 	}
 }
 
@@ -645,12 +667,6 @@ body.kc-home #consultation .consultation-lead-form--react textarea {
 	}
 }
 
-/* Showroom @430: keep React gap-3 on frame even when stack is collapsed */
-@media (min-width: 400px) and (max-width: 639px) {
-	body.kc-home .premium-showcase--react .premium-showcase__gallery-frame {
-		gap: 0.75rem;
-	}
-}
 
 /* Footer bottom: React has no extra margin-top on bottom bar */
 body.kc-home .site-footer--react .site-footer__bottom--react {
@@ -805,7 +821,7 @@ body.kc-home .site-footer--react .site-footer__social-icon svg {
 	height: 1.1rem;
 }
 
-/* Footer hero + bottom — match React pt-28/pb-24 + bottom bar rhythm */
+/* Footer hero + bottom — React md:pt-28 md:pb-24; avoid desktop overshoot */
 @media (min-width: 768px) and (max-width: 1023px) {
 	body.kc-home .site-footer--react .site-footer__hero {
 		padding-top: 7rem;
@@ -825,15 +841,19 @@ body.kc-home .site-footer--react .site-footer__social-icon svg {
 	}
 }
 
-/* Desktop: prior inflate overshot (+36) — keep React md pads only */
 @media (min-width: 1024px) {
 	body.kc-home .site-footer--react .site-footer__hero {
 		padding-top: 7rem;
 		padding-bottom: 6rem;
 	}
 
+	body.kc-home .site-footer--react .site-footer__hero-actions {
+		margin-top: 2.5rem;
+	}
+
 	body.kc-home .site-footer--react .site-footer__bottom--react {
 		min-height: 0;
+		gap: 1rem;
 		padding-top: 1.75rem;
 		padding-bottom: 2rem;
 	}
@@ -864,15 +884,48 @@ body.kc-home .site-footer--react .site-footer__contact-list--react li + li {
 	}
 }
 
-/* Process @768: tighten vertical step rhythm (residual +70) */
+/* Process: React mb-20 / mt-20 mobile; md:mb-28 / md:mt-28 from 768 — trim residual WP tall */
+@media (max-width: 767px) {
+	body.kc-home .process-timeline-scene--react .process-timeline-heading--react {
+		margin-bottom: 4.5rem;
+	}
+
+	body.kc-home .process-timeline-scene--react .process-timeline-cta {
+		margin-top: 4.5rem;
+	}
+
+	body.kc-home .process-timeline-scene--react .process-mobile-steps,
+	body.kc-home .process-timeline-scene--react .process-timeline {
+		padding-top: 0.5rem;
+	}
+}
+
 @media (min-width: 768px) and (max-width: 1023px) {
+	body.kc-home .process-timeline-scene--react .process-timeline-heading--react {
+		margin-bottom: 6.25rem; /* was 5rem; React md:mb-28 — keep under +28 after step trim */
+	}
+
+	body.kc-home .process-timeline-scene--react .process-timeline-cta {
+		margin-top: 6.25rem;
+	}
+
 	body.kc-home .process-timeline-scene--react .process-timeline-step {
-		padding-bottom: 1.35rem;
+		padding-bottom: 1.1rem;
 	}
 
 	body.kc-home .process-timeline-scene--react .process-timeline-step h3 {
-		margin-top: 0.85rem;
-		margin-bottom: 0.45rem;
+		margin-top: 0.75rem;
+		margin-bottom: 0.4rem;
+	}
+}
+
+@media (min-width: 1024px) {
+	body.kc-home .process-timeline-scene--react .process-timeline-heading--react {
+		margin-bottom: 6.5rem; /* was 7rem — clear +29 */
+	}
+
+	body.kc-home .process-timeline-scene--react .process-timeline-cta {
+		margin-top: 6.5rem;
 	}
 }
 
@@ -893,6 +946,29 @@ body.kc-home .site-footer--react .site-footer__contact-list--react li + li {
 
 @media (min-width: 1024px) {
 	body.kc-home #consultation .consultation-form-card--react {
-		padding-bottom: 4.25rem;
+		padding-bottom: 5rem;
+	}
+
+	body.kc-home #consultation .consultation-panel--react {
+		margin-top: 3rem;
+	}
+
+	body.kc-home #consultation .consultation-next {
+		margin-top: 3rem;
+	}
+}
+
+/* Brands mobile: recover ~33px (React carousel stage taller) */
+@media (max-width: 767px) {
+	body.kc-home #brands.brands-scene--react .brands-carousel-stage,
+	body.kc-home .brands-scene--react .brands-carousel-stage {
+		min-height: 34.5rem;
+	}
+}
+
+/* Experience mobile residual ~−29 after chapter move */
+@media (max-width: 767px) {
+	body.kc-home .experience-section--react .experience-card--featured {
+		min-height: 460px;
 	}
 }
