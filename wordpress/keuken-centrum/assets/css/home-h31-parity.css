@@ -1032,7 +1032,12 @@ body.kc-home .site-footer--react .site-footer__contact-list--react li + li {
 @media (max-width: 767px) {
 	body.kc-home #brands.brands-scene--react .brands-carousel-stage,
 	body.kc-home .brands-scene--react .brands-carousel-stage {
-		min-height: 36.6rem; /* was 34.5 — close remaining −33 */
+		min-height: 38.75rem; /* close remaining −33 @430 */
+	}
+
+	body.kc-home #brands.brands-scene--react,
+	body.kc-home .brands-scene--react {
+		padding-bottom: 0.5rem;
 	}
 }
 
@@ -1044,98 +1049,114 @@ body.kc-home .site-footer--react .site-footer__contact-list--react li + li {
 }
 
 /*
- * Showroom @430: home-mobile-parity-w3 shrinks copy/actions vs React
- * (1.02rem / leading-1.75, mt-6 / mt-4 / mt-9) → section −71.
+ * Showroom mobile: match React mt-6/mt-4/mt-9 without overshooting @390.
+ * Font bump only from 400px — @390 stays on w3 sizing.
  */
 @media (max-width: 767px) {
 	body.kc-home .premium-showcase--react .premium-showcase__label-row {
-		margin-bottom: 1.25rem; /* React outer mb-5 */
+		margin-bottom: 1.25rem;
 	}
 
 	body.kc-home .premium-showcase--react .premium-showcase__copy {
-		margin-top: 1.5rem; /* React mt-6 */
-		font-size: 1.02rem;
-		line-height: 1.75;
+		margin-top: 1.5rem;
 	}
 
 	body.kc-home .premium-showcase--react .premium-showcase__copy--secondary {
-		margin-top: 1rem; /* React mt-4 — override w3 0.85rem */
+		margin-top: 1rem;
 	}
 
 	body.kc-home .premium-showcase--react .premium-showcase__actions {
-		margin-top: 2.25rem; /* React mt-9 — override w3 1.75rem */
-	}
-
-	body.kc-home .premium-showcase--react .premium-showcase__content {
-		padding-bottom: 0.5rem;
+		margin-top: 2.25rem;
 	}
 }
 
-/* Process mobile: trim residual +37 @430 */
+@media (min-width: 400px) and (max-width: 767px) {
+	body.kc-home .premium-showcase--react .premium-showcase__copy,
+	body.kc-home .premium-showcase--react .premium-showcase__copy--secondary {
+		font-size: 1.02rem;
+		line-height: 1.75;
+	}
+}
+
+@media (max-width: 399px) {
+	/* Undo residual +37 showroom @390 from prior font/pad inflate */
+	body.kc-home .premium-showcase--react .premium-showcase__actions {
+		margin-top: 1.9rem;
+	}
+
+	body.kc-home .premium-showcase--react .premium-showcase__copy--secondary {
+		margin-top: 0.85rem;
+	}
+}
+
+/* Process mobile: trim residual +37 @430 — keep mild; 430 now PASS */
 @media (max-width: 767px) {
 	body.kc-home .process-timeline-scene--react .process-timeline-heading--react {
-		margin-bottom: 4.15rem;
+		margin-bottom: 4.35rem;
 	}
 
 	body.kc-home .process-timeline-scene--react .process-timeline-cta {
-		margin-top: 4.15rem;
+		margin-top: 4.35rem;
 	}
 }
 
-/* Process @768: residual +56 from step cards */
+/* Process @768: residual was +56 — keep mild trim (now PASS) */
 @media (min-width: 768px) and (max-width: 1023px) {
 	body.kc-home .process-timeline-scene--react .process-timeline-heading--react {
-		margin-bottom: 4.25rem;
+		margin-bottom: 4.5rem;
 	}
 
 	body.kc-home .process-timeline-scene--react .process-timeline-cta {
-		margin-top: 4.25rem;
+		margin-top: 4.5rem;
 	}
 
 	body.kc-home .process-timeline-scene--react .process-timeline-step {
-		padding-bottom: 0.65rem;
-	}
-
-	body.kc-home .process-timeline-scene--react .process-timeline-step p {
-		margin-top: 0.15rem;
+		padding-bottom: 0.75rem;
 	}
 }
 
-/* Process @1024: barely +29 over tol */
+/* Process ≥1024: restore React 7rem (1.5.3 under-trimmed @1280 −28) */
 @media (min-width: 1024px) {
 	body.kc-home .process-timeline-scene--react .process-timeline-heading--react {
-		margin-bottom: 6.75rem;
+		margin-bottom: 7rem;
 	}
 
 	body.kc-home .process-timeline-scene--react .process-timeline-cta {
-		margin-top: 6.75rem;
+		margin-top: 7rem;
 	}
 }
 
-/* Final CTA @430: −30 — nudge heading + card rhythm */
+/* Final CTA @430: mild nudge (now PASS) */
 @media (max-width: 767px) {
 	body.kc-home .final-cta-react--v2 .final-cta-react-heading--v2 {
-		margin-bottom: 5.5rem;
-	}
-
-	body.kc-home .final-cta-react-card--v2 {
-		min-height: 18.5rem;
+		margin-bottom: 5.25rem;
 	}
 }
 
-/* Final CTA @1024: +52 — trim cards/heading */
-@media (min-width: 1024px) {
+/* Final CTA @1024 only: +32 — trim; ≥1280 restore React rhythm (−35 overshoot) */
+@media (min-width: 1024px) and (max-width: 1279px) {
 	body.kc-home .final-cta-react--v2 .final-cta-react-heading--v2 {
-		margin-bottom: 4.25rem;
+		margin-bottom: 4rem;
 	}
 
 	body.kc-home .final-cta-react-card--v2 {
-		min-height: 16.75rem;
-		padding-block: 1.5rem;
+		min-height: 16.5rem;
+		padding-block: 1.4rem;
 	}
 }
 
-/* Consultation @768: −36 without contact strip */
+@media (min-width: 1280px) {
+	body.kc-home .final-cta-react--v2 .final-cta-react-heading--v2 {
+		margin-bottom: 5rem;
+	}
+
+	body.kc-home .final-cta-react-card--v2 {
+		min-height: 17.5rem;
+		padding-block: 1.75rem;
+	}
+}
+
+/* Consultation @768: −36 — keep (now PASS) */
 @media (min-width: 768px) and (max-width: 1023px) {
 	body.kc-home #consultation .consultation-form-card--react {
 		padding-bottom: 4rem;
@@ -1146,20 +1167,32 @@ body.kc-home .site-footer--react .site-footer__contact-list--react li + li {
 	}
 }
 
-/* Footer @1024: trim residual +49 after eyebrow/heading restore */
+/* Footer @768: residual −51 after ColTitle/44px — nudge grid pad */
+@media (min-width: 768px) and (max-width: 1023px) {
+	body.kc-home .site-footer--react .site-footer__grid--react {
+		padding-top: 5.75rem;
+		padding-bottom: 4.75rem;
+	}
+
+	body.kc-home .site-footer--react .site-footer__socials--react {
+		gap: 0.9rem;
+	}
+}
+
+/* Footer ≥1024: eyebrow restore made +29 — shave pads under tol */
 @media (min-width: 1024px) {
 	body.kc-home .site-footer--react .site-footer__hero {
-		padding-top: 6.5rem;
-		padding-bottom: 5.5rem;
+		padding-top: 6.35rem;
+		padding-bottom: 5.35rem;
 	}
 
 	body.kc-home .site-footer--react .site-footer__grid--react {
-		padding-top: 4.5rem;
-		padding-bottom: 3.5rem;
+		padding-top: 4.35rem;
+		padding-bottom: 3.35rem;
 	}
 
 	body.kc-home .site-footer--react .site-footer__bottom--react {
-		padding-top: 1.5rem;
-		padding-bottom: 1.75rem;
+		padding-top: 1.4rem;
+		padding-bottom: 1.65rem;
 	}
 }
