@@ -221,8 +221,8 @@ $logo = $f['logo'] ?? '';
 						</div>
 					</div>
 					<div class="site-footer__showroom-cta" aria-hidden="true">
-						<span class="site-footer__showroom-cta-item"><?php esc_html_e( 'Bekijk showroom', 'keuken-centrum' ); ?></span>
-						<span class="site-footer__showroom-cta-item"><?php esc_html_e( 'Route plannen', 'keuken-centrum' ); ?></span>
+						<span class="site-footer__showroom-cta-item"><?php echo kc_icon_home(); ?><?php esc_html_e( 'Bekijk showroom', 'keuken-centrum' ); ?></span>
+						<span class="site-footer__showroom-cta-item"><?php echo kc_icon_map(); ?><?php esc_html_e( 'Route plannen', 'keuken-centrum' ); ?></span>
 					</div>
 				</a>
 			<?php endif; ?>

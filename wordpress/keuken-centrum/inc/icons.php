@@ -39,6 +39,20 @@ function kc_icon_map_pin(): string {
 }
 
 /**
+ * Iconsax Linear Home2 — showroom card CTA.
+ */
+function kc_icon_home(): string {
+	return '<svg class="kc-icon-home" viewBox="0 0 24 24" width="12" height="12" fill="none" aria-hidden="true"><path d="M9.02 2.84 3.63 7.04c-.71.55-1.29 1.71-1.29 2.6v7.9c0 1.81 1.48 3.29 3.29 3.29h3.08v-5.73c0-.73.59-1.32 1.32-1.32h2c.73 0 1.32.59 1.32 1.32V21h3.08c1.81 0 3.29-1.48 3.29-3.29v-7.9c0-.9-.58-2.05-1.29-2.6l-5.39-4.2c-.99-.77-2.61-.77-3.62 0Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+}
+
+/**
+ * Iconsax Linear Map1 — showroom route CTA.
+ */
+function kc_icon_map(): string {
+	return '<svg class="kc-icon-map" viewBox="0 0 24 24" width="12" height="12" fill="none" aria-hidden="true"><path d="M2.29 7.78v9.73c0 1.09.92 1.69 2.01 1.35l2.44-.81c.35-.11.74-.07 1.06.12l4.16 2.49c.45.27 1.06.27 1.51 0l4.16-2.49c.32-.19.71-.23 1.06-.12l2.44.81c1.09.36 2.01-.24 2.01-1.35V7.78c0-.72-.46-1.38-1.15-1.61l-2.74-.91c-.4-.13-.84-.09-1.21.12l-4.16 2.49c-.34.2-.79.2-1.13 0L7.1 5.38c-.37-.21-.81-.25-1.21-.12l-2.74.91c-.69.23-1.15.89-1.15 1.61Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.56 5.34v12.87M15.94 5.34v12.87" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+}
+
+/**
  * Iconsax Linear DocumentText — offerte / consultation.
  */
 function kc_icon_file_text(): string {
