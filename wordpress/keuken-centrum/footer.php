@@ -27,18 +27,22 @@ $logo = $f['logo'] ?? '';
 	</div>
 
 	<div class="site-shell site-footer__hero">
-		<p class="site-footer__hero-eyebrow"><?php echo esc_html( (string) ( $f['hero_eyebrow'] ?? '' ) ); ?></p>
+		<div class="site-footer__hero-eyebrow-wrap">
+			<?php kc_brand_eyebrow( (string) ( $f['hero_eyebrow'] ?? '' ), true ); ?>
+		</div>
 		<h2 class="site-footer__hero-title">
 			<?php echo esc_html( (string) ( $f['hero_title'] ?? '' ) ); ?>
 			<em><?php echo esc_html( (string) ( $f['hero_title_em'] ?? '' ) ); ?></em>
 		</h2>
 		<p class="site-footer__hero-copy"><?php echo esc_html( (string) ( $f['hero_copy'] ?? '' ) ); ?></p>
 		<div class="site-footer__hero-actions">
-			<a class="btn btn--primary btn--pill" href="<?php echo esc_url( (string) ( $f['cta_primary']['url'] ?? '#' ) ); ?>">
-				<?php echo esc_html( (string) ( $f['cta_primary']['label'] ?? '' ) ); ?>
+			<a class="premium-pill-button premium-pill-button--blue premium-pill-button--sm premium-pill-button--rounded" href="<?php echo esc_url( (string) ( $f['cta_primary']['url'] ?? '#' ) ); ?>">
+				<span class="premium-pill-button__label"><?php echo esc_html( (string) ( $f['cta_primary']['label'] ?? '' ) ); ?></span>
+				<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
 			</a>
-			<a class="btn btn--secondary btn--pill" href="<?php echo esc_url( (string) ( $f['cta_secondary']['url'] ?? '#' ) ); ?>">
-				<?php echo esc_html( (string) ( $f['cta_secondary']['label'] ?? '' ) ); ?>
+			<a class="premium-pill-button premium-pill-button--ghost premium-pill-button--sm premium-pill-button--rounded" href="<?php echo esc_url( (string) ( $f['cta_secondary']['url'] ?? '#' ) ); ?>">
+				<span class="premium-pill-button__label"><?php echo esc_html( (string) ( $f['cta_secondary']['label'] ?? '' ) ); ?></span>
+				<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
 			</a>
 		</div>
 	</div>
@@ -197,13 +201,29 @@ $logo = $f['logo'] ?? '';
 			</div>
 
 			<?php if ( ! empty( $f['showroom_image'] ) ) : ?>
+				<?php
+				$showroom_title = (string) ( $f['showroom_title'] ?? __( 'Keuken Centrum Utrecht', 'keuken-centrum' ) );
+				$showroom_addr  = trim( (string) ( $f['address'] ?? '' ) . ', ' . (string) ( $f['postal'] ?? '' ) );
+				?>
 				<a class="site-footer__showroom site-footer__showroom--react" href="<?php echo esc_url( (string) ( $f['maps_url'] ?? '#' ) ); ?>" target="_blank" rel="noopener noreferrer">
-					<img src="<?php echo esc_url( (string) $f['showroom_image'] ); ?>" alt="<?php esc_attr_e( 'Showroom Keuken-Centrum Utrecht', 'keuken-centrum' ); ?>" loading="lazy" decoding="async">
-					<span>
-						<small><?php echo esc_html( (string) ( $f['showroom_label'] ?? '' ) ); ?></small>
-						<?php echo esc_html( (string) ( $f['showroom_caption'] ?? '' ) ); ?>
-						<b aria-hidden="true">→</b>
-					</span>
+					<div class="site-footer__showroom-media">
+						<img src="<?php echo esc_url( (string) $f['showroom_image'] ); ?>" alt="<?php esc_attr_e( 'Showroom Keuken-Centrum Utrecht', 'keuken-centrum' ); ?>" loading="lazy" decoding="async" width="640" height="400">
+						<div class="site-footer__showroom-badge">
+							<span class="site-footer__showroom-dot" aria-hidden="true"></span>
+							<span><?php echo esc_html( (string) ( $f['showroom_label'] ?? __( 'Premium showroom', 'keuken-centrum' ) ) ); ?></span>
+						</div>
+						<div class="site-footer__showroom-overlay">
+							<p class="site-footer__showroom-title"><?php echo esc_html( $showroom_title ); ?></p>
+							<p class="site-footer__showroom-addr">
+								<span aria-hidden="true"><?php echo kc_icon_map_pin(); ?></span>
+								<?php echo esc_html( $showroom_addr ); ?>
+							</p>
+						</div>
+					</div>
+					<div class="site-footer__showroom-cta" aria-hidden="true">
+						<span class="site-footer__showroom-cta-item"><?php esc_html_e( 'Bekijk showroom', 'keuken-centrum' ); ?></span>
+						<span class="site-footer__showroom-cta-item"><?php esc_html_e( 'Route plannen', 'keuken-centrum' ); ?></span>
+					</div>
 				</a>
 			<?php endif; ?>
 		</div>

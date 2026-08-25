@@ -779,21 +779,37 @@ body.kc-home .site-footer--react .site-footer__heading--spaced {
  * Theme locked height 200 only.
  */
 /*
- * Showroom card: neutralize theme absolute overlay/span + img height:100%.
- * React = 200px photo + dual CTA row ≈ 259px.
+ * Showroom card — React ShowroomCard twin (200px photo + badge + overlay + dual CTA).
  */
 body.kc-home .site-footer--react .site-footer__showroom--react {
 	position: relative;
-	display: flex;
-	flex-wrap: wrap;
+	display: block;
 	height: auto !important;
 	min-height: 0 !important;
 	max-height: none !important;
-	margin-top: 1.75rem; /* React mt-7 */
+	margin-top: 1.75rem;
 	overflow: hidden;
 	border-radius: 18px;
 	border: 1px solid rgba(139, 197, 64, 0.22);
 	background: #081c26;
+	box-shadow: 0 18px 50px -26px rgba(17, 19, 21, 0.7);
+	text-decoration: none;
+	color: inherit;
+	transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+body.kc-home .site-footer--react .site-footer__showroom--react:hover {
+	transform: translateY(-4px);
+	border-color: rgba(139, 197, 64, 0.35);
+	box-shadow:
+		0 30px 70px -28px rgba(17, 19, 21, 0.8),
+		0 0 30px -10px rgba(139, 197, 64, 0.25);
+}
+
+body.kc-home .site-footer--react .site-footer__showroom-media {
+	position: relative;
+	height: 200px;
+	overflow: hidden;
 }
 
 body.kc-home .site-footer--react .site-footer__showroom--react img {
@@ -802,69 +818,177 @@ body.kc-home .site-footer--react .site-footer__showroom--react img {
 	z-index: 0;
 	width: 100% !important;
 	height: 200px !important;
-	flex: 1 0 100%;
 	object-fit: cover;
+	object-position: center;
 	transform: none !important;
+	transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Kill theme gradient ::after; rebuild as left CTA cell */
-body.kc-home .site-footer--react .site-footer__showroom--react::after {
-	content: "Bekijk showroom" !important;
-	position: static !important;
-	inset: auto !important;
-	display: flex !important;
-	flex: 1 1 50%;
-	align-items: center;
-	justify-content: center;
-	box-sizing: border-box;
-	min-height: 0;
-	height: 3.625rem; /* React dual CTA row ≈ 58.7 */
-	max-height: 3.625rem;
-	padding: 0 0.75rem;
-	background: rgba(8, 28, 38, 0.96) !important;
-	border-top: 1px solid rgba(139, 197, 64, 0.1);
-	color: rgba(245, 242, 236, 0.6);
-	font-family: var(--font-body);
-	font-size: 0.66rem;
-	font-weight: 500;
-	letter-spacing: 0.18em;
-	text-transform: uppercase;
-	white-space: nowrap;
+body.kc-home .site-footer--react .site-footer__showroom--react:hover img {
+	transform: scale(1.04) !important;
 }
 
-body.kc-home .site-footer--react .site-footer__showroom--react > span {
-	position: static !important;
-	inset: auto !important;
+body.kc-home .site-footer--react .site-footer__showroom-media::after {
+	content: "";
+	position: absolute;
+	inset: 0;
 	z-index: 1;
-	display: flex !important;
-	flex: 1 1 50%;
-	align-items: center;
-	justify-content: center;
-	box-sizing: border-box;
-	min-height: 0;
-	height: 3.625rem;
-	max-height: 3.625rem;
-	margin: 0;
-	padding: 0 0.75rem;
-	background: rgba(8, 28, 38, 0.96);
-	border-top: 1px solid rgba(139, 197, 64, 0.1);
-	border-left: 1px solid rgba(255, 255, 255, 0.07);
-	color: rgba(245, 242, 236, 0.6);
-	font-family: var(--font-body);
-	font-size: 0.66rem;
-	font-weight: 500;
-	letter-spacing: 0.18em;
-	text-transform: uppercase;
-	white-space: nowrap;
+	pointer-events: none;
+	background: linear-gradient(180deg, rgba(17, 19, 21, 0.15) 0%, rgba(17, 19, 21, 0.62) 65%, rgba(17, 19, 21, 0.92) 100%);
 }
 
-body.kc-home .site-footer--react .site-footer__showroom--react > span small,
-body.kc-home .site-footer--react .site-footer__showroom--react > span b {
+/* Kill legacy theme ::after CTA hack */
+body.kc-home .site-footer--react .site-footer__showroom--react::after {
+	content: none !important;
 	display: none !important;
 }
 
-body.kc-home .site-footer--react .site-footer__showroom--react > span::before {
-	content: "Route plannen";
+body.kc-home .site-footer--react .site-footer__showroom-badge {
+	position: absolute;
+	z-index: 2;
+	top: 1rem;
+	left: 1rem;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.375rem;
+	padding: 0.375rem 0.75rem;
+	border-radius: 999px;
+	border: 1px solid rgba(139, 197, 64, 0.32);
+	background: rgba(17, 19, 21, 0.72);
+	backdrop-filter: blur(8px);
+	color: rgba(139, 197, 64, 0.85);
+	font-family: var(--font-body);
+	font-size: 10px;
+	font-weight: 500;
+	letter-spacing: 0.22em;
+	text-transform: uppercase;
+}
+
+body.kc-home .site-footer--react .site-footer__showroom-dot {
+	width: 0.375rem;
+	height: 0.375rem;
+	border-radius: 999px;
+	background: #a8d95a;
+	box-shadow: 0 0 6px rgba(139, 197, 64, 0.65);
+}
+
+body.kc-home .site-footer--react .site-footer__showroom-overlay {
+	position: absolute;
+	z-index: 2;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: 0 1rem 1rem;
+}
+
+body.kc-home .site-footer--react .site-footer__showroom-title {
+	margin: 0;
+	color: #f5f2ec;
+	font-family: var(--font-display);
+	font-size: 1.1rem;
+	font-weight: 300;
+	line-height: 1.2;
+}
+
+body.kc-home .site-footer--react .site-footer__showroom-addr {
+	display: flex;
+	align-items: center;
+	gap: 0.375rem;
+	margin: 0.25rem 0 0;
+	color: rgba(245, 242, 236, 0.55);
+	font-family: var(--font-body);
+	font-size: 0.72rem;
+	font-weight: 300;
+}
+
+body.kc-home .site-footer--react .site-footer__showroom-addr svg {
+	width: 0.75rem;
+	height: 0.75rem;
+	flex-shrink: 0;
+}
+
+body.kc-home .site-footer--react .site-footer__showroom-cta {
+	display: flex;
+	border-top: 1px solid rgba(139, 197, 64, 0.1);
+	background: rgba(8, 28, 38, 0.96);
+}
+
+body.kc-home .site-footer--react .site-footer__showroom-cta-item {
+	flex: 1 1 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	min-height: 2.875rem;
+	padding: 0.75rem;
+	color: rgba(245, 242, 236, 0.6);
+	font-family: var(--font-body);
+	font-size: 0.66rem;
+	font-weight: 500;
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+	transition: color 0.4s ease;
+}
+
+body.kc-home .site-footer--react .site-footer__showroom-cta-item + .site-footer__showroom-cta-item {
+	border-left: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+body.kc-home .site-footer--react .site-footer__showroom--react:hover .site-footer__showroom-cta-item {
+	color: #a8d95a;
+}
+
+/* Hero CTA — React PremiumPillButton size sm */
+body.kc-home .site-footer--react .site-footer__hero-eyebrow-wrap {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 1.75rem;
+}
+
+body.kc-home .site-footer--react .site-footer__hero-actions {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 1rem;
+	margin-top: 2.5rem;
+}
+
+body.kc-home .site-footer--react .site-footer__hero-actions .premium-pill-button {
+	min-height: 34px;
+}
+
+/* Nav discs with arrow — React FooterLink */
+body.kc-home .site-footer--react .site-footer__nav-list a::before {
+	content: "";
+	flex: 0 0 1.5rem;
+	width: 1.5rem;
+	height: 1.5rem;
+	border-radius: 999px;
+	border: 1px solid rgba(139, 197, 64, 0.25);
+	background-color: rgba(139, 197, 64, 0.07);
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23A8D95A' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m13 6 6 6-6 6'/%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 0.75rem;
+	transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.5s ease, border-color 0.5s ease;
+}
+
+body.kc-home .site-footer--react .site-footer__nav-list a:hover::before {
+	transform: rotate(-8deg) scale(1.1);
+	border-color: rgba(168, 217, 90, 0.7);
+	background-color: #a8d95a;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2312200B' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m13 6 6 6-6 6'/%3E%3C/svg%3E");
+	box-shadow: 0 8px 20px -7px rgba(139, 197, 64, 0.9);
+}
+
+/* Brand logo — match React (no invert crush) */
+body.kc-home .site-footer--react .site-footer__logo--react img,
+body.kc-home .site-footer--react .site-footer__logo--react .custom-logo {
+	height: auto !important;
+	width: min(16rem, 100%) !important;
+	max-width: 100%;
+	filter: none !important;
+	margin-bottom: 0;
 }
 
 /* React SocialRow — h-10 icon tiles */
