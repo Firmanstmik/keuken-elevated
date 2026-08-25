@@ -16,6 +16,14 @@ add_filter(
 );
 
 get_header();
+$catalog  = function_exists( 'kc_configurator_catalog' ) ? kc_configurator_catalog() : [];
+$fallback = '';
+foreach ( (array) ( $catalog['styles'] ?? [] ) as $style_row ) {
+	if ( ! empty( $style_row['base'] ) ) {
+		$fallback = (string) $style_row['base'];
+		break;
+	}
+}
 ?>
 <main id="main-content" class="site-main site-main--configurator" data-cfg-step="moodboard">
 	<?php get_template_part( 'template-parts/configurator/flow-nav', null, [ 'step' => $step ] ); ?>
@@ -25,7 +33,7 @@ get_header();
 				<p class="kc-cfg-overline"><?php esc_html_e( 'Uw ontwerpvoorstel', 'keuken-centrum' ); ?></p>
 				<h1 class="kc-cfg-title"><?php esc_html_e( 'Uw keuken', 'keuken-centrum' ); ?> <em><?php esc_html_e( 'persoonlijk samengesteld', 'keuken-centrum' ); ?></em></h1>
 				<div class="kc-cfg-mood__media">
-					<img data-cfg-mood-img alt="" class="kc-cfg-mood__img">
+					<img data-cfg-mood-img src="<?php echo esc_url( $fallback ); ?>" alt="<?php esc_attr_e( 'Moodboardvoorbeeld', 'keuken-centrum' ); ?>" class="kc-cfg-mood__img" width="1200" height="900">
 				</div>
 				<div class="kc-cfg-mood__tools">
 					<button type="button" class="kc-cfg-btn kc-cfg-btn--ghost" data-cfg-print><?php esc_html_e( 'Afdrukken', 'keuken-centrum' ); ?></button>

@@ -112,7 +112,7 @@ $success_lede_tpl = (string) ( $success['lede'] ?? 'Dank u, {name}. Uw persoonli
 
 						<div class="consultation-form-head">
 							<p class="consultation-form-head__eyebrow"><?php echo esc_html( (string) ( $form['eyebrow'] ?? __( 'Stap 05 van 05', 'keuken-centrum' ) ) ); ?></p>
-							<h2 class="consultation-form-head__title"><?php echo esc_html( (string) ( $form['title'] ?? __( 'Plan een consultatie', 'keuken-centrum' ) ) ); ?></h2>
+							<h1 class="consultation-form-head__title"><?php echo esc_html( (string) ( $form['title'] ?? __( 'Plan een consultatie', 'keuken-centrum' ) ) ); ?></h1>
 							<p class="consultation-form-head__lede">
 								<?php echo esc_html( (string) ( $form['lede'] ?? '' ) ); ?>
 							</p>
@@ -121,11 +121,15 @@ $success_lede_tpl = (string) ( $success['lede'] ?? 'Dank u, {name}. Uw persoonli
 						<div class="consultation-form-card">
 							<form
 								class="consultation-form"
+								method="post"
+								action="<?php echo esc_url( $ajax_url ); ?>"
 								data-consultation-form
 								data-ajax-url="<?php echo esc_url( $ajax_url ); ?>"
 								data-nonce="<?php echo esc_attr( $nonce ); ?>"
 								novalidate
 							>
+								<input type="hidden" name="nonce" value="<?php echo esc_attr( $nonce ); ?>">
+								<input type="hidden" name="action" value="kc_consultation_submit">
 								<p class="consultation-form__error" data-consultation-error role="alert"></p>
 								<div class="consultation-hp" aria-hidden="true">
 									<label for="consultation-company"><?php esc_html_e( 'Website', 'keuken-centrum' ); ?></label>

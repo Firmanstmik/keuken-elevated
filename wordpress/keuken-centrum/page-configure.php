@@ -16,14 +16,21 @@ add_filter(
 );
 
 get_header();
-$catalog = kc_configurator_catalog();
+$catalog  = kc_configurator_catalog();
+$fallback = '';
+foreach ( (array) ( $catalog['styles'] ?? [] ) as $style_row ) {
+	if ( ! empty( $style_row['base'] ) ) {
+		$fallback = (string) $style_row['base'];
+		break;
+	}
+}
 ?>
 <main id="main-content" class="site-main site-main--configurator site-main--configure" data-cfg-step="configure">
 	<?php get_template_part( 'template-parts/configurator/flow-nav', null, [ 'step' => $step ] ); ?>
 	<section class="kc-cfg-configure">
 		<div class="kc-cfg-configure__stage">
 			<div class="kc-cfg-configure__canvas" data-cfg-canvas>
-				<img data-cfg-base alt="" class="kc-cfg-configure__img">
+				<img data-cfg-base src="<?php echo esc_url( $fallback ); ?>" alt="" class="kc-cfg-configure__img" width="1200" height="900">
 				<div data-cfg-hotspots></div>
 			</div>
 			<div class="kc-cfg-configure__cats" data-cfg-cats>

@@ -97,8 +97,10 @@ function kc_apparatuur_category_catalog(): array {
 	$bora = kc_apparatuur_src( 'kookplaat-afzuiging.webp', '2019_bora_pure_pued_rehkarree_rgb-1200x800-1.webp' );
 	$eiland = kc_apparatuur_src( 'afzuigkappen.webp', '2019/01/eiland-afzuigkappen-keukens.webp' );
 	$inductie = kc_apparatuur_src( 'inductie-kookplaat.webp', 'inductie_kookplaat.webp' );
-	$fusion = kc_apparatuur_src( '', 'fusion_square_black_carbon_kook_model_3-1.webp' );
-	$wave = kc_apparatuur_src( '', 'Wave-Model-2119-Alphenberg.webp' );
+	$fusion = kc_apparatuur_src( 'quooker.webp', 'fusion_square_black_carbon_kook_model_3-1.webp' );
+	$wave = kc_apparatuur_src( 'wave-afzuigkappen.webp', 'Wave-Model-2119-Alphenberg.webp' );
+	$koel = kc_apparatuur_src( 'koelkasten-vriezers.webp', '2020/03/MCIM02473755_Siemens_Campaign_REU_cooling_modularFit_01_4_3.webp' );
+	$vaat = kc_apparatuur_src( 'vaatwassers.webp', '2020/03/MCMI02365333_Siemens_Global_Category_Dishwashing_SN678X36TE_01_4_3.webp' );
 
 	return [
 		'afzuigkappen'           => [
@@ -258,7 +260,7 @@ function kc_apparatuur_category_catalog(): array {
 				'description' => __( 'Inbouw- en vrijstaande koelkasten en vriezers van Siemens, Miele en meer. Incl. wijnkoelers als eye-catcher.', 'keuken-centrum' ),
 			],
 			'hero'        => [
-				'image'     => kc_apparatuur_src( '', '2020/03/MCIM02473755_Siemens_Campaign_REU_cooling_modularFit_01_4_3.webp' ),
+				'image'     => $koel,
 				'eyebrow'   => __( 'Cooling', 'keuken-centrum' ),
 				'title'     => __( 'Koelkasten', 'keuken-centrum' ),
 				'highlight' => __( '& vriezers.', 'keuken-centrum' ),
@@ -278,10 +280,10 @@ function kc_apparatuur_category_catalog(): array {
 				],
 			],
 			'types'       => [
-				[ 'title' => __( 'Inbouw koelkasten', 'keuken-centrum' ), 'body' => __( 'Volledig geïntegreerd achter keukenfronten. Onzichtbaar design, maximale koeling.', 'keuken-centrum' ), 'image' => kc_apparatuur_src( '', 'MCMI02130334_studioLine_KI86SSD40_DE.webp' ) ],
-				[ 'title' => __( 'Onderbouw koelkasten', 'keuken-centrum' ), 'body' => __( 'Compact onder het werkblad, ideaal als tweede koelzone of in kleinere keukens.', 'keuken-centrum' ), 'image' => kc_apparatuur_src( '', 'MCIM01003124_F6810_17_P_hyperfresh_mixed.webp' ) ],
-				[ 'title' => __( 'Vrijstaande koelkasten', 'keuken-centrum' ), 'body' => __( 'Statement of multifunctioneel. Inclusief side-by-side en wijnkoelers als blikvanger.', 'keuken-centrum' ), 'image' => kc_apparatuur_src( '', '2020/03/MCIM02473755_Siemens_Campaign_REU_cooling_modularFit_01_4_3.webp' ) ],
-				[ 'title' => __( 'Vriezers', 'keuken-centrum' ), 'body' => __( 'Inbouw- of vrijstaande vriezers met NoFrost, snelle diepvries en efficiënte indeling.', 'keuken-centrum' ), 'image' => kc_apparatuur_src( '', 'MCMI02130349_studioLine_KI86SSD40_REU.webp' ) ],
+				[ 'title' => __( 'Inbouw koelkasten', 'keuken-centrum' ), 'body' => __( 'Volledig geïntegreerd achter keukenfronten. Onzichtbaar design, maximale koeling.', 'keuken-centrum' ), 'image' => $koel ],
+				[ 'title' => __( 'Onderbouw koelkasten', 'keuken-centrum' ), 'body' => __( 'Compact onder het werkblad, ideaal als tweede koelzone of in kleinere keukens.', 'keuken-centrum' ), 'image' => $koel ],
+				[ 'title' => __( 'Vrijstaande koelkasten', 'keuken-centrum' ), 'body' => __( 'Statement of multifunctioneel. Inclusief side-by-side en wijnkoelers als blikvanger.', 'keuken-centrum' ), 'image' => $koel ],
+				[ 'title' => __( 'Vriezers', 'keuken-centrum' ), 'body' => __( 'Inbouw- of vrijstaande vriezers met NoFrost, snelle diepvries en efficiënte indeling.', 'keuken-centrum' ), 'image' => $koel ],
 			],
 			'showroomCta' => kc_apparatuur_showroom_cta( __( 'Koeladvies', 'keuken-centrum' ), __( 'in de showroom?', 'keuken-centrum' ) ),
 		],
@@ -293,7 +295,7 @@ function kc_apparatuur_category_catalog(): array {
 				'description' => __( 'Inbouwvaatwassers van Siemens, Bosch en Miele. Stil, efficiënt en volledig geïntegreerd in uw keukenfront.', 'keuken-centrum' ),
 			],
 			'hero'        => [
-				'image'     => kc_apparatuur_src( '', '2020/03/MCMI02365333_Siemens_Global_Category_Dishwashing_SN678X36TE_01_4_3.webp' ),
+				'image'     => $vaat,
 				'eyebrow'   => __( 'Dishwashing', 'keuken-centrum' ),
 				'title'     => __( 'Vaatwassers', 'keuken-centrum' ),
 				'highlight' => __( 'die stil werken.', 'keuken-centrum' ),
@@ -313,9 +315,9 @@ function kc_apparatuur_category_catalog(): array {
 				],
 			],
 			'types'       => [
-				[ 'title' => __( 'Siemens vaatwassers', 'keuken-centrum' ), 'body' => __( 'Innovatie en design, van varioSpeed tot intelligent sensor-reinigen in studioLine-uitvoeringen.', 'keuken-centrum' ), 'image' => kc_apparatuur_src( '', '2020/03/MCMI02365333_Siemens_Global_Category_Dishwashing_SN678X36TE_01_4_3.webp' ) ],
-				[ 'title' => __( 'Bosch vaatwassers', 'keuken-centrum' ), 'body' => __( 'Betrouwbaar, stil en doordacht. Perfecte integratie in moderne keukenfronten.', 'keuken-centrum' ), 'image' => kc_apparatuur_src( '', 'Schermafbeelding-2021-10-13-om-11.17.47.webp' ) ],
-				[ 'title' => __( 'Miele vaatwassers', 'keuken-centrum' ), 'body' => __( 'Premium afwerking, lange levensduur en uitzonderlijke reinigingsresultaten van een merk met garantie op kwaliteit.', 'keuken-centrum' ), 'image' => kc_apparatuur_src( '', 'Schermafbeelding-2021-10-13-om-13.29.28.webp' ) ],
+				[ 'title' => __( 'Siemens vaatwassers', 'keuken-centrum' ), 'body' => __( 'Innovatie en design, van varioSpeed tot intelligent sensor-reinigen in studioLine-uitvoeringen.', 'keuken-centrum' ), 'image' => $vaat ],
+				[ 'title' => __( 'Bosch vaatwassers', 'keuken-centrum' ), 'body' => __( 'Betrouwbaar, stil en doordacht. Perfecte integratie in moderne keukenfronten.', 'keuken-centrum' ), 'image' => $vaat ],
+				[ 'title' => __( 'Miele vaatwassers', 'keuken-centrum' ), 'body' => __( 'Premium afwerking, lange levensduur en uitzonderlijke reinigingsresultaten van een merk met garantie op kwaliteit.', 'keuken-centrum' ), 'image' => $vaat ],
 			],
 			'showroomCta' => kc_apparatuur_showroom_cta( __( 'Vaatwasser kiezen', 'keuken-centrum' ), __( 'met advies?', 'keuken-centrum' ) ),
 		],
@@ -394,9 +396,9 @@ function kc_apparatuur_category_catalog(): array {
 			],
 			'types'       => [
 				[ 'title' => __( 'Plafondunits', 'keuken-centrum' ), 'body' => __( 'Vlakke of sculpturale units in het plafond, met geïntegreerde LED en krachtige afzuiging.', 'keuken-centrum' ), 'image' => $wave ],
-				[ 'title' => __( 'Frame & designframes', 'keuken-centrum' ), 'body' => __( 'Wave Frame in rvs of maatwerkafwerking, met architecturale lijnen die de keuken structureren.', 'keuken-centrum' ), 'image' => kc_apparatuur_src( '', 'Wave_Frame_2056_RVS_A_L_1920-1200x800h.webp' ) ],
-				[ 'title' => __( 'Inbouwunits', 'keuken-centrum' ), 'body' => __( 'Discrete inbouwunits die verdwijnen in omkasting of plafonddoos: puur functioneel design.', 'keuken-centrum' ), 'image' => kc_apparatuur_src( '', '2120_B.webp' ) ],
-				[ 'title' => __( 'Verlichting', 'keuken-centrum' ), 'body' => __( 'Bijzondere keukenverlichting die samensmelt met afzuiging, voor sfeer én taaklicht in één systeem.', 'keuken-centrum' ), 'image' => kc_apparatuur_src( '', '1627_A.webp' ) ],
+				[ 'title' => __( 'Frame & designframes', 'keuken-centrum' ), 'body' => __( 'Wave Frame in rvs of maatwerkafwerking, met architecturale lijnen die de keuken structureren.', 'keuken-centrum' ), 'image' => $wave ],
+				[ 'title' => __( 'Inbouwunits', 'keuken-centrum' ), 'body' => __( 'Discrete inbouwunits die verdwijnen in omkasting of plafonddoos: puur functioneel design.', 'keuken-centrum' ), 'image' => $wave ],
+				[ 'title' => __( 'Verlichting', 'keuken-centrum' ), 'body' => __( 'Bijzondere keukenverlichting die samensmelt met afzuiging, voor sfeer én taaklicht in één systeem.', 'keuken-centrum' ), 'image' => $wave ],
 			],
 			'brandsNote'  => __( 'Officieel Wave verkooppunt aan de Zonnebaan 8, 3542 EC Utrecht.', 'keuken-centrum' ),
 			'valueProps'  => [

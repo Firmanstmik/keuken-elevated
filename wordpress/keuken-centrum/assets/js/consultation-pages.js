@@ -83,7 +83,10 @@
 
 		const payload = new FormData();
 		payload.append("action", "kc_consultation_submit");
-		payload.append("nonce", form.getAttribute("data-nonce") || "");
+		payload.append(
+			"nonce",
+			form.querySelector('[name="nonce"]')?.value || form.getAttribute("data-nonce") || "",
+		);
 		payload.append("name", (nameEl?.value || "").trim());
 		payload.append("email", (emailEl?.value || "").trim());
 		payload.append("phone", (phoneEl?.value || "").trim());

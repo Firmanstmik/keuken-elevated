@@ -122,28 +122,28 @@ function kc_apparatuur_overview_categories(): array {
 			'name'        => __( 'Koelkasten & Vriezers', 'keuken-centrum' ),
 			'tagline'     => __( 'Inbouw · Vrijstaand · Wijnkoelers', 'keuken-centrum' ),
 			'description' => __( 'Keeping it cool. Inbouwkoelkasten die verdwijnen in uw design, of een vrijstaande koelkast of wijnkoeler als eye-catcher.', 'keuken-centrum' ),
-			'image'       => kc_apparatuur_src( '', '2020/03/MCIM02473755_Siemens_Campaign_REU_cooling_modularFit_01_4_3.webp' ),
+			'image'       => kc_apparatuur_src( 'koelkasten-vriezers.webp', '2020/03/MCIM02473755_Siemens_Campaign_REU_cooling_modularFit_01_4_3.webp' ),
 		],
 		[
 			'id'          => 'vaatwassers',
 			'name'        => __( 'Vaatwassers', 'keuken-centrum' ),
 			'tagline'     => __( 'Siemens · Bosch · Miele', 'keuken-centrum' ),
 			'description' => __( 'Stille, efficiënte inbouwvaatwassers van Siemens, Bosch en Miele, volledig geïntegreerd in uw keukenfront.', 'keuken-centrum' ),
-			'image'       => kc_apparatuur_src( '', '2020/03/MCMI02365333_Siemens_Global_Category_Dishwashing_SN678X36TE_01_4_3.webp' ),
+			'image'       => kc_apparatuur_src( 'vaatwassers.webp', '2020/03/MCMI02365333_Siemens_Global_Category_Dishwashing_SN678X36TE_01_4_3.webp' ),
 		],
 		[
 			'id'          => 'quooker',
 			'name'        => __( 'Quooker', 'keuken-centrum' ),
 			'tagline'     => __( '100°C · Gekoeld · Bruisend', 'keuken-centrum' ),
 			'description' => __( 'De kraan die alles kan: direct kokend water, en optioneel gekoeld of bruisend. Fusion, Flex en Nordic Classic zijn altijd op voorraad in de showroom.', 'keuken-centrum' ),
-			'image'       => kc_apparatuur_src( '', 'fusion_square_black_carbon_kook_model_3-1.webp' ),
+			'image'       => kc_apparatuur_src( 'quooker.webp', 'fusion_square_black_carbon_kook_model_3-1.webp' ),
 		],
 		[
 			'id'          => 'wave-afzuigkappen',
 			'name'        => __( 'Wave afzuigkappen', 'keuken-centrum' ),
 			'tagline'     => __( 'Design · Maatwerk · Verlichting', 'keuken-centrum' ),
 			'description' => __( 'Wave Design staat synoniem voor bijzondere afzuigkappen en verlichting. Hoogwaardige afwerking tot in het kleinste detail, volledig op maat.', 'keuken-centrum' ),
-			'image'       => kc_apparatuur_src( '', 'Wave-Model-2119-Alphenberg.webp' ),
+			'image'       => kc_apparatuur_src( 'wave-afzuigkappen.webp', 'Wave-Model-2119-Alphenberg.webp' ),
 		],
 	];
 

@@ -576,3 +576,61 @@
 	height: 0;
 	overflow: hidden;
 }
+
+/* Brands step — match React PageHeader (centered, max-w 680px, clamp 2rem→3rem) */
+.site-main--configurator[data-cfg-step="brands"] .kc-cfg-page-header {
+	margin: 0 0 2.5rem;
+	text-align: center;
+}
+
+@media (min-width: 768px) {
+	.site-main--configurator[data-cfg-step="brands"] .kc-cfg-page-header {
+		margin-bottom: 5rem;
+	}
+}
+
+.site-main--configurator[data-cfg-step="brands"] .kc-cfg-overline {
+	margin-bottom: 0.5rem;
+	font-size: 0.62rem;
+	letter-spacing: 0.24em;
+}
+
+@media (min-width: 768px) {
+	.site-main--configurator[data-cfg-step="brands"] .kc-cfg-overline {
+		font-size: 0.6875rem;
+	}
+}
+
+.site-main--configurator[data-cfg-step="brands"] .kc-cfg-title {
+	max-width: 680px;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: clamp(2rem, 9vw, 3rem);
+	line-height: 1.12;
+	letter-spacing: -0.02em;
+}
+
+@media (min-width: 768px) {
+	.site-main--configurator[data-cfg-step="brands"] .kc-cfg-title {
+		line-height: 1.15;
+		letter-spacing: -0.01em;
+	}
+}
+
+.site-main--configurator[data-cfg-step="brands"] .kc-cfg-subtitle {
+	max-width: 560px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 0;
+	font-size: 0.98rem;
+	font-weight: 300;
+	line-height: 1.65;
+}
+
+@media (min-width: 768px) {
+	.site-main--configurator[data-cfg-step="brands"] .kc-cfg-subtitle {
+		margin-top: 0.75rem;
+		font-size: 1.125rem;
+		line-height: 1.6;
+	}
+}
