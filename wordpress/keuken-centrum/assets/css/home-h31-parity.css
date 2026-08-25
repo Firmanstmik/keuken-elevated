@@ -697,16 +697,6 @@ body.kc-home .site-footer--react .site-footer__nav-list a {
 	}
 }
 
-body.kc-home .site-footer--react .site-footer__nav-list a::before {
-	content: "";
-	flex: 0 0 1.5rem;
-	width: 1.5rem;
-	height: 1.5rem;
-	border-radius: 999px;
-	border: 1px solid rgba(139, 197, 64, 0.25);
-	background: rgba(139, 197, 64, 0.07);
-}
-
 /*
  * ColTitle = KitchenEyebrow (mark 1.85×1.6rem) — not tiny 0.62rem text.
  * brand-pages.css is not enqueued on homepage; scope styles here.
