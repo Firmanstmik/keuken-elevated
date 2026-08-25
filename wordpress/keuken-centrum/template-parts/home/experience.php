@@ -65,9 +65,10 @@ if (! $cbw_logo) {
 	<div class="experience-section__hairline experience-section__hairline--bottom" aria-hidden="true"></div>
 
 	<div class="site-shell">
+		<?php /* React: SectionChapter sits ABOVE the header grid, not inside copy */ ?>
+		<?php kc_section_chapter('05', __('Inspiratie', 'keuken-centrum'), true); ?>
 		<div class="experience-header" data-reveal>
 			<div class="experience-header__copy">
-				<?php kc_section_chapter('05', __('Inspiratie', 'keuken-centrum'), true); ?>
 				<div class="section-label-row">
 					<span class="kitchen-eyebrow-mark" aria-hidden="true"></span>
 					<p class="section-eyebrow section-eyebrow--gold"><?php echo esc_html( $exp_eyebrow ); ?></p>
