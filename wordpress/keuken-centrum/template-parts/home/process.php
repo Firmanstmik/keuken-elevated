@@ -46,18 +46,7 @@ $proc_lede = $process['lede'] ?? 'Vijf zorgvuldig uitgedachte stappen naar uw dr
 $proc_cta = $process['cta_label'] ?? 'Start configurator';
 
 $process_icon = static function (string $icon): string {
-	switch ($icon) {
-		case 'shop':
-			return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 10.5h15v8.25a.75.75 0 0 1-.75.75H5.25a.75.75 0 0 1-.75-.75zm1.2-5.25h12.6l1.2 3.75H4.5z"/><path d="M8.25 10.5v9m7.5-9v9" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.35"/></svg>';
-		case 'brush':
-			return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.8 4.2l5 5-8.8 8.8a3.2 3.2 0 0 1-2.25.93H5.5v-3.25a3.2 3.2 0 0 1 .93-2.25z"/><path d="M13.5 5.5l5 5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.35"/></svg>';
-		case 'layers':
-			return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5l7.5 4.2L12 13 4.5 8.7zm0 6.2l7.5 4.2L12 19.1 4.5 14.9zm0-3.1l7.5 4.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.35"/></svg>';
-		case 'gallery':
-			return '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="5.5" width="15" height="13" rx="2"/><path d="M7.5 15.5l3.2-3.2 2.7 2.7 2.1-2.1 1.5 1.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.35"/><circle cx="9" cy="9.2" r="1.1"/></svg>';
-		default:
-			return '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="9" r="2"/><circle cx="16.5" cy="8" r="2"/><path d="M4.5 18c.9-2.5 3-4 5.7-4s4.8 1.5 5.7 4m.3-5.6c1.8.5 3.2 2 3.8 3.9" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.35"/></svg>';
-	}
+	return function_exists( 'kc_icon_process_step' ) ? kc_icon_process_step( $icon ) : '';
 };
 ?>
 <section class="process-timeline-scene process-timeline-scene--react" id="process">

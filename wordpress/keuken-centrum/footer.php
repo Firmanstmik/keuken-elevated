@@ -36,11 +36,11 @@ $logo = $f['logo'] ?? '';
 		</h2>
 		<p class="site-footer__hero-copy"><?php echo esc_html( (string) ( $f['hero_copy'] ?? '' ) ); ?></p>
 		<div class="site-footer__hero-actions">
-			<a class="premium-pill-button premium-pill-button--blue premium-pill-button--sm premium-pill-button--rounded" href="<?php echo esc_url( (string) ( $f['cta_primary']['url'] ?? '#' ) ); ?>">
+			<a class="premium-pill-button premium-pill-button--blue premium-pill-button--sm" href="<?php echo esc_url( (string) ( $f['cta_primary']['url'] ?? '#' ) ); ?>">
 				<span class="premium-pill-button__label"><?php echo esc_html( (string) ( $f['cta_primary']['label'] ?? '' ) ); ?></span>
 				<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
 			</a>
-			<a class="premium-pill-button premium-pill-button--ghost premium-pill-button--sm premium-pill-button--rounded" href="<?php echo esc_url( (string) ( $f['cta_secondary']['url'] ?? '#' ) ); ?>">
+			<a class="premium-pill-button premium-pill-button--ghost premium-pill-button--sm" href="<?php echo esc_url( (string) ( $f['cta_secondary']['url'] ?? '#' ) ); ?>">
 				<span class="premium-pill-button__label"><?php echo esc_html( (string) ( $f['cta_secondary']['label'] ?? '' ) ); ?></span>
 				<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
 			</a>

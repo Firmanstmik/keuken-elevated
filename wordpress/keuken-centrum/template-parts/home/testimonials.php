@@ -20,45 +20,45 @@ $media = array_values(
 
 $fallback_testimonials = [
 	[
-		'quote'    => __('We wilden geen standaard keuken, maar een ruimte die rust, precisie en luxe uitstraalt. Het ontwerp voelde vanaf de eerste presentatie architectonisch doordacht.', 'keuken-centrum'),
+		'quote'    => __('We wilden geen standaard keuken, maar een ruimte die rust, precisie en luxe uitstraalt. Het ontwerp voelde vanaf de eerste presentatie architectonisch doordacht, en de uitvoering was even zorgvuldig.', 'keuken-centrum'),
 		'author'   => 'Familie Van Deurzen',
 		'location' => 'Utrecht',
-		'tag'      => 'LEICHT Residence',
+		'tag'      => 'LEICHT  ·  Leicht Residence Project',
 		'year'     => '2025',
 	],
 	[
 		'quote'    => __('Vanaf het eerste moodboard tot de plaatsing was alles coherent. Materialen, belijning en apparatuur sloten precies aan op de architectuur van onze woning.', 'keuken-centrum'),
 		'author'   => 'Mevr. de Jong',
 		'location' => 'Bilthoven',
-		'tag'      => 'Nobilia Family Loft',
+		'tag'      => 'NOBILIA  ·  Nobilia Family Loft',
 		'year'     => '2024',
 	],
 	[
 		'quote'    => __('De begeleiding voelde internationaal en volwassen. Geen verkoopdruk, maar een ontwerpgesprek op niveau met veel aandacht voor verhoudingen en afwerking.', 'keuken-centrum'),
 		'author'   => 'Bouwbedrijf Vreeburg',
 		'location' => 'Nieuwegein',
-		'tag'      => 'Zampieri Loft Line',
+		'tag'      => 'ZAMPIERI  ·  Zampieri Loft Line',
 		'year'     => '2025',
 	],
 	[
 		'quote'    => __('De keuken voelt alsof hij altijd onderdeel van het huis is geweest. Juist die vanzelfsprekende luxe en het dagelijkse gebruiksgemak maken dit project bijzonder.', 'keuken-centrum'),
 		'author'   => 'Dhr. & Mevr. Jaspers',
 		'location' => 'Houten',
-		'tag'      => 'Cucinesse Binnenplaats',
+		'tag'      => 'CUCINESSE  ·  Cucinesse Binnenplaatskeuken',
 		'year'     => '2024',
 	],
 	[
 		'quote'    => __('Er is slim meegedacht over licht, routing en werkruimte. Het eindresultaat oogt stil en luxe, maar werkt dagelijks ook gewoon perfect.', 'keuken-centrum'),
 		'author'   => 'Familie Keizer',
 		'location' => 'Zeist',
-		'tag'      => 'Leicht Tuinvilla',
+		'tag'      => 'LEICHT  ·  Leicht Tuinvilla',
 		'year'     => '2025',
 	],
 	[
 		'quote'    => __('De verfijning zit in de details: voeglijnen, materiaalovergangen en de rust van het totaalbeeld. Dat zie je niet vaak zo consequent uitgevoerd.', 'keuken-centrum'),
 		'author'   => 'Familie Hesselink',
 		'location' => 'Amersfoort',
-		'tag'      => 'Premium Atelier',
+		'tag'      => 'NOBILIA  ·  Premium Atelierkeuken',
 		'year'     => '2025',
 	],
 ];
@@ -116,6 +116,14 @@ $testimonial_initials = static function (string $name): string {
 	}
 	return strtoupper(substr($parts[0], 0, 1) . substr((string) end($parts), 0, 1));
 };
+
+$testimonial_stars = static function (): string {
+	$out = '';
+	for ( $i = 0; $i < 5; $i++ ) {
+		$out .= function_exists( 'kc_icon_star' ) ? kc_icon_star( 14 ) : '★';
+	}
+	return $out;
+};
 ?>
 <section class="section-shell section-shell--dark testimonials-section testimonials-section--react" id="reviews">
 	<div class="testimonials-section__glow" aria-hidden="true"></div>
@@ -143,7 +151,7 @@ $testimonial_initials = static function (string $name): string {
 						<?php $image = $media ? $media[$index % count($media)] : ''; ?>
 						<article class="testimonial-card testimonial-card--react">
 							<div class="testimonial-card__head">
-								<div class="testimonial-card__stars" aria-label="<?php esc_attr_e('5 uit 5 sterren', 'keuken-centrum'); ?>">★★★★★</div>
+								<div class="testimonial-card__stars" aria-label="<?php esc_attr_e('5 uit 5 sterren', 'keuken-centrum'); ?>"><?php echo $testimonial_stars(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
 								<?php if ($image) : ?>
 									<div class="testimonial-card__thumb">
 										<img src="<?php echo esc_url($image); ?>" alt="" loading="lazy" decoding="async" />
@@ -152,14 +160,14 @@ $testimonial_initials = static function (string $name): string {
 								<?php endif; ?>
 							</div>
 							<span class="testimonial-card__tag"><?php echo esc_html($testimonial['tag']); ?></span>
-							<blockquote class="testimonial-card__quote">“<?php echo esc_html($testimonial['quote']); ?>”</blockquote>
+							<blockquote class="testimonial-card__quote"><?php echo function_exists( 'kc_icon_quote_down' ) ? kc_icon_quote_down( 14 ) : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><?php echo esc_html($testimonial['quote']); ?></blockquote>
 							<div class="testimonial-card__author-row">
 								<span class="testimonial-card__avatar"><?php echo esc_html($testimonial_initials($testimonial['author'])); ?></span>
 								<div>
 									<strong class="testimonial-card__author"><?php echo esc_html($testimonial['author']); ?></strong>
 									<span class="testimonial-card__location"><?php echo esc_html($testimonial['location'] . ' · ' . $testimonial['year']); ?></span>
 								</div>
-								<span class="testimonial-card__check" aria-hidden="true">●</span>
+								<span class="testimonial-card__check" aria-hidden="true"><?php echo function_exists( 'kc_icon_brand' ) ? kc_icon_brand( 'tick-circle' ) : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 							</div>
 						</article>
 					<?php endforeach; ?>
@@ -204,7 +212,7 @@ $testimonial_initials = static function (string $name): string {
 						<?php $image = $media ? $media[($index + 3) % count($media)] : ''; ?>
 						<article class="testimonial-card testimonial-card--react">
 							<div class="testimonial-card__head">
-								<div class="testimonial-card__stars" aria-label="<?php esc_attr_e('5 uit 5 sterren', 'keuken-centrum'); ?>">★★★★★</div>
+								<div class="testimonial-card__stars" aria-label="<?php esc_attr_e('5 uit 5 sterren', 'keuken-centrum'); ?>"><?php echo $testimonial_stars(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
 								<?php if ($image) : ?>
 									<div class="testimonial-card__thumb">
 										<img src="<?php echo esc_url($image); ?>" alt="" loading="lazy" decoding="async" />
@@ -213,14 +221,14 @@ $testimonial_initials = static function (string $name): string {
 								<?php endif; ?>
 							</div>
 							<span class="testimonial-card__tag"><?php echo esc_html($testimonial['tag']); ?></span>
-							<blockquote class="testimonial-card__quote">“<?php echo esc_html($testimonial['quote']); ?>”</blockquote>
+							<blockquote class="testimonial-card__quote"><?php echo function_exists( 'kc_icon_quote_down' ) ? kc_icon_quote_down( 14 ) : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><?php echo esc_html($testimonial['quote']); ?></blockquote>
 							<div class="testimonial-card__author-row">
 								<span class="testimonial-card__avatar"><?php echo esc_html($testimonial_initials($testimonial['author'])); ?></span>
 								<div>
 									<strong class="testimonial-card__author"><?php echo esc_html($testimonial['author']); ?></strong>
 									<span class="testimonial-card__location"><?php echo esc_html($testimonial['location'] . ' · ' . $testimonial['year']); ?></span>
 								</div>
-								<span class="testimonial-card__check" aria-hidden="true">●</span>
+								<span class="testimonial-card__check" aria-hidden="true"><?php echo function_exists( 'kc_icon_brand' ) ? kc_icon_brand( 'tick-circle' ) : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 							</div>
 						</article>
 					<?php endforeach; ?>
@@ -234,7 +242,7 @@ $testimonial_initials = static function (string $name): string {
 					<?php $image = $media ? $media[$index % count($media)] : ''; ?>
 					<article class="testimonial-card testimonial-card--react testimonial-card--mobile">
 						<div class="testimonial-card__head">
-							<div class="testimonial-card__stars" aria-hidden="true">★★★★★</div>
+							<div class="testimonial-card__stars" aria-hidden="true"><?php echo $testimonial_stars(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
 							<?php if ($image) : ?>
 								<div class="testimonial-card__thumb">
 									<img src="<?php echo esc_url($image); ?>" alt="" loading="lazy" decoding="async" />
@@ -243,7 +251,7 @@ $testimonial_initials = static function (string $name): string {
 							<?php endif; ?>
 						</div>
 						<span class="testimonial-card__tag"><?php echo esc_html($testimonial['tag']); ?></span>
-						<blockquote class="testimonial-card__quote">“<?php echo esc_html($testimonial['quote']); ?>”</blockquote>
+						<blockquote class="testimonial-card__quote"><?php echo function_exists( 'kc_icon_quote_down' ) ? kc_icon_quote_down( 14 ) : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><?php echo esc_html($testimonial['quote']); ?></blockquote>
 						<div class="testimonial-card__author-row">
 							<span class="testimonial-card__avatar"><?php echo esc_html($testimonial_initials($testimonial['author'])); ?></span>
 							<div>
@@ -259,7 +267,7 @@ $testimonial_initials = static function (string $name): string {
 					<?php $image = $media ? $media[($index + 2) % count($media)] : ''; ?>
 					<article class="testimonial-card testimonial-card--react testimonial-card--mobile">
 						<div class="testimonial-card__head">
-							<div class="testimonial-card__stars" aria-hidden="true">★★★★★</div>
+							<div class="testimonial-card__stars" aria-hidden="true"><?php echo $testimonial_stars(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
 							<?php if ($image) : ?>
 								<div class="testimonial-card__thumb">
 									<img src="<?php echo esc_url($image); ?>" alt="" loading="lazy" decoding="async" />
@@ -268,7 +276,7 @@ $testimonial_initials = static function (string $name): string {
 							<?php endif; ?>
 						</div>
 						<span class="testimonial-card__tag"><?php echo esc_html($testimonial['tag']); ?></span>
-						<blockquote class="testimonial-card__quote">“<?php echo esc_html($testimonial['quote']); ?>”</blockquote>
+						<blockquote class="testimonial-card__quote"><?php echo function_exists( 'kc_icon_quote_down' ) ? kc_icon_quote_down( 14 ) : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><?php echo esc_html($testimonial['quote']); ?></blockquote>
 						<div class="testimonial-card__author-row">
 							<span class="testimonial-card__avatar"><?php echo esc_html($testimonial_initials($testimonial['author'])); ?></span>
 							<div>

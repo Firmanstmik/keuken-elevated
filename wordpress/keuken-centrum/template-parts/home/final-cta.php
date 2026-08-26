@@ -45,14 +45,13 @@ $final_secondary_label = $final['secondary_label'] ?? 'Start configurator';
 $final_secondary_url = $final['secondary_url'] ?? ( function_exists( 'kc_cms_configurator_url' ) ? kc_cms_configurator_url() : home_url( '/brands/' ) );
 
 $cta_icon = static function (string $icon): string {
-	switch ($icon) {
-		case 'house':
-			return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 11.2L12 5l7.5 6.2v7.3a1 1 0 0 1-1 1h-4.4v-5.4H9.9v5.4H5.5a1 1 0 0 1-1-1z"/></svg>';
-		case 'phone':
-			return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.8 4.8h2.7l1.1 4.2-1.6 1.6a15 15 0 0 0 3.4 3.4l1.6-1.6 4.2 1.1v2.7c0 .6-.4 1-.9 1A13.8 13.8 0 0 1 6.8 5.7c0-.5.4-.9 1-.9z"/></svg>';
-		default:
-			return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 7.2A1.7 1.7 0 0 1 6.2 5.5h11.6a1.7 1.7 0 0 1 1.7 1.7v9.6a1.7 1.7 0 0 1-1.7 1.7H6.2a1.7 1.7 0 0 1-1.7-1.7zm1.5.5l5.9 4.7 5.9-4.7" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.35"/></svg>';
-	}
+	$map = [
+		'house' => 'home',
+		'phone' => 'phone',
+		'mail'  => 'mail',
+	];
+	$key = $map[ $icon ] ?? 'home';
+	return function_exists( 'kc_icon_brand' ) ? kc_icon_brand( $key ) : '';
 };
 ?>
 <section class="final-cta-react final-cta-react--v2" id="contact"<?php echo $concrete ? ' style="--final-concrete:url(' . esc_url($concrete) . ')"' : ''; ?>>
