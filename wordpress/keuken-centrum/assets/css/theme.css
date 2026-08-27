@@ -5327,16 +5327,16 @@ body.admin-bar .site-header {
 .final-cta-react--v2 .btn--secondary.btn--pill,.site-footer--react .btn--secondary.btn--pill{border:1px solid rgba(47,82,24,.18);background:transparent;color:#2f5218}
 .site-footer--react .btn--secondary.btn--pill{border-color:rgba(255,255,255,.18);color:#f5f2ec}
 .final-cta-react-cards--v2{display:grid;gap:1.5rem;grid-template-columns:repeat(3,minmax(0,1fr))}
-.final-cta-react-card--v2{position:relative;display:flex;flex-direction:column;min-height:18rem;padding:2rem;border:1px solid rgba(139,197,64,.15);border-radius:1.5rem;background:rgba(250,248,244,.95);box-shadow:0 8px 30px rgba(23,25,28,.015);color:#111;text-decoration:none;transition:transform .5s cubic-bezier(.22,1,.36,1),box-shadow .5s ease,border-color .5s ease}
+.final-cta-react-card--v2{position:relative;display:flex;flex-direction:column;min-height:18.125rem;height:18.125rem;padding:2rem;border:1px solid rgba(139,197,64,.15);border-radius:1.5rem;background:rgba(250,248,244,.95);box-shadow:0 8px 30px rgba(23,25,28,.015);color:#111;text-decoration:none;transition:transform .5s cubic-bezier(.22,1,.36,1),box-shadow .5s ease,border-color .5s ease}
 .final-cta-react-card--v2:hover{transform:translateY(-8px);box-shadow:0 24px 56px -20px rgba(139,197,64,.12);border-color:rgba(139,197,64,.32)}
 .final-cta-react-card__line{position:absolute;top:0;left:0;right:0;height:2px;border-radius:999px;background:linear-gradient(90deg,#8bc540,#a8d95a);transform:scaleX(0);transform-origin:left center;transition:transform .6s cubic-bezier(.22,1,.36,1)}
 .final-cta-react-card--v2:hover .final-cta-react-card__line{transform:scaleX(1)}
 .final-cta-react-card__number{color:#779163;font-size:.75rem;letter-spacing:.12em}
-.final-cta-react-card__icon{display:grid;place-items:center;width:2.75rem;height:2.75rem;margin:1.4rem 0 1.1rem;border:1px solid rgba(139,197,64,.18);border-radius:999px;background:rgba(139,197,64,.06);color:#8bc540}
+.final-cta-react-card__icon{display:grid;place-items:center;width:2.75rem;height:2.75rem;margin:1.5rem 0 1.5rem;border:1px solid rgba(139,197,64,.18);border-radius:999px;background:rgba(139,197,64,.06);color:#8bc540}
 .final-cta-react-card__icon svg{width:1.2rem;height:1.2rem;fill:none;stroke:currentColor;stroke-width:1.35;stroke-linecap:round;stroke-linejoin:round}
-.final-cta-react-card--v2 h3{margin:0;color:#111;font-family:var(--font-display);font-size:1.5rem;font-weight:300;line-height:1.22;letter-spacing:-.02em}
-.final-cta-react-card--v2 p{margin:.75rem 0 0;color:#5f675b;font-size:.92rem;line-height:1.72}
-.final-cta-react-card__pill{display:inline-flex;align-self:flex-start;padding:.6rem .95rem;margin-top:auto;border:1px solid rgba(139,197,64,.2);border-radius:999px;background:#fff;color:#2f5218;font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+.final-cta-react-card--v2 h3{margin:0;color:#111;font-family:var(--font-display);font-size:1.4rem;font-weight:300;line-height:1.22;letter-spacing:-.02em}
+.final-cta-react-card--v2 p{margin:.75rem 0 0;color:#5f675b;font-size:.875rem;line-height:1.7}
+.final-cta-react-card__action{display:block;position:relative;margin-top:auto;padding-top:1.5rem}
 .final-cta-react-strip{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;margin-top:4rem;padding-top:2rem;border-top:1px solid rgba(139,197,64,.18)}
 .final-cta-react-strip p{margin:0;color:#706553;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase}
 .final-cta-react-strip a{color:#2f5218;font-size:.75rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase}

@@ -82,14 +82,19 @@ $cta_icon = static function (string $icon): string {
 
 		<div class="final-cta-react-cards final-cta-react-cards--v2">
 			<?php foreach ($actions as $action) : ?>
-				<a href="<?php echo esc_url($action['href']); ?>" class="final-cta-react-card final-cta-react-card--v2">
+				<article class="final-cta-react-card final-cta-react-card--v2">
 					<span class="final-cta-react-card__line" aria-hidden="true"></span>
 					<span class="final-cta-react-card__number"><?php echo esc_html($action['number']); ?></span>
 					<span class="final-cta-react-card__icon" aria-hidden="true"><?php echo $cta_icon($action['icon']); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 					<h3><?php echo esc_html($action['title']); ?></h3>
 					<p><?php echo esc_html($action['description']); ?></p>
-					<span class="final-cta-react-card__pill"><?php echo esc_html($action['pill']); ?></span>
-				</a>
+					<span class="final-cta-react-card__action">
+						<a class="premium-pill-button premium-pill-button--blue premium-pill-button--sm" href="<?php echo esc_url($action['href']); ?>">
+							<span class="premium-pill-button__label"><?php echo esc_html($action['pill']); ?></span>
+							<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
+						</a>
+					</span>
+				</article>
 			<?php endforeach; ?>
 		</div>
 
