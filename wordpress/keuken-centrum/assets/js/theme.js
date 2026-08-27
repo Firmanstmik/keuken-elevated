@@ -934,12 +934,25 @@
 		const steps = [...timeline.querySelectorAll("[data-process-step]")];
 		const progress = timeline.querySelector("[data-process-progress]");
 		const dot = timeline.querySelector("[data-process-dot]");
+		const section =
+			timeline.closest("#process, .process-timeline-scene--react") || timeline;
 		if (!steps.length) return;
 
+		/**
+		 * Match React Process.tsx scroll activation:
+		 * useScroll offset ["start end","end start"] → v in [0,1]
+		 * normalized = (v - 0.18) / 0.54
+		 * activeCount = round(normalized * steps.length)
+		 * isOn = index < activeCount
+		 * linePercent = activeCount <= 1 ? 0 : (activeCount-1)/(n-1)*100
+		 */
 		const syncState = () => {
 			if (reduceMotion) {
 				steps.forEach((step) => step.classList.add("is-active"));
-				if (progress) progress.style.transform = "scaleX(1)";
+				if (progress) {
+					progress.style.transform = "none";
+					progress.style.width = "100%";
+				}
 				if (dot) {
 					dot.style.left = "100%";
 					dot.style.opacity = "1";
@@ -947,39 +960,49 @@
 				return;
 			}
 
-			let activeIndex = 0;
+			let activeCount = 0;
 			const isMobile = window.innerWidth < 768;
 
 			if (isMobile) {
 				const timelineRect = timeline.getBoundingClientRect();
-				const focusX = timelineRect.left + (timelineRect.width * 0.42);
+				const focusX = timelineRect.left + timelineRect.width * 0.42;
+				let bestIndex = 0;
 				let bestDistance = Number.POSITIVE_INFINITY;
 				steps.forEach((step, index) => {
 					const rect = step.getBoundingClientRect();
-					const center = rect.left + (rect.width / 2);
+					const center = rect.left + rect.width / 2;
 					const distance = Math.abs(center - focusX);
 					if (distance < bestDistance) {
 						bestDistance = distance;
-						activeIndex = index;
+						bestIndex = index;
 					}
 				});
+				activeCount = bestIndex + 1;
 			} else {
-				const threshold = window.innerHeight * 0.52;
-				steps.forEach((step, index) => {
-					const rect = step.getBoundingClientRect();
-					if (rect.top <= threshold) activeIndex = index;
-				});
+				const rect = section.getBoundingClientRect();
+				const range = Math.max(1, rect.height + window.innerHeight);
+				const scrolled = window.innerHeight - rect.top;
+				const v = Math.max(0, Math.min(1, scrolled / range));
+				const normalized = Math.max(0, Math.min(1, (v - 0.18) / 0.54));
+				activeCount = Math.round(normalized * steps.length);
 			}
 
 			steps.forEach((step, index) => {
-				step.classList.toggle("is-active", index <= activeIndex);
+				step.classList.toggle("is-active", index < activeCount);
 			});
 
-			const ratio = steps.length > 1 ? activeIndex / (steps.length - 1) : 1;
-			if (progress) progress.style.transform = `scaleX(${ratio})`;
+			const linePercent =
+				activeCount <= 1
+					? 0
+					: ((activeCount - 1) / Math.max(1, steps.length - 1)) * 100;
+
+			if (progress) {
+				progress.style.transform = "none";
+				progress.style.width = `${linePercent}%`;
+			}
 			if (dot) {
-				dot.style.left = `${ratio * 100}%`;
-				dot.style.opacity = ratio > 0 ? "1" : "0";
+				dot.style.left = `${linePercent}%`;
+				dot.style.opacity = linePercent > 0 ? "1" : "0";
 			}
 		};
 

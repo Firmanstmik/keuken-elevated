@@ -1,4 +1,4 @@
-/* React SoT variable Fraunces ù via theme CSS so LiteSpeed cannot strip the fonts <link>. */
+/* React SoT variable Fraunces ? via theme CSS so LiteSpeed cannot strip the fonts <link>. */
 @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap");
 :root {
 	--kc-green: #8bc540;
@@ -69,7 +69,7 @@ body {
 	color: var(--kc-text);
 	background: linear-gradient(180deg, #ffffff 0%, var(--kc-ivory) 42%, #f3f9eb 100%);
 	line-height: 1.7;
-	/* React styles.pcss body ù OpenType features affect Fraunces metrics/wrap */
+	/* React styles.pcss body ? OpenType features affect Fraunces metrics/wrap */
 	font-feature-settings: "ss01", "cv11", "salt";
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -294,7 +294,7 @@ body:not(.kc-home) .site-main {
 	height: 1.05rem;
 }
 
-/* Buttons ù premium pills */
+/* Buttons ? premium pills */
 .btn {
 	display: inline-flex;
 	align-items: center;
@@ -574,7 +574,7 @@ body:not(.kc-home) .site-main {
 	transform: none;
 }
 
-/* Homepage section CTAs ù white bottom-up wipe. Hero (#top) excluded. */
+/* Homepage section CTAs ? white bottom-up wipe. Hero (#top) excluded. */
 .kc-home :where(.site-main section:not(#top), .site-footer--react, footer) .premium-pill-button::before,
 .kc-home :where(.site-main section:not(#top), .site-footer--react, footer) .btn--pill::before {
 	content: "";
@@ -1125,7 +1125,7 @@ body.admin-bar .site-header {
 	transform: translateY(-5px) rotate(-45deg);
 }
 
-/* Mega menu ù rebuilt from src/components/site/Nav.tsx */
+/* Mega menu ? rebuilt from src/components/site/Nav.tsx */
 .has-mega {
 	position: relative;
 }
@@ -2364,7 +2364,7 @@ body.admin-bar .site-header {
 .home-hero__inner {
 	position: relative;
 	z-index: 10;
-	/* inherit React `.site-container` width from `.site-shell` ù do NOT force width:100% */
+	/* inherit React `.site-container` width from `.site-shell` ? do NOT force width:100% */
 	padding: 0;
 }
 
@@ -3624,7 +3624,7 @@ body.admin-bar .site-header {
 	color: #d8be87;
 }
 
-/* Experience ù dark inspiration grid */
+/* Experience ? dark inspiration grid */
 .experience-header {
 	display: grid;
 	gap: 1.5rem;
@@ -4451,7 +4451,7 @@ body.admin-bar .site-header {
 .brands-copy__pill--gold{border-color:rgba(200,169,107,.2);background:rgba(255,255,255,.035);color:#d8be87;font-weight:600;letter-spacing:.2em}
 .brands-copy__logo-wrap{display:flex;align-items:center;min-height:3rem;margin-top:2rem}
 .brands-copy__logo{width:auto;max-width:170px;max-height:3rem;object-fit:contain;opacity:.9;filter:brightness(0) invert(1)}
-.brands-copy__logo[data-brand-logo-name="AI Kùchen"]{max-width:5rem;max-height:5rem;filter:none;opacity:.95}
+.brands-copy__logo[data-brand-logo-name="AI K?chen"]{max-width:5rem;max-height:5rem;filter:none;opacity:.95}
 .brands-copy__since{margin:.75rem 0 0;color:rgba(255,255,255,.35);font-size:.64rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;line-height:1.7}
 .brands-copy h2{margin:1.75rem 0 0;color:#f5f2ec;font-family:var(--font-display);font-size:clamp(2.5rem,5vw,4.4rem);font-weight:300;line-height:.98;letter-spacing:-.045em}
 .brands-copy h2 em{font-style:italic;color:#d8be87}
@@ -4488,8 +4488,8 @@ body.admin-bar .site-header {
 .brands-marquee__logo:hover .brands-marquee__glow,.brands-marquee__logo:hover .brands-marquee__surface{opacity:1}
 .brands-marquee__logo img{position:relative;z-index:10;width:auto;height:1.75rem;max-width:120px;object-fit:contain;opacity:.7;filter:brightness(0) invert(1);transition:opacity .5s ease,transform .5s ease,filter .5s ease}
 @media (min-width:640px){.brands-marquee__logo img{height:2rem}}
-.brands-marquee__item[data-brand-logo-name="AI Kùchen"] img{height:2.75rem;max-width:64px;filter:none}
-@media (min-width:640px){.brands-marquee__item[data-brand-logo-name="AI Kùchen"] img{height:3rem}}
+.brands-marquee__item[data-brand-logo-name="AI K?chen"] img{height:2.75rem;max-width:64px;filter:none}
+@media (min-width:640px){.brands-marquee__item[data-brand-logo-name="AI K?chen"] img{height:3rem}}
 .brands-marquee__item[data-brand-logo-name="Miele"] .brands-marquee__base{filter:grayscale(1) brightness(.55) contrast(16);mix-blend-mode:screen}
 .brands-marquee__hover{position:absolute;z-index:20;opacity:0;transform:scale(.9);filter:drop-shadow(0 12px 16px rgba(0,0,0,.78))}
 .brands-marquee__logo:hover .brands-marquee__base{opacity:0;transform:scale(1.08)}
@@ -4502,7 +4502,7 @@ body.admin-bar .site-header {
 .brands-marquee__item[data-brand-logo-name="Quooker"]{--logo-glow:rgba(213,45,36,.24);--logo-surface:rgba(213,45,36,.09);--logo-border:rgba(213,45,36,.2);--logo-hover-filter:drop-shadow(0 10px 14px rgba(0,0,0,.8)) drop-shadow(0 0 8px rgba(213,45,36,.3))}
 .brands-marquee__item[data-brand-logo-name="Nobilia"]{--logo-glow:rgba(227,6,19,.24);--logo-surface:rgba(227,6,19,.07);--logo-border:rgba(227,6,19,.18);--logo-hover-filter:drop-shadow(0 10px 14px rgba(0,0,0,.82)) drop-shadow(0 0 9px rgba(227,6,19,.3))}
 .brands-marquee__item[data-brand-logo-name="Miele"]{--logo-glow:rgba(212,33,42,.24);--logo-surface:rgba(212,33,42,.07);--logo-border:rgba(212,33,42,.18);--logo-hover-filter:drop-shadow(0 10px 14px rgba(0,0,0,.82)) drop-shadow(0 0 9px rgba(212,33,42,.3))}
-.brands-marquee__item[data-brand-logo-name="AI Kùchen"]{--logo-glow:rgba(145,182,192,.24);--logo-surface:rgba(145,182,192,.06);--logo-border:rgba(145,182,192,.16);--logo-hover-filter:drop-shadow(0 12px 16px rgba(0,0,0,.82)) drop-shadow(0 0 8px rgba(145,182,192,.3))}
+.brands-marquee__item[data-brand-logo-name="AI K?chen"]{--logo-glow:rgba(145,182,192,.24);--logo-surface:rgba(145,182,192,.06);--logo-border:rgba(145,182,192,.16);--logo-hover-filter:drop-shadow(0 12px 16px rgba(0,0,0,.82)) drop-shadow(0 0 8px rgba(145,182,192,.3))}
 .brands-marquee__item .brands-marquee__glow{background:var(--logo-glow,rgba(139,197,64,.16))}
 .brands-marquee__item .brands-marquee__surface{background:var(--logo-surface,rgba(139,197,64,.06));border-color:var(--logo-border,rgba(139,197,64,.16))}
 .brands-marquee__item .brands-marquee__hover{filter:var(--logo-hover-filter,drop-shadow(0 12px 16px rgba(0,0,0,.78)))}
@@ -5280,8 +5280,8 @@ body.admin-bar .site-header {
 .process-timeline-line{position:absolute;top:2rem;left:2rem;right:2rem;display:none}
 .process-timeline-line__track,.process-timeline-line__fill{display:block;height:1px;border-radius:999px}
 .process-timeline-line__track{background:rgba(139,197,64,.10)}
-.process-timeline-line__fill{position:absolute;top:0;left:0;width:100%;transform:scaleX(0);transform-origin:left center;background:linear-gradient(90deg,rgba(139,197,64,.45),rgba(197,232,138,.95));transition:transform .6s cubic-bezier(.22,1,.36,1)}
-.process-timeline-line__dot{position:absolute;top:50%;left:0;width:.7rem;height:.7rem;border-radius:999px;background:#a8d95a;box-shadow:0 0 14px rgba(139,197,64,.9),0 0 28px rgba(139,197,64,.45);transform:translate(-50%,-50%);opacity:0;transition:left .6s cubic-bezier(.22,1,.36,1),opacity .3s ease}
+.process-timeline-line__fill{position:absolute;top:0;left:0;width:0;height:1px;transform:none;transform-origin:left center;background:linear-gradient(90deg,rgba(139,197,64,.45),rgba(197,232,138,.90));transition:width 700ms cubic-bezier(.22,1,.36,1)}
+.process-timeline-line__dot{position:absolute;top:50%;left:0;width:10px;height:10px;border-radius:999px;background:#a8d95a;box-shadow:0 0 14px rgba(139,197,64,.90),0 0 28px rgba(139,197,64,.50);transform:translate(-50%,-50%);opacity:0;transition:left 700ms cubic-bezier(.22,1,.36,1),opacity 300ms ease}
 .process-timeline--react{display:flex;gap:1rem;overflow-x:auto;padding:0 0 .5rem;margin:0;list-style:none;scroll-snap-type:x proximity}
 .process-timeline-step--react{flex:0 0 min(82vw,20rem);scroll-snap-align:start}
 .process-timeline-step__card{display:flex;gap:1.25rem;min-height:10.5rem;padding:1.25rem;border:1px solid rgba(255,255,255,.08);border-radius:1.45rem;background:rgba(255,255,255,.035);backdrop-filter:blur(12px);transition:border-color .5s ease,background .5s ease,transform .5s cubic-bezier(.22,1,.36,1),box-shadow .5s ease}
@@ -5289,15 +5289,19 @@ body.admin-bar .site-header {
 .process-timeline-step--react:hover .process-timeline-step__card{transform:translateY(-4px)}
 .process-timeline-step__node{position:relative;display:grid;place-items:center;flex:0 0 auto;width:4rem;height:4rem;border:1px solid rgba(139,197,64,.13);border-radius:999px;background:rgba(17,19,13,.72);backdrop-filter:blur(12px);transition:background .5s cubic-bezier(.22,1,.36,1),border-color .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1)}
 .process-timeline-step--react.is-active .process-timeline-step__node,.process-timeline-step--react:hover .process-timeline-step__node{background:rgba(139,197,64,.09);border-color:rgba(139,197,64,.55)}
-.process-timeline-step__halo{position:absolute;inset:0;border-radius:999px;box-shadow:0 0 22px rgba(139,197,64,.32),0 0 0 5px rgba(139,197,64,.07),0 8px 32px rgba(0,0,0,.30);opacity:0;transition:opacity .45s ease}
+.process-timeline-step--react:hover .process-timeline-step__node{transform:translateY(-4px) scale(1.05)}
+.process-timeline-step__halo{position:absolute;inset:0;border-radius:999px;box-shadow:0 0 22px rgba(139,197,64,.32),0 0 0 5px rgba(139,197,64,.07),0 8px 32px rgba(0,0,0,.30);opacity:0;transition:opacity .5s ease;pointer-events:none}
 .process-timeline-step--react.is-active .process-timeline-step__halo,.process-timeline-step--react:hover .process-timeline-step__halo{opacity:1}
-.process-timeline-step__number{position:absolute;top:9px;left:50%;transform:translateX(-50%);color:rgba(139,197,64,.30);font-size:.55rem;font-weight:700;letter-spacing:.22em;transition:color .5s ease}
+.process-timeline-step__number{position:absolute;top:9px;left:50%;transform:translateX(-50%);color:rgba(139,197,64,.30);font-size:.55rem;font-weight:700;letter-spacing:.22em;transition:color .5s ease;pointer-events:none}
 .process-timeline-step--react.is-active .process-timeline-step__number,.process-timeline-step--react:hover .process-timeline-step__number{color:rgba(139,197,64,.78)}
 .process-timeline-step__icon{display:grid;place-items:center;width:1.25rem;height:1.25rem;color:rgba(139,197,64,.55);opacity:.32;transition:color .5s ease,opacity .5s ease,transform .5s cubic-bezier(.22,1,.36,1)}
 .process-timeline-step__icon svg{width:20px;height:20px;display:block}
-.process-timeline-step--react.is-active .process-timeline-step__icon,.process-timeline-step--react:hover .process-timeline-step__icon{color:#a8d95a;opacity:1;transform:scale(1.05)}
+.process-timeline-step--react.is-active .process-timeline-step__icon,.process-timeline-step--react:hover .process-timeline-step__icon{color:#a8d95a;opacity:1}
+.process-timeline-step--react:hover .process-timeline-step__icon{transform:scale(1.10)}
 .process-timeline-step__connector{display:none;width:5px;height:5px;margin-top:.75rem;border-radius:999px;background:rgba(139,197,64,.16);transition:background .5s ease,box-shadow .5s ease}
 .process-timeline-step--react.is-active .process-timeline-step__connector{box-shadow:0 0 10px rgba(139,197,64,.58);background:#a8d95a}
+.process-timeline-step__copy{transition:transform .5s cubic-bezier(.22,1,.36,1)}
+.process-timeline-step--react:hover .process-timeline-step__copy{transform:translateY(-2px)}
 .process-timeline-step__copy h3{margin:0;color:rgba(247,244,238,.52);font-family:var(--font-display);font-size:1.2rem;font-weight:400;line-height:1.35;letter-spacing:-.02em;transition:color .5s ease}
 .process-timeline-step__copy p{max-width:11.875rem;margin:.625rem 0 0;color:rgba(247,244,238,.24);font-size:.875rem;font-weight:300;line-height:1.75;letter-spacing:.01em;transition:color .5s ease}
 .process-timeline-step--react.is-active .process-timeline-step__copy h3,.process-timeline-step--react:hover .process-timeline-step__copy h3{color:#f7f4ee}
@@ -5519,7 +5523,7 @@ body.admin-bar .site-header {
 	.process-timeline--react{gap:0;overflow:visible;padding-top:1rem}
 	.process-timeline-step--react{flex:1 1 0;min-width:0}
 	.process-timeline-step__card{display:block;min-height:auto;padding:0 1rem;border:0;border-radius:0;background:transparent;backdrop-filter:none;box-shadow:none;text-align:center}
-	.process-timeline-step--react:hover .process-timeline-step__card,.process-timeline-step--react.is-active .process-timeline-step__card{background:transparent;border:0;box-shadow:none}
+	.process-timeline-step--react:hover .process-timeline-step__card,.process-timeline-step--react.is-active .process-timeline-step__card{background:transparent;border:0;box-shadow:none;transform:none}
 	.process-timeline-step__node{margin:0 auto}
 	.process-timeline-step__connector{display:block;margin:.75rem auto 0}
 	.process-timeline-step__copy{margin-top:1.5rem}
@@ -5555,7 +5559,7 @@ body.admin-bar .site-header {
 	.site-footer__bottom--react{flex-direction:column;text-align:center}
 	.site-footer__legal{justify-content:center}
 
-	/* Consultation ù React: atelier is hidden md:flex (desktop only) */
+	/* Consultation ? React: atelier is hidden md:flex (desktop only) */
 	.consultation-panel--react{
 		grid-template-columns:1fr;
 	}
@@ -5569,7 +5573,7 @@ body.admin-bar .site-header {
 		grid-template-columns:repeat(2,minmax(0,1fr));
 	}
 
-	/* Process ù neutralize legacy vertical timeline; keep React horizontal snap cards */
+	/* Process ? neutralize legacy vertical timeline; keep React horizontal snap cards */
 	.process-timeline-scene.process-timeline-scene--react{
 		padding-block:clamp(3.75rem,16vw,5rem);
 		color:#f7f4ee;
@@ -5612,7 +5616,7 @@ body.admin-bar .site-header {
 		margin:.7rem 0 0;
 	}
 
-	/* Showcase ù section-shell rhythm over legacy premium-showcase padding */
+	/* Showcase ? section-shell rhythm over legacy premium-showcase padding */
 	.premium-showcase.premium-showcase--react{
 		padding-block:clamp(3.75rem,16vw,5rem);
 	}
@@ -5623,13 +5627,13 @@ body.admin-bar .site-header {
 		gap:2.5rem;
 	}
 
-	/* Collections ù React slide geometry */
+	/* Collections ? React slide geometry */
 	.collections-section--react .collections-gallery__slide{
 		width:min(330px,84vw);
 		height:420px;
 	}
 
-	/* Final CTA cards ù React md:grid-cols-3 ? 1 col on mobile */
+	/* Final CTA cards ? React md:grid-cols-3 ? 1 col on mobile */
 	.final-cta-react-cards--v2{
 		grid-template-columns:1fr;
 	}
