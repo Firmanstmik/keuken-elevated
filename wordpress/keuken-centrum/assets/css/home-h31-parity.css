@@ -209,6 +209,10 @@ body.kc-home .premium-showcase--react .premium-showcase__main video {
 	}
 }
 
+body.kc-home #reviews.testimonials-section--react {
+	padding-block: 0;
+}
+
 /* Showroom copy: React lg:pl-2 / xl:pl-4 on the grid column */
 @media (min-width: 1024px) {
 	body.kc-home .premium-showcase--react .premium-showcase__content-col {
