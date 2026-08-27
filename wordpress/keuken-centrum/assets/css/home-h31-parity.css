@@ -304,6 +304,18 @@ body.kc-home #reviews .testimonials-section__inner {
 	padding-bottom: 0;
 }
 
+body.kc-home #reviews .testimonials-heading--react h2 {
+	font-size: clamp(2.35rem, 3.9vw, 3.25rem);
+	line-height: 1.12;
+	letter-spacing: -0.02em;
+}
+
+body.kc-home #reviews .testimonials-heading--react > p {
+	max-width: 36rem;
+	font-size: 0.9375rem;
+	line-height: 1.625;
+}
+
 @media (min-width: 768px) {
 	body.kc-home #reviews .testimonials-section__inner {
 		padding-top: 8rem; /* React md:pt-32 */
