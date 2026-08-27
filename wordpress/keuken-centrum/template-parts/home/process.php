@@ -6,7 +6,7 @@
  */
 
 $process   = function_exists( 'kc_home_process_data' ) ? kc_home_process_data() : null;
-$design_url = $process['cta_url'] ?? ( function_exists( 'kc_cms_configurator_url' ) ? kc_cms_configurator_url() : home_url( '/brands/' ) );
+$design_url = $process['cta_url'] ?? home_url( '/brands/' );
 $steps      = $process['steps'] ?? [
 	[
 		'number' => '01',
@@ -42,8 +42,8 @@ $steps      = $process['steps'] ?? [
 $proc_eyebrow = $process['eyebrow'] ?? 'Het proces';
 $proc_heading = $process['heading'] ?? 'Van concept tot';
 $proc_heading_em = $process['heading_em'] ?? 'creatie';
-$proc_lede = $process['lede'] ?? 'Vijf zorgvuldig uitgedachte stappen naar uw droomkeuken.';
-$proc_cta = $process['cta_label'] ?? 'Start configurator';
+$proc_lede = $process['lede'] ?? 'Vijf zorgvuldig uitgedachte stappen naar uw droomkeuken';
+$proc_cta = $process['cta_label'] ?? 'Begin uw ontwerptraject';
 
 $process_icon = static function (string $icon): string {
 	return function_exists( 'kc_icon_process_step' ) ? kc_icon_process_step( $icon ) : '';
@@ -67,7 +67,7 @@ $process_icon = static function (string $icon): string {
 				<?php echo esc_html( $proc_heading ); ?>
 				<em><?php echo esc_html( $proc_heading_em ); ?></em>
 			</h2>
-			<p><?php echo esc_html( $proc_lede ); ?></p>
+			<p class="process-timeline-heading__lede"><?php echo esc_html( $proc_lede ); ?></p>
 		</header>
 
 		<div class="process-timeline-shell" data-process-timeline>
@@ -99,8 +99,9 @@ $process_icon = static function (string $icon): string {
 
 		<div class="process-timeline-cta">
 			<span class="process-timeline-cta__line" aria-hidden="true"></span>
-			<a class="btn btn--primary btn--pill" href="<?php echo esc_url($design_url); ?>">
-				<?php echo esc_html( $proc_cta ); ?>
+			<a class="premium-pill-button premium-pill-button--blue premium-pill-button--xl premium-pill-button--rounded" href="<?php echo esc_url( $design_url ); ?>">
+				<span class="premium-pill-button__label"><?php echo esc_html( $proc_cta ); ?></span>
+				<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
 			</a>
 		</div>
 	</div>

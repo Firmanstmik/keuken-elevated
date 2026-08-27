@@ -513,9 +513,9 @@ function kc_home_process_data(): array {
 		'eyebrow'    => kc_cms_text( 'home_process_eyebrow', 'option', 'Het proces' ),
 		'heading'    => kc_cms_text( 'home_process_heading', 'option', 'Van concept tot' ),
 		'heading_em' => kc_cms_text( 'home_process_heading_em', 'option', 'creatie' ),
-		'lede'       => kc_cms_text( 'home_process_lede', 'option', 'Vijf zorgvuldig uitgedachte stappen naar uw droomkeuken.' ),
-		'cta_label'  => kc_cms_text( 'home_process_cta_label', 'option', 'Start configurator' ),
-		'cta_url'    => kc_cms_normalize_configurator_cta_url( kc_cms_text( 'home_process_cta_url', 'option', '' ) ),
+		'lede'       => kc_cms_text( 'home_process_lede', 'option', 'Vijf zorgvuldig uitgedachte stappen naar uw droomkeuken' ),
+		'cta_label'  => kc_cms_text( 'home_process_cta_label', 'option', 'Begin uw ontwerptraject' ),
+		'cta_url'    => kc_cms_text( 'home_process_cta_url', 'option', '' ) ?: home_url( '/brands/' ),
 		'steps'      => $steps ?: $steps_default,
 	];
 }

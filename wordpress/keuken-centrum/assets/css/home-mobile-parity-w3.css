@@ -223,7 +223,7 @@
 		line-height: 1.12;
 	}
 
-	.process-timeline-heading--react p:last-child {
+	.process-timeline-heading--react .process-timeline-heading__lede {
 		margin-top: 1.5rem;
 		font-size: 0.8125rem;
 		line-height: 1.9;
