@@ -573,33 +573,6 @@
 		}, { once: true });
 	});
 
-	document.querySelectorAll("[data-testimonials-marquee]").forEach((section) => {
-		if (reduceMotion || window.innerWidth < 768) return;
-		section.querySelectorAll(".testimonials-column").forEach((column, index) => {
-			const marquee = column.querySelector(".testimonials-marquee");
-			if (!marquee) return;
-			let paused = false;
-			let offset = 0;
-			let last = 0;
-			const direction = index ? 1 : -1;
-			const animate = (time) => {
-				if (!last) last = time;
-				const elapsed = time - last;
-				last = time;
-				const loopAt = marquee.scrollHeight / 2;
-				if (!paused && loopAt) {
-					offset += direction * elapsed * 0.012;
-					if (offset <= -loopAt) offset = 0;
-					if (offset >= 0 && direction > 0) offset = -loopAt;
-					marquee.style.transform = `translateY(${offset}px)`;
-				}
-				window.requestAnimationFrame(animate);
-			};
-			column.addEventListener("mouseenter", () => { paused = true; });
-			column.addEventListener("mouseleave", () => { paused = false; });
-			window.requestAnimationFrame(animate);
-		});
-	});
 })();
 
 (() => {
