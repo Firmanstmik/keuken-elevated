@@ -59,9 +59,9 @@ $cta_icon = static function (string $icon): string {
 		<?php kc_section_chapter('08', __('Start ontwerp', 'keuken-centrum')); ?>
 
 		<header class="final-cta-react-heading final-cta-react-heading--v2">
-			<div class="final-cta-react-heading__pills">
+			<div class="final-cta-react-heading__eyebrow">
+				<span class="kitchen-eyebrow-mark" aria-hidden="true"></span>
 				<span><?php echo esc_html( $final_eyebrow ); ?></span>
-				<span><?php esc_html_e('Persoonlijk ontwerp', 'keuken-centrum'); ?></span>
 			</div>
 			<h2>
 				<?php echo esc_html( $final_heading ); ?>
@@ -69,8 +69,14 @@ $cta_icon = static function (string $icon): string {
 			</h2>
 			<p><?php echo esc_html( $final['lede'] ?? __( 'Van eerste inspiratie tot installatie: wij begeleiden u persoonlijk naar een keuken die klopt in stijl, functie en afwerking.', 'keuken-centrum' ) ); ?></p>
 			<div class="final-cta-react-heading__actions">
-				<a class="btn btn--primary btn--pill" href="<?php echo esc_url( $final_secondary_url ); ?>"><?php echo esc_html( $final_secondary_label ); ?></a>
-				<a class="btn btn--secondary btn--pill" href="<?php echo esc_url( $final_primary_url ); ?>"><?php echo esc_html( $final_primary_label ); ?></a>
+				<a class="premium-pill-button premium-pill-button--blue premium-pill-button--md" href="<?php echo esc_url( $final_secondary_url ); ?>">
+					<span class="premium-pill-button__label"><?php echo esc_html( $final_secondary_label ); ?></span>
+					<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
+				</a>
+				<a class="premium-pill-button premium-pill-button--ghost-light premium-pill-button--md" href="<?php echo esc_url( $final_primary_url ); ?>">
+					<span class="premium-pill-button__label"><?php echo esc_html( $final_primary_label ); ?></span>
+					<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
+				</a>
 			</div>
 		</header>
 

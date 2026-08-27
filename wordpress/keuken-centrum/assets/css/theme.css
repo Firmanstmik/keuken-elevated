@@ -5318,8 +5318,8 @@ body.admin-bar .site-header {
 .final-cta-react--v2{position:relative;overflow:hidden;padding:clamp(5.25rem,11vw,9.5rem) 0;background:linear-gradient(180deg,rgba(248,246,242,.88),rgba(248,246,242,.9)),radial-gradient(circle at 40% 20%,rgba(139,197,64,.05),transparent 45%),#f8f6f2 var(--final-concrete) center/cover no-repeat;color:#111}
 .final-cta-react__inner{position:relative;z-index:1}
 .final-cta-react-heading--v2{max-width:52rem;margin:0 auto 4rem;text-align:center}
-.final-cta-react-heading__pills{display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem}
-.final-cta-react-heading__pills span{display:inline-flex;align-items:center;padding:.55rem 1rem;border:1px solid rgba(139,197,64,.18);border-radius:999px;background:rgba(255,255,255,.76);color:#2f5218;font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+.final-cta-react-heading__eyebrow{display:flex;align-items:center;justify-content:center;gap:1.25rem;margin-bottom:1.75rem;color:var(--kc-green-soft);font-family:var(--font-body);font-size:.6875rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase}
+.final-cta-react-heading__eyebrow .kitchen-eyebrow-mark{flex:0 0 auto}
 .final-cta-react-heading--v2 h2{margin:1.5rem 0 0;color:#2f5218;font-family:var(--font-display);font-size:clamp(2.35rem,3.9vw,3.25rem);font-weight:300;line-height:1.12;letter-spacing:-.02em}
 .final-cta-react-heading--v2 h2 em{font-style:italic;color:#8bc540}
 .final-cta-react-heading--v2 p{max-width:36rem;margin:1.4rem auto 0;color:#655c4d;font-size:1rem;line-height:1.75}
