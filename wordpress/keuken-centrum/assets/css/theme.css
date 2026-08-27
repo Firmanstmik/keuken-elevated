@@ -5418,7 +5418,7 @@ body.admin-bar .site-header {
 .testimonials-showcase__stats{display:grid;gap:.625rem}
 .testimonials-showcase__stats div{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;border:1px solid rgba(184,146,74,.16);border-radius:1rem;background:rgba(247,242,232,.72)}
 .testimonials-showcase__stats span{color:#6a5224;font-size:.6875rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase}
-.testimonials-showcase__stats strong{color:#171a11;font-family:var(--font-display);font-size:1.875rem;font-weight:300;line-height:1}
+.testimonials-showcase__stats strong{color:#171a11;font-family:var(--font-display);font-size:1.875rem;font-weight:300;line-height:1.2}
 .testimonials-showcase__google{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:1.25rem;padding:.75rem 1rem;border:1px solid rgba(184,146,74,.18);border-radius:1rem;background:#fff;box-shadow:0 8px 20px -10px rgba(23,26,17,.14)}
 .testimonials-showcase__google>div:first-child{display:flex;align-items:center;gap:.5rem}
 .testimonials-showcase__google svg{width:1rem;height:1rem;flex:0 0 auto}
