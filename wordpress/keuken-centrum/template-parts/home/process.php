@@ -53,7 +53,10 @@ $process_icon = static function (string $icon): string {
 	<div class="process-timeline-scene__bloom process-timeline-scene__bloom--main" aria-hidden="true"></div>
 	<div class="process-timeline-scene__bloom process-timeline-scene__bloom--left" aria-hidden="true"></div>
 	<div class="process-timeline-scene__bloom process-timeline-scene__bloom--right" aria-hidden="true"></div>
+	<div class="process-timeline-scene__vignette" aria-hidden="true"></div>
 	<div class="process-timeline-scene__grain" aria-hidden="true"></div>
+	<div class="process-timeline-scene__hairline process-timeline-scene__hairline--top" aria-hidden="true"></div>
+	<div class="process-timeline-scene__hairline process-timeline-scene__hairline--bottom" aria-hidden="true"></div>
 
 	<div class="site-shell process-timeline-scene__inner">
 		<?php kc_section_chapter('07', __('Proces', 'keuken-centrum'), true); ?>

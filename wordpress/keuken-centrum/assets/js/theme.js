@@ -934,6 +934,7 @@
 		const steps = [...timeline.querySelectorAll("[data-process-step]")];
 		const progress = timeline.querySelector("[data-process-progress]");
 		const dot = timeline.querySelector("[data-process-dot]");
+		const line = timeline.querySelector(".process-timeline-line");
 		const section =
 			timeline.closest("#process, .process-timeline-scene--react") || timeline;
 		if (!steps.length) return;
@@ -949,6 +950,7 @@
 		const syncState = () => {
 			if (reduceMotion) {
 				steps.forEach((step) => step.classList.add("is-active"));
+				timeline.style.transform = "none";
 				if (progress) {
 					progress.style.transform = "none";
 					progress.style.width = "100%";
@@ -962,6 +964,7 @@
 
 			let activeCount = 0;
 			const isMobile = window.innerWidth < 768;
+			let v = 0;
 
 			if (isMobile) {
 				const timelineRect = timeline.getBoundingClientRect();
@@ -982,19 +985,35 @@
 				const rect = section.getBoundingClientRect();
 				const range = Math.max(1, rect.height + window.innerHeight);
 				const scrolled = window.innerHeight - rect.top;
-				const v = Math.max(0, Math.min(1, scrolled / range));
+				v = Math.max(0, Math.min(1, scrolled / range));
 				const normalized = Math.max(0, Math.min(1, (v - 0.18) / 0.54));
 				activeCount = Math.round(normalized * steps.length);
+			}
+
+			if (!isMobile) {
+				const parallaxY = 10 + (v * -20);
+				timeline.style.transform = `translate3d(0, ${parallaxY.toFixed(2)}px, 0)`;
+			} else {
+				timeline.style.transform = "none";
 			}
 
 			steps.forEach((step, index) => {
 				step.classList.toggle("is-active", index < activeCount);
 			});
 
-			const linePercent =
-				activeCount <= 1
-					? 0
-					: ((activeCount - 1) / Math.max(1, steps.length - 1)) * 100;
+			let linePercent = 0;
+			if (activeCount > 1) {
+				const activeStep = steps[Math.min(activeCount - 1, steps.length - 1)];
+				const activeNode = activeStep ? activeStep.querySelector(".process-timeline-step__node") : null;
+				if (line && activeNode) {
+					const lineRect = line.getBoundingClientRect();
+					const nodeRect = activeNode.getBoundingClientRect();
+					const nodeCenter = nodeRect.left + (nodeRect.width / 2) - lineRect.left;
+					linePercent = Math.max(0, Math.min(100, (nodeCenter / Math.max(1, lineRect.width)) * 100));
+				} else {
+					linePercent = ((activeCount - 1) / Math.max(1, steps.length - 1)) * 100;
+				}
+			}
 
 			if (progress) {
 				progress.style.transform = "none";
