@@ -79,7 +79,7 @@ $process_icon = static function (string $icon): string {
 
 			<ol class="process-timeline process-timeline--react">
 				<?php foreach ($steps as $index => $step) : ?>
-					<li class="process-timeline-step process-timeline-step--react<?php echo 0 === $index ? ' is-active' : ''; ?>" data-process-step>
+					<li class="process-timeline-step process-timeline-step--react" data-process-step>
 						<article class="process-timeline-step__card">
 							<div class="process-timeline-step__node">
 								<span class="process-timeline-step__halo" aria-hidden="true"></span>

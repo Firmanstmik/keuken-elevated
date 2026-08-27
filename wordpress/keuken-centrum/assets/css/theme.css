@@ -5273,7 +5273,7 @@ body.admin-bar .site-header {
 .process-timeline-scene__bloom--right{right:-12%;bottom:-12%;width:34rem;height:34rem;background:radial-gradient(circle,rgba(139,197,64,.1),transparent 62%)}
 .process-timeline-scene__grain{position:absolute;inset:0;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23g)'/%3E%3C/svg%3E")}
 .process-timeline-heading--react{max-width:46rem;margin:0 auto 5rem;text-align:center}
-.process-timeline-heading--react h2{margin:1.75rem 0 0;color:#f7f4ee;font-family:var(--font-display);font-size:clamp(2.35rem,3.9vw,3.25rem);font-weight:300;line-height:1.12;letter-spacing:-.02em}
+.process-timeline-heading--react h2{margin:0;color:#f7f4ee;font-family:var(--font-display);font-size:clamp(2.35rem,3.9vw,3.25rem);font-weight:300;line-height:1.12;letter-spacing:-.02em}
 .process-timeline-heading--react h2 em{display:inline-block;font-style:italic;background:linear-gradient(128deg,#a8d95a 0%,#c5e88a 48%,#8bc540 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .process-timeline-heading--react .process-timeline-heading__lede{max-width:24rem;margin:1.5rem auto 0;color:rgba(247,244,238,.38);font-size:.8125rem;font-weight:300;line-height:1.9}
 .process-timeline-shell{position:relative}
