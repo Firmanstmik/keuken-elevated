@@ -1117,51 +1117,11 @@ body.kc-home .site-footer--react .site-footer__contact-list--react li + li {
 	margin-top: 0;
 }
 
-/* Consultation: contact strip removed — restore ~md rhythm without the strip */
-@media (min-width: 768px) {
-	body.kc-home #consultation .consultation-panel--react {
-		margin-top: 2.5rem;
-	}
-
-	body.kc-home #consultation .consultation-form-card--react {
-		padding-bottom: 3.25rem;
-	}
-}
-
 /* Process mobile rhythm — React mb-20 / mt-20 below 768 */
 @media (max-width: 767px) {
 	body.kc-home .process-timeline-scene--react .process-mobile-steps,
 	body.kc-home .process-timeline-scene--react .process-timeline {
 		padding-top: 0.5rem;
-	}
-}
-
-/* Consultation: left column + section rhythm without contact strip */
-@media (min-width: 768px) {
-	body.kc-home #consultation .consultation-section__header {
-		padding-bottom: 0.5rem;
-	}
-
-	body.kc-home #consultation .consultation-benefits {
-		margin-top: 0.25rem;
-	}
-
-	body.kc-home #consultation .consultation-next {
-		margin-top: 2.5rem;
-	}
-}
-
-@media (min-width: 1024px) {
-	body.kc-home #consultation .consultation-form-card--react {
-		padding-bottom: 5rem;
-	}
-
-	body.kc-home #consultation .consultation-panel--react {
-		margin-top: 3rem;
-	}
-
-	body.kc-home #consultation .consultation-next {
-		margin-top: 3rem;
 	}
 }
 
@@ -1286,17 +1246,6 @@ body.kc-home .site-footer--react .site-footer__contact-list--react li + li {
 	body.kc-home .final-cta-react-card--v2 {
 		min-height: 17.5rem;
 		padding-block: 1.75rem;
-	}
-}
-
-/* Consultation @768: keep (PASS) */
-@media (min-width: 768px) and (max-width: 1023px) {
-	body.kc-home #consultation .consultation-form-card--react {
-		padding-bottom: 4rem;
-	}
-
-	body.kc-home #consultation .consultation-next {
-		margin-top: 3rem;
 	}
 }
 

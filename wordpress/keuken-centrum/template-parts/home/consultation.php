@@ -8,7 +8,7 @@
 $phone     = (string) kc_get_option('contact_phone', '030 241 5122');
 $email     = (string) kc_get_option('contact_email', 'info@keuken-centrum.nl');
 $home_cons = function_exists( 'kc_home_consultation_data' ) ? kc_home_consultation_data() : null;
-$cta_label = $home_cons['cta_label'] ?? (string) kc_get_option('consultation_cta_label', 'Plan consultatie');
+$cta_label = __('Plan consultatie', 'keuken-centrum');
 $form_shortcode = (string) kc_get_option('consultation_form_shortcode', '');
 $cons_eyebrow = $home_cons['eyebrow'] ?? 'Persoonlijk Ontwerpgesprek';
 $cons_heading = $home_cons['heading'] ?? 'Boek uw persoonlijk';
