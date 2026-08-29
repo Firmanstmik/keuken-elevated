@@ -5523,7 +5523,7 @@ body.admin-bar .site-header {
 .consultation-lead-form__stats span{display:block;margin-top:.125rem;color:#7a6a4a;font-family:var(--font-body);font-size:.62rem;font-weight:600;line-height:1.35;letter-spacing:.18em;text-transform:uppercase}
 .consultation-lead-form__submit{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-top:1.25rem;border-top:1px solid #efe8d9}
 .consultation-lead-form__submit p{flex:1 1 auto;max-width:16rem;margin:0;color:#7a6a4a;font-family:var(--font-body);font-size:.6875rem;line-height:1.6}
-.consultation-lead-form__submit .premium-pill-button{flex:0 0 auto}
+.consultation-lead-form__submit .premium-pill-button{flex:0 1 auto}
 .consultation-next{margin-top:2rem}
 .consultation-next__label{margin:0 0 1rem;color:rgba(47,82,24,.45);font-size:.68rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase}
 .consultation-next__grid{display:grid;gap:1rem;grid-template-columns:repeat(4,minmax(0,1fr))}
