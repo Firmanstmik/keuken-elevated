@@ -550,12 +550,12 @@
 			const dt = Math.min((time - last) / 1000, 0.05);
 			last = time;
 
-			if (!paused) offset += 26 * dt;
+			if (!paused) offset += 55 * dt;
 
 			const width = loopWidth();
 			if (width > 0) {
 				offset = ((offset % width) + width) % width;
-				track.style.transform = `translateX(${-offset}px)`;
+				track.style.transform = `translate3d(${-offset}px, 0, 0)`;
 			}
 
 			raf = window.requestAnimationFrame(animate);

@@ -603,18 +603,15 @@ body.kc-home .final-cta-react--v2 .final-cta-react-heading--v2 {
 	}
 }
 
-/* React form has no contact strip in default state — always hide on homepage */
-body.kc-home #consultation .consultation-form-card__contact {
-	display: none !important;
-}
-
 /* Neutralize legacy .consultation-panel chrome (pad/bg/align) on React twin */
 body.kc-home #consultation .consultation-panel--react {
 	padding: 0;
 	align-items: stretch;
-	background: none;
-	box-shadow: none;
-	border-radius: 1.6rem;
+	background: #fff;
+	box-shadow:
+		0 40px 90px -50px rgba(23, 25, 28, 0.25),
+		0 1px 0 rgba(255, 255, 255, 0.6) inset;
+	border-radius: 24px;
 	margin-top: 2.5rem; /* React mt-10 on form card wrapper */
 }
 
@@ -624,8 +621,8 @@ body.kc-home #consultation .consultation-lead-form--react {
 
 body.kc-home #consultation .consultation-lead-form--react input,
 body.kc-home #consultation .consultation-lead-form--react select {
-	padding: 0.75rem 1rem;
-	min-height: 0;
+	min-height: 50px;
+	padding: 0.5rem 1rem;
 }
 
 body.kc-home #consultation .consultation-lead-form--react textarea {
@@ -636,9 +633,9 @@ body.kc-home #consultation .consultation-lead-form--react textarea {
 
 @media (min-width: 768px) {
 	body.kc-home #consultation .consultation-lead-form__submit {
-		flex-direction: row !important;
+		flex-direction: row;
 		flex-wrap: nowrap;
-		align-items: center !important;
+		align-items: center;
 		justify-content: space-between;
 	}
 
