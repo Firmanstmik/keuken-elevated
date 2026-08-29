@@ -5478,7 +5478,7 @@ body.admin-bar .site-header {
 .consultation-gallery__tag{display:inline-flex;align-items:center;gap:.375rem;padding:.125rem .5rem;border:1px solid rgba(255,255,255,.3);border-radius:999px;background:rgba(0,0,0,.35);backdrop-filter:blur(8px);color:rgba(255,255,255,.9);font-family:var(--font-body);font-size:.625rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase}
 .consultation-gallery__tag-dot{width:.25rem;height:.25rem;border-radius:999px;background:#a8d95a}
 .consultation-gallery__title{margin-top:.375rem;color:rgba(255,255,255,.82);font-family:var(--font-display);font-size:1.0625rem;font-weight:300;line-height:1.35}
-.consultation-panel--react{display:grid;grid-template-columns:300px minmax(0,1fr);overflow:hidden;margin-top:2.5rem;border:1px solid #e4dccb;border-radius:24px;box-shadow:0 40px 90px -50px rgba(23,25,28,.25),0 1px 0 rgba(255,255,255,.6) inset;background:#fff}
+.consultation-panel--react{display:grid;grid-template-columns:300px minmax(0,1fr);gap:0;overflow:hidden;margin-top:2.5rem;border:1px solid #e4dccb;border-radius:24px;box-shadow:0 40px 90px -50px rgba(23,25,28,.25),0 1px 0 rgba(255,255,255,.6) inset;background:#fff}
 .consultation-panel__atelier{display:flex;flex-direction:column;justify-content:space-between;padding:2rem;background:linear-gradient(180deg,#1a3310 0%,#2f5218 100%);color:#fff}
 .consultation-panel__atelier-top{max-width:236px}
 .consultation-panel__atelier-middle{margin-top:2rem}
