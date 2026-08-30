@@ -51,6 +51,81 @@
 		return (catalog.categories || []).find((c) => c.id === id) || null;
 	}
 
+	function pdfEscape(value) {
+		return String(value || "")
+			.replace(/\\/g, "\\\\")
+			.replace(/\(/g, "\\(")
+			.replace(/\)/g, "\\)")
+			.replace(/[^\x20-\x7e]/g, "");
+	}
+
+	function downloadProposalPdf(state) {
+		const brand = brandById(state.brand);
+		const style = styleById(state.style);
+		const selected = Object.keys(state.selections || {}).map((id) => {
+			const category = categoryById(id);
+			const item = state.selections[id] || {};
+			return `${category ? category.label : id}: ${item.name || "Gekozen"}`;
+		});
+		const lines = [
+			"Keuken Centrum Utrecht",
+			"Persoonlijk keukenvoorstel",
+			"",
+			`Merk: ${(brand && brand.name) || state.brandName || "Niet gekozen"}`,
+			`Stijl: ${(style && style.name) || state.styleName || "Niet gekozen"}`,
+			`Budgetindicatie: ${state.budget || "Niet gekozen"}`,
+			`Samengestelde onderdelen: ${selected.length}`,
+			"",
+			"Materialen en afwerkingen",
+			...(selected.length ? selected : ["Nog geen materialen samengesteld."]),
+			"",
+			"Plan uw ontwerpconsultatie",
+			"Bespreek materialen, technische details en ontvang een uitgewerkt voorstel in onze showroom.",
+		];
+		const content = [
+			"BT",
+			"/F1 18 Tf",
+			"50 790 Td",
+			`(${pdfEscape(lines[0])}) Tj`,
+			"0 -28 Td",
+			"/F1 14 Tf",
+			`(${pdfEscape(lines[1])}) Tj`,
+			"0 -35 Td",
+			"/F1 10 Tf",
+			...lines.slice(3).flatMap((line) => [`(${pdfEscape(line)}) Tj`, "0 -16 Td"]),
+			"ET",
+		].join("\n");
+		const objects = [
+			"<< /Type /Catalog /Pages 2 0 R >>",
+			"<< /Type /Pages /Kids [3 0 R] /Count 1 >>",
+			"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 5 0 R >> >> /Contents 4 0 R >>",
+			`<< /Length ${content.length} >>\nstream\n${content}\nendstream`,
+			"<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>",
+		];
+		let pdf = "%PDF-1.4\n";
+		const offsets = [0];
+		objects.forEach((object, index) => {
+			offsets[index + 1] = pdf.length;
+			pdf += `${index + 1} 0 obj\n${object}\nendobj\n`;
+		});
+		const xref = pdf.length;
+		pdf += `xref\n0 ${objects.length + 1}\n0000000000 65535 f \n`;
+		offsets.slice(1).forEach((offset) => {
+			pdf += `${String(offset).padStart(10, "0")} 00000 n \n`;
+		});
+		pdf += `trailer\n<< /Size ${objects.length + 1} /Root 1 0 R >>\nstartxref\n${xref}\n%%EOF`;
+		const blob = new Blob([pdf], { type: "application/pdf" });
+		const url = URL.createObjectURL(blob);
+		const anchor = document.createElement("a");
+		const filename = `keuken-voorstel-${((brand && brand.name) || state.brandName || "project")
+			.toLowerCase()
+			.replace(/\s+/g, "-")}.pdf`;
+		anchor.href = url;
+		anchor.download = filename;
+		anchor.click();
+		window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+	}
+
 	function applyBudget(state) {
 		if (!state.brand) {
 			state.budget = state.budget || null;
@@ -300,7 +375,7 @@
 			});
 		}
 
-		document.querySelector("[data-cfg-print]")?.addEventListener("click", () => window.print());
+		document.querySelector("[data-cfg-print]")?.addEventListener("click", () => downloadProposalPdf(state));
 		document.querySelector("[data-cfg-save]")?.addEventListener("click", () => {
 			window.localStorage.setItem("kc-saved-moodboard", JSON.stringify(state));
 		});

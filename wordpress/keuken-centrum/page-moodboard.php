@@ -36,11 +36,11 @@ foreach ( (array) ( $catalog['styles'] ?? [] ) as $style_row ) {
 					<img data-cfg-mood-img src="<?php echo esc_url( $fallback ); ?>" alt="<?php esc_attr_e( 'Moodboardvoorbeeld', 'keuken-centrum' ); ?>" class="kc-cfg-mood__img" width="1200" height="900">
 				</div>
 				<div class="kc-cfg-mood__tools">
-					<button type="button" class="kc-cfg-btn kc-cfg-btn--ghost" data-cfg-print><?php esc_html_e( 'Afdrukken', 'keuken-centrum' ); ?></button>
+					<button type="button" class="kc-cfg-btn kc-cfg-btn--ghost" data-cfg-print><?php esc_html_e( 'Pdf downloaden', 'keuken-centrum' ); ?></button>
 					<button type="button" class="kc-cfg-btn kc-cfg-btn--ghost" data-cfg-save><?php esc_html_e( 'Project opslaan', 'keuken-centrum' ); ?></button>
 					<button type="button" class="kc-cfg-btn kc-cfg-btn--ghost" data-cfg-share><?php esc_html_e( 'Project delen', 'keuken-centrum' ); ?></button>
 				</div>
-				<p class="kc-cfg-mood__note"><?php esc_html_e( 'Pdf-export uit React (jsPDF) is in WordPress nog niet nagebouwd. Afdrukken gebruikt de browserprint. Delen deelt de pagina-URL, net als React.', 'keuken-centrum' ); ?></p>
+				<p class="kc-cfg-mood__note"><?php esc_html_e( 'Download uw keukenvoorstel als pdf. Delen deelt de pagina-URL, net als React.', 'keuken-centrum' ); ?></p>
 			</div>
 			<div>
 				<h2 class="kc-cfg-h2"><?php esc_html_e( 'Merk en stijl', 'keuken-centrum' ); ?></h2>
