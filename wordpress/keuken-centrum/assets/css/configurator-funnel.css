@@ -179,6 +179,10 @@
 	font-size: 1rem;
 }
 
+.kc-cfg-card__check[hidden] {
+	display: none !important;
+}
+
 .kc-cfg-card.is-selected .kc-cfg-card__check {
 	display: grid;
 }
