@@ -196,6 +196,14 @@
 			window.location.replace(urls.style || "/style/");
 			return false;
 		}
+		if (step === "consultation" && !state.brand) {
+			window.location.replace(urls.brands || "/brands/");
+			return false;
+		}
+		if (step === "consultation" && !state.style) {
+			window.location.replace(urls.style || "/style/");
+			return false;
+		}
 		return true;
 	}
 
@@ -923,12 +931,28 @@
 	if (step === "consultation") {
 		const brand = brandById(state.brand);
 		const style = styleById(state.style);
+		const brandName = (brand && brand.name) || state.brandName || "Uw";
+		const styleName = (style && style.name) || state.styleName || "";
+		const heroTitle = document.querySelector(".consultation-hero__title");
+		const previewTitle = document.querySelector(".consultation-preview__title");
+		const previewMediaTitle = document.querySelector(".consultation-preview__media-title");
+		const titleText =
+			brandName + (styleName ? " " + styleName.toLowerCase() : "") + " keukenvoorstel";
+		if (heroTitle) heroTitle.textContent = titleText;
+		if (previewTitle) previewTitle.textContent = brandName + " keukenconsultatie";
+		if (previewMediaTitle) previewMediaTitle.textContent = brandName + " keukenconsultatie";
+		if (style && style.base) {
+			const heroBg = document.querySelector(".consultation-hero__bg");
+			const previewBg = document.querySelector(".consultation-preview__bg");
+			if (heroBg) heroBg.style.backgroundImage = "url('" + style.base + "')";
+			if (previewBg) previewBg.style.backgroundImage = "url('" + style.base + "')";
+		}
 		const merk = document.querySelector('[data-preview-detail="merk"]');
 		const stijl = document.querySelector('[data-preview-detail="stijl"]');
 		const parts = document.querySelector('[data-preview-detail="samengestelde onderdelen"]');
 		const budgetDetail = document.querySelector('[data-preview-detail="budget"]');
-		if (merk) merk.textContent = (brand && brand.name) || state.brandName || "Niet gekozen";
-		if (stijl) stijl.textContent = (style && style.name) || state.styleName || "Niet gekozen";
+		if (merk) merk.textContent = brandName === "Uw" ? "Niet gekozen" : brandName;
+		if (stijl) stijl.textContent = styleName || "Niet gekozen";
 		const n = Object.keys(state.selections || {}).length;
 		if (parts) parts.textContent = n + " gekozen details";
 		if (budgetDetail && state.budget) budgetDetail.textContent = state.budget;
@@ -945,6 +969,36 @@
 		}
 		const toggleTitle = document.querySelector(".consultation-proposal-toggle__title");
 		if (toggleTitle) toggleTitle.textContent = n + " keuzes controleren";
+		const materialsWrap = document.querySelector("[data-consultation-materials]");
+		const materialsList = document.querySelector("[data-consultation-materials-list]");
+		if (materialsList) {
+			materialsList.innerHTML = "";
+			(catalog.categories || []).forEach((cat) => {
+				const sel = state.selections[cat.id];
+				if (!sel) return;
+				const row = document.createElement("div");
+				row.className = "consultation-preview__material";
+				row.innerHTML =
+					'<div class="consultation-preview__material-copy">' +
+					'<p class="consultation-preview__material-label">' +
+					cat.label +
+					"</p>" +
+					'<p class="consultation-preview__material-value">' +
+					sel.name +
+					"</p></div>" +
+					(sel.color
+						? '<span class="consultation-preview__material-swatch" style="background:' +
+							sel.color +
+							'"></span>'
+						: "");
+				materialsList.appendChild(row);
+			});
+			if (materialsWrap) materialsWrap.hidden = materialsList.children.length === 0;
+		}
+		const heroFeatures = document.querySelectorAll(".consultation-hero__feature span:last-child");
+		if (heroFeatures.length >= 4) {
+			heroFeatures[3].textContent = n + " details samengesteld";
+		}
 	}
 	}
 

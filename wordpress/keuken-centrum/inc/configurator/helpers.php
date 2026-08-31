@@ -167,8 +167,9 @@ function kc_configurator_normalize_state( $raw ): array {
 function kc_configurator_js_payload(): array {
 	$catalog = kc_configurator_catalog();
 	return [
-		'storageKey' => 'kc-master-config',
-		'urls'       => [
+		'storageKey'      => 'kc-master-config',
+		'whatsappNumber'  => function_exists( 'kc_consultation_whatsapp_number' ) ? kc_consultation_whatsapp_number() : '31302415122',
+		'urls'            => [
 			'home'         => home_url( '/' ),
 			'brands'       => home_url( '/brands/' ),
 			'style'        => home_url( '/style/' ),

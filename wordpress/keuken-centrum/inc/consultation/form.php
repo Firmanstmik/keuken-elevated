@@ -83,44 +83,105 @@ function kc_consultation_submit_ajax(): void {
 
 	$email_budget = $budget !== '' ? $budget : $config_budget;
 
-	$selection_lines = [];
-	foreach ( (array) ( $config['selections'] ?? [] ) as $cat_id => $sel ) {
-		$label = is_string( $cat_id ) ? $cat_id : '';
-		$name_sel = is_array( $sel ) ? (string) ( $sel['name'] ?? '' ) : '';
-		$selection_lines[] = '- ' . $label . ': ' . $name_sel;
-	}
-	$selections_block = $selection_lines ? implode( "\n", $selection_lines ) : '(geen selecties)';
+	$config_summary = function_exists( 'kc_consultation_format_config_summary' )
+		? kc_consultation_format_config_summary( $config )
+		: '';
 
-	$to      = (string) kc_get_option( 'contact_email', 'info@keuken-centrum.nl' );
-	$subject = sprintf( 'Consultatieaanvraag via website: %s', $name );
-	$stamp   = wp_date( 'Y-m-d H:i:s' );
-	$body    = "Tijdstip: {$stamp}\n"
-		. "Naam: {$name}\nEmail: {$email}\nTelefoon: {$phone}\nShowroom: {$showroom}\nDatum: {$date}\n\n"
-		. "Merk: " . ( $config['brandName'] ?: ( $config['brand'] ?: 'niet gekozen' ) ) . "\n"
-		. "Stijl: " . ( $config['styleName'] ?: ( $config['style'] ?: 'niet gekozen' ) ) . "\n"
-		. "Budget: " . ( $email_budget !== '' ? $email_budget : 'niet gekozen' ) . "\n\n"
-		. "Configuratie:\n{$selections_block}\n\n"
-		. "Wensen:\n{$notes}\n";
-
-	$name_header = str_replace( [ "\r", "\n" ], '', $name );
-	$headers     = [
-		'Content-Type: text/plain; charset=UTF-8',
-		'Reply-To: ' . $name_header . ' <' . $email . '>',
-	];
-
-	$sent = wp_mail( $to, $subject, $body, $headers );
-
-	if ( ! $sent ) {
-		error_log( 'kc_consultation_submit: wp_mail failed' ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+	$to = kc_consultation_mail_recipient();
+	if ( '' === $to ) {
 		wp_send_json_error(
 			[
 				'message' => __( 'Uw aanvraag kon niet worden verzonden. Probeer het later opnieuw of bel de showroom.', 'keuken-centrum' ),
+				'reason'  => 'invalid_recipient',
+			],
+			500
+		);
+	}
+
+	$subject = sprintf( 'Consultatieaanvraag via website: %s', $name );
+	$stamp   = wp_date( 'Y-m-d H:i:s' );
+	$body    = "Tijdstip: {$stamp}\n"
+		. "Naam: {$name}\nEmail: {$email}\nTelefoon: {$phone}\nShowroom: {$showroom}\nDatum: {$date}\n"
+		. 'Projectbudget: ' . ( $email_budget !== '' ? $email_budget : 'niet gekozen' ) . "\n\n"
+		. "Keukenconfiguratie:\n{$config_summary}\n\n"
+		. "Wensen:\n{$notes}\n";
+
+	$headers = [
+		'Content-Type: text/plain; charset=UTF-8',
+		'Reply-To: ' . $email,
+	];
+
+	$mail_reason = 'wp_mail_false';
+	$failed      = static function ( $wp_error ) use ( &$mail_reason ): void {
+		if ( ! is_wp_error( $wp_error ) ) {
+			return;
+		}
+		$mail_reason = kc_consultation_mail_reason_code( $wp_error );
+	};
+	add_action( 'wp_mail_failed', $failed, 10, 1 );
+
+	$sent = wp_mail( $to, $subject, $body, $headers );
+
+	remove_action( 'wp_mail_failed', $failed, 10 );
+
+	if ( ! $sent ) {
+		error_log( 'kc_consultation_submit: wp_mail failed reason=' . $mail_reason ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+		wp_send_json_error(
+			[
+				'message' => __( 'Uw aanvraag kon niet worden verzonden. Probeer het later opnieuw of bel de showroom.', 'keuken-centrum' ),
+				'reason'  => $mail_reason,
 			],
 			500
 		);
 	}
 
 	wp_send_json_success( [ 'delivered' => true ] );
+}
+
+/**
+ * Destination address for consultation mail (no credentials).
+ */
+function kc_consultation_mail_recipient(): string {
+	$raw = kc_get_option( 'contact_email', 'info@keuken-centrum.nl' );
+	if ( is_array( $raw ) ) {
+		$raw = reset( $raw );
+	}
+	$candidate = sanitize_email( (string) $raw );
+	if ( is_email( $candidate ) ) {
+		return $candidate;
+	}
+	$fallback = sanitize_email( 'info@keuken-centrum.nl' );
+	return is_email( $fallback ) ? $fallback : '';
+}
+
+/**
+ * Map PHPMailer / wp_mail failure to a non-sensitive reason code.
+ *
+ * @param WP_Error $error Mail error from wp_mail_failed.
+ */
+function kc_consultation_mail_reason_code( WP_Error $error ): string {
+	$phpmailer = $error->get_error_data( 'wp_mail_failed' );
+	$info      = '';
+	if ( is_object( $phpmailer ) && isset( $phpmailer->ErrorInfo ) ) {
+		$info = strtolower( (string) $phpmailer->ErrorInfo );
+	}
+	$message = strtolower( (string) $error->get_error_message() );
+	$text    = $info . ' ' . $message;
+	$text    = preg_replace( '/[^\x20-\x7e]/', ' ', $text ) ?? '';
+
+	if ( str_contains( $text, 'could not instantiate mail function' ) ) {
+		return 'php_mail_unavailable';
+	}
+	if ( str_contains( $text, 'smtp connect' ) || str_contains( $text, 'smtp error' ) ) {
+		return 'smtp_transport';
+	}
+	if ( str_contains( $text, 'invalid address' ) ) {
+		return 'invalid_address';
+	}
+	if ( str_contains( $text, 'could not instantiate' ) ) {
+		return 'mailer_instantiate';
+	}
+	return 'wp_mail_false';
 }
 add_action( 'wp_ajax_kc_consultation_submit', 'kc_consultation_submit_ajax' );
 add_action( 'wp_ajax_nopriv_kc_consultation_submit', 'kc_consultation_submit_ajax' );

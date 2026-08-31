@@ -21,6 +21,72 @@
 
 	let attempted = false;
 
+	const storageKey = () =>
+		(window.kcConfigurator && window.kcConfigurator.storageKey) || "kc-master-config";
+
+	function loadConfiguratorState() {
+		try {
+			const raw = window.localStorage.getItem(storageKey());
+			if (!raw) return { selections: {} };
+			const parsed = JSON.parse(raw);
+			return parsed && typeof parsed === "object" ? parsed : { selections: {} };
+		} catch (_e) {
+			return { selections: {} };
+		}
+	}
+
+	function selectionLines(state, catalog) {
+		const lines = [];
+		(catalog.categories || []).forEach((cat) => {
+			const sel = state.selections && state.selections[cat.id];
+			if (!sel) return;
+			lines.push({ label: cat.label, value: sel.name, color: sel.color });
+		});
+		return lines;
+	}
+
+	function buildWhatsAppMessage(formData, state, catalog) {
+		const selections = selectionLines(state, catalog);
+		const parts = [
+			"Hallo Keuken-Centrum,",
+			"",
+			"Ik wil graag een consultatie plannen via jullie configurator.",
+			"",
+			"Naam: " + formData.name,
+			"E-mail: " + formData.email,
+		];
+		if (formData.phone) parts.push("Telefoon: " + formData.phone);
+		parts.push("Showroom: " + formData.showroom);
+		if (formData.date) parts.push("Gewenste datum: " + formData.date);
+		if (formData.budget) parts.push("Projectbudget: " + formData.budget);
+		parts.push("", "Mijn keukenconfiguratie:");
+		if (state.brandName || state.brand) {
+			parts.push("Merk: " + (state.brandName || state.brand));
+		}
+		if (state.styleName || state.style) {
+			parts.push("Stijl: " + (state.styleName || state.style));
+		}
+		if (state.budget && !formData.budget) {
+			parts.push("Budgetindicatie: " + state.budget);
+		}
+		if (selections.length) {
+			parts.push("");
+			selections.forEach((row) => parts.push("- " + row.label + ": " + row.value));
+		}
+		if (formData.notes) {
+			parts.push("", "Wensen:", formData.notes);
+		}
+		return parts.join("\n");
+	}
+
+	function openWhatsApp(message) {
+		const cfg = window.kcConfigurator || {};
+		const number =
+			page.getAttribute("data-whatsapp-number") || cfg.whatsappNumber || "31302415122";
+		const url = "https://wa.me/" + number + "?text=" + encodeURIComponent(message);
+		window.open(url, "_blank", "noopener,noreferrer");
+	}
+
 	const emailValid = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 	const isValid = () =>
 		Boolean(
@@ -81,30 +147,42 @@
 			errorBox.textContent = "";
 		}
 
+		const formData = {
+			name: (nameEl?.value || "").trim(),
+			email: (emailEl?.value || "").trim(),
+			phone: (phoneEl?.value || "").trim(),
+			showroom: showroomEl?.value || "",
+			budget: budgetSelect?.value || "",
+			date: dateEl?.value || "",
+			notes: (notesEl?.value || "").trim(),
+		};
+
 		const payload = new FormData();
 		payload.append("action", "kc_consultation_submit");
 		payload.append(
 			"nonce",
 			form.querySelector('[name="nonce"]')?.value || form.getAttribute("data-nonce") || "",
 		);
-		payload.append("name", (nameEl?.value || "").trim());
-		payload.append("email", (emailEl?.value || "").trim());
-		payload.append("phone", (phoneEl?.value || "").trim());
-		payload.append("showroom", showroomEl?.value || "");
-		payload.append("budget", budgetSelect?.value || "");
-		payload.append("date", dateEl?.value || "");
-		payload.append("notes", (notesEl?.value || "").trim());
+		payload.append("name", formData.name);
+		payload.append("email", formData.email);
+		payload.append("phone", formData.phone);
+		payload.append("showroom", formData.showroom);
+		payload.append("budget", formData.budget);
+		payload.append("date", formData.date);
+		payload.append("notes", formData.notes);
 		payload.append("company_website", form.querySelector('[name="company_website"]')?.value || "");
 
-		const storageKey = (window.kcConfigurator && window.kcConfigurator.storageKey) || "kc-master-config";
+		const state = loadConfiguratorState();
 		try {
-			payload.append("config_json", window.localStorage.getItem(storageKey) || "{}");
+			payload.append("config_json", JSON.stringify(state));
 		} catch (_e) {
 			payload.append("config_json", "{}");
 		}
 
 		submitBtn.disabled = true;
 		submitBtn.classList.remove("is-ready");
+		const defaultLabel = submitBtn.textContent;
+		submitBtn.textContent = "Aanvraag verzenden...";
 
 		const fail = (message) => {
 			if (errorBox) {
@@ -113,6 +191,7 @@
 					"Uw aanvraag kon niet worden verzonden. Probeer het later opnieuw of bel de showroom.";
 				errorBox.classList.add("is-visible");
 			}
+			submitBtn.textContent = defaultLabel;
 			submitBtn.disabled = false;
 			syncSubmit();
 		};
@@ -133,20 +212,25 @@
 			return;
 		}
 
-		const firstName = ((nameEl?.value || "").trim().split(/\s+/)[0]) || "";
+		const catalog = (window.kcConfigurator && window.kcConfigurator.catalog) || { categories: [] };
+		openWhatsApp(buildWhatsAppMessage(formData, state, catalog));
+
+		const firstName = (formData.name.split(/\s+/)[0] || "");
 		const lede = page.querySelector("[data-success-lede]");
 		const showroomOut = page.querySelector("[data-success-showroom]");
 		const dateWrap = page.querySelector("[data-success-date-wrap]");
 		const dateOut = page.querySelector("[data-success-date]");
-		const tpl = success?.getAttribute("data-success-template") || "Dank u, {name}. Uw persoonlijke ontwerpadviseur neemt binnen 24 uur contact met u op om de afspraak te bevestigen.";
+		const tpl =
+			success?.getAttribute("data-success-template") ||
+			"Dank u, {name}. Uw persoonlijke ontwerpadviseur neemt binnen 24 uur contact met u op om de afspraak te bevestigen.";
 
 		if (lede) {
 			lede.textContent = tpl.replace(/\{name\}/g, firstName);
 		}
-		if (showroomOut) showroomOut.textContent = showroomEl?.value || "";
-		if (dateEl?.value && dateWrap && dateOut) {
+		if (showroomOut) showroomOut.textContent = formData.showroom;
+		if (formData.date && dateWrap && dateOut) {
 			dateWrap.hidden = false;
-			dateOut.textContent = dateEl.value;
+			dateOut.textContent = formData.date;
 		}
 
 		if (formView) formView.hidden = true;

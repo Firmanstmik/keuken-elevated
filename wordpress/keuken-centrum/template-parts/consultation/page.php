@@ -24,7 +24,7 @@ $ajax_url = admin_url( 'admin-ajax.php' );
 $nonce    = wp_create_nonce( 'kc_consultation_submit' );
 $success_lede_tpl = (string) ( $success['lede'] ?? 'Dank u, {name}. Uw persoonlijke ontwerpadviseur neemt binnen 24 uur contact met u op om de afspraak te bevestigen.' );
 ?>
-<div class="consultation-page" data-consultation-page>
+<div class="consultation-page" data-consultation-page data-whatsapp-number="<?php echo esc_attr( function_exists( 'kc_consultation_whatsapp_number' ) ? kc_consultation_whatsapp_number() : '31302415122' ); ?>">
 	<section class="consultation-layout">
 		<div class="consultation-layout__grid">
 			<aside class="consultation-hero" data-consultation-hero>
@@ -102,6 +102,10 @@ $success_lede_tpl = (string) ( $success['lede'] ?? 'Dank u, {name}. Uw persoonli
 												</p>
 											</div>
 										<?php endforeach; ?>
+									</div>
+									<div class="consultation-preview__materials" data-consultation-materials hidden>
+										<p class="consultation-preview__materials-label"><?php esc_html_e( 'Samengestelde materialen', 'keuken-centrum' ); ?></p>
+										<div class="consultation-preview__materials-list" data-consultation-materials-list></div>
 									</div>
 									<div class="consultation-preview__footer">
 										<p><?php echo esc_html( (string) ( $preview['footerNote'] ?? '' ) ); ?></p>

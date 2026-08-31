@@ -45,3 +45,48 @@ function kc_consultation_budgets(): array {
 		'€200,000+',
 	];
 }
+
+/**
+ * WhatsApp business number (digits only) for consultatie follow-up.
+ */
+function kc_consultation_whatsapp_number(): string {
+	$raw = (string) kc_get_option( 'sticky_cta_whatsapp_url', '' );
+	if ( preg_match( '/wa\.me\/(\d+)/', $raw, $matches ) ) {
+		return $matches[1];
+	}
+	return '31302415122';
+}
+
+/**
+ * Human-readable configurator summary for email / notifications.
+ *
+ * @param array<string, mixed> $config Normalized configurator state.
+ * @return string
+ */
+function kc_consultation_format_config_summary( array $config ): string {
+	$catalog    = function_exists( 'kc_configurator_catalog' ) ? kc_configurator_catalog() : [ 'categories' => [] ];
+	$cat_labels = [];
+	foreach ( (array) ( $catalog['categories'] ?? [] ) as $cat ) {
+		if ( ! empty( $cat['id'] ) ) {
+			$cat_labels[ (string) $cat['id'] ] = (string) ( $cat['label'] ?? $cat['id'] );
+		}
+	}
+
+	$lines   = [];
+	$lines[] = 'Merk: ' . ( $config['brandName'] ?: ( $config['brand'] ?: 'niet gekozen' ) );
+	$lines[] = 'Stijl: ' . ( $config['styleName'] ?: ( $config['style'] ?: 'niet gekozen' ) );
+	if ( ! empty( $config['budget'] ) ) {
+		$lines[] = 'Budget: ' . (string) $config['budget'];
+	}
+
+	foreach ( (array) ( $config['selections'] ?? [] ) as $cat_id => $sel ) {
+		if ( ! is_array( $sel ) ) {
+			continue;
+		}
+		$label = $cat_labels[ (string) $cat_id ] ?? (string) $cat_id;
+		$name  = (string) ( $sel['name'] ?? '' );
+		$lines[] = '- ' . $label . ': ' . ( $name !== '' ? $name : 'niet gekozen' );
+	}
+
+	return implode( "\n", $lines );
+}
