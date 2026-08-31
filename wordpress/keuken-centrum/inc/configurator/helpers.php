@@ -158,6 +158,64 @@ function kc_configurator_normalize_state( $raw ): array {
 	];
 }
 
+function kc_configurator_share_url( string $brand_id, string $style_id ): string {
+	return add_query_arg(
+		[
+			'merk'  => sanitize_key( $brand_id ),
+			'stijl' => sanitize_key( $style_id ),
+		],
+		home_url( '/moodboard/' )
+	);
+}
+
+/**
+ * Open Graph context when sharing a moodboard link (?merk=&stijl=).
+ *
+ * @return array{title:string,description:string,url:string,image:string}|null
+ */
+function kc_configurator_share_from_request(): ?array {
+	if ( ! function_exists( 'kc_configurator_current_step' ) || 'moodboard' !== kc_configurator_current_step() ) {
+		return null;
+	}
+
+	$brand_id = sanitize_key( (string) ( $_GET['merk'] ?? $_GET['brand'] ?? '' ) );
+	$style_id = sanitize_key( (string) ( $_GET['stijl'] ?? $_GET['style'] ?? '' ) );
+	if ( '' === $brand_id || '' === $style_id ) {
+		return null;
+	}
+
+	$brand = kc_configurator_brand_by_id( $brand_id );
+	$style = kc_configurator_style_by_id( $style_id );
+	if ( ! $brand || ! $style ) {
+		return null;
+	}
+
+	$image = (string) ( $style['base'] ?? $style['image'] ?? '' );
+	if ( '' === $image ) {
+		return null;
+	}
+
+	$brand_name = (string) ( $brand['name'] ?? $brand_id );
+	$style_name = (string) ( $style['name'] ?? $style_id );
+
+	return [
+		'title'       => sprintf(
+			/* translators: 1: brand name, 2: style name */
+			__( '%1$s %2$s keukenvoorstel · Keuken-Centrum Utrecht', 'keuken-centrum' ),
+			$brand_name,
+			$style_name
+		),
+		'description' => sprintf(
+			/* translators: 1: brand name, 2: style name */
+			__( 'Persoonlijk %1$s keukenontwerp in %2$s stijl, samengesteld via de configurator van Keuken-Centrum Utrecht.', 'keuken-centrum' ),
+			$brand_name,
+			strtolower( $style_name )
+		),
+		'url'         => kc_configurator_share_url( $brand_id, $style_id ),
+		'image'       => $image,
+	];
+}
+
 /**
  * @return array<string, mixed>
  */

@@ -309,7 +309,23 @@ function kc_output_seo_tags(): void {
 		$url = home_url('/keukens/leicht/' . rawurlencode($series_slug) . '/');
 	}
 
+	$configurator_share = function_exists('kc_configurator_share_from_request') ? kc_configurator_share_from_request() : null;
+	if (is_array($configurator_share)) {
+		if (! empty($configurator_share['title'])) {
+			$title = (string) $configurator_share['title'];
+		}
+		if (! empty($configurator_share['description'])) {
+			$description = (string) $configurator_share['description'];
+		}
+		if (! empty($configurator_share['url'])) {
+			$url = (string) $configurator_share['url'];
+		}
+	}
+
 	$image = '';
+	if (is_array($configurator_share) && ! empty($configurator_share['image'])) {
+		$image = (string) $configurator_share['image'];
+	}
 	if (is_string($series_slug) && '' !== $series_slug && function_exists('kc_leicht_series_data')) {
 		$series = kc_leicht_series_data($series_slug);
 		if ($series && ! empty($series['heroImage'])) {

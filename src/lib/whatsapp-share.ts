@@ -1,6 +1,7 @@
 type ConfiguratorStyle = {
   id: string;
   base?: string;
+  image?: string;
 };
 
 type ConfiguratorCatalog = {
@@ -15,56 +16,20 @@ type ConfiguratorState = {
   selections?: Record<string, { name?: string }>;
 };
 
-export function resolveKitchenImageUrl(
+export function buildConfiguratorShareUrl(
   state: ConfiguratorState,
-  catalog: ConfiguratorCatalog,
+  moodboardPath = "/moodboard/",
 ): string {
-  if (!state.style) return "";
-  const style = (catalog.styles || []).find((item) => item.id === state.style);
-  return style?.base || "";
+  const url = new URL(moodboardPath, window.location.origin);
+  if (state.brand) url.searchParams.set("merk", state.brand);
+  if (state.style) url.searchParams.set("stijl", state.style);
+  return url.toString();
 }
 
-async function kitchenImageFile(imageUrl: string): Promise<File | null> {
-  try {
-    const response = await fetch(imageUrl, { credentials: "same-origin" });
-    if (!response.ok) return null;
-    const blob = await response.blob();
-    if (!blob.size) return null;
-    const extension = imageUrl.includes(".webp")
-      ? "webp"
-      : imageUrl.includes(".png")
-        ? "png"
-        : "jpg";
-    return new File([blob], `mijn-keukenvoorstel.${extension}`, {
-      type: blob.type || `image/${extension}`,
-    });
-  } catch {
-    return null;
-  }
-}
-
-export async function openConfiguratorWhatsApp(options: {
-  phone: string;
-  message: string;
-  imageUrl?: string;
-}) {
-  const { phone, message, imageUrl = "" } = options;
-  const imageFile = imageUrl ? await kitchenImageFile(imageUrl) : null;
-
-  if (imageFile && navigator.share) {
-    try {
-      const shareData = { text: message, files: [imageFile] };
-      if (!navigator.canShare || navigator.canShare(shareData)) {
-        await navigator.share(shareData);
-        return;
-      }
-    } catch (error) {
-      if (error instanceof Error && error.name === "AbortError") return;
-    }
-  }
-
+export function openConfiguratorWhatsApp(options: { phone: string; message: string }) {
+  const { phone, message } = options;
   const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-  window.open(url, "_blank", "noopener,noreferrer");
+  window.location.href = url;
 }
 
 export function buildConfiguratorWhatsAppMessage(input: {
@@ -77,11 +42,16 @@ export function buildConfiguratorWhatsAppMessage(input: {
   state: ConfiguratorState;
   catalog: ConfiguratorCatalog;
   categories: Array<{ id: string; label: string }>;
+  moodboardPath?: string;
 }): string {
-  const { name, email, phone, showroom, date, notes, state, catalog, categories } = input;
-  const imageUrl = resolveKitchenImageUrl(state, catalog);
+  const { name, email, phone, showroom, date, notes, state, catalog, categories, moodboardPath } =
+    input;
+  const shareUrl = buildConfiguratorShareUrl(state, moodboardPath);
   const parts = [
     "Hallo Keuken-Centrum, ik heb zojuist mijn keukenconfiguratie samengesteld via jullie configurator.",
+    "",
+    "Bekijk mijn keukenvoorstel:",
+    shareUrl,
     "",
     `Naam: ${name}`,
     `E-mail: ${email}`,
@@ -103,9 +73,6 @@ export function buildConfiguratorWhatsAppMessage(input: {
 
   if (selections.length) {
     parts.push("", ...selections);
-  }
-  if (imageUrl) {
-    parts.push("", "Keukenvoorbeeld (afbeelding):", imageUrl);
   }
   if (notes) {
     parts.push("", "Wensen:", notes);
