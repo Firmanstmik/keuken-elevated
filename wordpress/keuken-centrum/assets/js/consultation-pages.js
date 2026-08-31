@@ -43,12 +43,36 @@
 		return lines;
 	}
 
+	function styleImageUrl(state, catalog) {
+		if (!state || !state.style) return "";
+		const style = (catalog.styles || []).find((item) => item.id === state.style);
+		return (style && style.base) || "";
+	}
+
+	async function kitchenImageFile(imageUrl) {
+		if (!imageUrl) return null;
+		try {
+			const response = await fetch(imageUrl, { credentials: "same-origin" });
+			if (!response.ok) return null;
+			const blob = await response.blob();
+			if (!blob || !blob.size) return null;
+			const extension = imageUrl.includes(".webp")
+				? "webp"
+				: imageUrl.includes(".png")
+					? "png"
+					: "jpg";
+			const mime = blob.type || "image/" + extension;
+			return new File([blob], "mijn-keukenvoorstel." + extension, { type: mime });
+		} catch (_error) {
+			return null;
+		}
+	}
+
 	function buildWhatsAppMessage(formData, state, catalog) {
 		const selections = selectionLines(state, catalog);
+		const imageUrl = styleImageUrl(state, catalog);
 		const parts = [
-			"Hallo Keuken-Centrum, ik ben geïnteresseerd in een nieuwe keuken. Kunnen jullie mij hierbij helpen?",
-			"",
-			"Ik heb zojuist mijn keukenconfiguratie samengesteld via jullie configurator.",
+			"Hallo Keuken-Centrum, ik heb zojuist mijn keukenconfiguratie samengesteld via jullie configurator.",
 			"",
 			"Naam: " + formData.name,
 			"E-mail: " + formData.email,
@@ -67,16 +91,34 @@
 			parts.push("");
 			selections.forEach((row) => parts.push("- " + row.label + ": " + row.value));
 		}
+		if (imageUrl) {
+			parts.push("", "Keukenvoorbeeld (afbeelding):", imageUrl);
+		}
 		if (formData.notes) {
 			parts.push("", "Wensen:", formData.notes);
 		}
 		return parts.join("\n");
 	}
 
-	function openWhatsApp(message) {
+	async function openWhatsApp(message, state, catalog) {
 		const cfg = window.kcConfigurator || {};
 		const number =
 			page.getAttribute("data-whatsapp-number") || cfg.whatsappNumber || "31628096340";
+		const imageUrl = styleImageUrl(state, catalog);
+		const imageFile = imageUrl ? await kitchenImageFile(imageUrl) : null;
+
+		if (imageFile && navigator.share) {
+			try {
+				const shareData = { text: message, files: [imageFile] };
+				if (!navigator.canShare || navigator.canShare(shareData)) {
+					await navigator.share(shareData);
+					return;
+				}
+			} catch (error) {
+				if (error && error.name === "AbortError") return;
+			}
+		}
+
 		const url = "https://wa.me/" + number + "?text=" + encodeURIComponent(message);
 		window.open(url, "_blank", "noopener,noreferrer");
 	}
@@ -202,7 +244,8 @@
 		}
 
 		const catalog = (window.kcConfigurator && window.kcConfigurator.catalog) || { categories: [] };
-		openWhatsApp(buildWhatsAppMessage(formData, state, catalog));
+		const message = buildWhatsAppMessage(formData, state, catalog);
+		void openWhatsApp(message, state, catalog);
 
 		const firstName = (formData.name.split(/\s+/)[0] || "");
 		const lede = page.querySelector("[data-success-lede]");
