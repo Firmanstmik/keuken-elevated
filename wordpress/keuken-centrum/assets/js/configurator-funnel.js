@@ -280,6 +280,7 @@
 		const hotspotRoot = document.querySelector("[data-cfg-hotspots]");
 		const spots = (catalog.hotspots || {})[state.style] || {};
 		if (hotspotRoot) {
+			hotspotRoot.innerHTML = "";
 			Object.keys(spots).forEach((catId) => {
 				const pos = spots[catId];
 				const btn = document.createElement("button");
@@ -289,25 +290,89 @@
 				btn.style.left = pos.x;
 				btn.style.top = pos.y;
 				btn.setAttribute("aria-label", (categoryById(catId) || {}).label || catId);
+				const sel = state.selections[catId];
+				if (sel && sel.color) {
+					btn.style.setProperty("--kc-hotspot-color", sel.color);
+				}
 				hotspotRoot.appendChild(btn);
 			});
 		}
 
-		let activeCat = (catalog.categories && catalog.categories[0] && catalog.categories[0].id) || "front";
+		let activeCat = null;
+		const optionsPanel = document.querySelector("[data-cfg-options-panel]");
+		const optionsInner = document.querySelector("[data-cfg-options-inner]");
+		const emptyState = document.querySelector("[data-cfg-empty]");
+		const progressFill = document.querySelector("[data-cfg-progress-fill]");
+		const stageProgress = document.querySelector("[data-cfg-stage-progress]");
+		const summaryRows = document.querySelector("[data-cfg-summary-rows]");
+		const summaryBudget = document.querySelector("[data-cfg-summary-budget]");
+		const total = (catalog.categories || []).length;
 
 		function countSelections() {
 			return Object.keys(state.selections || {}).length;
 		}
 
+		function updateProgress() {
+			const n = countSelections();
+			const pct = total ? (n / total) * 100 : 0;
+			if (progressFill) progressFill.style.width = pct + "%";
+			if (stageProgress) {
+				stageProgress.textContent = n + "/" + total + " opties samengesteld";
+			}
+			showAction(n > 0);
+			const brand = brandById(state.brand);
+			const styleObj = styleById(state.style);
+			setTitles(
+				n + " van " + total + " keuzes samengesteld",
+				(brand && brand.name ? brand.name : state.brandName || "Merk") +
+					" met " +
+					(styleObj && styleObj.name ? styleObj.name : state.styleName || "stijl") +
+					" is klaar om verder te gaan"
+			);
+		}
+
+		function setCategoryOpen(open) {
+			if (optionsPanel) optionsPanel.classList.toggle("kc-cfg-configure__options--open", Boolean(open));
+			if (emptyState) emptyState.hidden = Boolean(open);
+			if (optionsInner) optionsInner.hidden = !open;
+		}
+
 		function renderOptions() {
-			const cat = categoryById(activeCat);
+			const cat = activeCat ? categoryById(activeCat) : null;
 			const box = document.querySelector("[data-cfg-options]");
 			const label = document.querySelector("[data-cfg-cat-label]");
-			if (label && cat) label.textContent = cat.label;
 			document.querySelectorAll("[data-cfg-cat]").forEach((chip) => {
-				chip.classList.toggle("is-active", chip.getAttribute("data-cfg-cat") === activeCat);
+				const id = chip.getAttribute("data-cfg-cat");
+				const selected = state.selections[id];
+				chip.classList.toggle("is-active", id === activeCat);
+				chip.classList.toggle("has-selection", Boolean(selected));
+				const dot = chip.querySelector("[data-cfg-chip-dot]");
+				if (dot) {
+					if (selected && selected.color) {
+						dot.hidden = false;
+						dot.style.backgroundColor = selected.color;
+					} else {
+						dot.hidden = true;
+					}
+				}
 			});
-			if (!box || !cat) return;
+			document.querySelectorAll("[data-cfg-hotspot]").forEach((hot) => {
+				hot.classList.toggle("is-active", hot.getAttribute("data-cfg-hotspot") === activeCat);
+				const catId = hot.getAttribute("data-cfg-hotspot");
+				const sel = catId ? state.selections[catId] : null;
+				if (sel && sel.color) {
+					hot.style.setProperty("--kc-hotspot-color", sel.color);
+				} else {
+					hot.style.removeProperty("--kc-hotspot-color");
+				}
+			});
+			if (!cat) {
+				setCategoryOpen(false);
+				return;
+			}
+			setCategoryOpen(true);
+			if (label) label.textContent = cat.label;
+			if (!box) return;
 			box.innerHTML = "";
 			(cat.options || []).forEach((opt) => {
 				const selected = state.selections[cat.id] && state.selections[cat.id].id === opt.id;
@@ -324,39 +389,78 @@
 					"</span>";
 				btn.addEventListener("click", () => {
 					state.selections[cat.id] = { id: opt.id, name: opt.name, color: opt.color };
+					state = applyBudget(state);
 					saveState(state);
 					renderOptions();
 					renderSummary();
+					updateProgress();
 				});
 				box.appendChild(btn);
 			});
 		}
 
 		function renderSummary() {
-			const el = document.querySelector("[data-cfg-summary]");
-			if (!el) return;
-			const n = countSelections();
-			const total = (catalog.categories || []).length;
-			el.innerHTML = "<p>" + n + " van " + total + " onderdelen gekozen</p>";
-			setTitles(n + " van " + total + " onderdelen", "U kunt doorgaan zonder alle keuzes in te vullen.");
+			if (!summaryRows) return;
+			const brand = brandById(state.brand);
+			const styleObj = styleById(state.style);
+			const rows = [];
+			if (brand || state.brandName) {
+				rows.push({ label: "Merk", value: (brand && brand.name) || state.brandName });
+			}
+			if (styleObj || state.styleName) {
+				rows.push({ label: "Stijl", value: (styleObj && styleObj.name) || state.styleName });
+			}
+			Object.keys(state.selections || {}).forEach((catId) => {
+				const cat = categoryById(catId);
+				const sel = state.selections[catId];
+				if (!sel) return;
+				rows.push({ label: (cat && cat.label) || catId, value: sel.name, color: sel.color });
+			});
+			summaryRows.innerHTML = rows
+				.map(
+					(row) =>
+						'<div class="kc-cfg-configure__summary-row"><p>' +
+						row.label +
+						'</p><span>' +
+						(row.color ? '<i style="background:' + row.color + '"></i>' : "") +
+						row.value +
+						"</span></div>"
+				)
+				.join("");
+			if (summaryBudget) summaryBudget.textContent = state.budget || "—";
+		}
+
+		function selectCategory(catId) {
+			activeCat = activeCat === catId ? null : catId;
+			renderOptions();
 		}
 
 		document.querySelectorAll("[data-cfg-cat]").forEach((chip) => {
 			chip.addEventListener("click", () => {
-				activeCat = chip.getAttribute("data-cfg-cat") || activeCat;
-				renderOptions();
+				selectCategory(chip.getAttribute("data-cfg-cat") || activeCat);
 			});
 		});
 		document.querySelectorAll("[data-cfg-hotspot]").forEach((hot) => {
 			hot.addEventListener("click", () => {
-				activeCat = hot.getAttribute("data-cfg-hotspot") || activeCat;
+				selectCategory(hot.getAttribute("data-cfg-hotspot") || activeCat);
+			});
+		});
+		document.querySelectorAll("[data-cfg-close-cat]").forEach((btn) => {
+			btn.addEventListener("click", () => {
+				activeCat = null;
 				renderOptions();
+			});
+		});
+		document.querySelectorAll("[data-cfg-mood-btn]").forEach((btn) => {
+			btn.addEventListener("click", () => {
+				window.location.href = urls.moodboard || "/moodboard/";
 			});
 		});
 
 		wireNav(urls.style || "/style/", urls.moodboard || "/moodboard/", true);
 		renderOptions();
 		renderSummary();
+		updateProgress();
 	}
 
 	if (step === "moodboard") {

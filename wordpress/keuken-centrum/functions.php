@@ -420,6 +420,9 @@ function kc_keukens_body_class(array $classes): array {
 	if ( function_exists( 'kc_is_configurator_route' ) && kc_is_configurator_route() ) {
 		$classes[] = 'kc-configurator-route';
 	}
+	if ( function_exists( 'kc_is_configure_route' ) && kc_is_configure_route() ) {
+		$classes[] = 'kc-configure-route';
+	}
 	if ( is_page_template( 'page-legal.php' ) || is_page( [ 'privacybeleid', 'cookiebeleid', 'algemene-voorwaarden' ] ) ) {
 		$classes[] = 'kc-legal-page';
 	}

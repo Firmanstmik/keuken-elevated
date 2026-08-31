@@ -25,6 +25,10 @@ function kc_is_configurator_route(): bool {
 	return is_page( kc_configurator_slugs() );
 }
 
+function kc_is_configure_route(): bool {
+	return is_page( 'configure' );
+}
+
 function kc_configurator_current_step(): string {
 	if ( is_page( 'brands' ) ) {
 		return 'brands';
@@ -189,7 +193,9 @@ function kc_configurator_critical_interaction_css(): void {
 	}
 	?>
 <style id="kc-cfg-critical-interaction">
-@media (min-width:768px){.kc-configurator-route .configurator-mobile-header,.kc-configurator-route .kc-cfg-mobile-header,.kc-configurator-route .kc-cfg-mobile-only{display:none!important}}
+@media (min-width:768px){.kc-configurator-route:not(.kc-configure-route) .configurator-mobile-header,.kc-configurator-route:not(.kc-configure-route) .kc-cfg-mobile-header,.kc-configurator-route:not(.kc-configure-route) .kc-cfg-mobile-only{display:none!important}}
+body.kc-configure-route .site-header,body.kc-configure-route .nav-topbar{display:none!important}
+body.kc-configurator-route .site-main--configurator{padding-top:0!important}
 .kc-cfg-action{pointer-events:none!important}.kc-cfg-action[hidden]{display:none!important;pointer-events:none!important}
 .kc-cfg-action__mobile,.kc-cfg-action__desktop{pointer-events:none!important}.kc-cfg-action button{pointer-events:auto}
 .kc-cfg-card__media,.kc-cfg-card__img,.kc-cfg-card__scrim,.kc-cfg-card__logo,.kc-cfg-card__meta,.kc-cfg-card__check{pointer-events:none}
@@ -213,6 +219,13 @@ function kc_configurator_preload_card_image(): void {
 		$url = (string) $catalog['brands'][0]['image'];
 	} elseif ( 'style' === $step && ! empty( $catalog['styles'][0]['image'] ) ) {
 		$url = (string) $catalog['styles'][0]['image'];
+	} elseif ( 'configure' === $step ) {
+		foreach ( (array) ( $catalog['styles'] ?? [] ) as $style_row ) {
+			if ( ! empty( $style_row['base'] ) ) {
+				$url = (string) $style_row['base'];
+				break;
+			}
+		}
 	}
 	if ( '' === $url ) {
 		return;
