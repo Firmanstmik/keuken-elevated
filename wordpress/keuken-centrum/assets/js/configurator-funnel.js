@@ -154,6 +154,7 @@
 		const bar = document.querySelector("[data-cfg-action]");
 		if (!bar) return;
 		bar.hidden = !show;
+		document.body.classList.toggle("is-cfg-action-open", Boolean(show));
 	}
 
 	function wireNav(backUrl, continueUrl, canContinue) {
@@ -190,11 +191,13 @@
 	if (!gate()) return;
 
 	if (step === "brands") {
+		const grid = document.querySelector(".kc-cfg-brand-grid") || document;
 		const cards = document.querySelectorAll("[data-cfg-brand]");
 		function paint() {
 			cards.forEach((card) => {
 				const selected = card.getAttribute("data-cfg-brand") === state.brand;
 				card.classList.toggle("is-selected", selected);
+				card.setAttribute("aria-pressed", selected ? "true" : "false");
 				const check = card.querySelector(".kc-cfg-card__check");
 				if (check) check.hidden = !selected;
 			});
@@ -205,27 +208,30 @@
 				btn.disabled = !brand;
 			});
 		}
-		cards.forEach((card) => {
-			card.addEventListener("click", () => {
-				const id = card.getAttribute("data-cfg-brand");
-				const name = card.getAttribute("data-cfg-name") || "";
-				state.brand = id;
-				state.brandName = name;
-				applyBudget(state);
-				saveState(state);
-				paint();
-			});
+		grid.addEventListener("click", (event) => {
+			const card = event.target && event.target.closest ? event.target.closest("[data-cfg-brand]") : null;
+			if (!card || (grid !== document && !grid.contains(card))) return;
+			const id = card.getAttribute("data-cfg-brand");
+			if (!id) return;
+			const name = card.getAttribute("data-cfg-name") || "";
+			state.brand = id;
+			state.brandName = name;
+			applyBudget(state);
+			saveState(state);
+			paint();
 		});
 		wireNav(urls.home || "/", urls.style || "/style/", Boolean(state.brand));
 		paint();
 	}
 
 	if (step === "style") {
+		const grid = document.querySelector(".kc-cfg-style-grid") || document;
 		const cards = document.querySelectorAll("[data-cfg-style]");
 		function paint() {
 			cards.forEach((card) => {
 				const selected = card.getAttribute("data-cfg-style") === state.style;
 				card.classList.toggle("is-selected", selected);
+				card.setAttribute("aria-pressed", selected ? "true" : "false");
 				const check = card.querySelector(".kc-cfg-card__check");
 				if (check) check.hidden = !selected;
 			});
@@ -238,14 +244,15 @@
 			} else {
 				setTitles("Kies uw stijl", "Kies eerst een stijl om door te gaan naar stap 3");
 			}
+			showAction(true);
 		}
-		cards.forEach((card) => {
-			card.addEventListener("click", () => {
-				state.style = card.getAttribute("data-cfg-style");
-				state.styleName = card.getAttribute("data-cfg-name") || "";
-				saveState(state);
-				paint();
-			});
+		grid.addEventListener("click", (event) => {
+			const card = event.target && event.target.closest ? event.target.closest("[data-cfg-style]") : null;
+			if (!card || (grid !== document && !grid.contains(card))) return;
+			state.style = card.getAttribute("data-cfg-style");
+			state.styleName = card.getAttribute("data-cfg-name") || "";
+			saveState(state);
+			paint();
 		});
 		wireNav(urls.brands || "/brands/", urls.configure || "/configure/", Boolean(state.style));
 		paint();
