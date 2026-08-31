@@ -180,6 +180,36 @@ function kc_configurator_js_payload(): array {
 /**
  * @return array{title:string,description:string}
  */
+/**
+ * Cache-proof interaction rules — LiteSpeed may strip ?ver= and browsers cache CSS for 1y.
+ */
+function kc_configurator_critical_interaction_css(): void {
+	if ( ! kc_is_configurator_route() ) {
+		return;
+	}
+	?>
+<style id="kc-cfg-critical-interaction">
+@media (min-width:768px){.kc-configurator-route .configurator-mobile-header,.kc-configurator-route .kc-cfg-mobile-header,.kc-configurator-route .kc-cfg-mobile-only{display:none!important}}
+.kc-cfg-action{pointer-events:none!important}.kc-cfg-action[hidden]{display:none!important;pointer-events:none!important}
+.kc-cfg-action__mobile,.kc-cfg-action__desktop{pointer-events:none!important}.kc-cfg-action button{pointer-events:auto}
+.kc-cfg-card__media,.kc-cfg-card__scrim,.kc-cfg-card__logo,.kc-cfg-card__meta,.kc-cfg-card__check{pointer-events:none}
+.kc-cfg-card__check[hidden]{display:none!important}
+</style>
+	<?php
+}
+add_action( 'wp_head', 'kc_configurator_critical_interaction_css', 100 );
+
+/**
+ * Bypass LiteSpeed full-page cache on configurator funnel pages.
+ */
+function kc_configurator_litespeed_nocache(): void {
+	if ( is_admin() || ! kc_is_configurator_route() ) {
+		return;
+	}
+	do_action( 'litespeed_control_set_nocache', 'kc_configurator_interaction' );
+}
+add_action( 'wp', 'kc_configurator_litespeed_nocache', 1 );
+
 function kc_configurator_seo_for_step( string $step ): array {
 	$catalog = kc_configurator_catalog();
 	$seo     = $catalog['seo'][ $step ] ?? null;

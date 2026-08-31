@@ -303,21 +303,23 @@ function kc_enqueue_assets(): void {
 		$cfg_css_rel  = 'assets/css/configurator-funnel.css';
 		$cfg_css_path = get_theme_file_path( $cfg_css_rel );
 		$cfg_css_mtime = file_exists( $cfg_css_path ) ? (string) filemtime( $cfg_css_path ) : '0';
+		$cfg_asset_ver = $style_ver . '.' . $cfg_css_mtime;
 		wp_enqueue_style(
 			'keuken-centrum-configurator',
-			kc_asset( $cfg_css_rel ),
+			add_query_arg( 'ver', $cfg_asset_ver, kc_asset( $cfg_css_rel ) ),
 			[ 'keuken-centrum-theme' ],
-			$style_ver . '.' . $cfg_css_mtime
+			null
 		);
 
 		$cfg_js_rel  = 'assets/js/configurator-funnel.js';
 		$cfg_js_path = get_theme_file_path( $cfg_js_rel );
 		$cfg_js_mtime = file_exists( $cfg_js_path ) ? (string) filemtime( $cfg_js_path ) : '0';
+		$cfg_js_ver   = $style_ver . '.' . $cfg_js_mtime;
 		wp_enqueue_script(
 			'keuken-centrum-configurator',
-			kc_asset( $cfg_js_rel ),
+			add_query_arg( 'ver', $cfg_js_ver, kc_asset( $cfg_js_rel ) ),
 			[ 'keuken-centrum-theme' ],
-			$style_ver . '.' . $cfg_js_mtime,
+			null,
 			true
 		);
 		if ( function_exists( 'kc_configurator_js_payload' ) ) {

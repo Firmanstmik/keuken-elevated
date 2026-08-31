@@ -15,7 +15,8 @@
 
 @media (min-width: 768px) {
 	.kc-configurator-route .configurator-mobile-header,
-	.kc-configurator-route .kc-cfg-mobile-header {
+	.kc-configurator-route .kc-cfg-mobile-header,
+	.kc-configurator-route .kc-cfg-mobile-only {
 		display: none !important;
 	}
 }
@@ -293,6 +294,11 @@
 
 .kc-cfg-action__mobile,
 .kc-cfg-action__desktop {
+	/* Only buttons receive clicks — not the full fixed bar width/height. */
+	pointer-events: none;
+}
+
+.kc-cfg-action button {
 	pointer-events: auto;
 }
 

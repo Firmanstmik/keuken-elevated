@@ -19,7 +19,7 @@ $meta      = $steps[ $step ] ?? $steps['brands'];
 $progress  = ( (int) $meta['index'] / 5 ) * 100;
 $logo      = kc_theme_img( 'logo-keuken-1-1.webp' ) ?: kc_theme_img( 'logo-keuken.webp' );
 ?>
-<header class="configurator-mobile-header kc-cfg-mobile-header md:hidden">
+<header class="configurator-mobile-header kc-cfg-mobile-header kc-cfg-mobile-only">
 	<div class="configurator-mobile-header__row">
 		<a href="<?php echo esc_url( (string) $meta['back'] ); ?>" class="configurator-mobile-header__action" aria-label="<?php esc_attr_e( 'Ga terug', 'keuken-centrum' ); ?>">
 			<?php echo kc_icon_brand( 'arrow-left' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
