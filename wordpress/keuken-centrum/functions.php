@@ -322,9 +322,6 @@ function kc_enqueue_assets(): void {
 			null,
 			true
 		);
-		if ( function_exists( 'kc_configurator_js_payload' ) ) {
-			wp_localize_script( 'keuken-centrum-configurator', 'kcConfigurator', kc_configurator_js_payload() );
-		}
 	}
 
 	if ( function_exists( 'kc_is_consultation_route' ) && kc_is_consultation_route() ) {

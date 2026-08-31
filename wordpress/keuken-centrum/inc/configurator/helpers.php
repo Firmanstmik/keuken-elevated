@@ -200,6 +200,24 @@ function kc_configurator_critical_interaction_css(): void {
 add_action( 'wp_head', 'kc_configurator_critical_interaction_css', 100 );
 
 /**
+ * Inline config payload before funnel JS — LiteSpeed delays wp_localize_script output.
+ */
+function kc_configurator_js_bootstrap(): void {
+	if ( ! kc_is_configurator_route() && ! ( function_exists( 'kc_is_consultation_route' ) && kc_is_consultation_route() ) ) {
+		return;
+	}
+	$payload = wp_json_encode( kc_configurator_js_payload() );
+	if ( ! is_string( $payload ) || '' === $payload ) {
+		return;
+	}
+	printf(
+		'<script id="kc-configurator-bootstrap" data-no-optimize="1">window.kcConfigurator=%s;</script>' . "\n",
+		$payload // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_json_encode
+	);
+}
+add_action( 'wp_head', 'kc_configurator_js_bootstrap', 99 );
+
+/**
  * Bypass LiteSpeed full-page cache on configurator funnel pages.
  */
 function kc_configurator_litespeed_nocache(): void {

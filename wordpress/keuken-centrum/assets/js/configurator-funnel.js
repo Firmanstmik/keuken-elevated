@@ -5,11 +5,22 @@
 (function () {
 	"use strict";
 
+	function readStep(cfg) {
+		if (cfg.step) return cfg.step;
+		const root = document.querySelector("[data-cfg-step]");
+		return (root && root.getAttribute("data-cfg-step")) || "";
+	}
+
+	let booted = false;
+
+	function boot() {
+		if (booted) return;
+		booted = true;
 	const cfg = window.kcConfigurator || {};
 	const KEY = cfg.storageKey || "kc-master-config";
 	const urls = cfg.urls || {};
 	const catalog = cfg.catalog || {};
-	const step = cfg.step || "";
+	const step = readStep(cfg);
 
 	const emptyState = {
 		brand: null,
@@ -429,4 +440,16 @@
 		const toggleTitle = document.querySelector(".consultation-proposal-toggle__title");
 		if (toggleTitle) toggleTitle.textContent = n + " keuzes controleren";
 	}
+	}
+
+	function scheduleBoot() {
+		if (document.readyState === "loading") {
+			document.addEventListener("DOMContentLoaded", boot);
+			document.addEventListener("DOMContentLiteSpeedLoaded", boot);
+			return;
+		}
+		boot();
+	}
+
+	scheduleBoot();
 })();
