@@ -4,8 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { ArrowLeft, ArrowRight, Check, House, Mail, Phone } from "@/components/ui/icons";
+import { ConfiguratorReviewCard } from "@/components/configurator/ConfiguratorReviewCard";
 import { KitchenEyebrow } from "@/components/site/KitchenEyebrow";
 import { kc } from "@/lib/kc-data";
+import { masterGoogleReviewMeta } from "@/lib/master-config-data";
 import { cn } from "@/lib/utils";
 import { fadeUp, motionViewport, revealImage, staggerHeader, staggerList } from "@/lib/motion";
 
@@ -932,7 +934,8 @@ export function Configurator() {
                             {selectedStyle ? styleProposalTitles[selectedStyle.id] : "Uw Droomkeuken"}
                           </h4>
                           <p className="mt-3 text-sm leading-7 text-white/76">
-                            {selectedBrand?.name ?? "Premium"} · {selectedStyle?.t ?? "Stijl"} · {selectedBudget}
+                            {selectedBrand?.name ?? "Premium"} · {selectedStyle?.t ?? "Stijl"} ·{" "}
+                            {masterGoogleReviewMeta.score} Google reviews
                           </p>
                         </div>
                       </div>
@@ -964,15 +967,7 @@ export function Configurator() {
                         })}
                       </div>
 
-                      <div className="mt-6 border border-[rgba(139,197,64,0.22)] bg-[rgba(15,39,48,0.96)] px-5 py-5 text-white">
-                        <p className="caption-text text-white/42">Geschatte investering</p>
-                        <p className="mt-3 font-serif text-[2rem] leading-none tracking-[-0.03em] text-[var(--accent)]">
-                          {selectedBudget}
-                        </p>
-                        <p className="mt-3 text-sm leading-7 text-white/62">
-                          Indicatieve range op basis van gekozen richting, afwerking en premium apparatuur. De definitieve offerte stellen we samen op in de showroom.
-                        </p>
-                      </div>
+                      <ConfiguratorReviewCard brandId={selectedBrand?.id} className="mt-6" />
                     </div>
                   </motion.div>
                 ) : null}

@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import jsPDF from "jspdf";
 import { toast } from "sonner";
 import companyLogo from "@/assets/keukencentrum_logo_transparent_medium_centered_stripe.png";
+import { ConfiguratorReviewCard } from "@/components/configurator/ConfiguratorReviewCard";
 import { FlowActionBar } from "@/components/configurator/FlowActionBar";
 import { FlowNav } from "@/components/configurator/FlowNav";
 import { ArrowRight } from "@/components/ui/icons";
@@ -11,7 +12,6 @@ import { ArchiveAdd, DocumentDownload, Export } from "@zethictech/iconsax-react"
 import { useConfigurator } from "@/context/configurator-context";
 import {
   masterBrands,
-  masterBudgetRanges,
   masterCategories,
   masterStyles,
 } from "@/lib/master-config-data";
@@ -53,9 +53,6 @@ function MoodboardPage() {
     [config.selections],
   );
 
-  const budget = config.brand
-    ? (masterBudgetRanges[config.brand] ?? "€35,000 tot €85,000")
-    : "€35,000 tot €85,000";
   const selectedBrand = useMemo(
     () => masterBrands.find((brand) => brand.id === config.brand) ?? null,
     [config.brand],
@@ -167,7 +164,6 @@ function MoodboardPage() {
     const summaryItems = [
       { label: "Merk", value: config.brandName ?? "Niet gekozen" },
       { label: "Stijl", value: config.styleName ?? "Niet gekozen" },
-      { label: "Budgetindicatie", value: budget },
       { label: "Samengestelde onderdelen", value: `${configuredItems.length}` },
     ];
 
@@ -251,7 +247,6 @@ function MoodboardPage() {
       const payload = {
         savedAt: new Date().toISOString(),
         config,
-        budget,
       };
       window.localStorage.setItem("kc-saved-moodboard", JSON.stringify(payload));
       toast.success("Project opgeslagen", {
@@ -457,21 +452,7 @@ function MoodboardPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
             >
-              <div className="mb-4 rounded-[20px] border border-[rgba(176,141,87,0.3)] bg-[#111111] p-4">
-                <p className="mb-2 block text-[0.6875rem] uppercase tracking-[0.2em] text-[rgba(247,245,242,0.4)]">
-                  Geschatte investering
-                </p>
-                <p
-                  className="mb-1 text-[2rem] text-[#B08D57]"
-                  style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
-                >
-                  {budget}
-                </p>
-                <p className="text-[0.75rem] leading-[1.5] text-[rgba(247,245,242,0.35)]">
-                  Indicatieve inschatting inclusief kasten, werkbladen en gekozen apparatuur. De
-                  definitieve offerte ontvangt u tijdens de consultatie.
-                </p>
-              </div>
+              <ConfiguratorReviewCard brandId={config.brand} className="mb-4" />
 
               <div className="moodboard-next-step rounded-[20px] border border-[rgba(0,0,0,0.08)] bg-[rgba(255,255,255,0.75)] p-4">
                 <p className="mb-2 block text-[0.6875rem] uppercase tracking-[0.2em] text-[#B08D57]">

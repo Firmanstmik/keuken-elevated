@@ -7,7 +7,6 @@ import { useConfigurator } from "@/context/configurator-context";
 import logoKeuken from "@/assets/logo-keuken-1-1.webp";
 import {
   masterBrands,
-  masterBudgetRanges,
   masterCategories,
   masterHotspotPositions,
   masterStyles,
@@ -286,7 +285,7 @@ export const Route = createFileRoute("/configure")({
 
 function ConfigurePage() {
   const navigate = useNavigate();
-  const { config, setBudget, setSelection } = useConfigurator();
+  const { config, setSelection } = useConfigurator();
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
   const [isTouch, setIsTouch] = useState(false);
@@ -333,9 +332,6 @@ function ConfigurePage() {
     else if (!config.style) navigate({ to: "/style" });
   }, [config.brand, config.style, navigate]);
 
-  const budget = config.brand
-    ? (masterBudgetRanges[config.brand] ?? "€35,000 tot €85,000")
-    : "€35,000 tot €85,000";
   const activeCategoryData = masterCategories.find((item) => item.id === activeCategory) ?? null;
   const completedCount = Object.keys(config.selections).length;
   const totalCategories = masterCategories.length;
@@ -761,7 +757,6 @@ function ConfigurePage() {
                               option.name,
                               option.color,
                             );
-                            if (config.brand) setBudget(budget);
                           }}
                           className="min-h-[118px] cursor-pointer rounded-[14px] p-2.5 text-left normal-case transition-all duration-300 active:scale-[0.98]"
                           style={{
@@ -848,20 +843,6 @@ function ConfigurePage() {
                   </div>
                 ) : null,
               )}
-            </div>
-
-            <div className="mb-3 border-t border-[rgba(255,255,255,0.06)] pt-2">
-              <div className="flex items-center justify-between gap-3">
-                <p className="text-[0.6rem] tracking-[0.03em] text-[rgba(247,245,242,0.35)]">
-                  Budgetindicatie
-                </p>
-                <p
-                  className="text-[0.75rem] text-[#8BC540]"
-                  style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
-                >
-                  {config.budget ?? budget}
-                </p>
-              </div>
             </div>
 
             <button

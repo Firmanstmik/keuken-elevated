@@ -142,12 +142,9 @@ function kc_configurator_normalize_state( $raw ): array {
 	}
 
 	$budget = null;
-	if ( $brand ) {
-		$budget = $catalog['budgetRanges'][ $brand['id'] ] ?? null;
-	}
 	$posted_budget = isset( $raw['budget'] ) ? sanitize_text_field( (string) $raw['budget'] ) : '';
 	$consult_ok    = function_exists( 'kc_consultation_budgets' ) ? kc_consultation_budgets() : [];
-	if ( $posted_budget && ( in_array( $posted_budget, $consult_ok, true ) || ( $budget && $posted_budget === $budget ) ) ) {
+	if ( $posted_budget && in_array( $posted_budget, $consult_ok, true ) ) {
 		$budget = $posted_budget;
 	}
 

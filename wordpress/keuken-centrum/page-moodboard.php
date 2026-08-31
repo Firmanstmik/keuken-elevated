@@ -48,10 +48,16 @@ foreach ( (array) ( $catalog['styles'] ?? [] ) as $style_row ) {
 				<p><span class="kc-cfg-muted"><?php esc_html_e( 'Stijl', 'keuken-centrum' ); ?></span> <strong data-cfg-mood-style><?php esc_html_e( 'Niet gekozen', 'keuken-centrum' ); ?></strong></p>
 				<h2 class="kc-cfg-h2"><?php esc_html_e( 'Materialen en afwerkingen', 'keuken-centrum' ); ?></h2>
 				<div data-cfg-mood-sels></div>
-				<div class="kc-cfg-budget">
-					<p class="kc-cfg-overline"><?php esc_html_e( 'Geschatte investering', 'keuken-centrum' ); ?></p>
-					<p class="kc-cfg-budget__value" data-cfg-mood-budget></p>
-					<p class="kc-cfg-muted"><?php esc_html_e( 'Indicatieve inschatting. De definitieve offerte ontvangt u tijdens de consultatie.', 'keuken-centrum' ); ?></p>
+				<div class="kc-cfg-review" data-cfg-mood-review>
+					<p class="kc-cfg-overline"><?php esc_html_e( 'Ervaring van klanten', 'keuken-centrum' ); ?></p>
+					<div class="kc-cfg-review__score">
+						<p class="kc-cfg-review__value" data-cfg-mood-review-score>9,8</p>
+						<p class="kc-cfg-review__meta"><?php esc_html_e( 'op basis van 125 ervaringen', 'keuken-centrum' ); ?></p>
+					</div>
+					<blockquote class="kc-cfg-review__quote" data-cfg-mood-review-quote>
+						<?php esc_html_e( 'Prima ontwerp keuken. Zeer actief meegedacht en alle relevante opties gepresenteerd. De keukeninstallatie is conform alle wensen geschied.', 'keuken-centrum' ); ?>
+					</blockquote>
+					<p class="kc-cfg-review__author" data-cfg-mood-review-author><?php esc_html_e( '— Pierre H., Utrecht', 'keuken-centrum' ); ?></p>
 				</div>
 				<div class="kc-cfg-next">
 					<p class="kc-cfg-overline"><?php esc_html_e( 'Volgende stap', 'keuken-centrum' ); ?></p>

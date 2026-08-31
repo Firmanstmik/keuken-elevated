@@ -218,6 +218,63 @@ export const masterBudgetRanges: Record<string, string> = {
   cucinesse: "€65,000 tot €150,000",
 };
 
+export type ConfiguratorReview = {
+  quote: string;
+  author: string;
+  location: string;
+};
+
+export const masterGoogleReviewMeta = {
+  score: "9,8",
+  count: "125",
+} as const;
+
+export const masterConfiguratorReviewsByBrand: Record<string, ConfiguratorReview> = {
+  leicht: {
+    quote:
+      "We wilden geen standaard keuken, maar een ruimte die rust, precisie en luxe uitstraalt. Het ontwerp voelde vanaf de eerste presentatie architectonisch doordacht.",
+    author: "Familie Van Deurzen",
+    location: "Utrecht",
+  },
+  nobilia: {
+    quote:
+      "Vanaf het eerste moodboard tot de plaatsing was alles coherent. Materialen, belijning en apparatuur sloten precies aan op de architectuur van onze woning.",
+    author: "Mevr. de Jong",
+    location: "Bilthoven",
+  },
+  "ai-kuchen": {
+    quote:
+      "Eindelijk een keukencentrum die je eerlijk behandelt, zowel qua prijs en kwaliteit. Zeer goed geholpen en we hebben een prachtige keuken gekregen.",
+    author: "Arjan Malek",
+    location: "Utrecht",
+  },
+  zampieri: {
+    quote:
+      "De begeleiding voelde internationaal en volwassen. Geen verkoopdruk, maar een ontwerpgesprek op niveau met veel aandacht voor verhoudingen en afwerking.",
+    author: "Bouwbedrijf Vreeburg",
+    location: "Nieuwegein",
+  },
+  cucinesse: {
+    quote:
+      "De keuken voelt alsof hij altijd onderdeel van het huis is geweest. Juist die vanzelfsprekende luxe en het dagelijkse gebruiksgemak maken dit project bijzonder.",
+    author: "Dhr. & Mevr. Jaspers",
+    location: "Houten",
+  },
+};
+
+export function getConfiguratorReview(brandId?: string | null): ConfiguratorReview {
+  if (brandId && masterConfiguratorReviewsByBrand[brandId]) {
+    return masterConfiguratorReviewsByBrand[brandId];
+  }
+
+  return {
+    quote:
+      "Prima ontwerp keuken. Zeer actief meegedacht en alle relevante opties gepresenteerd. De keukeninstallatie is conform alle wensen geschied.",
+    author: "Pierre H.",
+    location: "Utrecht",
+  };
+}
+
 export const masterShowrooms = [
   "Amsterdam, P.C. Hooftstraat",
   "Rotterdam, Coolsingel",

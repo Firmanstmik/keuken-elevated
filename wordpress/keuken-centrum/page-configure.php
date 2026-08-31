@@ -113,10 +113,6 @@ $total_cats = count( (array) ( $catalog['categories'] ?? [] ) );
 			<div class="kc-cfg-configure__summary" data-cfg-summary-panel>
 				<p class="kc-cfg-configure__summary-over"><?php esc_html_e( 'Uw configuratie', 'keuken-centrum' ); ?></p>
 				<div class="kc-cfg-configure__summary-rows" data-cfg-summary-rows></div>
-				<div class="kc-cfg-configure__budget">
-					<p><?php esc_html_e( 'Budgetindicatie', 'keuken-centrum' ); ?></p>
-					<p data-cfg-summary-budget>—</p>
-				</div>
 				<button type="button" class="kc-cfg-configure__mood-btn" data-cfg-mood-btn>
 					<span><?php esc_html_e( 'Moodboard genereren', 'keuken-centrum' ); ?></span>
 					<span class="kc-cfg-configure__mood-arrow" aria-hidden="true">→</span>

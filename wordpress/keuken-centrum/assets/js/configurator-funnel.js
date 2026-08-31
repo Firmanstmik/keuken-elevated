@@ -84,7 +84,6 @@
 			"",
 			`Merk: ${(brand && brand.name) || state.brandName || "Niet gekozen"}`,
 			`Stijl: ${(style && style.name) || state.styleName || "Niet gekozen"}`,
-			`Budgetindicatie: ${state.budget || "Niet gekozen"}`,
 			`Samengestelde onderdelen: ${selected.length}`,
 			"",
 			"Materialen en afwerkingen",
@@ -138,13 +137,17 @@
 	}
 
 	function applyBudget(state) {
-		if (!state.brand) {
-			state.budget = state.budget || null;
-			return state;
-		}
-		const range = (catalog.budgetRanges || {})[state.brand];
-		if (range) state.budget = range;
 		return state;
+	}
+
+	function reviewForBrand(brandId) {
+		const reviews = catalog.customerReviews || {};
+		const byBrand = reviews.byBrand || {};
+		const fallback = reviews.default || {};
+		if (brandId && byBrand[brandId]) {
+			return byBrand[brandId];
+		}
+		return fallback;
 	}
 
 	let state = applyBudget(loadState());
@@ -308,7 +311,6 @@
 		const categoryRail = document.querySelector("[data-cfg-cats]");
 		const stageProgress = document.querySelector("[data-cfg-stage-progress]");
 		const summaryRows = document.querySelector("[data-cfg-summary-rows]");
-		const summaryBudget = document.querySelector("[data-cfg-summary-budget]");
 		const total = (catalog.categories || []).length;
 
 		function tooltipPlacement(px, py) {
@@ -832,7 +834,6 @@
 						"</span></div>"
 				)
 				.join("");
-			if (summaryBudget) summaryBudget.textContent = state.budget || "—";
 		}
 
 		function scrollActiveChipIntoView() {
@@ -885,8 +886,17 @@
 		const styleEl = document.querySelector("[data-cfg-mood-style]");
 		if (brandEl) brandEl.textContent = (brand && brand.name) || state.brandName || "Niet gekozen";
 		if (styleEl) styleEl.textContent = (style && style.name) || state.styleName || "Niet gekozen";
-		const budgetEl = document.querySelector("[data-cfg-mood-budget]");
-		if (budgetEl) budgetEl.textContent = state.budget || "";
+		const review = reviewForBrand(state.brand);
+		const reviewMeta = (catalog.customerReviews || {});
+		const quoteEl = document.querySelector("[data-cfg-mood-review-quote]");
+		const authorEl = document.querySelector("[data-cfg-mood-review-author]");
+		const scoreEl = document.querySelector("[data-cfg-mood-review-score]");
+		if (quoteEl && review.quote) quoteEl.textContent = '"' + review.quote + '"';
+		if (authorEl && review.author) {
+			authorEl.textContent =
+				"— " + review.author + (review.location ? ", " + review.location : "");
+		}
+		if (scoreEl && reviewMeta.score) scoreEl.textContent = reviewMeta.score;
 		const list = document.querySelector("[data-cfg-mood-sels]");
 		if (list) {
 			list.innerHTML = "";
@@ -950,23 +960,10 @@
 		const merk = document.querySelector('[data-preview-detail="merk"]');
 		const stijl = document.querySelector('[data-preview-detail="stijl"]');
 		const parts = document.querySelector('[data-preview-detail="samengestelde onderdelen"]');
-		const budgetDetail = document.querySelector('[data-preview-detail="budget"]');
 		if (merk) merk.textContent = brandName === "Uw" ? "Niet gekozen" : brandName;
 		if (stijl) stijl.textContent = styleName || "Niet gekozen";
 		const n = Object.keys(state.selections || {}).length;
 		if (parts) parts.textContent = n + " gekozen details";
-		if (budgetDetail && state.budget) budgetDetail.textContent = state.budget;
-		const budgetSelect = document.querySelector("[data-budget-select]");
-		if (budgetSelect && state.budget) {
-			const exists = Array.from(budgetSelect.options).some((o) => o.value === state.budget);
-			if (!exists) {
-				const opt = document.createElement("option");
-				opt.value = state.budget;
-				opt.textContent = state.budget;
-				budgetSelect.appendChild(opt);
-			}
-			budgetSelect.value = state.budget;
-		}
 		const toggleTitle = document.querySelector(".consultation-proposal-toggle__title");
 		if (toggleTitle) toggleTitle.textContent = n + " keuzes controleren";
 		const materialsWrap = document.querySelector("[data-consultation-materials]");

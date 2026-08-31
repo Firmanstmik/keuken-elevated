@@ -66,9 +66,6 @@
 		if (state.styleName || state.style) {
 			parts.push("Stijl: " + (state.styleName || state.style));
 		}
-		if (state.budget && !formData.budget) {
-			parts.push("Budgetindicatie: " + state.budget);
-		}
 		if (selections.length) {
 			parts.push("");
 			selections.forEach((row) => parts.push("- " + row.label + ": " + row.value));
