@@ -296,6 +296,8 @@
 		const optionsInner = document.querySelector("[data-cfg-options-inner]");
 		const emptyState = document.querySelector("[data-cfg-empty]");
 		const progressFill = document.querySelector("[data-cfg-progress-fill]");
+		const railProgressFill = document.querySelector("[data-cfg-rail-progress-fill]");
+		const categoryRail = document.querySelector("[data-cfg-cats]");
 		const stageProgress = document.querySelector("[data-cfg-stage-progress]");
 		const summaryRows = document.querySelector("[data-cfg-summary-rows]");
 		const summaryBudget = document.querySelector("[data-cfg-summary-budget]");
@@ -718,6 +720,7 @@
 			const n = countSelections();
 			const pct = total ? n / total : 0;
 			if (progressFill) progressFill.style.transform = "scaleX(" + pct + ")";
+			if (railProgressFill) railProgressFill.style.transform = "scaleX(" + pct + ")";
 			if (stageProgress) {
 				stageProgress.textContent = n + "/" + total + " opties samengesteld";
 			}
@@ -767,17 +770,18 @@
 			if (label) label.textContent = cat.label;
 			if (!box) return;
 			box.innerHTML = "";
-			(cat.options || []).forEach((opt) => {
+			(cat.options || []).forEach((opt, index) => {
 				const selected = state.selections[cat.id] && state.selections[cat.id].id === opt.id;
 				const btn = document.createElement("button");
 				btn.type = "button";
 				btn.className = "kc-cfg-opt" + (selected ? " is-selected" : "");
+				btn.style.setProperty("--kc-opt-i", String(index));
 				btn.innerHTML =
 					'<span class="kc-cfg-swatch" style="background:' +
 					opt.color +
 					'"></span><strong>' +
 					opt.name +
-					"</strong><span>" +
+					'</strong><span class="kc-cfg-opt__desc">' +
 					(opt.description || "") +
 					"</span>";
 				btn.addEventListener("click", () => {
@@ -823,9 +827,18 @@
 			if (summaryBudget) summaryBudget.textContent = state.budget || "—";
 		}
 
+		function scrollActiveChipIntoView() {
+			if (!activeCat || !categoryRail) return;
+			const chip = categoryRail.querySelector('[data-cfg-cat="' + activeCat + '"]');
+			if (chip && typeof chip.scrollIntoView === "function") {
+				chip.scrollIntoView({ behavior: "smooth", inline: "nearest", block: "nearest" });
+			}
+		}
+
 		function selectCategory(catId) {
 			activeCat = activeCat === catId ? null : catId;
 			renderOptions();
+			scrollActiveChipIntoView();
 		}
 
 		document.querySelectorAll("[data-cfg-cat]").forEach((chip) => {

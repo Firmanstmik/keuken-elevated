@@ -73,13 +73,22 @@ $total_cats = count( (array) ( $catalog['categories'] ?? [] ) );
 		</div>
 
 		<aside class="kc-cfg-configure__panel">
-			<div class="kc-cfg-configure__rail" data-cfg-cats>
-				<?php foreach ( $catalog['categories'] as $cat ) : ?>
-					<button type="button" class="kc-cfg-chip" data-cfg-cat="<?php echo esc_attr( (string) $cat['id'] ); ?>">
-						<span class="kc-cfg-chip__dot" data-cfg-chip-dot hidden aria-hidden="true"></span>
-						<span><?php echo esc_html( (string) $cat['label'] ); ?></span>
-					</button>
-				<?php endforeach; ?>
+			<div class="kc-cfg-configure__rail-wrap">
+				<div class="kc-cfg-configure__rail" data-cfg-cats>
+					<?php foreach ( $catalog['categories'] as $cat ) : ?>
+						<button type="button" class="kc-cfg-chip" data-cfg-cat="<?php echo esc_attr( (string) $cat['id'] ); ?>">
+							<span class="kc-cfg-chip__dot" data-cfg-chip-dot hidden aria-hidden="true"></span>
+							<span><?php echo esc_html( (string) $cat['label'] ); ?></span>
+						</button>
+					<?php endforeach; ?>
+				</div>
+				<div class="kc-cfg-configure__rail-progress" aria-hidden="true">
+					<span class="kc-cfg-configure__rail-progress-cap kc-cfg-configure__rail-progress-cap--left"></span>
+					<span class="kc-cfg-configure__rail-progress-track">
+						<span data-cfg-rail-progress-fill></span>
+					</span>
+					<span class="kc-cfg-configure__rail-progress-cap kc-cfg-configure__rail-progress-cap--right"></span>
+				</div>
 			</div>
 
 			<div class="kc-cfg-configure__options-wrap">
@@ -109,7 +118,8 @@ $total_cats = count( (array) ( $catalog['categories'] ?? [] ) );
 					<p data-cfg-summary-budget>—</p>
 				</div>
 				<button type="button" class="kc-cfg-configure__mood-btn" data-cfg-mood-btn>
-					<?php esc_html_e( 'Moodboard genereren', 'keuken-centrum' ); ?>
+					<span><?php esc_html_e( 'Moodboard genereren', 'keuken-centrum' ); ?></span>
+					<span class="kc-cfg-configure__mood-arrow" aria-hidden="true">→</span>
 				</button>
 			</div>
 		</aside>
