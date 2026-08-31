@@ -469,6 +469,26 @@ body.kc-configure-route {
 	}
 }
 
+body.admin-bar.kc-configure-route .kc-cfg-app-header {
+	top: 32px;
+}
+
+@media (min-width: 783px) {
+	body.admin-bar.kc-configure-route .kc-cfg-app-header {
+		top: 32px;
+	}
+}
+
+body.admin-bar.kc-configure-route .kc-cfg-configure--react {
+	padding-top: calc(62px + 32px);
+}
+
+@media (min-width: 1024px) {
+	body.admin-bar.kc-configure-route .kc-cfg-configure__stage {
+		height: calc(100vh - 62px - 32px);
+	}
+}
+
 .kc-cfg-app-header__back {
 	display: inline-flex;
 	align-items: center;
