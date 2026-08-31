@@ -278,27 +278,20 @@
 		}
 
 		const hotspotRoot = document.querySelector("[data-cfg-hotspots]");
+		const canvas = document.querySelector("[data-cfg-canvas]");
+		const zoomLayer = document.querySelector("[data-cfg-zoom-layer]");
+		const zoomHint = document.querySelector("[data-cfg-zoom-hint]");
 		const spots = (catalog.hotspots || {})[state.style] || {};
-		if (hotspotRoot) {
-			hotspotRoot.innerHTML = "";
-			Object.keys(spots).forEach((catId) => {
-				const pos = spots[catId];
-				const btn = document.createElement("button");
-				btn.type = "button";
-				btn.className = "kc-cfg-hotspot";
-				btn.setAttribute("data-cfg-hotspot", catId);
-				btn.style.left = pos.x;
-				btn.style.top = pos.y;
-				btn.setAttribute("aria-label", (categoryById(catId) || {}).label || catId);
-				const sel = state.selections[catId];
-				if (sel && sel.color) {
-					btn.style.setProperty("--kc-hotspot-color", sel.color);
-				}
-				hotspotRoot.appendChild(btn);
-			});
-		}
-
 		let activeCat = null;
+		let hoveredHotspot = null;
+		let isTouch = window.matchMedia("(pointer: coarse)").matches;
+		let zoomLevel = 1;
+		let panOffset = { x: 0, y: 0 };
+		let isDragging = false;
+		let hasDragged = false;
+		let dragStart = { x: 0, y: 0 };
+		let panStart = { x: 0, y: 0 };
+
 		const optionsPanel = document.querySelector("[data-cfg-options-panel]");
 		const optionsInner = document.querySelector("[data-cfg-options-inner]");
 		const emptyState = document.querySelector("[data-cfg-empty]");
@@ -307,6 +300,242 @@
 		const summaryRows = document.querySelector("[data-cfg-summary-rows]");
 		const summaryBudget = document.querySelector("[data-cfg-summary-budget]");
 		const total = (catalog.categories || []).length;
+
+		function tooltipPlacement(px, py) {
+			const top = py;
+			const bottom = 100 - py;
+			const left = px;
+			const right = 100 - px;
+			let dir = "top";
+			let max = top;
+			if (bottom > max) {
+				max = bottom;
+				dir = "bottom";
+			}
+			if (left > max) {
+				max = left;
+				dir = "left";
+			}
+			if (right > max) {
+				dir = "right";
+			}
+			return dir;
+		}
+
+		function hotspotDescription(catId) {
+			const cat = categoryById(catId);
+			const sel = state.selections[catId];
+			if (!cat) return "";
+			if (sel) {
+				const opt = (cat.options || []).find((o) => o.id === sel.id);
+				return (opt && opt.description) || sel.name;
+			}
+			const label = (cat.label || catId).toLowerCase();
+			return "Klik om de mogelijkheden voor uw " + label + " te ontdekken.";
+		}
+
+		function updateHotspotVisuals() {
+			if (!hotspotRoot) return;
+			hotspotRoot.classList.toggle("is-any-hovered", Boolean(hoveredHotspot));
+			hotspotRoot.querySelectorAll("[data-cfg-hotspot-wrap]").forEach((wrap) => {
+				const catId = wrap.getAttribute("data-cfg-hotspot-wrap");
+				const sel = catId ? state.selections[catId] : null;
+				const isHovered = hoveredHotspot === catId;
+				const isActive = activeCat === catId;
+				wrap.classList.toggle("is-hovered", isHovered);
+				wrap.classList.toggle("is-active", isActive);
+				if (sel && sel.color) {
+					wrap.style.setProperty("--kc-hotspot-color", sel.color);
+				} else {
+					wrap.style.removeProperty("--kc-hotspot-color");
+				}
+				const tip = wrap.querySelector("[data-cfg-hotspot-tip]");
+				const tipDesc = wrap.querySelector("[data-cfg-hotspot-tip-desc]");
+				const tipTitle = wrap.querySelector("[data-cfg-hotspot-tip-title]");
+				const cat = categoryById(catId);
+				if (tipTitle && cat) tipTitle.textContent = cat.label;
+				if (tipDesc) tipDesc.textContent = hotspotDescription(catId);
+				if (tip) {
+					const showTip = isHovered && !isTouch;
+					tip.classList.toggle("is-visible", showTip);
+					if (showTip && spots[catId]) {
+						const px = parseFloat(String(spots[catId].x));
+						const py = parseFloat(String(spots[catId].y));
+						tip.className =
+							"kc-cfg-hotspot-tip kc-cfg-hotspot-tip--" + tooltipPlacement(px, py) + (showTip ? " is-visible" : "");
+					}
+				}
+			});
+		}
+
+		function buildHotspots() {
+			if (!hotspotRoot) return;
+			hotspotRoot.innerHTML = "";
+			Object.keys(spots).forEach((catId) => {
+				const pos = spots[catId];
+				const cat = categoryById(catId);
+				const wrap = document.createElement("div");
+				wrap.className = "kc-cfg-hotspot-wrap";
+				wrap.setAttribute("data-cfg-hotspot-wrap", catId);
+				wrap.style.left = pos.x;
+				wrap.style.top = pos.y;
+
+				const btn = document.createElement("button");
+				btn.type = "button";
+				btn.className = "kc-cfg-hotspot";
+				btn.setAttribute("data-cfg-hotspot", catId);
+				btn.setAttribute("aria-label", "Configureer " + ((cat && cat.label) || catId));
+				btn.innerHTML =
+					'<span class="kc-cfg-hotspot__stack">' +
+					'<span class="kc-cfg-hotspot__halo" aria-hidden="true"></span>' +
+					'<span class="kc-cfg-hotspot__ring" aria-hidden="true"></span>' +
+					'<span class="kc-cfg-hotspot__dot" aria-hidden="true"></span>' +
+					"</span>";
+
+				const tip = document.createElement("div");
+				tip.className = "kc-cfg-hotspot-tip kc-cfg-hotspot-tip--top";
+				tip.setAttribute("data-cfg-hotspot-tip", "");
+				tip.innerHTML =
+					'<div class="kc-cfg-hotspot-tip__card">' +
+					'<span class="kc-cfg-hotspot-tip__over">CONFIGURATIE</span>' +
+					'<h4 class="kc-cfg-hotspot-tip__title" data-cfg-hotspot-tip-title>' +
+					((cat && cat.label) || catId) +
+					"</h4>" +
+					'<hr class="kc-cfg-hotspot-tip__rule" />' +
+					'<p class="kc-cfg-hotspot-tip__desc" data-cfg-hotspot-tip-desc></p>' +
+					"</div>";
+
+				wrap.appendChild(btn);
+				wrap.appendChild(tip);
+				hotspotRoot.appendChild(wrap);
+
+				wrap.addEventListener("mouseenter", () => {
+					if (isTouch) return;
+					hoveredHotspot = catId;
+					updateHotspotVisuals();
+				});
+				wrap.addEventListener("mouseleave", () => {
+					hoveredHotspot = null;
+					updateHotspotVisuals();
+				});
+				btn.addEventListener("click", (event) => {
+					event.stopPropagation();
+					selectCategory(catId);
+				});
+			});
+			updateHotspotVisuals();
+		}
+
+		function clampPan(nextX, nextY, scale) {
+			if (!canvas || scale <= 1) return { x: 0, y: 0 };
+			const maxX = (canvas.clientWidth * scale - canvas.clientWidth) / 2;
+			const maxY = (canvas.clientHeight * scale - canvas.clientHeight) / 2;
+			return {
+				x: Math.min(Math.max(nextX, -maxX), maxX),
+				y: Math.min(Math.max(nextY, -maxY), maxY),
+			};
+		}
+
+		function applyZoomTransform() {
+			if (!zoomLayer) return;
+			zoomLayer.style.transform =
+				"translate(" + panOffset.x + "px," + panOffset.y + "px) scale(" + zoomLevel + ")";
+			if (zoomHint) zoomHint.hidden = zoomLevel <= 1.001;
+			if (canvas) {
+				canvas.style.cursor = isDragging ? "grabbing" : zoomLevel > 1.001 ? "zoom-out" : "zoom-in";
+			}
+		}
+
+		function updateZoom(nextScale, clientX, clientY) {
+			const clamped = Math.min(Math.max(nextScale, 1), 2.6);
+			if (clientX != null && clientY != null && canvas && clamped > 1) {
+				const rect = canvas.getBoundingClientRect();
+				const offsetX = clientX - rect.left - rect.width / 2;
+				const offsetY = clientY - rect.top - rect.height / 2;
+				panOffset = clampPan(-offsetX * (clamped - 1), -offsetY * (clamped - 1), clamped);
+			} else {
+				panOffset = clampPan(panOffset.x, panOffset.y, clamped);
+			}
+			zoomLevel = clamped;
+			if (zoomLevel <= 1) {
+				panOffset = { x: 0, y: 0 };
+				zoomLevel = 1;
+			}
+			applyZoomTransform();
+		}
+
+		function resetZoom() {
+			zoomLevel = 1;
+			panOffset = { x: 0, y: 0 };
+			isDragging = false;
+			applyZoomTransform();
+		}
+
+		if (canvas && zoomLayer) {
+			canvas.addEventListener(
+				"wheel",
+				(event) => {
+					event.preventDefault();
+					updateZoom(zoomLevel + (event.deltaY < 0 ? 0.14 : -0.14));
+				},
+				{ passive: false }
+			);
+			canvas.addEventListener("pointerdown", (event) => {
+				if (event.target.closest("[data-cfg-hotspot]")) return;
+				hasDragged = false;
+				dragStart = { x: event.clientX, y: event.clientY };
+				panStart = panOffset;
+				if (zoomLevel <= 1 && !isTouch) {
+					updateZoom(1.6, event.clientX, event.clientY);
+					return;
+				}
+				isDragging = true;
+				zoomLayer.classList.add("is-dragging");
+			});
+			canvas.addEventListener("pointermove", (event) => {
+				if (!isDragging || zoomLevel <= 1) return;
+				hasDragged = true;
+				const nextX = panStart.x + (event.clientX - dragStart.x);
+				const nextY = panStart.y + (event.clientY - dragStart.y);
+				panOffset = clampPan(nextX, nextY, zoomLevel);
+				applyZoomTransform();
+			});
+			const endDrag = (event) => {
+				if (event && event.target && event.target.closest && event.target.closest("[data-cfg-hotspot]")) {
+					isDragging = false;
+					zoomLayer.classList.remove("is-dragging");
+					return;
+				}
+				if (zoomLevel > 1.001 && !hasDragged) resetZoom();
+				isDragging = false;
+				zoomLayer.classList.remove("is-dragging");
+			};
+			canvas.addEventListener("pointerup", endDrag);
+			canvas.addEventListener("pointercancel", endDrag);
+			canvas.addEventListener("pointerleave", endDrag);
+		}
+
+		document.querySelectorAll("[data-cfg-zoom-in]").forEach((btn) => {
+			btn.addEventListener("click", () => updateZoom(zoomLevel + 0.2));
+		});
+		document.querySelectorAll("[data-cfg-zoom-out]").forEach((btn) => {
+			btn.addEventListener("click", () => updateZoom(zoomLevel - 0.2));
+		});
+		document.querySelectorAll("[data-cfg-zoom-reset]").forEach((btn) => {
+			btn.addEventListener("click", resetZoom);
+		});
+
+		window.addEventListener(
+			"touchstart",
+			() => {
+				isTouch = true;
+				hoveredHotspot = null;
+				updateHotspotVisuals();
+			},
+			{ once: true, passive: true }
+		);
+
+		buildHotspots();
 
 		function countSelections() {
 			return Object.keys(state.selections || {}).length;
@@ -356,16 +585,7 @@
 					}
 				}
 			});
-			document.querySelectorAll("[data-cfg-hotspot]").forEach((hot) => {
-				hot.classList.toggle("is-active", hot.getAttribute("data-cfg-hotspot") === activeCat);
-				const catId = hot.getAttribute("data-cfg-hotspot");
-				const sel = catId ? state.selections[catId] : null;
-				if (sel && sel.color) {
-					hot.style.setProperty("--kc-hotspot-color", sel.color);
-				} else {
-					hot.style.removeProperty("--kc-hotspot-color");
-				}
-			});
+			updateHotspotVisuals();
 			if (!cat) {
 				setCategoryOpen(false);
 				return;
@@ -440,11 +660,6 @@
 				selectCategory(chip.getAttribute("data-cfg-cat") || activeCat);
 			});
 		});
-		document.querySelectorAll("[data-cfg-hotspot]").forEach((hot) => {
-			hot.addEventListener("click", () => {
-				selectCategory(hot.getAttribute("data-cfg-hotspot") || activeCat);
-			});
-		});
 		document.querySelectorAll("[data-cfg-close-cat]").forEach((btn) => {
 			btn.addEventListener("click", () => {
 				activeCat = null;
@@ -461,6 +676,7 @@
 		renderOptions();
 		renderSummary();
 		updateProgress();
+		applyZoomTransform();
 	}
 
 	if (step === "moodboard") {

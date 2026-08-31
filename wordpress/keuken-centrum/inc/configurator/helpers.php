@@ -198,7 +198,7 @@ body.kc-configure-route .site-header,body.kc-configure-route .nav-topbar{display
 body.kc-configurator-route .site-main--configurator{padding-top:0!important}
 .kc-cfg-action{pointer-events:none!important}.kc-cfg-action[hidden]{display:none!important;pointer-events:none!important}
 .kc-cfg-action__mobile,.kc-cfg-action__desktop{pointer-events:none!important}.kc-cfg-action button{pointer-events:auto}
-.kc-cfg-card__media,.kc-cfg-card__img,.kc-cfg-card__scrim,.kc-cfg-card__logo,.kc-cfg-card__meta,.kc-cfg-card__check{pointer-events:none}
+.kc-cfg-card__media,.kc-cfg-card__img,.kc-cfg-card__scrim,.kc-cfg-card__logo,.kc-cfg-card__meta,.kc-cfg-card__check,.kc-cfg-hotspot__halo,.kc-cfg-hotspot__ring,.kc-cfg-hotspot__dot{pointer-events:none}
 .kc-cfg-card__check[hidden]{display:none!important}
 </style>
 	<?php

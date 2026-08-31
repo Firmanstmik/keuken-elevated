@@ -609,22 +609,318 @@ body.kc-configure-route.is-cfg-action-open .kc-cfg-configure--react {
 	object-position: center;
 }
 
+.kc-cfg-configure--react .kc-cfg-configure__canvas {
+	position: relative;
+	height: 100%;
+	min-height: 0;
+	overflow: hidden;
+	border-radius: 0;
+	background: #0a0a0a;
+}
+
+.kc-cfg-configure__zoom-layer {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	transform-origin: center center;
+	transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+	will-change: transform;
+}
+
+.kc-cfg-configure__zoom-layer.is-dragging {
+	transition: transform 0.02s linear;
+}
+
+.kc-cfg-configure__zoom {
+	position: absolute;
+	right: 0.75rem;
+	bottom: 0.75rem;
+	z-index: 25;
+	display: flex;
+	gap: 0.5rem;
+}
+
+@media (min-width: 768px) {
+	.kc-cfg-configure__zoom {
+		right: 1.25rem;
+		bottom: 1.25rem;
+	}
+}
+
+.kc-cfg-configure__zoom-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 2.75rem;
+	height: 2.75rem;
+	border: 1px solid rgba(247, 245, 242, 0.15);
+	border-radius: 13px;
+	background: rgba(17, 17, 17, 0.82);
+	color: #f7f5f2;
+	font-size: 1.1rem;
+	line-height: 1;
+	cursor: pointer;
+	backdrop-filter: blur(8px);
+	transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.kc-cfg-configure__zoom-btn:hover {
+	border-color: #8bc540;
+	background: rgba(139, 197, 64, 0.3);
+}
+
+.kc-cfg-configure__zoom-hint {
+	position: absolute;
+	left: 0.75rem;
+	bottom: 0.75rem;
+	z-index: 24;
+	margin: 0;
+	padding: 0.5rem 0.75rem;
+	border: 1px solid rgba(247, 245, 242, 0.1);
+	border-radius: 12px;
+	background: rgba(17, 17, 17, 0.72);
+	color: rgba(247, 245, 242, 0.6);
+	font-size: 0.65rem;
+	letter-spacing: 0.04em;
+	backdrop-filter: blur(8px);
+}
+
+@media (max-width: 767px) {
+	.kc-cfg-configure__zoom-hint {
+		display: none !important;
+	}
+}
+
+@keyframes kc-hotspot-breathe {
+	0%,
+	100% {
+		transform: scale(0.97);
+		box-shadow:
+			0 0 12px rgba(255, 255, 255, 0.14),
+			0 0 20px rgba(200, 169, 107, 0.14);
+	}
+	50% {
+		transform: scale(1.04);
+		box-shadow:
+			0 0 18px rgba(255, 255, 255, 0.22),
+			0 0 28px rgba(200, 169, 107, 0.24);
+	}
+}
+
 .kc-cfg-configure__hotspots {
 	position: absolute;
 	inset: 0;
 }
 
-.kc-cfg-configure__vignette {
+.kc-cfg-hotspot-wrap {
+	position: absolute;
+	z-index: 20;
+	transform: translate(-50%, -50%);
+}
+
+.kc-cfg-hotspot-wrap.is-active,
+.kc-cfg-hotspot-wrap.is-hovered {
+	z-index: 30;
+}
+
+.kc-cfg-configure__hotspots.is-any-hovered .kc-cfg-hotspot-wrap:not(.is-hovered):not(.is-active) .kc-cfg-hotspot {
+	opacity: 0.3;
+}
+
+.kc-cfg-hotspot {
+	display: grid;
+	width: 2.75rem;
+	height: 2.75rem;
+	border: 0;
+	border-radius: 999px;
+	background: transparent;
+	cursor: pointer;
+	place-items: center;
+	transition: opacity 0.3s ease;
+}
+
+.kc-cfg-hotspot__stack {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.kc-cfg-hotspot-wrap.is-hovered .kc-cfg-hotspot__stack,
+.kc-cfg-hotspot-wrap.is-active .kc-cfg-hotspot__stack {
+	transform: scale(1.25);
+}
+
+.kc-cfg-hotspot__halo {
 	position: absolute;
 	inset: 0;
+	border-radius: 999px;
 	pointer-events: none;
-	background: radial-gradient(ellipse at center, transparent 60%, rgba(0, 0, 0, 0.4) 100%);
+	background: rgba(212, 175, 55, 0.1);
+	filter: blur(8px);
+	box-shadow:
+		0 0 12px rgba(255, 255, 255, 0.18),
+		0 0 24px rgba(212, 175, 55, 0.2);
+	animation: kc-hotspot-breathe 4.5s ease-in-out infinite;
+	transition: box-shadow 0.2s ease;
+}
+
+.kc-cfg-hotspot-wrap.is-hovered .kc-cfg-hotspot__halo,
+.kc-cfg-hotspot-wrap.is-active .kc-cfg-hotspot__halo {
+	animation: none;
+	box-shadow:
+		0 0 20px rgba(212, 175, 55, 0.35),
+		0 0 36px rgba(255, 255, 255, 0.12);
+}
+
+.kc-cfg-hotspot__ring {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 18px;
+	height: 18px;
+	border: 2px solid rgba(212, 175, 55, 0.85);
+	border-radius: 999px;
+	background: rgba(0, 0, 0, 0.45);
+	transform: translate(-50%, -50%);
+	backdrop-filter: blur(4px);
+	transition: all 0.2s ease;
+	pointer-events: none;
+}
+
+.kc-cfg-hotspot-wrap.is-hovered .kc-cfg-hotspot__ring,
+.kc-cfg-hotspot-wrap.is-active .kc-cfg-hotspot__ring {
+	border-color: #d4af37;
+	background: rgba(212, 175, 55, 0.12);
+}
+
+.kc-cfg-hotspot__dot {
+	position: relative;
+	z-index: 1;
+	width: 6px;
+	height: 6px;
+	border-radius: 999px;
+	background: var(--kc-hotspot-color, #fff);
+	border: 1px solid rgba(255, 255, 255, 0.6);
+	box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+	transition: all 0.2s ease;
+	pointer-events: none;
+}
+
+.kc-cfg-hotspot-wrap:not([style*="--kc-hotspot-color"]) .kc-cfg-hotspot__dot {
+	border-color: transparent;
+}
+
+.kc-cfg-hotspot-tip {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 40;
+	pointer-events: none;
+	opacity: 0;
+	transform: translateY(6px);
+	transition:
+		opacity 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+		transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.kc-cfg-hotspot-tip.is-visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.kc-cfg-hotspot-tip__card {
+	width: 210px;
+	padding: 0.75rem 1rem;
+	border: 1px solid rgba(212, 175, 55, 0.18);
+	border-radius: 12px;
+	background: rgba(9, 9, 9, 0.96);
+	box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
+	backdrop-filter: blur(20px);
+	text-align: left;
+}
+
+.kc-cfg-hotspot-tip__over {
+	display: block;
+	margin: 0 0 0.35rem;
+	font-size: 9px;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	color: #d4af37;
+}
+
+.kc-cfg-hotspot-tip__title {
+	margin: 0;
+	font-family: var(--font-display, Fraunces, serif);
+	font-size: 13px;
+	font-weight: 600;
+	line-height: 1.35;
+	letter-spacing: -0.01em;
+	color: #fff;
+}
+
+.kc-cfg-hotspot-tip__rule {
+	height: 1px;
+	margin: 0.5rem 0;
+	border: 0;
+	background: rgba(212, 175, 55, 0.1);
+}
+
+.kc-cfg-hotspot-tip__desc {
+	margin: 0;
+	font-size: 11px;
+	line-height: 1.6;
+	color: #a1a1aa;
+}
+
+.kc-cfg-hotspot-tip__line {
+	position: absolute;
+	overflow: visible;
+	pointer-events: none;
+}
+
+.kc-cfg-hotspot-tip--top .kc-cfg-hotspot-tip__card {
+	position: absolute;
+	bottom: 40px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.kc-cfg-hotspot-tip--bottom .kc-cfg-hotspot-tip__card {
+	position: absolute;
+	top: 40px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.kc-cfg-hotspot-tip--left .kc-cfg-hotspot-tip__card {
+	position: absolute;
+	right: 40px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.kc-cfg-hotspot-tip--right .kc-cfg-hotspot-tip__card {
+	position: absolute;
+	left: 40px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+@media (pointer: coarse) {
+	.kc-cfg-hotspot-tip {
+		display: none !important;
+	}
 }
 
 .kc-cfg-configure__badge {
 	position: absolute;
 	top: 0.75rem;
 	left: 0.75rem;
+	z-index: 24;
 	padding: 0.4rem 0.65rem;
 	border: 1px solid rgba(247, 245, 242, 0.1);
 	border-radius: 10px;
@@ -651,50 +947,6 @@ body.kc-configure-route.is-cfg-action-open .kc-cfg-configure--react {
 
 .kc-cfg-configure__badge p:last-child {
 	color: rgba(247, 245, 242, 0.6);
-}
-
-.kc-cfg-hotspot {
-	position: absolute;
-	width: 2.75rem;
-	height: 2.75rem;
-	margin: -1.375rem 0 0 -1.375rem;
-	border: 0;
-	border-radius: 999px;
-	background: transparent;
-	cursor: pointer;
-}
-
-.kc-cfg-hotspot::before {
-	content: "";
-	position: absolute;
-	inset: 50% auto auto 50%;
-	width: 1.125rem;
-	height: 1.125rem;
-	border: 2px solid rgba(212, 175, 55, 0.85);
-	border-radius: 999px;
-	background: rgba(0, 0, 0, 0.45);
-	transform: translate(-50%, -50%);
-	backdrop-filter: blur(4px);
-	transition: all 0.2s ease;
-}
-
-.kc-cfg-hotspot::after {
-	content: "";
-	position: absolute;
-	inset: 50% auto auto 50%;
-	width: 6px;
-	height: 6px;
-	border-radius: 999px;
-	background: var(--kc-hotspot-color, #fff);
-	border: 1px solid rgba(255, 255, 255, 0.6);
-	box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
-	transform: translate(-50%, -50%);
-}
-
-.kc-cfg-hotspot.is-active::before,
-.kc-cfg-hotspot:hover::before {
-	border-color: #d4af37;
-	background: rgba(212, 175, 55, 0.12);
 }
 
 .kc-cfg-configure__panel {

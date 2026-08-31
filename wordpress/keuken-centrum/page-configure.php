@@ -44,23 +44,31 @@ $total_cats = count( (array) ( $catalog['categories'] ?? [] ) );
 	<section class="kc-cfg-configure kc-cfg-configure--react">
 		<div class="kc-cfg-configure__stage" data-cfg-canvas-wrap>
 			<div class="kc-cfg-configure__canvas" data-cfg-canvas>
-				<img
-					data-cfg-base
-					src="<?php echo esc_url( $fallback ); ?>"
-					alt=""
-					class="kc-cfg-configure__img"
-					width="1200"
-					height="900"
-					loading="eager"
-					fetchpriority="high"
-					decoding="async"
-				>
-				<div class="kc-cfg-configure__hotspots" data-cfg-hotspots></div>
-				<div class="kc-cfg-configure__vignette" aria-hidden="true"></div>
+				<div class="kc-cfg-configure__zoom-layer" data-cfg-zoom-layer>
+					<img
+						data-cfg-base
+						src="<?php echo esc_url( $fallback ); ?>"
+						alt=""
+						class="kc-cfg-configure__img"
+						width="1200"
+						height="900"
+						loading="eager"
+						fetchpriority="high"
+						decoding="async"
+					>
+					<div class="kc-cfg-configure__hotspots" data-cfg-hotspots></div>
+					<div class="kc-cfg-configure__vignette" aria-hidden="true"></div>
+				</div>
 				<div class="kc-cfg-configure__badge">
 					<p><?php esc_html_e( 'Stap 03 van 05', 'keuken-centrum' ); ?></p>
 					<p data-cfg-stage-progress>0/<?php echo (int) $total_cats; ?> <?php esc_html_e( 'opties samengesteld', 'keuken-centrum' ); ?></p>
 				</div>
+				<div class="kc-cfg-configure__zoom" data-cfg-zoom-controls>
+					<button type="button" class="kc-cfg-configure__zoom-btn" data-cfg-zoom-out aria-label="<?php esc_attr_e( 'Uitzoomen', 'keuken-centrum' ); ?>">−</button>
+					<button type="button" class="kc-cfg-configure__zoom-btn" data-cfg-zoom-in aria-label="<?php esc_attr_e( 'Inzoomen', 'keuken-centrum' ); ?>">+</button>
+					<button type="button" class="kc-cfg-configure__zoom-btn" data-cfg-zoom-reset aria-label="<?php esc_attr_e( 'Zoom herstellen', 'keuken-centrum' ); ?>">⌕</button>
+				</div>
+				<p class="kc-cfg-configure__zoom-hint" data-cfg-zoom-hint hidden><?php esc_html_e( 'Sleep om details te bekijken, klik om uit te zoomen', 'keuken-centrum' ); ?></p>
 			</div>
 		</div>
 
