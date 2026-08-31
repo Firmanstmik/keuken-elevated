@@ -418,7 +418,9 @@ body.kc-configure-route .site-header,
 body.kc-configure-route .nav-topbar,
 body.kc-configure-route .kc-cfg-mobile-header,
 body.kc-configure-route .site-footer,
-body.kc-configure-route .sticky-conversion-bar {
+body.kc-configure-route .sticky-conversion-bar,
+body.kc-configure-route .kc-mobile-bottom-nav,
+body.kc-configure-route .mobile-bottom-nav {
 	display: none !important;
 }
 
@@ -443,19 +445,20 @@ body.kc-configure-route {
 .kc-cfg-progress > span {
 	display: block;
 	height: 100%;
-	width: 0;
+	width: 100%;
 	background: #8bc540;
+	transform: scaleX(0);
 	transform-origin: left center;
-	transition: width 0.4s ease;
+	transition: transform 0.4s ease;
 }
 
 .kc-cfg-app-header {
 	position: fixed;
 	inset: 0 0 auto;
 	z-index: 1200;
-	display: flex;
+	display: grid;
+	grid-template-columns: 1fr auto 1fr;
 	align-items: center;
-	justify-content: space-between;
 	height: 60px;
 	padding: 0 0.75rem;
 	border-bottom: 1px solid rgba(139, 197, 64, 0.16);
@@ -483,9 +486,14 @@ body.admin-bar.kc-configure-route .kc-cfg-configure--react {
 	padding-top: calc(62px + 32px);
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
 	body.admin-bar.kc-configure-route .kc-cfg-configure__stage {
 		height: calc(100vh - 62px - 32px);
+	}
+
+	body.admin-bar.kc-configure-route .kc-cfg-configure__panel {
+		min-height: calc(100vh - 62px - 32px);
+		max-height: calc(100vh - 62px - 32px);
 	}
 }
 
@@ -493,12 +501,20 @@ body.admin-bar.kc-configure-route .kc-cfg-configure--react {
 	display: inline-flex;
 	align-items: center;
 	gap: 0.25rem;
+	justify-self: start;
 	padding: 0.25rem 0.5rem;
 	font-size: 0.72rem;
 	letter-spacing: 0.03em;
 	color: rgba(247, 245, 242, 0.68);
 	text-decoration: none;
+	text-transform: uppercase;
 	transition: color 0.3s ease;
+}
+
+.kc-cfg-app-header__back svg {
+	width: 14px;
+	height: 14px;
+	flex-shrink: 0;
 }
 
 .kc-cfg-app-header__back:hover {
@@ -506,6 +522,7 @@ body.admin-bar.kc-configure-route .kc-cfg-configure--react {
 }
 
 .kc-cfg-app-header__logo {
+	justify-self: center;
 	height: 1.5rem;
 	width: auto;
 }
@@ -517,6 +534,7 @@ body.admin-bar.kc-configure-route .kc-cfg-configure--react {
 }
 
 .kc-cfg-app-header__label {
+	justify-self: end;
 	margin: 0;
 	font-size: 0.68rem;
 	letter-spacing: 0.04em;
@@ -530,12 +548,20 @@ body.admin-bar.kc-configure-route .kc-cfg-configure--react {
 	padding-top: 62px;
 }
 
-@media (min-width: 1024px) {
+body.kc-configure-route.is-cfg-action-open .kc-cfg-configure--react {
+	padding-bottom: 7rem;
+}
+
+@media (min-width: 768px) {
 	.kc-cfg-configure--react {
 		flex-direction: row;
 		height: calc(100vh - 62px);
 		min-height: 0;
 		padding-top: 62px;
+	}
+
+	body.kc-configure-route.is-cfg-action-open .kc-cfg-configure--react {
+		padding-bottom: 8rem;
 	}
 }
 
@@ -553,20 +579,26 @@ body.admin-bar.kc-configure-route .kc-cfg-configure--react {
 	box-shadow: 0 18px 40px -26px rgba(0, 0, 0, 0.85);
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
 	.kc-cfg-configure__stage {
 		position: static;
 		top: auto;
 		flex: 0 0 68%;
+		width: 68%;
+		max-width: 68%;
 		height: calc(100vh - 62px);
 		max-height: none;
 		border-bottom: 0;
 	}
 }
 
-.kc-cfg-configure__canvas {
+.kc-cfg-configure--react .kc-cfg-configure__canvas {
 	position: relative;
 	height: 100%;
+	min-height: 0;
+	overflow: hidden;
+	border-radius: 0;
+	background: #0a0a0a;
 }
 
 .kc-cfg-configure__img {
@@ -667,16 +699,18 @@ body.admin-bar.kc-configure-route .kc-cfg-configure--react {
 
 .kc-cfg-configure__panel {
 	display: flex;
-	flex: 1;
+	flex: 1 1 32%;
+	min-width: 0;
 	flex-direction: column;
 	overflow: hidden;
 	border-left: 1px solid rgba(255, 255, 255, 0.05);
 	background: #0f0f0f;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
 	.kc-cfg-configure__panel {
 		min-height: calc(100vh - 62px);
+		max-height: calc(100vh - 62px);
 	}
 }
 
@@ -733,6 +767,24 @@ body.admin-bar.kc-configure-route .kc-cfg-configure--react {
 .kc-cfg-configure__options-wrap {
 	flex: 1;
 	overflow-y: auto;
+	min-height: 0;
+}
+
+@media (min-width: 768px) {
+	.kc-cfg-configure__empty {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		min-height: 12rem;
+		padding: 2rem 1rem;
+	}
+
+	.kc-cfg-configure__empty-title {
+		max-width: 18rem;
+		font-size: 1rem;
+		line-height: 1.45;
+	}
 }
 
 .kc-cfg-configure__options {
@@ -854,7 +906,7 @@ body.admin-bar.kc-configure-route .kc-cfg-configure--react {
 	background: #111;
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 767px) {
 	.kc-cfg-configure__summary {
 		display: none;
 	}
@@ -948,26 +1000,66 @@ body.admin-bar.kc-configure-route .kc-cfg-configure--react {
 }
 
 .kc-cfg-action--dark {
-	background: rgba(17, 17, 17, 0.96);
-	border-top-color: rgba(255, 255, 255, 0.08);
+	border-top-color: rgba(247, 245, 242, 0.08);
+	background: rgba(10, 10, 10, 0.88);
+	box-shadow: 0 -24px 60px -40px rgba(0, 0, 0, 0.55);
+	backdrop-filter: blur(24px);
 }
 
 .kc-cfg-action--dark .kc-cfg-action__over {
 	color: #8bc540;
+	letter-spacing: 0.24em;
+	text-transform: uppercase;
 }
 
-.kc-cfg-action--dark .kc-cfg-action__title,
+.kc-cfg-action--dark .kc-cfg-action__title {
+	color: #f7f5f2;
+	font-size: 1.75rem;
+	font-weight: 400;
+	line-height: 1.08;
+}
+
 .kc-cfg-action--dark .kc-cfg-action__sub {
-	color: rgba(247, 245, 242, 0.75);
+	color: rgba(247, 245, 242, 0.56);
+	font-size: 0.85rem;
+	line-height: 1.65;
+}
+
+.kc-cfg-action--dark .kc-cfg-action__icon {
+	border-color: rgba(255, 255, 255, 0.1);
+	background: rgba(255, 255, 255, 0.06);
+	color: #fff;
+}
+
+.kc-cfg-action--dark .kc-cfg-action__go {
+	border-color: #8bc540;
+	background: #79af37;
+	box-shadow: 0 12px 26px -16px rgba(66, 105, 27, 0.9);
 }
 
 .kc-cfg-btn--ghost-dark {
 	background: transparent;
-	border: 1px solid rgba(247, 245, 242, 0.15);
+	border: 1px solid rgba(247, 245, 242, 0.16);
 	color: #f7f5f2;
+	text-transform: uppercase;
+	letter-spacing: 0.18em;
 }
 
-@media (max-width: 1023px) {
+.kc-cfg-action--dark .kc-cfg-btn--primary {
+	border-color: #8bc540;
+	background: #8bc540;
+	color: #fff;
+	text-transform: uppercase;
+	letter-spacing: 0.18em;
+}
+
+.kc-cfg-action--dark .kc-cfg-btn--primary:hover,
+.kc-cfg-action--dark .kc-cfg-btn--ghost-dark:hover {
+	border-color: #2f5218;
+	background: #2f5218;
+}
+
+@media (max-width: 767px) {
 	.kc-cfg-configure__options--open {
 		position: fixed;
 		z-index: 1250;
@@ -997,8 +1089,8 @@ body.admin-bar.kc-configure-route .kc-cfg-configure--react {
 	}
 }
 
-/* Legacy configure grid (unused on --react layout) */
-.kc-cfg-configure {
+/* Legacy configure grid — never apply to React dark layout */
+.kc-cfg-configure:not(.kc-cfg-configure--react) {
 	display: grid;
 	gap: 1rem;
 	padding: 5.5rem 1rem 8.5rem;
@@ -1012,7 +1104,7 @@ body.admin-bar.kc-configure-route .kc-cfg-configure--react {
 	}
 }
 
-.kc-cfg-configure__canvas {
+.kc-cfg-configure:not(.kc-cfg-configure--react) .kc-cfg-configure__canvas {
 	position: relative;
 	overflow: hidden;
 	border-radius: 18px;
@@ -1035,7 +1127,7 @@ body.admin-bar.kc-configure-route .kc-cfg-configure--react {
 	margin-top: 0.75rem;
 }
 
-.kc-cfg-chip {
+.kc-cfg-configure:not(.kc-cfg-configure--react) .kc-cfg-chip {
 	min-height: 2.4rem;
 	border: 1px solid rgba(0, 0, 0, 0.1);
 	border-radius: 999px;
@@ -1044,7 +1136,7 @@ body.admin-bar.kc-configure-route .kc-cfg-configure--react {
 	cursor: pointer;
 }
 
-.kc-cfg-chip.is-active {
+.kc-cfg-configure:not(.kc-cfg-configure--react) .kc-cfg-chip.is-active {
 	border-color: #b08d57;
 	background: rgba(176, 141, 87, 0.12);
 }

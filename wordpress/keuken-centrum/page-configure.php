@@ -32,6 +32,7 @@ $total_cats = count( (array) ( $catalog['categories'] ?? [] ) );
 
 	<header class="kc-cfg-app-header">
 		<a href="<?php echo esc_url( home_url( '/style/' ) ); ?>" class="kc-cfg-app-header__back" data-cfg-back-link>
+			<?php echo kc_icon_brand( 'arrow-left' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			<?php esc_html_e( 'Terug', 'keuken-centrum' ); ?>
 		</a>
 		<?php if ( $logo ) : ?>

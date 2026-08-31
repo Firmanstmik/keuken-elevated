@@ -314,8 +314,8 @@
 
 		function updateProgress() {
 			const n = countSelections();
-			const pct = total ? (n / total) * 100 : 0;
-			if (progressFill) progressFill.style.width = pct + "%";
+			const pct = total ? n / total : 0;
+			if (progressFill) progressFill.style.transform = "scaleX(" + pct + ")";
 			if (stageProgress) {
 				stageProgress.textContent = n + "/" + total + " opties samengesteld";
 			}
