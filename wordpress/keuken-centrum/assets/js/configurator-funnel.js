@@ -322,6 +322,162 @@
 			return dir;
 		}
 
+		function tooltipOffsets(px, py) {
+			const cardWidth = 210;
+			const margin = 12;
+			const vw = canvas ? canvas.clientWidth : 800;
+			const vh = canvas ? canvas.clientHeight : 600;
+			const hx = (px / 100) * vw;
+			const hy = (py / 100) * vh;
+			const placement = tooltipPlacement(px, py);
+			let offsetX = 0;
+			let offsetY = 0;
+
+			if (placement === "top" || placement === "bottom") {
+				const halfW = cardWidth / 2;
+				if (hx - halfW < margin) offsetX = margin - (hx - halfW);
+				else if (hx + halfW > vw - margin) offsetX = vw - margin - (hx + halfW);
+			} else {
+				const halfH = 50;
+				if (hy - halfH < margin) offsetY = margin - (hy - halfH);
+				else if (hy + halfH > vh - margin) offsetY = vh - margin - (hy + halfH);
+			}
+
+			return { placement, offsetX, offsetY };
+		}
+
+		function connectorPath(placement, offsetX, offsetY) {
+			const cardOffset = 40;
+			const mid = 24;
+			let pathD = "";
+			let dotCX = 0;
+			let dotCY = 0;
+
+			if (placement === "top") {
+				dotCY = -cardOffset;
+				dotCX = offsetX;
+				const R = Math.min(6, Math.abs(offsetX) / 2);
+				if (R < 1) {
+					pathD = "M 0 0 V -" + cardOffset;
+				} else {
+					const dir = offsetX > 0 ? 1 : -1;
+					pathD =
+						"M 0 0 V -" +
+						(mid - R) +
+						" Q 0 -" +
+						mid +
+						" " +
+						dir * R +
+						" -" +
+						mid +
+						" H " +
+						(offsetX - dir * R) +
+						" Q " +
+						offsetX +
+						" -" +
+						mid +
+						" " +
+						offsetX +
+						" " +
+						(-mid - R) +
+						" V -" +
+						cardOffset;
+				}
+			} else if (placement === "bottom") {
+				dotCY = cardOffset;
+				dotCX = offsetX;
+				const R = Math.min(6, Math.abs(offsetX) / 2);
+				if (R < 1) {
+					pathD = "M 0 0 V " + cardOffset;
+				} else {
+					const dir = offsetX > 0 ? 1 : -1;
+					pathD =
+						"M 0 0 V " +
+						(mid - R) +
+						" Q 0 " +
+						mid +
+						" " +
+						dir * R +
+						" " +
+						mid +
+						" H " +
+						(offsetX - dir * R) +
+						" Q " +
+						offsetX +
+						" " +
+						mid +
+						" " +
+						offsetX +
+						" " +
+						(mid + R) +
+						" V " +
+						cardOffset;
+				}
+			} else if (placement === "left") {
+				dotCX = -cardOffset;
+				dotCY = offsetY;
+				const R = Math.min(6, Math.abs(offsetY) / 2);
+				if (R < 1) {
+					pathD = "M 0 0 H -" + cardOffset;
+				} else {
+					const dir = offsetY > 0 ? 1 : -1;
+					pathD =
+						"M 0 0 H -" +
+						(mid - R) +
+						" Q -" +
+						mid +
+						" 0 -" +
+						mid +
+						" " +
+						dir * R +
+						" V " +
+						(offsetY - dir * R) +
+						" Q -" +
+						mid +
+						" " +
+						offsetY +
+						" " +
+						(-mid - R) +
+						" " +
+						offsetY +
+						" H -" +
+						cardOffset;
+				}
+			} else {
+				dotCX = cardOffset;
+				dotCY = offsetY;
+				const R = Math.min(6, Math.abs(offsetY) / 2);
+				if (R < 1) {
+					pathD = "M 0 0 H " + cardOffset;
+				} else {
+					const dir = offsetY > 0 ? 1 : -1;
+					pathD =
+						"M 0 0 H " +
+						(mid - R) +
+						" Q " +
+						mid +
+						" 0 " +
+						mid +
+						" " +
+						dir * R +
+						" V " +
+						(offsetY - dir * R) +
+						" Q " +
+						mid +
+						" " +
+						offsetY +
+						" " +
+						(mid + R) +
+						" " +
+						offsetY +
+						" H " +
+						cardOffset;
+				}
+			}
+
+			return { pathD, dotCX, dotCY };
+		}
+
 		function hotspotDescription(catId) {
 			const cat = categoryById(catId);
 			const sel = state.selections[catId];
@@ -355,14 +511,26 @@
 				const cat = categoryById(catId);
 				if (tipTitle && cat) tipTitle.textContent = cat.label;
 				if (tipDesc) tipDesc.textContent = hotspotDescription(catId);
-				if (tip) {
+				if (tip && spots[catId]) {
 					const showTip = isHovered && !isTouch;
-					tip.classList.toggle("is-visible", showTip);
-					if (showTip && spots[catId]) {
-						const px = parseFloat(String(spots[catId].x));
-						const py = parseFloat(String(spots[catId].y));
-						tip.className =
-							"kc-cfg-hotspot-tip kc-cfg-hotspot-tip--" + tooltipPlacement(px, py) + (showTip ? " is-visible" : "");
+					const px = parseFloat(String(spots[catId].x));
+					const py = parseFloat(String(spots[catId].y));
+					const offsets = tooltipOffsets(px, py);
+					const conn = connectorPath(offsets.placement, offsets.offsetX, offsets.offsetY);
+
+					tip.className =
+						"kc-cfg-hotspot-tip kc-cfg-hotspot-tip--" +
+						offsets.placement +
+						(showTip ? " is-visible" : "");
+					tip.style.setProperty("--kc-tip-offset-x", offsets.offsetX + "px");
+					tip.style.setProperty("--kc-tip-offset-y", offsets.offsetY + "px");
+
+					const pathEl = tip.querySelector("[data-cfg-hotspot-tip-path]");
+					const dotEl = tip.querySelector("[data-cfg-hotspot-tip-dot]");
+					if (pathEl) pathEl.setAttribute("d", conn.pathD);
+					if (dotEl) {
+						dotEl.setAttribute("cx", String(conn.dotCX));
+						dotEl.setAttribute("cy", String(conn.dotCY));
 					}
 				}
 			});
@@ -371,7 +539,7 @@
 		function buildHotspots() {
 			if (!hotspotRoot) return;
 			hotspotRoot.innerHTML = "";
-			Object.keys(spots).forEach((catId) => {
+			Object.keys(spots).forEach((catId, index) => {
 				const pos = spots[catId];
 				const cat = categoryById(catId);
 				const wrap = document.createElement("div");
@@ -379,6 +547,7 @@
 				wrap.setAttribute("data-cfg-hotspot-wrap", catId);
 				wrap.style.left = pos.x;
 				wrap.style.top = pos.y;
+				wrap.style.setProperty("--kc-hotspot-i", String(index));
 
 				const btn = document.createElement("button");
 				btn.type = "button";
@@ -396,7 +565,11 @@
 				tip.className = "kc-cfg-hotspot-tip kc-cfg-hotspot-tip--top";
 				tip.setAttribute("data-cfg-hotspot-tip", "");
 				tip.innerHTML =
-					'<div class="kc-cfg-hotspot-tip__card">' +
+					'<svg class="kc-cfg-hotspot-tip__line" aria-hidden="true" width="0" height="0">' +
+					'<path data-cfg-hotspot-tip-path fill="none" stroke="#D4AF37" stroke-width="1.2" stroke-opacity="0.55" stroke-linecap="round" />' +
+					'<circle data-cfg-hotspot-tip-dot r="1.5" fill="#D4AF37" fill-opacity="0.6" />' +
+					"</svg>" +
+					'<div class="kc-cfg-hotspot-tip__card" data-cfg-hotspot-tip-card>' +
 					'<span class="kc-cfg-hotspot-tip__over">CONFIGURATIE</span>' +
 					'<h4 class="kc-cfg-hotspot-tip__title" data-cfg-hotspot-tip-title>' +
 					((cat && cat.label) || catId) +
