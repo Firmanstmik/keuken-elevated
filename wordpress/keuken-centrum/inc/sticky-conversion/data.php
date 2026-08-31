@@ -20,7 +20,7 @@ function kc_sticky_conversion_data(): array {
 		$phone_href = 'tel:+' . ( str_starts_with( (string) $digits, '31' ) ? $digits : '31' . ltrim( (string) $digits, '0' ) );
 	}
 
-	$default_wa = 'https://wa.me/31302415122?text=' . rawurlencode( 'Hallo Keuken-Centrum, ik heb een vraag over een showroombezoek.' );
+	$default_wa = 'https://wa.me/31628096340?text=' . rawurlencode( 'Hallo Keuken-Centrum, ik ben geïnteresseerd in een nieuwe keuken. Kunnen jullie mij hierbij helpen?' );
 
 	$primary_href = (string) kc_get_option( 'sticky_cta_primary_url', '' );
 	if ( '' === $primary_href ) {

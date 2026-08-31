@@ -48,9 +48,9 @@
 	function buildWhatsAppMessage(formData, state, catalog) {
 		const selections = selectionLines(state, catalog);
 		const parts = [
-			"Hallo Keuken-Centrum,",
+			"Hallo Keuken-Centrum, ik ben geïnteresseerd in een nieuwe keuken. Kunnen jullie mij hierbij helpen?",
 			"",
-			"Ik wil graag een consultatie plannen via jullie configurator.",
+			"Ik heb zojuist mijn keukenconfiguratie samengesteld via jullie configurator.",
 			"",
 			"Naam: " + formData.name,
 			"E-mail: " + formData.email,
@@ -82,7 +82,7 @@
 	function openWhatsApp(message) {
 		const cfg = window.kcConfigurator || {};
 		const number =
-			page.getAttribute("data-whatsapp-number") || cfg.whatsappNumber || "31302415122";
+			page.getAttribute("data-whatsapp-number") || cfg.whatsappNumber || "31628096340";
 		const url = "https://wa.me/" + number + "?text=" + encodeURIComponent(message);
 		window.open(url, "_blank", "noopener,noreferrer");
 	}

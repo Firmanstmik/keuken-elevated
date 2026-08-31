@@ -24,7 +24,7 @@ $ajax_url = admin_url( 'admin-ajax.php' );
 $nonce    = wp_create_nonce( 'kc_consultation_submit' );
 $success_lede_tpl = (string) ( $success['lede'] ?? 'Dank u, {name}. Uw persoonlijke ontwerpadviseur neemt binnen 24 uur contact met u op om de afspraak te bevestigen.' );
 ?>
-<div class="consultation-page" data-consultation-page data-whatsapp-number="<?php echo esc_attr( function_exists( 'kc_consultation_whatsapp_number' ) ? kc_consultation_whatsapp_number() : '31302415122' ); ?>">
+<div class="consultation-page" data-consultation-page data-whatsapp-number="<?php echo esc_attr( function_exists( 'kc_consultation_whatsapp_number' ) ? kc_consultation_whatsapp_number() : '31628096340' ); ?>">
 	<section class="consultation-layout">
 		<div class="consultation-layout__grid">
 			<aside class="consultation-hero" data-consultation-hero>

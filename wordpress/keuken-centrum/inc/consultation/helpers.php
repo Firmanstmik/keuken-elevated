@@ -50,11 +50,7 @@ function kc_consultation_budgets(): array {
  * WhatsApp business number (digits only) for consultatie follow-up.
  */
 function kc_consultation_whatsapp_number(): string {
-	$raw = (string) kc_get_option( 'sticky_cta_whatsapp_url', '' );
-	if ( preg_match( '/wa\.me\/(\d+)/', $raw, $matches ) ) {
-		return $matches[1];
-	}
-	return '31302415122';
+	return '31628096340';
 }
 
 /**
