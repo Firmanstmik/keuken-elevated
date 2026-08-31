@@ -180,16 +180,6 @@ $success_lede_tpl = (string) ( $success['lede'] ?? 'Dank u, {name}. Uw persoonli
 								</div>
 
 								<div class="consultation-field">
-									<label for="consultation-budget"><?php esc_html_e( 'Projectbudget', 'keuken-centrum' ); ?></label>
-									<select id="consultation-budget" class="consultation-select" name="budget" data-budget-select>
-										<option value=""><?php esc_html_e( 'Kies een budgetindicatie', 'keuken-centrum' ); ?></option>
-										<?php foreach ( $budgets as $budget ) : ?>
-											<option value="<?php echo esc_attr( (string) $budget ); ?>"><?php echo esc_html( (string) $budget ); ?></option>
-										<?php endforeach; ?>
-									</select>
-								</div>
-
-								<div class="consultation-field">
 									<label for="consultation-date"><?php esc_html_e( 'Gewenste datum', 'keuken-centrum' ); ?></label>
 									<input id="consultation-date" class="consultation-input" type="date" name="date">
 								</div>

@@ -36,18 +36,24 @@
 			const raw = window.localStorage.getItem(KEY);
 			if (!raw) return { ...emptyState, selections: {} };
 			const parsed = JSON.parse(raw);
-			return {
+			const state = {
 				...emptyState,
 				...parsed,
 				selections: parsed.selections && typeof parsed.selections === "object" ? parsed.selections : {},
+				budget: null,
 			};
+			if (parsed.budget) {
+				saveState(state);
+			}
+			return state;
 		} catch (_e) {
 			return { ...emptyState, selections: {} };
 		}
 	}
 
 	function saveState(state) {
-		window.localStorage.setItem(KEY, JSON.stringify(state));
+		const next = { ...state, budget: null };
+		window.localStorage.setItem(KEY, JSON.stringify(next));
 	}
 
 	function brandById(id) {
@@ -960,10 +966,17 @@
 		const merk = document.querySelector('[data-preview-detail="merk"]');
 		const stijl = document.querySelector('[data-preview-detail="stijl"]');
 		const parts = document.querySelector('[data-preview-detail="samengestelde onderdelen"]');
+		const review = document.querySelector('[data-preview-detail="google beoordeling"]');
 		if (merk) merk.textContent = brandName === "Uw" ? "Niet gekozen" : brandName;
 		if (stijl) stijl.textContent = styleName || "Niet gekozen";
 		const n = Object.keys(state.selections || {}).length;
 		if (parts) parts.textContent = n + " gekozen details";
+		if (review) {
+			const meta = (catalog.customerReviews || {});
+			const score = meta.score || "9,8";
+			const count = meta.count || "125";
+			review.textContent = score + " · " + count + " ervaringen";
+		}
 		const toggleTitle = document.querySelector(".consultation-proposal-toggle__title");
 		if (toggleTitle) toggleTitle.textContent = n + " keuzes controleren";
 		const materialsWrap = document.querySelector("[data-consultation-materials]");

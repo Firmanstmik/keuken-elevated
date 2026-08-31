@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowDown2, Calendar, Call, TickCircle, User } from "@zethictech/iconsax-react";
 import { SelectionPreview } from "@/components/configurator/SelectionPreview";
@@ -10,10 +10,11 @@ import { useConfigurator } from "@/context/configurator-context";
 import {
   masterBrands,
   masterCategories,
-  masterConsultationBudgets,
+  masterGoogleReviewMeta,
   masterShowrooms,
   masterStyles,
 } from "@/lib/master-config-data";
+import { submitConfiguratorConsultation } from "@/lib/configurator-submission";
 
 export const Route = createFileRoute("/consultation")({
   component: ConsultationPage,
@@ -24,22 +25,23 @@ type FormData = {
   email: string;
   phone: string;
   showroom: string;
-  budget: string;
   date: string;
   notes: string;
 };
 
 function ConsultationPage() {
   const { config } = useConfigurator();
+  const navigate = useNavigate();
   const [submitted, setSubmitted] = useState(false);
   const [attempted, setAttempted] = useState(false);
+  const [submissionPending, setSubmissionPending] = useState(false);
+  const [submissionError, setSubmissionError] = useState("");
   const [proposalOpen, setProposalOpen] = useState(false);
   const [form, setForm] = useState<FormData>({
     name: "",
     email: "",
     phone: "",
     showroom: "",
-    budget: config.budget ?? "",
     date: "",
     notes: "",
   });
@@ -74,10 +76,15 @@ function ConsultationPage() {
   const heroImage = selectedStyle?.image ?? selectedBrand?.image ?? "/consultation-showroom.webp";
 
   useEffect(() => {
-    if (config.budget && !form.budget) {
-      setForm((current) => ({ ...current, budget: config.budget ?? "" }));
+    if (!config.brand) {
+      navigate({ to: "/brands" });
+      return;
     }
-  }, [config.budget, form.budget]);
+    if (!config.style) {
+      navigate({ to: "/style" });
+      return;
+    }
+  }, [config.brand, config.style, navigate]);
 
   const emailIsValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email);
   const isValid = Boolean(form.name.trim() && emailIsValid && form.showroom);
@@ -192,7 +199,7 @@ function ConsultationPage() {
                       <SelectionPreview
                         overline="Stap 05 laatste controle"
                         title={`${config.brandName ?? "Uw"} keukenconsultatie`}
-                        description="Controleer uw merk, stijl, budget en geselecteerde materialen. Alles hieronder vormt de basis voor uw persoonlijke ontwerpgesprek."
+                        description="Controleer uw merk, stijl en geselecteerde materialen. Alles hieronder vormt de basis voor uw persoonlijke ontwerpgesprek."
                         image={selectedStyle?.image ?? selectedBrand?.image}
                         imageAlt="Laatste projectvoorvertoning"
                         accentColor={selectedBrand?.accentColor ?? "#B08D57"}
@@ -203,7 +210,10 @@ function ConsultationPage() {
                             label: "Samengestelde onderdelen",
                             value: `${configuredCount} gekozen details`,
                           },
-                          { label: "Budget", value: form.budget || "Kies uw budget" },
+                          {
+                            label: "Google beoordeling",
+                            value: `${masterGoogleReviewMeta.score} · ${masterGoogleReviewMeta.count} ervaringen`,
+                          },
                         ]}
                         selections={selectedMaterials}
                         footerNote="Met het formulier hieronder verstuurt u uw keukenvoorstel naar ons consultatieteam."
@@ -235,8 +245,22 @@ function ConsultationPage() {
                         onSubmit={(event) => {
                           event.preventDefault();
                           setAttempted(true);
-                          if (!isValid) return;
-                          setSubmitted(true);
+                          setSubmissionError("");
+                          if (!isValid || submissionPending) return;
+                          setSubmissionPending(true);
+                          void submitConfiguratorConsultation({
+                            ...form,
+                            config,
+                          })
+                            .then(() => setSubmitted(true))
+                            .catch((error: unknown) => {
+                              setSubmissionError(
+                                error instanceof Error
+                                  ? error.message
+                                  : "Uw aanvraag kon niet worden verzonden. Probeer het later opnieuw.",
+                              );
+                            })
+                            .finally(() => setSubmissionPending(false));
                         }}
                         noValidate
                         className="flex flex-col gap-4"
@@ -343,30 +367,6 @@ function ConsultationPage() {
 
                         <div>
                           <label
-                            htmlFor="consultation-budget"
-                            className="mb-1.5 block text-sm font-medium text-[#30342d]"
-                          >
-                            Projectbudget
-                          </label>
-                          <select
-                            id="consultation-budget"
-                            value={form.budget}
-                            onChange={(event) =>
-                              setForm((current) => ({ ...current, budget: event.target.value }))
-                            }
-                            className="flex h-12 w-full rounded-[16px] border border-input bg-white/82 px-4 py-2 text-[1rem] font-light leading-[1.7] text-[#111111] outline-none"
-                          >
-                            <option value="">Kies een budgetindicatie</option>
-                            {masterConsultationBudgets.map((budget) => (
-                              <option key={budget} value={budget}>
-                                {budget}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
-
-                        <div>
-                          <label
                             htmlFor="consultation-date"
                             className="mb-1.5 block text-sm font-medium text-[#30342d]"
                           >
@@ -400,17 +400,27 @@ function ConsultationPage() {
                         </div>
 
                         <div className="mt-2">
+                          {submissionError ? (
+                            <p
+                              className="mb-3 text-center text-[0.75rem] leading-[1.6] text-red-700"
+                              role="alert"
+                            >
+                              {submissionError}
+                            </p>
+                          ) : null}
                           <button
                             type="submit"
-                            disabled={!isValid}
+                            disabled={!isValid || submissionPending}
                             className="inline-flex min-h-14 w-full items-center justify-center rounded-[16px] border px-4 text-[0.8125rem] uppercase tracking-[0.15em] transition-colors duration-300 disabled:cursor-not-allowed"
                             style={{
-                              backgroundColor: isValid ? "#B08D57" : "rgba(0,0,0,0.1)",
-                              borderColor: isValid ? "#B08D57" : "rgba(0,0,0,0.1)",
-                              color: isValid ? "#F7F5F2" : "rgba(0,0,0,0.3)",
+                              backgroundColor:
+                                isValid && !submissionPending ? "#B08D57" : "rgba(0,0,0,0.1)",
+                              borderColor:
+                                isValid && !submissionPending ? "#B08D57" : "rgba(0,0,0,0.1)",
+                              color: isValid && !submissionPending ? "#F7F5F2" : "rgba(0,0,0,0.3)",
                             }}
                           >
-                            Consultatie plannen
+                            {submissionPending ? "Aanvraag verzenden..." : "Consultatie plannen"}
                           </button>
                         </div>
 

@@ -55,14 +55,14 @@ function kc_consultation_page_data(): array {
 		'preview' => [
 			'overline'    => kc_cms_text( 'kc_cons_preview_overline', $page_id, __( 'Stap 05 laatste controle', 'keuken-centrum' ) ),
 			'title'       => kc_cms_text( 'kc_cons_preview_title', $page_id, __( 'Uw keukenconsultatie', 'keuken-centrum' ) ),
-			'description' => kc_cms_text( 'kc_cons_preview_desc', $page_id, __( 'Controleer uw merk, stijl, budget en geselecteerde materialen. Alles hieronder vormt de basis voor uw persoonlijke ontwerpgesprek.', 'keuken-centrum' ) ),
+			'description' => kc_cms_text( 'kc_cons_preview_desc', $page_id, __( 'Controleer uw merk, stijl en geselecteerde materialen. Alles hieronder vormt de basis voor uw persoonlijke ontwerpgesprek.', 'keuken-centrum' ) ),
 			'image'       => $hero_image,
 			'footerNote'  => kc_cms_text( 'kc_cons_preview_footer', $page_id, __( 'Met het formulier hieronder verstuurt u uw keukenvoorstel naar ons consultatieteam.', 'keuken-centrum' ) ),
 			'details'     => [
 				[ 'label' => __( 'Merk', 'keuken-centrum' ), 'value' => __( 'Niet gekozen', 'keuken-centrum' ) ],
 				[ 'label' => __( 'Stijl', 'keuken-centrum' ), 'value' => __( 'Niet gekozen', 'keuken-centrum' ) ],
 				[ 'label' => __( 'Samengestelde onderdelen', 'keuken-centrum' ), 'value' => __( '0 gekozen details', 'keuken-centrum' ) ],
-				[ 'label' => __( 'Budget', 'keuken-centrum' ), 'value' => __( 'Kies uw budget', 'keuken-centrum' ) ],
+				[ 'label' => __( 'Google beoordeling', 'keuken-centrum' ), 'value' => __( '9,8 · 125 ervaringen', 'keuken-centrum' ) ],
 			],
 		],
 		'form' => [

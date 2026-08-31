@@ -71,9 +71,6 @@ function kc_consultation_format_config_summary( array $config ): string {
 	$lines   = [];
 	$lines[] = 'Merk: ' . ( $config['brandName'] ?: ( $config['brand'] ?: 'niet gekozen' ) );
 	$lines[] = 'Stijl: ' . ( $config['styleName'] ?: ( $config['style'] ?: 'niet gekozen' ) );
-	if ( ! empty( $config['budget'] ) ) {
-		$lines[] = 'Budget: ' . (string) $config['budget'];
-	}
 
 	foreach ( (array) ( $config['selections'] ?? [] ) as $cat_id => $sel ) {
 		if ( ! is_array( $sel ) ) {

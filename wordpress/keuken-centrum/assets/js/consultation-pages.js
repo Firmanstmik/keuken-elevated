@@ -8,8 +8,6 @@
 	const submitBtn = page.querySelector("[data-consultation-submit]");
 	const toggle = page.querySelector("[data-proposal-toggle]");
 	const proposal = page.querySelector("[data-proposal-panel]");
-	const budgetSelect = page.querySelector("[data-budget-select]");
-	const budgetDetail = page.querySelector('[data-preview-detail="budget"]');
 	const hero = page.querySelector("[data-consultation-hero]");
 
 	const nameEl = form?.querySelector('[name="name"]');
@@ -58,7 +56,6 @@
 		if (formData.phone) parts.push("Telefoon: " + formData.phone);
 		parts.push("Showroom: " + formData.showroom);
 		if (formData.date) parts.push("Gewenste datum: " + formData.date);
-		if (formData.budget) parts.push("Projectbudget: " + formData.budget);
 		parts.push("", "Mijn keukenconfiguratie:");
 		if (state.brandName || state.brand) {
 			parts.push("Merk: " + (state.brandName || state.brand));
@@ -117,9 +114,6 @@
 		syncSubmit();
 	});
 	form?.addEventListener("change", () => {
-		if (budgetSelect && budgetDetail) {
-			budgetDetail.textContent = budgetSelect.value || "Kies uw budget";
-		}
 		if (attempted) showErrors();
 		syncSubmit();
 	});
@@ -149,7 +143,6 @@
 			email: (emailEl?.value || "").trim(),
 			phone: (phoneEl?.value || "").trim(),
 			showroom: showroomEl?.value || "",
-			budget: budgetSelect?.value || "",
 			date: dateEl?.value || "",
 			notes: (notesEl?.value || "").trim(),
 		};
@@ -164,7 +157,6 @@
 		payload.append("email", formData.email);
 		payload.append("phone", formData.phone);
 		payload.append("showroom", formData.showroom);
-		payload.append("budget", formData.budget);
 		payload.append("date", formData.date);
 		payload.append("notes", formData.notes);
 		payload.append("company_website", form.querySelector('[name="company_website"]')?.value || "");
