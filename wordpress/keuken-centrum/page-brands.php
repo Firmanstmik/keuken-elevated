@@ -28,14 +28,23 @@ $catalog = kc_configurator_catalog();
 				<p class="kc-cfg-subtitle"><?php esc_html_e( 'Selecteer de Europese keukenfabrikant die past bij uw visie. Elk merk brengt een eigen ontwerpfilosofie en erfgoed mee.', 'keuken-centrum' ); ?></p>
 			</header>
 			<div class="kc-cfg-brand-grid">
-				<?php foreach ( $catalog['brands'] as $brand ) : ?>
+				<?php foreach ( $catalog['brands'] as $brand_index => $brand ) : ?>
 					<button
 						type="button"
 						class="kc-cfg-card"
 						data-cfg-brand="<?php echo esc_attr( (string) $brand['id'] ); ?>"
 						data-cfg-name="<?php echo esc_attr( (string) $brand['name'] ); ?>"
 					>
-						<span class="kc-cfg-card__media" style="background-image:url('<?php echo esc_url( (string) $brand['image'] ); ?>')"></span>
+						<img
+							class="kc-cfg-card__img"
+							src="<?php echo esc_url( (string) $brand['image'] ); ?>"
+							alt="<?php echo esc_attr( (string) $brand['name'] ); ?>"
+							width="960"
+							height="524"
+							loading="<?php echo 0 === (int) $brand_index ? 'eager' : 'lazy'; ?>"
+							decoding="async"
+							<?php echo 0 === (int) $brand_index ? 'fetchpriority="high"' : ''; ?>
+						>
 						<span class="kc-cfg-card__scrim"></span>
 						<?php if ( ! empty( $brand['logo'] ) ) : ?>
 							<img class="kc-cfg-card__logo" src="<?php echo esc_url( (string) $brand['logo'] ); ?>" alt="<?php echo esc_attr( (string) $brand['name'] . ' logo' ); ?>" width="92" height="28">

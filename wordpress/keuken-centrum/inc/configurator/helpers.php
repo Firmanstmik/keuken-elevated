@@ -192,12 +192,37 @@ function kc_configurator_critical_interaction_css(): void {
 @media (min-width:768px){.kc-configurator-route .configurator-mobile-header,.kc-configurator-route .kc-cfg-mobile-header,.kc-configurator-route .kc-cfg-mobile-only{display:none!important}}
 .kc-cfg-action{pointer-events:none!important}.kc-cfg-action[hidden]{display:none!important;pointer-events:none!important}
 .kc-cfg-action__mobile,.kc-cfg-action__desktop{pointer-events:none!important}.kc-cfg-action button{pointer-events:auto}
-.kc-cfg-card__media,.kc-cfg-card__scrim,.kc-cfg-card__logo,.kc-cfg-card__meta,.kc-cfg-card__check{pointer-events:none}
+.kc-cfg-card__media,.kc-cfg-card__img,.kc-cfg-card__scrim,.kc-cfg-card__logo,.kc-cfg-card__meta,.kc-cfg-card__check{pointer-events:none}
 .kc-cfg-card__check[hidden]{display:none!important}
 </style>
 	<?php
 }
 add_action( 'wp_head', 'kc_configurator_critical_interaction_css', 100 );
+
+/**
+ * Preload the first configurator card image on funnel steps (LCP).
+ */
+function kc_configurator_preload_card_image(): void {
+	if ( ! kc_is_configurator_route() ) {
+		return;
+	}
+	$catalog = kc_configurator_catalog();
+	$step    = kc_configurator_current_step();
+	$url     = '';
+	if ( 'brands' === $step && ! empty( $catalog['brands'][0]['image'] ) ) {
+		$url = (string) $catalog['brands'][0]['image'];
+	} elseif ( 'style' === $step && ! empty( $catalog['styles'][0]['image'] ) ) {
+		$url = (string) $catalog['styles'][0]['image'];
+	}
+	if ( '' === $url ) {
+		return;
+	}
+	printf(
+		'<link rel="preload" as="image" href="%s" type="image/webp" fetchpriority="high" />' . "\n",
+		esc_url( $url )
+	);
+}
+add_action( 'wp_head', 'kc_configurator_preload_card_image', 5 );
 
 /**
  * Inline config payload before funnel JS — LiteSpeed delays wp_localize_script output.

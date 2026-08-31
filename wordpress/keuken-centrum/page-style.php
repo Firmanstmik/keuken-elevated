@@ -28,14 +28,23 @@ $catalog = kc_configurator_catalog();
 				<p class="kc-cfg-subtitle"><?php esc_html_e( 'Bepaal de architectonische taal van uw keuken. Elke stijl biedt een eigen sfeer en beleving.', 'keuken-centrum' ); ?></p>
 			</header>
 			<div class="kc-cfg-style-grid">
-				<?php foreach ( $catalog['styles'] as $style ) : ?>
+				<?php foreach ( $catalog['styles'] as $style_index => $style ) : ?>
 					<button
 						type="button"
 						class="kc-cfg-card"
 						data-cfg-style="<?php echo esc_attr( (string) $style['id'] ); ?>"
 						data-cfg-name="<?php echo esc_attr( (string) $style['name'] ); ?>"
 					>
-						<span class="kc-cfg-card__media" style="background-image:url('<?php echo esc_url( (string) $style['image'] ); ?>')"></span>
+						<img
+							class="kc-cfg-card__img"
+							src="<?php echo esc_url( (string) $style['image'] ); ?>"
+							alt="<?php echo esc_attr( (string) $style['name'] ); ?>"
+							width="960"
+							height="524"
+							loading="<?php echo 0 === (int) $style_index ? 'eager' : 'lazy'; ?>"
+							decoding="async"
+							<?php echo 0 === (int) $style_index ? 'fetchpriority="high"' : ''; ?>
+						>
 						<span class="kc-cfg-card__scrim"></span>
 						<span class="kc-cfg-card__check" hidden aria-hidden="true">✓</span>
 						<span class="kc-cfg-card__meta">

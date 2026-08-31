@@ -26,8 +26,13 @@
 	background: #f7f5f2;
 }
 
+/* React configurator: fixed header offset is handled once in .kc-cfg-section only. */
+.kc-configurator-route .site-main--configurator {
+	padding-top: 0;
+}
+
 .kc-cfg-section {
-	/* Match React brands: pt-24 / pb-36 when action bar can appear */
+	/* Match React: pt-24 pb-36 mobile, pt-36 desktop (FlowNav / fixed Nav). */
 	padding: 6rem 0 9rem;
 }
 
@@ -156,6 +161,7 @@
 }
 
 .kc-cfg-card__media,
+.kc-cfg-card__img,
 .kc-cfg-card__scrim,
 .kc-cfg-card__logo,
 .kc-cfg-card__meta,
@@ -164,6 +170,7 @@
 }
 
 .kc-cfg-card__media,
+.kc-cfg-card__img,
 .kc-cfg-card__scrim {
 	position: absolute;
 	inset: 0;
@@ -175,8 +182,24 @@
 	transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.kc-cfg-card:hover .kc-cfg-card__media {
+.kc-cfg-card__img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+	filter: brightness(0.92);
+	transition:
+		transform 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+		filter 0.4s ease;
+}
+
+.kc-cfg-card:hover .kc-cfg-card__media,
+.kc-cfg-card:hover .kc-cfg-card__img {
 	transform: scale(1.06);
+}
+
+.kc-cfg-card:hover .kc-cfg-card__img {
+	filter: brightness(0.82);
 }
 
 .kc-cfg-card__scrim {
