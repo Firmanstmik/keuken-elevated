@@ -66,7 +66,7 @@ $intro  = $data['intro'] ?? [];
 				</h1>
 				<p class="brand-page-hero__lede" data-hero-stagger><?php echo esc_html((string) ($hero['subtitle'] ?? '')); ?></p>
 				<div class="brand-page-hero__actions" data-hero-stagger>
-					<a class="premium-pill-button premium-pill-button--lg" href="<?php echo esc_url((string) ($hero['cta']['primaryHref'] ?? home_url('/consultation/'))); ?>">
+					<a class="premium-pill-button premium-pill-button--blue premium-pill-button--lg" href="<?php echo esc_url((string) ($hero['cta']['primaryHref'] ?? home_url('/consultation/'))); ?>">
 						<span class="premium-pill-button__label"><?php echo esc_html((string) ($hero['cta']['primary'] ?? '')); ?></span>
 						<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
 					</a>
@@ -381,7 +381,7 @@ $intro  = $data['intro'] ?? [];
 					</h2>
 					<p class="keukens-body-copy keukens-body-copy--light"><?php echo esc_html((string) ($custom['body'] ?? '')); ?></p>
 					<p class="keukens-body-copy keukens-body-copy--muted"><?php echo esc_html((string) ($custom['secondary'] ?? '')); ?></p>
-					<a class="premium-pill-button premium-pill-button--lg" href="<?php echo esc_url(home_url('/configure/')); ?>">
+					<a class="premium-pill-button premium-pill-button--blue premium-pill-button--lg" href="<?php echo esc_url(home_url('/configure/')); ?>">
 						<span class="premium-pill-button__label"><?php esc_html_e('Start uw ontwerp', 'keuken-centrum'); ?></span>
 						<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
 					</a>
@@ -503,7 +503,7 @@ $intro  = $data['intro'] ?? [];
 						</p>
 					</div>
 					<div class="brand-showroom-cta__action">
-						<a class="premium-pill-button premium-pill-button--xl" href="<?php echo esc_url((string) ($cta['href'] ?? home_url('/consultation/'))); ?>" data-reveal>
+						<a class="premium-pill-button premium-pill-button--blue premium-pill-button--xl" href="<?php echo esc_url((string) ($cta['href'] ?? home_url('/consultation/'))); ?>" data-reveal>
 							<span class="premium-pill-button__label"><?php echo esc_html((string) ($cta['button'] ?? '')); ?></span>
 							<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
 						</a>

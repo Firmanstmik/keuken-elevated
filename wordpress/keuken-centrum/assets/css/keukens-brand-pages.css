@@ -143,8 +143,25 @@ html:has(body.kc-keukens-route) {
 }
 .brand-page-hero__actions { margin-top: 2.75rem; display: flex; flex-wrap: wrap; gap: 1rem; }
 .brand-page-hero__badge-strip-wrap { margin-top: 3.5rem; }
+
+/* React PremiumPillButton default variant is blue; WP templates often omit --blue on primary CTAs. */
+.brand-page .premium-pill-button:not(.premium-pill-button--ghost):not(.premium-pill-button--ghost-light) {
+  background: linear-gradient(135deg, #a8d95a 0%, #8bc540 52%, #689a2e 100%);
+  color: #ffffff;
+  box-shadow: 0 10px 24px -14px rgb(139 197 64 / 0.42);
+}
+.brand-page .premium-pill-button:not(.premium-pill-button--ghost):not(.premium-pill-button--ghost-light):hover:not(:disabled) {
+  background: linear-gradient(135deg, #b8e06a 0%, #9ccd4a 52%, #8bc540 100%);
+  box-shadow: 0 14px 32px -12px rgb(139 197 64 / 0.5);
+}
+
 .brand-page-hero__actions .premium-pill-button--ghost {
   border-color: rgba(255,255,255,0.22); color: #fff; background: rgba(255,255,255,0.06);
+}
+.brand-page-hero__actions .premium-pill-button--ghost:hover:not(:disabled) {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.32);
+  color: #fff;
 }
 .brand-page-hero__scroll {
   position: absolute; bottom: 2rem; right: 2rem; z-index: 2; display: none;
