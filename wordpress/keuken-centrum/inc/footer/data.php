@@ -180,7 +180,7 @@ function kc_footer_data(): array {
 		],
 		'nav_groups'       => $nav_groups,
 		'mobile_groups'    => $mobile_groups,
-		'showroom_image'   => kc_theme_img( 'showroom.jpg' ),
+		'showroom_image'   => kc_theme_img( 'showroom-elegant-samenspel.jpg' ) ?: kc_theme_img( 'showroom.jpg' ),
 		'showroom_label'   => (string) kc_get_option( 'footer_showroom_label', __( 'Premium showroom', 'keuken-centrum' ) ),
 		'showroom_title'   => (string) kc_get_option( 'footer_showroom_title', __( 'Keuken Centrum Utrecht', 'keuken-centrum' ) ),
 		'showroom_caption' => (string) kc_get_option( 'footer_showroom_caption', $address . ', Utrecht' ),
@@ -190,7 +190,7 @@ function kc_footer_data(): array {
 			[ __( 'Cookiebeleid', 'keuken-centrum' ), home_url( '/cookiebeleid/' ) ],
 			[ __( 'Algemene Voorwaarden', 'keuken-centrum' ), home_url( '/algemene-voorwaarden/' ) ],
 		],
-		'logo'             => kc_theme_img( 'logo-keuken-1-1.webp' ) ?: kc_theme_img( 'logo-keuken.webp' ),
+		'logo'             => kc_theme_img( 'logo-keuken-centrum-footer.png' ) ?: kc_theme_img( 'logo-keuken-1-1.webp' ) ?: kc_theme_img( 'logo-keuken.webp' ),
 	];
 }
 

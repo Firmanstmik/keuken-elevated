@@ -12,7 +12,7 @@ import { SectionChapter } from "@/components/site/SectionChapter";
 import collectionMinimal from "@/assets/collection-minimal.jpg";
 import collectionModern from "@/assets/collection-modern.jpg";
 import collectionWarm from "@/assets/collection-warm.jpg";
-import showroomImage from "@/assets/showroom.jpg";
+import showroomImage from "@/assets/showroom-elegant-samenspel.jpg";
 import heroKitchen from "@/assets/hero-kitchen.jpg";
 
 // ─── Data ────────────────────────────────────────────────────────────────────

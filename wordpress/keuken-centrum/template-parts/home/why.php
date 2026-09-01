@@ -81,7 +81,8 @@ $concrete       = kc_theme_img('mat-concrete.jpg');
 $consultation   = kc_get_option('consultation_cta_url', home_url('/consultation/'));
 $reviews_count  = kc_get_option('google_reviews_count', '150');
 $founded_year   = kc_get_option('founded_year', '1978');
-$cbw_logo       = kc_theme_img( 'cbw.svg' ) ?: kc_theme_img( 'cbw.webp' );
+$cbw_logo       = kc_theme_img( 'cbw-erkend.png' ) ?: kc_theme_img( 'cbw.svg' ) ?: kc_theme_img( 'cbw.webp' );
+$keukenspecialist_logo = kc_theme_img( 'keukenspecialist.png' );
 ?>
 <section class="why-scene why-scene--react section-shell" id="why-with-us"<?php echo $concrete ? ' style="--why-concrete:url(' . esc_url($concrete) . ')"' : ''; ?> data-why-pillars>
 	<div class="site-shell why-scene__inner">
@@ -162,6 +163,9 @@ $cbw_logo       = kc_theme_img( 'cbw.svg' ) ?: kc_theme_img( 'cbw.webp' );
 					</a>
 
 					<div class="why-scene__proofs" aria-label="<?php esc_attr_e('Vertrouwenssignalen', 'keuken-centrum'); ?>">
+						<?php if ( $keukenspecialist_logo ) : ?>
+							<img class="why-scene__keukenspecialist" src="<?php echo esc_url( $keukenspecialist_logo ); ?>" alt="<?php esc_attr_e( 'Keukenspecialist.nl keurmerk', 'keuken-centrum' ); ?>" loading="lazy" width="120" height="36" />
+						<?php endif; ?>
 						<img class="why-scene__cbw" src="<?php echo esc_url($cbw_logo); ?>" alt="<?php esc_attr_e('CBW erkend', 'keuken-centrum'); ?>" loading="lazy" width="120" height="36" />
 						<span class="why-scene__proof-divider" aria-hidden="true"></span>
 						<p class="why-scene__proof">

@@ -2549,6 +2549,30 @@ body.admin-bar .site-header {
 	margin-top: 1.25rem;
 }
 
+.home-hero__certs {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 1rem;
+	margin-top: 1rem;
+}
+
+.home-hero__cert {
+	display: block;
+	height: 2rem;
+	width: auto;
+}
+
+.home-hero__cert--cbw {
+	opacity: 0.92;
+}
+
+.why-scene__keukenspecialist {
+	display: block;
+	height: 2.25rem;
+	width: auto;
+}
+
 .home-hero__partner-chip {
 	display: inline-flex;
 	align-items: center;

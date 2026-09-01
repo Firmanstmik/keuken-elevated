@@ -117,6 +117,8 @@ $thumbs = array_filter(
 $first_brand = $slides[0]['brand'] ?? 'LEICHT';
 $first_soft  = $slides[0]['soft'] ?? 'rgba(198,163,107,0.18)';
 $first_dot   = $slides[0]['dot'] ?? '#c8a96b';
+$hero_keukenspecialist = kc_theme_img( 'keukenspecialist.png' );
+$hero_cbw              = kc_theme_img( 'cbw-erkend.png' ) ?: kc_theme_img( 'cbw.svg' );
 ?>
 <section class="home-hero" id="top" data-home-hero>
 	<div class="home-hero__media" aria-hidden="true">
@@ -192,6 +194,17 @@ $first_dot   = $slides[0]['dot'] ?? '#c8a96b';
 								<?php endforeach; ?>
 							</div>
 						</div>
+					</div>
+				<?php endif; ?>
+
+				<?php if ( $hero_keukenspecialist || $hero_cbw ) : ?>
+					<div class="home-hero__certs home-hero__reveal" data-hero-reveal="6" aria-label="<?php esc_attr_e( 'Keurmerken', 'keuken-centrum' ); ?>">
+						<?php if ( $hero_keukenspecialist ) : ?>
+							<img class="home-hero__cert" src="<?php echo esc_url( $hero_keukenspecialist ); ?>" alt="<?php esc_attr_e( 'Keukenspecialist.nl keurmerk', 'keuken-centrum' ); ?>" loading="lazy" decoding="async" width="140" height="32" />
+						<?php endif; ?>
+						<?php if ( $hero_cbw ) : ?>
+							<img class="home-hero__cert home-hero__cert--cbw" src="<?php echo esc_url( $hero_cbw ); ?>" alt="<?php esc_attr_e( 'CBW erkend keurmerk', 'keuken-centrum' ); ?>" loading="lazy" decoding="async" width="140" height="32" />
+						<?php endif; ?>
 					</div>
 				<?php endif; ?>
 			</div>

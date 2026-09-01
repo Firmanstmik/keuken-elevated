@@ -2,7 +2,7 @@ import { useLocation } from "@tanstack/react-router";
 import { ArrowLeft2, CloseCircle } from "@zethictech/iconsax-react";
 import type { CSSProperties } from "react";
 import { Nav } from "@/components/site/Nav";
-import logoKeuken from "@/assets/logo-keuken-1-1.webp";
+import logoKeuken from "@/assets/logo-keuken-centrum-transparent.png";
 import { configuratorSteps, getConfiguratorStep } from "@/lib/configurator-steps";
 
 export function FlowNav() {

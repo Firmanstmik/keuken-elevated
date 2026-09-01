@@ -14,7 +14,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { PremiumPillButton } from "@/components/ui/premium-pill-button";
 import { fadeUp, motionEase, motionViewport } from "@/lib/motion";
 import { kc } from "@/lib/kc-data";
-import showroomImg from "@/assets/showroom.jpg";
+import showroomImg from "@/assets/showroom-elegant-samenspel.jpg";
 import { KitchenEyebrow as Eyebrow } from "@/components/site/KitchenEyebrow";
 
 const luxuryEase = motionEase.premium;

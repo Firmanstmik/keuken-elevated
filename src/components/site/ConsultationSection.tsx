@@ -25,7 +25,7 @@ import collectionScandi from "@/assets/collection-scandi.jpg";
 import collectionWarm from "@/assets/collection-warm.jpg";
 import heroKitchen from "@/assets/hero-kitchen.jpg";
 import craftsmanship from "@/assets/craftsmanship.jpg";
-import showroomAsset from "@/assets/showroom.jpg";
+import showroomAsset from "@/assets/showroom-elegant-samenspel.jpg";
 import matMarble from "@/assets/mat-marble.jpg";
 import matConcrete from "@/assets/mat-concrete.jpg";
 

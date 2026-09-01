@@ -22,6 +22,7 @@ import {
   ArrowDown2 as ChevronDown,
 } from "@zethictech/iconsax-react";
 import { motionDuration, motionEase } from "@/lib/motion";
+import { kc } from "@/lib/kc-data";
 import heroImg1 from "@/assets/hero_img1.webp";
 import heroImg2 from "@/assets/hero_img2.webp";
 import heroImg3 from "@/assets/hero_img3.webp";
@@ -153,6 +154,33 @@ function HeroPartnerBadge({
           ))}
         </div>
       </div>
+    </motion.div>
+  );
+}
+
+function HeroTrustCerts({ reduceMotion }: { reduceMotion: boolean | null }) {
+  return (
+    <motion.div
+      initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: motionDuration.premium, ease: motionEase.premium, delay: 0.9 }}
+      className="home-hero__certs mt-4 flex flex-wrap items-center gap-4"
+      aria-label="Keurmerken"
+    >
+      <img
+        src={kc.keukenspecialistLogo}
+        alt="Keukenspecialist.nl keurmerk"
+        className="home-hero__cert h-8 w-auto"
+        loading="lazy"
+        decoding="async"
+      />
+      <img
+        src={kc.cbwLogo}
+        alt="CBW erkend keurmerk"
+        className="home-hero__cert h-8 w-auto opacity-90"
+        loading="lazy"
+        decoding="async"
+      />
     </motion.div>
   );
 }
@@ -628,6 +656,8 @@ export function Hero() {
               onSelect={setActiveIndex}
               reduceMotion={reduceMotion}
             />
+
+            <HeroTrustCerts reduceMotion={reduceMotion} />
           </motion.div>
 
           <div className="relative hidden min-h-[24rem] items-center justify-end lg:flex">

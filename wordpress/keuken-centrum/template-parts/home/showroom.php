@@ -5,7 +5,7 @@
  * @package Keuken_Centrum
  */
 
-$poster       = kc_theme_img('showroom.jpg');
+$poster       = kc_theme_img('showroom-elegant-samenspel.jpg') ?: kc_theme_img('showroom.jpg');
 $concrete     = kc_theme_img('mat-concrete.jpg');
 $showroom_url = home_url('/showroom-keukens/');
 $showcase     = function_exists( 'kc_home_showcase_data' ) ? kc_home_showcase_data() : null;

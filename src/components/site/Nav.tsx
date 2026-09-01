@@ -36,11 +36,10 @@ import {
 } from "@zethictech/iconsax-react";
 import { ChevronDown, ArrowRight } from "@/components/ui/icons";
 import { kc } from "@/lib/kc-data";
-import logoKeuken from "@/assets/logo-keuken-1-1.webp";
 import { motionDuration, motionEase } from "@/lib/motion";
 
 // Import featured cover images
-import showroomImg from "@/assets/showroom.jpg";
+import showroomImg from "@/assets/showroom-elegant-samenspel.jpg";
 import marmerImg from "@/assets/marmer-img.webp";
 import boraImg from "@/assets/Bora-img.webp";
 import aiKuchenHero from "@/assets/brands/aikuchen-hero.webp";
@@ -718,7 +717,7 @@ export function Nav() {
               className="flex shrink-0 items-center"
             >
               <img
-                src={logoKeuken}
+                src={kc.headerLogo}
                 alt="KeukenCentrum.nl"
                 className={`nav-logo w-auto transition-all duration-300 ${elevated ? "h-7 md:h-8" : "h-8 md:h-9"}`}
                 width={280}
@@ -1323,7 +1322,7 @@ export function Nav() {
                 <div className="sticky top-0 z-20 flex items-center justify-between border-b border-black/[0.05] bg-[rgba(247,245,242,0.94)] px-5 pb-4 pt-[calc(env(safe-area-inset-top)+1rem)] backdrop-blur-xl">
                   <a href="/" className="flex items-center" onClick={() => setOpen(false)}>
                     <img
-                      src={logoKeuken}
+                      src={kc.headerLogo}
                       alt="KeukenCentrum.nl"
                       className="h-9 w-auto"
                       width={280}

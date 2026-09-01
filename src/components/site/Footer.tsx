@@ -14,8 +14,7 @@ import { KitchenEyebrow } from "@/components/site/KitchenEyebrow";
 import { ArrowRight } from "@/components/ui/icons";
 import { kc } from "@/lib/kc-data";
 import { motionViewport } from "@/lib/motion";
-import logoKeuken from "@/assets/logo-keuken-1-1.webp";
-import showroomImg from "@/assets/showroom.jpg";
+import showroomImg from "@/assets/showroom-elegant-samenspel.jpg";
 
 // Correct showroom location URL (derived from Maps embed coordinates)
 const SHOWROOM_MAPS_URL =
@@ -430,7 +429,7 @@ export function Footer() {
         {/* Mobile footer: compact, touch-first accordions */}
         <div className="py-10 md:hidden">
           <img
-            src={logoKeuken as unknown as string}
+            src={kc.footerLogo as unknown as string}
             alt="KeukenCentrum.nl"
             className="h-auto w-[min(14rem,78vw)]"
             width={280}
@@ -510,7 +509,7 @@ export function Footer() {
           <motion.div variants={reduceMotion ? undefined : fadeUp}>
             {/* Logo */}
             <img
-              src={logoKeuken as unknown as string}
+              src={kc.footerLogo as unknown as string}
               alt="KeukenCentrum.nl"
               className="mb-4 h-auto w-[min(16rem,100%)]"
               width={280}

@@ -1,5 +1,15 @@
 // Real data extracted from https://keuken-centrum.nl
-// All imagery hosted on keuken-centrum.nl/wp-content/uploads/
+// Imagery: prefer bundled local assets (remote uploads host now 404s).
+
+import cbwLogo from "@/assets/cbw-erkend.png";
+import keukenspecialistLogo from "@/assets/keukenspecialist.png";
+import headerLogo from "@/assets/logo-keuken-centrum-transparent.png";
+import footerLogo from "@/assets/logo-keuken-centrum-footer.png";
+import showroomElegant from "@/assets/showroom-elegant-samenspel.jpg";
+import collectionModern from "@/assets/collections-modern.webp";
+import collectionKlassiek from "@/assets/collections-klassiek.webp";
+import collectionLandelijk from "@/assets/collections-landelijk.webp";
+import collectionIndustrieel from "@/assets/collections-industrieel.webp";
 
 const wp = "https://keuken-centrum.nl/wp-content/uploads";
 
@@ -7,8 +17,11 @@ export const kc = {
   brandName: "Keuken-Centrum Utrecht",
   tagline: "De weg naar uw Droomkeuken",
   founded: 1978,
-  logo: `${wp}/2018/03/ks-logo-300x121.webp`,
-  cbwLogo: `${wp}/cbw.webp`,
+  headerLogo,
+  footerLogo,
+  keukenspecialistLogo,
+  logo: headerLogo,
+  cbwLogo,
 
   contact: {
     address: "Zonnebaan 8",
@@ -32,7 +45,7 @@ export const kc = {
     alt4: `${wp}/IMG_0642-1024x768.webp`,
   },
 
-  showroomImg: `${wp}/WhatsApp-Image-2023-09-20-at-13.53.26-1024x768.webp`,
+  showroomImg: showroomElegant,
   aanbiedingenImg: `${wp}/keukenshowroom-aanbiedingen-1.webp`,
   aanbiedingen2: `${wp}/keukens-uit-showroom-beste-prijs-.webp`,
   boraImg: `${wp}/Schermafbeelding-2021-05-17-om-22.15.38.webp`,
@@ -77,28 +90,28 @@ export const kc = {
       n: "I",
       t: "Modern",
       d: "Rustige lijnen, greeploze fronten en een eigentijdse uitstraling.",
-      img: `${wp}/IMG_0654-LEICHT-JAPANDI-scaled.webp`,
+      img: collectionModern,
     },
     {
       id: "klassiek",
       n: "II",
       t: "Klassiek",
       d: "Traditionele details en symmetrie gecombineerd met moderne luxe en comfort.",
-      img: `${wp}/IMG_0642-1024x768.webp`,
+      img: collectionKlassiek,
     },
     {
       id: "landelijk",
       n: "III",
       t: "Landelijk",
       d: "Natuurlijke materialen en ambachtelijke afwerking voor een uitnodigende sfeer.",
-      img: `${wp}/WhatsApp-Image-2023-09-20-at-13.53.27.webp`,
+      img: collectionLandelijk,
     },
     {
       id: "industrieel",
       n: "IV",
       t: "Industrieel",
       d: "Donkere elementen, ruwe materialen en krachtige contrasten in harmonie.",
-      img: `${wp}/WhatsApp-Image-2023-09-20-at-13.53.25.webp`,
+      img: collectionIndustrieel,
     },
   ],
 

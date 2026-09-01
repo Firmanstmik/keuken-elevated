@@ -24,7 +24,7 @@ foreach ( (array) ( $catalog['styles'] ?? [] ) as $style_row ) {
 		break;
 	}
 }
-$logo = kc_theme_img( 'logo-keuken-1-1.webp' ) ?: kc_theme_img( 'logo-keuken.webp' );
+$logo = kc_theme_img( 'logo-keuken-centrum-transparent.png' ) ?: kc_theme_img( 'logo-keuken-1-1.webp' ) ?: kc_theme_img( 'logo-keuken.webp' );
 $total_cats = count( (array) ( $catalog['categories'] ?? [] ) );
 ?>
 <main id="main-content" class="site-main site-main--configurator site-main--configure" data-cfg-step="configure">
