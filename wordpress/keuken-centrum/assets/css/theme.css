@@ -4831,7 +4831,7 @@ body.admin-bar .site-header {
 	box-shadow:0 8px 24px rgba(0,0,0,.28);backdrop-filter:blur(12px)
 }
 .journey-premium-badge__dot{width:.375rem;height:.375rem;border-radius:999px;background:#8bc540;box-shadow:0 0 8px rgba(139,197,64,.8)}
-.journey-mobile-intro{display:block;margin-bottom:.75rem}
+.journey-mobile-intro{display:block;margin-bottom:.75rem;padding-inline:.125rem}
 .journey-mobile-intro__eyebrow{margin:0;font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(200,169,107,.9)}
 .journey-mobile-intro__title{margin:.5rem 0 0;max-width:18rem;font-family:var(--font-display);font-size:1.45rem;font-weight:400;line-height:1.18;letter-spacing:-.02em;color:#f5f2ec}
 .journey-mobile-chip{position:absolute;left:.75rem;top:.75rem;z-index:20;display:inline-flex;align-items:center;gap:.375rem;padding:.25rem .625rem;border:1px solid rgba(255,255,255,.1);border-radius:999px;background:rgba(0,0,0,.45);color:#d8be87;font-size:.55rem;font-weight:500;letter-spacing:.08em;backdrop-filter:blur(12px)}
@@ -4839,7 +4839,8 @@ body.admin-bar .site-header {
 .journey-mobile-outro{display:block;margin-top:1rem}
 .journey-mobile-outro>p{margin:0 0 .75rem;font-size:.84rem;font-weight:300;line-height:1.55;color:rgba(245,242,236,.68)}
 .journey-premium-copy--desktop{display:none}
-.journey-premium-badge--desktop{display:none}
+.journey-config-scene--react .journey-premium-badge--desktop,
+.journey-config-scene--react .journey-config-stage__badge.journey-premium-badge--desktop{display:none}
 .journey-premium-mockup-shell{
 	position:relative;padding:1px;border-radius:30px;
 	background:linear-gradient(135deg,rgba(200,169,107,.45),rgba(139,197,64,.12),rgba(200,169,107,.22));
@@ -5057,7 +5058,8 @@ body.admin-bar .site-header {
 	.journey-premium-grid .journey-premium-stage{order:1}
 	.journey-mobile-intro,.journey-mobile-outro,.journey-mobile-chip{display:none}
 	.journey-premium-copy--desktop{display:block}
-	.journey-premium-badge--desktop{display:inline-flex}
+	.journey-config-scene--react .journey-premium-badge--desktop,
+	.journey-config-scene--react .journey-config-stage__badge.journey-premium-badge--desktop{display:inline-flex}
 	.journey-config-scene--react .journey-config-copy{margin-top:0;padding-left:2.5rem}
 	.journey-config-scene.journey-config-scene--react .journey-config-copy h2.journey-config-copy__title{margin-top:1.5rem}
 	.journey-config-scene--react .journey-config-copy__lede{margin-top:1.5rem}
