@@ -5087,14 +5087,15 @@ body.admin-bar .site-header {
 }
 
 @media (max-width:1023px){
-	.journey-configure-mobile{display:flex;flex-direction:column;width:calc(100% - .5rem);max-width:28rem;margin:0 auto .75rem;border:1px solid rgba(255,255,255,.08);border-radius:24px;background:#111;overflow:hidden;box-shadow:0 24px 80px -32px rgba(0,0,0,.9);padding-bottom:calc(var(--configurator-mobile-action,70px) + .5rem)}
+	.journey-premium-desktop{display:none!important}
+	.journey-configure-mobile{display:flex;flex-direction:column;width:100%;max-width:none;margin:0;border:0;border-radius:0;background:#111;overflow:hidden;box-shadow:none;padding-bottom:calc(var(--configurator-mobile-action,70px) + .5rem)}
 	.journey-configure-mobile:has(.configure-options-panel--open)::before{position:fixed;inset:0;z-index:1245;background:rgba(0,0,0,.42);content:"";pointer-events:none}
 	.journey-configure-mobile__progress{height:2px;background:rgba(139,197,64,.15)}
 	.journey-configure-mobile__progress>span{display:block;height:100%;background:#8bc540;transition:width .4s ease}
 	.journey-configure-mobile__header{display:flex;align-items:center;justify-content:space-between;height:52px;padding-inline:.75rem;border-bottom:1px solid rgba(139,197,64,.16);background:#111411;color:rgba(247,245,242,.5);font-size:.68rem;letter-spacing:.04em}
 	.journey-configure-mobile__logo{height:1.5rem;width:auto}
-	.journey-configure-mobile .configure-image-stage,.journey-configure-mobile__stage{position:relative;top:auto;width:100%;height:min(36svh,300px);min-height:220px;max-height:300px;flex:none;border-bottom:1px solid rgba(255,255,255,.08);box-shadow:0 18px 40px -26px rgba(0,0,0,.85)}
-	.journey-configure-mobile__stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+	.journey-configure-mobile .configure-image-stage,.journey-configure-mobile__stage{position:relative;top:auto;width:100%;height:auto;aspect-ratio:4/3;min-height:0;max-height:none;flex:none;border-bottom:1px solid rgba(255,255,255,.08);box-shadow:0 18px 40px -26px rgba(0,0,0,.85)}
+	.journey-configure-mobile__stage img,.journey-configure-mobile .configure-image-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center}
 	.journey-configure-mobile__badge{position:absolute;left:.75rem;top:.75rem;z-index:2;padding:.375rem .625rem;border:1px solid rgba(247,245,242,.1);border-radius:10px;background:rgba(17,17,17,.78);backdrop-filter:blur(8px)}
 	.journey-configure-mobile__badge p:first-child{margin:0;font-size:.6rem;letter-spacing:.06em;color:#8bc540}
 	.journey-configure-mobile__badge p:last-child{margin:.125rem 0 0;font-size:.625rem;color:rgba(247,245,242,.6)}
@@ -5121,7 +5122,7 @@ body.admin-bar .site-header {
 	.journey-configure-mobile__action-row>div p:first-child{margin:0;font-size:.62rem;font-weight:500;color:#6b9539}
 	.journey-configure-mobile__action-row>div p:last-child{margin:0;font-family:var(--font-display);font-size:.95rem;line-height:1.2;color:#f7f5f2}
 	.journey-configure-mobile__cta{display:inline-flex;min-height:48px;align-items:center;justify-content:center;gap:.5rem;border:1px solid #8bc540;border-radius:15px;background:#79af37;padding:.5rem 1rem;color:#fff;font-size:.76rem;font-weight:600;text-decoration:none;box-shadow:0 12px 26px -16px rgba(66,105,27,.9)}
-	.journey-config-scene.journey-config-scene--react{padding-block:clamp(2rem,8vw,3rem);padding-inline:.75rem;padding-bottom:calc(var(--configurator-mobile-action,70px) + var(--app-mobile-nav,72px) + env(safe-area-inset-bottom,0px) + 1.25rem)}
+	.journey-config-scene.journey-config-scene--react{padding-block:clamp(2rem,8vw,3rem);padding-inline:0;padding-bottom:calc(var(--configurator-mobile-action,70px) + var(--app-mobile-nav,72px) + env(safe-area-inset-bottom,0px) + 1.25rem)}
 	.journey-config-scene--react .journey-config-scene__inner{width:100%;max-width:100%;margin-left:0;margin-right:0;padding-inline:0}
 	.journey-config-scene--react .chapter-mark,.journey-config-scene--react .chapter-mark--desktop{display:none!important}
 	.journey-config-scene--react .journey-premium-badge--desktop,.journey-config-scene--react .journey-config-stage__badge.journey-premium-badge--desktop{display:none!important}
