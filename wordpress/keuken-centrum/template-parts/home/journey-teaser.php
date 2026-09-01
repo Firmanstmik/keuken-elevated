@@ -133,24 +133,29 @@ $icon_tune = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-h
 $icon_swatch = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M8.5 3.75h7A2.75 2.75 0 0 1 18.25 6.5v7A2.75 2.75 0 0 1 15.5 16.25h-7A2.75 2.75 0 0 1 5.75 13.5v-7A2.75 2.75 0 0 1 8.5 3.75Z" stroke="currentColor" stroke-width="1.5"/><path d="M8.5 16.25v1.85A2.4 2.4 0 0 0 10.9 20.5h6.35A2.4 2.4 0 0 0 19.65 18.1v-6.35A2.4 2.4 0 0 0 17.25 9.35H15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
 $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M4.5 13.5v2.85A2.65 2.65 0 0 0 7.15 19h.85v-5.5H4.5ZM19.5 13.5v2.85A2.65 2.65 0 0 1 16.85 19H16v-5.5h3.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M4.5 13.5a7.5 7.5 0 0 1 15 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
 ?>
-<section class="journey-config-scene journey-config-scene--react section-shell" id="showroom-journey">
+<section class="journey-config-scene journey-config-scene--react journey-premium-scene section-shell" id="showroom-journey">
 	<div class="journey-config-scene__photo"<?php echo $scene ? ' style="background-image:url(' . esc_url($scene) . ')"' : ''; ?> aria-hidden="true"></div>
 	<div class="journey-config-scene__veil" aria-hidden="true"></div>
 	<div class="journey-config-scene__ambient" aria-hidden="true"></div>
+	<div class="journey-premium-scene__grain" aria-hidden="true"></div>
 
 	<div class="site-shell journey-config-scene__inner">
 		<?php kc_section_chapter('04', __('Digitale beleving', 'keuken-centrum'), true, 10, 'chapter-mark--sentence'); ?>
 
-		<div class="journey-config-grid">
+		<div class="journey-config-grid journey-premium-grid">
 			<div
-				class="journey-config-stage"
+				class="journey-config-stage journey-premium-stage"
 				data-journey-hotspots
 				data-hotspots="<?php echo esc_attr(wp_json_encode($hotspot_positions)); ?>"
 				data-categories="<?php echo esc_attr(wp_json_encode($categories)); ?>"
 				data-selections="<?php echo esc_attr(wp_json_encode($initial_selections)); ?>"
 			>
-				<div class="journey-config-stage__badge" data-reveal data-journey-motion="badge"><?php esc_html_e('Premium configurator', 'keuken-centrum'); ?></div>
+				<div class="journey-config-stage__badge journey-premium-badge" data-reveal data-journey-motion="badge">
+					<span class="journey-premium-badge__dot" aria-hidden="true"></span>
+					<?php esc_html_e('Premium configurator', 'keuken-centrum'); ?>
+				</div>
 
+				<div class="journey-premium-mockup-shell">
 				<div class="journey-config-mockup" data-reveal data-journey-motion="mockup">
 					<div class="journey-config-topbar">
 						<div class="journey-config-topbar__dots" aria-hidden="true"><span></span><span></span><span></span></div>
@@ -158,8 +163,8 @@ $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" a
 						<div class="journey-config-topbar__spacer" aria-hidden="true"></div>
 					</div>
 
-					<div class="journey-config-mockup__body">
-						<div class="journey-config-mockup__viewport">
+					<div class="journey-config-mockup__body journey-config-mockup__body--stack">
+						<div class="journey-config-mockup__viewport journey-config-mockup__viewport--hero">
 							<?php if ($base) : ?>
 								<img
 									src="<?php echo esc_url($base); ?>"
@@ -177,8 +182,8 @@ $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" a
 							<div class="journey-config-hotspots" aria-live="polite"></div>
 						</div>
 
-						<div class="journey-config-sidebar">
-							<div class="journey-config-sidebar__tabs" data-journey-tabs>
+						<div class="journey-config-sidebar journey-config-sidebar--mobile">
+							<div class="journey-config-sidebar__tabs journey-config-sidebar__tabs--scroll" data-journey-tabs>
 								<?php foreach ($categories as $index => $category) : ?>
 									<?php $selection = $initial_selections[$category['id']] ?? null; ?>
 									<button
@@ -222,8 +227,9 @@ $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" a
 						</div>
 					</div>
 				</div>
+				</div>
 
-				<div class="journey-config-caption" data-reveal data-journey-motion="caption">
+				<div class="journey-config-caption journey-premium-caption" data-reveal data-journey-motion="caption">
 					<span class="journey-config-caption__icon" aria-hidden="true"><?php echo wp_kses($icon_tune, $kses_icon); ?></span>
 					<div>
 						<p><?php esc_html_e('Digitale Showroom', 'keuken-centrum'); ?></p>
@@ -232,7 +238,7 @@ $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" a
 				</div>
 			</div>
 
-		<div class="journey-config-copy" data-reveal data-journey-motion="copy">
+		<div class="journey-config-copy journey-premium-copy" data-reveal data-journey-motion="copy">
 			<p class="journey-config-copy__eyebrow" data-journey-motion="copy-el" data-stagger="0"><?php echo esc_html( $journey_eyebrow ); ?></p>
 			<h2 class="journey-config-copy__title" data-journey-motion="copy-el" data-stagger="1"><?php
 				echo esc_html( $journey_heading );
@@ -242,16 +248,16 @@ $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" a
 			?></h2>
 			<p class="journey-config-copy__lede" data-journey-motion="copy-el" data-stagger="2"><?php echo esc_html( $journey_lede ); ?></p>
 			<div class="journey-config-copy__divider" data-journey-motion="copy-el" data-stagger="3" aria-hidden="true"></div>
-			<div class="journey-config-copy__features">
-				<div class="journey-config-copy__feature" data-journey-motion="copy-feature" data-stagger="0">
+			<div class="journey-config-copy__features journey-premium-features">
+				<div class="journey-config-copy__feature journey-premium-feature" data-journey-motion="copy-feature" data-stagger="0">
 					<span aria-hidden="true"><?php echo wp_kses($icon_tune, $kses_icon); ?></span>
 					<p><?php esc_html_e('Interactieve materiaalconfigurator', 'keuken-centrum'); ?></p>
 				</div>
-				<div class="journey-config-copy__feature" data-journey-motion="copy-feature" data-stagger="1">
+				<div class="journey-config-copy__feature journey-premium-feature" data-journey-motion="copy-feature" data-stagger="1">
 					<span aria-hidden="true"><?php echo wp_kses($icon_swatch, $kses_icon); ?></span>
 					<p><?php esc_html_e('Persoonlijke moodboard generatie', 'keuken-centrum'); ?></p>
 				</div>
-				<div class="journey-config-copy__feature" data-journey-motion="copy-feature" data-stagger="2">
+				<div class="journey-config-copy__feature journey-premium-feature" data-journey-motion="copy-feature" data-stagger="2">
 					<span aria-hidden="true"><?php echo wp_kses($icon_headphone, $kses_icon); ?></span>
 					<p><?php esc_html_e('Persoonlijke ontwerpconsultatie', 'keuken-centrum'); ?></p>
 				</div>

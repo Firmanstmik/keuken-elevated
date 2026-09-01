@@ -905,7 +905,7 @@ export function ShowroomJourneySection() {
 
   return (
     <section
-      className="section-shell relative overflow-hidden"
+      className="journey-premium-scene section-shell relative overflow-hidden"
       style={{ background: "linear-gradient(180deg, #0D0F0A 0%, #12140E 52%, #0C0E09 100%)" }}
     >
       {/* Cinematic showroom backdrop — in harmony with the partner section */}
@@ -935,6 +935,10 @@ export function ShowroomJourneySection() {
             "radial-gradient(60% 45% at 20% 15%, rgba(139,197,64,0.08), transparent 60%), radial-gradient(55% 45% at 85% 80%, rgba(200,169,107,0.07), transparent 65%)",
         }}
       />
+      <div
+        aria-hidden="true"
+        className="journey-premium-scene__grain pointer-events-none absolute inset-0 opacity-[0.035]"
+      />
       <div className="site-container relative max-w-7xl">
         <SectionChapter
           index={4}
@@ -942,28 +946,30 @@ export function ShowroomJourneySection() {
           light
           className="chapter-mark--sentence"
         />
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.92fr)] lg:items-center">
-          <div className="relative">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.92fr)] lg:items-center lg:gap-6">
+          <div className="relative order-2 lg:order-1">
             {/* The Badge */}
             <motion.div
               initial={reduceMotion ? false : { opacity: 0, y: 10 }}
               whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={motionViewport}
-              className="absolute -top-3 left-6 md:left-8 z-20"
+              className="absolute -top-3 left-4 z-20 sm:left-6 md:left-8"
             >
-              <span className="rounded-full border border-[#C8A96B]/30 bg-[#111111] px-4 py-1.5 text-[0.6rem] font-medium tracking-[0.08em] text-[#C8A96B] shadow-[0_4px_12px_rgba(0,0,0,0.1)]">
+              <span className="journey-premium-badge inline-flex items-center gap-2 rounded-full border border-[#C8A96B]/35 bg-[rgba(17,17,17,0.88)] px-4 py-1.5 text-[0.6rem] font-medium tracking-[0.1em] text-[#D8BE87] shadow-[0_8px_24px_rgba(0,0,0,0.28)] backdrop-blur-md">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#8BC540] shadow-[0_0_8px_rgba(139,197,64,0.8)]" />
                 Premium configurator
               </span>
             </motion.div>
 
+            <div className="journey-premium-mockup-shell rounded-[30px] p-[1px] bg-[linear-gradient(135deg,rgba(200,169,107,0.45),rgba(139,197,64,0.12),rgba(200,169,107,0.22))] shadow-[0_40px_90px_-24px_rgba(0,0,0,0.65)]">
             {/* The Configurator Mockup Frame */}
             <motion.div
               initial={reduceMotion ? false : { opacity: 0, y: 40, scale: 0.96 }}
               whileInView={reduceMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
               viewport={motionViewport}
-              className="home-configurator-preview relative flex aspect-[4/3] w-full flex-col overflow-hidden rounded-[28px] border border-[#C8A96B]/30 bg-[#111111] shadow-[0_32px_64px_-12px_rgba(0,0,0,0.14)] md:rounded-[28px]"
+              className="home-configurator-preview relative flex w-full flex-col overflow-hidden rounded-[29px] border border-white/[0.06] bg-[#0E0F0D] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] aspect-auto lg:aspect-[4/3]"
             >
               {/* Fake Header */}
               <div className="flex h-8 md:h-10 shrink-0 items-center justify-between border-b border-white/10 px-4">
@@ -979,11 +985,11 @@ export function ShowroomJourneySection() {
               </div>
 
               {/* Fake Body */}
-              <div className="flex flex-1 overflow-hidden">
+              <div className="home-configurator-body flex flex-1 min-h-0 flex-col overflow-hidden lg:flex-row">
                 {/* Image Area */}
                 <div
                   ref={mockupViewportRef}
-                  className="relative flex-1 bg-[#0A0A0A] overflow-hidden"
+                  className="home-configurator-viewport relative w-full flex-none overflow-hidden bg-[#0A0A0A] aspect-[4/3] lg:aspect-auto lg:flex-1"
                 >
                   <img
                     src={klassiekBase}
@@ -1113,9 +1119,9 @@ export function ShowroomJourneySection() {
                 </div>
 
                 {/* Interactive Sidebar – mirrors configure.tsx layout */}
-                <div className="home-configurator-sidebar flex w-[36%] shrink-0 flex-col overflow-hidden border-l border-white/10 bg-[linear-gradient(180deg,#111411_0%,#0b0d0b_100%)] md:w-[34%]">
+                <div className="home-configurator-sidebar flex w-full shrink-0 flex-col overflow-hidden border-t border-white/10 bg-[linear-gradient(180deg,#111411_0%,#0b0d0b_100%)] lg:w-[36%] lg:border-l lg:border-t-0 xl:w-[34%]">
                   {/* Category tab strip */}
-                  <div className="flex flex-wrap gap-1 border-b border-white/[0.07] bg-white/[0.018] p-2">
+                  <div className="home-configurator-tabs flex gap-1.5 overflow-x-auto border-b border-white/[0.07] bg-white/[0.018] p-2.5 [-ms-overflow-style:none] [scrollbar-width:none] lg:flex-wrap lg:overflow-visible [&::-webkit-scrollbar]:hidden">
                     {hotspotsData.map((h, i) => {
                       const sel = selections[h.id];
                       const isTabActive = activeHotspot === i;
@@ -1124,7 +1130,7 @@ export function ShowroomJourneySection() {
                           key={h.id}
                           type="button"
                           onClick={() => setActiveHotspot(i)}
-                          className="inline-flex items-center gap-1 rounded-[5px] border px-1.5 py-1 normal-case transition-all duration-300"
+                          className="inline-flex shrink-0 items-center gap-1.5 rounded-[8px] border px-2.5 py-2 normal-case transition-all duration-300 min-h-[44px] lg:min-h-0 lg:px-1.5 lg:py-1"
                           style={{
                             borderColor: isTabActive
                               ? "#B08D57"
@@ -1178,9 +1184,9 @@ export function ShowroomJourneySection() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -6 }}
                       transition={{ duration: 0.4 }}
-                      className="flex-1 overflow-y-auto p-2"
+                      className="home-configurator-options flex-1 overflow-y-auto p-2.5 lg:p-2"
                     >
-                      <div className="grid grid-cols-2 gap-1.5">
+                      <div className="grid grid-cols-2 gap-2 lg:gap-1.5">
                         {currentCategory?.options.slice(0, 4).map((option, idx) => {
                           const isSelected = selections[activeHotspotId]?.id === option.id;
                           return (
@@ -1200,7 +1206,7 @@ export function ShowroomJourneySection() {
                                   },
                                 }))
                               }
-                              className="cursor-pointer rounded-[9px] p-1.5 text-left normal-case transition-all duration-300 hover:-translate-y-px hover:border-[#C8A96B]/45 hover:bg-white/[0.045]"
+                              className="cursor-pointer rounded-[10px] p-2 text-left normal-case transition-all duration-300 hover:-translate-y-px hover:border-[#C8A96B]/45 hover:bg-white/[0.045] min-h-[88px] lg:min-h-0 lg:p-1.5 lg:rounded-[9px]"
                               style={{
                                 border: `1px solid ${
                                   isSelected ? "#B08D57" : "rgba(255,255,255,0.07)"
@@ -1241,10 +1247,10 @@ export function ShowroomJourneySection() {
                   </AnimatePresence>
 
                   {/* Footer CTA */}
-                  <div className="hidden border-t border-white/[0.07] bg-black/15 p-2 md:block">
+                  <div className="border-t border-white/[0.07] bg-black/15 p-2.5 lg:p-2">
                     <a
                       href="/brands"
-                      className="flex h-8 w-full items-center justify-center rounded-[8px] bg-[linear-gradient(135deg,#D8BE87,#B8924E)] text-[0.62rem] font-semibold tracking-[-0.005em] text-[#17140d] shadow-[0_10px_24px_-14px_rgba(200,169,107,0.8)] transition-all hover:-translate-y-px hover:brightness-105"
+                      className="flex min-h-[44px] w-full items-center justify-center rounded-[10px] bg-[linear-gradient(135deg,#D8BE87,#B8924E)] text-[0.68rem] font-semibold tracking-[0.02em] text-[#17140d] shadow-[0_10px_24px_-14px_rgba(200,169,107,0.8)] transition-all hover:-translate-y-px hover:brightness-105 lg:h-8 lg:min-h-0 lg:rounded-[8px] lg:text-[0.62rem]"
                     >
                       Volledig ontwerp
                     </a>
@@ -1252,6 +1258,7 @@ export function ShowroomJourneySection() {
                 </div>
               </div>
             </motion.div>
+            </div>
 
             {/* Caption bar — sits below the mockup so it never covers it */}
             <motion.div
@@ -1259,16 +1266,16 @@ export function ShowroomJourneySection() {
               whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               viewport={motionViewport}
-              className="mt-5 flex items-center gap-4 rounded-[16px] border border-[rgba(200,169,107,0.2)] bg-[rgba(255,255,255,0.04)] px-5 py-4 backdrop-blur-md"
+              className="journey-premium-caption mt-5 flex items-start gap-4 rounded-[18px] border border-[rgba(200,169,107,0.24)] bg-[linear-gradient(135deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] px-4 py-4 backdrop-blur-xl sm:items-center sm:px-5"
             >
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[rgba(200,169,107,0.4)] bg-[rgba(200,169,107,0.1)]">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[rgba(200,169,107,0.45)] bg-[rgba(200,169,107,0.12)] shadow-[0_0_24px_rgba(200,169,107,0.12)]">
                 <TuneIcon sx={{ fontSize: 18, color: "#C8A96B" }} />
               </span>
               <div className="min-w-0">
-                <p className="text-[0.62rem] font-semibold tracking-[0.08em] text-[#C8A96B]">
+                <p className="text-[0.62rem] font-semibold tracking-[0.1em] text-[#D8BE87]">
                   Digitale Showroom
                 </p>
-                <p className="mt-1 text-[0.8rem] font-light leading-[1.55] text-[rgba(245,242,236,0.7)]">
+                <p className="mt-1 text-[0.84rem] font-light leading-[1.6] text-[rgba(245,242,236,0.76)] sm:text-[0.8rem]">
                   Configureer materialen, apparatuur en afwerkingen voordat u de showroom bezoekt.
                 </p>
               </div>
@@ -1280,7 +1287,7 @@ export function ShowroomJourneySection() {
             whileInView="visible"
             viewport={motionViewport}
             variants={reduceMotion ? undefined : staggerHeader}
-            className="lg:pl-10 mt-12 lg:mt-0"
+            className="order-1 lg:order-2 lg:pl-10"
           >
             <motion.p
               variants={reduceMotion ? undefined : fadeUp}
@@ -1290,14 +1297,14 @@ export function ShowroomJourneySection() {
             </motion.p>
             <motion.h2
               variants={reduceMotion ? undefined : fadeUp}
-              className="mt-6 max-w-[34rem] text-[clamp(2.35rem,3.9vw,3rem)] leading-[1.15] tracking-[-0.01em] text-[#F5F2EC]"
+              className="mt-4 max-w-[34rem] text-[clamp(2rem,7vw,3rem)] leading-[1.12] tracking-[-0.02em] text-[#F5F2EC] sm:mt-6"
               style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
             >
               Een showroom die naar u toe komt
             </motion.h2>
             <motion.p
               variants={reduceMotion ? undefined : fadeUp}
-              className="mt-6 max-w-[500px] text-[1.125rem] font-light leading-[1.6] tracking-[0.01em] text-[rgba(245,242,236,0.68)]"
+              className="mt-4 max-w-[500px] text-[1rem] font-light leading-[1.65] tracking-[0.01em] text-[rgba(245,242,236,0.72)] sm:mt-6 sm:text-[1.125rem] sm:leading-[1.6]"
             >
               Onze digitale configurator brengt de volledige luxe showroomervaring naar uw scherm.
               Ontdek materialen, bekijk combinaties en ontvang een compleet ontwerpvoorstel nog
@@ -1312,7 +1319,7 @@ export function ShowroomJourneySection() {
               whileInView="visible"
               viewport={motionViewport}
               variants={reduceMotion ? undefined : staggerList}
-              className="mt-6 flex flex-col gap-5"
+              className="mt-6 flex flex-col gap-3 sm:gap-5"
             >
               {experienceItems.map((item) => {
                 const Icon = item.icon;
@@ -1321,12 +1328,12 @@ export function ShowroomJourneySection() {
                   <motion.div
                     key={item.label}
                     variants={reduceMotion ? undefined : fadeUp}
-                    className="flex items-center gap-3"
+                    className="journey-premium-feature flex items-center gap-3.5 rounded-[14px] border border-white/[0.07] bg-[rgba(255,255,255,0.03)] px-3.5 py-3 backdrop-blur-sm sm:border-transparent sm:bg-transparent sm:px-0 sm:py-0 sm:backdrop-blur-none"
                   >
-                    <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center text-[#C8A96B]">
+                    <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[rgba(200,169,107,0.22)] bg-[rgba(200,169,107,0.08)] text-[#C8A96B] sm:h-8 sm:w-8 sm:rounded-none sm:border-0 sm:bg-transparent">
                       <Icon size={18} color="#C8A96B" variant="Linear" />
                     </span>
-                    <span className="text-[0.875rem] font-light leading-[1.65] text-[rgba(245,242,236,0.72)]">
+                    <span className="text-[0.9rem] font-light leading-[1.55] text-[rgba(245,242,236,0.8)] sm:text-[0.875rem] sm:leading-[1.65] sm:text-[rgba(245,242,236,0.72)]">
                       {item.label}
                     </span>
                   </motion.div>
