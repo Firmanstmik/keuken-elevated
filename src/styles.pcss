@@ -2926,7 +2926,8 @@
   .home-configurator-viewport {
     flex: none;
     width: 100%;
-    aspect-ratio: 16 / 11;
+    max-height: min(52vw, 240px);
+    aspect-ratio: 3 / 2;
   }
 
   .home-configurator-sidebar {
@@ -2982,10 +2983,14 @@
   }
 
   .home-configurator-option {
-    flex: 0 0 9.25rem;
-    width: 9.25rem;
-    min-height: 7.25rem;
+    flex: 0 0 8.5rem;
+    width: 8.5rem;
+    min-height: 6.75rem;
     scroll-snap-align: start;
+  }
+
+  .home-configurator-option__swatch {
+    height: 2.5rem;
   }
 
   .home-configurator-option:not(.is-selected) .home-configurator-option__desc {
@@ -2994,16 +2999,37 @@
 
   .home-configurator-footer {
     padding-inline: 1rem;
-    padding-block: 0.75rem;
+    padding-block: 0.625rem;
   }
 
   .journey-premium-scene {
-    padding-bottom: calc(var(--app-mobile-nav, 4.5rem) + 1rem);
+    padding-bottom: calc(var(--app-mobile-nav, 4.5rem) + 0.75rem);
+    padding-top: clamp(3rem, 12vw, 4.5rem);
   }
 
-  .journey-premium-stage__badge {
-    top: 0.75rem;
-    left: 0.75rem;
+  .journey-premium-scene .chapter-mark {
+    margin-bottom: 1rem;
+  }
+
+  .journey-mobile-intro {
+    margin-bottom: 0.75rem;
+  }
+
+  .journey-mobile-outro {
+    margin-top: 1rem;
+  }
+
+  .journey-mobile-outro .premium-pill-button {
+    width: 100%;
+    min-height: 44px;
+    justify-content: space-between;
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+  }
+
+  .journey-mobile-outro .premium-pill-button__badge {
+    width: 2rem;
+    height: 2rem;
   }
 
   .home-configurator-preview [data-hotspot="true"] button {

@@ -946,15 +946,27 @@ export function ShowroomJourneySection() {
           light
           className="chapter-mark--sentence"
         />
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.92fr)] lg:items-center lg:gap-6">
-          <div className="relative order-2 lg:order-1">
-            {/* The Badge */}
+        <div className="journey-premium-grid grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.92fr)] lg:items-center lg:gap-6">
+          <div className="journey-premium-stage relative order-1">
+            <div className="journey-mobile-intro mb-3 lg:hidden">
+              <p className="text-[0.62rem] font-medium uppercase tracking-[0.14em] text-[#C8A96B]/90">
+                De beleving
+              </p>
+              <h2
+                className="mt-2 max-w-[18rem] text-[1.45rem] leading-[1.18] tracking-[-0.02em] text-[#F5F2EC]"
+                style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
+              >
+                Een showroom die naar u toe komt
+              </h2>
+            </div>
+
+            {/* The Badge — desktop only */}
             <motion.div
               initial={reduceMotion ? false : { opacity: 0, y: 10 }}
               whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={motionViewport}
-              className="absolute -top-2 left-4 z-20 sm:left-6 md:-top-3 md:left-8"
+              className="absolute -top-2 left-4 z-20 hidden sm:left-6 md:-top-3 md:left-8 lg:block"
             >
               <span className="journey-premium-badge inline-flex items-center gap-2 rounded-full border border-[#C8A96B]/35 bg-[rgba(17,17,17,0.88)] px-4 py-1.5 text-[0.6rem] font-medium tracking-[0.1em] text-[#D8BE87] shadow-[0_8px_24px_rgba(0,0,0,0.28)] backdrop-blur-md">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#8BC540] shadow-[0_0_8px_rgba(139,197,64,0.8)]" />
@@ -962,14 +974,14 @@ export function ShowroomJourneySection() {
               </span>
             </motion.div>
 
-            <div className="journey-premium-mockup-shell rounded-[30px] p-[1px] bg-[linear-gradient(135deg,rgba(200,169,107,0.45),rgba(139,197,64,0.12),rgba(200,169,107,0.22))] shadow-[0_40px_90px_-24px_rgba(0,0,0,0.65)]">
+            <div className="journey-premium-mockup-shell rounded-[20px] p-0 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.55)] lg:rounded-[30px] lg:p-[1px] lg:bg-[linear-gradient(135deg,rgba(200,169,107,0.45),rgba(139,197,64,0.12),rgba(200,169,107,0.22))] lg:shadow-[0_40px_90px_-24px_rgba(0,0,0,0.65)]">
             {/* The Configurator Mockup Frame */}
             <motion.div
               initial={reduceMotion ? false : { opacity: 0, y: 40, scale: 0.96 }}
               whileInView={reduceMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
               viewport={motionViewport}
-              className="home-configurator-preview relative flex w-full flex-col overflow-hidden rounded-[29px] border border-white/[0.06] bg-[#0E0F0D] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] aspect-auto lg:aspect-[4/3]"
+              className="home-configurator-preview relative flex w-full max-w-full flex-col overflow-hidden rounded-[20px] border border-white/[0.08] bg-[#0E0F0D] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] aspect-auto lg:max-h-none lg:rounded-[29px] lg:aspect-[4/3]"
             >
               {/* Fake Header — desktop only */}
               <div className="home-configurator-topbar hidden h-8 shrink-0 items-center justify-between border-b border-white/10 px-4 lg:flex md:h-10">
@@ -989,8 +1001,12 @@ export function ShowroomJourneySection() {
                 {/* Image Area */}
                 <div
                   ref={mockupViewportRef}
-                  className="home-configurator-viewport relative w-full flex-none overflow-hidden bg-[#0A0A0A] aspect-[4/3] lg:aspect-auto lg:flex-1"
+                  className="home-configurator-viewport relative w-full max-h-[min(52vw,240px)] flex-none overflow-hidden bg-[#0A0A0A] aspect-[3/2] sm:max-h-[min(56vw,280px)] lg:max-h-none lg:aspect-auto lg:flex-1"
                 >
+                  <span className="absolute left-3 top-3 z-20 inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-black/45 px-2.5 py-1 text-[0.55rem] font-medium tracking-[0.08em] text-[#D8BE87] backdrop-blur-md lg:hidden">
+                    <span className="h-1 w-1 rounded-full bg-[#8BC540]" />
+                    Configurator
+                  </span>
                   <img
                     src={klassiekBase}
                     alt="Klassieke keuken configurator"
@@ -1284,6 +1300,15 @@ export function ShowroomJourneySection() {
                 </p>
               </div>
             </motion.div>
+
+            <div className="journey-mobile-outro mt-4 lg:hidden">
+              <p className="mb-3 text-[0.84rem] font-light leading-[1.55] text-[rgba(245,242,236,0.68)]">
+                Ontdek materialen en combinaties vóór uw showroombezoek.
+              </p>
+              <PremiumPillButton href="/brands" variant="blue" size="sm" className="w-full justify-between">
+                Start uw ontwerp
+              </PremiumPillButton>
+            </div>
           </div>
 
           <motion.div
@@ -1291,7 +1316,7 @@ export function ShowroomJourneySection() {
             whileInView="visible"
             viewport={motionViewport}
             variants={reduceMotion ? undefined : staggerHeader}
-            className="order-1 lg:order-2 lg:pl-10"
+            className="journey-premium-copy hidden lg:block lg:order-2 lg:pl-10"
           >
             <motion.p
               variants={reduceMotion ? undefined : fadeUp}

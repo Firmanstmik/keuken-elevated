@@ -150,7 +150,12 @@ $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" a
 				data-categories="<?php echo esc_attr(wp_json_encode($categories)); ?>"
 				data-selections="<?php echo esc_attr(wp_json_encode($initial_selections)); ?>"
 			>
-				<div class="journey-config-stage__badge journey-premium-badge" data-reveal data-journey-motion="badge">
+				<div class="journey-mobile-intro">
+					<p class="journey-mobile-intro__eyebrow"><?php echo esc_html( $journey_eyebrow ); ?></p>
+					<h2 class="journey-mobile-intro__title"><?php echo esc_html( $journey_heading ); ?></h2>
+				</div>
+
+				<div class="journey-config-stage__badge journey-premium-badge journey-premium-badge--desktop" data-reveal data-journey-motion="badge">
 					<span class="journey-premium-badge__dot" aria-hidden="true"></span>
 					<?php esc_html_e('Premium configurator', 'keuken-centrum'); ?>
 				</div>
@@ -165,6 +170,7 @@ $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" a
 
 					<div class="journey-config-mockup__body journey-config-mockup__body--stack">
 						<div class="journey-config-mockup__viewport journey-config-mockup__viewport--hero">
+							<span class="journey-mobile-chip" aria-hidden="true"><span></span><?php esc_html_e('Configurator', 'keuken-centrum'); ?></span>
 							<?php if ($base) : ?>
 								<img
 									src="<?php echo esc_url($base); ?>"
@@ -240,9 +246,17 @@ $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" a
 						<p><?php esc_html_e('Configureer materialen, apparatuur en afwerkingen voordat u de showroom bezoekt.', 'keuken-centrum'); ?></p>
 					</div>
 				</div>
+
+				<div class="journey-mobile-outro">
+					<p><?php esc_html_e('Ontdek materialen en combinaties vóór uw showroombezoek.', 'keuken-centrum'); ?></p>
+					<a class="premium-pill-button premium-pill-button--blue premium-pill-button--sm" href="<?php echo esc_url($start_url); ?>">
+						<span class="premium-pill-button__label"><?php echo esc_html( $journey_cta ); ?></span>
+						<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
+					</a>
+				</div>
 			</div>
 
-		<div class="journey-config-copy journey-premium-copy" data-reveal data-journey-motion="copy">
+		<div class="journey-config-copy journey-premium-copy journey-premium-copy--desktop" data-reveal data-journey-motion="copy">
 			<p class="journey-config-copy__eyebrow" data-journey-motion="copy-el" data-stagger="0"><?php echo esc_html( $journey_eyebrow ); ?></p>
 			<h2 class="journey-config-copy__title" data-journey-motion="copy-el" data-stagger="1"><?php
 				echo esc_html( $journey_heading );
