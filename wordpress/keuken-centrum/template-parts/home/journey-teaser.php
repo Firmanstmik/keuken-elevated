@@ -9,7 +9,7 @@ $base     = kc_theme_img('configurator/klassiek-base.webp');
 $base_sm  = kc_theme_img('configurator/klassiek-base-768.webp');
 $scene    = kc_theme_img('brands/brands-dark-bg.webp');
 $journey  = function_exists( 'kc_home_journey_data' ) ? kc_home_journey_data() : null;
-$start_url = $journey['cta_url'] ?? ( function_exists( 'kc_cms_configurator_url' ) ? kc_cms_configurator_url() : ( get_post_type_archive_link( 'kitchen_brand' ) ?: home_url( '/keukens' ) ) );
+$start_url = home_url( '/brands/' );
 $journey_eyebrow = $journey['eyebrow'] ?? 'De beleving';
 $journey_heading = $journey['heading'] ?? 'Een showroom die naar u toe komt';
 $journey_heading_em = $journey['heading_em'] ?? '';
@@ -126,15 +126,15 @@ $category_count  = count( $categories );
 $completed_count = count( $initial_selections );
 $logo_uri        = kc_theme_img( 'logo-keuken-1-1.webp' ) ?: kc_theme_img( 'logo-keuken-centrum-transparent.png' ) ?: kc_theme_img( 'logo-keuken.webp' );
 $kses_icon       = [
-	'svg'    => ['viewBox' => true, 'fill' => true, 'aria-hidden' => true, 'width' => true, 'height' => true],
-	'path'   => ['d' => true, 'stroke' => true, 'stroke-width' => true, 'stroke-linecap' => true, 'stroke-linejoin' => true],
-	'circle' => ['cx' => true, 'cy' => true, 'r' => true, 'stroke' => true, 'stroke-width' => true, 'fill' => true],
-	'rect'   => ['x' => true, 'y' => true, 'width' => true, 'height' => true, 'rx' => true, 'stroke' => true, 'stroke-width' => true, 'fill' => true],
+	'svg'    => [ 'viewBox' => true, 'fill' => true, 'aria-hidden' => true, 'width' => true, 'height' => true, 'xmlns' => true ],
+	'path'   => [ 'd' => true, 'stroke' => true, 'stroke-width' => true, 'stroke-linecap' => true, 'stroke-linejoin' => true, 'stroke-miterlimit' => true ],
+	'circle' => [ 'cx' => true, 'cy' => true, 'r' => true, 'stroke' => true, 'stroke-width' => true, 'fill' => true ],
+	'rect'   => [ 'x' => true, 'y' => true, 'width' => true, 'height' => true, 'rx' => true, 'stroke' => true, 'stroke-width' => true, 'fill' => true ],
 ];
-/* Iconsax Setting4 / ColorSwatch / Headphone linear marks — React experienceItems parity */
-$icon_tune = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M3 7h10M17 7h4M3 17h4M9 17h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M14.5 4.5v5M6.5 14.5v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="14.5" cy="7" r="2.25" stroke="currentColor" stroke-width="1.5"/><circle cx="6.5" cy="17" r="2.25" stroke="currentColor" stroke-width="1.5"/></svg>';
-$icon_swatch = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M8.5 3.75h7A2.75 2.75 0 0 1 18.25 6.5v7A2.75 2.75 0 0 1 15.5 16.25h-7A2.75 2.75 0 0 1 5.75 13.5v-7A2.75 2.75 0 0 1 8.5 3.75Z" stroke="currentColor" stroke-width="1.5"/><path d="M8.5 16.25v1.85A2.4 2.4 0 0 0 10.9 20.5h6.35A2.4 2.4 0 0 0 19.65 18.1v-6.35A2.4 2.4 0 0 0 17.25 9.35H15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
-$icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M4.5 13.5v2.85A2.65 2.65 0 0 0 7.15 19h.85v-5.5H4.5ZM19.5 13.5v2.85A2.65 2.65 0 0 1 16.85 19H16v-5.5h3.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M4.5 13.5a7.5 7.5 0 0 1 15 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
+/* Iconsax Setting4 / ColorSwatch / Headphone — exact React parity */
+$icon_tune = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M22 6.5h-6M6 6.5H2M10 10a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7ZM22 17.5h-4M8 17.5H2M14 21a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+$icon_swatch = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 4.5V18c0 1.08-.44 2.07-1.14 2.79l-.04.04c-.09.09-.19.18-.28.25-.3.26-.64.46-.99.6-.11.05-.22.09-.33.13-.39.13-.81.19-1.22.19-.27 0-.54-.03-.8-.08-.13-.03-.26-.06-.39-.1-.16-.05-.31-.1-.46-.17 0-.01 0-.01-.01 0-.28-.14-.55-.3-.8-.49l-.01-.01c-.13-.1-.25-.2-.36-.32-.11-.12-.22-.24-.33-.37-.19-.25-.35-.52-.49-.8.01-.01.01-.01 0-.01 0 0 0-.01-.01-.02-.06-.14-.11-.29-.16-.44a5.58 5.58 0 01-.1-.39c-.05-.26-.08-.53-.08-.8V4.5C2 3 3 2 4.5 2h3C9 2 10 3 10 4.5z"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M22 16.5v3c0 1.5-1 2.5-2.5 2.5H6c.41 0 .83-.06 1.22-.19.11-.04.22-.08.33-.13.35-.14.69-.34.99-.6.09-.07.19-.16.28-.25l.04-.04 6.8-6.79h3.84c1.5 0 2.5 1 2.5 2.5zM4.81 21.82c-.6-.18-1.17-.51-1.64-.99-.48-.47-.81-1.04-.99-1.64a4.02 4.02 0 002.63 2.63z"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18.37 11.29L15.66 14l-6.8 6.79C9.56 20.07 10 19.08 10 18V8.34l2.71-2.71c1.06-1.06 2.48-1.06 3.54 0l2.12 2.12c1.06 1.06 1.06 2.48 0 3.54zM6 19a1 1 0 100-2 1 1 0 000 2z"/></svg>';
+$icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M5.46 18.49v-2.92c0-.97.76-1.84 1.84-1.84.97 0 1.84.76 1.84 1.84v2.81c0 1.95-1.62 3.57-3.57 3.57-1.95 0-3.57-1.63-3.57-3.57v-6.16C1.89 6.6 6.33 2.05 11.95 2.05 17.57 2.05 22 6.6 22 12.11v6.16c0 1.95-1.62 3.57-3.57 3.57-1.95 0-3.57-1.62-3.57-3.57v-2.81c0-.97.76-1.84 1.84-1.84.97 0 1.84.76 1.84 1.84v3.03" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 ?>
 <section
 	class="journey-config-scene journey-config-scene--react journey-premium-scene section-shell"
@@ -252,16 +252,16 @@ $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" a
 					<?php esc_html_e('Premium configurator', 'keuken-centrum'); ?>
 				</div>
 
-				<div class="journey-premium-mockup-shell">
-				<div class="journey-config-mockup" data-reveal data-journey-motion="mockup">
+				<div class="journey-premium-mockup-shell journey-mobile-app-shell">
+				<div class="journey-config-mockup home-configurator-preview" data-reveal data-journey-motion="mockup">
 					<div class="journey-config-topbar home-configurator-topbar">
-						<div class="journey-config-topbar__dots" aria-hidden="true"><span></span><span></span><span></span></div>
-						<div class="journey-config-topbar__title"><?php esc_html_e('Keuken Centrum', 'keuken-centrum'); ?></div>
-						<div class="journey-config-topbar__spacer" aria-hidden="true"></div>
+						<div class="journey-config-topbar__dots home-configurator-topbar__dots" aria-hidden="true"><span></span><span></span><span></span></div>
+						<div class="journey-config-topbar__title home-configurator-topbar__title"><?php esc_html_e('Keuken Centrum', 'keuken-centrum'); ?></div>
+						<div class="journey-config-topbar__spacer home-configurator-topbar__spacer" aria-hidden="true"></div>
 					</div>
 
-					<div class="journey-config-mockup__body journey-config-mockup__body--stack">
-						<div class="journey-config-mockup__viewport journey-config-mockup__viewport--hero">
+					<div class="journey-config-mockup__body journey-config-mockup__body--stack home-configurator-body">
+						<div class="journey-config-mockup__viewport journey-config-mockup__viewport--hero home-configurator-viewport">
 							<?php if ($base) : ?>
 								<img
 									src="<?php echo esc_url($base); ?>"
@@ -279,7 +279,7 @@ $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" a
 							<div class="journey-config-hotspots" aria-live="polite"></div>
 						</div>
 
-						<div class="journey-config-sidebar journey-config-sidebar--mobile">
+						<div class="journey-config-sidebar journey-config-sidebar--mobile home-configurator-sidebar">
 							<div class="journey-config-sidebar__tabs-wrap home-configurator-tabs-wrap">
 							<div class="journey-config-sidebar__tabs journey-config-sidebar__tabs--scroll home-configurator-tabs" data-journey-tabs>
 								<?php foreach ($categories as $index => $category) : ?>
@@ -353,15 +353,15 @@ $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" a
 			<div class="journey-config-copy__divider" data-journey-motion="copy-el" data-stagger="3" aria-hidden="true"></div>
 			<div class="journey-config-copy__features journey-premium-features">
 				<div class="journey-config-copy__feature journey-premium-feature" data-journey-motion="copy-feature" data-stagger="0">
-					<span aria-hidden="true"><?php echo wp_kses($icon_tune, $kses_icon); ?></span>
+					<span class="journey-premium-feature__icon" aria-hidden="true"><?php echo wp_kses($icon_tune, $kses_icon); ?></span>
 					<p><?php esc_html_e('Interactieve materiaalconfigurator', 'keuken-centrum'); ?></p>
 				</div>
 				<div class="journey-config-copy__feature journey-premium-feature" data-journey-motion="copy-feature" data-stagger="1">
-					<span aria-hidden="true"><?php echo wp_kses($icon_swatch, $kses_icon); ?></span>
+					<span class="journey-premium-feature__icon" aria-hidden="true"><?php echo wp_kses($icon_swatch, $kses_icon); ?></span>
 					<p><?php esc_html_e('Persoonlijke moodboard generatie', 'keuken-centrum'); ?></p>
 				</div>
 				<div class="journey-config-copy__feature journey-premium-feature" data-journey-motion="copy-feature" data-stagger="2">
-					<span aria-hidden="true"><?php echo wp_kses($icon_headphone, $kses_icon); ?></span>
+					<span class="journey-premium-feature__icon" aria-hidden="true"><?php echo wp_kses($icon_headphone, $kses_icon); ?></span>
 					<p><?php esc_html_e('Persoonlijke ontwerpconsultatie', 'keuken-centrum'); ?></p>
 				</div>
 			</div>
