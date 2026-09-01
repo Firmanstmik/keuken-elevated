@@ -672,6 +672,10 @@ function HotspotTooltip({
   description: string;
   viewportSize: { width: number; height: number };
 }) {
+  if (viewportSize.width < 768) {
+    return null;
+  }
+
   const px = parseFloat(x);
   const py = parseFloat(y);
 
@@ -939,27 +943,15 @@ export function ShowroomJourneySection() {
         aria-hidden="true"
         className="journey-premium-scene__grain pointer-events-none absolute inset-0 opacity-[0.035]"
       />
-      <div className="site-container relative max-w-7xl">
+      <div className="journey-premium-scene__container site-container relative max-w-7xl">
         <SectionChapter
           index={4}
           label="Digitale beleving"
           light
-          className="chapter-mark--sentence"
+          className="chapter-mark--sentence hidden lg:flex"
         />
         <div className="journey-premium-grid grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.92fr)] lg:items-center lg:gap-6">
           <div className="journey-premium-stage relative order-1">
-            <div className="journey-mobile-intro mb-3 lg:hidden">
-              <p className="text-[0.62rem] font-medium uppercase tracking-[0.14em] text-[#C8A96B]/90">
-                De beleving
-              </p>
-              <h2
-                className="mt-2 max-w-[18rem] text-[1.45rem] leading-[1.18] tracking-[-0.02em] text-[#F5F2EC]"
-                style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
-              >
-                Een showroom die naar u toe komt
-              </h2>
-            </div>
-
             {/* The Badge — desktop only */}
             <motion.div
               initial={reduceMotion ? false : { opacity: 0, y: 10 }}
@@ -974,7 +966,7 @@ export function ShowroomJourneySection() {
               </span>
             </motion.div>
 
-            <div className="journey-premium-mockup-shell rounded-[20px] p-0 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.55)] lg:rounded-[30px] lg:p-[1px] lg:bg-[linear-gradient(135deg,rgba(200,169,107,0.45),rgba(139,197,64,0.12),rgba(200,169,107,0.22))] lg:shadow-[0_40px_90px_-24px_rgba(0,0,0,0.65)]">
+            <div className="journey-premium-mockup-shell journey-mobile-app-shell rounded-[20px] p-0 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.55)] lg:rounded-[30px] lg:p-[1px] lg:bg-[linear-gradient(135deg,rgba(200,169,107,0.45),rgba(139,197,64,0.12),rgba(200,169,107,0.22))] lg:shadow-[0_40px_90px_-24px_rgba(0,0,0,0.65)]">
             {/* The Configurator Mockup Frame */}
             <motion.div
               initial={reduceMotion ? false : { opacity: 0, y: 40, scale: 0.96 }}
@@ -983,6 +975,25 @@ export function ShowroomJourneySection() {
               viewport={motionViewport}
               className="home-configurator-preview relative flex w-full max-w-full flex-col overflow-hidden rounded-[20px] border border-white/[0.08] bg-[#0E0F0D] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] aspect-auto lg:max-h-none lg:rounded-[29px] lg:aspect-[4/3]"
             >
+              <div className="journey-mobile-app-chrome shrink-0 border-b border-white/[0.06] bg-[#111311] lg:hidden">
+                <div className="flex items-center justify-between gap-3 px-4 py-2.5">
+                  <div className="min-w-0">
+                    <p className="text-[0.58rem] font-medium uppercase tracking-[0.12em] text-[#C8A96B]">
+                      Digitale beleving
+                    </p>
+                    <p className="truncate text-[0.72rem] font-light text-[rgba(245,242,236,0.72)]">
+                      Een showroom die naar u toe komt
+                    </p>
+                  </div>
+                  <span
+                    className="shrink-0 text-[0.72rem] text-white/35"
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
+                    04<span className="text-white/20"> / 10</span>
+                  </span>
+                </div>
+              </div>
+
               {/* Fake Header — desktop only */}
               <div className="home-configurator-topbar hidden h-8 shrink-0 items-center justify-between border-b border-white/10 px-4 lg:flex md:h-10">
                 <div className="flex gap-1.5">
@@ -1001,7 +1012,7 @@ export function ShowroomJourneySection() {
                 {/* Image Area */}
                 <div
                   ref={mockupViewportRef}
-                  className="home-configurator-viewport relative w-full max-h-[min(52vw,240px)] flex-none overflow-hidden bg-[#0A0A0A] aspect-[3/2] sm:max-h-[min(56vw,280px)] lg:max-h-none lg:aspect-auto lg:flex-1"
+                  className="home-configurator-viewport relative w-full min-h-[176px] max-h-[min(48vw,260px)] flex-none overflow-hidden bg-[#0A0A0A] aspect-[16/10] lg:max-h-none lg:min-h-0 lg:aspect-auto lg:flex-1"
                 >
                   <span className="absolute left-3 top-3 z-20 inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-black/45 px-2.5 py-1 text-[0.55rem] font-medium tracking-[0.08em] text-[#D8BE87] backdrop-blur-md lg:hidden">
                     <span className="h-1 w-1 rounded-full bg-[#8BC540]" />
@@ -1138,7 +1149,7 @@ export function ShowroomJourneySection() {
                 <div className="home-configurator-sidebar flex w-full shrink-0 flex-col overflow-hidden border-t border-white/[0.06] bg-[linear-gradient(180deg,#141614_0%,#0b0d0b_100%)] lg:w-[36%] lg:border-l lg:border-t-0 xl:w-[34%]">
                   <div className="home-configurator-tabs-wrap relative">
                   {/* Category tab strip */}
-                  <div className="home-configurator-tabs flex gap-2 overflow-x-auto border-b border-white/[0.06] bg-transparent px-4 py-3 [-ms-overflow-style:none] [scrollbar-width:none] lg:flex-wrap lg:gap-1 lg:overflow-visible lg:border-white/[0.07] lg:bg-white/[0.018] lg:p-2.5 [&::-webkit-scrollbar]:hidden">
+                  <div className="home-configurator-tabs flex gap-2 overflow-x-auto border-b border-white/[0.06] bg-transparent px-3.5 py-2.5 [-ms-overflow-style:none] [scrollbar-width:none] lg:flex-wrap lg:gap-1 lg:overflow-visible lg:border-white/[0.07] lg:bg-white/[0.018] lg:p-2.5 lg:px-4 lg:py-3 [&::-webkit-scrollbar]:hidden">
                     {hotspotsData.map((h, i) => {
                       const sel = selections[h.id];
                       const isTabActive = activeHotspot === i;
@@ -1184,12 +1195,12 @@ export function ShowroomJourneySection() {
                   </div>
 
                   {/* Active category header */}
-                  <div className="home-configurator-panel-head border-b border-white/[0.05] px-4 pb-3 pt-1 lg:px-3 lg:pb-2.5 lg:pt-3">
-                    <p className="mb-1 text-[0.62rem] font-medium uppercase tracking-[0.12em] text-[#C8A96B]/90">
+                  <div className="home-configurator-panel-head border-b border-white/[0.05] px-3.5 pb-2 pt-0.5 lg:px-3 lg:pb-2.5 lg:pt-3">
+                    <p className="mb-0.5 text-[0.58rem] font-medium uppercase tracking-[0.12em] text-[#C8A96B]/90 lg:mb-1 lg:text-[0.62rem]">
                       Configureer
                     </p>
                     <p
-                      className="text-[0.95rem] font-medium leading-tight tracking-[-0.01em] text-[#F7F5F2] lg:text-[0.82rem] lg:font-normal"
+                      className="text-[0.88rem] font-medium leading-tight tracking-[-0.01em] text-[#F7F5F2] lg:text-[0.82rem] lg:font-normal"
                       style={{ fontFamily: "var(--font-display)" }}
                     >
                       {currentCategory?.label ?? hotspotsData[activeHotspot].label}

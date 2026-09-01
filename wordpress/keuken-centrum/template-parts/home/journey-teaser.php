@@ -140,7 +140,7 @@ $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" a
 	<div class="journey-premium-scene__grain" aria-hidden="true"></div>
 
 	<div class="site-shell journey-config-scene__inner">
-		<?php kc_section_chapter('04', __('Digitale beleving', 'keuken-centrum'), true, 10, 'chapter-mark--sentence'); ?>
+		<?php kc_section_chapter('04', __('Digitale beleving', 'keuken-centrum'), true, 10, 'chapter-mark--sentence chapter-mark--desktop'); ?>
 
 		<div class="journey-config-grid journey-premium-grid">
 			<div
@@ -150,18 +150,23 @@ $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" a
 				data-categories="<?php echo esc_attr(wp_json_encode($categories)); ?>"
 				data-selections="<?php echo esc_attr(wp_json_encode($initial_selections)); ?>"
 			>
-				<div class="journey-mobile-intro">
-					<p class="journey-mobile-intro__eyebrow"><?php echo esc_html( $journey_eyebrow ); ?></p>
-					<h2 class="journey-mobile-intro__title"><?php echo esc_html( $journey_heading ); ?></h2>
-				</div>
-
 				<div class="journey-config-stage__badge journey-premium-badge journey-premium-badge--desktop" data-reveal data-journey-motion="badge">
 					<span class="journey-premium-badge__dot" aria-hidden="true"></span>
 					<?php esc_html_e('Premium configurator', 'keuken-centrum'); ?>
 				</div>
 
-				<div class="journey-premium-mockup-shell">
+				<div class="journey-premium-mockup-shell journey-mobile-app-shell">
 				<div class="journey-config-mockup" data-reveal data-journey-motion="mockup">
+					<div class="journey-mobile-app-chrome" aria-hidden="true">
+						<div class="journey-mobile-app-chrome__row">
+							<div class="journey-mobile-app-chrome__copy">
+								<p class="journey-mobile-app-chrome__eyebrow"><?php esc_html_e('Digitale beleving', 'keuken-centrum'); ?></p>
+								<p class="journey-mobile-app-chrome__title"><?php echo esc_html( $journey_heading ); ?></p>
+							</div>
+							<span class="journey-mobile-app-chrome__step">04<span> / 10</span></span>
+						</div>
+					</div>
+
 					<div class="journey-config-topbar home-configurator-topbar">
 						<div class="journey-config-topbar__dots" aria-hidden="true"><span></span><span></span><span></span></div>
 						<div class="journey-config-topbar__title"><?php esc_html_e('Keuken Centrum', 'keuken-centrum'); ?></div>

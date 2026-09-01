@@ -2903,16 +2903,49 @@
 
   .home-configurator-preview {
     aspect-ratio: auto;
-    border-radius: 20px;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
     border-color: rgba(255, 255, 255, 0.08);
-    box-shadow: 0 20px 50px -24px rgba(0, 0, 0, 0.55);
+    box-shadow: none;
   }
 
-  .journey-premium-mockup-shell {
+  .journey-premium-mockup-shell,
+  .journey-mobile-app-shell {
     padding: 0;
-    border-radius: 20px;
+    margin-inline: 0;
+    width: 100%;
+    border-radius: 0;
     background: transparent;
     box-shadow: none;
+  }
+
+  .journey-premium-scene.section-shell {
+    padding-inline: 0;
+    padding-top: clamp(2.25rem, 9vw, 3.25rem);
+    padding-bottom: calc(var(--app-mobile-nav, 4.5rem) + 1.5rem);
+  }
+
+  .journey-premium-scene__container {
+    width: 100%;
+    max-width: 100%;
+    padding-inline: 0;
+  }
+
+  .journey-premium-scene .chapter-mark {
+    display: none;
+  }
+
+  .journey-premium-grid {
+    gap: 0;
+  }
+
+  .journey-premium-stage {
+    padding-inline: 0;
+  }
+
+  .journey-mobile-app-chrome {
+    background: linear-gradient(180deg, #141614 0%, #111311 100%);
   }
 
   .home-configurator-topbar {
@@ -2926,8 +2959,9 @@
   .home-configurator-viewport {
     flex: none;
     width: 100%;
-    max-height: min(52vw, 240px);
-    aspect-ratio: 3 / 2;
+    min-height: 176px;
+    max-height: min(48vw, 260px);
+    aspect-ratio: 16 / 10;
   }
 
   .home-configurator-sidebar {
@@ -2937,6 +2971,7 @@
     border-left: none;
     border-top: 1px solid rgba(255, 255, 255, 0.06);
     background: linear-gradient(180deg, #141614 0%, #0b0d0b 100%);
+    padding-bottom: calc(var(--app-mobile-nav, 4.5rem) + env(safe-area-inset-bottom, 0px) + 0.35rem);
   }
 
   .home-configurator-tabs-wrap::after {
@@ -2954,25 +2989,29 @@
   .home-configurator-tabs {
     flex-wrap: nowrap;
     scroll-snap-type: x mandatory;
-    scroll-padding-inline: 1rem;
+    scroll-padding-inline: 0.875rem;
     border-bottom: 0;
+    padding-inline: 0.875rem;
   }
 
   .home-configurator-tabs > button {
     scroll-snap-align: start;
+    min-height: 34px;
+    padding-block: 0.45rem;
   }
 
   .home-configurator-panel-head {
-    padding-top: 0.25rem;
+    padding-top: 0.125rem;
+    padding-inline: 0.875rem;
   }
 
   .home-configurator-options-grid {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    gap: 0.75rem;
+    gap: 0.625rem;
     overflow-x: auto;
-    padding: 0 1rem 1rem;
+    padding: 0 0.875rem 0.875rem;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
@@ -2983,14 +3022,15 @@
   }
 
   .home-configurator-option {
-    flex: 0 0 8.5rem;
-    width: 8.5rem;
-    min-height: 6.75rem;
+    flex: 0 0 7.75rem;
+    width: 7.75rem;
+    min-height: 6.25rem;
     scroll-snap-align: start;
+    padding: 0.5rem;
   }
 
   .home-configurator-option__swatch {
-    height: 2.5rem;
+    height: 2.25rem;
   }
 
   .home-configurator-option:not(.is-selected) .home-configurator-option__desc {
@@ -2998,25 +3038,18 @@
   }
 
   .home-configurator-footer {
-    padding-inline: 1rem;
-    padding-block: 0.625rem;
+    padding-inline: 0.875rem;
+    padding-block: 0.5rem 0.625rem;
   }
 
   .journey-premium-scene {
-    padding-bottom: calc(var(--app-mobile-nav, 4.5rem) + 0.75rem);
-    padding-top: clamp(3rem, 12vw, 4.5rem);
-  }
-
-  .journey-premium-scene .chapter-mark {
-    margin-bottom: 1rem;
-  }
-
-  .journey-mobile-intro {
-    margin-bottom: 0.75rem;
+    padding-bottom: calc(var(--app-mobile-nav, 4.5rem) + 1.5rem);
+    padding-top: clamp(2.25rem, 9vw, 3.25rem);
   }
 
   .journey-mobile-outro {
     margin-top: 1rem;
+    padding-inline: 1rem;
   }
 
   .journey-mobile-outro .premium-pill-button {
