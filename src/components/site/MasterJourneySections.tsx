@@ -1146,7 +1146,7 @@ export function ShowroomJourneySection() {
                           </button>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-1.5">
+                        <div className="journey-configure-mobile__options-grid grid grid-cols-2 gap-1.5">
                           {activeMobileCategoryData.options.slice(0, 4).map((option, index) => {
                             const selected =
                               selections[activeMobileCategoryData.id]?.id === option.id;

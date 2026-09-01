@@ -1020,7 +1020,7 @@
 		const inlineHotspots = JSON.parse(mockup.dataset.hotspots || "[]");
 		const mobileRoot = mockup.querySelector(".journey-configure-mobile");
 		const desktopRoot = mockup.querySelector(".journey-premium-desktop");
-		const isMobileJourney = () => window.matchMedia("(max-width: 767px)").matches;
+		const isMobileJourney = () => window.matchMedia("(max-width: 1023px)").matches;
 		const getRoot = () => (isMobileJourney() && mobileRoot ? mobileRoot : desktopRoot || mockup);
 		let layer = getRoot().querySelector(".journey-config-hotspots");
 		let tabs = [...getRoot().querySelectorAll("[data-journey-tab]")];
