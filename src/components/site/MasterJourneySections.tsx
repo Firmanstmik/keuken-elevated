@@ -995,7 +995,7 @@ export function ShowroomJourneySection() {
                 <img
                   src={klassiekBase}
                   alt="Klassieke keuken configurator"
-                  className="absolute inset-0 h-full w-full object-cover"
+                  className="absolute inset-0 h-full w-full object-cover object-center"
                   loading="lazy"
                 />
                 <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_60%,rgba(0,0,0,0.4)_100%)]" />
