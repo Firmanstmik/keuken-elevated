@@ -236,6 +236,17 @@
   height: 1.1rem;
 }
 
+/* Iconsax Sms is stroke-only — theme.css forces fill:currentColor on all social SVGs */
+.site-footer__social-icon svg.kc-icon-sms {
+  fill: none !important;
+  stroke: currentColor;
+}
+
+.site-footer__social-icon svg.kc-icon-sms path {
+  fill: none !important;
+  vector-effect: non-scaling-stroke;
+}
+
 .site-footer__social {
   display: flex;
   width: fit-content;
