@@ -1018,10 +1018,18 @@
 		const categories = JSON.parse(mockup.dataset.categories || "[]");
 		const initialSelections = JSON.parse(mockup.dataset.selections || "{}");
 		const inlineHotspots = JSON.parse(mockup.dataset.hotspots || "[]");
-		const layer = mockup.querySelector(".journey-config-hotspots");
-		const tabs = [...mockup.querySelectorAll("[data-journey-tab]")];
-		const currentLabel = mockup.querySelector("[data-journey-current-label]");
-		const optionsWrap = mockup.querySelector("[data-journey-options]");
+		const mobileRoot = mockup.querySelector(".journey-configure-mobile");
+		const desktopRoot = mockup.querySelector(".journey-premium-desktop");
+		const isMobileJourney = () => window.matchMedia("(max-width: 767px)").matches;
+		const getRoot = () => (isMobileJourney() && mobileRoot ? mobileRoot : desktopRoot || mockup);
+		let layer = getRoot().querySelector(".journey-config-hotspots");
+		let tabs = [...getRoot().querySelectorAll("[data-journey-tab]")];
+		let currentLabel = getRoot().querySelector("[data-journey-current-label]");
+		let optionsWrap = getRoot().querySelector("[data-journey-options]");
+		const optionsPanel = mockup.querySelector("[data-journey-options-panel]");
+		const closePanelButton = mockup.querySelector("[data-journey-close]");
+		const progressLabel = mockup.querySelector("[data-journey-progress]");
+		const progressSummary = mockup.querySelector("[data-journey-progress-summary]");
 		if (!layer || !categories.length || !optionsWrap) return;
 
 		const keyMap = {
@@ -1042,6 +1050,38 @@
 			: [];
 		let activeCategoryId = categories[0]?.id || null;
 		let hoveredCategoryId = null;
+
+		if (isMobileJourney()) {
+			activeCategoryId = null;
+		}
+
+		const refreshDom = () => {
+			const root = getRoot();
+			layer = root.querySelector(".journey-config-hotspots");
+			tabs = [...root.querySelectorAll("[data-journey-tab]")];
+			currentLabel = root.querySelector("[data-journey-current-label]");
+			optionsWrap = root.querySelector("[data-journey-options]");
+		};
+
+		const syncPanelState = () => {
+			if (!optionsPanel) return;
+			optionsPanel.classList.toggle(
+				"configure-options-panel--open",
+				isMobileJourney() && Boolean(activeCategoryId),
+			);
+		};
+
+		const syncProgress = () => {
+			const completed = categories.filter((category) => selections[category.id]?.id).length;
+			const text = `${completed}/${categories.length} opties samengesteld`;
+			const summary = `${completed} van ${categories.length} keuzes`;
+			if (progressLabel) progressLabel.textContent = text;
+			if (progressSummary) progressSummary.textContent = summary;
+			const progressBar = mockup.querySelector(".journey-configure-mobile__progress > span");
+			if (progressBar) {
+				progressBar.style.width = `${Math.round((completed / categories.length) * 100)}%`;
+			}
+		};
 
 		const escapeHtml = (value) =>
 			String(value ?? "")
@@ -1189,9 +1229,12 @@
 		};
 
 		const render = () => {
+			refreshDom();
 			renderTabs();
 			renderOptions();
 			syncHotspotState();
+			syncPanelState();
+			syncProgress();
 		};
 
 		layer.addEventListener("mouseover", (event) => {
@@ -1226,25 +1269,43 @@
 			syncHotspotState();
 		});
 
-		optionsWrap.addEventListener("click", (event) => {
+		mockup.addEventListener("click", (event) => {
+			const tab = event.target.closest("[data-journey-tab]");
+			if (tab && getRoot().contains(tab)) {
+				const categoryId = tab.dataset.categoryId || activeCategoryId;
+				if (isMobileJourney()) {
+					activeCategoryId = activeCategoryId === categoryId ? null : categoryId;
+				} else {
+					activeCategoryId = categoryId;
+				}
+				hoveredCategoryId = null;
+				render();
+				return;
+			}
+
 			const button = event.target.closest("[data-journey-option]");
-			if (!button) return;
-			const categoryId = button.dataset.categoryId || "";
-			const optionId = button.dataset.optionId || "";
-			const category = getCategory(categoryId);
-			const option = category?.options.find((item) => item.id === optionId);
-			if (!category || !option) return;
-			selections[categoryId] = { id: option.id, color: option.color, name: option.name };
-			activeCategoryId = categoryId;
+			if (button && optionsWrap?.contains(button)) {
+				const categoryId = button.dataset.categoryId || "";
+				const optionId = button.dataset.optionId || "";
+				const category = getCategory(categoryId);
+				const option = category?.options.find((item) => item.id === optionId);
+				if (!category || !option) return;
+				selections[categoryId] = { id: option.id, color: option.color, name: option.name };
+				activeCategoryId = categoryId;
+				render();
+			}
+		});
+
+		closePanelButton?.addEventListener("click", () => {
+			activeCategoryId = null;
 			render();
 		});
 
-		tabs.forEach((tab) => {
-			tab.addEventListener("click", () => {
-				activeCategoryId = tab.dataset.categoryId || activeCategoryId;
-				hoveredCategoryId = null;
-				render();
-			});
+		window.addEventListener("resize", () => {
+			if (!isMobileJourney() && !activeCategoryId) {
+				activeCategoryId = categories[0]?.id || null;
+			}
+			render();
 		});
 
 		const boot = () => {

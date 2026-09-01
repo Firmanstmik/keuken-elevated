@@ -1,5 +1,6 @@
 "use client";
 import { useState, useMemo, useRef, useEffect } from "react";
+import { Link } from "@tanstack/react-router";
 
 import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
 import {
@@ -10,6 +11,7 @@ import {
   Heart,
   Diamonds,
   People,
+  ArrowRight2,
 } from "@zethictech/iconsax-react";
 import matOak from "@/assets/mat-oak.jpg";
 import matConcrete from "@/assets/mat-concrete.jpg";
@@ -18,6 +20,7 @@ import whyPersoonlijk from "@/assets/why/why-persoonlijk.webp";
 import whyMaterialen from "@/assets/why/why-materialen.webp";
 import whyService from "@/assets/why/why-service.webp";
 import brandsDarkBg from "@/assets/brands/brands-dark-bg.webp";
+import logoKeuken from "@/assets/logo-keuken-1-1.webp";
 import { PremiumPillButton } from "@/components/ui/premium-pill-button";
 import { SectionChapter } from "@/components/site/SectionChapter";
 import { kc } from "@/lib/kc-data";
@@ -867,9 +870,11 @@ function HotspotTooltip({
 export function ShowroomJourneySection() {
   const reduceMotion = useReducedMotion();
   const [activeHotspot, setActiveHotspot] = useState<number>(0);
+  const [activeMobileCategory, setActiveMobileCategory] = useState<string | null>(null);
   const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
   const [viewportSize, setViewportSize] = useState({ width: 600, height: 450 });
   const mockupViewportRef = useRef<HTMLDivElement | null>(null);
+  const mobileViewportRef = useRef<HTMLDivElement | null>(null);
 
   const [selections, setSelections] = useState<
     Record<string, { id: string; color: string; name: string }>
@@ -890,7 +895,7 @@ export function ShowroomJourneySection() {
   }));
 
   useEffect(() => {
-    const viewport = mockupViewportRef.current;
+    const viewport = mockupViewportRef.current ?? mobileViewportRef.current;
     if (!viewport) return;
     const resizeObserver = new ResizeObserver((entries) => {
       for (const entry of entries) {
@@ -906,6 +911,17 @@ export function ShowroomJourneySection() {
 
   const activeHotspotId = hotspotsData[activeHotspot].id;
   const currentCategory = masterCategories.find((c) => c.id === activeHotspotId);
+  const activeMobileCategoryData = activeMobileCategory
+    ? masterCategories.find((c) => c.id === activeMobileCategory) ?? null
+    : null;
+  const completedCount = hotspotsData.filter((hotspot) => selections[hotspot.id]?.id).length;
+  const journeyProgress = completedCount / hotspotsData.length;
+
+  const selectMobileCategory = (categoryId: string, hotspotIndex: number) => {
+    setActiveHotspot(hotspotIndex);
+    setActiveMobileCategory((current) => (current === categoryId ? null : categoryId));
+    setHoveredCategory(null);
+  };
 
   return (
     <section
@@ -952,6 +968,263 @@ export function ShowroomJourneySection() {
         />
         <div className="journey-premium-grid grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.92fr)] lg:items-center lg:gap-6">
           <div className="journey-premium-stage relative order-1">
+            <div className="journey-configure-mobile lg:hidden">
+              <div className="journey-configure-mobile__progress" aria-hidden="true">
+                <motion.div
+                  className="h-full bg-[#8BC540]"
+                  animate={{ scaleX: journeyProgress }}
+                  transition={{ duration: 0.4 }}
+                  style={{ transformOrigin: "left center" }}
+                />
+              </div>
+
+              <header className="journey-configure-mobile__header">
+                <p className="text-[0.68rem] tracking-[0.04em] text-[rgba(247,245,242,0.5)]">
+                  Digitale beleving
+                </p>
+                <img src={logoKeuken} alt="KeukenCentrum.nl" className="h-6 w-auto" />
+                <p className="text-[0.68rem] tracking-[0.04em] text-[rgba(247,245,242,0.5)]">
+                  Preview
+                </p>
+              </header>
+
+              <div
+                ref={mobileViewportRef}
+                className="configure-image-stage journey-configure-mobile__stage relative overflow-hidden bg-[#0A0A0A]"
+              >
+                <img
+                  src={klassiekBase}
+                  alt="Klassieke keuken configurator"
+                  className="absolute inset-0 h-full w-full object-cover"
+                  loading="lazy"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_60%,rgba(0,0,0,0.4)_100%)]" />
+
+                <div className="absolute left-3 top-3 rounded-[10px] border border-[rgba(247,245,242,0.1)] bg-[rgba(17,17,17,0.78)] px-2.5 py-1.5 backdrop-blur-[8px]">
+                  <p className="block text-[0.6rem] tracking-[0.06em] text-[#8BC540]">
+                    Digitale showroom
+                  </p>
+                  <p className="text-[0.625rem] text-[rgba(247,245,242,0.6)]">
+                    {completedCount}/{hotspotsData.length} opties samengesteld
+                  </p>
+                </div>
+
+                <div className="absolute inset-0">
+                  {hotspotsData.map((h, i) => {
+                    const isActive = activeMobileCategory === h.id || activeHotspot === i;
+                    const selectedOption = selections[h.id];
+
+                    return (
+                      <div
+                        key={h.id}
+                        className={`absolute ${isActive ? "z-30" : "z-20"}`}
+                        style={{ left: h.x, top: h.y }}
+                        data-hotspot="true"
+                      >
+                        <button
+                          type="button"
+                          onClick={() => selectMobileCategory(h.id, i)}
+                          className="configure-hotspot absolute grid h-11 w-11 -translate-x-1/2 -translate-y-1/2 cursor-pointer place-items-center rounded-full"
+                          aria-label={`Configureer ${h.label}`}
+                        >
+                          <div className="relative flex h-8 w-8 items-center justify-center">
+                            <span
+                              className="absolute inset-0 rounded-full"
+                              style={{
+                                background: "rgba(212,175,55,0.10)",
+                                filter: "blur(8px)",
+                                boxShadow: isActive
+                                  ? "0 0 20px rgba(212,175,55,0.35), 0 0 36px rgba(255,255,255,0.12)"
+                                  : "0 0 12px rgba(255,255,255,0.18), 0 0 24px rgba(212,175,55,0.20)",
+                              }}
+                            />
+                            <span
+                              className="absolute rounded-full"
+                              style={{
+                                width: 18,
+                                height: 18,
+                                border: `2px solid ${isActive ? "#8BC540" : "rgba(212,175,55,0.85)"}`,
+                                backgroundColor: isActive
+                                  ? "rgba(139,197,64,0.12)"
+                                  : "rgba(0,0,0,0.45)",
+                              }}
+                            />
+                            <span
+                              className="relative z-10 rounded-full"
+                              style={{
+                                width: 6,
+                                height: 6,
+                                backgroundColor: selectedOption?.color ?? "#FFFFFF",
+                                border: selectedOption?.color
+                                  ? "1px solid rgba(255,255,255,0.6)"
+                                  : "none",
+                              }}
+                            />
+                          </div>
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div className="configure-sidebar journey-configure-mobile__sidebar flex flex-col bg-[#0F0F0F]">
+                <div className="configure-category-rail flex gap-2 overflow-x-auto border-b border-[rgba(255,255,255,0.05)] p-3">
+                  {hotspotsData.map((h, i) => {
+                    const selected = selections[h.id];
+                    const active = activeMobileCategory === h.id;
+                    return (
+                      <button
+                        key={h.id}
+                        type="button"
+                        onClick={() => selectMobileCategory(h.id, i)}
+                        className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-[13px] border px-3 py-2 normal-case transition-all duration-300"
+                        style={{
+                          borderColor: active
+                            ? "#8BC540"
+                            : selected
+                              ? "rgba(139,197,64,0.4)"
+                              : "rgba(255,255,255,0.1)",
+                          backgroundColor: active ? "rgba(139,197,64,0.1)" : "transparent",
+                        }}
+                      >
+                        {selected ? (
+                          <span
+                            className="h-2 w-2 rounded-full border border-[rgba(255,255,255,0.3)]"
+                            style={{ backgroundColor: selected.color }}
+                          />
+                        ) : null}
+                        <span
+                          className="text-[0.68rem] tracking-[0.02em]"
+                          style={{
+                            color: active
+                              ? "#8BC540"
+                              : selected
+                                ? "rgba(247,245,242,0.7)"
+                                : "rgba(247,245,242,0.35)",
+                          }}
+                        >
+                          {h.label}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+
+                <div
+                  className={`configure-options-panel flex-1 p-3 ${
+                    activeMobileCategoryData ? "configure-options-panel--open" : ""
+                  }`}
+                >
+                  <AnimatePresence mode="wait">
+                    {activeMobileCategoryData ? (
+                      <motion.div
+                        key={activeMobileCategoryData.id}
+                        initial={{ opacity: 0, y: 12 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -8 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <div className="mb-3 flex items-center justify-between">
+                          <div>
+                            <p className="mb-0.5 block text-[0.6rem] tracking-[0.04em] text-[#8BC540]">
+                              Kies
+                            </p>
+                            <h3
+                              className="text-[1.15rem] text-[#F7F5F2]"
+                              style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
+                            >
+                              {activeMobileCategoryData.label}
+                            </h3>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => setActiveMobileCategory(null)}
+                            className="min-h-11 rounded-xl px-3 text-sm normal-case text-[rgba(247,245,242,0.55)]"
+                          >
+                            Sluiten
+                          </button>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-1.5">
+                          {activeMobileCategoryData.options.slice(0, 4).map((option, index) => {
+                            const selected =
+                              selections[activeMobileCategoryData.id]?.id === option.id;
+                            return (
+                              <motion.button
+                                key={option.id}
+                                type="button"
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ delay: index * 0.05 }}
+                                onClick={() =>
+                                  setSelections((prev) => ({
+                                    ...prev,
+                                    [activeMobileCategoryData.id]: {
+                                      id: option.id,
+                                      color: option.color,
+                                      name: option.name,
+                                    },
+                                  }))
+                                }
+                                className="min-h-[118px] cursor-pointer rounded-[14px] p-2.5 text-left normal-case transition-all duration-300 active:scale-[0.98]"
+                                style={{
+                                  border: `1px solid ${selected ? "#8BC540" : "rgba(255,255,255,0.07)"}`,
+                                  backgroundColor: selected
+                                    ? "rgba(139,197,64,0.08)"
+                                    : "rgba(255,255,255,0.02)",
+                                }}
+                              >
+                                <div
+                                  className="mb-1.5 h-12 w-full border border-[rgba(255,255,255,0.1)]"
+                                  style={{ backgroundColor: option.color }}
+                                />
+                                <p
+                                  className="mb-0.5 text-[0.7rem] font-normal tracking-[0.05em]"
+                                  style={{
+                                    color: selected ? "#8BC540" : "rgba(247,245,242,0.75)",
+                                  }}
+                                >
+                                  {option.name}
+                                </p>
+                                {option.description ? (
+                                  <p className="text-[0.6rem] leading-[1.4] text-[rgba(247,245,242,0.3)]">
+                                    {option.description}
+                                  </p>
+                                ) : null}
+                              </motion.button>
+                            );
+                          })}
+                        </div>
+                      </motion.div>
+                    ) : null}
+                  </AnimatePresence>
+                </div>
+              </div>
+
+              <div className="journey-configure-mobile__action">
+                <div className="flex items-center gap-2 px-3 py-2.5">
+                  <div className="min-w-0 flex-1 px-1">
+                    <p className="truncate text-[0.62rem] font-medium text-[#6b9539]">Voortgang</p>
+                    <p
+                      className="truncate text-[0.95rem] leading-tight text-[#F7F5F2]"
+                      style={{ fontFamily: "var(--font-display)", fontWeight: 500 }}
+                    >
+                      {completedCount} van {hotspotsData.length} keuzes
+                    </p>
+                  </div>
+                  <Link
+                    to="/configure"
+                    className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-[15px] border border-[#8BC540] bg-[#79af37] px-4 text-[0.76rem] font-semibold text-white shadow-[0_12px_26px_-16px_rgba(66,105,27,0.9)]"
+                  >
+                    <span className="max-w-[8.2rem] truncate">Start configurator</span>
+                    <ArrowRight2 size={16} variant="Linear" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative hidden lg:block">
             {/* The Badge — desktop only */}
             <motion.div
               initial={reduceMotion ? false : { opacity: 0, y: 10 }}
@@ -975,25 +1248,6 @@ export function ShowroomJourneySection() {
               viewport={motionViewport}
               className="home-configurator-preview relative flex w-full max-w-full flex-col overflow-hidden rounded-[20px] border border-white/[0.08] bg-[#0E0F0D] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] aspect-auto lg:max-h-none lg:rounded-[29px] lg:aspect-[4/3]"
             >
-              <div className="journey-mobile-app-chrome shrink-0 border-b border-white/[0.06] bg-[#111311] lg:hidden">
-                <div className="flex items-center justify-between gap-3 px-4 py-2.5">
-                  <div className="min-w-0">
-                    <p className="text-[0.58rem] font-medium uppercase tracking-[0.12em] text-[#C8A96B]">
-                      Digitale beleving
-                    </p>
-                    <p className="truncate text-[0.72rem] font-light text-[rgba(245,242,236,0.72)]">
-                      Een showroom die naar u toe komt
-                    </p>
-                  </div>
-                  <span
-                    className="shrink-0 text-[0.72rem] text-white/35"
-                    style={{ fontFamily: "var(--font-display)" }}
-                  >
-                    04<span className="text-white/20"> / 10</span>
-                  </span>
-                </div>
-              </div>
-
               {/* Fake Header — desktop only */}
               <div className="home-configurator-topbar hidden h-8 shrink-0 items-center justify-between border-b border-white/10 px-4 lg:flex md:h-10">
                 <div className="flex gap-1.5">
@@ -1012,9 +1266,9 @@ export function ShowroomJourneySection() {
                 {/* Image Area */}
                 <div
                   ref={mockupViewportRef}
-                  className="home-configurator-viewport relative w-full min-h-[176px] max-h-[min(48vw,260px)] flex-none overflow-hidden bg-[#0A0A0A] aspect-[16/10] lg:max-h-none lg:min-h-0 lg:aspect-auto lg:flex-1"
+                  className="home-configurator-viewport relative w-full flex-none overflow-hidden bg-[#0A0A0A] lg:aspect-auto lg:flex-1"
                 >
-                  <span className="absolute left-3 top-3 z-20 inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-black/45 px-2.5 py-1 text-[0.55rem] font-medium tracking-[0.08em] text-[#D8BE87] backdrop-blur-md lg:hidden">
+                  <span className="absolute left-3 top-3 z-20 hidden items-center gap-1.5 rounded-full border border-white/10 bg-black/45 px-2.5 py-1 text-[0.55rem] font-medium tracking-[0.08em] text-[#D8BE87] backdrop-blur-md lg:hidden">
                     <span className="h-1 w-1 rounded-full bg-[#8BC540]" />
                     Configurator
                   </span>
@@ -1311,14 +1565,6 @@ export function ShowroomJourneySection() {
                 </p>
               </div>
             </motion.div>
-
-            <div className="journey-mobile-outro mt-4 lg:hidden">
-              <p className="mb-3 text-[0.84rem] font-light leading-[1.55] text-[rgba(245,242,236,0.68)]">
-                Ontdek materialen en combinaties vóór uw showroombezoek.
-              </p>
-              <PremiumPillButton href="/brands" variant="blue" size="sm" className="w-full justify-between">
-                Start uw ontwerp
-              </PremiumPillButton>
             </div>
           </div>
 

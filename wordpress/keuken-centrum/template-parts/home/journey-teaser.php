@@ -122,6 +122,9 @@ $initial_selections = [
 ];
 
 $active_category = $categories[0];
+$category_count  = count( $categories );
+$completed_count = count( $initial_selections );
+$logo_uri        = kc_theme_img( 'logo-keuken-1-1.webp' ) ?: kc_theme_img( 'logo-keuken-centrum-transparent.png' ) ?: kc_theme_img( 'logo-keuken.webp' );
 $kses_icon       = [
 	'svg'    => ['viewBox' => true, 'fill' => true, 'aria-hidden' => true, 'width' => true, 'height' => true],
 	'path'   => ['d' => true, 'stroke' => true, 'stroke-width' => true, 'stroke-linecap' => true, 'stroke-linejoin' => true],
@@ -150,23 +153,109 @@ $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" a
 				data-categories="<?php echo esc_attr(wp_json_encode($categories)); ?>"
 				data-selections="<?php echo esc_attr(wp_json_encode($initial_selections)); ?>"
 			>
+				<div class="journey-configure-mobile">
+					<div class="journey-configure-mobile__progress" aria-hidden="true">
+						<span style="display:block;height:100%;width:<?php echo esc_attr( round( ( $completed_count / max( 1, $category_count ) ) * 100 ) ); ?>%;background:#8BC540;"></span>
+					</div>
+
+					<header class="journey-configure-mobile__header">
+						<p><?php esc_html_e( 'Digitale beleving', 'keuken-centrum' ); ?></p>
+						<?php if ( $logo_uri ) : ?>
+							<img src="<?php echo esc_url( $logo_uri ); ?>" alt="<?php esc_attr_e( 'KeukenCentrum.nl', 'keuken-centrum' ); ?>" class="journey-configure-mobile__logo" />
+						<?php endif; ?>
+						<p><?php esc_html_e( 'Preview', 'keuken-centrum' ); ?></p>
+					</header>
+
+					<div class="configure-image-stage journey-configure-mobile__stage">
+						<?php if ( $base ) : ?>
+							<img
+								src="<?php echo esc_url( $base ); ?>"
+								<?php if ( $base_sm ) : ?>
+									srcset="<?php echo esc_url( $base_sm ); ?> 768w, <?php echo esc_url( $base ); ?> 1536w"
+									sizes="100vw"
+								<?php endif; ?>
+								alt="<?php esc_attr_e( 'Klassieke keuken configurator', 'keuken-centrum' ); ?>"
+								loading="lazy"
+								decoding="async"
+								width="1536"
+								height="1024"
+							/>
+						<?php endif; ?>
+						<div class="journey-configure-mobile__badge">
+							<p><?php esc_html_e( 'Digitale showroom', 'keuken-centrum' ); ?></p>
+							<p data-journey-progress><?php echo esc_html( sprintf( '%1$d/%2$d opties samengesteld', $completed_count, $category_count ) ); ?></p>
+						</div>
+						<div class="journey-config-hotspots journey-configure-mobile__hotspots" aria-live="polite"></div>
+					</div>
+
+					<div class="configure-sidebar journey-configure-mobile__sidebar">
+						<div class="configure-category-rail journey-config-sidebar__tabs journey-config-sidebar__tabs--scroll" data-journey-tabs>
+							<?php foreach ( $categories as $index => $category ) : ?>
+								<?php $selection = $initial_selections[ $category['id'] ] ?? null; ?>
+								<button
+									type="button"
+									class="journey-config-sidebar__tab<?php echo $selection ? ' has-selection' : ''; ?>"
+									data-journey-tab
+									data-category-id="<?php echo esc_attr( $category['id'] ); ?>"
+									aria-pressed="false"
+								>
+									<?php if ( $selection ) : ?>
+										<span class="journey-config-sidebar__tab-dot" style="--journey-swatch:<?php echo esc_attr( $selection['color'] ); ?>"></span>
+									<?php endif; ?>
+									<span><?php echo esc_html( $category['label'] ); ?></span>
+								</button>
+							<?php endforeach; ?>
+						</div>
+
+						<div class="configure-options-panel journey-config-sidebar__options" data-journey-options-panel>
+							<div class="journey-configure-mobile__panel-head">
+								<div>
+									<p><?php esc_html_e( 'Kies', 'keuken-centrum' ); ?></p>
+									<p class="journey-config-sidebar__label" data-journey-current-label><?php echo esc_html( $active_category['label'] ); ?></p>
+								</div>
+								<button type="button" class="journey-configure-mobile__close" data-journey-close><?php esc_html_e( 'Sluiten', 'keuken-centrum' ); ?></button>
+							</div>
+							<div class="journey-config-sidebar__options-grid configure-options-grid" data-journey-options>
+								<?php foreach ( $active_category['options'] as $option ) : ?>
+									<?php $selected = ( $initial_selections[ $active_category['id'] ]['id'] ?? '' ) === $option['id']; ?>
+									<button
+										type="button"
+										class="journey-config-option home-configurator-option<?php echo $selected ? ' is-selected' : ''; ?>"
+										data-journey-option
+										data-category-id="<?php echo esc_attr( $active_category['id'] ); ?>"
+										data-option-id="<?php echo esc_attr( $option['id'] ); ?>"
+									>
+										<span class="journey-config-option__swatch" style="background-color:<?php echo esc_attr( $option['color'] ); ?>"></span>
+										<span class="journey-config-option__name"><?php echo esc_html( $option['name'] ); ?></span>
+										<span class="journey-config-option__desc"><?php echo esc_html( $option['description'] ); ?></span>
+									</button>
+								<?php endforeach; ?>
+							</div>
+						</div>
+					</div>
+
+					<div class="journey-configure-mobile__action">
+						<div class="journey-configure-mobile__action-row">
+							<div>
+								<p><?php esc_html_e( 'Voortgang', 'keuken-centrum' ); ?></p>
+								<p data-journey-progress-summary><?php echo esc_html( sprintf( '%1$d van %2$d keuzes', $completed_count, $category_count ) ); ?></p>
+							</div>
+							<a class="journey-configure-mobile__cta" href="<?php echo esc_url( $start_url ); ?>">
+								<span><?php esc_html_e( 'Start configurator', 'keuken-centrum' ); ?></span>
+								<span aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="journey-premium-desktop">
 				<div class="journey-config-stage__badge journey-premium-badge journey-premium-badge--desktop" data-reveal data-journey-motion="badge">
 					<span class="journey-premium-badge__dot" aria-hidden="true"></span>
 					<?php esc_html_e('Premium configurator', 'keuken-centrum'); ?>
 				</div>
 
-				<div class="journey-premium-mockup-shell journey-mobile-app-shell">
+				<div class="journey-premium-mockup-shell">
 				<div class="journey-config-mockup" data-reveal data-journey-motion="mockup">
-					<div class="journey-mobile-app-chrome" aria-hidden="true">
-						<div class="journey-mobile-app-chrome__row">
-							<div class="journey-mobile-app-chrome__copy">
-								<p class="journey-mobile-app-chrome__eyebrow"><?php esc_html_e('Digitale beleving', 'keuken-centrum'); ?></p>
-								<p class="journey-mobile-app-chrome__title"><?php echo esc_html( $journey_heading ); ?></p>
-							</div>
-							<span class="journey-mobile-app-chrome__step">04<span> / 10</span></span>
-						</div>
-					</div>
-
 					<div class="journey-config-topbar home-configurator-topbar">
 						<div class="journey-config-topbar__dots" aria-hidden="true"><span></span><span></span><span></span></div>
 						<div class="journey-config-topbar__title"><?php esc_html_e('Keuken Centrum', 'keuken-centrum'); ?></div>
@@ -175,7 +264,6 @@ $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" a
 
 					<div class="journey-config-mockup__body journey-config-mockup__body--stack">
 						<div class="journey-config-mockup__viewport journey-config-mockup__viewport--hero">
-							<span class="journey-mobile-chip" aria-hidden="true"><span></span><?php esc_html_e('Configurator', 'keuken-centrum'); ?></span>
 							<?php if ($base) : ?>
 								<img
 									src="<?php echo esc_url($base); ?>"
@@ -243,6 +331,7 @@ $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" a
 					</div>
 				</div>
 				</div>
+				</div>
 
 				<div class="journey-config-caption journey-premium-caption" data-reveal data-journey-motion="caption">
 					<span class="journey-config-caption__icon" aria-hidden="true"><?php echo wp_kses($icon_tune, $kses_icon); ?></span>
@@ -251,13 +340,6 @@ $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" a
 						<p><?php esc_html_e('Configureer materialen, apparatuur en afwerkingen voordat u de showroom bezoekt.', 'keuken-centrum'); ?></p>
 					</div>
 				</div>
-
-				<div class="journey-mobile-outro">
-					<p><?php esc_html_e('Ontdek materialen en combinaties vóór uw showroombezoek.', 'keuken-centrum'); ?></p>
-					<a class="premium-pill-button premium-pill-button--blue premium-pill-button--sm" href="<?php echo esc_url($start_url); ?>">
-						<span class="premium-pill-button__label"><?php echo esc_html( $journey_cta ); ?></span>
-						<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
-					</a>
 				</div>
 			</div>
 

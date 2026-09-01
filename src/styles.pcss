@@ -2901,29 +2901,91 @@
     scroll-snap-align: center;
   }
 
-  .home-configurator-preview {
-    aspect-ratio: auto;
-    border-radius: 0;
-    border-left: 0;
-    border-right: 0;
-    border-color: rgba(255, 255, 255, 0.08);
-    box-shadow: none;
+  .journey-configure-mobile {
+    display: flex;
+    flex-direction: column;
+    background: #111111;
+    overflow: hidden;
   }
 
-  .journey-premium-mockup-shell,
-  .journey-mobile-app-shell {
-    padding: 0;
-    margin-inline: 0;
+  .journey-configure-mobile__progress {
+    height: 2px;
+    background: rgba(139, 197, 64, 0.15);
+  }
+
+  .journey-configure-mobile__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 52px;
+    padding-inline: 0.75rem;
+    border-bottom: 1px solid rgba(139, 197, 64, 0.16);
+    background: #111411;
+  }
+
+  .journey-configure-mobile .configure-image-stage,
+  .journey-configure-mobile__stage {
+    position: relative;
+    top: auto;
     width: 100%;
-    border-radius: 0;
-    background: transparent;
-    box-shadow: none;
+    height: min(36svh, 300px);
+    min-height: 220px;
+    max-height: 300px;
+    flex: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 18px 40px -26px rgba(0, 0, 0, 0.85);
+  }
+
+  .journey-configure-mobile__sidebar {
+    flex: 1;
+    min-height: 88px;
+  }
+
+  .journey-configure-mobile .configure-options-panel {
+    display: none;
+  }
+
+  .journey-configure-mobile .configure-options-panel--open {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    z-index: 1;
+    display: block;
+    max-height: none;
+    margin: 0.5rem;
+    overflow: visible;
+    overscroll-behavior: auto;
+    border-radius: 22px;
+    background: linear-gradient(165deg, #171a15, #0d100d);
+    box-shadow: 0 20px 60px -24px rgba(0, 0, 0, 0.85);
+    animation: mobile-sheet-in 320ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .journey-configure-mobile .configure-options-panel--open::before {
+    display: block;
+    width: 2.5rem;
+    height: 4px;
+    margin: 0.15rem auto 0.8rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.2);
+    content: "";
+  }
+
+  .journey-configure-mobile__action {
+    position: sticky;
+    bottom: calc(var(--app-mobile-nav, 72px) + env(safe-area-inset-bottom, 0px));
+    z-index: 12;
+    border-top: 1px solid rgba(247, 245, 242, 0.08);
+    background: rgba(10, 10, 10, 0.94);
+    backdrop-filter: blur(12px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
   }
 
   .journey-premium-scene.section-shell {
     padding-inline: 0;
-    padding-top: clamp(2.25rem, 9vw, 3.25rem);
-    padding-bottom: calc(var(--app-mobile-nav, 4.5rem) + 1.5rem);
+    padding-top: clamp(2rem, 8vw, 3rem);
+    padding-bottom: 0;
   }
 
   .journey-premium-scene__container {
@@ -2946,132 +3008,9 @@
     padding-inline: 0;
   }
 
-  .journey-mobile-app-chrome {
-    background: linear-gradient(180deg, #141614 0%, #111311 100%);
-  }
-
-  .home-configurator-topbar {
-    display: none;
-  }
-
-  .home-configurator-body {
-    flex-direction: column;
-  }
-
-  .home-configurator-viewport {
-    flex: none;
-    width: 100%;
-    min-height: 176px;
-    max-height: min(48vw, 260px);
-    aspect-ratio: 16 / 10;
-  }
-
-  .home-configurator-sidebar {
-    display: flex;
-    width: 100%;
-    flex: 0 0 auto;
-    border-left: none;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-    background: linear-gradient(180deg, #141614 0%, #0b0d0b 100%);
-    padding-bottom: calc(var(--app-mobile-nav, 4.5rem) + env(safe-area-inset-bottom, 0px) + 0.35rem);
-  }
-
-  .home-configurator-tabs-wrap::after {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 2;
-    width: 2.5rem;
-    background: linear-gradient(90deg, transparent, #141614 85%);
-    content: "";
-    pointer-events: none;
-  }
-
-  .home-configurator-tabs {
-    flex-wrap: nowrap;
-    scroll-snap-type: x mandatory;
-    scroll-padding-inline: 0.875rem;
-    border-bottom: 0;
-    padding-inline: 0.875rem;
-  }
-
-  .home-configurator-tabs > button {
-    scroll-snap-align: start;
-    min-height: 34px;
-    padding-block: 0.45rem;
-  }
-
-  .home-configurator-panel-head {
-    padding-top: 0.125rem;
-    padding-inline: 0.875rem;
-  }
-
-  .home-configurator-options-grid {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    gap: 0.625rem;
-    overflow-x: auto;
-    padding: 0 0.875rem 0.875rem;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-
-  .home-configurator-options-grid::-webkit-scrollbar {
-    display: none;
-  }
-
-  .home-configurator-option {
-    flex: 0 0 7.75rem;
-    width: 7.75rem;
-    min-height: 6.25rem;
-    scroll-snap-align: start;
-    padding: 0.5rem;
-  }
-
-  .home-configurator-option__swatch {
-    height: 2.25rem;
-  }
-
-  .home-configurator-option:not(.is-selected) .home-configurator-option__desc {
-    display: none;
-  }
-
-  .home-configurator-footer {
-    padding-inline: 0.875rem;
-    padding-block: 0.5rem 0.625rem;
-  }
-
   .journey-premium-scene {
-    padding-bottom: calc(var(--app-mobile-nav, 4.5rem) + 1.5rem);
-    padding-top: clamp(2.25rem, 9vw, 3.25rem);
-  }
-
-  .journey-mobile-outro {
-    margin-top: 1rem;
-    padding-inline: 1rem;
-  }
-
-  .journey-mobile-outro .premium-pill-button {
-    width: 100%;
-    min-height: 44px;
-    justify-content: space-between;
-    font-size: 0.68rem;
-    letter-spacing: 0.06em;
-  }
-
-  .journey-mobile-outro .premium-pill-button__badge {
-    width: 2rem;
-    height: 2rem;
-  }
-
-  .home-configurator-preview [data-hotspot="true"] button {
-    display: grid;
-    width: 44px;
-    height: 44px;
-    place-items: center;
+    padding-top: clamp(2rem, 8vw, 3rem);
+    padding-bottom: 0;
   }
 
   .brands-carousel-grid {
