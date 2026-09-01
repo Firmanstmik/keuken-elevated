@@ -257,6 +257,7 @@
   border-color: rgba(225, 48, 108, 0.4);
   background: linear-gradient(135deg, #833ab4, #e1306c 52%, #f77737);
   color: #fff;
+  box-shadow: 0 8px 24px -14px rgba(225, 48, 108, 0.7);
 }
 
 .site-footer__social--email .site-footer__social-icon {
@@ -267,7 +268,7 @@
 
 .site-footer__social:hover .site-footer__social-icon,
 .site-footer__social:focus-visible .site-footer__social-icon {
-  transform: translateY(-4px) scale(1.08);
+  transform: translateY(-4px) scale(1.1);
   outline: none;
 }
 
@@ -275,6 +276,85 @@
 .site-footer__social:focus-visible .site-footer__social-icon::before {
   left: 125%;
   opacity: 1;
+}
+
+.site-footer__social--facebook:hover .site-footer__social-icon,
+.site-footer__social--facebook:focus-visible .site-footer__social-icon {
+  border-color: #1877f2;
+  background: #1877f2;
+  color: #fff;
+  box-shadow: 0 14px 32px -10px rgba(24, 119, 242, 0.82);
+}
+
+.site-footer__social--instagram:hover .site-footer__social-icon,
+.site-footer__social--instagram:focus-visible .site-footer__social-icon {
+  border-color: rgba(252, 175, 69, 0.7);
+  box-shadow: 0 16px 34px -10px rgba(225, 48, 108, 0.78);
+}
+
+.site-footer__social--email:hover .site-footer__social-icon,
+.site-footer__social--email:focus-visible .site-footer__social-icon {
+  border-color: #ea4335;
+  background: #ea4335;
+  color: #fff;
+  box-shadow: 0 14px 32px -10px rgba(234, 67, 53, 0.72);
+}
+
+.site-footer--react .site-footer__social:hover .site-footer__social-icon svg,
+.site-footer--react .site-footer__social:focus-visible .site-footer__social-icon svg {
+  transform: scale(1.08);
+}
+
+/* React SocialRow — flex column, brand-color handle + underline (all routes) */
+.site-footer--react .site-footer__socials--react {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0;
+}
+
+.site-footer--react .site-footer__social {
+  gap: 0.875rem;
+}
+
+.site-footer--react .site-footer__social:hover,
+.site-footer--react .site-footer__social:focus-visible {
+  color: rgba(255, 255, 255, 0.8);
+  outline: none;
+}
+
+.site-footer--react .site-footer__social-handle {
+  position: relative;
+  font-family: var(--font-body);
+  transition: color 0.4s ease;
+}
+
+.site-footer--react .site-footer__social:hover .site-footer__social-handle,
+.site-footer--react .site-footer__social:focus-visible .site-footer__social-handle {
+  color: var(--social-color, #a8d95a);
+}
+
+.site-footer--react .site-footer__social-handle::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.25rem;
+  width: 0;
+  height: 1px;
+  background: var(--social-color, #a8d95a);
+  opacity: 0.7;
+  transition: width 0.5s ease;
+}
+
+.site-footer--react .site-footer__social:hover .site-footer__social-handle::after,
+.site-footer--react .site-footer__social:focus-visible .site-footer__social-handle::after {
+  width: 100%;
+}
+
+/* Beat legacy theme.css `.site-footer a:hover { color: green }` on nav + social */
+.site-footer--react .site-footer__nav-link:hover,
+.site-footer--react .site-footer__nav-link:focus-visible {
+  color: #a8d95a;
 }
 
 /* ─── Global React footer parity (all routes — was homepage-only in home-h31-parity.css) ─── */
@@ -306,14 +386,14 @@
 }
 
 .site-footer--react .site-footer__brand .site-footer__title {
-  max-width: 18rem;
-  margin: 0 0 2.25rem;
-  font-family: var(--font-body);
-  font-size: 0.88rem;
-  font-weight: 300;
-  line-height: 1.9;
-  letter-spacing: normal;
-  color: rgba(255, 255, 255, 0.8);
+  max-width: 18rem !important;
+  margin: 0 0 2.25rem !important;
+  font-family: var(--font-body) !important;
+  font-size: 0.88rem !important;
+  font-weight: 300 !important;
+  line-height: 1.9 !important;
+  letter-spacing: normal !important;
+  color: rgba(255, 255, 255, 0.8) !important;
 }
 
 .site-footer--react .site-footer__brand .site-footer__social-label {
@@ -618,14 +698,6 @@
   max-width: 100%;
   filter: none !important;
   margin-bottom: 0;
-}
-
-.site-footer--react .site-footer__socials--react {
-  gap: 0.75rem;
-}
-
-.site-footer--react .site-footer__socials--react a {
-  gap: 0.875rem;
 }
 
 .site-footer--react .site-footer__hours {

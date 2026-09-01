@@ -55,19 +55,7 @@ $logo = $f['logo'] ?? '';
 		<p class="site-footer__mobile-copy"><?php echo esc_html( (string) ( $f['brand_copy'] ?? '' ) ); ?></p>
 		<div class="site-footer__socials site-footer__socials--react">
 			<?php foreach ( (array) ( $f['socials'] ?? [] ) as $social ) : ?>
-				<?php
-				$tone = (string) ( $social['tone'] ?? '' );
-				$href = (string) ( $social['href'] ?? '#' );
-				?>
-				<a
-					class="site-footer__social site-footer__social--<?php echo esc_attr( $tone ); ?>"
-					href="<?php echo esc_url( $href ); ?>"
-					<?php echo str_starts_with( $href, 'mailto:' ) ? '' : 'target="_blank" rel="noopener noreferrer"'; ?>
-					aria-label="<?php echo esc_attr( (string) ( $social['label'] ?? '' ) ); ?>"
-				>
-					<span class="site-footer__social-icon" aria-hidden="true"><?php echo kc_footer_social_icon( $tone ); ?></span>
-					<span><?php echo esc_html( (string) ( $social['handle'] ?? '' ) ); ?></span>
-				</a>
+				<?php kc_footer_render_social_link( (array) $social ); ?>
 			<?php endforeach; ?>
 		</div>
 		<div class="site-footer__mobile-accordions">
@@ -104,19 +92,7 @@ $logo = $f['logo'] ?? '';
 			<p class="site-footer__social-label"><?php echo esc_html( (string) ( $f['social_label'] ?? '' ) ); ?></p>
 			<div class="site-footer__socials site-footer__socials--react">
 				<?php foreach ( (array) ( $f['socials'] ?? [] ) as $social ) : ?>
-					<?php
-					$tone = (string) ( $social['tone'] ?? '' );
-					$href = (string) ( $social['href'] ?? '#' );
-					?>
-					<a
-						class="site-footer__social site-footer__social--<?php echo esc_attr( $tone ); ?>"
-						href="<?php echo esc_url( $href ); ?>"
-						<?php echo str_starts_with( $href, 'mailto:' ) ? '' : 'target="_blank" rel="noopener noreferrer"'; ?>
-						aria-label="<?php echo esc_attr( (string) ( $social['label'] ?? '' ) ); ?>"
-					>
-						<span class="site-footer__social-icon" aria-hidden="true"><?php echo kc_footer_social_icon( $tone ); ?></span>
-						<span><?php echo esc_html( (string) ( $social['handle'] ?? '' ) ); ?></span>
-					</a>
+					<?php kc_footer_render_social_link( (array) $social ); ?>
 				<?php endforeach; ?>
 			</div>
 		</div>

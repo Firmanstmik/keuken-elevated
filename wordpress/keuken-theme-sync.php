@@ -181,5 +181,12 @@ function kc_sync_theme_from_github() {
 		@opcache_reset();
 	}
 
-	return 'Theme synced and activated from GitHub main (kitchens mega verified).';
+	// Purge LiteSpeed page cache so footer/HTML updates are visible immediately.
+	if (class_exists('LiteSpeed_Cache_API')) {
+		LiteSpeed_Cache_API::purge_all();
+	} elseif (function_exists('do_action')) {
+		do_action('litespeed_purge_all');
+	}
+
+	return 'Theme synced and activated from GitHub main (kitchens mega verified). LiteSpeed cache purged.';
 }
