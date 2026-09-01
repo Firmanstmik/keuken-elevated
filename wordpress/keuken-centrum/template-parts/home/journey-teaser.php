@@ -157,7 +157,7 @@ $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" a
 
 				<div class="journey-premium-mockup-shell">
 				<div class="journey-config-mockup" data-reveal data-journey-motion="mockup">
-					<div class="journey-config-topbar">
+					<div class="journey-config-topbar home-configurator-topbar">
 						<div class="journey-config-topbar__dots" aria-hidden="true"><span></span><span></span><span></span></div>
 						<div class="journey-config-topbar__title"><?php esc_html_e('Keuken Centrum', 'keuken-centrum'); ?></div>
 						<div class="journey-config-topbar__spacer" aria-hidden="true"></div>
@@ -183,7 +183,8 @@ $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" a
 						</div>
 
 						<div class="journey-config-sidebar journey-config-sidebar--mobile">
-							<div class="journey-config-sidebar__tabs journey-config-sidebar__tabs--scroll" data-journey-tabs>
+							<div class="journey-config-sidebar__tabs-wrap home-configurator-tabs-wrap">
+							<div class="journey-config-sidebar__tabs journey-config-sidebar__tabs--scroll home-configurator-tabs" data-journey-tabs>
 								<?php foreach ($categories as $index => $category) : ?>
 									<?php $selection = $initial_selections[$category['id']] ?? null; ?>
 									<button
@@ -198,18 +199,20 @@ $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" a
 									</button>
 								<?php endforeach; ?>
 							</div>
+							</div>
 
-							<div class="journey-config-sidebar__head">
-								<p><?php esc_html_e('Kies', 'keuken-centrum'); ?></p>
+							<div class="journey-config-sidebar__head home-configurator-panel-head">
+								<p class="journey-config-sidebar__kicker"><?php esc_html_e('Configureer', 'keuken-centrum'); ?></p>
 								<p class="journey-config-sidebar__label" data-journey-current-label><?php echo esc_html($active_category['label']); ?></p>
 							</div>
 
-							<div class="journey-config-sidebar__options" data-journey-options>
+							<div class="journey-config-sidebar__options home-configurator-options">
+								<div class="journey-config-sidebar__options-grid home-configurator-options-grid" data-journey-options>
 								<?php foreach ($active_category['options'] as $option) : ?>
 									<?php $selected = ($initial_selections[$active_category['id']]['id'] ?? '') === $option['id']; ?>
 									<button
 										type="button"
-										class="journey-config-option<?php echo $selected ? ' is-selected' : ''; ?>"
+							class="journey-config-option home-configurator-option<?php echo $selected ? ' is-selected' : ''; ?>"
 										data-journey-option
 										data-category-id="<?php echo esc_attr($active_category['id']); ?>"
 										data-option-id="<?php echo esc_attr($option['id']); ?>"
@@ -219,9 +222,10 @@ $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" a
 										<span class="journey-config-option__desc"><?php echo esc_html($option['description']); ?></span>
 									</button>
 								<?php endforeach; ?>
+								</div>
 							</div>
 
-							<div class="journey-config-sidebar__footer">
+							<div class="journey-config-sidebar__footer home-configurator-footer">
 								<a href="<?php echo esc_url($start_url); ?>"><?php esc_html_e('Volledig ontwerp', 'keuken-centrum'); ?></a>
 							</div>
 						</div>

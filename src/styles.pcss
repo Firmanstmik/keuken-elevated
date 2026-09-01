@@ -2903,6 +2903,20 @@
 
   .home-configurator-preview {
     aspect-ratio: auto;
+    border-radius: 20px;
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 50px -24px rgba(0, 0, 0, 0.55);
+  }
+
+  .journey-premium-mockup-shell {
+    padding: 0;
+    border-radius: 20px;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .home-configurator-topbar {
+    display: none;
   }
 
   .home-configurator-body {
@@ -2912,7 +2926,7 @@
   .home-configurator-viewport {
     flex: none;
     width: 100%;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 11;
   }
 
   .home-configurator-sidebar {
@@ -2920,17 +2934,76 @@
     width: 100%;
     flex: 0 0 auto;
     border-left: none;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    background: linear-gradient(180deg, #141614 0%, #0b0d0b 100%);
+  }
+
+  .home-configurator-tabs-wrap::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    width: 2.5rem;
+    background: linear-gradient(90deg, transparent, #141614 85%);
+    content: "";
+    pointer-events: none;
   }
 
   .home-configurator-tabs {
     flex-wrap: nowrap;
     scroll-snap-type: x mandatory;
-    scroll-padding-inline: 0.625rem;
+    scroll-padding-inline: 1rem;
+    border-bottom: 0;
   }
 
   .home-configurator-tabs > button {
     scroll-snap-align: start;
+  }
+
+  .home-configurator-panel-head {
+    padding-top: 0.25rem;
+  }
+
+  .home-configurator-options-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 0.75rem;
+    overflow-x: auto;
+    padding: 0 1rem 1rem;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .home-configurator-options-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .home-configurator-option {
+    flex: 0 0 9.25rem;
+    width: 9.25rem;
+    min-height: 7.25rem;
+    scroll-snap-align: start;
+  }
+
+  .home-configurator-option:not(.is-selected) .home-configurator-option__desc {
+    display: none;
+  }
+
+  .home-configurator-footer {
+    padding-inline: 1rem;
+    padding-block: 0.75rem;
+  }
+
+  .journey-premium-scene {
+    padding-bottom: calc(var(--app-mobile-nav, 4.5rem) + 1rem);
+  }
+
+  .journey-premium-stage__badge {
+    top: 0.75rem;
+    left: 0.75rem;
   }
 
   .home-configurator-preview [data-hotspot="true"] button {

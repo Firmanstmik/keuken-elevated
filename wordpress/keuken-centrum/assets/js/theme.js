@@ -1103,7 +1103,7 @@
 					return `
 						<button
 							type="button"
-							class="journey-config-option is-entering${selected ? " is-selected" : ""}"
+							class="journey-config-option home-configurator-option is-entering${selected ? " is-selected" : ""}"
 							data-journey-option
 							data-category-id="${escapeHtml(category.id)}"
 							data-option-id="${escapeHtml(option.id)}"

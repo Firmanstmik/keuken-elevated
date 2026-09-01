@@ -4923,12 +4923,19 @@ body.admin-bar .site-header {
 .journey-config-scene--react .journey-config-sidebar__tab.is-active{border-color:#b08d57;background:rgba(176,141,87,.13);color:#b08d57}
 .journey-config-scene--react .journey-config-sidebar__head{padding:.75rem .75rem .625rem;border-bottom:1px solid rgba(255,255,255,.05)}
 .journey-config-scene--react .journey-config-sidebar__head p{margin:0 0 .125rem;font-size:.6rem;letter-spacing:.03em;color:#c8a96b}
+.journey-config-scene--react .journey-config-sidebar__kicker{margin:0 0 .25rem;font-size:.62rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(200,169,107,.9)}
 .journey-config-scene--react .journey-config-sidebar__label{margin:0;font-family:var(--font-display);font-size:.82rem;font-weight:400;line-height:1.25;color:#f7f5f2}
-.journey-config-scene--react .journey-config-sidebar__options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.5rem;padding:.625rem;overflow:auto;flex:1}
-.journey-config-scene--react .journey-config-option{padding:.5rem;border:1px solid rgba(255,255,255,.07);border-radius:10px;background:rgba(255,255,255,.025);text-align:left;min-height:88px;box-shadow:inset 0 1px 0 rgba(255,255,255,.025);transition:transform .3s ease,border-color .3s ease,background .3s ease,box-shadow .3s ease}
-.journey-config-scene--react .journey-config-option.is-entering{animation:journeyOptionIn .4s cubic-bezier(.22,1,.36,1) both}
-.journey-config-scene--react .journey-config-option:nth-child(1){animation-delay:0s}
-.journey-config-scene--react .journey-config-option:nth-child(2){animation-delay:.04s}
+.journey-config-scene--react .home-configurator-tabs-wrap{position:relative}
+.journey-config-scene--react .journey-config-sidebar__options{flex:1;overflow:auto;padding:0}
+.journey-config-scene--react .journey-config-sidebar__options-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.5rem;padding:.5rem}
+.journey-config-scene--react .journey-config-option,
+.journey-config-scene--react .home-configurator-option{padding:.5rem;border:1px solid rgba(255,255,255,.07);border-radius:10px;background:rgba(255,255,255,.025);text-align:left;min-height:88px;box-shadow:inset 0 1px 0 rgba(255,255,255,.025);transition:transform .3s ease,border-color .3s ease,background .3s ease,box-shadow .3s ease}
+.journey-config-scene--react .journey-config-option.is-entering,
+.journey-config-scene--react .home-configurator-option.is-entering{animation:journeyOptionIn .4s cubic-bezier(.22,1,.36,1) both}
+.journey-config-scene--react .journey-config-option:nth-child(1),
+.journey-config-scene--react .home-configurator-option:nth-child(1){animation-delay:0s}
+.journey-config-scene--react .journey-config-option:nth-child(2),
+.journey-config-scene--react .home-configurator-option:nth-child(2){animation-delay:.04s}
 .journey-config-scene--react .journey-config-option:nth-child(3){animation-delay:.08s}
 .journey-config-scene--react .journey-config-option:nth-child(4){animation-delay:.12s}
 .journey-config-scene--react .journey-config-option:hover{transform:translateY(-1px);border-color:rgba(200,169,107,.45);background:rgba(255,255,255,.045)}
@@ -5061,8 +5068,26 @@ body.admin-bar .site-header {
 	.why-scene.why-scene--react{padding-block:clamp(3.75rem,16vw,5rem)}
 	.why-scene--react .premium-pill-button{min-height:48px;padding-left:1rem;font-size:.7rem;letter-spacing:.08em}
 	.why-scene--react .premium-pill-button__badge{width:2.35rem;height:2.35rem}
-	.journey-config-scene.journey-config-scene--react{padding-block:clamp(3.75rem,16vw,5rem)}
-	.journey-config-scene--react .journey-config-stage__badge,.journey-premium-badge{left:1rem}
+	.journey-config-scene.journey-config-scene--react{padding-block:clamp(3.75rem,16vw,5rem);padding-bottom:calc(var(--app-mobile-nav,4.5rem) + 1rem)}
+	.journey-config-scene--react .journey-config-stage__badge,.journey-premium-badge{top:.75rem;left:.75rem}
+	.journey-premium-mockup-shell{padding:0;border-radius:20px;background:transparent;box-shadow:none}
+	.journey-config-scene--react .journey-config-mockup{border-radius:20px;border-color:rgba(255,255,255,.08);box-shadow:0 20px 50px -24px rgba(0,0,0,.55)}
+	.journey-config-scene--react .home-configurator-topbar,.journey-config-scene--react .journey-config-topbar{display:none}
+	.journey-config-scene--react .journey-config-mockup__viewport--hero{aspect-ratio:16/11}
+	.journey-config-scene--react .journey-config-sidebar{background:linear-gradient(180deg,#141614 0%,#0b0d0b 100%);border-top-color:rgba(255,255,255,.06)}
+	.journey-config-scene--react .journey-config-sidebar__tabs{padding:.875rem 1rem .75rem;gap:.5rem;border-bottom:0;background:transparent}
+	.journey-config-scene--react .home-configurator-tabs-wrap::after{position:absolute;top:0;right:0;bottom:0;z-index:2;width:2.5rem;background:linear-gradient(90deg,transparent,#141614 85%);content:"";pointer-events:none}
+	.journey-config-scene--react .journey-config-sidebar__tab{min-height:36px;padding:.5rem .875rem;border-radius:999px;font-size:.72rem}
+	.journey-config-scene--react .home-configurator-panel-head,.journey-config-scene--react .journey-config-sidebar__head{padding:0 1rem .75rem}
+	.journey-config-scene--react .journey-config-sidebar__label{font-size:.95rem;font-weight:500}
+	.journey-config-scene--react .journey-config-sidebar__options-grid{display:flex;flex-direction:row;flex-wrap:nowrap;gap:.75rem;overflow-x:auto;padding:0 1rem 1rem;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+	.journey-config-scene--react .journey-config-sidebar__options-grid::-webkit-scrollbar{display:none}
+	.journey-config-scene--react .journey-config-option,.journey-config-scene--react .home-configurator-option{flex:0 0 9.25rem;width:9.25rem;min-height:7.25rem;scroll-snap-align:start;padding:.625rem;border-radius:12px}
+	.journey-config-scene--react .journey-config-option:not(.is-selected) .journey-config-option__desc{display:none}
+	.journey-config-scene--react .journey-config-option__swatch{height:3rem;margin-bottom:.5rem;border-radius:8px}
+	.journey-config-scene--react .home-configurator-footer,.journey-config-scene--react .journey-config-sidebar__footer{padding:.75rem 1rem}
+	.journey-config-scene--react .journey-config-caption,.journey-premium-caption{display:none}
+	.journey-config-scene--react .journey-premium-features,.journey-config-scene--react .journey-config-copy__features{display:none}
 	.journey-config-scene--react .journey-config-hotspot__button{width:44px;height:44px}
 	.journey-config-scene--react .premium-pill-button{min-height:48px;padding-left:1rem;font-size:.7rem;letter-spacing:.08em}
 	.journey-config-scene--react .premium-pill-button__badge{width:2.35rem;height:2.35rem}
