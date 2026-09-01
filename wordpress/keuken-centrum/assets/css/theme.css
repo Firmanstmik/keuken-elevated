@@ -5091,14 +5091,22 @@ body.admin-bar .site-header {
 .journey-config-scene--react .journey-config-sidebar__footer a:hover{transform:translateY(-1px);filter:brightness(1.05)}
 .journey-config-scene--react .journey-config-caption,
 .journey-premium-caption{
-	position:relative;inset:auto;z-index:auto;display:flex;align-items:flex-start;gap:1rem;
-	margin-top:1.25rem;padding:1rem 1rem;border:1px solid rgba(200,169,107,.24);border-radius:18px;
+	position:relative!important;inset:auto!important;z-index:auto;
+	display:flex!important;flex-direction:row!important;align-items:center!important;gap:1rem;
+	margin-top:1.25rem;padding:1rem 1.25rem;border:1px solid rgba(200,169,107,.24);border-radius:18px;
 	background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.02));color:inherit;backdrop-filter:blur(20px)
 }
-.journey-config-scene--react .journey-config-caption__icon{display:grid;place-items:center;flex:0 0 auto;width:2.75rem;height:2.75rem;border:1px solid rgba(200,169,107,.45);border-radius:999px;background:rgba(200,169,107,.12);color:#c8a96b;box-shadow:0 0 24px rgba(200,169,107,.12)}
-.journey-config-scene--react .journey-config-caption__icon svg{width:18px;height:18px}
+.journey-config-scene--react .journey-config-caption__body{min-width:0;flex:1}
+.journey-config-scene--react .journey-config-caption__icon{
+	display:inline-flex!important;align-items:center;justify-content:center;flex:0 0 auto;opacity:1!important;
+	width:2.75rem;height:2.75rem;border:1px solid rgba(200,169,107,.45);border-radius:999px;
+	background:rgba(200,169,107,.12);color:#c8a96b;box-shadow:0 0 24px rgba(200,169,107,.12)
+}
+.journey-config-scene--react .journey-config-caption__icon svg{width:18px;height:18px;display:block}
+.journey-config-scene--react .journey-config-caption__title,
 .journey-config-scene--react .journey-config-caption p:first-child{margin:0;font-size:.62rem;font-weight:600;letter-spacing:.1em;color:#d8be87}
-.journey-config-scene--react .journey-config-caption p:last-child{margin:.25rem 0 0;font-size:.84rem;font-weight:300;line-height:1.6;color:rgba(245,242,236,.76)}
+.journey-config-scene--react .journey-config-caption__text,
+.journey-config-scene--react .journey-config-caption p:last-child{margin:.25rem 0 0;font-size:.8rem;font-weight:300;line-height:1.6;color:rgba(245,242,236,.76)}
 .journey-config-scene--react .journey-config-copy{padding-left:0;margin-top:0}
 .journey-config-scene.journey-config-scene--react .journey-config-copy__eyebrow{margin:0;max-width:none;font-size:.72rem;font-weight:300;letter-spacing:.08em;text-transform:none;color:#c8a96b;line-height:1.7}
 .journey-config-scene.journey-config-scene--react .journey-config-copy h2.journey-config-copy__title{
@@ -5107,12 +5115,20 @@ body.admin-bar .site-header {
 }
 .journey-config-scene--react .journey-config-copy__lede{margin-top:1rem;max-width:500px;font-size:1rem;font-weight:300;line-height:1.65;letter-spacing:.01em;color:rgba(245,242,236,.72)}
 .journey-config-scene--react .journey-config-copy__divider{height:1px;width:100%;margin-top:1.5rem;background:rgba(200,169,107,.22)}
-.journey-config-scene--react .journey-config-copy__features{display:flex;flex-direction:column;gap:.75rem;margin-top:1.5rem}
+.journey-config-scene--react .journey-config-copy__features{display:flex;flex-direction:column;gap:1.25rem;margin-top:1.25rem}
 .journey-config-scene--react .journey-config-copy__feature,
-.journey-premium-feature{display:flex;align-items:center;gap:.875rem;padding:.75rem .875rem;border:1px solid rgba(255,255,255,.07);border-radius:14px;background:rgba(255,255,255,.03);backdrop-filter:blur(4px)}
-.journey-config-scene--react .journey-config-copy__feature span{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;width:2.5rem;height:2.5rem;border:1px solid rgba(200,169,107,.22);border-radius:999px;background:rgba(200,169,107,.08);color:#c8a96b}
-.journey-config-scene--react .journey-config-copy__feature svg{width:18px;height:18px}
-.journey-config-scene--react .journey-config-copy__feature p{margin:0;font-size:.9rem;font-weight:300;line-height:1.55;color:rgba(245,242,236,.8)}
+.journey-premium-feature{
+	display:flex!important;flex-direction:row!important;align-items:center!important;gap:.875rem;
+	padding:0;border:0;border-radius:0;background:transparent;backdrop-filter:none
+}
+.journey-config-scene--react .journey-premium-feature__icon{
+	display:inline-flex!important;align-items:center;justify-content:center;flex:0 0 auto;
+	width:2rem;height:2rem;border:0!important;border-radius:0!important;background:transparent!important;
+	color:#c8a96b;box-shadow:none
+}
+.journey-config-scene--react .journey-premium-feature__icon svg{width:18px;height:18px;display:block}
+.journey-config-scene--react .journey-premium-feature__label,
+.journey-config-scene--react .journey-config-copy__feature p{margin:0;font-size:.875rem;font-weight:300;line-height:1.65;color:rgba(245,242,236,.72)}
 .journey-config-scene.journey-config-scene--react .journey-config-actions{display:block;margin-top:2.5rem}
 .journey-config-scene--react [data-journey-motion]{opacity:0}
 .journey-config-scene--react [data-journey-motion=badge]{transform:translateY(10px);transition:opacity .6s ease,transform .6s ease}
@@ -5172,9 +5188,6 @@ body.admin-bar .site-header {
 	.journey-config-scene--react .journey-config-sidebar__footer a{min-height:2rem;height:2rem;border-radius:8px;font-size:.62rem;letter-spacing:-.005em}
 	.journey-config-scene--react .journey-config-caption,.journey-premium-caption{align-items:center;padding:1rem 1.25rem}
 	.journey-config-scene--react .journey-config-copy__lede{font-size:1.125rem;line-height:1.6}
-	.journey-config-scene--react .journey-config-copy__features{gap:1.25rem}
-	.journey-config-scene--react .journey-config-copy__feature,.journey-premium-feature{padding:0;border:0;border-radius:0;background:transparent;backdrop-filter:none}
-	.journey-config-scene--react .journey-config-copy__feature span{width:2rem;height:2rem;border:0;border-radius:0;background:transparent}
 }
 
 @media (min-width:1024px){
@@ -5226,21 +5239,6 @@ body.admin-bar .site-header {
 	}
 	.journey-premium-desktop .journey-config-option__swatch{height:2rem;margin-bottom:.375rem;border-radius:6px}
 	.journey-config-scene--react .journey-config-copy__features{margin-top:1.25rem;gap:1.25rem}
-	.journey-config-scene--react .journey-config-copy__feature,
-	.journey-config-scene--react .journey-premium-feature{
-		gap:.875rem;padding:0;border:0;border-radius:0;background:transparent;backdrop-filter:none
-	}
-	.journey-config-scene--react .journey-config-copy__feature .journey-premium-feature__icon,
-	.journey-config-scene--react .journey-premium-feature__icon{
-		width:2rem;height:2rem;border:0;border-radius:0;background:transparent
-	}
-	.journey-config-scene--react .journey-config-copy__feature p{
-		font-size:.875rem;line-height:1.65;color:rgba(245,242,236,.72)
-	}
-	.journey-config-scene--react .journey-config-caption,
-	.journey-config-scene--react .journey-premium-caption{
-		display:flex;margin-top:1.25rem;align-items:center;padding:1rem 1.25rem
-	}
 	.journey-config-scene--react .journey-config-actions{margin-top:2.5rem}
 	.why-scene--react .why-scene__grid{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:3rem}
 	.why-scene--react .why-stage{display:block}
@@ -5256,7 +5254,7 @@ body.admin-bar .site-header {
 	.journey-config-scene--react .journey-config-stage__badge.journey-premium-badge--desktop{display:inline-flex}
 	.journey-config-scene--react .journey-config-copy{margin-top:0;padding-left:2.5rem}
 	.journey-config-scene.journey-config-scene--react .journey-config-copy h2.journey-config-copy__title{margin-top:1.5rem}
-	.journey-config-scene--react .journey-config-copy__lede{margin-top:1.5rem}
+	.journey-config-scene--react .journey-config-copy__lede{margin-top:1.5rem;font-size:1.125rem;line-height:1.6}
 	.journey-config-scene--react .journey-config-copy__divider{margin-top:1.5rem}
 }
 

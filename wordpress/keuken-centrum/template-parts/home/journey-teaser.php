@@ -331,9 +331,9 @@ $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" a
 
 				<div class="journey-config-caption journey-premium-caption" data-reveal data-journey-motion="caption">
 					<span class="journey-config-caption__icon" aria-hidden="true"><?php echo wp_kses($icon_tune, $kses_icon); ?></span>
-					<div>
-						<p><?php esc_html_e('Digitale Showroom', 'keuken-centrum'); ?></p>
-						<p><?php esc_html_e('Configureer materialen, apparatuur en afwerkingen voordat u de showroom bezoekt.', 'keuken-centrum'); ?></p>
+					<div class="journey-config-caption__body">
+						<p class="journey-config-caption__title"><?php esc_html_e('Digitale Showroom', 'keuken-centrum'); ?></p>
+						<p class="journey-config-caption__text"><?php esc_html_e('Configureer materialen, apparatuur en afwerkingen voordat u de showroom bezoekt.', 'keuken-centrum'); ?></p>
 					</div>
 				</div>
 			</div>
@@ -351,15 +351,15 @@ $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" a
 			<div class="journey-config-copy__features journey-premium-features">
 				<div class="journey-config-copy__feature journey-premium-feature" data-journey-motion="copy-feature" data-stagger="0">
 					<span class="journey-premium-feature__icon" aria-hidden="true"><?php echo wp_kses($icon_tune, $kses_icon); ?></span>
-					<p><?php esc_html_e('Interactieve materiaalconfigurator', 'keuken-centrum'); ?></p>
+					<span class="journey-premium-feature__label"><?php esc_html_e('Interactieve materiaalconfigurator', 'keuken-centrum'); ?></span>
 				</div>
 				<div class="journey-config-copy__feature journey-premium-feature" data-journey-motion="copy-feature" data-stagger="1">
 					<span class="journey-premium-feature__icon" aria-hidden="true"><?php echo wp_kses($icon_swatch, $kses_icon); ?></span>
-					<p><?php esc_html_e('Persoonlijke moodboard generatie', 'keuken-centrum'); ?></p>
+					<span class="journey-premium-feature__label"><?php esc_html_e('Persoonlijke moodboard generatie', 'keuken-centrum'); ?></span>
 				</div>
 				<div class="journey-config-copy__feature journey-premium-feature" data-journey-motion="copy-feature" data-stagger="2">
 					<span class="journey-premium-feature__icon" aria-hidden="true"><?php echo wp_kses($icon_headphone, $kses_icon); ?></span>
-					<p><?php esc_html_e('Persoonlijke ontwerpconsultatie', 'keuken-centrum'); ?></p>
+					<span class="journey-premium-feature__label"><?php esc_html_e('Persoonlijke ontwerpconsultatie', 'keuken-centrum'); ?></span>
 				</div>
 			</div>
 			<div class="journey-config-actions" data-journey-motion="copy-el" data-stagger="4">
