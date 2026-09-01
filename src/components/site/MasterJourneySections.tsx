@@ -925,13 +925,13 @@ export function ShowroomJourneySection() {
 
   return (
     <section
-      className="journey-premium-scene section-shell relative overflow-hidden"
+      className="journey-premium-scene section-shell relative overflow-hidden max-lg:overflow-visible max-lg:bg-[#111111]"
       style={{ background: "linear-gradient(180deg, #0D0F0A 0%, #12140E 52%, #0C0E09 100%)" }}
     >
-      {/* Cinematic showroom backdrop — in harmony with the partner section */}
+      {/* Cinematic showroom backdrop — desktop only */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
+        className="pointer-events-none absolute inset-0 max-lg:hidden"
         style={{
           backgroundImage: `url(${brandsDarkBg})`,
           backgroundSize: "cover",
@@ -941,7 +941,7 @@ export function ShowroomJourneySection() {
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
+        className="pointer-events-none absolute inset-0 max-lg:hidden"
         style={{
           background:
             "linear-gradient(180deg, rgba(13,15,10,0.9) 0%, rgba(13,15,10,0.7) 45%, rgba(12,14,9,0.92) 100%)",
@@ -949,7 +949,7 @@ export function ShowroomJourneySection() {
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
+        className="pointer-events-none absolute inset-0 max-lg:hidden"
         style={{
           background:
             "radial-gradient(60% 45% at 20% 15%, rgba(139,197,64,0.08), transparent 60%), radial-gradient(55% 45% at 85% 80%, rgba(200,169,107,0.07), transparent 65%)",
@@ -957,18 +957,9 @@ export function ShowroomJourneySection() {
       />
       <div
         aria-hidden="true"
-        className="journey-premium-scene__grain pointer-events-none absolute inset-0 opacity-[0.035]"
+        className="journey-premium-scene__grain pointer-events-none absolute inset-0 opacity-[0.035] max-lg:hidden"
       />
-      <div className="journey-premium-scene__container site-container relative max-w-7xl">
-        <SectionChapter
-          index={4}
-          label="Digitale beleving"
-          light
-          className="chapter-mark--sentence hidden lg:flex"
-        />
-        <div className="journey-premium-grid grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.92fr)] lg:items-center lg:gap-6">
-          <div className="journey-premium-stage relative order-1">
-            <div className="journey-configure-mobile lg:hidden">
+      <div className="journey-configure-mobile configure-layout flex w-full flex-col lg:hidden">
               <div className="journey-configure-mobile__progress" aria-hidden="true">
                 <motion.div
                   className="h-full bg-[#8BC540]"
@@ -978,7 +969,7 @@ export function ShowroomJourneySection() {
                 />
               </div>
 
-              <header className="journey-configure-mobile__header">
+              <header className="configure-app-header journey-configure-mobile__header flex h-[60px] items-center justify-between border-b border-[rgba(139,197,64,0.16)] bg-[#111411] px-3 shadow-[0_12px_34px_-24px_rgba(0,0,0,0.9)]">
                 <p className="text-[0.68rem] tracking-[0.04em] text-[rgba(247,245,242,0.5)]">
                   Digitale beleving
                 </p>
@@ -990,26 +981,25 @@ export function ShowroomJourneySection() {
 
               <div
                 ref={mobileViewportRef}
-                className="configure-image-stage journey-configure-mobile__stage relative overflow-hidden bg-[#0A0A0A]"
+                className="configure-image-stage journey-configure-mobile__stage relative h-[36svh] min-h-[260px] max-h-[380px] w-full flex-none overflow-hidden bg-[#0A0A0A]"
               >
-                <img
-                  src={klassiekBase}
-                  alt="Klassieke keuken configurator"
-                  className="absolute inset-0 h-full w-full object-cover object-center"
-                  loading="lazy"
-                />
-                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_60%,rgba(0,0,0,0.4)_100%)]" />
+                <div className="relative h-full w-full">
+                  <div
+                    className="absolute inset-0 bg-cover bg-center"
+                    style={{ backgroundImage: `url(${klassiekBase})` }}
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_60%,rgba(0,0,0,0.4)_100%)]" />
 
-                <div className="absolute left-3 top-3 rounded-[10px] border border-[rgba(247,245,242,0.1)] bg-[rgba(17,17,17,0.78)] px-2.5 py-1.5 backdrop-blur-[8px]">
-                  <p className="block text-[0.6rem] tracking-[0.06em] text-[#8BC540]">
-                    Digitale showroom
-                  </p>
-                  <p className="text-[0.625rem] text-[rgba(247,245,242,0.6)]">
-                    {completedCount}/{hotspotsData.length} opties samengesteld
-                  </p>
-                </div>
+                  <div className="absolute left-3 top-3 rounded-[10px] border border-[rgba(247,245,242,0.1)] bg-[rgba(17,17,17,0.78)] px-2.5 py-1.5 backdrop-blur-[8px]">
+                    <p className="block text-[0.6rem] tracking-[0.06em] text-[#8BC540]">
+                      Digitale showroom
+                    </p>
+                    <p className="text-[0.625rem] text-[rgba(247,245,242,0.6)]">
+                      {completedCount}/{hotspotsData.length} opties samengesteld
+                    </p>
+                  </div>
 
-                <div className="absolute inset-0">
+                  <div className="absolute inset-0">
                   {hotspotsData.map((h, i) => {
                     const isActive = activeMobileCategory === h.id || activeHotspot === i;
                     const selectedOption = selections[h.id];
@@ -1065,6 +1055,7 @@ export function ShowroomJourneySection() {
                       </div>
                     );
                   })}
+                </div>
                 </div>
               </div>
 
@@ -1224,7 +1215,16 @@ export function ShowroomJourneySection() {
               </div>
             </div>
 
-            <div className="relative hidden lg:block">
+      <div className="journey-premium-scene__container site-container relative hidden max-w-7xl lg:block">
+        <SectionChapter
+          index={4}
+          label="Digitale beleving"
+          light
+          className="chapter-mark--sentence hidden lg:flex"
+        />
+        <div className="journey-premium-grid grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.92fr)] lg:items-center lg:gap-6">
+          <div className="journey-premium-stage relative order-1">
+            <div className="relative">
             {/* The Badge — desktop only */}
             <motion.div
               initial={reduceMotion ? false : { opacity: 0, y: 10 }}
