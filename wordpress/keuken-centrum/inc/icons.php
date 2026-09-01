@@ -214,3 +214,27 @@ function kc_icon_mega_category(int $index): string {
 	$path = $paths[$index] ?? $paths[0];
 	return '<svg class="kc-icon-mega-category" viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden="true">' . str_replace('/>', ' stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>', $path) . '</svg>';
 }
+
+/**
+ * Iconsax Setting4 — Showroom Journey caption + feature icon.
+ */
+function kc_icon_journey_setting4(int $size = 18): string {
+	$s = (string) max(12, min(24, $size));
+	return '<svg class="kc-icon-journey-setting4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="' . esc_attr($s) . '" height="' . esc_attr($s) . '" fill="none" aria-hidden="true"><path d="M22 6.5h-6M6 6.5H2M10 10a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7ZM22 17.5h-4M8 17.5H2M14 21a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+}
+
+/**
+ * Iconsax ColorSwatch — Showroom Journey moodboard feature icon.
+ */
+function kc_icon_journey_color_swatch(int $size = 18): string {
+	$s = (string) max(12, min(24, $size));
+	return '<svg class="kc-icon-journey-color-swatch" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="' . esc_attr($s) . '" height="' . esc_attr($s) . '" fill="none" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 4.5V18c0 1.08-.44 2.07-1.14 2.79l-.04.04c-.09.09-.19.18-.28.25-.3.26-.64.46-.99.6-.11.05-.22.09-.33.13-.39.13-.81.19-1.22.19-.27 0-.54-.03-.8-.08-.13-.03-.26-.06-.39-.1-.16-.05-.31-.1-.46-.17 0-.01 0-.01-.01 0-.28-.14-.55-.3-.8-.49l-.01-.01c-.13-.1-.25-.2-.36-.32-.11-.12-.22-.24-.33-.37-.19-.25-.35-.52-.49-.8.01-.01.01-.01 0-.01 0 0 0-.01-.01-.02-.06-.14-.11-.29-.16-.44a5.58 5.58 0 01-.1-.39c-.05-.26-.08-.53-.08-.8V4.5C2 3 3 2 4.5 2h3C9 2 10 3 10 4.5z"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M22 16.5v3c0 1.5-1 2.5-2.5 2.5H6c.41 0 .83-.06 1.22-.19.11-.04.22-.08.33-.13.35-.14.69-.34.99-.6.09-.07.19-.16.28-.25l.04-.04 6.8-6.79h3.84c1.5 0 2.5 1 2.5 2.5zM4.81 21.82c-.6-.18-1.17-.51-1.64-.99-.48-.47-.81-1.04-.99-1.64a4.02 4.02 0 002.63 2.63z"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18.37 11.29L15.66 14l-6.8 6.79C9.56 20.07 10 19.08 10 18V8.34l2.71-2.71c1.06-1.06 2.48-1.06 3.54 0l2.12 2.12c1.06 1.06 1.06 2.48 0 3.54zM6 19a1 1 0 100-2 1 1 0 000 2z"/></svg>';
+}
+
+/**
+ * Iconsax Headphone — Showroom Journey consultation feature icon.
+ */
+function kc_icon_journey_headphone(int $size = 18): string {
+	$s = (string) max(12, min(24, $size));
+	return '<svg class="kc-icon-journey-headphone" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="' . esc_attr($s) . '" height="' . esc_attr($s) . '" fill="none" aria-hidden="true"><path d="M5.46 18.49v-2.92c0-.97.76-1.84 1.84-1.84.97 0 1.84.76 1.84 1.84v2.81c0 1.95-1.62 3.57-3.57 3.57-1.95 0-3.57-1.63-3.57-3.57v-6.16C1.89 6.6 6.33 2.05 11.95 2.05 17.57 2.05 22 6.6 22 12.11v6.16c0 1.95-1.62 3.57-3.57 3.57-1.95 0-3.57-1.62-3.57-3.57v-2.81c0-.97.76-1.84 1.84-1.84.97 0 1.84.76 1.84 1.84v3.03" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+}
