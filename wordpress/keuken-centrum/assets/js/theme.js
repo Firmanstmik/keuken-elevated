@@ -1028,6 +1028,7 @@
 		let optionsWrap = getRoot().querySelector("[data-journey-options]");
 		const optionsPanel = mockup.querySelector("[data-journey-options-panel]");
 		const closePanelButton = mockup.querySelector("[data-journey-close]");
+		const backdropButton = mockup.querySelector("[data-journey-backdrop]");
 		const progressLabel = mockup.querySelector("[data-journey-progress]");
 		const progressSummary = mockup.querySelector("[data-journey-progress-summary]");
 		if (!layer || !categories.length || !optionsWrap) return;
@@ -1065,10 +1066,10 @@
 
 		const syncPanelState = () => {
 			if (!optionsPanel) return;
-			optionsPanel.classList.toggle(
-				"configure-options-panel--open",
-				isMobileJourney() && Boolean(activeCategoryId),
-			);
+			const isOpen = isMobileJourney() && Boolean(activeCategoryId);
+			optionsPanel.classList.toggle("configure-options-panel--open", isOpen);
+			if (backdropButton) backdropButton.hidden = !isOpen;
+			mockup.classList.toggle("journey-configure-mobile--panel-open", isOpen);
 		};
 
 		const syncProgress = () => {
@@ -1252,7 +1253,12 @@
 		layer.addEventListener("click", (event) => {
 			const hotspot = event.target.closest(".journey-config-hotspot");
 			if (!hotspot) return;
-			activeCategoryId = hotspot.dataset.hotspotId || activeCategoryId;
+			const hotspotId = hotspot.dataset.hotspotId || activeCategoryId;
+			if (isMobileJourney()) {
+				activeCategoryId = activeCategoryId === hotspotId ? null : hotspotId;
+			} else {
+				activeCategoryId = hotspotId;
+			}
 			hoveredCategoryId = null;
 			render();
 		});
@@ -1299,6 +1305,18 @@
 		closePanelButton?.addEventListener("click", () => {
 			activeCategoryId = null;
 			render();
+		});
+
+		backdropButton?.addEventListener("click", () => {
+			activeCategoryId = null;
+			render();
+		});
+
+		window.addEventListener("keydown", (event) => {
+			if (event.key === "Escape" && isMobileJourney() && activeCategoryId) {
+				activeCategoryId = null;
+				render();
+			}
 		});
 
 		window.addEventListener("resize", () => {

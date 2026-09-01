@@ -144,12 +144,13 @@ $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" a
 	data-categories="<?php echo esc_attr(wp_json_encode($categories)); ?>"
 	data-selections="<?php echo esc_attr(wp_json_encode($initial_selections)); ?>"
 >
-	<div class="journey-config-scene__photo"<?php echo $scene ? ' style="background-image:url(' . esc_url($scene) . ')"' : ''; ?> aria-hidden="true"></div>
-	<div class="journey-config-scene__veil" aria-hidden="true"></div>
-	<div class="journey-config-scene__ambient" aria-hidden="true"></div>
+	<div class="journey-config-scene__photo journey-config-scene__photo--desktop"<?php echo $scene ? ' style="background-image:url(' . esc_url($scene) . ')"' : ''; ?> aria-hidden="true"></div>
+	<div class="journey-config-scene__veil journey-config-scene__veil--desktop" aria-hidden="true"></div>
+	<div class="journey-config-scene__ambient journey-config-scene__ambient--desktop" aria-hidden="true"></div>
 	<div class="journey-premium-scene__grain journey-premium-scene__grain--desktop" aria-hidden="true"></div>
 
 	<div class="journey-configure-mobile configure-layout">
+		<button type="button" class="journey-configure-mobile__backdrop" data-journey-backdrop hidden aria-label="<?php esc_attr_e( 'Sluiten', 'keuken-centrum' ); ?>"></button>
 		<div class="journey-configure-mobile__progress" aria-hidden="true">
 			<span style="display:block;height:100%;width:<?php echo esc_attr( round( ( $completed_count / max( 1, $category_count ) ) * 100 ) ); ?>%;background:#8BC540;"></span>
 		</div>

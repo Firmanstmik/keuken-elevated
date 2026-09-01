@@ -176,6 +176,25 @@ $hero_cbw              = kc_theme_img( 'cbw-erkend.png' ) ?: kc_theme_img( 'cbw.
 					</a>
 				</div>
 
+				<?php if ( $video_uri ) : ?>
+					<div class="home-hero__mobile-video home-hero__reveal" data-hero-reveal="5b" aria-hidden="false">
+						<video
+							class="home-hero__mobile-video-el"
+							src="<?php echo esc_url( $video_uri ); ?>"
+							muted
+							loop
+							playsinline
+							preload="metadata"
+							autoplay
+						></video>
+						<div class="home-hero__mobile-video-scrim" aria-hidden="true"></div>
+						<span class="home-hero__mobile-video-chip">
+							<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 22h20"/><path d="M2.95 22 3 9.97c0-.61.29-1.19.77-1.57l7-5.45a2.01 2.01 0 0 1 2.46 0l7 5.44c.49.38.77.96.77 1.58V22"/><path d="M13 17h-2c-.83 0-1.5.67-1.5 1.5V22h5v-3.5c0-.83-.67-1.5-1.5-1.5ZM9.5 13.75h-2c-.55 0-1-.45-1-1v-1.5c0-.55.45-1 1-1h2c.55 0 1 .45 1 1v1.5c0 .55-.45 1-1 1ZM16.5 13.75h-2c-.55 0-1-.45-1-1v-1.5c0-.55.45-1 1-1h2c.55 0 1 .45 1 1v1.5c0 .55-.45 1-1 1Z"/><path d="m19 7-.03-3h-4.4"/></svg>
+							<?php esc_html_e( 'SHOWROOM UTRECHT', 'keuken-centrum' ); ?>
+						</span>
+					</div>
+				<?php endif; ?>
+
 				<?php if (count($slides) > 1) : ?>
 					<div class="home-hero__partner home-hero__reveal" data-hero-reveal="6" data-hero-dots>
 						<div class="home-hero__partner-chip">

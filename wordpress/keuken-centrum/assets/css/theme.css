@@ -2646,6 +2646,10 @@ body.admin-bar .site-header {
 	will-change: transform;
 }
 
+.home-hero__mobile-video {
+	display: none;
+}
+
 .home-hero__video-card {
 	position: relative;
 	width: 100%;
@@ -4233,6 +4237,123 @@ body.admin-bar .site-header {
 	}
 }
 
+@media (max-width: 1023px) {
+	.home-hero {
+		min-height: max(640px, calc(100svh - var(--app-mobile-nav, 72px)));
+		padding-top: calc(4.5rem + env(safe-area-inset-top, 0px));
+	}
+
+	.home-hero::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		z-index: 5;
+		pointer-events: none;
+		background: linear-gradient(
+			180deg,
+			rgba(23, 25, 28, 0.32) 0%,
+			rgba(23, 25, 28, 0.58) 52%,
+			rgba(23, 25, 28, 0.86) 100%
+		);
+	}
+
+	.home-hero__inner {
+		width: 100%;
+		max-width: none;
+		padding-inline: 1rem;
+	}
+
+	.home-hero__layout {
+		min-height: auto !important;
+		align-content: start;
+		gap: 0;
+		padding-bottom: calc(var(--app-mobile-nav, 72px) + env(safe-area-inset-bottom, 0px) + 1rem);
+	}
+
+	.home-hero .hero-display {
+		font-size: clamp(2rem, 9.2vw, 2.45rem);
+		line-height: 1.02;
+		letter-spacing: -0.032em;
+	}
+
+	.home-hero__subtitle {
+		display: block;
+		overflow: visible;
+		margin-top: 0.85rem;
+		max-width: none;
+		font-size: 0.92rem;
+		line-height: 1.58;
+		-webkit-line-clamp: unset;
+	}
+
+	.home-hero__actions {
+		margin-top: 1rem;
+		width: 100%;
+		flex-wrap: nowrap;
+		gap: 0.55rem;
+	}
+
+	.home-hero__cta {
+		flex: 1 1 0;
+		min-width: 0;
+		width: auto !important;
+		max-width: none;
+		justify-content: space-between;
+		min-height: 48px;
+		padding: 0.28rem 0.28rem 0.28rem 0.85rem;
+		font-size: 0.58rem;
+		letter-spacing: 0.07em;
+	}
+
+	.home-hero__mobile-video {
+		display: block;
+		position: relative;
+		margin-top: 1.1rem;
+		width: 100%;
+		overflow: hidden;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 22px;
+		box-shadow: 0 28px 70px -42px rgba(0, 0, 0, 0.72);
+	}
+
+	.home-hero__mobile-video-el,
+	.home-hero__mobile-video video {
+		display: block;
+		width: 100%;
+		aspect-ratio: 16 / 10;
+		object-fit: cover;
+	}
+
+	.home-hero__mobile-video-scrim {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(
+			180deg,
+			rgba(23, 25, 28, 0.08) 0%,
+			rgba(23, 25, 28, 0.42) 68%,
+			rgba(23, 25, 28, 0.78) 100%
+		);
+		pointer-events: none;
+	}
+
+	.home-hero__mobile-video-chip {
+		position: absolute;
+		left: 0.85rem;
+		top: 0.85rem;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 999px;
+		background: rgba(17, 17, 17, 0.55);
+		padding: 0.35rem 0.7rem;
+		font-size: 0.58rem;
+		letter-spacing: 0.18em;
+		color: rgba(247, 245, 242, 0.72);
+		backdrop-filter: blur(10px);
+	}
+}
+
 @media (max-width: 767px) {
 	body.admin-bar .site-header {
 		top: 46px;
@@ -5092,7 +5213,9 @@ body.admin-bar .site-header {
 	.journey-config-scene__inner--desktop{display:none!important}
 	.journey-premium-desktop{display:none!important}
 	.journey-configure-mobile{display:flex;flex-direction:column;width:100%;max-width:none;margin:0;border:0;border-radius:0;background:#111;overflow:hidden;box-shadow:none;padding-bottom:calc(var(--configurator-mobile-action,70px) + .5rem)}
-	.journey-configure-mobile:has(.configure-options-panel--open)::before{position:fixed;inset:0;z-index:1245;background:rgba(0,0,0,.42);content:"";pointer-events:none}
+	.journey-configure-mobile:has(.configure-options-panel--open)::before{display:none}
+	.journey-configure-mobile__backdrop{position:fixed;inset:0;z-index:1245;border:0;background:rgba(0,0,0,.42);cursor:pointer}
+	.journey-configure-mobile__close{min-height:44px;border:1px solid rgba(247,245,242,.12);border-radius:12px;background:rgba(255,255,255,.04);padding:.35rem .75rem;color:rgba(247,245,242,.78);font-size:.875rem;cursor:pointer}
 	.journey-configure-mobile__progress{height:2px;background:rgba(139,197,64,.15)}
 	.journey-configure-mobile__progress>span{display:block;height:100%;background:#8bc540;transition:width .4s ease}
 	.journey-configure-mobile__badge{position:absolute;left:.75rem;top:.75rem;z-index:2;padding:.375rem .625rem;border:1px solid rgba(247,245,242,.1);border-radius:10px;background:rgba(17,17,17,.78);backdrop-filter:blur(8px)}
@@ -5114,7 +5237,6 @@ body.admin-bar .site-header {
 	.journey-configure-mobile__panel-head{display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding:0 .25rem .75rem}
 	.journey-configure-mobile__panel-head p:first-child{margin:0 0 .125rem;font-size:.6rem;letter-spacing:.04em;color:#8bc540}
 	.journey-configure-mobile__panel-head .journey-config-sidebar__label{margin:0;font-size:1.15rem;color:#f7f5f2}
-	.journey-configure-mobile__close{min-height:44px;border:0;background:transparent;color:rgba(247,245,242,.55);font-size:.875rem}
 	.journey-configure-mobile .journey-config-sidebar__options-grid.configure-options-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.375rem;padding:0 .25rem .25rem;overflow:visible;flex-direction:unset;flex-wrap:unset;scroll-snap-type:none}
 	.journey-configure-mobile .journey-config-sidebar__options-grid .journey-config-option{flex:unset;width:auto;min-height:118px;border-radius:14px;padding:.625rem;scroll-snap-align:unset}
 	.journey-configure-mobile .journey-config-option.is-selected{border-color:#8bc540;background:rgba(139,197,64,.08);box-shadow:none}

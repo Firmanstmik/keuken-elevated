@@ -649,6 +649,24 @@ export function Hero() {
               </PremiumPillButton>
             </motion.div>
 
+            <div className="home-hero__mobile-video relative lg:hidden">
+              <video
+                className="block w-full object-cover"
+                src={heroVideo}
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                autoPlay={!reduceMotion}
+                aria-label="Videopreview van de showroom"
+              />
+              <div className="home-hero__mobile-video-scrim" aria-hidden="true" />
+              <span className="home-hero__mobile-video-chip">
+                <HeroHouse className="h-3.5 w-3.5 text-[var(--gold)]" />
+                SHOWROOM UTRECHT
+              </span>
+            </div>
+
             <HeroPartnerBadge
               activeSlide={activeSlide}
               activeIndex={activeIndex}

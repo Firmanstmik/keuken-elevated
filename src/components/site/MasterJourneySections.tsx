@@ -12,6 +12,7 @@ import {
   Diamonds,
   People,
   ArrowRight2,
+  CloseCircle,
 } from "@zethictech/iconsax-react";
 import matOak from "@/assets/mat-oak.jpg";
 import matConcrete from "@/assets/mat-concrete.jpg";
@@ -923,6 +924,15 @@ export function ShowroomJourneySection() {
     setHoveredCategory(null);
   };
 
+  useEffect(() => {
+    if (!activeMobileCategory) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setActiveMobileCategory(null);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [activeMobileCategory]);
+
   return (
     <section
       className="journey-premium-scene section-shell relative overflow-hidden max-lg:overflow-visible max-lg:bg-[#111111]"
@@ -959,7 +969,15 @@ export function ShowroomJourneySection() {
         aria-hidden="true"
         className="journey-premium-scene__grain pointer-events-none absolute inset-0 opacity-[0.035] max-lg:hidden"
       />
-      <div className="journey-configure-mobile configure-layout flex w-full flex-col lg:hidden">
+            <div className="journey-configure-mobile configure-layout flex w-full flex-col lg:hidden">
+              {activeMobileCategoryData ? (
+                <button
+                  type="button"
+                  aria-label="Sluiten"
+                  className="journey-configure-mobile__backdrop fixed inset-0 z-[1245] border-0 bg-black/42 p-0"
+                  onClick={() => setActiveMobileCategory(null)}
+                />
+              ) : null}
               <div className="journey-configure-mobile__progress" aria-hidden="true">
                 <motion.div
                   className="h-full bg-[#8BC540]"
@@ -1131,8 +1149,9 @@ export function ShowroomJourneySection() {
                           <button
                             type="button"
                             onClick={() => setActiveMobileCategory(null)}
-                            className="min-h-11 rounded-xl px-3 text-sm normal-case text-[rgba(247,245,242,0.55)]"
+                            className="journey-configure-mobile__close inline-flex min-h-11 items-center gap-1.5 rounded-xl border border-[rgba(247,245,242,0.12)] bg-[rgba(255,255,255,0.04)] px-3 text-sm normal-case text-[rgba(247,245,242,0.78)]"
                           >
+                            <CloseCircle size={16} variant="Linear" />
                             Sluiten
                           </button>
                         </div>

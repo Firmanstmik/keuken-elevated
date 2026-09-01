@@ -2696,12 +2696,27 @@
   }
 
   .journey-configure-mobile:has(.configure-options-panel--open)::before {
+    display: none;
+  }
+
+  .journey-configure-mobile__backdrop {
     position: fixed;
     inset: 0;
     z-index: 1245;
+    border: 0;
     background: rgba(0, 0, 0, 0.42);
-    content: "";
-    pointer-events: none;
+    cursor: pointer;
+  }
+
+  .journey-configure-mobile__close {
+    cursor: pointer;
+    min-height: 44px;
+    border: 1px solid rgba(247, 245, 242, 0.12);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 0.35rem 0.75rem;
+    color: rgba(247, 245, 242, 0.78);
+    font-size: 0.875rem;
   }
 
   .journey-configure-mobile__progress {
@@ -2858,20 +2873,41 @@
   }
 
   .home-hero {
-    min-height: auto;
-    padding-top: calc(var(--app-safe-top) + 5.25rem);
+    min-height: max(640px, calc(100svh - var(--app-mobile-nav, 72px)));
+    padding-top: calc(var(--app-safe-top) + 4.5rem);
+  }
+
+  .home-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      rgba(23, 25, 28, 0.32) 0%,
+      rgba(23, 25, 28, 0.58) 52%,
+      rgba(23, 25, 28, 0.86) 100%
+    );
+  }
+
+  .home-hero .site-container {
+    width: 100%;
+    max-width: none;
+    padding-inline: 1rem;
   }
 
   .home-hero__layout {
     min-height: auto !important;
     align-content: start;
-    padding-bottom: calc(var(--app-mobile-nav) + 1.25rem);
+    gap: 0;
+    padding-bottom: calc(var(--app-mobile-nav) + 1rem);
   }
 
   .home-hero .hero-display {
-    font-size: clamp(1.72rem, 7.4vw, 2.15rem);
-    line-height: 1.05;
-    letter-spacing: -0.028em;
+    font-size: clamp(2rem, 9.2vw, 2.45rem);
+    line-height: 1.02;
+    letter-spacing: -0.032em;
   }
 
   .home-hero .hero-scroll-cue {
@@ -2885,14 +2921,13 @@
   }
 
   .home-hero h1 + p {
-    display: -webkit-box;
-    overflow: hidden;
-    margin-top: 0.75rem;
-    max-width: 22rem;
-    font-size: 0.84rem;
-    line-height: 1.5;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
+    display: block;
+    overflow: visible;
+    margin-top: 0.85rem;
+    max-width: none;
+    font-size: 0.92rem;
+    line-height: 1.58;
+    -webkit-line-clamp: unset;
   }
 
   .home-hero h1 + p + div {
@@ -2918,10 +2953,55 @@
     width: auto !important;
     max-width: none;
     justify-content: space-between;
-    min-height: 44px;
-    padding: 0.22rem 0.22rem 0.22rem 0.72rem;
-    font-size: 0.52rem;
-    letter-spacing: 0.06em;
+    min-height: 48px;
+    padding: 0.28rem 0.28rem 0.28rem 0.85rem;
+    font-size: 0.58rem;
+    letter-spacing: 0.07em;
+  }
+
+  .home-hero__mobile-video {
+    margin-top: 1.1rem;
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 22px;
+    box-shadow: 0 28px 70px -42px rgba(0, 0, 0, 0.72);
+  }
+
+  .home-hero__mobile-video video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+  }
+
+  .home-hero__mobile-video-scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(23, 25, 28, 0.08) 0%,
+      rgba(23, 25, 28, 0.42) 68%,
+      rgba(23, 25, 28, 0.78) 100%
+    );
+    pointer-events: none;
+  }
+
+  .home-hero__mobile-video-chip {
+    position: absolute;
+    left: 0.85rem;
+    top: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    background: rgba(17, 17, 17, 0.55);
+    padding: 0.35rem 0.7rem;
+    font-size: 0.58rem;
+    letter-spacing: 0.18em;
+    color: rgba(247, 245, 242, 0.72);
+    backdrop-filter: blur(10px);
   }
 
   .home-hero__cta .premium-pill-button__badge {
