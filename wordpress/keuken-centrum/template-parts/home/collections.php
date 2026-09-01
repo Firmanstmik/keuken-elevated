@@ -62,9 +62,9 @@ $concrete = kc_theme_img('mat-concrete.jpg');
 			<?php kc_section_chapter('06', __('Collecties', 'keuken-centrum')); ?>
 			<div class="section-label-row">
 				<span class="kitchen-eyebrow-mark" aria-hidden="true"></span>
-				<p class="section-eyebrow section-eyebrow--gold"><?php echo esc_html( $col_eyebrow ); ?></p>
+				<span class="section-eyebrow section-eyebrow--gold collections-section__eyebrow"><?php echo esc_html( $col_eyebrow ); ?></span>
 			</div>
-			<h2 class="section-title">
+			<h2 class="section-title collections-section__title">
 				<?php echo esc_html( $col_heading ); ?>
 				<em class="text-accent"><?php echo esc_html( $col_heading_em ); ?></em>
 			</h2>
@@ -113,7 +113,7 @@ $concrete = kc_theme_img('mat-concrete.jpg');
 								<div class="collection-gallery-card__cta-wrap">
 									<a class="collection-gallery-card__cta" href="<?php echo esc_url($showroom_url); ?>">
 										<span><?php esc_html_e('Ontdek stijl', 'keuken-centrum'); ?></span>
-										<span class="collection-gallery-card__cta-badge" aria-hidden="true">→</span>
+										<span class="collection-gallery-card__cta-badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
 									</a>
 								</div>
 							</article>
