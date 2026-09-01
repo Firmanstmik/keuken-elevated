@@ -338,7 +338,6 @@ $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" a
 						<p><?php esc_html_e('Configureer materialen, apparatuur en afwerkingen voordat u de showroom bezoekt.', 'keuken-centrum'); ?></p>
 					</div>
 				</div>
-				</div>
 			</div>
 
 		<div class="journey-config-copy journey-premium-copy journey-premium-copy--desktop" data-reveal data-journey-motion="copy">
