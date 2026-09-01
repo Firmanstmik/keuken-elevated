@@ -5246,6 +5246,8 @@ body.admin-bar .site-header {
 	.why-scene--react .why-stage{display:block}
 	.why-scene--react .why-pillar-card__mobile-media{display:none}
 	.journey-config-scene--react .journey-config-grid{grid-template-columns:minmax(0,1fr) minmax(0,.92fr);gap:1.5rem}
+	.journey-config-scene--react .journey-config-grid > .journey-config-stage{grid-column:1;grid-row:1;min-width:0}
+	.journey-config-scene--react .journey-config-grid > .journey-config-copy{grid-column:2;grid-row:1;align-self:center;min-width:0}
 	.journey-premium-grid .journey-premium-copy{order:2}
 	.journey-premium-grid .journey-premium-stage{order:1}
 	.journey-mobile-intro,.journey-mobile-outro,.journey-mobile-chip,.journey-mobile-app-chrome{display:none}

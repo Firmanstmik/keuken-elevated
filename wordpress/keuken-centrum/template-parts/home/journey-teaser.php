@@ -243,25 +243,23 @@ $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" a
 		<?php kc_section_chapter('04', __('Digitale beleving', 'keuken-centrum'), true, 10, 'chapter-mark--sentence chapter-mark--desktop'); ?>
 
 		<div class="journey-config-grid journey-premium-grid">
-			<div
-				class="journey-config-stage journey-premium-stage"
-			>
+			<div class="journey-config-stage journey-premium-stage">
 				<div class="journey-premium-desktop">
-				<div class="journey-config-stage__badge journey-premium-badge journey-premium-badge--desktop" data-reveal data-journey-motion="badge">
-					<span class="journey-premium-badge__dot" aria-hidden="true"></span>
-					<?php esc_html_e('Premium configurator', 'keuken-centrum'); ?>
-				</div>
-
-				<div class="journey-premium-mockup-shell journey-mobile-app-shell">
-				<div class="journey-config-mockup home-configurator-preview" data-reveal data-journey-motion="mockup">
-					<div class="journey-config-topbar home-configurator-topbar">
-						<div class="journey-config-topbar__dots home-configurator-topbar__dots" aria-hidden="true"><span></span><span></span><span></span></div>
-						<div class="journey-config-topbar__title home-configurator-topbar__title"><?php esc_html_e('Keuken Centrum', 'keuken-centrum'); ?></div>
-						<div class="journey-config-topbar__spacer home-configurator-topbar__spacer" aria-hidden="true"></div>
+					<div class="journey-config-stage__badge journey-premium-badge journey-premium-badge--desktop" data-reveal data-journey-motion="badge">
+						<span class="journey-premium-badge__dot" aria-hidden="true"></span>
+						<?php esc_html_e('Premium configurator', 'keuken-centrum'); ?>
 					</div>
 
-					<div class="journey-config-mockup__body journey-config-mockup__body--stack home-configurator-body">
-						<div class="journey-config-mockup__viewport journey-config-mockup__viewport--hero home-configurator-viewport">
+					<div class="journey-premium-mockup-shell journey-mobile-app-shell">
+						<div class="journey-config-mockup home-configurator-preview" data-reveal data-journey-motion="mockup">
+							<div class="journey-config-topbar home-configurator-topbar">
+								<div class="journey-config-topbar__dots home-configurator-topbar__dots" aria-hidden="true"><span></span><span></span><span></span></div>
+								<div class="journey-config-topbar__title home-configurator-topbar__title"><?php esc_html_e('Keuken Centrum', 'keuken-centrum'); ?></div>
+								<div class="journey-config-topbar__spacer home-configurator-topbar__spacer" aria-hidden="true"></div>
+							</div>
+
+							<div class="journey-config-mockup__body journey-config-mockup__body--stack home-configurator-body">
+								<div class="journey-config-mockup__viewport journey-config-mockup__viewport--hero home-configurator-viewport">
 							<?php if ($base) : ?>
 								<img
 									src="<?php echo esc_url($base); ?>"
@@ -276,12 +274,12 @@ $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" a
 									height="1024"
 								/>
 							<?php endif; ?>
-							<div class="journey-config-hotspots" aria-live="polite"></div>
-						</div>
+									<div class="journey-config-hotspots" aria-live="polite"></div>
+								</div>
 
-						<div class="journey-config-sidebar journey-config-sidebar--mobile home-configurator-sidebar">
-							<div class="journey-config-sidebar__tabs-wrap home-configurator-tabs-wrap">
-							<div class="journey-config-sidebar__tabs journey-config-sidebar__tabs--scroll home-configurator-tabs" data-journey-tabs>
+								<div class="journey-config-sidebar journey-config-sidebar--mobile home-configurator-sidebar">
+									<div class="journey-config-sidebar__tabs-wrap home-configurator-tabs-wrap">
+										<div class="journey-config-sidebar__tabs journey-config-sidebar__tabs--scroll home-configurator-tabs" data-journey-tabs>
 								<?php foreach ($categories as $index => $category) : ?>
 									<?php $selection = $initial_selections[$category['id']] ?? null; ?>
 									<button
@@ -295,16 +293,16 @@ $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" a
 										<span><?php echo esc_html($category['label']); ?></span>
 									</button>
 								<?php endforeach; ?>
-							</div>
-							</div>
+										</div>
+									</div>
 
-							<div class="journey-config-sidebar__head home-configurator-panel-head">
-								<p class="journey-config-sidebar__kicker"><?php esc_html_e('Configureer', 'keuken-centrum'); ?></p>
-								<p class="journey-config-sidebar__label" data-journey-current-label><?php echo esc_html($active_category['label']); ?></p>
-							</div>
+									<div class="journey-config-sidebar__head home-configurator-panel-head">
+										<p class="journey-config-sidebar__kicker"><?php esc_html_e('Configureer', 'keuken-centrum'); ?></p>
+										<p class="journey-config-sidebar__label" data-journey-current-label><?php echo esc_html($active_category['label']); ?></p>
+									</div>
 
-							<div class="journey-config-sidebar__options home-configurator-options">
-								<div class="journey-config-sidebar__options-grid home-configurator-options-grid" data-journey-options>
+									<div class="journey-config-sidebar__options home-configurator-options">
+										<div class="journey-config-sidebar__options-grid home-configurator-options-grid" data-journey-options>
 								<?php foreach ($active_category['options'] as $option) : ?>
 									<?php $selected = ($initial_selections[$active_category['id']]['id'] ?? '') === $option['id']; ?>
 									<button
@@ -319,16 +317,16 @@ $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" a
 										<span class="journey-config-option__desc"><?php echo esc_html($option['description']); ?></span>
 									</button>
 								<?php endforeach; ?>
-								</div>
-							</div>
+										</div>
+									</div>
 
-							<div class="journey-config-sidebar__footer home-configurator-footer">
-								<a href="<?php echo esc_url($start_url); ?>"><?php esc_html_e('Volledig ontwerp', 'keuken-centrum'); ?></a>
+									<div class="journey-config-sidebar__footer home-configurator-footer">
+										<a href="<?php echo esc_url($start_url); ?>"><?php esc_html_e('Volledig ontwerp', 'keuken-centrum'); ?></a>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				</div>
 				</div>
 
 				<div class="journey-config-caption journey-premium-caption" data-reveal data-journey-motion="caption">
@@ -340,7 +338,7 @@ $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" a
 				</div>
 			</div>
 
-		<div class="journey-config-copy journey-premium-copy journey-premium-copy--desktop" data-reveal data-journey-motion="copy">
+			<div class="journey-config-copy journey-premium-copy journey-premium-copy--desktop" data-reveal data-journey-motion="copy">
 			<p class="journey-config-copy__eyebrow" data-journey-motion="copy-el" data-stagger="0"><?php echo esc_html( $journey_eyebrow ); ?></p>
 			<h2 class="journey-config-copy__title" data-journey-motion="copy-el" data-stagger="1"><?php
 				echo esc_html( $journey_heading );
@@ -370,7 +368,7 @@ $icon_headphone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" a
 					<span class="premium-pill-button__badge" aria-hidden="true"><?php echo kc_icon_arrow_right(); ?></span>
 				</a>
 			</div>
-		</div>
+			</div>
 		</div>
 	</div>
 </section>
