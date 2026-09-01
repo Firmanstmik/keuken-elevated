@@ -17,7 +17,7 @@ $steps     = [
 ];
 $meta      = $steps[ $step ] ?? $steps['brands'];
 $progress  = ( (int) $meta['index'] / 5 ) * 100;
-$logo      = kc_theme_img( 'logo-keuken-centrum-transparent.png' ) ?: kc_theme_img( 'logo-keuken-1-1.webp' ) ?: kc_theme_img( 'logo-keuken.webp' );
+$logo      = kc_theme_img( 'logo-keuken-1-1.webp' ) ?: kc_theme_img( 'logo-keuken-centrum-transparent.png' ) ?: kc_theme_img( 'logo-keuken.webp' );
 ?>
 <header class="configurator-mobile-header kc-cfg-mobile-header kc-cfg-mobile-only">
 	<div class="configurator-mobile-header__row">

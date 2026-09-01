@@ -11,7 +11,7 @@ import {
 import { ArrowRight } from "@/components/ui/icons";
 import { PremiumPillButton } from "@/components/ui/premium-pill-button";
 import { SectionChapter } from "@/components/site/SectionChapter";
-import keukenVid1 from "@/assets/keuken_vid1.webm";
+import nobiliaShowroom from "@/assets/nobilia-showroom.webm";
 import keukenVid2 from "@/assets/keuken_vid2.webm";
 import keukenVid3 from "@/assets/keuken_vid3.webm";
 import keukenVid4 from "@/assets/keuken_vid4.webm";
@@ -204,7 +204,7 @@ export function PremiumShowcase() {
                   onMouseLeave={() => setMainHovered(false)}
                 >
                   <video
-                    src={keukenVid1}
+                    src={nobiliaShowroom}
                     autoPlay
                     muted
                     loop

@@ -3,7 +3,7 @@
 
 import cbwLogo from "@/assets/cbw-erkend.png";
 import keukenspecialistLogo from "@/assets/keukenspecialist.png";
-import headerLogo from "@/assets/logo-keuken-centrum-transparent.png";
+import headerLogo from "@/assets/logo-keuken-1-1.webp";
 import footerLogo from "@/assets/logo-keuken-centrum-footer.png";
 import showroomElegant from "@/assets/showroom-elegant-samenspel.jpg";
 import collectionModern from "@/assets/collections-modern.webp";

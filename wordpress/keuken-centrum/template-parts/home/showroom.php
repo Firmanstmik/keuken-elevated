@@ -11,7 +11,7 @@ $showroom_url = home_url('/showroom-keukens/');
 $showcase     = function_exists( 'kc_home_showcase_data' ) ? kc_home_showcase_data() : null;
 $brands_url   = $showcase['cta_secondary_url'] ?? home_url('/brands/');
 $visit_url    = $showcase['cta_url'] ?? home_url('/consultation/');
-$main         = get_template_directory_uri() . '/assets/video/keuken_vid1.webm';
+$main         = kc_asset( 'assets/video/nobilia-showroom.webm' ) ?: get_template_directory_uri() . '/assets/video/keuken_vid1.webm';
 $stack        = [
 	get_template_directory_uri() . '/assets/video/keuken_vid3.webm',
 	get_template_directory_uri() . '/assets/video/keuken_vid4.webm',

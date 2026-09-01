@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { FlowActionBar } from "@/components/configurator/FlowActionBar";
 import { ArrowLeft, ArrowRight, Circle, Search } from "@/components/ui/icons";
 import { useConfigurator } from "@/context/configurator-context";
-import logoKeuken from "@/assets/logo-keuken-centrum-transparent.png";
+import logoKeuken from "@/assets/logo-keuken-1-1.webp";
 import {
   masterBrands,
   masterCategories,

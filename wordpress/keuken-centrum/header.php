@@ -34,7 +34,7 @@ $nav_apps     = (string) ( $nav_labels['apparatuur'] ?? __( 'Apparatuur', 'keuke
 $nav_offers   = (string) ( $nav_labels['aanbiedingen'] ?? __( 'Aanbiedingen', 'keuken-centrum' ) );
 $nav_contact  = (string) ( $nav_labels['contact'] ?? __( 'Contact', 'keuken-centrum' ) );
 $nav_offers_url = (string) ( $nav_data['aanbiedingen_url'] ?? home_url( '/aanbiedingen/' ) );
-$logo_uri     = kc_theme_img('logo-keuken-centrum-transparent.png') ?: kc_theme_img('logo-keuken-1-1.webp') ?: kc_theme_img('logo-keuken.webp');
+$logo_uri     = kc_theme_img('logo-keuken-1-1.webp') ?: kc_theme_img('logo-keuken-centrum-transparent.png') ?: kc_theme_img('logo-keuken.webp');
 if (! $logo_uri) {
 	$logo_path = get_theme_file_path('assets/img/logo.png');
 	$logo_uri  = file_exists($logo_path) ? kc_asset('assets/img/logo.png') : '';
