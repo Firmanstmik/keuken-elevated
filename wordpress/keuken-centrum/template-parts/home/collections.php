@@ -58,8 +58,8 @@ $concrete = kc_theme_img('mat-concrete.jpg');
 	<div class="collections-section__ambient" aria-hidden="true"></div>
 
 	<div class="site-shell">
+		<?php kc_section_chapter('06', __('Collecties', 'keuken-centrum')); ?>
 		<div class="collections-section__intro" data-reveal>
-			<?php kc_section_chapter('06', __('Collecties', 'keuken-centrum')); ?>
 			<div class="section-label-row">
 				<span class="kitchen-eyebrow-mark" aria-hidden="true"></span>
 				<span class="section-eyebrow section-eyebrow--gold collections-section__eyebrow"><?php echo esc_html( $col_eyebrow ); ?></span>

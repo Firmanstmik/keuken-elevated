@@ -5511,6 +5511,7 @@ body.admin-bar .site-header {
 .collections-section--react .collections-section__veil{background:rgba(248,246,242,.88)}
 .collections-section--react .collections-section__ambient{background:radial-gradient(circle at 60% 30%,rgba(139,197,64,.04),transparent 50%)}
 .collections-section.collections-section--react .collections-section__intro{position:relative;z-index:1;max-width:38rem;margin-bottom:0}
+.collections-section--react .site-shell > .chapter-mark{width:100%;max-width:none;margin-bottom:2.75rem}
 .collections-section--react .section-label-row{gap:1rem;margin-bottom:0}
 .collections-section--react .kitchen-eyebrow-mark{
 	position:relative;display:inline-grid;width:1.85rem;height:1.6rem;flex:0 0 auto;place-items:center;overflow:hidden;
@@ -5530,7 +5531,7 @@ body.admin-bar .site-header {
 .collections-section--react .collections-section__title em{font-style:italic;color:#8bc540;font-weight:400}
 .collections-section--react .collections-section__lede{margin:1.25rem 0 0;max-width:480px;font-size:1.05rem;font-weight:300;line-height:1.75;letter-spacing:.01em;color:#5a5a5a}
 .collections-section--react .collections-section__intro .premium-pill-button{margin-top:1.75rem}
-.collections-section--react .collections-gallery{position:relative;z-index:1;margin:4rem 0 0;padding:0;overflow:visible}
+.collections-section--react .collections-gallery{position:relative;z-index:1;margin:4rem 0 0;margin-left:0;margin-right:0;padding:0;overflow:visible}
 .collections-section--react .collections-gallery__edge{position:absolute;top:0;bottom:0;z-index:3;width:8rem;pointer-events:none}
 .collections-section--react .collections-gallery__edge--left{left:0;background:linear-gradient(to right,#f8f6f2 0%,rgba(248,246,242,0) 100%)}
 .collections-section--react .collections-gallery__edge--right{right:0;background:linear-gradient(to left,#f8f6f2 0%,rgba(248,246,242,0) 100%)}
