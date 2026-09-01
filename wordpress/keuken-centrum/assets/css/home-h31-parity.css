@@ -665,7 +665,8 @@ body.kc-home .site-footer--react .site-footer__nav-list li {
 	line-height: 0;
 }
 
-body.kc-home .site-footer--react .site-footer__nav-list a {
+body.kc-home .site-footer--react .site-footer__nav-list a,
+body.kc-home .site-footer--react .site-footer__nav-list .site-footer__nav-link {
 	display: inline-flex;
 	align-items: center;
 	gap: 0.625rem;
@@ -675,7 +676,8 @@ body.kc-home .site-footer--react .site-footer__nav-list a {
 }
 
 @media (hover: none) and (pointer: coarse) {
-	body.kc-home .site-footer--react .site-footer__nav-list a {
+	body.kc-home .site-footer--react .site-footer__nav-list a,
+	body.kc-home .site-footer--react .site-footer__nav-list .site-footer__nav-link {
 		min-height: 44px;
 	}
 }
@@ -1008,29 +1010,7 @@ body.kc-home .site-footer--react .site-footer__hero-actions .kc-icon-arrow-right
 	height: 0.72rem;
 }
 
-/* Nav discs with arrow — React FooterLink */
-body.kc-home .site-footer--react .site-footer__nav-list a::before {
-	content: "";
-	flex: 0 0 1.5rem;
-	width: 1.5rem;
-	height: 1.5rem;
-	border-radius: 999px;
-	border: 1px solid rgba(139, 197, 64, 0.25);
-	background-color: rgba(139, 197, 64, 0.07);
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23A8D95A' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m13 6 6 6-6 6'/%3E%3C/svg%3E");
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: 0.75rem;
-	transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.5s ease, border-color 0.5s ease;
-}
-
-body.kc-home .site-footer--react .site-footer__nav-list a:hover::before {
-	transform: rotate(-8deg) scale(1.1);
-	border-color: rgba(168, 217, 90, 0.7);
-	background-color: #a8d95a;
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2312200B' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m13 6 6 6-6 6'/%3E%3C/svg%3E");
-	box-shadow: 0 8px 20px -7px rgba(139, 197, 64, 0.9);
-}
+/* Nav discs — global footer-cms.css (.site-footer__nav-disc) */
 
 /* Brand logo — match React (no invert crush) */
 body.kc-home .site-footer--react .site-footer__logo--react img,

@@ -34,15 +34,72 @@ function kc_icon_gem(): string {
 /**
  * Iconsax Linear Location — Contact + showroom pin.
  */
-function kc_icon_map_pin(): string {
-	return '<svg class="kc-icon-map-pin" viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden="true"><path d="M12 13.43a3.12 3.12 0 1 0 0-6.24 3.12 3.12 0 0 0 0 6.24Z" stroke="currentColor" stroke-width="1.5"/><path d="M3.62 8.49c1.97-8.66 14.8-8.65 16.76.01 1.15 5.08-2.01 9.38-4.78 12.04a5.193 5.193 0 0 1-7.21 0c-2.76-2.66-5.92-6.97-4.77-12.05Z" stroke="currentColor" stroke-width="1.5"/></svg>';
+function kc_icon_map_pin( int $size = 16 ): string {
+	$s = (string) max( 10, min( 24, $size ) );
+	return '<svg class="kc-icon-map-pin" viewBox="0 0 24 24" width="' . esc_attr( $s ) . '" height="' . esc_attr( $s ) . '" fill="none" aria-hidden="true"><path d="M12 13.43a3.12 3.12 0 1 0 0-6.24 3.12 3.12 0 0 0 0 6.24Z" stroke="currentColor" stroke-width="1.5"/><path d="M3.62 8.49c1.97-8.66 14.8-8.65 16.76.01 1.15 5.08-2.01 9.38-4.78 12.04a5.193 5.193 0 0 1-7.21 0c-2.76-2.66-5.92-6.97-4.77-12.05Z" stroke="currentColor" stroke-width="1.5"/></svg>';
+}
+
+/**
+ * Iconsax Linear Sms — footer / contact email.
+ */
+function kc_icon_sms( int $size = 18 ): string {
+	$s = (string) max( 10, min( 24, $size ) );
+	return '<svg class="kc-icon-sms" viewBox="0 0 24 24" width="' . esc_attr( $s ) . '" height="' . esc_attr( $s ) . '" fill="none" aria-hidden="true"><path d="M17 20.5H7c-3 0-5-1.5-5-5v-7c0-3.5 2-5 5-5h10c3 0 5 1.5 5 5v7c0 3.5-2 5-5 5Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/><path d="m17 9-3.13 2.5c-1.03.82-2.72.82-3.75 0L7 9" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+}
+
+/**
+ * Iconsax Linear Call — footer contact phone.
+ */
+function kc_icon_call( int $size = 16 ): string {
+	$s = (string) max( 10, min( 24, $size ) );
+	return '<svg class="kc-icon-call" viewBox="0 0 24 24" width="' . esc_attr( $s ) . '" height="' . esc_attr( $s ) . '" fill="none" aria-hidden="true"><path d="M21.97 18.33c0 .36-.08.73-.25 1.09-.17.36-.39.7-.68 1.02-.49.54-1.03.93-1.64 1.18-.6.25-1.25.38-1.95.38-1.02 0-2.11-.24-3.26-.73s-2.3-1.15-3.44-1.98a28.75 28.75 0 0 1-3.28-2.8 28.414 28.414 0 0 1-2.79-3.27c-.82-1.14-1.48-2.28-1.96-3.41C2.24 8.67 2 7.58 2 6.54c0-.68.12-1.33.36-1.93.24-.61.62-1.17 1.15-1.67C4.15 2.31 4.85 2 5.59 2c.28 0 .56.06.81.18.26.12.49.3.67.56l2.32 3.27c.18.25.31.48.4.7.09.21.14.42.14.61 0 .24-.07.48-.21.71-.13.23-.32.47-.56.71l-.76.79c-.11.11-.16.24-.16.4 0 .08.01.15.03.23.03.08.06.14.08.2.18.33.49.76.93 1.28.45.52.93 1.05 1.45 1.58.54.53 1.06 1.02 1.59 1.47.52.44.95.74 1.29.92.05.02.11.05.18.08.08.03.16.04.25.04.17 0 .3-.06.41-.17l.76-.75c.25-.25.49-.44.72-.56.23-.14.46-.21.71-.21.19 0 .39.04.61.13.22.09.45.22.7.39l3.31 2.35c.26.18.44.39.55.64.1.25.16.5.16.78Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"/></svg>';
+}
+
+/**
+ * Iconsax Linear ArrowRight2 — footer nav disc (12px).
+ */
+function kc_icon_footer_link_arrow(): string {
+	return '<svg class="kc-icon-footer-link-arrow" viewBox="0 0 24 24" width="12" height="12" fill="none" aria-hidden="true"><path d="M8.91 19.92 15.43 13.4c.77-.77.77-2.03 0-2.8L8.91 4.08" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"/></svg>';
+}
+
+/**
+ * Iconsax Linear ArrowRight2 — mobile footer accordion chevron (18px).
+ */
+function kc_icon_footer_accordion_arrow(): string {
+	return '<svg class="kc-icon-footer-accordion-arrow" viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M8.91 19.92 15.43 13.4c.77-.77.77-2.03 0-2.8L8.91 4.08" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"/></svg>';
+}
+
+/**
+ * Brand Facebook glyph (React Footer parity).
+ */
+function kc_icon_facebook_brand(): string {
+	return '<svg class="kc-icon-facebook" viewBox="0 0 24 24" width="17.6" height="17.6" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>';
+}
+
+/**
+ * Brand Instagram glyph (React Footer parity).
+ */
+function kc_icon_instagram_brand(): string {
+	return '<svg class="kc-icon-instagram" viewBox="0 0 24 24" width="17.6" height="17.6" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>';
+}
+
+/**
+ * Footer social tile icon by tone.
+ */
+function kc_footer_social_icon( string $tone ): string {
+	return match ( $tone ) {
+		'facebook'  => kc_icon_facebook_brand(),
+		'instagram' => kc_icon_instagram_brand(),
+		'email'     => kc_icon_sms(),
+		default     => '',
+	};
 }
 
 /**
  * Iconsax Linear Home2 — showroom card CTA.
  */
 function kc_icon_home(): string {
-	return '<svg class="kc-icon-home" viewBox="0 0 24 24" width="12" height="12" fill="none" aria-hidden="true"><path d="M9.02 2.84 3.63 7.04c-.71.55-1.29 1.71-1.29 2.6v7.9c0 1.81 1.48 3.29 3.29 3.29h3.08v-5.73c0-.73.59-1.32 1.32-1.32h2c.73 0 1.32.59 1.32 1.32V21h3.08c1.81 0 3.29-1.48 3.29-3.29v-7.9c0-.9-.58-2.05-1.29-2.6l-5.39-4.2c-.99-.77-2.61-.77-3.62 0Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+	return '<svg class="kc-icon-home" viewBox="0 0 24 24" width="12" height="12" fill="none" aria-hidden="true"><path d="m9.02 2.84-5.39 4.2C2.73 7.74 2 9.23 2 10.36v7.41c0 2.32 1.89 4.22 4.21 4.22h11.58c2.32 0 4.21-1.9 4.21-4.21V10.5c0-1.21-.81-2.76-1.8-3.45l-6.18-4.33c-1.4-.98-3.65-.93-5 .12Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 17.99v-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 }
 
 /**

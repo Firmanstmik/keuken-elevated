@@ -48,6 +48,7 @@ require_once get_template_directory() . '/inc/cms/fields.php';
 require_once get_template_directory() . '/inc/cms/fields-keukens.php';
 require_once get_template_directory() . '/inc/sticky-conversion/data.php';
 require_once get_template_directory() . '/inc/footer/data.php';
+require_once get_template_directory() . '/inc/footer/helpers.php';
 require_once get_template_directory() . '/inc/contact/helpers.php';
 require_once get_template_directory() . '/inc/contact/data.php';
 require_once get_template_directory() . '/inc/showroom/helpers.php';

@@ -53,15 +53,16 @@
   display: none;
 }
 
-.site-footer__accordion summary::after {
-  content: "›";
+.site-footer__accordion-icon {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
   color: #a8d95a;
-  font-size: 1.25rem;
   transform: rotate(90deg);
   transition: transform 0.25s ease;
 }
 
-.site-footer__accordion[open] summary::after {
+.site-footer__accordion[open] .site-footer__accordion-icon {
   transform: rotate(-90deg);
 }
 
@@ -201,14 +202,38 @@
 }
 
 .site-footer__social-icon {
+  position: relative;
   display: grid;
   place-items: center;
   width: 2.5rem;
   height: 2.5rem;
   flex-shrink: 0;
+  overflow: hidden;
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site-footer__social-icon::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -50%;
+  width: 33%;
+  transform: skewX(-12deg);
+  background: rgba(255, 255, 255, 0.45);
+  filter: blur(1px);
+  opacity: 0;
+  transition: left 0.7s ease, opacity 0.7s ease;
+  pointer-events: none;
+}
+
+.site-footer__social-icon svg {
+  position: relative;
+  z-index: 1;
+  width: 1.1rem;
+  height: 1.1rem;
 }
 
 .site-footer__social {
@@ -244,6 +269,12 @@
 .site-footer__social:focus-visible .site-footer__social-icon {
   transform: translateY(-4px) scale(1.08);
   outline: none;
+}
+
+.site-footer__social:hover .site-footer__social-icon::before,
+.site-footer__social:focus-visible .site-footer__social-icon::before {
+  left: 125%;
+  opacity: 1;
 }
 
 /* ─── Global React footer parity (all routes — was homepage-only in home-h31-parity.css) ─── */
@@ -435,7 +466,8 @@
   line-height: 0;
 }
 
-.site-footer--react .site-footer__nav-list a {
+.site-footer--react .site-footer__nav-list a,
+.site-footer--react .site-footer__nav-list .site-footer__nav-link {
   display: inline-flex;
   align-items: center;
   gap: 0.625rem;
@@ -447,31 +479,136 @@
   transition: color 0.5s ease;
 }
 
-.site-footer--react .site-footer__nav-list a:hover {
+.site-footer--react .site-footer__nav-list a:hover,
+.site-footer--react .site-footer__nav-list .site-footer__nav-link:hover {
   color: #a8d95a;
 }
 
-.site-footer--react .site-footer__nav-list a::before {
-  content: "";
+/* Iconsax ArrowRight2 disc — React FooterLink */
+.site-footer--react .site-footer__nav-disc {
+  position: relative;
+  display: grid;
   flex: 0 0 1.5rem;
   width: 1.5rem;
   height: 1.5rem;
+  place-items: center;
+  overflow: hidden;
   border-radius: 999px;
   border: 1px solid rgba(139, 197, 64, 0.25);
-  background-color: rgba(139, 197, 64, 0.07);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23A8D95A' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m13 6 6 6-6 6'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 0.75rem;
-  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.5s ease, border-color 0.5s ease;
+  background: rgba(139, 197, 64, 0.07);
+  color: #a8d95a;
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.5s ease,
+    border-color 0.5s ease,
+    box-shadow 0.5s ease,
+    color 0.5s ease;
 }
 
-.site-footer--react .site-footer__nav-list a:hover::before {
+.site-footer--react .site-footer__nav-disc::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(110deg, transparent, rgba(255, 255, 255, 0.65), transparent);
+  transition: transform 0.7s ease;
+}
+
+.site-footer--react .site-footer__nav-link:hover .site-footer__nav-disc {
   transform: rotate(-8deg) scale(1.1);
   border-color: rgba(168, 217, 90, 0.7);
-  background-color: #a8d95a;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2312200B' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m13 6 6 6-6 6'/%3E%3C/svg%3E");
+  background: #a8d95a;
+  color: #12200b;
   box-shadow: 0 8px 20px -7px rgba(139, 197, 64, 0.9);
+}
+
+.site-footer--react .site-footer__nav-link:hover .site-footer__nav-disc::before {
+  transform: translateX(100%);
+}
+
+.site-footer--react .site-footer__nav-disc svg {
+  position: relative;
+  z-index: 1;
+  width: 12px;
+  height: 12px;
+  transition: transform 0.5s ease;
+}
+
+.site-footer--react .site-footer__nav-link:hover .site-footer__nav-disc svg {
+  transform: translateX(2px);
+}
+
+.site-footer--react .site-footer__nav-text {
+  position: relative;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  transition: transform 0.5s ease;
+}
+
+.site-footer--react .site-footer__nav-text::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1px;
+  background: #a8d95a;
+  transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site-footer--react .site-footer__nav-link:hover .site-footer__nav-text {
+  transform: translateX(2px);
+}
+
+.site-footer--react .site-footer__nav-link:hover .site-footer__nav-text::after {
+  width: 100%;
+}
+
+.site-footer--react .site-footer__contact-rows {
+  margin-bottom: 1.25rem;
+}
+
+.site-footer--react .site-footer__contact-row {
+  display: flex;
+  gap: 0.75rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 300;
+  line-height: 1.8;
+}
+
+.site-footer--react .site-footer__contact-row--address {
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+}
+
+.site-footer--react .site-footer__contact-row--phone {
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.site-footer--react .site-footer__contact-icon {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  color: #8bc540;
+}
+
+.site-footer--react .site-footer__contact-row--address .site-footer__contact-icon {
+  margin-top: 3px;
+}
+
+.site-footer--react .site-footer__contact-row--phone a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.4s ease;
+}
+
+.site-footer--react .site-footer__contact-row--phone a:hover,
+.site-footer--react .site-footer__contact-row--phone a:focus-visible {
+  color: #a8d95a;
+  outline: none;
 }
 
 .site-footer--react .site-footer__logo--react img,
@@ -703,7 +840,8 @@
 }
 
 @media (hover: none) and (pointer: coarse) {
-  .site-footer--react .site-footer__nav-list a {
+  .site-footer--react .site-footer__nav-list a,
+  .site-footer--react .site-footer__nav-list .site-footer__nav-link {
     min-height: 44px;
   }
 }
