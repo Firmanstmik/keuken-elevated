@@ -16,53 +16,56 @@ $cons_heading_em = $home_cons['heading_em'] ?? 'ontwerpconsult.';
 $cons_lede = $home_cons['lede'] ?? 'Neem uw eerste keuzes mee naar de showroom in Utrecht en bespreek ze met een adviseur die materiaal, routing, apparatuur en budget zorgvuldig met u doorneemt.';
 $cons_form_eyebrow = $home_cons['form_eyebrow'] ?? 'Consultatie aanvraag';
 $cons_form_title = $home_cons['form_title'] ?? 'Vertel ons kort wat u wilt bespreken.';
-$gallery_slides = array_values(
-	array_filter(
-		[
+$gallery_slides = function_exists( 'kc_official_consultation_gallery' ) ? kc_official_consultation_gallery() : [];
+if ( ! $gallery_slides ) {
+	$gallery_slides = array_values(
+		array_filter(
 			[
-				'src'   => kc_theme_img('collection-modern.jpg'),
-				'label' => 'Modern Lijn',
-				'tag'   => 'Greeploos',
+				[
+					'src'   => kc_theme_img('collection-modern.jpg'),
+					'label' => 'Modern Lijn',
+					'tag'   => 'Greeploos',
+				],
+				[
+					'src'   => kc_theme_img('collection-minimal.jpg'),
+					'label' => 'Minimaal Design',
+					'tag'   => 'Mat Wit',
+				],
+				[
+					'src'   => kc_theme_img('collection-scandi.jpg'),
+					'label' => 'Scandinavisch',
+					'tag'   => 'Eiken',
+				],
+				[
+					'src'   => kc_theme_img('collection-warm.jpg'),
+					'label' => 'Warm Atelier',
+					'tag'   => 'Hout',
+				],
+				[
+					'src'   => kc_theme_img('hero-kitchen.jpg'),
+					'label' => 'Signatuur Keuken',
+					'tag'   => 'Premium',
+				],
+				[
+					'src'   => kc_theme_img('craftsmanship.jpg'),
+					'label' => 'Vakmanschap',
+					'tag'   => 'Handwerk',
+				],
+				[
+					'src'   => kc_theme_img('showroom.jpg'),
+					'label' => 'Showroomvloer',
+					'tag'   => 'Utrecht',
+				],
+				[
+					'src'   => kc_theme_img('mat-marble.jpg'),
+					'label' => 'Italiaans Marmer',
+					'tag'   => 'Calacatta',
+				],
 			],
-			[
-				'src'   => kc_theme_img('collection-minimal.jpg'),
-				'label' => 'Minimaal Design',
-				'tag'   => 'Mat Wit',
-			],
-			[
-				'src'   => kc_theme_img('collection-scandi.jpg'),
-				'label' => 'Scandinavisch',
-				'tag'   => 'Eiken',
-			],
-			[
-				'src'   => kc_theme_img('collection-warm.jpg'),
-				'label' => 'Warm Atelier',
-				'tag'   => 'Hout',
-			],
-			[
-				'src'   => kc_theme_img('hero-kitchen.jpg'),
-				'label' => 'Signatuur Keuken',
-				'tag'   => 'Premium',
-			],
-			[
-				'src'   => kc_theme_img('craftsmanship.jpg'),
-				'label' => 'Vakmanschap',
-				'tag'   => 'Handwerk',
-			],
-			[
-				'src'   => kc_theme_img('showroom.jpg'),
-				'label' => 'Showroomvloer',
-				'tag'   => 'Utrecht',
-			],
-			[
-				'src'   => kc_theme_img('mat-marble.jpg'),
-				'label' => 'Italiaans Marmer',
-				'tag'   => 'Calacatta',
-			],
-		],
-		static fn( $slide ) => ! empty( $slide['src'] )
-	)
-);
+			static fn( $slide ) => ! empty( $slide['src'] )
+		)
+	);
+}
 $budgets = [
 	'€ 10.000 tot € 20.000',
 	'€ 20.000 tot € 35.000',

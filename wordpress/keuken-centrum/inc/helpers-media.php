@@ -60,6 +60,13 @@ function kc_brand_bundle(string $slug): array {
  * @return array<int, array{url:string,brand:string}>
  */
 function kc_default_hero_slides(): array {
+	if (function_exists('kc_official_hero_slides')) {
+		$official = kc_official_hero_slides();
+		if ($official) {
+			return $official;
+		}
+	}
+
 	$brands = [
 		1 => 'LEICHT',
 		2 => 'NOBILIA',

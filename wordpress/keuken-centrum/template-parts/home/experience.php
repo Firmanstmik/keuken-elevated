@@ -14,7 +14,7 @@ $cards      = $experience['cards'] ?? [
 		'kicker'      => 'Design Collectie',
 		'title'       => 'Design Keukens',
 		'description' => 'Architecturale keukens met verfijnde materialen en tijdloze verhoudingen.',
-		'image'       => kc_theme_img('experience/Design_keukens.webp') ?: kc_theme_img('experience/design.webp'),
+		'image'       => ( function_exists( 'kc_official_asset' ) ? kc_official_asset( 'leicht-keuken' ) : '' ) ?: kc_theme_img('experience/Design_keukens.webp') ?: kc_theme_img('experience/design.webp'),
 		'href'        => get_post_type_archive_link('kitchen_brand') ?: home_url('/keukens'),
 	],
 	[
@@ -24,7 +24,7 @@ $cards      = $experience['cards'] ?? [
 		'kicker'      => 'Modern Wonen',
 		'title'       => 'Moderne Keukens',
 		'description' => 'Hedendaags wonen met slanke lijnen, warme texturen en intelligente indeling.',
-		'image'       => kc_theme_img('experience/Modern_keukens.webp') ?: kc_theme_img('experience/modern.webp'),
+		'image'       => ( function_exists( 'kc_official_asset' ) ? kc_official_asset( 'modern-showroom' ) : '' ) ?: kc_theme_img('experience/Modern_keukens.webp') ?: kc_theme_img('experience/modern.webp'),
 		'href'        => home_url('/#collections'),
 	],
 	[
@@ -34,7 +34,7 @@ $cards      = $experience['cards'] ?? [
 		'kicker'      => 'Slim Budget',
 		'title'       => 'Keukens voor elke prijs',
 		'description' => 'Topkwaliteit en persoonlijk advies voor elk budget, zonder compromis.',
-		'image'       => kc_theme_img('experience/Keukens_voor_elke_prijs.webp') ?: kc_theme_img('experience/budget.webp'),
+		'image'       => ( function_exists( 'kc_official_asset' ) ? kc_official_asset( 'showroom-breed' ) : '' ) ?: kc_theme_img('experience/Keukens_voor_elke_prijs.webp') ?: kc_theme_img('experience/budget.webp'),
 		'href'        => home_url('/consultation/'),
 	],
 ];
@@ -43,7 +43,7 @@ $exp_heading = $experience['heading'] ?? 'Eén plaats voor';
 $exp_heading_em = $experience['heading_em'] ?? 'al uw wensen';
 $exp_lede = $experience['lede'] ?? 'Van architecturaal design tot slimme luxe: ontdek een keukenwereld die zorgvuldig wordt afgestemd op uw ruimte, smaak en manier van leven.';
 $scene       = kc_theme_img('brands/brands-dark-bg.webp');
-$scene_layer = kc_theme_img('experience/Modern_keukens.webp') ?: kc_theme_img('experience/modern.webp');
+$scene_layer = ( function_exists( 'kc_official_asset' ) ? kc_official_asset( 'modern-showroom' ) : '' ) ?: kc_theme_img('experience/Modern_keukens.webp') ?: kc_theme_img('experience/modern.webp');
 $cbw_logo    = kc_theme_img( 'cbw-erkend.png' ) ?: kc_theme_img( 'cbw.svg' ) ?: kc_theme_img( 'cbw.webp' );
 ?>
 <section class="section-shell section-shell--dark experience-section experience-section--react" id="experience"<?php echo $scene ? ' style="--experience-scene:url(' . esc_url($scene) . ')"' : ''; ?>>

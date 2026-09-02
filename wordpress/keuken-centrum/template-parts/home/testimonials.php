@@ -5,18 +5,21 @@
  * @package Keuken_Centrum
  */
 
-$media = array_values(
-	array_filter(
-		[
-			kc_theme_img('collection-minimal.jpg'),
-			kc_theme_img('collection-warm.jpg'),
-			kc_theme_img('collection-modern.jpg'),
-			kc_theme_img('hero-kitchen.jpg'),
-			kc_theme_img('showroom.jpg'),
-			kc_theme_img('collection-scandi.jpg'),
-		]
-	)
-);
+$media = function_exists( 'kc_official_testimonial_media' ) ? kc_official_testimonial_media() : [];
+if ( ! $media ) {
+	$media = array_values(
+		array_filter(
+			[
+				kc_theme_img('collection-minimal.jpg'),
+				kc_theme_img('collection-warm.jpg'),
+				kc_theme_img('collection-modern.jpg'),
+				kc_theme_img('hero-kitchen.jpg'),
+				kc_theme_img('showroom.jpg'),
+				kc_theme_img('collection-scandi.jpg'),
+			]
+		)
+	);
+}
 
 $fallback_testimonials = [
 	[

@@ -196,7 +196,7 @@ function kc_home_why_data(): array {
 			'number'      => '01',
 			'title'       => 'Europees Vakmanschap',
 			'description' => 'Elk detail van uw keuken wordt met uiterste precisie en vakmanschap vervaardigd door onze Europese producenten.',
-			'image'       => kc_theme_img( 'why/why-vakmanschap.webp' ),
+			'image'       => ( function_exists( 'kc_official_asset' ) ? kc_official_asset( 'leicht-keuken' ) : '' ) ?: kc_theme_img( 'why/why-vakmanschap.webp' ),
 			'image_alt'   => 'Europees vakmanschap met precisie en kwaliteit',
 			'accent'      => 'Precisie',
 			'icon'        => 'settings',
@@ -206,7 +206,7 @@ function kc_home_why_data(): array {
 			'number'      => '02',
 			'title'       => 'Persoonlijke Aanpak',
 			'description' => 'Onze adviseurs luisteren naar uw wensen en vertalen deze naar een uniek keukenontwerp dat perfect aansluit bij uw woning.',
-			'image'       => kc_theme_img( 'why/why-persoonlijk.webp' ),
+			'image'       => ( function_exists( 'kc_official_asset' ) ? kc_official_asset( 'landelijk-island' ) : '' ) ?: kc_theme_img( 'why/why-persoonlijk.webp' ),
 			'image_alt'   => 'Persoonlijke consultatie in de showroom',
 			'accent'      => 'Begeleiding',
 			'icon'        => 'heart',
@@ -216,7 +216,7 @@ function kc_home_why_data(): array {
 			'number'      => '03',
 			'title'       => 'Luxe & Duurzame Materialen',
 			'description' => 'Voor uw keuken gebruiken we alleen geselecteerde premium materialen, van Carrara marmer tot gerookt eiken.',
-			'image'       => kc_theme_img( 'why/why-materialen.webp' ),
+			'image'       => ( function_exists( 'kc_official_asset' ) ? kc_official_asset( 'keuken-indeling' ) : '' ) ?: kc_theme_img( 'why/why-materialen.webp' ),
 			'image_alt'   => 'Premium materialen met marmer en eiken afwerkingen',
 			'accent'      => 'Afwerking',
 			'icon'        => 'diamond',
@@ -226,7 +226,7 @@ function kc_home_why_data(): array {
 			'number'      => '04',
 			'title'       => 'Premium Service & Montage',
 			'description' => 'Van 3D-ontwerp tot vakkundige montage bij u thuis: wij begeleiden en ontzorgen u volledig door het gehele proces.',
-			'image'       => kc_theme_img( 'why/why-service.webp' ),
+			'image'       => ( function_exists( 'kc_official_asset' ) ? kc_official_asset( 'keuken-op-maat' ) : '' ) ?: kc_theme_img( 'why/why-service.webp' ),
 			'image_alt'   => 'Vakkundig gemonteerde keuken bij de klant thuis',
 			'accent'      => 'Ontzorging',
 			'icon'        => 'people',
@@ -339,7 +339,7 @@ function kc_home_experience_data(): array {
 			'kicker'      => 'Design Collectie',
 			'title'       => 'Design Keukens',
 			'description' => 'Architecturale keukens met verfijnde materialen en tijdloze verhoudingen.',
-			'image'       => kc_theme_img( 'experience/Design_keukens.webp' ) ?: kc_theme_img( 'experience/design.webp' ),
+			'image'       => ( function_exists( 'kc_official_asset' ) ? kc_official_asset( 'leicht-keuken' ) : '' ) ?: kc_theme_img( 'experience/Design_keukens.webp' ) ?: kc_theme_img( 'experience/design.webp' ),
 			'href'        => get_post_type_archive_link( 'kitchen_brand' ) ?: home_url( '/keukens' ),
 		],
 		[
@@ -349,7 +349,7 @@ function kc_home_experience_data(): array {
 			'kicker'      => 'Modern Wonen',
 			'title'       => 'Moderne Keukens',
 			'description' => 'Hedendaags wonen met slanke lijnen, warme texturen en intelligente indeling.',
-			'image'       => kc_theme_img( 'experience/Modern_keukens.webp' ) ?: kc_theme_img( 'experience/modern.webp' ),
+			'image'       => ( function_exists( 'kc_official_asset' ) ? kc_official_asset( 'modern-showroom' ) : '' ) ?: kc_theme_img( 'experience/Modern_keukens.webp' ) ?: kc_theme_img( 'experience/modern.webp' ),
 			'href'        => home_url( '/#collections' ),
 		],
 		[
@@ -359,7 +359,7 @@ function kc_home_experience_data(): array {
 			'kicker'      => 'Slim Budget',
 			'title'       => 'Keukens voor elke prijs',
 			'description' => 'Topkwaliteit en persoonlijk advies voor elk budget, zonder compromis.',
-			'image'       => kc_theme_img( 'experience/Keukens_voor_elke_prijs.webp' ) ?: kc_theme_img( 'experience/budget.webp' ),
+			'image'       => ( function_exists( 'kc_official_asset' ) ? kc_official_asset( 'showroom-breed' ) : '' ) ?: kc_theme_img( 'experience/Keukens_voor_elke_prijs.webp' ) ?: kc_theme_img( 'experience/budget.webp' ),
 			'href'        => home_url( '/consultation/' ),
 		],
 	];
@@ -401,15 +401,16 @@ function kc_home_experience_data(): array {
  * @return array{eyebrow:string,heading:string,heading_em:string,lede:string,cta_label:string,cta_url:string,items:list<array<string,mixed>>}
  */
 function kc_home_collections_data(): array {
-	// Prefer bundled theme assets — remote keuken-centrum.nl/uploads URLs 404.
-	$defaults = [
+	// Prefer bundled official showroom photography from keuken-centrum.nl.
+	$official_images = function_exists( 'kc_official_collection_images' ) ? kc_official_collection_images() : [];
+	$defaults        = [
 		[
 			'number'      => '01',
 			'label'       => 'MODERNE COLLECTIE',
 			'title'       => 'Modern Wonen',
 			'descriptor'  => 'Architecturaal · Minimaal · Tijdloos',
 			'description' => 'Slanke lijnen en functionele elegantie voor het hedendaagse leven.',
-			'image'       => kc_theme_img( 'collections/modern-base.webp' ) ?: kc_theme_img( 'collections/modern.jpg' ),
+			'image'       => $official_images[0] ?? ( kc_theme_img( 'collections/modern-base.webp' ) ?: kc_theme_img( 'collections/modern.jpg' ) ),
 		],
 		[
 			'number'      => '02',
@@ -417,7 +418,7 @@ function kc_home_collections_data(): array {
 			'title'       => 'Klassieke Elegantie',
 			'descriptor'  => 'Warm · Elegant · Verfijnd',
 			'description' => 'Tijdloze proporties en rijke materialen die generaties meegaan.',
-			'image'       => kc_theme_img( 'collections/klassiek-base.webp' ) ?: kc_theme_img( 'collections/klassiek.jpg' ),
+			'image'       => $official_images[1] ?? ( kc_theme_img( 'collections/klassiek-base.webp' ) ?: kc_theme_img( 'collections/klassiek.jpg' ) ),
 		],
 		[
 			'number'      => '03',
@@ -425,7 +426,7 @@ function kc_home_collections_data(): array {
 			'title'       => 'Landelijk Erfgoed',
 			'descriptor'  => 'Natuurlijk · Authentiek · Uitnodigend',
 			'description' => 'Warme texturen en ambachtelijke details voor een thuis gevoel.',
-			'image'       => kc_theme_img( 'collections/landelijk-base.webp' ) ?: kc_theme_img( 'collections/landelijk.jpg' ),
+			'image'       => $official_images[2] ?? ( kc_theme_img( 'collections/landelijk-base.webp' ) ?: kc_theme_img( 'collections/landelijk.jpg' ) ),
 		],
 		[
 			'number'      => '04',
@@ -433,7 +434,7 @@ function kc_home_collections_data(): array {
 			'title'       => 'Industrieel Atelier',
 			'descriptor'  => 'Krachtig · Karaktervol · Hedendaags',
 			'description' => 'Rauwe materialen en grafische vormen met een eigenzinnig karakter.',
-			'image'       => kc_theme_img( 'collections/industrieel-base.webp' ) ?: kc_theme_img( 'collections/industrieel.jpg' ),
+			'image'       => $official_images[3] ?? ( kc_theme_img( 'collections/industrieel-base.webp' ) ?: kc_theme_img( 'collections/industrieel.jpg' ) ),
 		],
 	];
 

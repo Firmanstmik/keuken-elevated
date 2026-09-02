@@ -8,6 +8,7 @@
 $showroom_url = home_url('/#showroom');
 $collections_data = function_exists( 'kc_home_collections_data' ) ? kc_home_collections_data() : null;
 $archive_url  = $collections_data['cta_url'] ?? ( get_post_type_archive_link('kitchen_brand') ?: home_url('/keukens') );
+$official_images = function_exists( 'kc_official_collection_images' ) ? kc_official_collection_images() : [];
 $collections  = $collections_data['items'] ?? [
 	[
 		'number'      => '01',
@@ -15,7 +16,7 @@ $collections  = $collections_data['items'] ?? [
 		'title'       => 'Modern Wonen',
 		'descriptor'  => 'Architecturaal · Minimaal · Tijdloos',
 		'description' => 'Slanke lijnen en functionele elegantie voor het hedendaagse leven.',
-		'image'       => kc_theme_img( 'collections/official/modern-leicht-showroom.jpg' ) ?: kc_theme_img( 'collections/modern-base.webp' ) ?: kc_theme_img( 'collections/modern.jpg' ),
+		'image'       => $official_images[0] ?? ( kc_theme_img( 'collections/official/modern-leicht-showroom.jpg' ) ?: kc_theme_img( 'collections/modern-base.webp' ) ?: kc_theme_img( 'collections/modern.jpg' ) ),
 	],
 	[
 		'number'      => '02',
@@ -23,7 +24,7 @@ $collections  = $collections_data['items'] ?? [
 		'title'       => 'Klassieke Elegantie',
 		'descriptor'  => 'Warm · Elegant · Verfijnd',
 		'description' => 'Tijdloze proporties en rijke materialen die generaties meegaan.',
-		'image'       => kc_theme_img( 'collections/official/klassiek-leicht-aluro.JPG' ) ?: kc_theme_img( 'collections/klassiek-base.webp' ) ?: kc_theme_img( 'collections/klassiek.jpg' ),
+		'image'       => $official_images[1] ?? ( kc_theme_img( 'collections/official/klassiek-leicht-aluro.JPG' ) ?: kc_theme_img( 'collections/klassiek-base.webp' ) ?: kc_theme_img( 'collections/klassiek.jpg' ) ),
 	],
 	[
 		'number'      => '03',
@@ -31,7 +32,7 @@ $collections  = $collections_data['items'] ?? [
 		'title'       => 'Landelijk Erfgoed',
 		'descriptor'  => 'Natuurlijk · Authentiek · Uitnodigend',
 		'description' => 'Warme texturen en ambachtelijke details voor een thuis gevoel.',
-		'image'       => kc_theme_img( 'collections/official/landelijk-showroom-island.jpg' ) ?: kc_theme_img( 'collections/landelijk-base.webp' ) ?: kc_theme_img( 'collections/landelijk.jpg' ),
+		'image'       => $official_images[2] ?? ( kc_theme_img( 'collections/official/landelijk-showroom-island.jpg' ) ?: kc_theme_img( 'collections/landelijk-base.webp' ) ?: kc_theme_img( 'collections/landelijk.jpg' ) ),
 	],
 	[
 		'number'      => '04',
@@ -39,7 +40,7 @@ $collections  = $collections_data['items'] ?? [
 		'title'       => 'Industrieel Atelier',
 		'descriptor'  => 'Krachtig · Karaktervol · Hedendaags',
 		'description' => 'Rauwe materialen en grafische vormen met een eigenzinnig karakter.',
-		'image'       => kc_theme_img( 'collections/official/industrieel-ai-kuchen.webp' ) ?: kc_theme_img( 'collections/industrieel-base.webp' ) ?: kc_theme_img( 'collections/industrieel.jpg' ),
+		'image'       => $official_images[3] ?? ( kc_theme_img( 'collections/official/industrieel-ai-kuchen.webp' ) ?: kc_theme_img( 'collections/industrieel-base.webp' ) ?: kc_theme_img( 'collections/industrieel.jpg' ) ),
 	],
 ];
 $col_eyebrow    = $collections_data['eyebrow'] ?? 'Onze Collecties';
