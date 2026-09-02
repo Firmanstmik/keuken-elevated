@@ -8,41 +8,7 @@
 $showroom_url = home_url('/#showroom');
 $collections_data = function_exists( 'kc_home_collections_data' ) ? kc_home_collections_data() : null;
 $archive_url  = $collections_data['cta_url'] ?? ( get_post_type_archive_link('kitchen_brand') ?: home_url('/keukens') );
-$official_images = function_exists( 'kc_official_collection_images' ) ? kc_official_collection_images() : [];
-$collections  = $collections_data['items'] ?? [
-	[
-		'number'      => '01',
-		'label'       => 'MODERNE COLLECTIE',
-		'title'       => 'Modern Wonen',
-		'descriptor'  => 'Architecturaal · Minimaal · Tijdloos',
-		'description' => 'Slanke lijnen en functionele elegantie voor het hedendaagse leven.',
-		'image'       => $official_images[0] ?? ( kc_theme_img( 'collections/official/modern-leicht-showroom.jpg' ) ?: kc_theme_img( 'collections/modern-base.webp' ) ?: kc_theme_img( 'collections/modern.jpg' ) ),
-	],
-	[
-		'number'      => '02',
-		'label'       => 'KLASSIEKE COLLECTIE',
-		'title'       => 'Klassieke Elegantie',
-		'descriptor'  => 'Warm · Elegant · Verfijnd',
-		'description' => 'Tijdloze proporties en rijke materialen die generaties meegaan.',
-		'image'       => $official_images[1] ?? ( kc_theme_img( 'collections/official/klassiek-leicht-aluro.JPG' ) ?: kc_theme_img( 'collections/klassiek-base.webp' ) ?: kc_theme_img( 'collections/klassiek.jpg' ) ),
-	],
-	[
-		'number'      => '03',
-		'label'       => 'LANDELIJKE COLLECTIE',
-		'title'       => 'Landelijk Erfgoed',
-		'descriptor'  => 'Natuurlijk · Authentiek · Uitnodigend',
-		'description' => 'Warme texturen en ambachtelijke details voor een thuis gevoel.',
-		'image'       => $official_images[2] ?? ( kc_theme_img( 'collections/official/landelijk-showroom-island.jpg' ) ?: kc_theme_img( 'collections/landelijk-base.webp' ) ?: kc_theme_img( 'collections/landelijk.jpg' ) ),
-	],
-	[
-		'number'      => '04',
-		'label'       => 'INDUSTRIËLE COLLECTIE',
-		'title'       => 'Industrieel Atelier',
-		'descriptor'  => 'Krachtig · Karaktervol · Hedendaags',
-		'description' => 'Rauwe materialen en grafische vormen met een eigenzinnig karakter.',
-		'image'       => $official_images[3] ?? ( kc_theme_img( 'collections/official/industrieel-ai-kuchen.webp' ) ?: kc_theme_img( 'collections/industrieel-base.webp' ) ?: kc_theme_img( 'collections/industrieel.jpg' ) ),
-	],
-];
+$collections  = $collections_data['items'] ?? ( function_exists( 'kc_official_collection_items' ) ? kc_official_collection_items() : [] );
 $col_eyebrow    = $collections_data['eyebrow'] ?? 'Onze Collecties';
 $col_heading    = $collections_data['heading'] ?? 'Ontdek uw';
 $col_heading_em = $collections_data['heading_em'] ?? 'Droomkeuken';
@@ -89,10 +55,14 @@ $concrete = kc_theme_img('mat-concrete.jpg');
 			<div class="collections-gallery__track" data-collections-track>
 				<?php for ($set = 0; $set < 3; $set++) : ?>
 					<?php foreach ($collections as $item) : ?>
+						<?php
+						$card_alt = (string) ( $item['image_alt'] ?? $item['title'] ?? '' );
+						$brand_tag = trim( (string) ( $item['brand_tag'] ?? '' ) );
+						?>
 						<div class="collections-gallery__slide" data-collections-slide<?php echo $set > 0 ? ' aria-hidden="true"' : ''; ?>>
 							<article class="collection-gallery-card">
 								<div class="collection-gallery-card__media">
-									<img src="<?php echo esc_url($item['image']); ?>" alt="<?php echo 0 === $set ? esc_attr($item['title']) : ''; ?>" loading="lazy" decoding="async" draggable="false" />
+									<img src="<?php echo esc_url($item['image']); ?>" alt="<?php echo 0 === $set ? esc_attr($card_alt) : ''; ?>" loading="lazy" decoding="async" draggable="false" />
 									<div class="collection-gallery-card__media-fade" aria-hidden="true"></div>
 									<div class="collection-gallery-card__media-hover-fade" aria-hidden="true"></div>
 									<div class="collection-gallery-card__shine" aria-hidden="true"></div>
@@ -102,7 +72,11 @@ $concrete = kc_theme_img('mat-concrete.jpg');
 											<span class="collection-gallery-card__number"><?php echo esc_html($item['number']); ?></span>
 											<span class="collection-gallery-card__label"><?php echo esc_html($item['label']); ?></span>
 										</div>
-										<span class="collection-gallery-card__tag"><?php esc_html_e('Geselecteerd', 'keuken-centrum'); ?></span>
+										<?php if ($brand_tag) : ?>
+											<span class="collection-gallery-card__tag"><?php echo esc_html($brand_tag); ?></span>
+										<?php else : ?>
+											<span class="collection-gallery-card__tag"><?php esc_html_e('Geselecteerd', 'keuken-centrum'); ?></span>
+										<?php endif; ?>
 									</div>
 								</div>
 

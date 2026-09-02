@@ -5,7 +5,7 @@
  * @package Keuken_Centrum
  */
 
-$poster       = ( function_exists( 'kc_official_asset' ) ? kc_official_asset( 'landelijk-island' ) : '' ) ?: kc_theme_img('showroom-elegant-samenspel.jpg') ?: kc_theme_img('showroom.jpg');
+$poster       = ( function_exists( 'kc_official_asset' ) ? kc_official_asset( 'showroom-island' ) : '' ) ?: kc_theme_img('showroom-elegant-samenspel.jpg') ?: kc_theme_img('showroom.jpg');
 $concrete     = kc_theme_img('mat-concrete.jpg');
 $showroom_url = home_url('/showroom-keukens/');
 $showcase     = function_exists( 'kc_home_showcase_data' ) ? kc_home_showcase_data() : null;

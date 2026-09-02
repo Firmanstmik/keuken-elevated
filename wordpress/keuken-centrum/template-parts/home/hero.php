@@ -27,11 +27,12 @@ $raw_slides = is_array($args['slides']) ? $args['slides'] : [];
 $slides     = [];
 
 $accent_map = [
-	'LEICHT'     => [ 'dot' => '#c8a96b', 'soft' => 'rgba(198,163,107,0.18)' ],
-	'NOBILIA'    => [ 'dot' => '#8bc540', 'soft' => 'rgba(139,197,64,0.14)' ],
-	'AI KÜCHEN'  => [ 'dot' => 'rgba(23,25,28,0.9)', 'soft' => 'rgba(200,169,107,0.14)' ],
-	'ZAMPIERI'   => [ 'dot' => '#73a832', 'soft' => 'rgba(139,197,64,0.12)' ],
-	'CUCINESSE'  => [ 'dot' => '#c8a96b', 'soft' => 'rgba(198,163,107,0.18)' ],
+	'LEICHT'          => [ 'dot' => '#c8a96b', 'soft' => 'rgba(198,163,107,0.18)' ],
+	'NOBILIA'         => [ 'dot' => '#8bc540', 'soft' => 'rgba(139,197,64,0.14)' ],
+	'AI KÜCHEN'       => [ 'dot' => 'rgba(23,25,28,0.9)', 'soft' => 'rgba(200,169,107,0.14)' ],
+	'ZAMPIERI'        => [ 'dot' => '#73a832', 'soft' => 'rgba(139,197,64,0.12)' ],
+	'CUCINESSE'       => [ 'dot' => '#c8a96b', 'soft' => 'rgba(198,163,107,0.18)' ],
+	'KEUKEN-CENTRUM'  => [ 'dot' => '#8bc540', 'soft' => 'rgba(139,197,64,0.14)' ],
 ];
 
 foreach ($raw_slides as $slide) {

@@ -21,6 +21,17 @@ if ( ! $media ) {
 	);
 }
 
+$testimonial_image = static function ( array $testimonial, int $index = 0 ) use ( $media ): string {
+	$tag = (string) ( $testimonial['tag'] ?? '' );
+	if ( $tag && function_exists( 'kc_official_testimonial_image' ) ) {
+		$matched = kc_official_testimonial_image( $tag );
+		if ( $matched ) {
+			return $matched;
+		}
+	}
+	return $media ? $media[ $index % count( $media ) ] : '';
+};
+
 $fallback_testimonials = [
 	[
 		'quote'    => __('We wilden geen standaard keuken, maar een ruimte die rust, precisie en luxe uitstraalt. Het ontwerp voelde vanaf de eerste presentatie architectonisch doordacht, en de uitvoering was even zorgvuldig.', 'keuken-centrum'),
@@ -221,7 +232,7 @@ $render_testimonial_card = static function (array $testimonial, string $image, b
 			<div class="testimonials-column testimonials-column--left">
 				<div class="testimonials-marquee testimonials-marquee--up">
 					<?php foreach (array_merge($left_column, $left_column) as $index => $testimonial) : ?>
-						<?php $image = $media ? $media[$index % count($media)] : ''; ?>
+						<?php $image = $testimonial_image( $testimonial, $index ); ?>
 						<?php $render_testimonial_card($testimonial, $image); ?>
 					<?php endforeach; ?>
 				</div>
@@ -287,7 +298,7 @@ $render_testimonial_card = static function (array $testimonial, string $image, b
 			<div class="testimonials-column testimonials-column--right">
 				<div class="testimonials-marquee testimonials-marquee--down">
 					<?php foreach (array_merge($right_column, $right_column) as $index => $testimonial) : ?>
-						<?php $image = $media ? $media[($index + 3) % count($media)] : ''; ?>
+						<?php $image = $testimonial_image( $testimonial, $index + 3 ); ?>
 						<?php $render_testimonial_card($testimonial, $image); ?>
 					<?php endforeach; ?>
 				</div>
@@ -300,7 +311,7 @@ $render_testimonial_card = static function (array $testimonial, string $image, b
 				<div class="testimonials-mobile-marquee-fade testimonials-mobile-marquee-fade--right" aria-hidden="true"></div>
 				<div class="testimonials-mobile-marquee-row">
 				<?php foreach ($testimonials as $index => $testimonial) : ?>
-					<?php $image = $media ? $media[$index % count($media)] : ''; ?>
+						<?php $image = $testimonial_image( $testimonial, $index ); ?>
 					<?php $render_testimonial_card($testimonial, $image, true); ?>
 				<?php endforeach; ?>
 				</div>
@@ -310,7 +321,7 @@ $render_testimonial_card = static function (array $testimonial, string $image, b
 				<div class="testimonials-mobile-marquee-fade testimonials-mobile-marquee-fade--right" aria-hidden="true"></div>
 				<div class="testimonials-mobile-marquee-row testimonials-mobile-marquee-row--alt">
 				<?php foreach ($row_two as $index => $testimonial) : ?>
-					<?php $image = $media ? $media[($index + 2) % count($media)] : ''; ?>
+					<?php $image = $testimonial_image( $testimonial, $index + 2 ); ?>
 					<?php $render_testimonial_card($testimonial, $image, true); ?>
 				<?php endforeach; ?>
 				</div>

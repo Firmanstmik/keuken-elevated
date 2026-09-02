@@ -142,7 +142,7 @@ $next_steps = [
 				<div class="consultation-gallery__track">
 					<?php foreach (array_merge($gallery_slides, $gallery_slides) as $slide) : ?>
 						<figure class="consultation-gallery__slide">
-							<img src="<?php echo esc_url( $slide['src'] ); ?>" alt="<?php echo esc_attr( $slide['label'] ); ?>" loading="lazy" decoding="async">
+							<img src="<?php echo esc_url( $slide['src'] ); ?>" alt="<?php echo esc_attr( $slide['alt'] ?? $slide['label'] ); ?>" loading="lazy" decoding="async">
 							<figcaption>
 								<span class="consultation-gallery__tag">
 									<span class="consultation-gallery__tag-dot" aria-hidden="true"></span>

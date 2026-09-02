@@ -6,38 +6,11 @@
  */
 
 $experience = function_exists( 'kc_home_experience_data' ) ? kc_home_experience_data() : null;
-$cards      = $experience['cards'] ?? [
-	[
-		'number'      => '01',
-		'featured'    => true,
-		'tag'         => 'Signature collectie',
-		'kicker'      => 'Design Collectie',
-		'title'       => 'Design Keukens',
-		'description' => 'Architecturale keukens met verfijnde materialen en tijdloze verhoudingen.',
-		'image'       => ( function_exists( 'kc_official_asset' ) ? kc_official_asset( 'leicht-keuken' ) : '' ) ?: kc_theme_img('experience/Design_keukens.webp') ?: kc_theme_img('experience/design.webp'),
-		'href'        => get_post_type_archive_link('kitchen_brand') ?: home_url('/keukens'),
-	],
-	[
-		'number'      => '02',
-		'featured'    => false,
-		'tag'         => 'Ontdek de collectie',
-		'kicker'      => 'Modern Wonen',
-		'title'       => 'Moderne Keukens',
-		'description' => 'Hedendaags wonen met slanke lijnen, warme texturen en intelligente indeling.',
-		'image'       => ( function_exists( 'kc_official_asset' ) ? kc_official_asset( 'modern-showroom' ) : '' ) ?: kc_theme_img('experience/Modern_keukens.webp') ?: kc_theme_img('experience/modern.webp'),
-		'href'        => home_url('/#collections'),
-	],
-	[
-		'number'      => '03',
-		'featured'    => false,
-		'tag'         => 'Ontdek de collectie',
-		'kicker'      => 'Slim Budget',
-		'title'       => 'Keukens voor elke prijs',
-		'description' => 'Topkwaliteit en persoonlijk advies voor elk budget, zonder compromis.',
-		'image'       => ( function_exists( 'kc_official_asset' ) ? kc_official_asset( 'showroom-breed' ) : '' ) ?: kc_theme_img('experience/Keukens_voor_elke_prijs.webp') ?: kc_theme_img('experience/budget.webp'),
-		'href'        => home_url('/consultation/'),
-	],
-];
+$cards      = $experience['cards'] ?? (
+	function_exists( 'kc_official_experience_cards' )
+		? kc_official_experience_cards()
+		: []
+);
 $exp_eyebrow = $experience['eyebrow'] ?? 'Keukeninspiratie';
 $exp_heading = $experience['heading'] ?? 'Eén plaats voor';
 $exp_heading_em = $experience['heading_em'] ?? 'al uw wensen';
@@ -100,7 +73,7 @@ $cbw_logo    = kc_theme_img( 'cbw-erkend.png' ) ?: kc_theme_img( 'cbw.svg' ) ?: 
 				<?php if (empty($card['image'])) { continue; } ?>
 				<article class="experience-card<?php echo ! empty($card['featured']) ? ' experience-card--featured' : ''; ?>" data-reveal>
 					<a class="experience-card__link" href="<?php echo esc_url($card['href']); ?>">
-						<img class="experience-card__media" src="<?php echo esc_url($card['image']); ?>" alt="<?php echo esc_attr($card['title']); ?>" loading="lazy" decoding="async" />
+						<img class="experience-card__media" src="<?php echo esc_url($card['image']); ?>" alt="<?php echo esc_attr($card['image_alt'] ?? $card['title']); ?>" loading="lazy" decoding="async" />
 						<span class="experience-card__scrim" aria-hidden="true"></span>
 						<span class="experience-card__hover-scrim" aria-hidden="true"></span>
 						<span class="experience-card__frame" aria-hidden="true">
