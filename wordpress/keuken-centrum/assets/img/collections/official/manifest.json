@@ -1,0 +1,51 @@
+{
+  "source": "https://keuken-centrum.nl/keukens",
+  "downloaded": [
+    {
+      "slug": "modern-leicht-showroom",
+      "url": "https://keuken-centrum.nl/__l5e/assets-v1/e5ef72e5-5a7a-4aaf-905c-4525c1b0ecf3/leicht-showroom-nieuw.jpg",
+      "use": "Modern Wonen — Leicht showroom, architecturaal"
+    },
+    {
+      "slug": "klassiek-leicht-aluro",
+      "url": "https://keuken-centrum.nl/__l5e/assets-v1/c438e3f9-5b74-406f-afe7-38f6ff350f19/IMG_0619_LEICHT_Aluro.JPG",
+      "use": "Klassieke Elegantie — Leicht Aluro, warm en verfijnd"
+    },
+    {
+      "slug": "landelijk-showroom-island",
+      "url": "https://keuken-centrum.nl/__l5e/assets-v1/04f5f743-1829-4273-8c0b-537e3be3c20f/showroom-island.jpg",
+      "use": "Landelijk Erfgoed — showroom eiland, uitnodigend"
+    },
+    {
+      "slug": "industrieel-ai-kuchen",
+      "url": "https://keuken-centrum.nl/__l5e/assets-v1/5278a9c1-a4ca-4dcf-b039-713923397e50/AI-KUCHEN-Hacker-keukens-utrecht2-scaled.webp",
+      "use": "Industrieel Atelier — Ai Küchen/Häcker, karaktervol"
+    }
+  ],
+  "extras": [
+    {
+      "url": "https://keuken-centrum.nl/__l5e/assets-v1/2f12a8be-0415-4038-919c-daf12690de28/IMG_0655.jpg",
+      "use": "Keuken indeling — showroom detail"
+    },
+    {
+      "url": "https://keuken-centrum.nl/__l5e/assets-v1/9d3c9568-a1f2-4b7d-bc57-e2ffa6f950ef/IMG_0641.jpg",
+      "use": "Kosten sectie — showroom breedbeeld"
+    },
+    {
+      "url": "https://keuken-centrum.nl/__l5e/assets-v1/86f6286f-0477-4e68-895a-7df8971382af/Leicht_keuken.webp",
+      "use": "Leicht keuken close-up"
+    },
+    {
+      "url": "https://keuken-centrum.nl/__l5e/assets-v1/1d214538-0123-44a3-85fb-6f1803ed138a/IMG_0626-scaled.webp",
+      "use": "Keuken op maat — vloer-tot-plafond"
+    },
+    {
+      "url": "https://keuken-centrum.nl/__l5e/assets-v1/e7f30bba-bca8-4b26-a82c-8ca276c35b3d/showroom-keuken.png",
+      "use": "Showroomkeukens card thumbnail"
+    },
+    {
+      "url": "https://keuken-centrum.nl/__l5e/assets-v1/5f930820-fb81-47dc-97bc-d951a63a12e5/IMG_0619_LEICHT_Aluro-2.jpg",
+      "use": "Actie keuken — Leicht Aluro variant"
+    }
+  ]
+}

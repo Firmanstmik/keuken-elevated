@@ -5511,7 +5511,15 @@ body.admin-bar .site-header {
 .collections-section--react .collections-section__veil{background:rgba(248,246,242,.88)}
 .collections-section--react .collections-section__ambient{background:radial-gradient(circle at 60% 30%,rgba(139,197,64,.04),transparent 50%)}
 .collections-section.collections-section--react .collections-section__intro{position:relative;z-index:1;max-width:38rem;margin-bottom:0}
-.collections-section--react .site-shell > .chapter-mark{width:100%;max-width:none;margin-bottom:2.75rem}
+.collections-section--react .collections-section__header-shell{position:relative;z-index:2}
+.collections-section--react .collections-section__chapter-row{width:100%;max-width:none;margin:0 0 2.75rem}
+.collections-section--react .chapter-mark--collections,
+.collections-section--react .collections-section__chapter-row .chapter-mark,
+.collections-section--react .site-shell > .chapter-mark{display:flex!important;align-items:center;gap:.8rem;width:100%!important;max-width:none!important;margin:0 0 2.75rem;position:relative;z-index:2}
+.collections-section--react .chapter-mark__label{display:inline-block!important;visibility:visible!important;opacity:1!important;flex:0 0 auto;min-width:max-content;font-family:var(--font-body);font-size:.62rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:#8bc540!important;-webkit-text-fill-color:#8bc540!important}
+.collections-section--react .chapter-mark__spacer{flex:1 1 auto;min-width:1rem}
+.collections-section--react .chapter-mark__num{flex:0 0 auto;color:#2f5218!important}
+.collections-section--react .chapter-mark__total{color:rgba(23,25,28,.38)!important}
 .collections-section--react .section-label-row{gap:1rem;margin-bottom:0}
 .collections-section--react .kitchen-eyebrow-mark{
 	position:relative;display:inline-grid;width:1.85rem;height:1.6rem;flex:0 0 auto;place-items:center;overflow:hidden;

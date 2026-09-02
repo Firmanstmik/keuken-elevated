@@ -15,7 +15,7 @@ $collections  = $collections_data['items'] ?? [
 		'title'       => 'Modern Wonen',
 		'descriptor'  => 'Architecturaal · Minimaal · Tijdloos',
 		'description' => 'Slanke lijnen en functionele elegantie voor het hedendaagse leven.',
-		'image'       => kc_theme_img( 'collections/modern-base.webp' ) ?: kc_theme_img( 'collections/modern.jpg' ),
+		'image'       => kc_theme_img( 'collections/official/modern-leicht-showroom.jpg' ) ?: kc_theme_img( 'collections/modern-base.webp' ) ?: kc_theme_img( 'collections/modern.jpg' ),
 	],
 	[
 		'number'      => '02',
@@ -23,7 +23,7 @@ $collections  = $collections_data['items'] ?? [
 		'title'       => 'Klassieke Elegantie',
 		'descriptor'  => 'Warm · Elegant · Verfijnd',
 		'description' => 'Tijdloze proporties en rijke materialen die generaties meegaan.',
-		'image'       => kc_theme_img( 'collections/klassiek-base.webp' ) ?: kc_theme_img( 'collections/klassiek.jpg' ),
+		'image'       => kc_theme_img( 'collections/official/klassiek-leicht-aluro.JPG' ) ?: kc_theme_img( 'collections/klassiek-base.webp' ) ?: kc_theme_img( 'collections/klassiek.jpg' ),
 	],
 	[
 		'number'      => '03',
@@ -31,7 +31,7 @@ $collections  = $collections_data['items'] ?? [
 		'title'       => 'Landelijk Erfgoed',
 		'descriptor'  => 'Natuurlijk · Authentiek · Uitnodigend',
 		'description' => 'Warme texturen en ambachtelijke details voor een thuis gevoel.',
-		'image'       => kc_theme_img( 'collections/landelijk-base.webp' ) ?: kc_theme_img( 'collections/landelijk.jpg' ),
+		'image'       => kc_theme_img( 'collections/official/landelijk-showroom-island.jpg' ) ?: kc_theme_img( 'collections/landelijk-base.webp' ) ?: kc_theme_img( 'collections/landelijk.jpg' ),
 	],
 	[
 		'number'      => '04',
@@ -39,7 +39,7 @@ $collections  = $collections_data['items'] ?? [
 		'title'       => 'Industrieel Atelier',
 		'descriptor'  => 'Krachtig · Karaktervol · Hedendaags',
 		'description' => 'Rauwe materialen en grafische vormen met een eigenzinnig karakter.',
-		'image'       => kc_theme_img( 'collections/industrieel-base.webp' ) ?: kc_theme_img( 'collections/industrieel.jpg' ),
+		'image'       => kc_theme_img( 'collections/official/industrieel-ai-kuchen.webp' ) ?: kc_theme_img( 'collections/industrieel-base.webp' ) ?: kc_theme_img( 'collections/industrieel.jpg' ),
 	],
 ];
 $col_eyebrow    = $collections_data['eyebrow'] ?? 'Onze Collecties';
@@ -57,8 +57,10 @@ $concrete = kc_theme_img('mat-concrete.jpg');
 	<div class="collections-section__veil" aria-hidden="true"></div>
 	<div class="collections-section__ambient" aria-hidden="true"></div>
 
-	<div class="site-shell">
-		<?php kc_section_chapter('06', __('Collecties', 'keuken-centrum')); ?>
+	<div class="site-shell collections-section__header-shell">
+		<div class="collections-section__chapter-row">
+			<?php kc_section_chapter('06', __('Collecties', 'keuken-centrum'), false, 10, 'chapter-mark--collections'); ?>
+		</div>
 		<div class="collections-section__intro" data-reveal>
 			<div class="section-label-row">
 				<span class="kitchen-eyebrow-mark" aria-hidden="true"></span>
