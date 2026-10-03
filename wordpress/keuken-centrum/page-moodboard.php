@@ -40,7 +40,7 @@ foreach ( (array) ( $catalog['styles'] ?? [] ) as $style_row ) {
 					<button type="button" class="kc-cfg-btn kc-cfg-btn--ghost" data-cfg-save><?php esc_html_e( 'Project opslaan', 'keuken-centrum' ); ?></button>
 					<button type="button" class="kc-cfg-btn kc-cfg-btn--ghost" data-cfg-share><?php esc_html_e( 'Project delen', 'keuken-centrum' ); ?></button>
 				</div>
-				<p class="kc-cfg-mood__note"><?php esc_html_e( 'Download uw keukenvoorstel als pdf. Delen deelt de pagina-URL, net als React.', 'keuken-centrum' ); ?></p>
+				<p class="kc-cfg-mood__note"><?php esc_html_e( 'Download uw keukenvoorstel als pdf.', 'keuken-centrum' ); ?></p>
 			</div>
 			<div>
 				<h2 class="kc-cfg-h2"><?php esc_html_e( 'Merk en stijl', 'keuken-centrum' ); ?></h2>

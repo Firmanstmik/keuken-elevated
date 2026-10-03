@@ -312,10 +312,12 @@ function kc_configurator_js_bootstrap(): void {
 add_action( 'wp_head', 'kc_configurator_js_bootstrap', 99 );
 
 /**
- * Bypass LiteSpeed full-page cache on configurator funnel pages.
+ * Bypass LiteSpeed full-page cache on configurator funnel pages and the
+ * consultation page, whose form nonce must not outlive its 24h validity.
  */
 function kc_configurator_litespeed_nocache(): void {
-	if ( is_admin() || ! kc_is_configurator_route() ) {
+	$is_consultation = function_exists( 'kc_is_consultation_route' ) && kc_is_consultation_route();
+	if ( is_admin() || ( ! kc_is_configurator_route() && ! $is_consultation ) ) {
 		return;
 	}
 	do_action( 'litespeed_control_set_nocache', 'kc_configurator_interaction' );
